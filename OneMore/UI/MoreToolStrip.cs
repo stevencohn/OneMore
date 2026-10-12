@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.UI
 	/// to ImageScalingSize so button icons are drawn to correct size for the device.
 	/// </summary>
 
-	internal class MoreToolStrip : ToolStrip, ILoadControl
+	internal class MoreToolStrip : ToolStrip, ILoadControl, IDpiAware
 	{
 		public MoreToolStrip()
 		{
@@ -28,12 +28,23 @@ namespace River.OneMoreAddIn.UI
 		void ILoadControl.OnLoad()
 		{
 			AutoSize = false;
+			ApplyScale();
+			Width = Items.OfType<ToolStripItem>().Sum(i => i.Width) + 16;
+		}
 
-			(float scaleX, float scaleY) = UI.Scaling.GetScalingFactors();
+
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			ApplyScale();
+			Width = Items.OfType<ToolStripItem>().Sum(i => i.Width) + 16;
+		}
+
+
+		private void ApplyScale()
+		{
+			(float scaleX, float scaleY) = UI.Scaling.GetScalingFactors(this);
 			ImageScalingSize = new Size((int)(16 * scaleX), (int)(16 * scaleY));
 			Height = (int)(24 * scaleY);
-
-			Width = Items.OfType<ToolStripItem>().Sum(i => i.Width) + 16;
 		}
 
 

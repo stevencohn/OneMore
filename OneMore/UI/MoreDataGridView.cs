@@ -15,8 +15,16 @@ namespace River.OneMoreAddIn.UI
 	/// Customization of DataGridView specifically for KeyboardSheet to capture and swallow
 	/// invalid key sequences.
 	/// </summary>
-	internal class MoreDataGridView : DataGridView, ILoadControl, IThemedControl
+	internal class MoreDataGridView : DataGridView, ILoadControl, IThemedControl, IDpiAware
 	{
+		// Row and header heights are absolute pixels set by the hosting sheet, which neither
+		// autoscale nor a font change rescale. Remember the heights and the DPI at which they
+		// were valid so they can be recalculated, idempotently, whenever the DPI changes.
+		private int baseDpi;
+		private int baseRowHeight;
+		private int baseHeaderHeight;
+
+
 		public string ThemedBack { get; set; }
 
 		public string ThemedFore { get; set; }
@@ -28,9 +36,61 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			if (baseDpi <= 0)
+			{
+				// not loaded yet; the heights are still valid for the DPI before this change
+				CaptureBaseHeights(oldDpi);
+			}
+
+			if (baseDpi <= 0 || newDpi <= 0)
+			{
+				return;
+			}
+
+			var factor = newDpi / (float)baseDpi;
+
+			if (baseRowHeight > 0)
+			{
+				var height = Math.Max(1, (int)Math.Round(baseRowHeight * factor));
+				RowTemplate.Height = height;
+
+				foreach (DataGridViewRow row in Rows)
+				{
+					row.Height = height;
+				}
+			}
+
+			if (baseHeaderHeight > 0 &&
+				ColumnHeadersHeightSizeMode != DataGridViewColumnHeadersHeightSizeMode.AutoSize)
+			{
+				ColumnHeadersHeight = Math.Max(1, (int)Math.Round(baseHeaderHeight * factor));
+			}
+		}
+
+
+		private void CaptureBaseHeights(int dpi)
+		{
+			if (dpi <= 0)
+			{
+				return;
+			}
+
+			baseDpi = dpi;
+			baseRowHeight = RowTemplate.Height;
+			baseHeaderHeight = ColumnHeadersHeight;
+		}
+
+
 		void ILoadControl.OnLoad()
 		{
 			var manager = ThemeManager.Instance;
+
+			if (baseDpi <= 0)
+			{
+				CaptureBaseHeights(Scaling.GetDpi(this));
+			}
 
 			var back = manager.GetColor(
 				string.IsNullOrWhiteSpace(ThemedBack) ? "Control" : ThemedBack);

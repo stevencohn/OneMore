@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -16,8 +17,6 @@ namespace River.OneMoreAddIn.UI
 	internal class Scaling
 	{
 		private static bool unprepared = true;
-		private static float xScalingFactor = 0;
-		private static float yScalingFactor = 0;
 
 
 		/// <summary>
@@ -78,33 +77,257 @@ namespace River.OneMoreAddIn.UI
 		/// <returns>A Tuple with DpiX and DpiY values</returns>
 		public static (float, float) GetDpiValues()
 		{
+			var dpi = GetPrimaryMonitorDpi();
+			if (dpi > 0)
+			{
+				return (dpi, dpi);
+			}
+
 			using var graphics = Graphics.FromHwnd(IntPtr.Zero);
 			return (graphics.DpiX, graphics.DpiY);
 		}
 
 
 		/// <summary>
-		/// Get the HighDPI scaling factor for both width and height.
-		/// Should be 1.0 for non-HighDPI monitors.
+		/// Get the HighDPI scaling factor for both width and height of the primary monitor.
+		/// Should be 1.0 for non-HighDPI monitors. This is read live on every call, never
+		/// cached, because the DPI can change while OneNote is running, e.g. when attaching
+		/// to or detaching from a remote desktop session or changing the display scale.
+		/// Prefer <see cref="GetScalingFactors(Control)"/> when a control is available.
 		/// </summary>
 		/// <returns>A Tuple with xScalingFactor and yScalingFactor</returns>
 		public static (float, float) GetScalingFactors()
 		{
-			if (xScalingFactor.EstEquals(0) && yScalingFactor.EstEquals(0))
+			var (dpiX, dpiY) = GetDpiValues();
+			return (dpiX / 96f, dpiY / 96f); // 1.25 = 125%
+		}
+
+
+		/// <summary>
+		/// Get the HighDPI scaling factor for the monitor currently hosting the given control.
+		/// </summary>
+		/// <param name="control">A control whose actual DPI is used, see GetDpi</param>
+		/// <returns>A Tuple with xScalingFactor and yScalingFactor</returns>
+		public static (float, float) GetScalingFactors(Control control)
+		{
+			var factor = GetDpi(control) / 96f;
+			return (factor, factor); // 1.25 = 125%
+		}
+
+
+		/// <summary>
+		/// Gets the actual DPI of the monitor hosting the given control.
+		/// </summary>
+		/// <remarks>
+		/// Do not use Control.DeviceDpi. WinForms initializes it from the system DPI, which is
+		/// fixed for the entire logon session. If the session started or was attached at a
+		/// different DPI, e.g. over RDP at 96, DeviceDpi stays at that value even though the
+		/// process is per-monitor aware and the monitor is, say, 144. The window's own DPI
+		/// is always correct once it has a handle; before that, use the primary monitor.
+		/// </remarks>
+		/// <param name="control">The control, or any control within the same window</param>
+		public static int GetDpi(Control control)
+		{
+			try
 			{
-				using var g = Graphics.FromHwnd(IntPtr.Zero);
-				IntPtr desktop = g.GetHdc();
+				for (var c = control; c is not null; c = c.Parent)
+				{
+					if (c.IsHandleCreated)
+					{
+						var dpi = Native.GetDpiForWindow(c.Handle);
+						if (dpi > 0)
+						{
+							return (int)dpi;
+						}
 
-				int physScreenWidth = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPHORZRES);
-				int physScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
-
-				// use the full primary screen, not WorkArea, which excludes the taskbar and
-				// would skew the factor along the axis the taskbar occupies
-				xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.PrimaryScreenWidth;
-				yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.PrimaryScreenHeight;
+						break;
+					}
+				}
+			}
+			catch (EntryPointNotFoundException)
+			{
+				// Windows older than 10 1607; fall through
 			}
 
-			return (xScalingFactor, yScalingFactor); // 1.25 = 125%
+			var primary = GetPrimaryMonitorDpi();
+			return primary > 0 ? primary : control.DeviceDpi;
+		}
+
+
+		/// <summary>
+		/// Gets a system metric, such as <see cref="Native.SM_CXVSCROLL"/>, at the given DPI.
+		/// Unlike SystemInformation.*, which reflects the system DPI captured when the process
+		/// started, this honors the per-monitor DPI.
+		/// </summary>
+		/// <param name="index">One of the Native.SM_* indexes</param>
+		/// <param name="dpi">Typically <see cref="GetDpi(Control)"/></param>
+		public static int GetSystemMetric(int index, int dpi)
+		{
+			try
+			{
+				var value = Native.GetSystemMetricsForDpi(index, (uint)dpi);
+				if (value > 0)
+				{
+					return value;
+				}
+			}
+			catch (EntryPointNotFoundException)
+			{
+				// Windows older than 10 1607; fall through
+			}
+
+			// scale the metric at the process's own DPI
+			var current = (int)GetDpiValues().Item1;
+			var metric = Native.GetSystemMetrics(index);
+			return current > 0 ? (int)Math.Round(metric * (dpi / (float)current)) : metric;
+		}
+
+
+		/// <summary>
+		/// Scales the font of descendants that do not inherit the pinned ambient font, e.g.
+		/// a designer-assigned font, or a ToolStrip which uses the system font. The ambient
+		/// font itself is sized by MoreForm and MoreUserControl, see GetAmbientFontScale.
+		/// </summary>
+		/// <param name="root">The form or user control whose descendants are scaled</param>
+		/// <param name="factor">The multiplier to apply to each font size</param>
+		/// <param name="scaled">
+		/// The controls and tool strip items whose fonts were scaled before, owned by the caller
+		/// </param>
+		/// <param name="changeOnly">
+		/// False to scale every explicit font not yet in <paramref name="scaled"/> and add it;
+		/// true to rescale only those already in it, after a DPI change
+		/// </param>
+		public static void ScaleExplicitFonts(
+			Control root, float factor, HashSet<object> scaled, bool changeOnly)
+		{
+			if (factor <= 0 || (changeOnly && factor.EstEquals(1f)))
+			{
+				return;
+			}
+
+			void Apply(object target, Func<Font> get, Action<Font> set)
+			{
+				// controls are recorded even when the factor is 1, so that a later DPI change
+				// knows they have a non-ambient font that needs rescaling
+				if (changeOnly ? !scaled.Contains(target) : !scaled.Add(target))
+				{
+					return;
+				}
+
+				if (factor.EstEquals(1f))
+				{
+					return;
+				}
+
+				var font = get();
+				set(new Font(
+					font.FontFamily, font.SizeInPoints * factor, font.Style,
+					GraphicsUnit.Point, font.GdiCharSet));
+			}
+
+			void Walk(Control parent)
+			{
+				foreach (Control child in parent.Controls)
+				{
+					// a nested user control pins and scales its own ambient font and
+					// tracks its own descendants
+					if (child is MoreUserControl)
+					{
+						continue;
+					}
+
+					var inherits = ReferenceEquals(child.Font, parent.Font);
+					var current = child;
+					if (!inherits || (changeOnly && scaled.Contains(child)))
+					{
+						Apply(child, () => current.Font, f => current.Font = f);
+					}
+
+					if (child is ToolStrip strip)
+					{
+						foreach (ToolStripItem item in strip.Items)
+						{
+							if (!ReferenceEquals(item.Font, strip.Font) ||
+								(changeOnly && scaled.Contains(item)))
+							{
+								var currentItem = item;
+								Apply(item, () => currentItem.Font, f => currentItem.Font = f);
+							}
+						}
+					}
+
+					Walk(child);
+				}
+			}
+
+			Walk(root);
+		}
+
+
+		/// <summary>
+		/// Gets the system DPI, which is fixed when the process starts and is what WinForms
+		/// uses to measure fonts for AutoScaleMode.Font, or 0 if it can't be determined.
+		/// </summary>
+		public static int GetSystemDpi()
+		{
+			try
+			{
+				return (int)Native.GetDpiForSystem();
+			}
+			catch (EntryPointNotFoundException)
+			{
+				return 0;
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the multiplier to apply to the pinned ambient font size so that layouts
+		/// authored at a given DPI come out right at <paramref name="actualDpi"/>.
+		/// </summary>
+		/// <remarks>
+		/// Font sizes are converted to pixels with the system DPI, which can differ from the
+		/// DPI of the monitor actually displaying the window, e.g. after attaching to or
+		/// detaching from a remote session or changing the display scale while OneNote runs.
+		/// Scaling the point size by actual/system makes AutoScaleMode.Font measure and lay
+		/// out as if the system DPI matched the monitor. Returns 1.0 when they already match.
+		/// </remarks>
+		/// <param name="actualDpi">The DPI of the monitor, e.g. from GetDpi</param>
+		public static float GetAmbientFontScale(int actualDpi)
+		{
+			var system = GetSystemDpi();
+			return system > 0 && actualDpi > 0 ? actualDpi / (float)system : 1f;
+		}
+
+
+		/// <summary>
+		/// Reads the effective DPI of the primary monitor, or 0 if it can't be determined.
+		/// </summary>
+		private static int GetPrimaryMonitorDpi()
+		{
+			try
+			{
+				var monitor = Native.MonitorFromWindow(
+					IntPtr.Zero, Native.MONITOR_DEFAULTTOPRIMARY);
+
+				if (monitor != IntPtr.Zero &&
+					Native.GetDpiForMonitor(
+						monitor, Native.MDT_EFFECTIVE_DPI, out uint dpiX, out _) == 0 &&
+					dpiX > 0)
+				{
+					return (int)dpiX;
+				}
+			}
+			catch (EntryPointNotFoundException)
+			{
+				// Windows older than 8.1; fall through
+			}
+			catch (DllNotFoundException)
+			{
+				// shcore.dll is missing; fall through
+			}
+
+			return 0;
 		}
 
 

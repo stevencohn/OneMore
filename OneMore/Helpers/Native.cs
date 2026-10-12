@@ -88,6 +88,7 @@ namespace River.OneMoreAddIn
 		public const int WM_PAINT = 0x000F;
 		public const int WM_REFLECT = 0x2000;
 		public const int WM_SHOWWINDOW = 0x0018;
+		public const int WM_DPICHANGED = 0x02E0;
 		public const int WM_SETCURSOR = 0x0020;
 		public const int WM_SETREDRAW = 11;
 		public const int WM_SYSCOMMAND = 0x112;
@@ -576,6 +577,48 @@ namespace River.OneMoreAddIn
 		public static extern int SetProcessDpiAwareness(int value);
 
 		public const int PROCESS_PER_MONITOR_DPI_AWARE = 2;
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdpiforwindow
+		[DllImport("user32.dll")]
+		public static extern uint GetDpiForWindow(IntPtr hWnd);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdpiforsystem
+		[DllImport("user32.dll")]
+		public static extern uint GetDpiForSystem();
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetrics
+		[DllImport("user32.dll")]
+		public static extern int GetSystemMetrics(int nIndex);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetricsfordpi
+		[DllImport("user32.dll")]
+		public static extern int GetSystemMetricsForDpi(int nIndex, uint dpi);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-monitorfromwindow
+		[DllImport("user32.dll")]
+		public static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
+
+		public const uint MONITOR_DEFAULTTOPRIMARY = 1;
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/nf-shellscalingapi-getdpiformonitor
+		[DllImport("shcore.dll")]
+		public static extern int GetDpiForMonitor(
+			IntPtr hmonitor, int dpiType, out uint dpiX, out uint dpiY);
+
+		public const int MDT_EFFECTIVE_DPI = 0;
+
+		// GetSystemMetrics indexes
+		public const int SM_CXVSCROLL = 2;
+		public const int SM_CXSMICON = 49;
+		public const int SM_CYSMICON = 50;
+		public const int SM_CXMENUCHECK = 71;
+		public const int SM_CYMENUCHECK = 72;
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos

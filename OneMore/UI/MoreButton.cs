@@ -18,10 +18,14 @@ namespace River.OneMoreAddIn.UI
 	/// Extension of Button to allow forced system Hand cursor instead of
 	/// default Forms Hand cursor.
 	/// </summary>
-	internal class MoreButton : Button, ILoadControl
+	internal class MoreButton : Button, ILoadControl, IDpiAware
 	{
 		private const int Radius = 4;
 		private IntPtr hcursor;
+		private Image rescaleSource;
+		private Image paintImage;
+		private Image paintSource;
+		private Size paintSize;
 		private Image image;
 		private Image enabledImage;
 		private Image grayImage;
@@ -55,6 +59,8 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void Dispose(bool disposing)
 		{
+			rescaleSource?.Dispose();
+			paintImage?.Dispose();
 			image?.Dispose();
 			ImageOver?.Dispose();
 			enabledImage?.Dispose();
@@ -286,24 +292,31 @@ namespace River.OneMoreAddIn.UI
 				return new ImageEditor { Size = size }.Apply(image);
 			}
 
-			if (BackgroundImageLayout == ImageLayout.Stretch &&
-				(BackgroundImage.Width != clip.Width ||
-				BackgroundImage.Height != clip.Height))
+			// never replace BackgroundImage with a scaled copy, otherwise the original is lost
+			// and the image can't grow back when the DPI increases; scale a cached copy instead
+			var source = BackgroundImage;
+
+			var needsScale = BackgroundImageLayout == ImageLayout.Stretch
+				? source.Width != clip.Width || source.Height != clip.Height
+				: source.Width > clip.Width || source.Height > clip.Height;
+
+			if (!needsScale)
 			{
-				using var img = BackgroundImage;
-				BackgroundImage = Scale(BackgroundImage, clip);
-			}
-			else
-			{
-				if (BackgroundImage.Width > clip.Width ||
-					BackgroundImage.Height > clip.Height)
-				{
-					using var img = BackgroundImage;
-					BackgroundImage = Scale(BackgroundImage, clip);
-				}
+				g.DrawImage(source, clip);
+				return;
 			}
 
-			g.DrawImage(BackgroundImage, clip);
+			if (paintImage is null ||
+				!ReferenceEquals(paintSource, source) ||
+				paintSize != clip.Size)
+			{
+				paintImage?.Dispose();
+				paintImage = Scale(source, clip);
+				paintSource = source;
+				paintSize = clip.Size;
+			}
+
+			g.DrawImage(paintImage, clip);
 		}
 
 
@@ -327,17 +340,40 @@ namespace River.OneMoreAddIn.UI
 
 		public void Rescale()
 		{
-			// special-case handling for 96 DPI monitors
-			(float dpiX, _) = UI.Scaling.GetDpiValues();
-			if (Math.Floor(dpiX).EstEquals(96.0))
+			// keep the original so the image can be re-derived if the DPI changes later
+			if (rescaleSource is null && BackgroundImage is not null)
 			{
-				if (BackgroundImage != null)
-				{
-					using var img = BackgroundImage;
+				rescaleSource = (Image)BackgroundImage.Clone();
+			}
 
-					var editor = new ImageEditor { Size = new Size(16, 16) };
-					BackgroundImage = editor.Apply(img);
-				}
+			ApplyRescale();
+		}
+
+
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			ApplyRescale();
+			Invalidate();
+		}
+
+
+		private void ApplyRescale()
+		{
+			if (rescaleSource is null)
+			{
+				return;
+			}
+
+			var previous = BackgroundImage;
+
+			// special-case handling for 96 DPI monitors
+			BackgroundImage = Scaling.GetDpi(this) == 96
+				? new ImageEditor { Size = new Size(16, 16) }.Apply(rescaleSource)
+				: (Image)rescaleSource.Clone();
+
+			if (!ReferenceEquals(previous, BackgroundImage))
+			{
+				previous?.Dispose();
 			}
 		}
 

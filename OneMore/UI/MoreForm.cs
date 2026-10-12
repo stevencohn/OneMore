@@ -34,6 +34,10 @@ namespace River.OneMoreAddIn.UI
 		private int processId;
 		private int trackedId;
 		private Font ambientFont;
+		private int currentDpi;
+
+		// controls and tool strip items whose non-ambient fonts have been DPI scaled
+		private readonly System.Collections.Generic.HashSet<object> scaledFonts = new();
 
 
 		public MoreForm()
@@ -47,11 +51,23 @@ namespace River.OneMoreAddIn.UI
 			// system and is not rescaled per monitor, so pin the font to keep AutoScaleMode.Font
 			// deterministic on 100%, high-DPI and RDP displays. Skip at design time or the
 			// VS designer will serialize this font into every derived Designer.cs.
+			//
+			// The font size is also scaled by actual/system DPI so the layout follows the
+			// monitor even when the process's system DPI is stale, see GetAmbientFontScale.
 			if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
 			{
-				ambientFont = new Font("Microsoft Sans Serif", 8.25F);
+				var (dpi, _) = Scaling.GetDpiValues();
+				currentDpi = (int)dpi;
+				ambientFont = CreateAmbientFont(currentDpi);
 				Font = ambientFont;
 			}
+		}
+
+
+		private static Font CreateAmbientFont(int dpi)
+		{
+			return new Font(
+				"Microsoft Sans Serif", 8.25F * Scaling.GetAmbientFontScale(dpi));
 		}
 
 
@@ -372,12 +388,21 @@ namespace River.OneMoreAddIn.UI
 			}
 			#endregion
 
+			if (!DesignMode)
+			{
+				// fonts that don't inherit the ambient font, e.g. ToolStrip or designer-assigned
+				Scaling.ScaleExplicitFonts(
+					this, Scaling.GetAmbientFontScale(Scaling.GetDpi(this)), scaledFonts, false);
+			}
+
 			if (ThemeEnabled)
 			{
 				manager.InitializeTheme(this);
 			}
 
 			LoadControls(Controls);
+
+			LogDpi("OnLoad");
 
 			//logger.WriteLine($"MoreForm.OnLoad try focus");
 			TryFocus();
@@ -448,6 +473,155 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Handles WM_DPICHANGED, sent when the DPI of the monitor hosting this form changes,
+		/// which includes moving the form to another monitor, changing the display scale or
+		/// attaching/detaching a remote session.
+		/// </summary>
+		/// <remarks>
+		/// WinForms is unreliable here: inside this host its DeviceDpi stays at the value it
+		/// had at startup and it does not rescale the form, so it is not asked to. The message
+		/// is handled completely here instead by resizing the pinned ambient font, which
+		/// AutoScaleMode.Font turns into a proportional rescale of the whole layout.
+		/// </remarks>
+		protected override void WndProc(ref Message m)
+		{
+			if (m.Msg == Native.WM_DPICHANGED && !DesignMode)
+			{
+				HandleDpiChanged(m);
+				m.Result = IntPtr.Zero;
+				return;
+			}
+
+			base.WndProc(ref m);
+		}
+
+
+		private void HandleDpiChanged(Message m)
+		{
+			var newDpi = (int)(m.WParam.ToInt64() & 0xFFFF);
+			var oldDpi = currentDpi;
+			if (newDpi <= 0 || newDpi == oldDpi)
+			{
+				return;
+			}
+
+			currentDpi = newDpi;
+			LogDpi($"WM_DPICHANGED {oldDpi}->{newDpi} before");
+
+			var factor = oldDpi > 0 ? newDpi / (float)oldDpi : 1f;
+			var suggested = System.Runtime.InteropServices.Marshal.PtrToStructure<Native.RECT>(
+				m.LParam);
+
+			SuspendLayout();
+			try
+			{
+				if (AutoScaleMode != AutoScaleMode.Font)
+				{
+					// no font-driven autoscale, so scale bounds explicitly
+					Scale(new SizeF(factor, factor));
+				}
+
+				// with AutoScaleMode.Font this changes the layout proportionally
+				var previous = ambientFont;
+				ambientFont = CreateAmbientFont(newDpi);
+				Font = ambientFont;
+				previous?.Dispose();
+
+				if (oldDpi > 0)
+				{
+					Scaling.ScaleExplicitFonts(this, factor, scaledFonts, true);
+				}
+
+				BroadcastDpiChange(Controls, oldDpi, newDpi);
+				OnDpiScaleChanged(oldDpi, newDpi);
+			}
+			finally
+			{
+				ResumeLayout(true);
+			}
+
+			// keep the window where Windows suggested after the move
+			SetBounds(suggested.Left, suggested.Top, Width, Height);
+
+			LogDpi($"WM_DPICHANGED {oldDpi}->{newDpi} after");
+		}
+
+		/// <summary>
+		/// Notifies the given control and its descendants of a DPI change. Use this for
+		/// controls the form holds but that are not currently in its control tree, such as
+		/// hidden sheets, and so were not reached by the form's own notification.
+		/// </summary>
+		protected static void NotifyDpiChanged(Control root, int oldDpi, int newDpi)
+		{
+			if (root is IDpiAware aware)
+			{
+				aware.OnDpiChanged(oldDpi, newDpi);
+			}
+
+			BroadcastDpiChange(root.Controls, oldDpi, newDpi);
+		}
+
+
+		private static void BroadcastDpiChange(Control.ControlCollection controls, int oldDpi, int newDpi)
+		{
+			foreach (Control child in controls)
+			{
+				if (child is IDpiAware aware)
+				{
+					aware.OnDpiChanged(oldDpi, newDpi);
+				}
+
+				if (child.Controls.Count > 0)
+				{
+					BroadcastDpiChange(child.Controls, oldDpi, newDpi);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Allows an inheritor to recalculate DPI-dependent values cached by the form itself,
+		/// called after all IDpiAware descendants have been notified. DeviceDpi already
+		/// reflects the new DPI.
+		/// </summary>
+		protected virtual void OnDpiScaleChanged(int oldDpi, int newDpi)
+		{
+		}
+
+
+		private static uint GetSystemDpi()
+		{
+			try
+			{
+				return Native.GetDpiForSystem();
+			}
+			catch (EntryPointNotFoundException)
+			{
+				return 0;
+			}
+		}
+
+
+		private void LogDpi(string where)
+		{
+			//var (dpiX, _) = Scaling.GetDpiValues();
+			//var (fx, _) = Scaling.GetScalingFactors();
+			//var windowDpi = Scaling.GetDpi(this);
+			//if (currentDpi == 0)
+			//{
+			//	currentDpi = windowDpi;
+			//}
+
+			//logger.Verbose(
+			//	$"{GetType().Name}.{where} DeviceDpi={DeviceDpi} windowDpi={windowDpi} " +
+			//	$"systemDpi={GetSystemDpi()} primaryDpi={dpiX} size={Width}x{Height} " +
+			//	$"client={ClientSize.Width}x{ClientSize.Height} " +
+			//	$"factor={fx:0.##} autoScale={AutoScaleFactor.Width:0.##}x{AutoScaleFactor.Height:0.##} " +
+			//	$"font={Font.SizeInPoints}pt");
+		}
+
+
+		/// <summary>
 		/// Masks the form with rounded corners sized to its current dimensions. Call this from
 		/// OnLoad and OnSizeChanged rather than the constructor, so the mask matches the size
 		/// and DPI the form actually has after autoscaling.
@@ -457,7 +631,7 @@ namespace River.OneMoreAddIn.UI
 		/// </param>
 		protected void ApplyRoundedRegion(int designRadius)
 		{
-			var radius = (int)Math.Round(designRadius * DeviceDpi / 144f);
+			var radius = (int)Math.Round(designRadius * Scaling.GetDpi(this) / 144f);
 
 			var handle = Native.CreateRoundRectRgn(0, 0, Width, Height, radius, radius);
 			var previous = Region;
@@ -658,9 +832,16 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
+			// the size was saved in pixels at the DPI recorded with it; convert to the DPI
+			// this form is at now. Sizes saved before the DPI was recorded are used as is.
+			var savedDpi = settings.Get("dpi", 0);
+			var factor = savedDpi > 0 && currentDpi > 0 ? currentDpi / (float)savedDpi : 1f;
+
 			var screen = Screen.FromControl(this);
-			var width = Math.Min(settings.Get("width", Width), screen.WorkingArea.Width);
-			var height = Math.Min(settings.Get("height", Height), screen.WorkingArea.Height);
+			var width = Math.Min(
+				(int)Math.Round(settings.Get("width", Width) * factor), screen.WorkingArea.Width);
+			var height = Math.Min(
+				(int)Math.Round(settings.Get("height", Height) * factor), screen.WorkingArea.Height);
 
 			if (MinimumSize.Width > 0)
 			{
@@ -682,6 +863,7 @@ namespace River.OneMoreAddIn.UI
 			var settings = provider.GetCollection(GetType().Name);
 			settings.Add("width", Width);
 			settings.Add("height", Height);
+			settings.Add("dpi", currentDpi);
 			provider.SetCollection(settings);
 			provider.Save();
 		}

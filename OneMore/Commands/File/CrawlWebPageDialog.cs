@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 				width += column.Width;
 			}
 
-			var adjusted = gridView.Width - SystemInformation.VerticalScrollBarWidth;
+			var adjusted = gridView.Width - UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this));
 			if (width != adjusted)
 			{
 				var diff = (adjusted - width) / 2;

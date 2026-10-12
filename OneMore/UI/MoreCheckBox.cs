@@ -17,7 +17,6 @@ namespace River.OneMoreAddIn.UI
 	{
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
-		private readonly int boxSize;
 		private readonly IntPtr hcursor;
 		private readonly Color backColor;
 		private readonly Color foreColor;
@@ -38,8 +37,6 @@ namespace River.OneMoreAddIn.UI
 			Cursor = Cursors.Hand;
 			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 
-			boxSize = SystemInformation.MenuCheckSize.Width - 3;
-
 			manager = ThemeManager.Instance;
 			BackColor = backColor = manager.GetColor("ButtonFace");
 			ForeColor = foreColor = manager.GetColor("ControlText");
@@ -58,6 +55,15 @@ namespace River.OneMoreAddIn.UI
 			}
 			base.Dispose(disposing);
 		}
+
+
+		// computed from the control's current DPI so it tracks DPI changes
+		private int BoxSize => MenuCheckSize.Width - 3;
+
+
+		private Size MenuCheckSize => new(
+			Scaling.GetSystemMetric(Native.SM_CXMENUCHECK, Scaling.GetDpi(this)),
+			Scaling.GetSystemMetric(Native.SM_CYMENUCHECK, Scaling.GetDpi(this)));
 
 
 		/// <summary>
@@ -267,33 +273,33 @@ namespace River.OneMoreAddIn.UI
 
 			var boxColor = Enabled ? manager.GetColor("Highlight") : color;
 
-			var boxY = (Size.Height - boxSize) / 2;
+			var boxY = (Size.Height - BoxSize) / 2;
 
 			using var boxPen = new Pen(boxColor);
 			var radius = g.DpiX.EstEquals(96) ? 2 : 4;
-			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, boxSize, boxSize), radius);
+			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, BoxSize, BoxSize), radius);
 
 			if (CheckState == CheckState.Indeterminate)
 			{
 				// "some but not all" - a dash rather than a full check-fill
 				using var fillBrush = new SolidBrush(boxColor);
-				var dashHeight = Math.Max(2, boxSize / 6);
+				var dashHeight = Math.Max(2, BoxSize / 6);
 				g.FillRoundedRectangle(fillBrush,
-					new Rectangle(3, boxY + ((boxSize - dashHeight) / 2), boxSize - 6, dashHeight), 1);
+					new Rectangle(3, boxY + ((BoxSize - dashHeight) / 2), BoxSize - 6, dashHeight), 1);
 			}
 			else if (Checked)
 			{
 				using var fillBrush = new SolidBrush(boxColor);
 				g.FillRoundedRectangle(fillBrush,
-					new Rectangle(2, boxY + 2, boxSize - 4, boxSize - 4), radius);
+					new Rectangle(2, boxY + 2, BoxSize - 4, BoxSize - 4), radius);
 			}
 
 			using var brush = new SolidBrush(color);
 			var textsize = g.MeasureString(Text, Font);
 
-			var bounds = new Rectangle(boxSize + Spacing,
+			var bounds = new Rectangle(BoxSize + Spacing,
 				(int)((pevent.ClipRectangle.Height - textsize.Height) / 2),
-				pevent.ClipRectangle.Width - (boxSize + Spacing),
+				pevent.ClipRectangle.Width - (BoxSize + Spacing),
 				Size.Height);
 
 			pevent.Graphics.DrawString(Text, Font, brush, bounds,
@@ -321,7 +327,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (Appearance == Appearance.Normal)
 			{
-				var size = SystemInformation.MenuCheckSize;
+				var size = MenuCheckSize;
 				if (string.IsNullOrWhiteSpace(Text) &&
 					(Width < size.Width || Height < size.Height))
 				{
@@ -344,8 +350,8 @@ namespace River.OneMoreAddIn.UI
 
 				using var g = CreateGraphics();
 				size = g.MeasureString(text, Font).ToSize();
-				var w = boxSize + Spacing + size.Width;
-				var h = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+				var w = BoxSize + Spacing + size.Width;
+				var h = Math.Max(size.Height, MenuCheckSize.Height);
 				if (Width < w || Height < h)
 				{
 					AutoSize = false;

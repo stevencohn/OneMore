@@ -21,8 +21,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private const int RegionRadius = 20;
 
-		private readonly float scalingX;
-		private readonly float scalingY;
+		private float scalingX;
+		private float scalingY;
 		private int maxLeft;
 		private int maxTop;
 
@@ -54,6 +54,14 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public int Seconds { get; private set; }
+
+
+		protected override void OnDpiScaleChanged(int oldDpi, int newDpi)
+		{
+			(scalingX, scalingY) = UI.Scaling.GetScalingFactors(this);
+			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
+			ApplyRoundedRegion(RegionRadius);
+		}
 
 
 		protected override void OnLoad(EventArgs e)

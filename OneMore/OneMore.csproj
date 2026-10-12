@@ -909,6 +909,7 @@
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
     <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
+    <Compile Include="UI\IDpiAware.cs" />
     <Compile Include="UI\ILoadControl.cs" />
     <Compile Include="UI\MoreBufferedPanel.cs">
       <SubType>Component</SubType>

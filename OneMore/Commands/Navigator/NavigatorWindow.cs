@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 			trash.Add(provider);
 			PinnedHealth.Changed += PinnedHealthChanged;
 
-			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
+			var rowWidth = Width - ScrollBarWidth * 2;
 
 			if (reading)
 			{
@@ -169,16 +169,42 @@ namespace River.OneMoreAddIn.Commands
 			historyFilterButton.Rescale();
 			historyFilterCloseButton.Rescale();
 
-			// Set DPI-aware row heights for history and pinned list views
-			using (var g = historyBox.CreateGraphics())
-			{
-				var rowHeight = HistoryControl.GetPreferredRowHeight(g);
-				historyBox.RowHeight = rowHeight;
-				pinnedBox.RowHeight = rowHeight;
-			}
+			ApplyRowHeights();
 
 			pinnedBox.MouseUp += ShowPinnedContextMenu;
 			historyBox.MouseUp += ShowHistoryContextMenu;
+		}
+
+
+		// the vertical scrollbar width at the DPI of the monitor currently hosting this window
+		private int ScrollBarWidth => UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this));
+
+
+		// Set DPI-aware row heights for history and pinned list views
+		private void ApplyRowHeights()
+		{
+			using var g = historyBox.CreateGraphics();
+			var rowHeight = HistoryControl.GetPreferredRowHeight(g);
+			historyBox.RowHeight = rowHeight;
+			pinnedBox.RowHeight = rowHeight;
+		}
+
+
+		protected override void OnDpiScaleChanged(int oldDpi, int newDpi)
+		{
+			// fonts have been rescaled so row heights and column widths must be recalculated
+			ApplyRowHeights();
+
+			var rowWidth = Width - ScrollBarWidth * 2;
+			if (historyBox.Columns.Count > 0)
+			{
+				historyBox.Columns[0].Width = rowWidth;
+			}
+
+			if (reading && pinnedBox.Columns.Count > 0)
+			{
+				pinnedBox.Columns[0].Width = rowWidth;
+			}
 		}
 
 
@@ -711,7 +737,7 @@ namespace River.OneMoreAddIn.Commands
 
 			LayoutSections();
 
-			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
+			var rowWidth = Width - ScrollBarWidth * 2;
 
 			if (reading)
 			{
@@ -976,7 +1002,7 @@ namespace River.OneMoreAddIn.Commands
 				//logger.DebugTime($"suspending layout", keepRunning: true);
 				pageBox.SuspendLayout();
 
-				var margin = SystemInformation.VerticalScrollBarWidth * 2;
+				var margin = ScrollBarWidth * 2;
 				currentLabel = null;
 
 				using var g = pageBox.CreateGraphics();
@@ -1168,7 +1194,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResizePageBox(object sender, EventArgs e)
 		{
-			var margin = SystemInformation.VerticalScrollBarWidth * 2;
+			var margin = ScrollBarWidth * 2;
 
 			foreach (MoreLinkLabel link in pageBox.Controls)
 			{

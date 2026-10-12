@@ -33,6 +33,9 @@ namespace River.OneMoreAddIn.Settings
 		// labels so it stays constant as a card toggles - see UpdateIndicator()
 		private static int indicatorWidth;
 
+		// the same, measured with the unscaled design fonts; DPI independent
+		private static int designIndicatorWidth;
+
 		// "#" + exactly 6 hex digits, matching the shipped InfoBoxThemes.json format (#RRGGBB)
 		private static readonly Regex HexColorPattern = new(@"^#[0-9A-Fa-f]{6}$", RegexOptions.Compiled);
 
@@ -90,7 +93,7 @@ namespace River.OneMoreAddIn.Settings
 			Margin = new Padding(0, 0, 0, 12);
 
 			EnsureSharedFonts(Font);
-			EnsureIndicatorWidth();
+			EnsureIndicatorWidth(Scaling.GetAmbientFontScale(Scaling.GetDpi(this)));
 
 			// header (collapsed) row...
 
@@ -276,11 +279,17 @@ namespace River.OneMoreAddIn.Settings
 				return;
 			}
 
-			boldTitleFont = new Font(baseFont, FontStyle.Bold);
+			// These are shared statically for the life of the process so they must not depend
+			// on the DPI in effect when the first card was built. baseFont.Size is already
+			// scaled to that DPI, so use the design size instead; MoreUserControl scales
+			// explicit fonts for the current DPI as the controls using them are loaded.
+			const float designSize = 8.25f;
+
+			boldTitleFont = new Font(baseFont.FontFamily, designSize, FontStyle.Bold);
 			smallTextFont = new Font(baseFont.FontFamily, 8f);
 			arrowFont = new Font(baseFont.FontFamily, 12f);
-			smallFieldFont = new Font(baseFont.FontFamily, Math.Max(8f, baseFont.Size - 2f));
-			smallLinkFont = new Font(baseFont.FontFamily, Math.Max(8f, baseFont.Size - 1.5f));
+			smallFieldFont = new Font(baseFont.FontFamily, Math.Max(8f, designSize - 2f));
+			smallLinkFont = new Font(baseFont.FontFamily, Math.Max(8f, designSize - 1.5f));
 		}
 
 
@@ -291,21 +300,36 @@ namespace River.OneMoreAddIn.Settings
 		/// width - and therefore the shaded header fill's right edge - stays fixed as a card
 		/// toggles between the two states instead of jumping with the label's own width.
 		/// </summary>
-		private static void EnsureIndicatorWidth()
+		private static void EnsureIndicatorWidth(float dpiScale)
 		{
-			if (indicatorWidth > 0)
+			if (designIndicatorWidth <= 0)
 			{
-				return;
+				int Measure(string full)
+				{
+					var arrowSize = TextRenderer.MeasureText(full.Substring(0, 1), arrowFont);
+					var wordSize = TextRenderer.MeasureText(full.Substring(1).TrimStart(), smallTextFont);
+					return arrowSize.Width + 4 + wordSize.Width + 12;
+				}
+
+				designIndicatorWidth = Math.Max(
+					Measure(Resx.BoxTypeCard_Expand), Measure(Resx.BoxTypeCard_Collapse));
 			}
 
-			int Measure(string full)
-			{
-				var arrowSize = TextRenderer.MeasureText(full.Substring(0, 1), arrowFont);
-				var wordSize = TextRenderer.MeasureText(full.Substring(1).TrimStart(), smallTextFont);
-				return arrowSize.Width + 4 + wordSize.Width + 12;
-			}
+			// the measurement uses the unscaled design fonts; the labels using them are scaled
+			// to the current DPI, so scale the width the same way and refresh it on every card
+			indicatorWidth = (int)Math.Round(designIndicatorWidth * dpiScale);
+		}
 
-			indicatorWidth = Math.Max(Measure(Resx.BoxTypeCard_Expand), Measure(Resx.BoxTypeCard_Collapse));
+
+		protected override void OnDpiScaleChanged(int oldDpi, int newDpi)
+		{
+			EnsureIndicatorWidth(Scaling.GetAmbientFontScale(newDpi));
+
+			indicatorPanel.Width = indicatorWidth;
+			if (shadingPanel.Parent is Panel header)
+			{
+				shadingPanel.Width = header.ClientSize.Width - indicatorWidth;
+			}
 		}
 
 
@@ -515,6 +539,9 @@ namespace River.OneMoreAddIn.Settings
 			contentPanel.Controls.Add(titleCaption);
 
 			contentPanel.ResumeLayout(false);
+
+			// this content is built after the card's own load pass, so scale its explicit fonts now
+			ScaleExplicitFonts();
 
 			// This card's own one-time theming pass (MoreUserControl.OnLoad) already ran
 			// back when the card was first shown, collapsed, before any of the above

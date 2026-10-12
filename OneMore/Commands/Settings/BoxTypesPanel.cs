@@ -42,7 +42,9 @@ namespace River.OneMoreAddIn.Settings
 			var titleLabel = new MoreLabel
 			{
 				AutoSize = true,
-				Font = new Font(Font, FontStyle.Bold),
+				// design size; the panel's Font is already DPI scaled and explicit fonts are
+				// scaled again when the control loads
+				Font = new Font(Font.FontFamily, 8.25f, FontStyle.Bold),
 				Location = new Point(0, ButtonTopMargin),
 				Text = Resx.BoxTypesPanel_Title
 			};

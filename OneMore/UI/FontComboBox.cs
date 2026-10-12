@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal class FontComboBox : MoreComboBox
+	internal class FontComboBox : MoreComboBox, IDpiAware
 	{
 		private readonly Dictionary<string, Font> cache;
 		private int itemHeight;
@@ -64,6 +64,27 @@ namespace River.OneMoreAddIn.UI
 
 
 		protected override Font GetItemFont(object item) => GetFont(item.ToString());
+
+
+		/// <summary>
+		/// Gets the preview point size adjusted for the DPI of the monitor actually showing
+		/// this control; point sizes are converted to pixels using the system DPI, which can
+		/// differ from the monitor's, see Scaling.GetAmbientFontScale.
+		/// </summary>
+		private float ScaledPreviewFontSize =>
+			PreviewFontSize * Scaling.GetAmbientFontScale(Scaling.GetDpi(this));
+
+
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			CalculateLayout();
+
+			// item heights are only measured when the native handle is created
+			if (IsHandleCreated)
+			{
+				RecreateHandle();
+			}
+		}
 
 
 		protected override void OnFontChanged(EventArgs e)
@@ -183,7 +204,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			ClearFontCache();
 
-			using var font = new Font(Font.FontFamily, PreviewFontSize);
+			using var font = new Font(Font.FontFamily, ScaledPreviewFontSize);
 
 			// TextRenderer.MeasureText(string, Font) measures against a cached, process-wide
 			// screen DC that isn't tied to this control's monitor, so on a per-monitor-DPI-aware
@@ -263,7 +284,7 @@ namespace River.OneMoreAddIn.UI
 
 			try
 			{
-				font = new Font(fontFamilyName, PreviewFontSize, fontStyle);
+				font = new Font(fontFamilyName, ScaledPreviewFontSize, fontStyle);
 			}
 			catch
 			{

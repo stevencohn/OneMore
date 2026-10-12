@@ -403,7 +403,7 @@ namespace River.OneMoreAddIn.UI
 		#region Metrics
 		private int Scale(int value)
 		{
-			return (int)Math.Round(value * DeviceDpi / 96f);
+			return (int)Math.Round(value * Scaling.GetDpi(this) / 96f);
 		}
 
 

@@ -284,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 			var width = contextPanel.ClientSize.Width -
 				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 -
 				// make room for scrollbar, expecting it to be drawn
-				SystemInformation.VerticalScrollBarWidth;
+				UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this));
 
 			if (tags.Any())
 			{

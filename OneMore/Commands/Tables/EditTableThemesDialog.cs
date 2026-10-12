@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			if (colorRows.Count > 0)
 			{
 				var contentWidth = colorRows.Max(r => r.Width);
-				colorsListPanel.Width = contentWidth + SystemInformation.VerticalScrollBarWidth + 12;
+				colorsListPanel.Width = contentWidth + UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this)) + 12;
 			}
 		}
 
