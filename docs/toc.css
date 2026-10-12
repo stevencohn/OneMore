@@ -40,6 +40,13 @@
     display: block;
 }
 
+.offcanvas-body li.toc-divider {
+    list-style: none;
+    height: 0;
+    margin: 2px 15px;
+    border-top: 1px solid #D5D0CC;
+}
+
 .offcanvas-body a:hover {
     background-color: #E8E4E1;
     color: #201F1E;

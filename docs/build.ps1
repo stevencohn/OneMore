@@ -106,6 +106,32 @@ Begin
         return $dir, $sectionID
     }
 
+    function IsDividerPage
+    {
+        # a divider is an empty page whose title is a repeating "- - - -" pattern;
+        # it is rendered as a non-hyperlinked separator line in the TOC and is not
+        # published as a page of its own
+        param($title, $pageFile)
+
+        # ArchiveCommand appends "_n" to titles duplicated within a section, which
+        # always happens for dividers, so ignore that suffix
+        $bare = $title.Trim() -replace '_\d+$', ''
+        if ($bare -notmatch '^-(\s+-)+$') { return $false }
+        if (-not (Test-Path -LiteralPath $pageFile)) { return $false }
+
+        $text = Get-Content -LiteralPath $pageFile -Encoding utf8 -Raw
+        $text = [regex]::Replace($text, '(?is)<head>.*?</head>', '')
+        # creation/modified date lines
+        $text = [regex]::Replace($text, '(?is)<p[^>]*#767676[^>]*>.*?</p>', '')
+        # hashtags and copyright footer
+        $text = [regex]::Replace($text, '(?is)<cite[^>]*>.*?</cite>', '')
+        $text = [regex]::Replace($text, '(?is)<[^>]+>', '')
+        $text = $text.Replace('&nbsp;', '').Replace('Created with OneNote.', '')
+
+        # what remains must be only the title's dashes and whitespace
+        return ($text -replace '[-\s]', '') -eq ''
+    }
+
     function MakeSectionTOC
     {
         param($sectionID, $sectionName)
@@ -123,6 +149,11 @@ Begin
                 if ($name.Contains('#skipwiki') -or $name.Contains('#skipdoc'))
                 {
                     $script:skips += (Join-Path $basepath $name)
+                }
+                elseif (IsDividerPage $_ (Join-Path $basepath $name))
+                {
+                    $script:skips += (Join-Path $basepath $name)
+                    $toc += '<li class="toc-divider" role="separator"></li>'
                 }
                 else
                 {
