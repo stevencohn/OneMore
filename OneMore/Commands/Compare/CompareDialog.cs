@@ -559,6 +559,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 				? BuildPageContextMenu()
 				: BuildNodeContextMenu();
 
+			menu.ApplyScale(this);
 			menu.Show(Cursor.Position);
 		}
 

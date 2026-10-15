@@ -1680,6 +1680,7 @@ namespace River.OneMoreAddIn.Commands
 			menu.Items.Add(openItem);
 			menu.Items.Add(new ToolStripSeparator());
 			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuDelete, null, UnpinOnClick));
+			menu.ApplyScale(this);
 			menu.Show(Cursor.Position);
 		}
 
@@ -1713,6 +1714,7 @@ namespace River.OneMoreAddIn.Commands
 			menu.Items.Add(openItem);
 			menu.Items.Add(new ToolStripSeparator());
 			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuDelete, null, DeleteHistoryRecords));
+			menu.ApplyScale(this);
 			menu.Show(Cursor.Position);
 		}
 
