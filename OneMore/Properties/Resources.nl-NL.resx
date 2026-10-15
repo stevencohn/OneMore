@@ -6684,8 +6684,7 @@ Eerder aangepast</value>
     <value>{0:N0} pagina's uit de zoekindex, {1:N0} gelezen uit OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer de zoekcriteria in, eventueel inclusief AND, OR, NOT, aanhalingstekens en haakjes
-Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens voor een exacte zin.</value>
+    <value>Voer woorden in willekeurige volgorde in of "exacte woordgroepen", gecombineerd met AND, OR, NOT en haakjes. Voeg \\ toe voor dit notitieblok of \naam voor een ander notitieblok.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7906,6 +7905,9 @@ Bedankt!</value>
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>Thema</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>Vandaag</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>Gebruiker</value>

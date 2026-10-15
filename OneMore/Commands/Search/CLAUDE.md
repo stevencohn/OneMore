@@ -89,6 +89,11 @@ recorded, in which case the text is picked up on the page's next change or an in
 
 `SearchDialog.scopeBox` items come from `SearchDialogText_scopeOptions` in fixed order: Notebook, Section group, Section, Page group, Page. "In all notebooks" (`SearchDialog_scopeAll`, `SearchEngine.SearchAllNotebooks`) is inserted at index 0 in code, apart from that list, so older translations with five lines keep working. Section group and Page group are removed by index when not applicable, so every locale resx must carry all five lines. Page group is offered only when `SearchEngine.GetPageGroup` finds the current page has subpages or is a subpage (a level-1 page plus following pages with `pageLevel > 1`); `SearchCommand.Execute` computes this and passes it to the dialog constructor.
 
+**Notebook notation.** Unless regex mode is on, a `\` token in the find box overrides `scopeBox`:
+`\\` is the current notebook, `\name` every notebook whose name contains `name` (quotes allow
+spaces), `\*` all notebooks. It is parsed by `TitleQueryParser.ExtractNotebook`, stripped from the
+text that is matched, and dispatched in `SearchDialog.Search` (`SearchEngine.SearchNotebooks` for names).
+
 ### `SearchServices`
 
 Handles the actual page copy/move operations triggered by `SearchCommand`:

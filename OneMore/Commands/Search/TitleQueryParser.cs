@@ -94,6 +94,38 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Extracts the first "\" notebook token from the text.
+		/// </summary>
+		/// <param name="text">The raw text</param>
+		/// <param name="remaining">The text with the token removed, or the original text</param>
+		/// <returns>
+		/// The notebook name, "*" for all notebooks, "\" for the current notebook,
+		/// or null if no token was present
+		/// </returns>
+		public static string ExtractNotebook(string text, out string remaining)
+		{
+			remaining = text;
+
+			if (string.IsNullOrEmpty(text))
+			{
+				return null;
+			}
+
+			var match = NotebookPattern.Match(text);
+			if (!match.Success)
+			{
+				return null;
+			}
+
+			remaining = text.Remove(match.Index, match.Length);
+
+			return match.Groups["quoted"].Success
+				? match.Groups["quoted"].Value
+				: match.Groups["bare"].Value;
+		}
+
+
+		/// <summary>
 		/// Parses the given raw query string into its component parts.
 		/// </summary>
 		public static TitleQuery Parse(string query)
@@ -115,15 +147,7 @@ namespace River.OneMoreAddIn.Commands
 				text = text.Remove(sortMatch.Index, sortMatch.Length);
 			}
 
-			var nbMatch = NotebookPattern.Match(text);
-			if (nbMatch.Success)
-			{
-				result.NotebookFilter = nbMatch.Groups["quoted"].Success
-					? nbMatch.Groups["quoted"].Value
-					: nbMatch.Groups["bare"].Value;
-
-				text = text.Remove(nbMatch.Index, nbMatch.Length);
-			}
+			result.NotebookFilter = ExtractNotebook(text, out text);
 
 			foreach (Match m in HashtagPattern.Matches(text))
 			{

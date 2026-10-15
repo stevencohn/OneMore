@@ -6695,8 +6695,7 @@ Modifié avant</value>
     <value>{0:N0} pages de l'index de recherche, {1:N0} lues depuis OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez les critères de recherche, en incluant éventuellement AND, OR, NOT, des guillemets et des parenthèses.
-Les mots non cités correspondent dans n'importe quel ordre ; utilisez des guillemets pour une phrase exacte.</value>
+    <value>Saisissez les mots dans n'importe quel ordre ou « phrases exactes », combinés avec AND, OR, NOT et des parenthèses. Ajoutez \\ pour ce bloc-notes ou \name pour un autre.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7916,6 +7915,9 @@ Merci!</value>
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>Thème</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>Aujourd'hui</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>Utilisateur</value>

@@ -6683,8 +6683,7 @@ Modificado antes</value>
     <value>{0:N0} páginas del índice de búsqueda, {1:N0} leídas de OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese los criterios de búsqueda, incluyendo opcionalmente Y, O, NO, comillas y paréntesis
-Las palabras sin comillas coinciden en cualquier orden; Utilice comillas para una frase exacta.</value>
+    <value>Ingrese palabras en cualquier orden o "frases exactas", combinadas con AND, OR, NOT y paréntesis. Agregue \\ para este cuaderno o \name para otro.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7905,6 +7904,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>Tema</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>Hoy</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>Usuario</value>

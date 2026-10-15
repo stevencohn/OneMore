@@ -153,6 +153,40 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Searches every open notebook whose name contains the given text, ignoring case.
+		/// </summary>
+		public async Task SearchNotebooks(OneNote one, string nameFilter, Regex finder)
+		{
+			var root = await one.GetNotebooks(OneNote.Scope.Pages);
+			if (root is null)
+			{
+				return;
+			}
+
+			var ns = one.GetNamespace(root);
+
+			if (options.DateFilter != DateFilterMode.None)
+			{
+				FilterPagesByDate(root, ns);
+			}
+
+			var containers = root.Elements(ns + "Notebook")
+				.Where(e => e.Attribute("isRecycleBin") is null &&
+					(e.Attribute("name")?.Value ?? string.Empty)
+						.IndexOf(nameFilter, StringComparison.OrdinalIgnoreCase) >= 0)
+				.ToList();
+
+			onTotalPageCount(containers.Sum(c => c.Descendants(ns + "Page").Count()));
+
+			foreach (var container in containers)
+			{
+				if (cancellationToken.IsCancellationRequested) break;
+				await TraverseSections(one, ns, container, string.Empty, finder);
+			}
+		}
+
+
 		// Pages are already filtered at notebook level; do not re-filter per section.
 		private async Task TraverseSections(
 			OneNote one, XNamespace ns, XElement parent, string path, Regex finder)

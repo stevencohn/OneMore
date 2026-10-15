@@ -115,7 +115,8 @@ namespace River.OneMoreAddIn.Commands
 			pageGroupScopeIndex = hasPageGroup ? sectionScopeIndex + 1 : -1;
 			pageScopeIndex = scopeBox.Items.Count - 1;
 
-			scopeBox.SelectedIndex = pageScopeIndex;
+			// with full text indexing the wider scope is cheap, so default to all notebooks
+			scopeBox.SelectedIndex = IndexConsumer.IsEnabled() ? allScopeIndex : pageScopeIndex;
 			dateSelector.SelectedIndex = 0;
 			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
@@ -222,9 +223,32 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Extracts a "\\" (current notebook) or "\name" (named notebook) notation from the
+		/// find text; not applied in regex mode where a backslash is meaningful.
+		/// </summary>
+		private string GetNotebookNotation(out string text)
+		{
+			text = findBox.Text;
+			if (regBox.Checked)
+			{
+				return null;
+			}
+
+			var filter = TitleQueryParser.ExtractNotebook(text, out var remaining);
+			if (filter is not null)
+			{
+				text = remaining.Trim();
+			}
+
+			return filter;
+		}
+
+
 		private void ChangedText(object sender, EventArgs e)
 		{
-			var text = findBox.Text.Trim();
+			GetNotebookNotation(out var text);
+			text = text.Trim();
 
 			if (text.Length == 0)
 			{
@@ -269,8 +293,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SearchOnKeydown(object sender, KeyEventArgs e)
 		{
+			GetNotebookNotation(out var keyText);
 			if (e.KeyCode == Keys.Enter &&
-				findBox.Text.Trim().Length > 0)
+				keyText.Trim().Length > 0)
 			{
 				Search(sender, e);
 				e.Handled = true;
@@ -325,8 +350,9 @@ namespace River.OneMoreAddIn.Commands
 			moveButton.Visible = copyButton.Visible = indexButton.Visible = false;
 
 			// Build the regex once for the entire search; all scope methods share it
+			var notebookFilter = GetNotebookNotation(out var queryText);
 			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
-			var finder = builder.BuildRegex(findBox.Text);
+			var finder = builder.BuildRegex(queryText);
 
 			if (finder is null)
 			{
@@ -363,17 +389,34 @@ namespace River.OneMoreAddIn.Commands
 				// The text index answers for the pages it has current; the rest are read as before.
 				// It does not hold the paragraphs of a generated table of contents, and a single
 				// page is always read.
-				if (!options.IncludeToc && scopeBox.SelectedIndex != pageScopeIndex)
+				if (!options.IncludeToc &&
+					(notebookFilter is not null || scopeBox.SelectedIndex != pageScopeIndex))
 				{
 					pageLabel.Text = Resx.SearchDialog_indexChecking;
 					engine.Indexed = await IndexedHits.Load(
-							builder, findBox.Text, finder, source.Token, options.IncludeOcr);
+							builder, queryText, finder, source.Token, options.IncludeOcr);
 				}
 
 				await using var one = new OneNote();
 				engine.LivePageID = one.CurrentPageId;
 
-				if (scopeBox.SelectedIndex == allScopeIndex)
+				if (notebookFilter is not null)
+				{
+					// "\\" is the current notebook, "\*" or a bare "\" is all, else by name
+					if (notebookFilter == "\\")
+					{
+						await engine.SearchNotebook(one, finder);
+					}
+					else if (notebookFilter.Length == 0 || notebookFilter == "*")
+					{
+						await engine.SearchAllNotebooks(one, finder);
+					}
+					else
+					{
+						await engine.SearchNotebooks(one, notebookFilter, finder);
+					}
+				}
+				else if (scopeBox.SelectedIndex == allScopeIndex)
 				{
 					await engine.SearchAllNotebooks(one, finder);
 				}

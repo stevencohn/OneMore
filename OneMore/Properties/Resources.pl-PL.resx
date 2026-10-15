@@ -6684,8 +6684,7 @@ Zmodyfikowany wcześniej</value>
     <value>{0:N0} stron z indeksu wyszukiwania, {1:N0} odczytane z OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź kryteria wyszukiwania, opcjonalnie uwzględniając AND, OR, NOT, cudzysłowy i nawiasy
-Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokładnego wyrażenia.</value>
+    <value>Wpisz słowa w dowolnej kolejności lub „dokładne frazy” w połączeniu z AND, OR, NOT i nawiasami. Dodaj \\ dla tego notatnika lub \name dla innego.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7906,6 +7905,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>Temat</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>Dzisiaj</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>Użytkownik</value>

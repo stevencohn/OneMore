@@ -6698,8 +6698,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>{0:N0} 个页面来自搜索索引，{1:N0} 个页面来自 OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>输入搜索条件，可以选择包含 AND、OR、NOT、引号和括号
-未加引号的单词以任何顺序匹配；对确切的短语使用引号。</value>
+    <value>以任意顺序输入单词或“精确短语”，并结合 AND、OR、NOT 和括号。为此笔记本添加 \\，或为另一个笔记本添加 \name。</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7924,6 +7923,9 @@ Code——代码块段落
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>主题</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>今天</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>用户</value>
