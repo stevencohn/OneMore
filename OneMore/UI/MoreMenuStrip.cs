@@ -49,9 +49,60 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal class MoreContextMenuStrip : ContextMenuStrip
 	{
+		private Font scaledFont;
+
+
 		public MoreContextMenuStrip()
 		{
 			Renderer = new MoreMenuRenderer(new ThemedColorTable());
+		}
+
+
+		/// <summary>
+		/// Scales the font and image size to the DPI of the window hosting the owner. A popup
+		/// menu is not a child of its owner so otherwise uses the stale system DPI.
+		/// </summary>
+		/// <param name="owner">The control that will show this menu</param>
+		public void ApplyScale(Control owner)
+		{
+			var dpi = Scaling.GetDpi(owner);
+
+			var old = scaledFont;
+			var baseFont = old is null ? Font : SystemFonts.MenuFont;
+
+			scaledFont = new Font(
+				baseFont.FontFamily,
+				baseFont.SizeInPoints * Scaling.GetAmbientFontScale(dpi),
+				baseFont.Style, GraphicsUnit.Point, baseFont.GdiCharSet);
+
+			Font = scaledFont;
+			old?.Dispose();
+
+			ImageScalingSize = new Size(
+				Scaling.GetSystemMetric(Native.SM_CXSMICON, dpi),
+				Scaling.GetSystemMetric(Native.SM_CYSMICON, dpi));
+		}
+
+
+		/// <summary>
+		/// Scales this menu for the owner's DPI and then shows it.
+		/// </summary>
+		public void ShowScaled(Control owner, Point location)
+		{
+			ApplyScale(owner);
+			Show(owner, location);
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				scaledFont?.Dispose();
+				scaledFont = null;
+			}
+
+			base.Dispose(disposing);
 		}
 	}
 

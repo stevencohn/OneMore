@@ -222,7 +222,8 @@ namespace River.OneMoreAddIn.Commands
 				menu.Items.Add(item);
 			}
 
-			menu.Show(link, new Point(0, link.Height));
+			menu.Closed += (s, e) => BeginInvoke(new Action(menu.Dispose));
+			menu.ShowScaled(link, new Point(0, link.Height));
 		}
 
 
