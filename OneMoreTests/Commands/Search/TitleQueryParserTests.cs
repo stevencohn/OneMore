@@ -12,6 +12,45 @@ namespace River.OneMoreAddIn.Tests.Commands.Search
 	public class TitleQueryParserTests
 	{
 		[TestMethod]
+		public void ExtractNotebook_CurrentNotebook_ReturnsBackslash()
+		{
+			var filter = TitleQueryParser.ExtractNotebook("foo \\\\", out var remaining);
+
+			Assert.AreEqual("\\", filter);
+			Assert.AreEqual("foo ", remaining);
+		}
+
+
+		[TestMethod]
+		public void ExtractNotebook_Named_ReturnsName()
+		{
+			var filter = TitleQueryParser.ExtractNotebook("\\work foo", out var remaining);
+
+			Assert.AreEqual("work", filter);
+			Assert.AreEqual(" foo", remaining);
+		}
+
+
+		[TestMethod]
+		public void ExtractNotebook_Quoted_ReturnsFullName()
+		{
+			var filter = TitleQueryParser.ExtractNotebook("foo \\\"my notes\"", out _);
+
+			Assert.AreEqual("my notes", filter);
+		}
+
+
+		[TestMethod]
+		public void ExtractNotebook_EmbeddedBackslash_IsLiteral()
+		{
+			var filter = TitleQueryParser.ExtractNotebook("a\\b", out var remaining);
+
+			Assert.IsNull(filter);
+			Assert.AreEqual("a\\b", remaining);
+		}
+
+
+		[TestMethod]
 		public void Parse_TitleTextWithHashtag_SeparatesTitleAndHashtag()
 		{
 			var query = TitleQueryParser.Parse("OneM #noparent");

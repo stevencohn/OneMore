@@ -6690,8 +6690,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>検索インデックスから {0:N0} ページ、OneNote から読み取られた {1:N0} ページ</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>検索条件を入力します。オプションで AND、OR、NOT、引用符、括弧を含めることができます。
-引用符で囲まれていない単語は任意の順序で一致します。完全に一致する語句には引用符を使用します。</value>
+    <value>単語を任意の順序で入力するか、AND、OR、NOT、括弧を組み合わせて「完全に一致するフレーズ」を入力します。このノートブックには \\ を追加するか、別のノートブックには \name を追加します。</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7912,6 +7911,9 @@ TF-IDF コサイン、語彙の重複、構造</value>
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>テーマ</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>今日</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>ユーザー</value>

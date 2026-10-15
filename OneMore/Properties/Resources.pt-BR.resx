@@ -6684,8 +6684,7 @@ Modificado antes</value>
     <value>{0:N0} páginas do índice de pesquisa, {1:N0} lidas no OneNote</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Insira os critérios de pesquisa, incluindo opcionalmente AND, OR, NOT, aspas e parênteses
-Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exata.</value>
+    <value>Insira palavras em qualquer ordem ou "frases exatas", combinadas com AND, OR, NOT e parênteses. Adicione \\ para este notebook ou \name para outro.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -7906,6 +7905,9 @@ Obrigado!</value>
   </data>
   <data name="word_Theme" xml:space="preserve">
     <value>Tema</value>
+  </data>
+  <data name="word_Today" xml:space="preserve">
+    <value>Hoje</value>
   </data>
   <data name="word_User" xml:space="preserve">
     <value>Usuário</value>

@@ -589,8 +589,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Verwende reguläre Ausdrücke</preferred>
   </hint>
   <hint name="SearchDialog_introLabel.Text">
-    <source>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</source>
-    <preferred>Gib ein oder mehrere Schlüsselwörter, \"Phrasen in Anführungszeichen\", ein und verwende UND und ODER in Großbuchstaben</preferred>
+    <source>Enter words in any order or "exact phrases", combined with AND, OR, NOT and parentheses. Add \\ for this notebook or \name for another.</source>
+    <preferred>Gib Wörter in beliebiger Reihenfolge oder „exakte Phrasen" in Anführungszeichen ein. Kombiniere sie mit AND, OR, NOT und Klammern. Füge \ für dieses Notizbuch oder \Name für ein anderes hinzu.</preferred>
   </hint>
   <hint name="SearchEngineSheet_upButton.Text">
     <source>Move up</source>
