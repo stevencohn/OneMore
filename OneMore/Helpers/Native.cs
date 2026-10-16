@@ -451,6 +451,10 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll", SetLastError = true)]
 		public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getclassnamew
+		[DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+		public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindow
 		public const uint GW_OWNER = 4;
 		[DllImport("user32.dll", SetLastError = true)]

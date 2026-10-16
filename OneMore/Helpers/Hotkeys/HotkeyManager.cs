@@ -145,12 +145,66 @@ namespace River.OneMoreAddIn
 			{
 				if (registered && registeredKeys.Count > 0)
 				{
-					registeredKeys.ForEach(k => Native.UnregisterHotKey(mhandle, k.Id));
-					registered = false;
+					DisarmHotkeys("suspend");
 				}
 
 				suspended = true;
 			}));
+		}
+
+
+		// Registers all hotkeys with the OS; must run on the message thread. Leaves
+		// registered false if any registration fails so the reconcile timer retries.
+		private static void ArmHotkeys(string reason)
+		{
+			const int ERROR_HOTKEY_ALREADY_REGISTERED = 1409;
+			var ok = true;
+
+			foreach (var k in registeredKeys)
+			{
+				if (!Native.RegisterHotKey(mhandle, k.Id, k.HotModifiers, k.Key))
+				{
+					var error = Marshal.GetLastWin32Error();
+					if (error != ERROR_HOTKEY_ALREADY_REGISTERED)
+					{
+						ok = false;
+						Logger.Current.Verbose(
+							$"hotkey register failed id:{k.Id} key:{k.Key} error:{error} ({reason})");
+					}
+				}
+			}
+
+			registered = ok;
+			Logger.Current.Verbose($"hotkey armed registered:{registered} ({reason})");
+		}
+
+
+		// Unregisters all hotkeys from the OS; must run on the message thread
+		private static void DisarmHotkeys(string reason)
+		{
+			foreach (var k in registeredKeys)
+			{
+				Native.UnregisterHotKey(mhandle, k.Id);
+			}
+
+			registered = false;
+			Logger.Current.Verbose($"hotkey disarmed ({reason})");
+		}
+
+
+		private static string DescribeWindow(IntPtr hwnd, uint pid)
+		{
+			var builder = new System.Text.StringBuilder(256);
+			Native.GetClassName(hwnd, builder, builder.Capacity);
+			return $"hwnd:{hwnd} pid:{pid} class:{builder}";
+		}
+
+
+		// True if the given window belongs to OneNote or to this add-in's own process
+		private static bool IsOurs(IntPtr hwnd)
+		{
+			Native.GetWindowThreadProcessId(hwnd, out var pid);
+			return pid == oneNotePID || pid == selfPID;
 		}
 
 
@@ -165,12 +219,12 @@ namespace River.OneMoreAddIn
 			{
 				suspended = false;
 
-				if (!registered && registeredKeys.Count > 0)
+				// only re-arm if OneNote (or we) still have the foreground; otherwise the
+				// WinEventProc/reconcile timer will arm when OneNote regains it
+				if (!registered && registeredKeys.Count > 0 &&
+					IsOurs(Native.GetForegroundWindow()))
 				{
-					registeredKeys.ForEach(k =>
-						Native.RegisterHotKey(mhandle, k.Id, k.HotModifiers, k.Key));
-
-					registered = true;
+					ArmHotkeys("resume");
 				}
 			}));
 		}
@@ -245,7 +299,48 @@ namespace River.OneMoreAddIn
 					evDelegate,
 					0, 0, Native.WINEVENT_OUTOFCONTEXT | Native.WINEVENT_SKIPOWNTHREAD);
 
+				// Safety net: foreground events can be missed or misclassified, which leaves
+				// hotkeys unregistered while OneNote is in front. Periodically reconcile the
+				// registered state with the actual foreground window. Timer ticks are
+				// delivered on this (message) thread so no extra locking is needed.
+				reconcileTimer = new System.Windows.Forms.Timer { Interval = 1000 };
+				reconcileTimer.Tick += Reconcile;
+				reconcileTimer.Start();
+
 				resetEvent.Set();
+			}
+
+
+			private readonly System.Windows.Forms.Timer reconcileTimer;
+
+
+			private void Reconcile(object sender, EventArgs e)
+			{
+				if (suspended || registeredKeys.Count == 0)
+				{
+					return;
+				}
+
+				var foreground = Native.GetForegroundWindow();
+				if (foreground == IntPtr.Zero)
+				{
+					// transient state during window switches
+					return;
+				}
+
+				Native.GetWindowThreadProcessId(foreground, out var pid);
+				var wanted = pid == oneNotePID || pid == selfPID;
+
+				if (wanted && !registered)
+				{
+					Logger.Current.Verbose($"hotkey reconcile re-arming {DescribeWindow(foreground, pid)}");
+					ArmHotkeys("reconcile");
+				}
+				else if (!wanted && registered)
+				{
+					Logger.Current.Verbose($"hotkey reconcile disarming {DescribeWindow(foreground, pid)}");
+					DisarmHotkeys("reconcile");
+				}
 			}
 
 
@@ -253,7 +348,12 @@ namespace River.OneMoreAddIn
 				IntPtr hWinEventHook, uint eventType, IntPtr hwnd,
 				int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
 			{
-				//Logger.Current.WriteLine($"hotkey event:{eventType} hwnd:{hwnd} thread:{dwEventThread}");
+				// ignore bogus/transient events; treating pid 0 as "another app" would
+				// wrongly unregister hotkeys
+				if (hwnd == IntPtr.Zero || !Native.IsWindow(hwnd))
+				{
+					return;
+				}
 
 				if (eventType == Native.EVENT_SYSTEM_MINIMIZESTART)
 				{
@@ -261,9 +361,8 @@ namespace River.OneMoreAddIn
 					Native.GetWindowThreadProcessId(hwnd, out var hwndPid);
 					if (hwndPid == oneNotePID && registered && registeredKeys.Count > 0)
 					{
-						//Logger.Current.WriteLine("hotkey unregistering (minimize)");
-						registeredKeys.ForEach(k => Native.UnregisterHotKey(mhandle, k.Id));
-						registered = false;
+						Logger.Current.Verbose($"hotkey minimize {DescribeWindow(hwnd, hwndPid)}");
+						DisarmHotkeys("minimize");
 					}
 
 					return;
@@ -290,22 +389,18 @@ namespace River.OneMoreAddIn
 					{
 						if (!registered && !suspended && registeredKeys.Count > 0)
 						{
-							//Logger.Current.WriteLine("hotkey re-registering");
-							registeredKeys.ForEach(k =>
-								Native.RegisterHotKey(mhandle, k.Id, k.HotModifiers, k.Key));
-
-							registered = true;
+							Logger.Current.Verbose(
+								$"hotkey foreground(ours) {DescribeWindow(hwnd, pid)}");
+							ArmHotkeys("foreground");
 						}
 					}
 					else
 					{
 						if (registered && registeredKeys.Count > 0)
 						{
-							//Logger.Current.WriteLine("hotkey unregistering");
-							registeredKeys.ForEach(k =>
-								Native.UnregisterHotKey(mhandle, k.Id));
-
-							registered = false;
+							Logger.Current.Verbose(
+								$"hotkey foreground(other) {DescribeWindow(hwnd, pid)}");
+							DisarmHotkeys("foreground");
 						}
 					}
 				}
@@ -326,6 +421,11 @@ namespace River.OneMoreAddIn
 					if (pid == oneNotePID || pid == selfPID)
 					{
 						OnHotKeyPressed(new HotkeyEventArgs(m.LParam));
+					}
+					else
+					{
+						Logger.Current.Verbose(
+							$"hotkey dropped, foreground {DescribeWindow(Native.GetForegroundWindow(), pid)}");
 					}
 				}
 
