@@ -115,8 +115,8 @@ namespace River.OneMoreAddIn.Commands
 			pageGroupScopeIndex = hasPageGroup ? sectionScopeIndex + 1 : -1;
 			pageScopeIndex = scopeBox.Items.Count - 1;
 
-			// with full text indexing the wider scope is cheap, so default to all notebooks
-			scopeBox.SelectedIndex = IndexConsumer.IsEnabled() ? allScopeIndex : pageScopeIndex;
+			// with full text indexing the wider scope is cheap, so default to this notebooks
+			scopeBox.SelectedIndex = IndexConsumer.IsEnabled() ? notebookScopeIndex : pageScopeIndex;
 			dateSelector.SelectedIndex = 0;
 			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
