@@ -50,6 +50,29 @@ namespace River.OneMoreAddIn.Styles
 
 
 		/// <summary>
+		/// Wraps the CDATA content as an XElement so it can be parsed. HTML comment text is
+		/// kept as real text and only the comment markers are removed; a '--' inside a
+		/// comment is invalid XML otherwise.
+		/// </summary>
+		/// <param name="cdata">The CDATA node</param>
+		/// <returns>The wrapper, or null if the content cannot be parsed as XML</returns>
+		internal static XElement TryGetWrapper(XCData cdata)
+		{
+			var html = cdata.Value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
+
+			try
+			{
+				return html.ToXmlWrapper("cdata");
+			}
+			catch (XmlException exc)
+			{
+				Logger.Current.WriteLine("skipping unparsable cdata", exc);
+				return null;
+			}
+		}
+
+
+		/// <summary>
 		/// Applies styles to the given CDATA (and its parent OE) node with
 		/// one or more text and spans.
 		/// </summary>
@@ -81,7 +104,12 @@ namespace River.OneMoreAddIn.Styles
 				if (cdata.Value.Length > 0)
 				{
 					// wrap the CData as an XElement so we can parse it
-					var wrapper = cdata.GetWrapper();
+					var wrapper = TryGetWrapper(cdata);
+					if (wrapper is null)
+					{
+						// unparsable content, leave this CDATA untouched
+						continue;
+					}
 
 					// true if there are at least one Text nodes
 					hasPlainText = false;
@@ -249,7 +277,12 @@ namespace River.OneMoreAddIn.Styles
 
 			foreach (var cdata in data)
 			{
-				var wrapper = cdata.GetWrapper();
+				var wrapper = TryGetWrapper(cdata);
+				if (wrapper is null)
+				{
+					continue;
+				}
+
 				if (Clear(wrapper, clearing))
 				{
 					cdata.Value = wrapper.GetInnerXml();
