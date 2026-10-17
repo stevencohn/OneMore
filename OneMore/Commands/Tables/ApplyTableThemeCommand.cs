@@ -299,15 +299,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Stylizer MakeStylizer(TableTheme.ColorFont font)
+		internal static Stylizer MakeStylizer(TableTheme.ColorFont font)
 		{
+			// Font is null when a role specifies only a color; fall back to defaults
+			var face = font.Font;
+
 			return new Stylizer(new Style
 			{
-				FontFamily = font.Font.FontFamily.Name,
-				FontSize = font.Font.Size.ToString("0.#", CultureInfo.InvariantCulture),
-				IsBold = font.Font.Bold,
-				IsItalic = font.Font.Italic,
-				IsUnderline = font.Font.Underline,
+				FontFamily = face is null ? StyleBase.DefaultFontFamily : face.FontFamily.Name,
+				FontSize = (face is null ? StyleBase.DefaultFontSize : face.Size)
+					.ToString("0.#", CultureInfo.InvariantCulture),
+				IsBold = face?.Bold ?? false,
+				IsItalic = face?.Italic ?? false,
+				IsUnderline = face?.Underline ?? false,
 				Color = font.Foreground.IsEmpty ? StyleBase.Automatic : font.Foreground.ToRGBHtml()
 			});
 		}

@@ -125,6 +125,7 @@
     <Compile Include="Commands\Workspaces\WorkspaceHealerPinnedTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
     <Compile Include="Commands\Workspaces\TargetResolverTests.cs" />
+    <Compile Include="Commands\Tables\ApplyTableThemeCommandTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceHealerTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceHealerWindowTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceResolverTests.cs" />
