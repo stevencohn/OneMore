@@ -197,6 +197,12 @@ namespace River.OneMoreAddIn.Commands
 
 			//var notebook = await one.GetNotebook(OneNote.Scope.Sections);
 
+			if (notebook is null)
+			{
+				logger.WriteLine($"no current {plugin.Target} hierarchy");
+				return null;
+			}
+
 			// look for locked sections and warn user...
 			var ns = one.GetNamespace(notebook);
 			if (notebook.Attribute("locked") != null /* section */ ||
@@ -246,8 +252,17 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			hierarchyInfo = await one.GetPageInfo();
-			hierarchyInfo.PageId = one.CurrentPageId;
+			// null when there is no current page; hierarchy plugins can still run without it
+			hierarchyInfo = await one.GetPageInfo() ?? new OneNote.HierarchyInfo
+			{
+				Name = string.Empty,
+				Path = string.Empty,
+				Link = string.Empty,
+				NotebookId = string.Empty,
+				SectionId = string.Empty
+			};
+
+			hierarchyInfo.PageId = one.CurrentPageId ?? string.Empty;
 
 			return content;
 		}
