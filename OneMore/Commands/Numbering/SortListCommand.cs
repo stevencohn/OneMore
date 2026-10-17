@@ -39,6 +39,13 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out var page, out ns);
 
+			if (page is null)
+			{
+				logger.WriteLine("no current page");
+				ShowError(Resx.SortListCommand_BadContext);
+				return;
+			}
+
 			var range = new Models.SelectionRange(page);
 			var cursor = range.GetSelection();
 

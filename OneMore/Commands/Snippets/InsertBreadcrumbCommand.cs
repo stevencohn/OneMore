@@ -26,7 +26,18 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out var ns);
+			if (page is null)
+			{
+				logger.WriteLine("no current page");
+				return;
+			}
+
 			var info = await one.GetPageInfo();
+			if (info is null)
+			{
+				logger.WriteLine($"no page info (id:[{page.PageId}])");
+				return;
+			}
 
 			// build hierarchy crumbs...
 

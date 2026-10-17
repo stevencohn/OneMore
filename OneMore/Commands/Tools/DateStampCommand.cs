@@ -45,6 +45,12 @@ namespace River.OneMoreAddIn.Commands
 			await using (one = new OneNote())
 			{
 				var section = await one.GetSection();
+				if (section is null)
+				{
+					logger.WriteLine($"no current section (id:[{one.CurrentSectionId}])");
+					return;
+				}
+
 				var ns = one.GetNamespace(section);
 
 				var infos = section.Elements(ns + "Page")
