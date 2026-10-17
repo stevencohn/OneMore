@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Snippets
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.Snippets.Toc;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -151,6 +152,30 @@ namespace River.OneMoreAddIn.Tests.Commands.Snippets
 						new XElement(Ns + "T", new XCData("Sub Heading"))))));
 
 			return page.ToString(SaveOptions.OmitDuplicateNamespaces);
+		}
+
+
+		[TestMethod]
+		public void FindContainer_PageWithoutToc_ReturnsNull()
+		{
+			// a refresh from a page that has no TOC meta must yield null, not throw
+			var root = XElement.Parse(BuildPageXml());
+
+			var container = HierarchyTocGenerator.FindContainer(root, Ns);
+
+			Assert.IsNull(container);
+		}
+
+
+		[TestMethod]
+		public void FindContainer_PageWithToc_ReturnsOEChildren()
+		{
+			var root = XElement.Parse(BuildPageXmlWithExistingToc());
+
+			var container = HierarchyTocGenerator.FindContainer(root, Ns);
+
+			Assert.IsNotNull(container);
+			Assert.AreEqual("OEChildren", container.Name.LocalName);
 		}
 
 

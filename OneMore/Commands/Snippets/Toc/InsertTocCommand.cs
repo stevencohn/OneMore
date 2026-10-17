@@ -118,7 +118,10 @@ namespace River.OneMoreAddIn.Commands
 				generator = new PageTocGenerator(parameters, pageId);
 			}
 
-			await generator.Refresh();
+			if (!await generator.Refresh() && !runningFromCli)
+			{
+				ShowInfo("Could not refresh the table of contents. Please check the OneMore.log file");
+			}
 		}
 
 
