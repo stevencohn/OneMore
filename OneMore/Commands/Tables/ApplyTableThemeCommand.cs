@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -303,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 			return new Stylizer(new Style
 			{
 				FontFamily = font.Font.FontFamily.Name,
-				FontSize = font.Font.Size.ToString("0.#"),
+				FontSize = font.Font.Size.ToString("0.#", CultureInfo.InvariantCulture),
 				IsBold = font.Font.Bold,
 				IsItalic = font.Font.Italic,
 				IsUnderline = font.Font.Underline,
