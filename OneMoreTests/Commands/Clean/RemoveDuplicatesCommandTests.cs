@@ -38,6 +38,34 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 	public class RemoveDuplicatesCommandTests
 	{
 		[TestMethod]
+		public void CountRenderableGroups_UnderCap_ReturnsAll()
+		{
+			Assert.AreEqual(3, RemoveDuplicatesNavigator.CountRenderableGroups(new[] { 2, 3, 4 }, 800));
+		}
+
+
+		[TestMethod]
+		public void CountRenderableGroups_OverCap_StopsBeforeExceeding()
+		{
+			Assert.AreEqual(2, RemoveDuplicatesNavigator.CountRenderableGroups(new[] { 5, 4, 3 }, 10));
+		}
+
+
+		[TestMethod]
+		public void CountRenderableGroups_FirstGroupOverCap_StillIncludesFirst()
+		{
+			Assert.AreEqual(1, RemoveDuplicatesNavigator.CountRenderableGroups(new[] { 50, 2 }, 10));
+		}
+
+
+		[TestMethod]
+		public void CountRenderableGroups_Empty_ReturnsZero()
+		{
+			Assert.AreEqual(0, RemoveDuplicatesNavigator.CountRenderableGroups(new int[0], 10));
+		}
+
+
+		[TestMethod]
 		public void PassesLengthPrefilter_EqualLengths_ReturnsTrue()
 		{
 			Assert.IsTrue(RemoveDuplicatesCommand.PassesLengthPrefilter(100, 100, 0.85));

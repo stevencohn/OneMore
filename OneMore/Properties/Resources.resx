@@ -4219,6 +4219,10 @@ Stylistic, Entity, Media</value>
     <value>100% · identical</value>
     <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>Showing {0} of {1} pages. Delete some and run again to see the rest.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>Keep Newest</value>
     <comment>button</comment>

@@ -447,6 +447,13 @@ namespace River.OneMoreAddIn
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool GetWindowRect(IntPtr hWnd, ref Rectangle lpRect);
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguiresources
+		[DllImport("user32.dll")]
+		public static extern uint GetGuiResources(IntPtr hProcess, uint uiFlags);
+
+		public const uint GR_GDIOBJECTS = 0;
+		public const uint GR_USEROBJECTS = 1;
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid
 		[DllImport("user32.dll", SetLastError = true)]
 		public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
