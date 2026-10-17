@@ -71,9 +71,10 @@ namespace River.OneMoreAddIn.Commands
 				await using var one = new OneNote(out var page, out _);
 
 				// the page key identifies this page in the hashtag catalog; it is found by the
-				// page's current ID, so no marker is needed in the page
+				// page's current ID, so no marker is needed in the page; the page is null when
+				// there is no current page, in which case the page scope is simply unavailable
 				string moreID = null;
-				if (PageIdentityProvider.CatalogExists())
+				if (page is not null && PageIdentityProvider.CatalogExists())
 				{
 					using var identity = new PageIdentityProvider();
 					var row = identity.ReadByPageID(page.PageId);
