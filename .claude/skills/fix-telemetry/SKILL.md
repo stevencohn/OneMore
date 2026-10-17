@@ -1,14 +1,14 @@
 ---
 name: fix-telemetry
-description: "Diagnose an error group from OneMore telemetry (ERR-nnn), propose a fix plan, and on approval create the GitHub issue and a local branch. Reads the exception, environment, dates, and occurrence count from the Errors sheet of telemetry-errors.xlsx."
+description: "Diagnose an error group from OneMore telemetry (ERR-nnn), propose a fix plan, and on approval create the GitHub issue and a local branch and implement the fix. Reads the exception, environment, dates, and occurrence count from the Errors sheet of telemetry-errors.xlsx."
 ---
 
 # Diagnose a telemetry error group
 
 Given an `ErrorGroup` key (`ERR-nnn`), read its rows from the telemetry workbook,
 diagnose the exception against the source, and produce a fix plan. After the user
-approves the plan, create the GitHub issue and a local branch. Do not edit code,
-commit, push, or run `build.ps1`.
+approves the plan, create the GitHub issue and a local branch, then implement the
+fix immediately. Do not commit, push, or run `build.ps1`.
 
 ## Step 1 — Get the ErrorGroup
 
@@ -129,11 +129,19 @@ Use PowerShell and the `gh` CLI with the default repo `stevencohn/OneMore`.
    `Notes` for the group have not been updated (the skill never edits the workbook), so
    the user can record the issue number there.
 
+## Step 8 — Implement the fix
+
+Immediately after creating the branch, without asking again, implement the approved
+plan: make the code changes described under **Proposed fix**, plus the regression test
+if one was planned. Follow the CLAUDE.md coding conventions. Do not commit or push, and
+do not run `build.ps1`. Finish by summarizing the changes and leaving them uncommitted
+for the user's review.
+
 ## Constraints
 
 - Never edit `telemetry-errors.xlsx`.
-- Do not edit code, commit, or push as part of this skill; implementing the fix is a
-  separate request.
+- Do implement the approved fix (Step 8), but do not commit, push, open a PR, or run
+  `build.ps1`; wait for the user to review and ask.
 - Resource strings: edit `Properties\Resources.resx` and `Resources.Designer.cs`
   together, and never touch `Resources.xx-XX` files.
 - Never edit `docs\*.htm`.
