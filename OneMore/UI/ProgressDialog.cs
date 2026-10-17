@@ -243,8 +243,15 @@ namespace River.OneMoreAddIn.UI
 
 			var rect = new Native.Rectangle();
 
-			using var one = new OneNote();
-			Native.GetWindowRect(one.WindowHandle, ref rect);
+			try
+			{
+				using var one = new OneNote();
+				Native.GetWindowRect(one.WindowHandle, ref rect);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error positioning progress dialog", exc);
+			}
 
 			if (rect.Right - rect.Left <= 0)
 			{
