@@ -403,7 +403,37 @@ namespace River.OneMoreAddIn.Commands
 				return new byte[0];
 			}
 
+			// the remote service may return a 2xx response that is not an image, such as a
+			// proxy or captive-portal page, so verify before callers try to decode it
+			if (!IsValidImage(bytes))
+			{
+				var head = BitConverter.ToString(bytes, 0, Math.Min(bytes.Length, 16));
+				logger.WriteLine($"rendered {bytes.Length} bytes is not a valid image, head:{head}");
+				errorMessage = Resx.DiagramCommand_broken;
+				return new byte[0];
+			}
+
 			return bytes;
+		}
+
+
+		internal static bool IsValidImage(byte[] bytes)
+		{
+			if (bytes is null || bytes.Length == 0)
+			{
+				return false;
+			}
+
+			try
+			{
+				using var stream = new MemoryStream(bytes);
+				using var image = Image.FromStream(stream);
+				return true;
+			}
+			catch (ArgumentException)
+			{
+				return false;
+			}
 		}
 
 
