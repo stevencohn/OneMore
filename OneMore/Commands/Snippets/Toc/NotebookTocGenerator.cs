@@ -34,6 +34,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		{
 			await using var one = new OneNote();
 			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
+			if (notebook is null)
+			{
+				logger.WriteLine($"no current notebook (id:[{one.CurrentNotebookId}])");
+				return RefreshOption.Cancel;
+			}
+
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
 
 			var pageID = notebook.Descendants(ns + "Page")
@@ -77,6 +83,11 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 			var scope = withPages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
 			var notebook = await one.GetNotebook(scope);
+			if (notebook is null)
+			{
+				logger.WriteLine($"no current notebook (id:[{one.CurrentNotebookId}])");
+				return;
+			}
 
 			// seeds the PrimaryTitle property
 			primaryTitle = notebook.Attribute("name").Value.Trim();
