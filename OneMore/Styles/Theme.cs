@@ -166,12 +166,19 @@ namespace River.OneMoreAddIn.Styles
 		/// Gets one style definition by its index value; used for the Style Gallery
 		/// </summary>
 		/// <param name="index">The index of the style to retrieve</param>
-		/// <returns>A Style</returns>
+		/// <returns>A Style, or null if the index is out of range</returns>
 		public Style GetStyle(int index)
 		{
-			return new Style(new StyleRecord(
-				root.Elements(ns + "Style").ElementAt(index)
-				));
+			var element = index < 0
+				? null
+				: root.Elements(ns + "Style").ElementAtOrDefault(index);
+
+			if (element is null)
+			{
+				return null;
+			}
+
+			return new Style(new StyleRecord(element));
 		}
 
 
