@@ -154,29 +154,41 @@ namespace River.OneMoreAddIn.Commands
 			// carry across the boundary, but a fresh OneNote COM instance is created
 			// inside the worker callback since it will run on its own STA thread.
 
-			using var progress = new UI.ProgressDialog(10);
-			var result = progress.ShowTimedDialog(async (dialog, token) =>
+			try
 			{
-				try
+				logger.WriteLine("add formula: showing progress dialog");
+
+				using var progress = new UI.ProgressDialog(10);
+				var result = progress.ShowTimedDialog(async (dialog, token) =>
 				{
-					new Processor(table).Execute(cells, dialog);
+					try
+					{
+						logger.WriteLine("add formula: processing");
+						new Processor(table).Execute(cells, dialog);
 
-					dialog.SetMessage(Resx.FormulaCommand_Saving);
+						dialog.SetMessage(Resx.FormulaCommand_Saving);
 
-					await using var one = new OneNote();
-					await one.Update(page);
+						logger.WriteLine("add formula: saving");
+						await using var one = new OneNote();
+						await one.Update(page);
 
-					return true;
-				}
-				catch (Exception exc)
+						return true;
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("error saving formula", exc);
+						return false;
+					}
+				}, cancelable: false);
+
+				if (result != DialogResult.OK)
 				{
-					logger.WriteLine("error saving formula", exc);
-					return false;
+					ShowInfo("Error adding formula. Please check the OneMore.log file");
 				}
-			}, cancelable: false);
-
-			if (result != DialogResult.OK)
+			}
+			catch (Exception exc)
 			{
+				logger?.WriteLine("error showing formula progress", exc);
 				ShowInfo("Error adding formula. Please check the OneMore.log file");
 			}
 		}
