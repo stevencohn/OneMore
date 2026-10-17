@@ -10,6 +10,27 @@ diagnose the exception against the source, and produce a fix plan. After the use
 approves the plan, create the GitHub issue and a local branch, then implement the
 fix immediately. Do not commit, push, or run `build.ps1`.
 
+## Step 0 — Prep: start from a synced main
+
+Before anything else, make sure the work starts from an up-to-date `main`. Use
+PowerShell:
+
+```powershell
+git branch --show-current
+git status --porcelain
+```
+
+1. If the working tree is dirty, stop and tell the user; do not stash, discard or
+   carry changes onto the new branch. Ask how to proceed.
+2. If not on `main`, `git switch main`.
+3. Sync it: `git pull --ff-only` (this fetches first). If the pull fails or `main` has
+   diverged from `origin/main`, stop and report; do not merge, rebase or reset.
+4. Confirm with `git status -sb` that `main` is clean and not behind `origin/main`,
+   then continue.
+
+This deliberately overrides the CLAUDE.md "pause if on main" rule: this skill expects
+to start on `main` and creates its own feature branch in Step 7.
+
 ## Step 1 — Get the ErrorGroup
 
 Ask for a single input unless the invocation already supplied it:
@@ -122,8 +143,7 @@ Use PowerShell and the `gh` CLI with the default repo `stevencohn/OneMore`.
 2. **Create and switch to a local branch** named `<Issue#>-<summary>`: the issue number,
    then the summary lowercased with spaces replaced by hyphens and punctuation removed,
    kept short (e.g. `2751-applystyle-fails-silently`). Use
-   `git switch -c <name>` from the current branch; carry any uncommitted changes along
-   and never discard them. Do not push.
+   `git switch -c <name>` from the freshly synced `main`. Do not push.
 
 3. Report the issue URL and branch name. Mention that the workbook's `Status` and
    `Notes` for the group have not been updated (the skill never edits the workbook), so
