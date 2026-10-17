@@ -66,6 +66,40 @@ namespace River.OneMoreAddIn.Tests.Commands.Page
 
 
 		[TestMethod]
+		public void ExtractText_CommentWithDoubleHyphen_KeepsCommentText()
+		{
+			var text = WordCountCommand.ExtractText("one <!-- two -- three --> four");
+
+			Assert.AreEqual(4, WordCountCommand.CountWords(text));
+		}
+
+
+		[TestMethod]
+		public void ExtractText_MultilineComment_CountsWordsInside()
+		{
+			var text = WordCountCommand.ExtractText("one <!-- two\nthree --->\nfour");
+
+			Assert.AreEqual(4, WordCountCommand.CountWords(text));
+		}
+
+
+		[TestMethod]
+		public void ExtractText_NoComment_Unchanged()
+		{
+			Assert.AreEqual("Hello world", WordCountCommand.ExtractText("Hello <b>world</b>"));
+		}
+
+
+		[TestMethod]
+		public void ExtractText_ConditionalCommentMarkup_DoesNotThrow()
+		{
+			var text = WordCountCommand.ExtractText("a <!--[if gte mso 9]><xml>b<![endif]--> c");
+
+			Assert.IsTrue(WordCountCommand.CountWords(text) >= 2);
+		}
+
+
+		[TestMethod]
 		public void CountWords_MixedCjkAndLatin_CountsBothSegments()
 		{
 			// CJK text is segmented via dictionary tokenization; combined with a Latin word,

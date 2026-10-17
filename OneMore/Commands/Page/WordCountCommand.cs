@@ -8,8 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Net;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using System.Xml;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -120,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 				var cdatas = run.DescendantNodes().OfType<XCData>();
 				foreach (var cdata in cdatas)
 				{
-					var text = cdata.GetWrapper().Value.Trim();
+					var text = ExtractText(cdata.Value);
 					if (text.Length > 0)
 					{
 						count += CountWords(text);
@@ -161,6 +163,29 @@ namespace River.OneMoreAddIn.Commands
 		/// Counts the words in a single run of text, treating internal apostrophes and hyphens
 		/// (e.g. "He's", "one-two-three") as part of a single word rather than as separators.
 		/// </summary>
+		/// <summary>
+		/// Gets the plain text of a CDATA value. Like Word, HTML comment text is counted as
+		/// real text, so only the comment markers are removed.
+		/// </summary>
+		internal static string ExtractText(string value)
+		{
+			// markers must go first; a '--' inside a comment is invalid XML otherwise
+			var html = value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
+
+			try
+			{
+				return html.ToXmlWrapper("cdata").Value.Trim();
+			}
+			catch (XmlException)
+			{
+				// leftover markup, e.g. from conditional comments, is not well-formed;
+				// fall back to simply discarding tags
+				var plain = Regex.Replace(html, @"<[^>]*>", " ");
+				return WebUtility.HtmlDecode(plain).Trim();
+			}
+		}
+
+
 		internal static int CountWords(string text)
 		{
 			if (string.IsNullOrEmpty(text))
