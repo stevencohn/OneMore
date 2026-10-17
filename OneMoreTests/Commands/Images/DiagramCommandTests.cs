@@ -224,5 +224,29 @@ namespace River.OneMoreAddIn.Tests.Commands.Images
 			Assert.IsTrue(imageIndex < trailingIndex,
 				"Expected the image to appear before the trailing paragraph in DOM order");
 		}
+
+
+		[TestMethod]
+		public void IsValidImage_NonImageBytes_ReturnsFalse()
+		{
+			// ERR-065: remote service returned a non-image body with a success status
+			var bytes = System.Text.Encoding.UTF8.GetBytes("<html><body>Blocked</body></html>");
+			Assert.IsFalse(DiagramCommand.IsValidImage(bytes));
+		}
+
+
+		[TestMethod]
+		public void IsValidImage_NullOrEmpty_ReturnsFalse()
+		{
+			Assert.IsFalse(DiagramCommand.IsValidImage(null));
+			Assert.IsFalse(DiagramCommand.IsValidImage(new byte[0]));
+		}
+
+
+		[TestMethod]
+		public void IsValidImage_PngBytes_ReturnsTrue()
+		{
+			Assert.IsTrue(DiagramCommand.IsValidImage(FixturePng));
+		}
 	}
 }
