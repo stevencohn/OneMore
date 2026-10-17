@@ -32,6 +32,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote();
 			var notebook = await one.GetNotebook();
+			if (notebook is null)
+			{
+				logger.WriteLine($"no current notebook (id:[{one.CurrentNotebookId}])");
+				UI.MoreMessageBox.ShowWarning(owner, Resx.OpenLocationCommand_NoPath);
+				return;
+			}
+
 			var ns = one.GetNamespace(notebook);
 
 			var node = notebook.Descendants(ns + SectionName)
