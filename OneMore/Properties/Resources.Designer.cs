@@ -9809,6 +9809,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Showing {0} of {1} pages. Delete some and run again to see the rest..
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_truncated {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_truncated", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Keep Newest.
         /// </summary>
         internal static string RemoveDuplicatesNavigator_keepNewest {

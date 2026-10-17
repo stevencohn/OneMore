@@ -74,7 +74,14 @@ namespace River.OneMoreAddIn.Commands
 		private readonly ToolTip tooltip;
 		private readonly List<GroupModel> groups;
 
+		// each row is ~6 handle-backed controls; cap the rows rendered at once so a huge scan
+		// cannot exhaust the process's ~10,000 USER handle limit (shared with dllhost.exe)
+		private const int MaxRenderedRows = 800;
+
 		private Font dateFont;
+		private Font titleFont;
+		private Font linkFont;
+		private Font pathFont;
 		private int dateBoxWidth;
 		private int chipWidth;
 
@@ -214,10 +221,22 @@ namespace River.OneMoreAddIn.Commands
 		private void Rebuild()
 		{
 			resultsPanel.SuspendLayout();
-			resultsPanel.Controls.Clear();
 
-			dateFont?.Dispose();
+			// Controls.Clear() only removes children; their window handles stay alive until
+			// finalized, so dispose them explicitly or repeated rebuilds exhaust USER handles
+			tooltip.RemoveAll();
+			var old = resultsPanel.Controls.Cast<Control>().ToList();
+			resultsPanel.Controls.Clear();
+			foreach (var control in old)
+			{
+				control.Dispose();
+			}
+
+			DisposeFonts();
 			dateFont = new Font("Consolas", Math.Max(7f, Font.SizeInPoints - 1f));
+			titleFont = new Font(Font, FontStyle.Bold);
+			linkFont = new Font(Font, FontStyle.Regular);
+			pathFont = new Font(Font.FontFamily, 7.5f);
 			dateBoxWidth = TextRenderer.MeasureText(DateMeasureSample, dateFont).Width + 6;
 
 			// measured, not guessed, so a translation longer than English (the exact-match
@@ -228,8 +247,18 @@ namespace River.OneMoreAddIn.Commands
 					string.Format(Resx.RemoveDuplicatesNavigator_similarChipFormat, 100), Font).Width)
 				+ ChipPadding;
 
+			var rendered = CountRenderableGroups(
+				groups.Select(g => g.Members.Count).ToList(), MaxRenderedRows);
+
+			using (var process = System.Diagnostics.Process.GetCurrentProcess())
+			{
+				logger.WriteLine(
+					$"rebuilding {rendered} of {groups.Count} groups, process user objects " +
+					Native.GetGuiResources(process.Handle, Native.GR_USEROBJECTS));
+			}
+
 			var y = TopPad;
-			foreach (var group in groups)
+			foreach (var group in groups.Take(rendered))
 			{
 				var cardHeight = (CardPadV * 2) + HeaderHeight + (group.Members.Count * RowHeight);
 				var card = CreateCardPanel(y, cardHeight);
@@ -247,6 +276,26 @@ namespace River.OneMoreAddIn.Commands
 				y += cardHeight + CardGap;
 			}
 
+			if (rendered < groups.Count)
+			{
+				var shown = groups.Take(rendered).Sum(g => g.Members.Count);
+				var total = groups.Sum(g => g.Members.Count);
+
+				var note = new MoreLabel
+				{
+					AutoSize = false,
+					Font = titleFont,
+					ForeColor = manager.GetColor("GrayText"),
+					BackColor = resultsPanel.BackColor,
+					Location = new Point(TopPad, y),
+					Size = new Size(ContentWidth - (TopPad * 2), HeaderHeight),
+					Text = string.Format(Resx.RemoveDuplicatesNavigator_truncated, shown, total),
+					Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+				};
+				resultsPanel.Controls.Add(note);
+				y += HeaderHeight + CardGap;
+			}
+
 			resultsPanel.AutoScrollMinSize = new Size(0, y);
 			resultsPanel.ResumeLayout();
 
@@ -254,6 +303,46 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Close();
 			}
+		}
+
+
+		/// <summary>
+		/// Determines how many leading groups can be rendered without exceeding maxRows member
+		/// rows. Always includes at least the first group so the dialog is never empty.
+		/// </summary>
+		internal static int CountRenderableGroups(IList<int> memberCounts, int maxRows)
+		{
+			var rows = 0;
+			var count = 0;
+			foreach (var members in memberCounts)
+			{
+				if (count > 0 && rows + members > maxRows)
+				{
+					break;
+				}
+
+				rows += members;
+				count++;
+			}
+
+			return count;
+		}
+
+
+		private void DisposeFonts()
+		{
+			dateFont?.Dispose();
+			titleFont?.Dispose();
+			linkFont?.Dispose();
+			pathFont?.Dispose();
+			dateFont = titleFont = linkFont = pathFont = null;
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+			DisposeFonts();
 		}
 
 
@@ -298,7 +387,7 @@ namespace River.OneMoreAddIn.Commands
 			var titleLabel = new MoreLabel
 			{
 				AutoSize = false,
-				Font = new Font(Font, FontStyle.Bold),
+				Font = titleFont,
 				ForeColor = manager.GetColor("ControlText"),
 				BackColor = card.BackColor,
 				Location = new Point(CardPadH, CardPadV + 2),
@@ -389,7 +478,7 @@ namespace River.OneMoreAddIn.Commands
 			// AutoSize + MaximumSize (rather than a stretched, fixed-width label) so the
 			// clickable region matches the rendered text itself, not the full row width
 			var link = MakeNavigationLink(node, node.Title);
-			link.Font = new Font(Font, FontStyle.Regular);
+			link.Font = linkFont;
 			link.MaximumSize = new Size(textWidth, 0);
 			link.Location = new Point(CardPadH, y + 3);
 			link.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -403,7 +492,7 @@ namespace River.OneMoreAddIn.Commands
 				var pathLabel = new MoreLabel
 				{
 					AutoSize = true,
-					Font = new Font(Font.FontFamily, 7.5f),
+					Font = pathFont,
 					MaximumSize = new Size(textWidth, 0),
 					Location = new Point(CardPadH, y + 3 + TitleLineHeight),
 					ForeColor = manager.GetColor("GrayText"),
