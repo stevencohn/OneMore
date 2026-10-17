@@ -8,10 +8,11 @@ description: "Diagnose an error group from OneMore telemetry (ERR-nnn), propose 
 Given an `ErrorGroup` key (`ERR-nnn`), read its rows from the telemetry workbook,
 diagnose the exception against the source, and produce a fix plan. After the user
 approves the plan, create the GitHub issue and a local branch, then implement the
-fix immediately. Do not commit, push, or run `build.ps1`.
+fix immediately, then offer to open a PR. Do not commit or push until the user agrees,
+and never run `build.ps1`.
 
 ## Step 0 — Prep: start from a synced main
-
+w
 Before anything else, make sure the work starts from an up-to-date `main`. Use
 PowerShell:
 
@@ -133,11 +134,11 @@ Use PowerShell and the `gh` CLI with the default repo `stevencohn/OneMore`.
    - Title: `<ErrorGroup> <summary>`, e.g. `ERR-184 ApplyStyle fails silently`
    - Body: the plan sections above (telemetry details, stack of OneMore frames, root
      cause, proposed fix, regression test), using a single-quoted here-string
-   - `--label bug --assignee stevencohn`
+   - `--label bug --label telemetry --assignee stevencohn`
 
    ```powershell
    gh issue create --repo stevencohn/OneMore --title "ERR-184 ApplyStyle fails silently" `
-       --label bug --assignee stevencohn --body $body
+       --label bug --label telemetry --assignee stevencohn --body $body
    ```
 
 2. **Create and switch to a local branch** named `<Issue#>-<summary>`: the issue number,
@@ -154,14 +155,18 @@ Use PowerShell and the `gh` CLI with the default repo `stevencohn/OneMore`.
 Immediately after creating the branch, without asking again, implement the approved
 plan: make the code changes described under **Proposed fix**, plus the regression test
 if one was planned. Follow the CLAUDE.md coding conventions. Do not commit or push, and
-do not run `build.ps1`. Finish by summarizing the changes and leaving them uncommitted
-for the user's review.
+do not run `build.ps1`. Finish by summarizing the changes, leaving them uncommitted, then
+prompt the user with the expected next step, e.g. "Changes are ready for review. Open a
+PR? (yes, or type another instruction)". The user may type a different option instead
+(such as requesting edits or only a commit). Commit, push and open a PR only after the
+user answers yes; follow the CLAUDE.md PR rules (title from the branch name, "Relates to"
+the issue rather than "Closes").
 
 ## Constraints
 
 - Never edit `telemetry-errors.xlsx`.
 - Do implement the approved fix (Step 8), but do not commit, push, open a PR, or run
-  `build.ps1`; wait for the user to review and ask.
+  `build.ps1` until the user confirms at the Step 8 prompt or otherwise asks.
 - Resource strings: edit `Properties\Resources.resx` and `Resources.Designer.cs`
   together, and never touch `Resources.xx-XX` files.
 - Never edit `docs\*.htm`.
