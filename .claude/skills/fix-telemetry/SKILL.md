@@ -162,11 +162,30 @@ PR? (yes, or type another instruction)". The user may type a different option in
 user answers yes; follow the CLAUDE.md PR rules (title from the branch name, "Relates to"
 the issue rather than "Closes").
 
+## Step 9 — Wrap up after the PR
+
+After opening the PR, report its URL and tell the user to reply "done" once they have
+merged it. Do nothing further until they do. When the user says "done":
+
+1. Label the issue as shipping in the next release (the PR is merged, so this is the
+   point where the label is appropriate):
+
+   ```powershell
+   gh issue edit <Issue#> --repo stevencohn/OneMore --add-label next-release
+   ```
+
+2. Return the local checkout to a synced `main`: `git switch main`, then
+   `git pull --ff-only`. If the working tree is dirty or the pull fails, stop and
+   report rather than stashing, merging or resetting. Do not delete the feature branch
+   unless asked.
+3. Confirm with `git status -sb` and summarize: issue labeled, `main` current.
+
 ## Constraints
 
 - Never edit `telemetry-errors.xlsx`.
 - Do implement the approved fix (Step 8), but do not commit, push, open a PR, or run
   `build.ps1` until the user confirms at the Step 8 prompt or otherwise asks.
+- Add the `next-release` label only when the user says "done" (Step 9), never earlier.
 - Resource strings: edit `Properties\Resources.resx` and `Resources.Designer.cs`
   together, and never touch `Resources.xx-XX` files.
 - Never edit `docs\*.htm`.
