@@ -4,6 +4,9 @@
 
 namespace River.OneMoreAddIn.Styles
 {
+	using System.Globalization;
+
+
 	internal enum StandardStyles
 	{
 		Heading1,
@@ -31,7 +34,7 @@ namespace River.OneMoreAddIn.Styles
 			{
 				Name = key.ToName(),
 				FontFamily = StyleBase.DefaultFontFamily, // "Calibri",
-				FontSize = StyleBase.DefaultFontSize.ToString("#.0"), // "11.0",
+				FontSize = StyleBase.DefaultFontSize.ToString("0.0", CultureInfo.InvariantCulture), // "11.0",
 				Color = "#000000",
 				StyleType = StyleType.Paragraph
 			};

@@ -135,6 +135,7 @@
     <Compile Include="MockApplication.cs" />
     <Compile Include="OneNoteTests.cs" />
     <Compile Include="Styles\ColorStabilizerTests.cs" />
+    <Compile Include="Styles\StandardStylesTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="UI\CalendarLayoutTests.cs" />
     <Compile Include="UI\DateFormatParserTests.cs" />
