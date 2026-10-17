@@ -132,6 +132,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out page, out _, OneNote.PageDetail.All);
 
+			if (page is null)
+			{
+				logger.WriteLine("no current page");
+				return null;
+			}
+
 			// derive a temp file name from PageId which is of the form {sectionID}{}{pageId}
 			// so grab just the pageId part which should be a Guid spanning the last 32 digits
 			var name = page.PageId.Substring(page.PageId.LastIndexOf('{') + 1, 32);
@@ -153,6 +159,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			hierarchyInfo = await one.GetPageInfo(page.PageId);
+			if (hierarchyInfo is null)
+			{
+				logger.WriteLine($"no page info (id:[{page.PageId}])");
+				return null;
+			}
+
 			hierarchyInfo.PageId = page.PageId;
 
 			return content;
