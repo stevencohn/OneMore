@@ -304,6 +304,22 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		}
 
 
+		/// <summary>
+		/// Finds the OEChildren container that holds the TOC, identified by the TOC meta
+		/// element on its title paragraph.
+		/// </summary>
+		/// <param name="root">The page root</param>
+		/// <param name="ns">The page namespace</param>
+		/// <returns>The container, or null if the page has no TOC</returns>
+		internal static XElement FindContainer(XElement root, XNamespace ns)
+		{
+			return root.Descendants(ns + "Meta")
+				.Where(e => e.Attribute("name")?.Value == Toc.MetaName)
+				.Select(e => e.Parent?.Parent)
+				.FirstOrDefault(e => e is not null);
+		}
+
+
 		public override async Task<bool> Refresh()
 		{
 			one = new OneNote();
@@ -313,14 +329,16 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				var page = await one.GetPage();
 				var ns = page.Namespace;
 
+				var container = FindContainer(page.Root, ns);
+				if (container is null)
+				{
+					logger.WriteLine("cannot refresh hierarchy toc; current page has no toc");
+					return false;
+				}
+
 				// remove old contents...
 
-				var container = page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == Toc.MetaName)
-					.Select(e => e.Parent.Parent)
-					.FirstOrDefault();
-
-				container?.Elements().Remove();
+				container.Elements().Remove();
 
 				// rebuild...
 
@@ -328,13 +346,17 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				logger.WriteLine($"refresh hierarchy toc in section {section.Attribute("name").Value}");
 
 				await BuildContents(page, container, section);
+				return true;
+			}
+			catch (System.Exception exc)
+			{
+				logger.WriteLine("error refreshing hierarchy toc", exc);
+				return false;
 			}
 			finally
 			{
 				await one.DisposeAsync();
 			}
-
-			return true;
 		}
 	}
 }
