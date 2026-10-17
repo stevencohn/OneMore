@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Models
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Net;
 	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -21,6 +22,30 @@ namespace River.OneMoreAddIn.Models
 		private List<Style> quickStyles;
 		private List<Style> customStyles;
 		private string pageColor;
+
+
+		/// <summary>
+		/// Gets the text of a heading, sanitized so it can be parsed as XML. HTML comment text
+		/// is kept as real text and only the comment markers are removed; a '--' inside a
+		/// comment is invalid XML otherwise and would abort the TOC build.
+		/// </summary>
+		internal static string ExtractHeadingText(string value)
+		{
+			var html = value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
+
+			try
+			{
+				var wrapper = new XElement("wrapper", html);
+				return wrapper.TextValue();
+			}
+			catch (XmlException)
+			{
+				// leftover markup, e.g. from conditional comments, is not well-formed;
+				// fall back to simply discarding tags
+				var plain = Regex.Replace(html, @"<[^>]*>", " ");
+				return WebUtility.HtmlDecode(plain);
+			}
+		}
 
 
 		/*
@@ -89,8 +114,7 @@ namespace River.OneMoreAddIn.Models
 					}
 
 					// strip out all <style> elements
-					var wrapper = new XElement("wrapper", text);
-					text = wrapper.TextValue();
+					text = ExtractHeadingText(text);
 
 					Heading heading = null;
 
