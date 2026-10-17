@@ -140,6 +140,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "make-test", "make-test", "{
 		.claude\skills\make-test\SKILL.md = .claude\skills\make-test\SKILL.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "estimate-usage", "estimate-usage", "{48D7FCEE-C0AF-4757-897F-959EE6FD2920}"
+	ProjectSection(SolutionItems) = preProject
+		.claude\skills\estimate-usage\SKILL.md = .claude\skills\estimate-usage\SKILL.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fix-telemetry", "fix-telemetry", "{66CA5AFD-C0A8-4987-9B90-E553E658F62E}"
+	ProjectSection(SolutionItems) = preProject
+		.claude\skills\fix-telemetry\SKILL.md = .claude\skills\fix-telemetry\SKILL.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -265,6 +275,8 @@ Global
 		{1DA9CFDA-D91F-4C40-9173-D312B5644FBE} = {9FE52F5B-7C02-4501-85B0-A68E692E161A}
 		{3E9FBC2D-8F7E-4BC3-8DA4-2AA65C05AD2E} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
 		{31BFB690-FA52-4E99-AAA0-523FEB3ECBBA} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
+		{48D7FCEE-C0AF-4757-897F-959EE6FD2920} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
+		{66CA5AFD-C0A8-4987-9B90-E553E658F62E} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}
