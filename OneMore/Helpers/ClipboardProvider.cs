@@ -389,9 +389,17 @@ namespace River.OneMoreAddIn
 				// collect each text format
 				foreach (Win.TextDataFormat format in Enum.GetValues(typeof(Win.TextDataFormat)))
 				{
-					if (Win.Clipboard.ContainsText(format))
+					try
 					{
-						stash.Add(format, Win.Clipboard.GetText(format));
+						if (Win.Clipboard.ContainsText(format))
+						{
+							stash[format] = Win.Clipboard.GetText(format);
+						}
+					}
+					catch (ExternalException exc)
+					{
+						// e.g. 0x800401D3 CLIPBRD_E_BAD_DATA from the owning application
+						logger.WriteLine($"error stashing clipboard text format {format}", exc);
 					}
 				}
 
