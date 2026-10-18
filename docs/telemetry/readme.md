@@ -24,6 +24,9 @@ keep sending the names of commands that may have been renamed or deleted. Remove
 names by hand if ever needed. Commit the regenerated file along with any new command; the
 build workflow fails if the committed copy is out of date.
 
+The file is excluded from the `pages.yml` trigger, so a change to it alone does not
+redeploy the web site.
+
 ### manifest.json
 This is a control file used to map query names to their Athena IDs and
 to bind query results to the correct table on the dashboard page.

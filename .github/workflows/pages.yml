@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
+      - '!docs/telemetry/telemetry-events.json'
   workflow_dispatch:
 
 permissions:
