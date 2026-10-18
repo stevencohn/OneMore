@@ -1067,6 +1067,10 @@ Normal</value>
     <value>Found no images to compress</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>A component required by Convert Markdown is missing or blocked. Please repair or reinstall OneMore.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>No bulleted or numbered list was found to convert</value>
     <comment>messagebox</comment>

@@ -1066,6 +1066,10 @@
     <value>没有发现可压缩的图像</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>Convert Markdown 所需的组件丢失或被阻止。请修复或重新安装 OneMore。</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>找不到要转换的项目符号或编号列表</value>
     <comment>messagebox</comment>
@@ -4216,6 +4220,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% 相似</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>显示第 {0} 页，共 {1} 页。删除一些并再次运行以查看其余部分。</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>删除间距</value>
