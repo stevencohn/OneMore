@@ -72,6 +72,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// outline has no OE content to anchor to (e.g. an empty outline/text
 					// box on the page); nothing to convert or insert here
+					logger.Debug("skipping outline with no anchor");
 					continue;
 				}
 
