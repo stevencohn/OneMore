@@ -101,6 +101,16 @@ jobs:
           $echoLog = '${{ inputs.output_build_log }}' -eq 'true' ? '-EchoLog' : ''
           Invoke-Expression ".\build.ps1 -Architecture ${{ matrix.arch }} -CompileOnly $beta $echoLog"
 
+      # Compile regenerates docs\telemetry\telemetry-events.json from the built assembly;
+      # fail if that differs from what is committed so the telemetry service allowlist
+      # never lags behind a release. Fix locally with: .\build.ps1 -Events
+      - name: Verify telemetry events allowlist
+        if: matrix.arch == 'x64'
+        shell: pwsh
+        run: |
+          git diff --exit-code docs/telemetry/telemetry-events.json
+          if ($LASTEXITCODE -ne 0) { throw "docs/telemetry/telemetry-events.json is out of date; run .\build.ps1 -Events and commit it" }
+
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

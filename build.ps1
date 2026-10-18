@@ -48,6 +48,13 @@ This is a standalone command that executes and exits.
 When building with MSBuild, echo the build log to the console in addition to writing it to a
 file. This is useful for debugging build issues.
 
+.PARAMETER Events
+Generates docs\telemetry\telemetry-events.json, the allowlist of official telemetry event
+names used by the telemetry service to reject events from unofficial builds. Reads the
+already-built OneMore\bin\Debug\River.OneMoreAddIn.dll, so run this after building in
+Visual Studio. Names are only ever added to the file, never removed. Full and fast builds
+also do this automatically. This is a standalone command that executes and exits.
+
 .PARAMETER Fast
 Build just the .csproj projects using default parameters: OneMore, OneMorCalendar, 
 OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
@@ -87,6 +94,7 @@ param (
 	[int] $BetaNumber = 0,
 	[switch] $Clean,
 	[switch] $EchoLog,
+	[switch] $Events,
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Main,
@@ -331,6 +339,143 @@ Begin
 	}
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Telemetry events...
+
+	# Reflection script run by Windows PowerShell 5.1: pwsh 7 runs on .NET (Core) and cannot
+	# load the .NET Framework add-in with its Office/WinForms dependencies, even reflection-only.
+	# Prints the telemetry event name of every concrete Command subclass, one per line, plus the
+	# "...CLI" variant of those implementing ICliCommand. Names follow the same rules as
+	# CommandFactory.Run and TelemetryClient.Log.
+	$script:eventsReflector = @'
+param([string] $Dll)
+$ErrorActionPreference = 'Stop'
+$dir = Split-Path -Parent $Dll
+$resolver = {
+	param($sender, $e)
+	$name = (New-Object System.Reflection.AssemblyName($e.Name)).Name
+	$path = Join-Path $dir "$name.dll"
+	if (Test-Path $path) { return [System.Reflection.Assembly]::ReflectionOnlyLoadFrom($path) }
+	try { return [System.Reflection.Assembly]::ReflectionOnlyLoad($e.Name) } catch { return $null }
+}.GetNewClosure()
+[AppDomain]::CurrentDomain.add_ReflectionOnlyAssemblyResolve($resolver)
+
+$asm = [System.Reflection.Assembly]::ReflectionOnlyLoadFrom($Dll)
+try
+{
+	$types = $asm.GetTypes()
+}
+catch
+{
+	$ex = $_.Exception
+	while ($ex.InnerException) { $ex = $ex.InnerException }
+	$types = @($ex.Types | Where-Object { $_ })
+}
+
+foreach ($type in $types)
+{
+	if ($type.IsAbstract) { continue }
+
+	$isCommand = $false
+	try
+	{
+		for ($t = $type.BaseType; $t; $t = $t.BaseType)
+		{
+			if ($t.FullName -eq 'River.OneMoreAddIn.Command') { $isCommand = $true; break }
+		}
+	}
+	catch { }
+
+	if (-not $isCommand) { continue }
+
+	# a CLI variant is only used by commands that OneMoreCli can discover, i.e. concrete
+	# types implementing ICliCommand (see OneMoreCli\CommandDiscovery.cs)
+	$isCli = $false
+	foreach ($i in $type.GetInterfaces())
+	{
+		if ($i.FullName -eq 'River.OneMoreAddIn.Cli.ICliCommand') { $isCli = $true; break }
+	}
+
+	$name = $type.Name
+	if ($name.EndsWith('Command'))
+	{
+		$name.Substring(0, $name.Length - 'Command'.Length)
+		if ($isCli) { $name.Replace('Command', 'CLI') }
+	}
+	else
+	{
+		$name
+		if ($isCli) { "${name}CLI" }
+	}
+}
+'@
+
+	function GenerateEvents
+	{
+		$dll = Join-Path $PSScriptRoot 'OneMore\bin\Debug\River.OneMoreAddIn.dll'
+		$json = Join-Path $PSScriptRoot 'docs\telemetry\telemetry-events.json'
+
+		Write-Host "`n... generating telemetry events" -ForegroundColor Cyan
+
+		if (-not (Test-Path $dll))
+		{
+			Write-Host "... $dll not found; run a build first" -ForegroundColor Red
+			return $false
+		}
+
+		# names of commands, found by reflection
+		$tmp = Join-Path ($env:RUNNER_TEMP ?? $env:TEMP) 'OneMoreEvents.ps1'
+		Set-Content -Path $tmp -Value $script:eventsReflector -Encoding UTF8
+		try
+		{
+			$found = @(& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $tmp -Dll $dll)
+			if ($LASTEXITCODE -ne 0 -or $found.Count -eq 0)
+			{
+				Write-Host "... unable to read commands from $dll" -ForegroundColor Red
+				return $false
+			}
+		}
+		finally
+		{
+			Remove-Item $tmp -Force -ErrorAction SilentlyContinue
+		}
+
+		# literal names passed directly to TelemetryClient, e.g. "page-save"
+		$pattern = 'TelemetryClient\s*\.\s*Log(?:Event|Timing|Exception)\(\s*"([^"]+)"'
+		Get-ChildItem (Join-Path $PSScriptRoot 'OneMore') -Recurse -Filter *.cs |
+			Where-Object { $_.FullName -notmatch '\\(bin|obj)\\' } |
+			Select-String -Pattern $pattern -AllMatches |
+			ForEach-Object { $_.Matches } |
+			ForEach-Object { $found += $_.Groups[1].Value }
+
+		# the list is additive: older releases still in the field keep sending the names of
+		# commands that may since have been renamed or removed, so never drop an existing name
+		$events = [System.Collections.Generic.SortedSet[string]]::new([StringComparer]::Ordinal)
+		$existing = $null
+		if (Test-Path $json)
+		{
+			$existing = (Get-Content $json -Raw).Replace("`r`n", "`n")
+			foreach ($name in (ConvertFrom-Json $existing).events) { [void]$events.Add($name) }
+		}
+
+		$added = @($found | Where-Object { $events.Add($_) })
+
+		$text = (@{ events = @($events) } | ConvertTo-Json).Replace("`r`n", "`n") + "`n"
+		if ($text -eq $existing)
+		{
+			Write-Host "... $($events.Count) telemetry events, no changes" -ForegroundColor DarkGray
+			return $true
+		}
+
+		[System.IO.File]::WriteAllText($json, $text, [System.Text.UTF8Encoding]::new($false))
+		Write-Host "... $($events.Count) telemetry events, $($added.Count) added to $json" -ForegroundColor DarkYellow
+		if ($added.Count -le 30)
+		{
+			$added | Sort-Object | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
+		}
+		return $true
+	}
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Fast...
 
 	function BuildFast
@@ -339,7 +484,8 @@ Begin
 
 		NugetRestore 'OneMore'
 		BuildProject 'OneMore'
-		
+		GenerateEvents | Out-Null
+
 		if ($Main) { return }
 
 		NugetRestore 'OneMoreTray'
@@ -407,6 +553,7 @@ Begin
 		if (BuildSolution $solutionPlatform)
 		{
 			ReportArchitectures
+			GenerateEvents | Out-Null
 		}
 	}
 
@@ -430,6 +577,7 @@ Begin
 		if (BuildSolution $solutionPlatform)
 		{
 			ReportArchitectures
+			GenerateEvents | Out-Null
 			BuildKit
 		}
 	}
@@ -725,6 +873,9 @@ Process
 {
 	$script:verboseColor = $PSStyle.Formatting.Verbose
 	$PSStyle.Formatting.Verbose = $PSStyle.Foreground.BrightBlack
+
+	# needs only the built DLL, not Visual Studio
+	if ($Events) { if (-not (GenerateEvents)) { exit 1 }; return }
 
 	if (-not (FindVisualStudio)) { return }
 
