@@ -25,24 +25,21 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets the text of a heading, sanitized so it can be parsed as XML. HTML comment text
-		/// is kept as real text and only the comment markers are removed; a '--' inside a
-		/// comment is invalid XML otherwise and would abort the TOC build.
+		/// Gets the text of a heading, sanitized so it can be parsed as XML. A malformed
+		/// comment, e.g. containing '--', is invalid XML and would abort the TOC build so
+		/// fall back to discarding comments and tags.
 		/// </summary>
 		internal static string ExtractHeadingText(string value)
 		{
-			var html = value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
-
 			try
 			{
-				var wrapper = new XElement("wrapper", html);
+				var wrapper = new XElement("wrapper", value);
 				return wrapper.TextValue();
 			}
 			catch (XmlException)
 			{
-				// leftover markup, e.g. from conditional comments, is not well-formed;
-				// fall back to simply discarding tags
-				var plain = Regex.Replace(html, @"<[^>]*>", " ");
+				var plain = Regex.Replace(value, @"<!--.*?(-->|$)", " ", RegexOptions.Singleline);
+				plain = Regex.Replace(plain, @"<[^>]*>", " ");
 				return WebUtility.HtmlDecode(plain);
 			}
 		}
@@ -105,10 +102,12 @@ namespace River.OneMoreAddIn.Models
 				foreach (var block in blocks)
 				{
 					// concat text from each T in block; handles when cursor bisects heading
-					var text = block.Elements(Namespace + "T")
-						.Select(e => e.Value).Aggregate((x, y) => $"{x}{y}");
+					// mathML equations are not text and their XML comment may not be well-formed
+					var text = string.Concat(block.Elements(Namespace + "T")
+						.Where(e => !e.IsMathML())
+						.Select(e => e.Value));
 
-					if (text == null)
+					if (text.Length == 0)
 					{
 						continue;
 					}
