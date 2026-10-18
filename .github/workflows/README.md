@@ -23,7 +23,8 @@ gh run list --repo stevencohn/onemore
 
 ## pages.yml
 This updates the onemoreaddin.com web site.
-It is auto-triggered by the Pages web site whenever there is changes in the docs/** folder.
+It is auto-triggered by the Pages web site whenever there is changes in the docs/** folder, except for
+docs/telemetry/telemetry-events.json, which is only consumed by the telemetry service.
 
 ## pr-issue-comment-on-merge.yml
 When a PR is merged, this will add a coment to the associated ticket
