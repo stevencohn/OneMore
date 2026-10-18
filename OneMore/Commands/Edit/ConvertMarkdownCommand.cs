@@ -6,11 +6,13 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -97,8 +99,19 @@ namespace River.OneMoreAddIn.Commands
 				var text = reader.ReadTextFrom(paragraphs, allContent);
 				text = Regex.Replace(text, @"<br>([\n\r]+|$)", "$1");
 
-				var body = OneMoreDig.ConvertMarkdownToHtml(
-					filepath, text, gfmLineBreaks, singleSpacing, blankBeforeHeadings);
+				string body;
+				try
+				{
+					body = OneMoreDig.ConvertMarkdownToHtml(
+						filepath, text, gfmLineBreaks, singleSpacing, blankBeforeHeadings);
+				}
+				catch (Exception exc) when (exc is FileNotFoundException or FileLoadException)
+				{
+					// a dependency such as Markdig.Signed.dll is missing or blocked
+					logger.WriteLine("error loading markdown component", exc);
+					ShowError(Resx.ConvertMarkdownCommand_missingComponent);
+					return;
+				}
 
 				editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
 					new XElement(ns + "Data",

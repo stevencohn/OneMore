@@ -2134,6 +2134,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A component required by Convert Markdown is missing or blocked. Please repair or reinstall OneMore.
+        /// </summary>
+        internal static string ConvertMarkdownCommand_missingComponent {
+            get {
+                return ResourceManager.GetString("ConvertMarkdownCommand_missingComponent", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to No bulleted or numbered list was found to convert.
         /// </summary>
         internal static string ConvertOutlineCommand_NoList {
