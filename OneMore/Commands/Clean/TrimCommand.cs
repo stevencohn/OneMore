@@ -83,6 +83,12 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
+					// never touch mathML equations; their XML comment may not be well-formed
+					if (selection.IsMathML())
+					{
+						continue;
+					}
+
 					var cdata = selection.GetCData();
 					if (cdata.Value.Length == 0)
 					{
