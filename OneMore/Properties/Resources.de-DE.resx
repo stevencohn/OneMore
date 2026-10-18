@@ -1065,6 +1065,10 @@ Normal</value>
     <value>Es wurden keine Bilder zum Komprimieren gefunden</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>Eine von Convert Markdown benötigte Komponente fehlt oder ist blockiert. Bitte reparieren oder installieren Sie OneMore neu.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>Es wurde keine Liste mit Aufzählungszeichen oder Nummern zum Konvertieren gefunden</value>
     <comment>messagebox</comment>
@@ -4202,6 +4206,10 @@ Stilistisch, Entität, Medien</value>
     <value>{0} % ähnlich</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>Es werden {0} von {1} Seiten angezeigt. Löschen Sie einige und führen Sie den Vorgang erneut aus, um den Rest anzuzeigen.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Abstand entfernen</value>
     <comment>dialog title</comment>
@@ -6685,7 +6693,7 @@ Vorher geändert</value>
     <value>{0:N0} Seiten aus dem Suchindex, {1:N0} aus OneNote gelesen</value>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Gib ein oder mehrere Schlüsselwörter, \"Phrasen in Anführungszeichen\", ein und verwende UND und ODER in Großbuchstaben</value>
+    <value>Gib Wörter in beliebiger Reihenfolge oder „exakte Phrasen" in Anführungszeichen ein. Kombiniere sie mit AND, OR, NOT und Klammern. Füge \ für dieses Notizbuch oder \Name für ein anderes hinzu.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">

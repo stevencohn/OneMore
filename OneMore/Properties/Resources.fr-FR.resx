@@ -1065,6 +1065,10 @@ Normale</value>
     <value>Aucune image à compresser trouvée</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>Un composant requis par Convert Markdown est manquant ou bloqué. Veuillez réparer ou réinstaller OneMore.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>Aucune liste à puces ou numérotée à convertir n'a été trouvée</value>
     <comment>messagebox</comment>
@@ -4213,6 +4217,10 @@ Stylistique, Entité, Média</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0} % de similaires</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>Affichage de {0} pages sur {1}. Supprimez-en quelques-uns et réexécutez pour voir le reste.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Supprimer l'espacement</value>

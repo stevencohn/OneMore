@@ -1062,6 +1062,10 @@ Normaal</value>
     <value>Er zijn geen afbeeldingen gevonden om te comprimeren</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>Een onderdeel dat vereist is voor Convert Markdown ontbreekt of is geblokkeerd. Repareer of installeer OneMore opnieuw.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>Er is geen lijst met opsommingstekens of genummerde items gevonden die kan worden geconverteerd</value>
     <comment>messagebox</comment>
@@ -4202,6 +4206,10 @@ Stilistisch, entiteit, media</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% vergelijkbaar</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>Er worden {0} van {1} pagina's weergegeven. Verwijder er enkele en ren opnieuw om de rest te zien.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Tussenruimte verwijderen</value>

@@ -1065,6 +1065,10 @@
     <value>لم يتم العثور على صور لضغطها</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>أحد المكونات المطلوبة بواسطة Convert Markdown مفقود أو محظور. الرجاء إصلاح أو إعادة تثبيت OneMore.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>لم يتم العثور على قائمة ذات تعداد نقطي أو رقمي للتحويل</value>
     <comment>messagebox</comment>
@@ -4213,6 +4217,10 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% متشابهة</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>عرض {0} من {1} صفحة. احذف البعض ثم قم بتشغيله مرة أخرى لرؤية الباقي.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>إزالة التباعد</value>

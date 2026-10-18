@@ -1062,6 +1062,10 @@
     <value>לא נמצאו תמונות לדחיסה</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>רכיב הנדרש על-ידי Convert Markdown חסר או חסום. אנא תקן או התקן מחדש את OneMore.</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>לא נמצאה רשימה עם תבליטים או ממוספרים להמרה</value>
     <comment>messagebox</comment>
@@ -4202,6 +4206,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% דומים</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>מציג {0} מתוך {1} דפים. מחק חלק והפעל שוב כדי לראות את השאר.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>הסר מרווחים</value>

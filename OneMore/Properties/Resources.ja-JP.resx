@@ -1065,6 +1065,10 @@
     <value>圧縮する画像が見つかりませんでした</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertMarkdownCommand_missingComponent" xml:space="preserve">
+    <value>Convert Markdown に必要なコンポーネントが見つからないか、ブロックされています。 OneMore を修復または再インストールしてください。</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
     <value>変換する箇条書きまたは番号付きリストが見つかりませんでした</value>
     <comment>messagebox</comment>
@@ -4205,6 +4209,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% 類似</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>{1} ページ中 {0} を表示しています。一部を削除し、再度実行して残りを表示します。</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>間隔を削除</value>
