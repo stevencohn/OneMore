@@ -119,6 +119,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs)
 			{
+				// mathML equations are not text and their XML comment may not be well-formed
+				if (run.IsMathML())
+				{
+					continue;
+				}
+
 				var cdatas = run.DescendantNodes().OfType<XCData>();
 				foreach (var cdata in cdatas)
 				{
@@ -141,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 					.Descendants(pageNs + "OE")
 					.Where(e => !e.Ancestors(pageNs + "Table").Any())
 					.Count(e => e.Elements(pageNs + "T")
+						.Where(t => !t.IsMathML())
 						.SelectMany(t => t.DescendantNodes().OfType<XCData>())
 						.Any(cd => cd.GetWrapper().Value.Trim().Length > 0));
 			}
@@ -151,6 +158,7 @@ namespace River.OneMoreAddIn.Commands
 					.Where(oe => oe?.Name.LocalName == "OE")
 					.Distinct()
 					.Count(oe => oe.Elements(pageNs + "T")
+						.Where(t => !t.IsMathML())
 						.SelectMany(t => t.DescendantNodes().OfType<XCData>())
 						.Any(cd => cd.GetWrapper().Value.Trim().Length > 0));
 			}
@@ -164,23 +172,20 @@ namespace River.OneMoreAddIn.Commands
 		/// (e.g. "He's", "one-two-three") as part of a single word rather than as separators.
 		/// </summary>
 		/// <summary>
-		/// Gets the plain text of a CDATA value. Like Word, HTML comment text is counted as
-		/// real text, so only the comment markers are removed.
+		/// Gets the plain text of a CDATA value. Comments are not text and are discarded.
 		/// </summary>
 		internal static string ExtractText(string value)
 		{
-			// markers must go first; a '--' inside a comment is invalid XML otherwise
-			var html = value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
-
 			try
 			{
-				return html.ToXmlWrapper("cdata").Value.Trim();
+				return value.ToXmlWrapper("cdata").Value.Trim();
 			}
 			catch (XmlException)
 			{
-				// leftover markup, e.g. from conditional comments, is not well-formed;
-				// fall back to simply discarding tags
-				var plain = Regex.Replace(html, @"<[^>]*>", " ");
+				// a malformed comment, e.g. containing '--', is not well-formed XML;
+				// fall back to discarding comments and tags
+				var plain = Regex.Replace(value, @"<!--.*?(-->|$)", " ", RegexOptions.Singleline);
+				plain = Regex.Replace(plain, @"<[^>]*>", " ");
 				return WebUtility.HtmlDecode(plain).Trim();
 			}
 		}

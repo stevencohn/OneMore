@@ -66,20 +66,31 @@ namespace River.OneMoreAddIn.Tests.Commands.Page
 
 
 		[TestMethod]
-		public void ExtractText_CommentWithDoubleHyphen_KeepsCommentText()
+		public void ExtractText_CommentWithDoubleHyphen_DiscardsComment()
 		{
 			var text = WordCountCommand.ExtractText("one <!-- two -- three --> four");
 
-			Assert.AreEqual(4, WordCountCommand.CountWords(text));
+			Assert.AreEqual(2, WordCountCommand.CountWords(text));
 		}
 
 
 		[TestMethod]
-		public void ExtractText_MultilineComment_CountsWordsInside()
+		public void ExtractText_MultilineComment_DiscardsComment()
 		{
 			var text = WordCountCommand.ExtractText("one <!-- two\nthree --->\nfour");
 
-			Assert.AreEqual(4, WordCountCommand.CountWords(text));
+			Assert.AreEqual(2, WordCountCommand.CountWords(text));
+		}
+
+
+		[TestMethod]
+		public void ExtractText_MathMLWithDoubleHyphen_CountsZeroWords()
+		{
+			// issue 2785: an equation is not text
+			var text = WordCountCommand.ExtractText(
+				"<!--[if mathML]><math><mi>x</mi><mo>--</mo><mi>y</mi></math><![endif]-->");
+
+			Assert.AreEqual(0, WordCountCommand.CountWords(text));
 		}
 
 

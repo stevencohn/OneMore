@@ -50,19 +50,24 @@ namespace River.OneMoreAddIn.Styles
 
 
 		/// <summary>
-		/// Wraps the CDATA content as an XElement so it can be parsed. HTML comment text is
-		/// kept as real text and only the comment markers are removed; a '--' inside a
-		/// comment is invalid XML otherwise.
+		/// Wraps the CDATA content as an XElement so it can be parsed. Comments are preserved
+		/// as comment nodes so they survive a round trip.
 		/// </summary>
 		/// <param name="cdata">The CDATA node</param>
-		/// <returns>The wrapper, or null if the content cannot be parsed as XML</returns>
+		/// <returns>
+		/// The wrapper, or null if the content is a mathML equation or cannot be parsed as XML
+		/// </returns>
 		internal static XElement TryGetWrapper(XCData cdata)
 		{
-			var html = cdata.Value.Replace("<!--", string.Empty).Replace("-->", string.Empty);
+			// mathML equations are not styled and their XML comment may not be well-formed
+			if (cdata.Parent is XElement parent && parent.IsMathML())
+			{
+				return null;
+			}
 
 			try
 			{
-				return html.ToXmlWrapper("cdata");
+				return cdata.GetWrapper();
 			}
 			catch (XmlException exc)
 			{

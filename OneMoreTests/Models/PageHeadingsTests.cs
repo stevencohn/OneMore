@@ -12,11 +12,11 @@ namespace River.OneMoreAddIn.Tests.Models
 	public class PageHeadingsTests
 	{
 		[TestMethod]
-		public void ExtractHeadingText_CommentWithDoubleHyphen_KeepsCommentText()
+		public void ExtractHeadingText_CommentWithDoubleHyphen_DiscardsComment()
 		{
 			var text = OnePage.ExtractHeadingText("one <!-- two -- three --> four");
 
-			Assert.AreEqual("one  two -- three  four", text);
+			Assert.AreEqual("one   four", text);
 		}
 
 
@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Tests.Models
 		{
 			var text = OnePage.ExtractHeadingText("one <!-- two --->");
 
-			Assert.AreEqual("one  two -", text);
+			Assert.AreEqual("one  ", text);
 		}
 
 
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Tests.Models
 		{
 			var text = OnePage.ExtractHeadingText("one <!-- two -- three");
 
-			Assert.AreEqual("one  two -- three", text);
+			Assert.AreEqual("one  ", text);
 		}
 
 
@@ -51,6 +51,20 @@ namespace River.OneMoreAddIn.Tests.Models
 			var text = OnePage.ExtractHeadingText("a <!--[if gte mso 9]><xml>b<![endif]--> c");
 
 			Assert.IsTrue(text.Contains("a") && text.Contains("c"));
+			Assert.IsFalse(text.Contains("b"));
+		}
+
+
+		[TestMethod]
+		public void ExtractHeadingText_MathMLWithDoubleHyphen_YieldsNoEquationText()
+		{
+			// issue 2785: mathML equations are an XML comment; their text must never reach a TOC
+			var text = OnePage.ExtractHeadingText(
+				"Title <!--[if mathML]><math><mi>x</mi><mo>--</mo><mi>y</mi></math><![endif]-->");
+
+			Assert.IsFalse(text.Contains("mathML"));
+			Assert.IsFalse(text.Contains("endif"));
+			Assert.IsTrue(text.StartsWith("Title"));
 		}
 	}
 }

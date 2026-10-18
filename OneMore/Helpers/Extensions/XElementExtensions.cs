@@ -451,7 +451,7 @@ namespace River.OneMoreAddIn
 		{
 			var cdata = element.GetCData();
 			return cdata != null &&
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline);
+				Regex.IsMatch(cdata.Value, @"^\s*<!--.+-->\s*$", RegexOptions.Singleline);
 		}
 
 
