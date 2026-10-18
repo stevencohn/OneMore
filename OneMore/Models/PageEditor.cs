@@ -195,6 +195,11 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="content">The content to insert.</param>
 		public void InsertAtAnchor(XElement content)
 		{
+			if (Anchor is null)
+			{
+				return;
+			}
+
 			if (Anchor.Name.LocalName.In("OE", "HTMLBlock", "ChildOELayout"))
 			{
 				Anchor.AddAfterSelf(content.Name.LocalName.In("OE", "HTMLBlock")
