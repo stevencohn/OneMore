@@ -6676,6 +6676,10 @@ Tous les notebooks</value>
     <value>Résultats de la recherche</value>
     <comment>page title</comment>
   </data>
+  <data name="SearchDialog_backButton.Text" xml:space="preserve">
+    <value>Dos</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Effacer la sélection</value>
     <comment>link</comment>
@@ -6687,6 +6691,14 @@ Créé avant
 Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>Avant</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_homeButton.Text" xml:space="preserve">
+    <value>Maison</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_imageHit" xml:space="preserve">
     <value>[image] {0}</value>
@@ -6718,9 +6730,17 @@ Modifié avant</value>
     <value>Afficher dans la fenêtre actuelle</value>
     <comment>context menu item</comment>
   </data>
+  <data name="SearchDialog_nextButton.Text" xml:space="preserve">
+    <value>Coup suivant</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
     <value>Rechercher du texte dans les images</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_prevButton.Text" xml:space="preserve">
+    <value>Coup précédent</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Utiliser des expressions régulières</value>

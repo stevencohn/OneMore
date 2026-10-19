@@ -6665,6 +6665,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>תוצאות חיפוש</value>
     <comment>page title</comment>
   </data>
+  <data name="SearchDialog_backButton.Text" xml:space="preserve">
+    <value>בְּחֲזָרָה</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>נקה בחירה</value>
     <comment>link</comment>
@@ -6676,6 +6680,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
 שונה לאחר
 שונה לפני</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>קָדִימָה</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_homeButton.Text" xml:space="preserve">
+    <value>בַּיִת</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_imageHit" xml:space="preserve">
     <value>[תמונה] {0}</value>
@@ -6707,9 +6719,17 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הצג בחלון נוכחי</value>
     <comment>context menu item</comment>
   </data>
+  <data name="SearchDialog_nextButton.Text" xml:space="preserve">
+    <value>הלהיט הבא</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
     <value>חיפוש טקסט בתמונות</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_prevButton.Text" xml:space="preserve">
+    <value>הלהיט הקודם</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>השתמש בביטויים רגולריים</value>

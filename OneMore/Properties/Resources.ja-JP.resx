@@ -6671,6 +6671,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>検索結果</value>
     <comment>page title</comment>
   </data>
+  <data name="SearchDialog_backButton.Text" xml:space="preserve">
+    <value>戻る</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>選択をクリア</value>
     <comment>link</comment>
@@ -6682,6 +6686,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
 変更後
 以前に変更されました</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>フォワード</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_homeButton.Text" xml:space="preserve">
+    <value>家</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_imageHit" xml:space="preserve">
     <value>[画像] {0}</value>
@@ -6713,9 +6725,17 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>現在のウィンドウに表示</value>
     <comment>context menu item</comment>
   </data>
+  <data name="SearchDialog_nextButton.Text" xml:space="preserve">
+    <value>次のヒット</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
     <value>画像内のテキストを検索する</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_prevButton.Text" xml:space="preserve">
+    <value>前のヒット</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>正規表現を使用する</value>

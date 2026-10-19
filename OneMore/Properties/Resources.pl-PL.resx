@@ -6665,6 +6665,10 @@ Wszystkie notesy</value>
     <value>Wyniki wyszukiwania</value>
     <comment>page title</comment>
   </data>
+  <data name="SearchDialog_backButton.Text" xml:space="preserve">
+    <value>Z powrotem</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Wyczyść wybór</value>
     <comment>link</comment>
@@ -6676,6 +6680,14 @@ Stworzony wcześniej
 Zmodyfikowano po
 Zmodyfikowany wcześniej</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>Do przodu</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_homeButton.Text" xml:space="preserve">
+    <value>Dom</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_imageHit" xml:space="preserve">
     <value>[obraz] {0}</value>
@@ -6707,9 +6719,17 @@ Zmodyfikowany wcześniej</value>
     <value>Pokaż w bieżącym oknie</value>
     <comment>context menu item</comment>
   </data>
+  <data name="SearchDialog_nextButton.Text" xml:space="preserve">
+    <value>Następne trafienie</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
     <value>Wyszukaj tekst w obrazach</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_prevButton.Text" xml:space="preserve">
+    <value>Poprzednie trafienie</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>
