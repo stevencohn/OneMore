@@ -6700,6 +6700,14 @@ All notebooks</value>
     <value>Search Results</value>
     <comment>page title</comment>
   </data>
+  <data name="SearchDialog_backButton.Text" xml:space="preserve">
+    <value>Back</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>Forward</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Clear selection</value>
     <comment>link</comment>
@@ -6711,6 +6719,10 @@ Created before
 Modified after
 Modified before</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_homeButton.Text" xml:space="preserve">
+    <value>Home</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_imageHit" xml:space="preserve">
     <value>[image] {0}</value>
@@ -6745,6 +6757,14 @@ Modified before</value>
   <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
     <value>Search text in images</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_nextButton.Text" xml:space="preserve">
+    <value>Next hit</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_prevButton.Text" xml:space="preserve">
+    <value>Previous hit</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
@@ -8073,9 +8093,6 @@ Thank you!</value>
   <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Equal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\equal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -8142,9 +8159,6 @@ Thank you!</value>
   </data>
   <data name="Unlocked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\unlocked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="m_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -31,6 +31,11 @@ namespace River.OneMoreAddIn.Commands
 		private SearchErrorControl errorControl;
 		private Regex lastFinder;
 
+		// pages visited by navigating to hits, traversed by the back/forward buttons
+		private readonly List<(string pageId, string objectId)> history = new();
+		private int historyIndex = -1;
+		private string homePageId;
+
 		// scopeBox indices; "In all notebooks" is always first (index 0). "In this section
 		// group" is omitted from the combo entirely when the current section has no enclosing
 		// section group, and "In this page group" is omitted when the current page has no
@@ -74,14 +79,19 @@ namespace River.OneMoreAddIn.Commands
 						.Select(s => s.Trim()).ToArray());
 			}
 
-			// the options are icon-only toggles; their names are the tooltips and accessible names
+			// the options and navigation buttons are glyph-only; their names are the tooltips and accessible names
 			// and are not Localize()d because that would replace the glyphs with text
-			foreach (var (box, name) in new[]
+			foreach (var (box, name) in new (Control, string)[]
 			{
 				(matchBox, Resx.SearchDialog_matchBox_Text),
 				(regBox, Resx.SearchDialog_regBox_Text),
 				(includeTocBox, Resx.SearchDialog_includeTocBox_Text),
-				(ocrBox, Resx.SearchDialog_ocrBox_Text)
+				(ocrBox, Resx.SearchDialog_ocrBox_Text),
+				(nextButton, Resx.SearchDialog_nextButton_Text),
+				(prevButton, Resx.SearchDialog_prevButton_Text),
+				(backButton, Resx.SearchDialog_backButton_Text),
+				(forwardButton, Resx.SearchDialog_forwardButton_Text),
+				(homeButton, Resx.SearchDialog_homeButton_Text)
 			})
 			{
 				tooltip.SetToolTip(box, name);
@@ -92,6 +102,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote())
 			{
 				hasSectionGroup = !string.IsNullOrEmpty(one.CurrentSectionGroupId);
+				homePageId = one.CurrentPageId;
 			}
 
 			// remove the higher index first so the lower index remains valid
@@ -347,6 +358,8 @@ namespace River.OneMoreAddIn.Commands
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
+			backButton.Visible = forwardButton.Visible = homeButton.Visible = false;
+			ResetHistory();
 			moveButton.Visible = copyButton.Visible = indexButton.Visible = false;
 
 			// Build the regex once for the entire search; all scope methods share it
@@ -495,6 +508,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// only show nav buttons if there is at least one navigable hit
 			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
+			backButton.Visible = forwardButton.Visible = homeButton.Visible = resultsView.HasHits;
+			UpdateHistoryButtons();
 			indexButton.Visible = moveButton.Visible = copyButton.Visible = resultsView.HasHits;
 			resultsHeaderPanel.Visible = resultsView.HasHits;
 
@@ -608,13 +623,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void OnCardActivated(object sender, NavigateCardEventArgs e)
 		{
-			await NavigateTo(e.PageId, string.Empty, e.NewWindow);
+			await NavigateToHit(e.PageId, string.Empty, e.NewWindow);
 		}
 
 
 		private async void OnHitActivated(object sender, NavigateHitEventArgs e)
 		{
-			await NavigateTo(e.PageId, e.ObjectId, e.NewWindow);
+			await NavigateToHit(e.PageId, e.ObjectId, e.NewWindow);
 		}
 
 
@@ -638,7 +653,7 @@ namespace River.OneMoreAddIn.Commands
 				var target = resultsView.GetSelectedTarget();
 				if (target.HasValue)
 				{
-					_ = NavigateTo(target.Value.pageId, target.Value.objectId);
+					_ = NavigateToHit(target.Value.pageId, target.Value.objectId);
 				}
 				e.Handled = true;
 			}
@@ -657,8 +672,92 @@ namespace River.OneMoreAddIn.Commands
 			var target = resultsView.GetSelectedTarget();
 			if (target.HasValue)
 			{
-				await NavigateTo(target.Value.pageId, target.Value.objectId);
+				await NavigateToHit(target.Value.pageId, target.Value.objectId);
 			}
+		}
+
+
+		// navigates to a hit and records it in the history; replaying the history or going
+		// home must call NavigateTo directly so as not to alter the history
+		private async Task NavigateToHit(string pageId, string objectId = "", bool newWindow = false)
+		{
+			if (!newWindow &&
+				(historyIndex < 0 ||
+				history[historyIndex].pageId != pageId ||
+				history[historyIndex].objectId != objectId))
+			{
+				// discard any forward entries, like a web browser
+				if (historyIndex < history.Count - 1)
+				{
+					history.RemoveRange(historyIndex + 1, history.Count - historyIndex - 1);
+				}
+
+				history.Add((pageId, objectId));
+				historyIndex = history.Count - 1;
+				UpdateHistoryButtons();
+			}
+
+			await NavigateTo(pageId, objectId, newWindow);
+		}
+
+
+		// slot 0 is always the page the user was on when the dialog opened
+		private void ResetHistory()
+		{
+			history.Clear();
+			historyIndex = -1;
+
+			if (!string.IsNullOrEmpty(homePageId))
+			{
+				history.Add((homePageId, string.Empty));
+				historyIndex = 0;
+			}
+		}
+
+
+		private async Task GoToHistory(int index)
+		{
+			historyIndex = index;
+			UpdateHistoryButtons();
+
+			var (pageId, objectId) = history[historyIndex];
+			resultsView.SelectTarget(pageId, objectId);
+			await NavigateTo(pageId, objectId);
+		}
+
+
+		private async void GoBack(object sender, EventArgs e)
+		{
+			if (historyIndex > 0)
+			{
+				await GoToHistory(historyIndex - 1);
+			}
+		}
+
+
+		private async void GoForward(object sender, EventArgs e)
+		{
+			if (historyIndex < history.Count - 1)
+			{
+				await GoToHistory(historyIndex + 1);
+			}
+		}
+
+
+		private async void GoHome(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrEmpty(homePageId) && history.Count > 0)
+			{
+				await GoToHistory(0);
+			}
+		}
+
+
+		private void UpdateHistoryButtons()
+		{
+			backButton.Enabled = historyIndex > 0;
+			forwardButton.Enabled = historyIndex < history.Count - 1;
+			homeButton.Enabled = !string.IsNullOrEmpty(homePageId) && historyIndex != 0;
 		}
 
 
