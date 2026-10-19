@@ -12,13 +12,11 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagScannedEventArgs : EventArgs
 	{
-		public HashtagScannedEventArgs(int total, int dirty, long time, int count, long average)
+		public HashtagScannedEventArgs(int total, int dirty, long time)
 		{
 			TotalPages = total;
 			DirtyPages = dirty;
 			Time = time;
-			HourCount = count;
-			HourAverage = average;
 		}
 
 
@@ -33,18 +31,6 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets the number of pages found with updated hashtags
 		/// </summary>
 		public int DirtyPages { private set; get; }
-
-
-		/// <summary>
-		/// Gets the average time (ms) of all scans in the last hour
-		/// </summary>
-		public long HourAverage { private set; get; }
-
-
-		/// <summary>
-		/// Get the number of scans run in the last hour
-		/// </summary>
-		public int HourCount { private set; get; }
 
 
 		/// <summary>
