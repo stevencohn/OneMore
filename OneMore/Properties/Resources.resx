@@ -4223,10 +4223,6 @@ Stylistic, Entity, Media</value>
     <value>100% · identical</value>
     <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
   </data>
-  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
-    <value>Showing {0} of {1} pages. Delete some and run again to see the rest.</value>
-    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
-  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>Keep Newest</value>
     <comment>button</comment>
@@ -4238,6 +4234,10 @@ Stylistic, Entity, Media</value>
   <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
     <value>{0}% similar</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_truncated" xml:space="preserve">
+    <value>Showing {0} of {1} pages. Delete some and run again to see the rest.</value>
+    <comment>label; {0} is the number of pages shown, {1} the total found</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Remove Spacing</value>
@@ -6704,10 +6704,6 @@ All notebooks</value>
     <value>Back</value>
     <comment>button tooltip</comment>
   </data>
-  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
-    <value>Forward</value>
-    <comment>button tooltip</comment>
-  </data>
   <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Clear selection</value>
     <comment>link</comment>
@@ -6719,6 +6715,10 @@ Created before
 Modified after
 Modified before</value>
     <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
+    <value>Forward</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SearchDialog_homeButton.Text" xml:space="preserve">
     <value>Home</value>
@@ -6754,13 +6754,13 @@ Modified before</value>
     <value>Show in Current Window</value>
     <comment>context menu item</comment>
   </data>
-  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
-    <value>Search text in images</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="SearchDialog_nextButton.Text" xml:space="preserve">
     <value>Next hit</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Search text in images</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_prevButton.Text" xml:space="preserve">
     <value>Previous hit</value>
