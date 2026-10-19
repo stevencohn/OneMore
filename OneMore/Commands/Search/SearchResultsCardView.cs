@@ -898,6 +898,43 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Highlights the hit (or whole-page card when objectId is empty) matching the target,
+		/// without raising any navigation events. If there is no such result, such as the page the
+		/// user started on, any current highlight is cleared and false is returned.
+		/// </summary>
+		public bool SelectTarget(string pageId, string objectId)
+		{
+			for (var c = 0; c < cards.Count; c++)
+			{
+				var card = cards[c];
+				if (card.Hits.Count == 0)
+				{
+					if (card.PageId == pageId && string.IsNullOrEmpty(objectId))
+					{
+						SelectHit(c, -1);
+						return true;
+					}
+
+					continue;
+				}
+
+				for (var i = 0; i < card.Hits.Count; i++)
+				{
+					if (card.Hits[i].PageId == pageId && card.Hits[i].ObjectId == objectId)
+					{
+						SelectHit(c, i);
+						return true;
+					}
+				}
+			}
+
+			InvalidateHitRegion(selectedCard, selectedHit);
+			selectedCard = selectedHit = -1;
+			return false;
+		}
+
+
 		private void EnsureHitVisible(int cardIndex, int hitIndex)
 		{
 			if (cardIndex < 0) return;

@@ -44,6 +44,9 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.prevButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.nextButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.backButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.forwardButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.homeButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
@@ -226,6 +229,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.morePanel1.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.morePanel1.BottomBorderSize = 0;
+			this.morePanel1.Controls.Add(this.homeButton);
+			this.morePanel1.Controls.Add(this.forwardButton);
+			this.morePanel1.Controls.Add(this.backButton);
 			this.morePanel1.Controls.Add(this.prevButton);
 			this.morePanel1.Controls.Add(this.nextButton);
 			this.morePanel1.Controls.Add(this.pageLabel);
@@ -249,14 +255,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.prevButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.prevButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
-			this.prevButton.ImageOver = null;
+			this.prevButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.prevButton.Location = new System.Drawing.Point(93, 50);
 			this.prevButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.prevButton.Name = "prevButton";
 			this.prevButton.ShowBorder = true;
 			this.prevButton.Size = new System.Drawing.Size(60, 30);
-			this.prevButton.StylizeImage = true;
+			this.prevButton.Text = "▲";
 			this.prevButton.TabIndex = 1;
 			this.prevButton.ThemedBack = null;
 			this.prevButton.ThemedFore = null;
@@ -268,20 +273,76 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.nextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.nextButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
-			this.nextButton.ImageOver = null;
+			this.nextButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nextButton.Location = new System.Drawing.Point(25, 50);
 			this.nextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.nextButton.Name = "nextButton";
 			this.nextButton.ShowBorder = true;
 			this.nextButton.Size = new System.Drawing.Size(60, 30);
-			this.nextButton.StylizeImage = true;
+			this.nextButton.Text = "▼";
 			this.nextButton.TabIndex = 0;
 			this.nextButton.ThemedBack = null;
 			this.nextButton.ThemedFore = null;
 			this.nextButton.UseVisualStyleBackColor = true;
 			this.nextButton.Visible = false;
 			this.nextButton.Click += new System.EventHandler(this.MoveToNextSelection);
+			// 
+			// backButton
+			// 
+			this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.backButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.backButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.backButton.ImageOver = null;
+			this.backButton.Location = new System.Drawing.Point(181, 50);
+			this.backButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.backButton.Name = "backButton";
+			this.backButton.ShowBorder = true;
+			this.backButton.Size = new System.Drawing.Size(60, 30);
+			this.backButton.TabIndex = 6;
+			this.backButton.Text = "←";
+			this.backButton.ThemedBack = null;
+			this.backButton.ThemedFore = null;
+			this.backButton.UseVisualStyleBackColor = true;
+			this.backButton.Visible = false;
+			this.backButton.Click += new System.EventHandler(this.GoBack);
+			// 
+			// forwardButton
+			// 
+			this.forwardButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.forwardButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.forwardButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.forwardButton.ImageOver = null;
+			this.forwardButton.Location = new System.Drawing.Point(249, 50);
+			this.forwardButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.forwardButton.Name = "forwardButton";
+			this.forwardButton.ShowBorder = true;
+			this.forwardButton.Size = new System.Drawing.Size(60, 30);
+			this.forwardButton.TabIndex = 7;
+			this.forwardButton.Text = "→";
+			this.forwardButton.ThemedBack = null;
+			this.forwardButton.ThemedFore = null;
+			this.forwardButton.UseVisualStyleBackColor = true;
+			this.forwardButton.Visible = false;
+			this.forwardButton.Click += new System.EventHandler(this.GoForward);
+			// 
+			// homeButton
+			// 
+			this.homeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.homeButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.homeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.homeButton.ImageOver = null;
+			this.homeButton.Location = new System.Drawing.Point(317, 50);
+			this.homeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.homeButton.Name = "homeButton";
+			this.homeButton.ShowBorder = true;
+			this.homeButton.Size = new System.Drawing.Size(60, 30);
+			this.homeButton.TabIndex = 8;
+			this.homeButton.Text = "⌂";
+			this.homeButton.ThemedBack = null;
+			this.homeButton.ThemedFore = null;
+			this.homeButton.UseVisualStyleBackColor = true;
+			this.homeButton.Visible = false;
+			this.homeButton.Click += new System.EventHandler(this.GoHome);
 			// 
 			// pageLabel
 			// 
@@ -604,6 +665,9 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreCheckBox matchBox;
 		private UI.MoreButton prevButton;
 		private UI.MoreButton nextButton;
+		private UI.MoreButton backButton;
+		private UI.MoreButton forwardButton;
+		private UI.MoreButton homeButton;
 		private UI.MoreComboBox dateSelector;
 		private River.OneMoreAddIn.UI.MoreDateTimePicker dateTimePicker;
 		private UI.MoreCheckBox includeTocBox;

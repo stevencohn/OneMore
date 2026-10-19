@@ -2921,16 +2921,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DownArrow {
-            get {
-                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Based on {0} ({1}).
         /// </summary>
         internal static string DuplicatePageCommand_basedOn {
@@ -15528,6 +15518,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string SearchDialog_backButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_backButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forward.
+        /// </summary>
+        internal static string SearchDialog_forwardButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_forwardButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear selection.
         /// </summary>
         internal static string SearchDialog_clearAllLink_Text {
@@ -15546,6 +15554,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchDialog_dateOptions {
             get {
                 return ResourceManager.GetString("SearchDialog_dateOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string SearchDialog_homeButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_homeButton.Text", resourceCulture);
             }
         }
         
@@ -15610,6 +15627,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchDialog_menuShowInCurrent {
             get {
                 return ResourceManager.GetString("SearchDialog_menuShowInCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next hit.
+        /// </summary>
+        internal static string SearchDialog_nextButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_nextButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous hit.
+        /// </summary>
+        internal static string SearchDialog_prevButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_prevButton.Text", resourceCulture);
             }
         }
         
@@ -17487,16 +17522,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Unlocked {
             get {
                 object obj = ResourceManager.GetObject("Unlocked", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UpArrow {
-            get {
-                object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
