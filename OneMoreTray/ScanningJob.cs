@@ -236,9 +236,6 @@ namespace OneMoreTray
 			logger.WriteLine($"scan completed at {DateTime.Now}");
 
 			logger.WriteLine(
-				$"scanned {args.HourCount} times in the last hour, averaging {args.HourAverage}ms");
-
-			logger.WriteLine(
 				$"scanned {args.TotalPages} pages, updating {args.DirtyPages}, in {args.Time}ms");
 
 			scheduler.ClearSchedule();

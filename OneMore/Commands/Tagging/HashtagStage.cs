@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -29,9 +28,6 @@ namespace River.OneMoreAddIn.Commands
 		private HashtagScheduler scheduler;
 		private HashtagProvider provider;
 		private string[] notebookFilters;
-		private int scanCount;
-		private long scanTime;
-		private int hour;
 		private bool initialized;
 		private bool activationChecked;
 		private DateTime? lastWaitLog;
@@ -152,7 +148,6 @@ namespace River.OneMoreAddIn.Commands
 			var state = scheduler.State == ScanningState.None ? "ready" : scheduler.State.ToString();
 			logger.WriteLine($"Startup: starting hashtag service, {state}");
 
-			hour = DateTime.Now.Hour;
 			initialized = true;
 		}
 
@@ -316,25 +311,11 @@ namespace River.OneMoreAddIn.Commands
 			await scanner.Scan(snapshot, consumers, token);
 
 			var s = scanner.Stats;
-			scanCount++;
-			scanTime += scanner.Stats.Time;
-
-			var avg = scanTime / scanCount;
 
 			OnHashtagScanned?.Invoke(this,
-				new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time, scanCount, avg));
+				new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time));
 
-			if (hour != DateTime.Now.Hour)
-			{
-				var ws = Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
-				var heap = GC.GetTotalMemory(false) / 1_048_576;
-				logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, " +
-					$"averaging {avg}ms, workingSet {ws}MB, managedHeap {heap}MB");
-				hour = DateTime.Now.Hour;
-				scanCount = 0;
-				scanTime = 0;
-			}
-			else if (s.DirtyPages > 0 || s.Time > 1000)
+			if (s.DirtyPages > 0 || s.Time > 1000)
 			{
 				scanner.Report("hashtag SERVICE");
 			}

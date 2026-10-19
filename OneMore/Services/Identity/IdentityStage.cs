@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Identity
 {
 	using River.OneMoreAddIn.Pipeline;
 	using System;
+	using System.Diagnostics;
 	using System.Threading;
 	using System.Threading.Tasks;
 
@@ -30,6 +31,9 @@ namespace River.OneMoreAddIn.Identity
 		private readonly Func<IHierarchySource> sourceFactory;
 		private readonly GuidRetryLedger ledger = new();
 		private PageIdentityProvider provider;
+		private int passCount;
+		private long passTime;
+		private int hour = DateTime.Now.Hour;
 		private bool disposed;
 
 
@@ -79,6 +83,7 @@ namespace River.OneMoreAddIn.Identity
 				if (snapshot is not null)
 				{
 					context.Set(snapshot);
+					ReportHourly(snapshot);
 				}
 			}
 			finally
@@ -88,6 +93,30 @@ namespace River.OneMoreAddIn.Identity
 					await disposable.DisposeAsync();
 				}
 			}
+		}
+
+
+		// accumulates pass statistics and prints a summary on the first pass of each clock hour
+		private void ReportHourly(IdentitySnapshot snapshot)
+		{
+			passCount++;
+			passTime += (long)snapshot.Duration.TotalMilliseconds;
+
+			if (hour == DateTime.Now.Hour)
+			{
+				return;
+			}
+
+			var avg = passTime / passCount;
+			var ws = Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
+			var heap = GC.GetTotalMemory(false) / 1_048_576;
+
+			logger.WriteLine($"identity service ran {passCount} passes in the last hour, " +
+				$"averaging {avg}ms, workingSet {ws}MB, managedHeap {heap}MB");
+
+			hour = DateTime.Now.Hour;
+			passCount = 0;
+			passTime = 0;
 		}
 
 

@@ -220,6 +220,8 @@ namespace River.OneMoreAddIn.Pipeline
 			{
 				var context = new PipelineContext();
 				var waiting = false;
+				var timings = new List<string>();
+				var cycle = Stopwatch.StartNew();
 
 				foreach (var stage in stages)
 				{
@@ -240,10 +242,16 @@ namespace River.OneMoreAddIn.Pipeline
 						continue;
 					}
 
-					if (!await RunStage(stage, state, context, token))
+					if (!await RunStage(stage, state, context, timings, token))
 					{
 						waiting = true;
 					}
+				}
+
+				if (timings.Count > 0)
+				{
+					logger.Verbose(
+						$"pipeline cycle {cycle.ElapsedMilliseconds}ms: {string.Join(", ", timings)}");
 				}
 
 				return NextDelay(waiting);
@@ -291,7 +299,8 @@ namespace River.OneMoreAddIn.Pipeline
 
 		// returns false if the stage is not ready
 		private async Task<bool> RunStage(
-			IPipelineStage stage, StageState state, PipelineContext context, CancellationToken token)
+			IPipelineStage stage, StageState state, PipelineContext context,
+			List<string> timings, CancellationToken token)
 		{
 			try
 			{
@@ -305,7 +314,7 @@ namespace River.OneMoreAddIn.Pipeline
 
 				state.Failures = 0;
 				state.Completed = true;
-				logger.Verbose($"pipeline stage '{stage.Name}' ran in {watch.ElapsedMilliseconds}ms");
+				timings.Add($"{stage.Name} {watch.ElapsedMilliseconds}ms");
 			}
 			catch (OperationCanceledException)
 			{

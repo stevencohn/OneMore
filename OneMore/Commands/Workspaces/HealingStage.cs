@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 				var pinnedTime = watch.ElapsedMilliseconds;
 
 				logger.Verbose(
-					$"favorites stage: resolver {buildTime}ms, favorites {favoritesTime}ms, " +
+					$"pipeline stage 'healing': resolver {buildTime}ms, favorites {favoritesTime}ms, " +
 					$"layouts {layoutsTime}ms, pinned {pinnedTime}ms, " +
 					$"{links} links in {linkTime.TotalMilliseconds:0}ms");
 
