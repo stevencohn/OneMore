@@ -22,6 +22,10 @@ namespace River.OneMoreAddIn.UI
 
 		protected StringFormat stringFormat;
 
+		private const int DividerShift = 3;
+
+		private bool hot;
+
 
 		/// <summary>
 		/// An item carrying optional image prefix alongside display text.
@@ -219,26 +223,94 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.WndProc(ref m);
 
-			if (m.Msg != Native.WM_PAINT || !ThemeManager.Instance.DarkMode)
+			if (m.Msg != Native.WM_PAINT || IsDisposed || Width < 4 || Height < 4)
+			{
 				return;
+			}
 
+			var manager = ThemeManager.Instance;
+
+			using var g = Graphics.FromHwnd(Handle);
+
+			if (manager.DarkMode)
+			{
+				PaintDarkButton(g, manager);
+			}
+
+			PaintBorder(g, manager);
+		}
+
+
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			base.OnMouseEnter(e);
+			hot = true;
+			Invalidate();
+		}
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			base.OnMouseLeave(e);
+			hot = false;
+			Invalidate();
+		}
+
+
+		/// <summary>
+		/// Replaces the native border, which is heavier at rest than on hover, with a single
+		/// 1px outline consistent with MoreTextBox and MoreDateTimePicker.
+		/// </summary>
+		private void PaintBorder(Graphics g, ThemeManager manager)
+		{
+			var border = manager.ButtonBorder;
+			if (Enabled && ContainsFocus)
+			{
+				border = manager.GetColor("HotTrack");
+			}
+			else if (Enabled && hot)
+			{
+				border = manager.ButtonHotBorder;
+			}
+
+			// cover the inner border drawn by FlatStyle.Popup
+			using var innerPen = new Pen(BackColor);
+			g.DrawRectangle(innerPen, 1, 1, Width - 3, Height - 3);
+
+			using var pen = new Pen(border);
+			g.DrawRectangle(pen, 0, 0, Width - 1, Height - 1);
+		}
+
+
+		private void PaintDarkButton(Graphics g, ThemeManager manager)
+		{
 			var info = new Native.COMBOBOXINFO { cbSize = Marshal.SizeOf<Native.COMBOBOXINFO>() };
 			if (!Native.GetComboBoxInfo(Handle, ref info))
+			{
 				return;
+			}
 
 			var btnRect = Rectangle.FromLTRB(
 				info.rcButton.Left, info.rcButton.Top, info.rcButton.Right, info.rcButton.Bottom);
 
 			if (btnRect.IsEmpty)
+			{
 				return;
+			}
 
-			var manager = ThemeManager.Instance;
 			bool pressed = info.stateButton == 2;
-
-			using var g = Graphics.FromHwnd(Handle);
 
 			var backColor = pressed ? manager.ButtonPressBorder : manager.ButtonBack;
 			using var backBrush = new SolidBrush(backColor);
+
+			// erase the divider that FlatStyle.Popup draws just left of the button so only
+			// our 1px divider remains; it can sit a pixel or two left of the button
+			using var clearBrush = new SolidBrush(BackColor);
+			g.FillRectangle(clearBrush, btnRect.Left - 4, btnRect.Top, 4, btnRect.Height);
+
+			// extend the button 3px left to place the divider there
+			btnRect = Rectangle.FromLTRB(
+				btnRect.Left - DividerShift, btnRect.Top, btnRect.Right, btnRect.Bottom);
+
 			g.FillRectangle(backBrush, btnRect);
 
 			using var borderPen = new Pen(manager.ButtonBorder);
