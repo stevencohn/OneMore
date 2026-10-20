@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly CancellationToken cancellationToken;
 		private readonly Action<int> onTotalPageCount;
 		private readonly Action<string> onPageSearching;
-		private readonly Action<string, string, string, IList<SearchHit>> onPageFound;
+		private readonly Action<string, string, string, DateTime, IList<SearchHit>> onPageFound;
 
 
 		public SearchEngine(
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			CancellationToken cancellationToken,
 			Action<int> onTotalPageCount,
 			Action<string> onPageSearching,
-			Action<string, string, string, IList<SearchHit>> onPageFound)
+			Action<string, string, string, DateTime, IList<SearchHit>> onPageFound)
 		{
 			this.options = options;
 			this.cancellationToken = cancellationToken;
@@ -333,7 +333,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (indexedHits.Count > 0)
 					{
-						onPageFound(pageId, $"{info.Path}/{indexedName}", info.Color, indexedHits);
+						onPageFound(pageId, $"{info.Path}/{indexedName}", info.Color,
+							SearchTitleEngine.ParseModified(pageElement), indexedHits);
 					}
 
 					continue;
@@ -351,7 +352,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (hits.Any())
 				{
-					onPageFound(pageId, $"{info.Path}/{pageName}", info.Color, hits);
+					onPageFound(pageId, $"{info.Path}/{pageName}", info.Color,
+						SearchTitleEngine.ParseModified(pageElement), hits);
 				}
 			}
 		}
@@ -362,7 +364,7 @@ namespace River.OneMoreAddIn.Commands
 			var hits = await SearchPageBody(page, finder);
 			if (hits.Any())
 			{
-				onPageFound(page.PageId, null, null, hits);
+				onPageFound(page.PageId, null, null, DateTime.MinValue, hits);
 			}
 		}
 

@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		public string HashtagSuffix { get; set; }
 
 		// layout cache — computed by SearchResultsCardView.EnsureLayout
+		internal int Ordinal;   // arrival order, to restore the default sort
 		internal int Y;
 		internal int Height;
 	}

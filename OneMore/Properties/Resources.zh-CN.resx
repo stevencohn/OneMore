@@ -6761,6 +6761,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>选择全部</value>
     <comment>link</comment>
   </data>
+  <data name="SearchDialog_sortBox.Text" xml:space="preserve">
+    <value>按最后修改顺序排序，最近修改在前</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>在此笔记本中
             在此分区组中

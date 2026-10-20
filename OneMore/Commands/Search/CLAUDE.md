@@ -85,6 +85,12 @@ paths identical. Image hits are shown as a `[image] ...` excerpt around the firs
 (`SearchDialog.FormatImageHit`). OneNote can finish OCR after a page's `lastModifiedTime` was
 recorded, in which case the text is picked up on the page's next change or an index rebuild.
 
+**Sort and modified hint.** `SearchEngine` passes each page's `lastModifiedTime` to `onPageFound`, which
+`SearchDialog.AddPageResults` stores in `CardModel.Modified`. Hovering anywhere on a card draws the
+right-justified modified time over the title row. The `sortBox` toggle calls
+`SearchResultsCardView.SortByModified`, which orders cards by `Modified` descending (default off keeps
+arrival order via `CardModel.Ordinal`); it is applied once when a search completes, not while streaming.
+
 ### Search dialog scopes
 
 `SearchDialog.scopeBox` items come from `SearchDialogText_scopeOptions` in fixed order: Notebook, Section group, Section, Page group, Page. "In all notebooks" (`SearchDialog_scopeAll`, `SearchEngine.SearchAllNotebooks`) is inserted at index 0 in code, apart from that list, so older translations with five lines keep working. Section group and Page group are removed by index when not applicable, so every locale resx must carry all five lines. Page group is offered only when `SearchEngine.GetPageGroup` finds the current page has subpages or is a subpage (a level-1 page plus following pages with `pageLevel > 1`); `SearchCommand.Execute` computes this and passes it to the dialog constructor.

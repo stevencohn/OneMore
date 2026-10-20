@@ -6748,6 +6748,10 @@ Vorher geändert</value>
     <value>Alles auswählen</value>
     <comment>link</comment>
   </data>
+  <data name="SearchDialog_sortBox.Text" xml:space="preserve">
+    <value>Sortieren Sie nach der letzten Änderung, die neueste zuerst</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In diesem Notizbuch
 In dieser Abschnittsgruppe

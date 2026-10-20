@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static DateTime ParseModified(XElement element)
+		internal static DateTime ParseModified(XElement element)
 		{
 			var modified = DateTime.MinValue;
 			var attr = element.Attribute("lastModifiedTime")?.Value;

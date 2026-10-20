@@ -15594,6 +15594,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Sort by last modified, most recent first.
+        /// </summary>
+        internal static string SearchDialog_sortBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_sortBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Search text in table of contents.
         /// </summary>
         internal static string SearchDialog_includeTocBox_Text {
