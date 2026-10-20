@@ -13,6 +13,8 @@ Begin
 {
     $script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
     $script:webview2client = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+    # CLSID of OneMoreProtocolHandler.CommandHandler (see ComServer.ClassId)
+    $script:handlerClsid = '{6F3A9B52-4C1D-4E8A-9D07-2B5E71C0A9F4}'
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
     $script:onewow = $false
 
@@ -205,6 +207,71 @@ Begin
         WriteValue "@ = $defaultValue"; $defaultValue = $null
     }
 
+    function CheckProtocolMode
+    {
+        WriteTitle 'Protocol activation'
+        $0 = 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command'
+        $delegate = $null
+        if (Test-Path $0) { $delegate = (Get-ItemProperty $0).DelegateExecute }
+
+        # the installer saves the requested mode so an upgrade can restore it; absent for
+        # dev setups (setregistry.ps1) and installs that predate it
+        $saved = $null
+        $mk = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\River\OneMoreAddIn'
+        if (Test-Path $mk) { $saved = (Get-ItemProperty $mk).ProtocolMode }
+        $live = if ($delegate) { 'COM' } else { 'EXE' }
+        if ($saved -and $saved -ne $live)
+        {
+            Write-Host "... saved mode ($saved) differs from live registration ($live)" -Fore Yellow
+        }
+        WriteValue "saved mode = $(if ($saved) { $saved } else { '(none)' })"
+
+        if (-not $delegate)
+        {
+            WriteOK 'EXE mode; shell runs OneMoreProtocolHandler.exe as a child of OneNote'
+            Write-Host '... blocked where Defender ASR prevents Office child processes; use COM mode there' -Fore DarkGray
+            return
+        }
+
+        if ($delegate -ne $handlerClsid)
+        {
+            WriteBad "DelegateExecute = $delegate (expected $handlerClsid)"
+            return
+        }
+
+        WriteOK "COM mode; DelegateExecute = $delegate"
+
+        $views = @('CLSID')
+        if ($onewow) { $views += 'WOW6432Node\CLSID' }
+
+        foreach ($view in $views)
+        {
+            $1 = "Registry::HKEY_CLASSES_ROOT\$view\$handlerClsid"
+            $ok = (HasKey $1)
+            if (-not $ok) { WriteBad $1; continue }
+
+            if (Test-Path "$1\InprocServer32")
+            {
+                # InprocServer32 wins over LocalServer32 and loads the CLR into OneNote
+                WriteBad "$1\InprocServer32 (stale; remove it)"
+                continue
+            }
+
+            $2 = "$1\LocalServer32"
+            $ok = (HasKey $2)
+            if ($ok) { $ok = (HasValue $2 '(default)' '\\OneMoreProtocolHandler.exe"?$' -match) }
+            if ($ok)
+            {
+                $server = $lastValue.Trim('"')
+                $ok = (Test-Path $server)
+                if (-not $ok) { Write-Host "... server not found $server" -Fore Yellow }
+            }
+
+            if ($ok) { WriteOK $2 } else { WriteBad $2 }
+            WriteValue "@ = $lastValue"
+        }
+    }
+
     function CheckAddIn
     {
         WriteTitle 'AddIn'
@@ -347,6 +414,17 @@ Begin
         # is missing (e.g., Intune/SYSTEM deployments where Active Setup never ran).
         WriteTitle 'Machine'
         $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
+
+        # only the MSI writes this key; it is just a fallback, so when the per-user key
+        # exists (as on dev machines using setregistry.ps1) its absence is only a warning
+        $userKey = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
+        if (-not (Test-Path $0) -and (Test-Path $userKey))
+        {
+            Write-Host 'WARN ' -Fore Yellow -NoNewLine
+            Write-Host "$0 (not installed; HKCU registration covers this machine)"
+            return
+        }
+
         $ok = (HasKey $0)
         if ($ok)
         {
@@ -473,6 +551,7 @@ Process
     CheckAppID
     CheckRoot
     CheckShell
+    CheckProtocolMode
     CheckAddIn
     CheckCLSID
 

@@ -10,6 +10,13 @@ The architecture of the add-in to register. This is only used to determine the p
 .PARAMETER Reset
 Resets the registry settings back to the install path.
 
+.PARAMETER Protocol
+How the onemore: protocol is activated. COM (default) registers OneMoreProtocolHandler.exe
+as an out-of-process COM server and sets DelegateExecute so the shell never spawns a child
+of ONENOTE.EXE; this is required where Defender ASR blocks Office child processes. EXE
+registers only the shell command, as the installer does by default. Switching modes removes
+the other mode's registration. Run elevated.
+
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
@@ -18,13 +25,17 @@ Copyright © 2016 Steven M Cohn. All rights reserved.
 param (
 	[ValidateSet('x86','x64','ARM64','All')]
 	[string] $Architecture = 'x86',
-    [switch] $Reset
+    [switch] $Reset,
+    [ValidateSet('COM','EXE')]
+    [string] $Protocol = 'COM'
 )
 
 Begin
 {
     $script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
     $script:catid = '{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}' # HKCR\Component Categories... .NET
+    # CLSID of OneMoreProtocolHandler.CommandHandler (see ComServer.ClassId)
+    $script:handlerClsid = '{6F3A9B52-4C1D-4E8A-9D07-2B5E71C0A9F4}'
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
     $script:onewow = $false
 
@@ -258,6 +269,43 @@ Begin
         Set-ItemProperty $0 -Name '(Default)' -Type String -Value "`"$proto`" %1 %2 %3 %4 %5"
         WriteOK $0
         WriteValue "`"$proto`" %1 %2 %3 %4 %5"
+
+        # the shell uses DelegateExecute exclusively when present and does not fall back to
+        # the command, so only set it after the COM class is registered, and always remove
+        # it (and the class) in EXE mode
+        $views = @('CLSID')
+        if ($onewow) { $views += 'WOW6432Node\CLSID' }
+
+        # delete any earlier registration first; an InprocServer32 would win over LocalServer32
+        foreach ($view in $views)
+        {
+            $1 = "Registry::HKEY_CLASSES_ROOT\$view\$handlerClsid"
+            if (Test-Path $1) { Remove-Item $1 -Recurse -Force }
+        }
+
+        if ($Protocol -eq 'COM')
+        {
+            foreach ($view in $views)
+            {
+                $1 = "Registry::HKEY_CLASSES_ROOT\$view\$handlerClsid"
+                EnsurePath $1 | Out-Null
+                Set-ItemProperty $1 -Name '(Default)' -Type String -Value 'OneMore Protocol Handler'
+
+                $1 = "$1\LocalServer32"
+                EnsurePath $1 | Out-Null
+                Set-ItemProperty $1 -Name '(Default)' -Type String -Value "`"$proto`""
+                WriteOK $1
+            }
+
+            Set-ItemProperty $0 -Name 'DelegateExecute' -Type String -Value $handlerClsid
+            WriteOK "DelegateExecute = $handlerClsid (COM)"
+        }
+        else
+        {
+            Remove-ItemProperty $0 -Name 'DelegateExecute' -ErrorAction SilentlyContinue
+            WriteOK 'DelegateExecute removed (EXE)'
+        }
+
         return $true
     }
 

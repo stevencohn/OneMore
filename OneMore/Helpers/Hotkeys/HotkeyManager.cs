@@ -2,6 +2,9 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+// uncomment to log hotkey arm/disarm and foreground window changes
+//#define HOTKEY_TRACE
+
 #pragma warning disable CA1810 // Initialize reference type static fields inline
 #pragma warning disable S3010 // Static fields should not be updated in constructors
 
@@ -175,7 +178,9 @@ namespace River.OneMoreAddIn
 			}
 
 			registered = ok;
+#if HOTKEY_TRACE
 			Logger.Current.Verbose($"hotkey armed registered:{registered} ({reason})");
+#endif
 		}
 
 
@@ -188,7 +193,9 @@ namespace River.OneMoreAddIn
 			}
 
 			registered = false;
+#if HOTKEY_TRACE
 			Logger.Current.Verbose($"hotkey disarmed ({reason})");
+#endif
 		}
 
 
@@ -333,12 +340,16 @@ namespace River.OneMoreAddIn
 
 				if (wanted && !registered)
 				{
+#if HOTKEY_TRACE
 					Logger.Current.Verbose($"hotkey reconcile re-arming {DescribeWindow(foreground, pid)}");
+#endif
 					ArmHotkeys("reconcile");
 				}
 				else if (!wanted && registered)
 				{
+#if HOTKEY_TRACE
 					Logger.Current.Verbose($"hotkey reconcile disarming {DescribeWindow(foreground, pid)}");
+#endif
 					DisarmHotkeys("reconcile");
 				}
 			}
@@ -389,8 +400,10 @@ namespace River.OneMoreAddIn
 					{
 						if (!registered && !suspended && registeredKeys.Count > 0)
 						{
+#if HOTKEY_TRACE
 							Logger.Current.Verbose(
 								$"hotkey foreground(ours) {DescribeWindow(hwnd, pid)}");
+#endif
 							ArmHotkeys("foreground");
 						}
 					}
@@ -398,8 +411,10 @@ namespace River.OneMoreAddIn
 					{
 						if (registered && registeredKeys.Count > 0)
 						{
+#if HOTKEY_TRACE
 							Logger.Current.Verbose(
 								$"hotkey foreground(other) {DescribeWindow(hwnd, pid)}");
+#endif
 							DisarmHotkeys("foreground");
 						}
 					}
