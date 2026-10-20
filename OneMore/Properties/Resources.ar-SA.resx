@@ -6758,6 +6758,10 @@ ISO-code then comma then language name</comment>
     <value>حدد الكل</value>
     <comment>link</comment>
   </data>
+  <data name="SearchDialog_sortBox.Text" xml:space="preserve">
+    <value>الترتيب حسب آخر تعديل، الأحدث أولاً</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>في هذا دفتر الملاحظات
 في هذه المجموعة القسم

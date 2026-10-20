@@ -87,6 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				(regBox, Resx.SearchDialog_regBox_Text),
 				(includeTocBox, Resx.SearchDialog_includeTocBox_Text),
 				(ocrBox, Resx.SearchDialog_ocrBox_Text),
+				(sortBox, Resx.SearchDialog_sortBox_Text),
 				(nextButton, Resx.SearchDialog_nextButton_Text),
 				(prevButton, Resx.SearchDialog_prevButton_Text),
 				(backButton, Resx.SearchDialog_backButton_Text),
@@ -328,6 +329,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ToggleSortBox(object sender, EventArgs e)
+		{
+			resultsView.SortByModified(sortBox.Checked);
+		}
+
+
 		private void TogglerRegBox(object sender, EventArgs e)
 		{
 			searchButton.Enabled = !regBox.Checked;
@@ -355,6 +362,7 @@ namespace River.OneMoreAddIn.Commands
 
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
+			sortBox.Enabled = false;
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
@@ -394,8 +402,9 @@ namespace River.OneMoreAddIn.Commands
 
 				void OnTotal(int count) => SetupProgressBar(count);
 				void OnPage(string name) { progressBar.Increment(1); pageLabel.Text = name; }
-				void OnFound(string pageId, string groupTitle, string color, IList<SearchHit> hits)
-					=> AddPageResults(pageId, groupTitle, color, hits);
+				void OnFound(string pageId, string groupTitle, string color,
+					DateTime modified, IList<SearchHit> hits)
+					=> AddPageResults(pageId, groupTitle, color, modified, hits);
 
 				var engine = new SearchEngine(options, source.Token, OnTotal, OnPage, OnFound);
 
@@ -503,6 +512,13 @@ namespace River.OneMoreAddIn.Commands
 			progressBar.Visible = false;
 			findBox.Enabled = true;
 			searchButton.Enabled = true;
+			sortBox.Enabled = true;
+
+			if (sortBox.Checked)
+			{
+				resultsView.SortByModified(true);
+			}
+
 			findBox.Focus();
 			searchButton.NotifyDefault(true);
 
@@ -560,7 +576,9 @@ namespace River.OneMoreAddIn.Commands
 		/// searched, not individual matches. SearchResultsCardView.AppendCard primes the
 		/// paint queue via Update() using the same trick as the previous virtual ListView.
 		/// </summary>
-		private void AddPageResults(string pageId, string groupTitle, string sectionColor, IList<SearchHit> hits)
+		private void AddPageResults(
+			string pageId, string groupTitle, string sectionColor,
+			DateTime modified, IList<SearchHit> hits)
 		{
 			var swatch = groupTitle != null ? ColorHelper.FromHtml(sectionColor) : Color.Empty;
 
@@ -568,7 +586,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Title = groupTitle,
 				PageId = pageId,
-				SectionColor = swatch
+				SectionColor = swatch,
+				Modified = modified
 			};
 
 			foreach (var hit in hits)

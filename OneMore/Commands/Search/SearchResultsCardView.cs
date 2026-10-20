@@ -214,6 +214,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (hitCap) return;
 
+			card.Ordinal = cards.Count;
 			cards.Add(card);
 			totalHits += card.Hits.Count;
 
@@ -241,6 +242,45 @@ namespace River.OneMoreAddIn.Commands
 				Invalidate(new Rectangle(0, Math.Max(0, screenY), ClientSize.Width, h));
 			}
 			Update();
+		}
+
+
+		/// <summary>
+		/// Reorders the cards by last-modified time, most recent first, or restores the
+		/// order in which they were appended.
+		/// </summary>
+		public void SortByModified(bool byModified)
+		{
+			if (cards.Count < 2)
+			{
+				return;
+			}
+
+			// keep the "showing first N hits" notice at the end
+			var count = hitCap ? cards.Count - 1 : cards.Count;
+			var sorted = cards.GetRange(0, count);
+
+			// remember the selection so it can follow its card
+			var selected = selectedCard >= 0 && selectedCard < count ? cards[selectedCard] : null;
+
+			sorted = byModified
+				? sorted.OrderByDescending(c => c.Modified).ThenBy(c => c.Ordinal).ToList()
+				: sorted.OrderBy(c => c.Ordinal).ToList();
+
+			cards.RemoveRange(0, count);
+			cards.InsertRange(0, sorted);
+
+			selectedCard = selected is null ? -1 : cards.IndexOf(selected);
+			if (selectedCard < 0)
+			{
+				selectedHit = -1;
+			}
+
+			hoverCard = hoverHit = -1;
+			layoutDirty = true;
+			EnsureLayout();
+			AutoScrollPosition = Point.Empty;
+			Invalidate();
 		}
 
 
@@ -420,7 +460,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// Hover-only last-modified label, right-justified, drawn over the path text
 				// it overlaps so it takes visual priority while the mouse is over the row.
-				if (isHovered && card.Modified != DateTime.MinValue)
+				if (hoverCard == cardIndex && !card.IsPlainText && card.Modified != DateTime.MinValue)
 				{
 					var modifiedText = string.Format(
 						Resx.SearchResultsCardView_lastModified, card.Modified.ToShortFriendlyString());
@@ -433,7 +473,7 @@ namespace River.OneMoreAddIn.Commands
 					var modifiedRect = new Rectangle(modifiedX, y, modifiedW, TitleRowH);
 
 					g.FillRectangle(cardBackBrush, modifiedRect);
-					TextRenderer.DrawText(g, modifiedText, hitFont ?? Font, modifiedRect, hintFore, flags);
+					TextRenderer.DrawText(g, modifiedText, hitFont ?? Font, modifiedRect, hoverFore, flags);
 				}
 
 				y += TitleRowH;
@@ -595,9 +635,11 @@ namespace River.OneMoreAddIn.Commands
 			if (newCard != hoverCard || newHit != hoverHit)
 			{
 				InvalidateHitRegion(hoverCard, hoverHit);
+				InvalidateHitRegion(hoverCard, -1);
 				hoverCard = newCard;
 				hoverHit  = newHit;
 				InvalidateHitRegion(hoverCard, hoverHit);
+				InvalidateHitRegion(hoverCard, -1);
 			}
 		}
 
@@ -609,6 +651,7 @@ namespace River.OneMoreAddIn.Commands
 			if (hoverCard >= 0)
 			{
 				InvalidateHitRegion(hoverCard, hoverHit);
+				InvalidateHitRegion(hoverCard, -1);
 				hoverCard = hoverHit = -1;
 			}
 		}

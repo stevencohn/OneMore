@@ -6782,6 +6782,10 @@ Modified before</value>
     <value>Select all</value>
     <comment>link</comment>
   </data>
+  <data name="SearchDialog_sortBox.Text" xml:space="preserve">
+    <value>Sort by last modified, most recent first</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In this notebook
 In this section group

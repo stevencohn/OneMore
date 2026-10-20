@@ -53,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.includeTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.ocrBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.sortBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.dateSelector = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.dateTimePicker = new River.OneMoreAddIn.UI.MoreDateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -388,6 +389,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.BottomBorderSize = 0;
+			this.optionsPanel.Controls.Add(this.sortBox);
 			this.optionsPanel.Controls.Add(this.ocrBox);
 			this.optionsPanel.Controls.Add(this.includeTocBox);
 			this.optionsPanel.Controls.Add(this.dateSelector);
@@ -409,9 +411,28 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsPanel.ThemedFore = null;
 			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.optionsPanel.TopBorderSize = 0;
-			// 
+			//
+			// sortBox
+			//
+			this.sortBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.sortBox.Appearance = System.Windows.Forms.Appearance.Button;
+			this.sortBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sortBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.sortBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.sortBox.Location = new System.Drawing.Point(214, 44);
+			this.sortBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
+			this.sortBox.Name = "sortBox";
+			this.sortBox.Size = new System.Drawing.Size(32, 32);
+			this.sortBox.StylizeImage = false;
+			this.sortBox.TabIndex = 20;
+			this.sortBox.Text = "\U0001F551";
+			this.sortBox.ThemedBack = null;
+			this.sortBox.ThemedFore = null;
+			this.sortBox.UseVisualStyleBackColor = false;
+			this.sortBox.CheckedChanged += new System.EventHandler(this.ToggleSortBox);
+			//
 			// includeTocBox
-			// 
+			//
 			this.includeTocBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.includeTocBox.Appearance = System.Windows.Forms.Appearance.Button;
 			this.includeTocBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -672,6 +693,7 @@ namespace River.OneMoreAddIn.Commands
 		private River.OneMoreAddIn.UI.MoreDateTimePicker dateTimePicker;
 		private UI.MoreCheckBox includeTocBox;
 		private UI.MoreCheckBox ocrBox;
+		private UI.MoreCheckBox sortBox;
 		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

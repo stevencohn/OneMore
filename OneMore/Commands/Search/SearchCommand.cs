@@ -269,7 +269,7 @@ namespace River.OneMoreAddIn.Commands
 				cts.Token,
 				count => { },
 				name => { },
-				(pageId, groupTitle, color, hits) =>
+				(pageId, groupTitle, color, modified, hits) =>
 					results.Add((pageId,
 						groupTitle ?? $"{notebookName}/{sectionPath}/{pageName}",
 						hits)));
