@@ -188,6 +188,10 @@ namespace River.OneMoreAddIn.UI
 			{
 				color = manager.ButtonPressBorder;
 			}
+			else if (Focused)
+			{
+				color = manager.GetColor("HotTrack");
+			}
 			else if (MouseState.HasFlag(MouseState.Hover))
 			{
 				color = manager.ButtonHotBorder;
@@ -197,9 +201,12 @@ namespace River.OneMoreAddIn.UI
 				color = manager.GetColor("MenuItemBorder");
 			}
 
-			using var pen = new Pen(color);
+			using var pen = new Pen(color, Focused ? 2 : 1);
+			var inset = Focused ? 1 : 0;
 			g.DrawRoundedRectangle(pen,
-				new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
+				new Rectangle(
+					clip.X + inset, clip.Y + inset,
+					clip.Width - 1 - (inset * 2), clip.Height - 1 - (inset * 2)),
 				radius);
 		}
 
@@ -361,6 +368,20 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			base.OnTextChanged(e);
+		}
+
+
+		protected override void OnGotFocus(EventArgs e)
+		{
+			Invalidate();
+			base.OnGotFocus(e);
+		}
+
+
+		protected override void OnLostFocus(EventArgs e)
+		{
+			Invalidate();
+			base.OnLostFocus(e);
 		}
 
 
