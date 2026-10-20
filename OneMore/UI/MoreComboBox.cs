@@ -24,6 +24,12 @@ namespace River.OneMoreAddIn.UI
 
 		private const int DividerShift = 3;
 
+		private const int WM_ERASEBKGND = 0x0014;
+		private const int WM_SIZE = 0x0005;
+		private const int WM_SETFONT = 0x0030;
+		private const int CB_SETITEMHEIGHT = 0x0153;
+		private const int CB_SETDROPPEDWIDTH = 0x0160;
+
 		private bool hot;
 
 
@@ -221,9 +227,155 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void WndProc(ref Message m)
 		{
+			// Overlaying our border on top of the native/WinForms drawing always flashes the
+			// heavy native border for a moment, so for drop-down lists paint everything
+			// ourselves into a buffer and never let the native control draw.
+			if (IsHandleCreated && DropDownStyle != ComboBoxStyle.Simple)
+			{
+				if (m.Msg == WM_ERASEBKGND)
+				{
+					m.Result = (IntPtr)1;
+					return;
+				}
+
+				if (m.Msg == Native.WM_PAINT)
+				{
+					PaintOwned();
+					m.Result = IntPtr.Zero;
+					return;
+				}
+			}
+
 			base.WndProc(ref m);
 
-			if (m.Msg != Native.WM_PAINT || IsDisposed || Width < 4 || Height < 4)
+			switch (m.Msg)
+			{
+				case Native.WM_PAINT:
+					PaintOverlay();
+					break;
+
+				// native layout of the edit and button areas changes on these without
+				// necessarily repainting, and we've suppressed the native painting
+				case WM_SIZE:
+				case WM_SETFONT:
+				case CB_SETITEMHEIGHT:
+				case CB_SETDROPPEDWIDTH:
+					Invalidate();
+					break;
+			}
+		}
+
+		protected override void OnHandleCreated(EventArgs e)
+		{
+			base.OnHandleCreated(e);
+
+			// the first paint can precede the final native layout
+			BeginInvoke(new Action(Invalidate));
+		}
+
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct PAINTSTRUCT
+		{
+			public IntPtr hdc;
+			public int fErase;
+			public Native.RECT rcPaint;
+			public int fRestore;
+			public int fIncUpdate;
+			[MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+			public byte[] rgbReserved;
+		}
+
+		[DllImport("user32.dll")]
+		private static extern IntPtr BeginPaint(IntPtr hWnd, out PAINTSTRUCT ps);
+
+		[DllImport("gdi32.dll")]
+		private static extern int ExcludeClipRect(IntPtr hdc, int left, int top, int right, int bottom);
+
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT ps);
+
+
+		private void PaintOwned()
+		{
+			var hdc = BeginPaint(Handle, out var ps);
+			try
+			{
+				if (IsDisposed || Width < 4 || Height < 4)
+				{
+					return;
+				}
+
+				var manager = ThemeManager.Instance;
+				var bounds = new Rectangle(0, 0, Width, Height);
+
+				var context = BufferedGraphicsManager.Current;
+				using var buffered = context.Allocate(hdc, bounds);
+				var g = buffered.Graphics;
+
+				using (var backBrush = new SolidBrush(
+					Enabled ? BackColor : manager.GetColor("InactiveWindow")))
+				{
+					g.FillRectangle(backBrush, bounds);
+				}
+
+				Rectangle? editRect = null;
+				var info = new Native.COMBOBOXINFO { cbSize = Marshal.SizeOf<Native.COMBOBOXINFO>() };
+				if (Native.GetComboBoxInfo(Handle, ref info))
+				{
+					var item = Rectangle.FromLTRB(
+						info.rcItem.Left, info.rcItem.Top, info.rcItem.Right, info.rcItem.Bottom);
+
+					if (!item.IsEmpty)
+					{
+						if (DropDownStyle == ComboBoxStyle.DropDownList)
+						{
+							if (SelectedIndex >= 0)
+							{
+								g.SetClip(item);
+								OnDrawItem(new DrawItemEventArgs(
+									g, Font, item, SelectedIndex, DrawItemState.ComboBoxEdit,
+									ForeColor, BackColor));
+								g.ResetClip();
+							}
+						}
+						else
+						{
+							// an editable combo has a child edit control that paints itself;
+							// keep it out of the buffer so its pixels aren't overwritten
+							// never exclude the button area, even if the layout is momentarily stale
+						var buttonLeft = info.rcButton.Left - DividerShift;
+						if (buttonLeft > item.Left && item.Right > buttonLeft)
+						{
+							item.Width = buttonLeft - item.Left;
+						}
+
+						editRect = item;
+						}
+					}
+				}
+
+				PaintDarkButton(g, manager);
+				PaintBorder(g, manager);
+
+				if (editRect is Rectangle edit)
+				{
+					ExcludeClipRect(hdc, edit.Left, edit.Top, edit.Right, edit.Bottom);
+				}
+
+				buffered.Render();
+			}
+			finally
+			{
+				EndPaint(Handle, ref ps);
+			}
+		}
+
+
+		private void PaintOverlay()
+		{
+			if (IsDisposed || !IsHandleCreated || Width < 4 || Height < 4)
 			{
 				return;
 			}
@@ -252,6 +404,30 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnMouseLeave(e);
 			hot = false;
+			Invalidate();
+		}
+
+		protected override void OnGotFocus(EventArgs e)
+		{
+			base.OnGotFocus(e);
+			Invalidate();
+		}
+
+		protected override void OnLostFocus(EventArgs e)
+		{
+			base.OnLostFocus(e);
+			Invalidate();
+		}
+
+		protected override void OnSelectedIndexChanged(EventArgs e)
+		{
+			base.OnSelectedIndexChanged(e);
+			Invalidate();
+		}
+
+		protected override void OnDropDownClosed(EventArgs e)
+		{
+			base.OnDropDownClosed(e);
 			Invalidate();
 		}
 
