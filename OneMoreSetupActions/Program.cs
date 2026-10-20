@@ -24,6 +24,9 @@ namespace OneMoreSetupActions
 		private static Stepper stepper;
 		private static Architecture onArchitecture;
 
+		// register the COM DelegateExecute protocol handler instead of OneMoreProtocolHandler.exe
+		private static bool comProtocol;
+
 
 		/// <summary>
 		/// Entry point. Parses the command-line verb and architecture flag, runs
@@ -77,6 +80,10 @@ namespace OneMoreSetupActions
 				{
 					architecture = Architecture.Arm64;
 				}
+				else if (arg.Equals("--protocol=COM", StringComparison.InvariantCultureIgnoreCase))
+				{
+					comProtocol = true;
+				}
 			}
 
 			var action = new CheckBitnessAction(logger, stepper, architecture);
@@ -119,7 +126,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-handler":
-					status = new ProtocolHandlerAction(logger, stepper).Install();
+					status = new ProtocolHandlerAction(logger, stepper, comProtocol).Install();
 					break;
 
 				case "--install-registry":
@@ -236,7 +243,7 @@ namespace OneMoreSetupActions
 			{
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS &&
-					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new ProtocolHandlerAction(logger, stepper, comProtocol).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
 				{

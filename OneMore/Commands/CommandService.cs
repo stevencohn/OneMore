@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Win32;
 	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -14,7 +15,6 @@ namespace River.OneMoreAddIn
 	using System.Security.AccessControl;
 	using System.Security.Principal;
 	using System.Text;
-	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
@@ -33,12 +33,6 @@ namespace River.OneMoreAddIn
 		private const string Protocol = "onemore://";
 		private const string CliProtocol = "onemorecli://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
-
-		// action flows into Type.GetType, which accepts assembly-qualified names
-		// ("Foo, SomeAssembly") and nested-type syntax ("Outer+Inner"); require a
-		// plain identifier so neither can be smuggled in via the URL
-		private static readonly Regex ActionPattern =
-			new Regex("^[A-Za-z_][A-Za-z0-9_]*$", RegexOptions.Compiled);
 
 		private readonly string pipe;
 		private readonly CommandFactory factory;
@@ -202,25 +196,10 @@ namespace River.OneMoreAddIn
 			// data specifies command as onemore protocol such as
 			// onemore://DoitCommand/arg1/arg2/arg2/
 
-			var parts = data.Substring(Protocol.Length)
-				.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-			if (parts.Length == 0)
+			if (!ProtocolUri.TryParse(data, out var action, out var arguments))
 			{
+				logger.WriteLine($"rejected invalid command '{data}'");
 				return;
-			}
-
-			var action = parts[0];
-			if (!ActionPattern.IsMatch(action))
-			{
-				logger.WriteLine($"rejected invalid command name '{action}'");
-				return;
-			}
-
-			var arguments = parts.Skip(1).ToArray();
-			for (int i = 0; i < arguments.Length; i++)
-			{
-				arguments[i] = HttpUtility.UrlDecode(arguments[i]);
 			}
 
 			//logger.WriteLine($"..invoking {action}({string.Join(", ", arguments)})");
@@ -259,7 +238,7 @@ namespace River.OneMoreAddIn
 			var commandName = qIndex >= 0 ? body.Substring(0, qIndex) : body;
 			var queryString = qIndex >= 0 ? body.Substring(qIndex + 1) : string.Empty;
 
-			if (!ActionPattern.IsMatch(commandName))
+			if (!ProtocolUri.IsValidAction(commandName))
 			{
 				await WriteCliResponse(pipe, $"ERR:Invalid command name '{commandName}'");
 				return;

@@ -58,7 +58,7 @@ OneNote bitness they're registering against.
 | `RegistryAction.cs` | Writes OneMore's registry settings. |
 | `RegistryWowAction.cs` | Clones the CLSID branch under `WOW6432Node` so 32-bit and 64-bit OneNote can both load the add-in. |
 | `ActiveSetupAction.cs` | Wires per-user repair on next logon (`msiexec` repair via Active Setup). |
-| `ProtocolHandlerAction.cs` | Registers the `onemore://` URL handler. |
+| `ProtocolHandlerAction.cs` | Registers the `onemore://` URL handler. Default registers `OneMoreProtocolHandler.exe` as the shell command. With `--protocol=COM` (MSI property `PROTOCOLMODE=COM`) it instead registers `OneMoreProtocolHandler.exe` as an out-of-process COM server (`LocalServer32`, CLSID in both 64/32-bit registry views; COM launches it with `-Embedding`, see `OneMoreProtocolHandler/ComServer.cs`) and sets `DelegateExecute` so the shell never spawns a child of ONENOTE.EXE — needed where Defender ASR blocks Office child processes. The shell does not fall back to the command when `DelegateExecute` is present. |
 | `TrustedProtocolAction.cs` | Marks `onemore://` as safe (companion to ProtocolHandler). |
 | `EdgeWebViewAction.cs` | Installs Edge WebView2 (mainly for Windows 10 hosts). |
 

@@ -94,8 +94,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComServer.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ShellInterop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

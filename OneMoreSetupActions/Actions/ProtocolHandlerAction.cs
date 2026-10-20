@@ -18,10 +18,28 @@ namespace OneMoreSetupActions
 	{
 		private const string ProtocolHandler = "OneMoreProtocolHandler.exe";
 
+		// CLSID of OneMoreProtocolHandler.CommandHandler (see ComServer.ClassId)
+		private const string DelegateClsid = "{6F3A9B52-4C1D-4E8A-9D07-2B5E71C0A9F4}";
 
-		public ProtocolHandlerAction(Logger logger, Stepper stepper)
+		// where the requested mode is saved; the 64-bit view, to match the installer's search
+		private const string ModeKeyPath = @"SOFTWARE\River\OneMoreAddIn";
+		private const string ModeValueName = "ProtocolMode";
+
+		private readonly bool useCom;
+
+
+		/// <summary>
+		/// Initializes a new instance.
+		/// </summary>
+		/// <param name="useCom">
+		/// True to register OneMoreProtocolHandler.exe as an out-of-process COM server for a
+		/// DelegateExecute handler instead of a shell command, for environments that block
+		/// Office applications from creating child processes
+		/// </param>
+		public ProtocolHandlerAction(Logger logger, Stepper stepper, bool useCom = false)
 			: base(logger, stepper)
 		{
+			this.useCom = useCom;
 		}
 
 
@@ -117,9 +135,27 @@ namespace OneMoreSetupActions
 			var cmd = $"\"{exe}\" %1 %2 %3 %4 %5";
 
 			key.SetValue(string.Empty, cmd);
+
+			// The shell uses DelegateExecute exclusively when present and does not fall back
+			// to the command, so only write it after the COM class is registered, and always
+			// remove it otherwise.
+			if (useCom && RegisterDelegate(exe))
+			{
+				logger.WriteLine($"step {stepper.Step()}: setting DelegateExecute {DelegateClsid}");
+				key.SetValue("DelegateExecute", DelegateClsid);
+			}
+			else
+			{
+				logger.WriteLine($"step {stepper.Step()}: using {ProtocolHandler} command");
+				key.DeleteValue("DelegateExecute", false);
+				UnregisterDelegate();
+			}
+
 			key.Dispose();
 
 			parent.Dispose();
+
+			SaveMode();
 
 			// confirm
 			var verified = SUCCESS;
@@ -150,6 +186,137 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
+		/// Registers the handler class as an out-of-process COM server whose LocalServer32 is
+		/// OneMoreProtocolHandler.exe, in both the 64-bit and 32-bit registry views so either
+		/// bitness of OneNote can activate it. COM launches the exe with -Embedding. Any
+		/// earlier registration is deleted first because an InprocServer32 would take
+		/// precedence over LocalServer32. Returns false, leaving the exe command in place,
+		/// if the exe can't be found or registration fails.
+		/// </summary>
+		private bool RegisterDelegate(string exe)
+		{
+			if (!File.Exists(exe))
+			{
+				logger.WriteLine($"warning: {exe} not found; cannot register COM protocol handler");
+				return false;
+			}
+
+			try
+			{
+				UnregisterDelegate();
+
+				foreach (var view in GetViews())
+				{
+					logger.WriteLine($"step {stepper.Step()}: registering {DelegateClsid} ({view})");
+
+					using (var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view))
+					using (var clsid = lm.CreateSubKey($@"SOFTWARE\Classes\CLSID\{DelegateClsid}", true))
+					{
+						clsid.SetValue(string.Empty, "OneMore Protocol Handler");
+
+						using (var server = clsid.CreateSubKey("LocalServer32", true))
+						{
+							server.SetValue(string.Empty, $"\"{exe}\"");
+						}
+					}
+				}
+
+				return true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error registering COM protocol handler; using exe command");
+				logger.WriteLine(exc);
+				return false;
+			}
+		}
+
+
+		/// <summary>
+		/// Records the requested mode so an upgrade, which is a fresh install once the old
+		/// product is removed, can restore it; see PROTOCOLMODE in Product.wxs. The requested
+		/// mode is saved rather than the applied one so a transient registration failure
+		/// doesn't permanently downgrade the choice. Failure here is only a warning.
+		/// </summary>
+		private void SaveMode()
+		{
+			var mode = useCom ? "COM" : "EXE";
+			logger.WriteLine($"step {stepper.Step()}: saving protocol mode {mode}");
+
+			try
+			{
+				using (var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, GetViews()[0]))
+				using (var key = lm.CreateSubKey(ModeKeyPath, true))
+				{
+					key.SetValue(ModeValueName, mode);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("warning saving protocol mode");
+				logger.WriteLine(exc);
+			}
+		}
+
+
+		private void ClearMode()
+		{
+			try
+			{
+				using (var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, GetViews()[0]))
+				{
+					using (var key = lm.OpenSubKey(ModeKeyPath, true))
+					{
+						key?.DeleteValue(ModeValueName, false);
+					}
+
+					// remove the vendor key too, but only if nothing else lives there
+					using (var key = lm.OpenSubKey(ModeKeyPath, false))
+					{
+						if (key != null && key.ValueCount == 0 && key.SubKeyCount == 0)
+						{
+							lm.DeleteSubKey(ModeKeyPath, false);
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("warning clearing protocol mode");
+				logger.WriteLine(exc);
+			}
+		}
+
+
+		private void UnregisterDelegate()
+		{
+			foreach (var view in GetViews())
+			{
+				try
+				{
+					using (var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view))
+					{
+						lm.DeleteSubKeyTree($@"SOFTWARE\Classes\CLSID\{DelegateClsid}", false);
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"warning deleting {DelegateClsid} ({view})");
+					logger.WriteLine(exc);
+				}
+			}
+		}
+
+
+		private static RegistryView[] GetViews()
+		{
+			return Environment.Is64BitOperatingSystem
+				? new[] { RegistryView.Registry64, RegistryView.Registry32 }
+				: new[] { RegistryView.Default };
+		}
+
+
+		/// <summary>
 		/// Removes the onemore:// protocol handler registry tree from
 		/// HKLM\Software\Classes\onemore.
 		/// </summary>
@@ -157,6 +324,11 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine();
 			logger.WriteLine("ProtocolHandlerAction.Uninstall ---");
+
+			// on a major upgrade this also runs for the old product, but the installer has
+			// already read the saved mode (AppSearch) and the new install saves it again
+			UnregisterDelegate();
+			ClearMode();
 
 			// protocol handler...
 			using var hive = RegistryKey.OpenBaseKey(

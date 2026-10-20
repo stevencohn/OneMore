@@ -18,6 +18,7 @@ namespace OneMoreProtocolHandler
 		private static Logger logger;
 
 
+		[MTAThread]
 		static void Main(string[] args)
 		{
 			if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
@@ -28,11 +29,32 @@ namespace OneMoreProtocolHandler
 
 			logger = new Logger("OneMoreProtocolHandler");
 
+			// COM passes -Embedding when it launches us as the local server for the
+			// DelegateExecute handler; see ComServer
+			if (args[0].Equals("-Embedding", StringComparison.OrdinalIgnoreCase) ||
+				args[0].Equals("/Embedding", StringComparison.OrdinalIgnoreCase))
+			{
+				ComServer.Run();
+				return;
+			}
+
 			SendCommand(args[0]);
 		}
 
 
-		static void SendCommand(string arg)
+		internal static void Log(string message)
+		{
+			logger?.WriteLine(message);
+		}
+
+
+		internal static void Log(Exception exc)
+		{
+			logger?.WriteLine(exc);
+		}
+
+
+		internal static void SendCommand(string arg)
 		{
 			try
 			{

@@ -38,6 +38,31 @@
     </Upgrade>
     <Property Id="PRE8VERSIONFOUND" Secure="yes" />
 
+    <!--
+      PROTOCOLMODE selects how the onemore:// protocol is activated:
+        EXE (default) - shell runs OneMoreProtocolHandler.exe
+        COM           - shell activates OneMoreProtocolHandler.exe as an out-of-process COM server
+                        launched by COM, not by OneNote, for environments that block Office from
+                        creating child processes (Defender ASR)
+      e.g. msiexec /i OneMore.msi PROTOCOLMODE=COM
+
+      The mode applied by an install is saved by ProtocolHandlerAction under
+      HKLM\SOFTWARE\River\OneMoreAddIn\ProtocolMode so that an upgrade, which is a fresh install
+      after the old product is removed, keeps the previous choice. AppSearch reads it into
+      SAVEDPROTOCOLMODE before anything is removed. It is a separate property because a
+      RegistrySearch result can overwrite a value given on the command line. An explicit
+      PROTOCOLMODE always wins; with neither, PROTOCOLMODE stays empty, which means EXE.
+    -->
+    <Property Id="PROTOCOLMODE" Secure="yes" />
+    <Property Id="SAVEDPROTOCOLMODE" Secure="yes">
+      <RegistrySearch Id="ProtocolModeSearch" Root="HKLM"
+                      Key="SOFTWARE\River\OneMoreAddIn" Name="ProtocolMode"
+                      Type="raw" Bitness="always64" />
+    </Property>
+    <SetProperty Id="PROTOCOLMODE" Value="[SAVEDPROTOCOLMODE]"
+                 Before="CA_Install" Sequence="execute"
+                 Condition="NOT PROTOCOLMODE AND SAVEDPROTOCOLMODE" />
+
     <MediaTemplate EmbedCab="yes" />
 
     <!-- Require .NET Framework 4.8 -->
@@ -151,7 +176,7 @@
 
     <CustomAction Id="CA_Install"
                   FileRef="OneMoreSetupActionsExe"
-                  ExeCommand="--install --$(var.ArchFlag)"
+                  ExeCommand="--install --$(var.ArchFlag) --protocol=[PROTOCOLMODE]"
                   Execute="deferred"
                   Return="check"
                   Impersonate="no" />
