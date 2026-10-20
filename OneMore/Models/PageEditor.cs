@@ -765,9 +765,17 @@ namespace River.OneMoreAddIn.Models
 			if (start.Name.LocalName.In("OE", "OEChildren"))
 			{
 				// find best anchor, either prev node (OE/HTMLBlock) or closet parent (OEChildren)
-				Anchor = start.PreviousNode is XElement prev
+				var candidate = start.PreviousNode is XElement prev
 					? prev
 					: start.Parent;
+
+				if (candidate is null)
+				{
+					// start was already detached from the page so keep the current anchor
+					return;
+				}
+
+				Anchor = candidate;
 
 				if (Anchor.Name.LocalName.In(schema.OutHeaders) &&
 					Anchor.Parent.Name.LocalName == "Outline")
@@ -797,13 +805,24 @@ namespace River.OneMoreAddIn.Models
 		private XElement WholeTableSelected(XElement cell)
 		{
 			var table = cell.FirstAncestor(ns + "Table");
-			if (AllContent ||
-				table.Descendants(ns + "Cell").All(c => c.Attribute("selected")?.Value == "all"))
+			if (!AllContent &&
+				!table.Descendants(ns + "Cell").All(c => c.Attribute("selected")?.Value == "all"))
 			{
-				return table;
+				return null;
 			}
 
-			return null;
+			// a fully selected table may itself be nested within the cell of a fully selected
+			// table; prefer the outermost so the whole structure is kept rather than just the
+			// inner table
+			while (!AllContent &&
+				table.Parent?.FirstAncestor(ns + "Cell") is XElement outerCell &&
+				outerCell.FirstAncestor(ns + "Table") is XElement outer &&
+				outer.Descendants(ns + "Cell").All(c => c.Attribute("selected")?.Value == "all"))
+			{
+				table = outer;
+			}
+
+			return table;
 		}
 
 
@@ -851,6 +870,10 @@ namespace River.OneMoreAddIn.Models
 							table.Parent.Attributes()
 								.Where(a => !a.Name.LocalName.In("objectID", "selected"))
 							);
+
+							// the run's depth is relative to its cell; the table's own depth is
+							// what places it correctly, e.g. under a collapsed paragraph
+							snippet.Depth = IndentLevel(table);
 
 							parent = table.Parent;
 							table.Remove();

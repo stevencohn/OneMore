@@ -6521,6 +6521,10 @@ Onglet Aide</value>
     <value>Enregistrer l'extrait</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Un extrait nommé "{0}" existe déjà. Voulez-vous l'écraser ?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Le nom est déjà utilisé</value>
     <comment>label</comment>

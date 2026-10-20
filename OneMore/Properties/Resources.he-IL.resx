@@ -6510,6 +6510,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>שמור את הקטע</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>קטע קוד בשם "{0}" כבר קיים. האם אתה רוצה להחליף אותו?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>השם כבר בשימוש</value>
     <comment>label</comment>

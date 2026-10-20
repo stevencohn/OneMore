@@ -15160,6 +15160,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A snippet named &quot;{0}&quot; already exists. Do you want to overwrite it?.
+        /// </summary>
+        internal static string SaveSnippetDialog_confirmOverwrite {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_confirmOverwrite", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Name is already in use.
         /// </summary>
         internal static string SaveSnippetDialog_duplicateName {

@@ -70,6 +70,30 @@ namespace River.OneMoreAddIn.Styles
 				{
 					SpaceAfter = attr.Value;
 				}
+				else if (attr.Name == "bold")
+				{
+					IsBold = attr.Value == "true";
+				}
+				else if (attr.Name == "italic")
+				{
+					IsItalic = attr.Value == "true";
+				}
+				else if (attr.Name == "underline")
+				{
+					IsUnderline = attr.Value == "true";
+				}
+				else if (attr.Name == "strikethrough")
+				{
+					IsStrikethrough = attr.Value == "true";
+				}
+				else if (attr.Name == "superscript")
+				{
+					IsSuperscript = attr.Value == "true";
+				}
+				else if (attr.Name == "subscript")
+				{
+					IsSubscript = attr.Value == "true";
+				}
 			}
 		}
 
@@ -114,12 +138,19 @@ namespace River.OneMoreAddIn.Styles
 				return false;
 			}
 
+			if (!string.Equals(Name, other.Name, System.StringComparison.OrdinalIgnoreCase)) return false;
 			if (FontFamily != other.FontFamily) return false;
 			if (FontSize != other.FontSize) return false;
 			if (!Color.Equals(other.color)) return false;
-			if (!Highlight.Equals(other.FontFamily)) return false;
+			if (!Highlight.Equals(other.Highlight)) return false;
 			if (SpaceBefore != other.SpaceBefore) return false;
 			if (SpaceAfter != other.SpaceAfter) return false;
+			if (IsBold != other.IsBold) return false;
+			if (IsItalic != other.IsItalic) return false;
+			if (IsUnderline != other.IsUnderline) return false;
+			if (IsStrikethrough != other.IsStrikethrough) return false;
+			if (IsSuperscript != other.IsSuperscript) return false;
+			if (IsSubscript != other.IsSubscript) return false;
 
 			return true;
 		}

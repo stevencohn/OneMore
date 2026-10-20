@@ -6510,6 +6510,10 @@ Guia Ajuda</value>
     <value>Salvar trecho</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Já existe um snippet chamado "{0}". Você quer sobrescrevê-lo?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>O nome já está em uso</value>
     <comment>label</comment>

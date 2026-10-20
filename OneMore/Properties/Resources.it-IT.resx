@@ -6513,6 +6513,10 @@ Scheda Aiuto</value>
     <value>Salva frammento</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Esiste già uno snippet denominato "{0}". Vuoi sovrascriverlo?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Il nome è già in uso</value>
     <comment>label</comment>

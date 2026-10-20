@@ -747,7 +747,7 @@ The fix is to ignore multiple active media elements.
 			var sourcemap = sourcePage.GetQuickStyleMap();
 			var map = GetQuickStyleMap();
 
-			var index = map.Max(q => q.Style.Index) + 1;
+			var index = map.Any() ? map.Max(q => q.Style.Index) + 1 : 0;
 
 			foreach (var source in sourcemap)
 			{

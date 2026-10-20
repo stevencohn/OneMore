@@ -6516,6 +6516,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>スニペットの保存</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>「{0}」という名前のスニペットはすでに存在します。上書きしますか?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>名前は既に使用されています</value>
     <comment>label</comment>
