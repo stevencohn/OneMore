@@ -99,6 +99,12 @@ namespace River.OneMoreAddIn.Commands
 				box.AccessibleName = name;
 			}
 
+			tooltip.SetToolTip(matchBox, $"{Resx.SearchDialog_matchBox_Text} (Ctrl+S)");
+			tooltip.SetToolTip(regBox, $"{Resx.SearchDialog_regBox_Text} (Ctrl+R)");
+			tooltip.SetToolTip(includeTocBox, $"{Resx.SearchDialog_includeTocBox_Text} (Ctrl+T)");
+			tooltip.SetToolTip(ocrBox, $"{Resx.SearchDialog_ocrBox_Text} (Ctrl+I)");
+			tooltip.SetToolTip(sortBox, $"{Resx.SearchDialog_sortBox_Text} (Ctrl+M)");
+
 			bool hasSectionGroup;
 			using (var one = new OneNote())
 			{
@@ -296,6 +302,22 @@ namespace River.OneMoreAddIn.Commands
 			if (keyData == Keys.Escape)
 			{
 				Nevermind(this, EventArgs.Empty);
+				return true;
+			}
+
+			CheckBox box = null;
+			switch (keyData)
+			{
+				case Keys.Control | Keys.S: box = matchBox; break;
+				case Keys.Control | Keys.R: box = regBox; break;
+				case Keys.Control | Keys.T: box = includeTocBox; break;
+				case Keys.Control | Keys.I: box = ocrBox; break;
+				case Keys.Control | Keys.M: box = sortBox; break;
+			}
+
+			if (box is not null && box.Enabled && box.Visible)
+			{
+				box.Checked = !box.Checked;
 				return true;
 			}
 
