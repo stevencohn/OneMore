@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var path = args[0] as string;
 			string snippet = null;
+			var isXml = false;
 
 			var provider = new SnippetsProvider();
 
@@ -52,6 +53,9 @@ namespace River.OneMoreAddIn.Commands
 				path = new PageEditor(page).GetSelectedText();
 				if (!string.IsNullOrWhiteSpace(path))
 				{
+					var found = provider.GetPathByName(path);
+					isXml = found is not null && SnippetsProvider.IsXml(found);
+
 					snippet = await provider.LoadByName(path);
 					if (!string.IsNullOrEmpty(snippet))
 					{
@@ -69,7 +73,8 @@ namespace River.OneMoreAddIn.Commands
 							return element;
 						});
 
-						if (updated)
+						// XML snippets are inserted into this same page below so one Update suffices
+						if (updated && !isXml)
 						{
 							await one.Update(page);
 						}
@@ -78,12 +83,23 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				isXml = SnippetsProvider.IsXml(path);
 				snippet = await provider.Load(path);
 			}
 
 			if (string.IsNullOrWhiteSpace(snippet))
 			{
 				ShowError(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
+				return;
+			}
+
+			if (isXml)
+			{
+				if (!await InsertXml(one, page, snippet))
+				{
+					ShowError(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
+				}
+
 				return;
 			}
 
@@ -113,6 +129,58 @@ namespace River.OneMoreAddIn.Commands
 					ShowInfo(Resx.Clipboard_norestore);
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Inserts a snippet stored as page XML directly into the page, bypassing the
+		/// clipboard so all formatting is preserved.
+		/// </summary>
+		private async Task<bool> InsertXml(OneNote one, Page page, string snippet)
+		{
+			var content = SnippetPackage.Parse(snippet, page.Namespace, out var kind, out var root);
+			if (content is null || !content.HasElements)
+			{
+				return false;
+			}
+
+			SnippetPackage.ExpandDateTimes(content);
+			SnippetPackage.MergeDefinitions(page, root, content);
+
+			XElement anchor = null;
+
+			if (SnippetPackage.HasBodyToken(content))
+			{
+				kind = SnippetPackage.KindParagraphs;
+
+				var body = new XElement(page.Namespace + "OEChildren");
+
+				var range = new SelectionRange(page);
+				_ = range.GetSelection(true);
+				if (range.Scope != SelectionScope.TextCursor)
+				{
+					// selected content is moved into the snippet; the editor leaves the
+					// anchor where the snippet should be placed
+					var editor = new PageEditor(page);
+					var selected = editor.ExtractSelectedContent(breakParagraph: true);
+					if (selected.HasElements)
+					{
+						body = selected;
+						anchor = editor.Anchor;
+					}
+					else
+					{
+						logger.WriteLine("error reading page content!");
+					}
+				}
+
+				SnippetPackage.ExpandBody(content, page.Namespace, body);
+			}
+
+			SnippetPackage.Insert(page, content, kind, anchor);
+
+			await one.Update(page);
+			return true;
 		}
 
 

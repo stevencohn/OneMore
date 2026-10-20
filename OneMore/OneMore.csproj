@@ -1046,6 +1046,7 @@
     <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\ManageSnippetsCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetCommand.cs" />
+    <Compile Include="Commands\Snippets\SnippetPackage.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6510,6 +6510,10 @@ Zakładka Pomoc</value>
     <value>Zapisz fragment</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Fragment o nazwie „{0}” już istnieje. Czy chcesz go zastąpić?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Nazwa jest już w użyciu</value>
     <comment>label</comment>

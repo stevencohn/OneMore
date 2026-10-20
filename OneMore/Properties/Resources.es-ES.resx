@@ -6509,6 +6509,10 @@ Pestaña Ayuda</value>
     <value>Guardar fragmento</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Ya existe un fragmento denominado "{0}". ¿Quieres sobrescribirlo?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>El nombre ya está en uso</value>
     <comment>label</comment>

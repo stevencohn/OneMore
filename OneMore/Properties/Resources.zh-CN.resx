@@ -6524,6 +6524,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>保存代码段</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>名为“{0}”的代码段已存在。您想覆盖它吗？</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>名称已被使用</value>
     <comment>label</comment>

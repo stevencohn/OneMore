@@ -6521,6 +6521,10 @@ ISO-code then comma then language name</comment>
     <value>حفظ المقتطف</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>يوجد مقتطف يسمى "{0}" بالفعل. هل تريد الكتابة فوقه؟</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>الاسم قيد الاستخدام بالفعل</value>
     <comment>label</comment>

@@ -24,7 +24,15 @@ namespace River.OneMoreAddIn.Commands
 		private const string ExpandSnippetButtonId = "ribExpandSnippetButton";
 
 		private const string DirectoryName = "Snippets";
-		private const string Extension = ".snp";
+		/// <summary>
+		/// Legacy snippets are saved as clipboard HTML
+		/// </summary>
+		public const string HtmlExtension = ".snp";
+
+		/// <summary>
+		/// Snippets are saved as OneNote page XML to preserve full fidelity
+		/// </summary>
+		public const string XmlExtension = ".snpx";
 
 		private readonly string store;
 
@@ -66,10 +74,38 @@ namespace River.OneMoreAddIn.Commands
 				yield break;
 			}
 
-			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			foreach (var file in GetPaths())
 			{
 				yield return Path.GetFileNameWithoutExtension(file);
 			}
+		}
+
+
+		/// <summary>
+		/// Determines if the snippet at the given path is stored as page XML
+		/// </summary>
+		public static bool IsXml(string path)
+		{
+			return string.Equals(
+				Path.GetExtension(path), XmlExtension, StringComparison.OrdinalIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Gets the full path of the snippet with the given name, preferring the XML
+		/// format over the legacy HTML format.
+		/// </summary>
+		/// <returns>The path or null if not found</returns>
+		public string GetPathByName(string name)
+		{
+			var path = Path.Combine(store, $"{name}{XmlExtension}");
+			if (File.Exists(path))
+			{
+				return path;
+			}
+
+			path = Path.Combine(store, $"{name}{HtmlExtension}");
+			return File.Exists(path) ? path : null;
 		}
 
 
@@ -84,9 +120,21 @@ namespace River.OneMoreAddIn.Commands
 				yield break;
 			}
 
-			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			// "*.snp" would also match "*.snpx" on some file systems (8.3 names) so filter explicitly
+			var files = Directory.GetFiles(store)
+				.Where(f => IsXml(f) ||
+					string.Equals(Path.GetExtension(f), HtmlExtension, StringComparison.OrdinalIgnoreCase))
+				.OrderBy(f => Path.GetFileNameWithoutExtension(f), StringComparer.OrdinalIgnoreCase)
+				.ThenBy(f => IsXml(f) ? 0 : 1);
+
+			// XML wins over HTML when both exist for the same name
+			var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+			foreach (var file in files)
 			{
-				yield return file;
+				if (seen.Add(Path.GetFileNameWithoutExtension(file)))
+				{
+					yield return file;
+				}
 			}
 		}
 
@@ -124,7 +172,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task<string> LoadByName(string name)
 		{
-			return await Load(Path.Combine(store, $"{name}{Extension}"));
+			var path = GetPathByName(name);
+			return path is null ? null : await Load(path);
 		}
 
 
@@ -139,7 +188,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					var newpath = Path.Combine(Path.GetDirectoryName(path), $"{name}{Extension}");
+					var newpath = Path.Combine(
+						Path.GetDirectoryName(path), $"{name}{Path.GetExtension(path)}");
+
+					if (!string.Equals(path, newpath, StringComparison.OrdinalIgnoreCase))
+					{
+						// the user confirmed overwriting any snippet already using this name
+						Delete(newpath);
+						Delete(Path.ChangeExtension(newpath,
+							IsXml(newpath) ? HtmlExtension : XmlExtension));
+					}
+
 					File.Move(path, newpath);
 
 					return newpath;
@@ -160,16 +219,24 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="snippet"></param>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task Save(string snippet, string name)
+		public async Task Save(string snippet, string name, string extension = XmlExtension)
 		{
-			var path = Path.Combine(store, $"{name}{Extension}");
+			var path = Path.Combine(store, $"{name}{extension}");
 
 			try
 			{
 				PathHelper.EnsurePathExists(store);
 
-				using var writer = new StreamWriter(path);
-				await writer.WriteAsync(snippet);
+				using (var writer = new StreamWriter(path))
+				{
+					await writer.WriteAsync(snippet);
+				}
+
+				// when overwriting, remove a same-named snippet of the other format
+				var other = Path.Combine(store, name +
+					(extension == XmlExtension ? HtmlExtension : XmlExtension));
+
+				Delete(other);
 			}
 			catch (Exception exc)
 			{

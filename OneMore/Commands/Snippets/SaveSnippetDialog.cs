@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private List<string> names;
 		private char[] invalidChars;
+		private string originalName;
 
 
 		public SaveSnippetDialog()
@@ -40,7 +41,21 @@ namespace River.OneMoreAddIn.Commands
 		public string SnippetName
 		{
 			get { return nameBox.Text.Trim(); }
-			set { nameBox.Text = value; }
+			set
+			{
+				nameBox.Text = value;
+				originalName = value;
+			}
+		}
+
+
+		protected override void OnShown(System.EventArgs e)
+		{
+			base.OnShown(e);
+
+			// when renaming, the existing name is preselected so typing replaces it
+			nameBox.Focus();
+			nameBox.SelectAll();
 		}
 
 
@@ -64,16 +79,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			names ??= new SnippetsProvider().GetNames().Select(n => n.ToLower()).ToList();
-
-			if (names.Contains(name))
-			{
-				errorLabel.Text = Resx.SaveSnippetDialog_duplicateName;
-				errorLabel.Visible = true;
-				okButton.Enabled = false;
-				return;
-			}
-
 			errorLabel.Visible = false;
 			okButton.Enabled = true;
 		}
@@ -81,6 +86,23 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OK(object sender, System.EventArgs e)
 		{
+			names ??= new SnippetsProvider().GetNames().Select(n => n.ToLower()).ToList();
+
+			// no confirmation needed when renaming and the name is unchanged
+			if (names.Contains(SnippetName.ToLower()) &&
+				!string.Equals(SnippetName, originalName, System.StringComparison.OrdinalIgnoreCase))
+			{
+				var result = UI.MoreMessageBox.ShowQuestion(this,
+					string.Format(Resx.SaveSnippetDialog_confirmOverwrite, SnippetName));
+
+				if (result != System.Windows.Forms.DialogResult.Yes)
+				{
+					// keep the dialog open so the user can choose another name
+					DialogResult = System.Windows.Forms.DialogResult.None;
+					return;
+				}
+			}
+
 			Close();
 		}
 	}

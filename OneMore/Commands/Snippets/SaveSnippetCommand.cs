@@ -21,7 +21,8 @@ namespace River.OneMoreAddIn.Commands
 			using var guard = EnterOnce();
 			if (guard is null) { return; }
 
-			await using var one = new OneNote(out var page, out _);
+			// All detail so inline image data is available to be saved with the snippet
+			await using var one = new OneNote(out var page, out _, OneNote.PageDetail.All);
 
 			var range = new Models.SelectionRange(page);
 			range.GetSelection(allowNonEmpty: true);
@@ -33,16 +34,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			// since the Hotkey message loop is watching all input, explicitly setting
-			// focus on the OneNote main window provides a direct path for SendKeys
-			Native.SetForegroundWindow(one.WindowHandle);
-
-			await ClipboardProvider.Copy();
-
-			var html = await ClipboardProvider.GetHtml();
-			if (string.IsNullOrWhiteSpace(html))
+			// save the selection as page XML rather than clipboard HTML to preserve
+			// quick styles, headings, table borders and widths, colors, etc.
+			var package = SnippetPackage.Build(page, range.Scope);
+			if (package is null)
 			{
-				logger.WriteLine($"{nameof(SaveSnippetCommand)} empty HTML");
+				logger.WriteLine($"{nameof(SaveSnippetCommand)} empty selection");
 				ShowError(Resx.SaveSnippet_NoContext);
 				return;
 			}
@@ -53,7 +50,9 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await new SnippetsProvider().Save(html, dialog.SnippetName);
+			await new SnippetsProvider().Save(
+				package.ToString(System.Xml.Linq.SaveOptions.DisableFormatting),
+				dialog.SnippetName);
 
 			ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
 		}

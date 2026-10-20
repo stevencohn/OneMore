@@ -6510,6 +6510,10 @@ Tabblad Help</value>
     <value>Bewaar fragment</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Er bestaat al een fragment met de naam '{0}'. Wilt u het overschrijven?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Naam is al in gebruik</value>
     <comment>label</comment>

@@ -6511,6 +6511,10 @@ Registerkarte „Hilfe“.</value>
     <value>Snippet speichern</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
+    <value>Ein Snippet mit dem Namen „{0}“ ist bereits vorhanden. Möchten Sie es überschreiben?</value>
+    <comment>confirmation question</comment>
+  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Name wird bereits verwendet</value>
     <comment>label</comment>
