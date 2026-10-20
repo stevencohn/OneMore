@@ -65,8 +65,6 @@ namespace River.OneMoreAddIn.Settings
 
 			engines = new BindingList<SearchEngine>(LoadSettings());
 
-			gridView.DataSource = engines;
-
 			RefreshImages();
 		}
 
@@ -122,6 +120,10 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			base.OnLoad(e);
+
+			// bind after the grid has been themed so rows are created with the themed styles
+			// rather than being painted first with default light colors
+			gridView.DataSource = engines;
 		}
 
 
