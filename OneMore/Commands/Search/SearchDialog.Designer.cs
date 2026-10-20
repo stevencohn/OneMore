@@ -1,4 +1,4 @@
-namespace River.OneMoreAddIn.Commands
+﻿namespace River.OneMoreAddIn.Commands
 {
 	partial class SearchDialog
 	{
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 5;
+			this.cancelButton.TabIndex = 10;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
 			this.indexButton.StylizeImage = false;
-			this.indexButton.TabIndex = 2;
+			this.indexButton.TabIndex = 7;
 			this.indexButton.Text = "Index";
 			this.indexButton.ThemedBack = null;
 			this.indexButton.ThemedFore = null;
@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.StylizeImage = false;
-			this.moveButton.TabIndex = 4;
+			this.moveButton.TabIndex = 9;
 			this.moveButton.Text = "Move";
 			this.moveButton.ThemedBack = null;
 			this.moveButton.ThemedFore = null;
@@ -157,7 +157,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.StylizeImage = false;
-			this.copyButton.TabIndex = 3;
+			this.copyButton.TabIndex = 8;
 			this.copyButton.Text = "Copy";
 			this.copyButton.ThemedBack = null;
 			this.copyButton.ThemedFore = null;
@@ -263,7 +263,7 @@ namespace River.OneMoreAddIn.Commands
 			this.prevButton.ShowBorder = true;
 			this.prevButton.Size = new System.Drawing.Size(60, 30);
 			this.prevButton.Text = "▲";
-			this.prevButton.TabIndex = 1;
+			this.prevButton.TabIndex = 3;
 			this.prevButton.ThemedBack = null;
 			this.prevButton.ThemedFore = null;
 			this.prevButton.UseVisualStyleBackColor = true;
@@ -281,7 +281,7 @@ namespace River.OneMoreAddIn.Commands
 			this.nextButton.ShowBorder = true;
 			this.nextButton.Size = new System.Drawing.Size(60, 30);
 			this.nextButton.Text = "▼";
-			this.nextButton.TabIndex = 0;
+			this.nextButton.TabIndex = 2;
 			this.nextButton.ThemedBack = null;
 			this.nextButton.ThemedFore = null;
 			this.nextButton.UseVisualStyleBackColor = true;
@@ -299,7 +299,7 @@ namespace River.OneMoreAddIn.Commands
 			this.backButton.Name = "backButton";
 			this.backButton.ShowBorder = true;
 			this.backButton.Size = new System.Drawing.Size(60, 30);
-			this.backButton.TabIndex = 6;
+			this.backButton.TabIndex = 4;
 			this.backButton.Text = "←";
 			this.backButton.ThemedBack = null;
 			this.backButton.ThemedFore = null;
@@ -318,7 +318,7 @@ namespace River.OneMoreAddIn.Commands
 			this.forwardButton.Name = "forwardButton";
 			this.forwardButton.ShowBorder = true;
 			this.forwardButton.Size = new System.Drawing.Size(60, 30);
-			this.forwardButton.TabIndex = 7;
+			this.forwardButton.TabIndex = 5;
 			this.forwardButton.Text = "→";
 			this.forwardButton.ThemedBack = null;
 			this.forwardButton.ThemedFore = null;
@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Commands
 			this.homeButton.Name = "homeButton";
 			this.homeButton.ShowBorder = true;
 			this.homeButton.Size = new System.Drawing.Size(60, 30);
-			this.homeButton.TabIndex = 8;
+			this.homeButton.TabIndex = 6;
 			this.homeButton.Text = "⌂";
 			this.homeButton.ThemedBack = null;
 			this.homeButton.ThemedFore = null;
@@ -352,7 +352,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.pageLabel.Name = "pageLabel";
 			this.pageLabel.Size = new System.Drawing.Size(45, 20);
-			this.pageLabel.TabIndex = 10;
+			this.pageLabel.TabIndex = 0;
 			this.pageLabel.Text = "page";
 			this.pageLabel.ThemedBack = null;
 			this.pageLabel.ThemedFore = null;
@@ -365,7 +365,7 @@ namespace River.OneMoreAddIn.Commands
 			this.progressBar.Name = "progressBar";
 			this.progressBar.Size = new System.Drawing.Size(925, 16);
 			this.progressBar.Step = 1;
-			this.progressBar.TabIndex = 4;
+			this.progressBar.TabIndex = 1;
 			this.progressBar.Visible = false;
 			// 
 			// morePanel2
@@ -424,7 +424,7 @@ namespace River.OneMoreAddIn.Commands
 			this.sortBox.Name = "sortBox";
 			this.sortBox.Size = new System.Drawing.Size(32, 32);
 			this.sortBox.StylizeImage = false;
-			this.sortBox.TabIndex = 20;
+			this.sortBox.TabIndex = 8;
 			this.sortBox.Text = "\U0001F551";
 			this.sortBox.ThemedBack = null;
 			this.sortBox.ThemedFore = null;
@@ -482,7 +482,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dateSelector.Location = new System.Drawing.Point(585, 44);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 27);
-			this.dateSelector.TabIndex = 8;
+			this.dateSelector.TabIndex = 9;
 			this.dateSelector.ThemedBack = null;
 			this.dateSelector.ThemedFore = null;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
@@ -497,7 +497,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
 			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker.TabIndex = 9;
+			this.dateTimePicker.TabIndex = 10;
 			// 
 			// regBox
 			// 
@@ -603,7 +603,7 @@ namespace River.OneMoreAddIn.Commands
 			this.barLabel.Location = new System.Drawing.Point(958, 7);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
-			this.barLabel.TabIndex = 2;
+			this.barLabel.TabIndex = 1;
 			this.barLabel.Text = "|";
 			this.barLabel.ThemedBack = null;
 			this.barLabel.ThemedFore = null;
@@ -621,7 +621,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearAllLink.Selected = false;
 			this.clearAllLink.Size = new System.Drawing.Size(113, 20);
 			this.clearAllLink.StrictColors = false;
-			this.clearAllLink.TabIndex = 1;
+			this.clearAllLink.TabIndex = 2;
 			this.clearAllLink.TabStop = true;
 			this.clearAllLink.Text = "Clear selection";
 			this.clearAllLink.ThemedBack = null;
