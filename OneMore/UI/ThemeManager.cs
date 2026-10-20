@@ -86,7 +86,12 @@ namespace River.OneMoreAddIn.UI
 		/// next time its Designer.cs is opened and saved, no matter how it's guarded.
 		/// </summary>
 		public static bool IsDesignTime =>
-			LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+			LicenseManager.UsageMode == LicenseUsageMode.Designtime || IsDevenv;
+
+
+		// the process name never changes, but resolving it allocates a Process and queries the
+		// system, which is far too slow to repeat for every control that is colorized
+		private static readonly bool IsDevenv =
 			System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
 
 
