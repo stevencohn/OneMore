@@ -24,8 +24,8 @@ namespace OneMoreSetupActions
 		private static Stepper stepper;
 		private static Architecture onArchitecture;
 
-		// register the COM DelegateExecute protocol handler instead of OneMoreProtocolHandler.exe
-		private static bool comProtocol;
+		// how the onemore:// protocol is activated; Auto unless --protocol=COM|EXE is specified
+		private static ProtocolMode protocolMode = ProtocolMode.Auto;
 
 
 		/// <summary>
@@ -80,9 +80,15 @@ namespace OneMoreSetupActions
 				{
 					architecture = Architecture.Arm64;
 				}
-				else if (arg.Equals("--protocol=COM", StringComparison.InvariantCultureIgnoreCase))
+				else if (arg.StartsWith("--protocol=", StringComparison.InvariantCultureIgnoreCase))
 				{
-					comProtocol = true;
+					// anything but COM or EXE, including the empty value from an unset
+					// PROTOCOLMODE installer property, means Auto
+					var value = arg.Substring("--protocol=".Length);
+					protocolMode =
+						value.Equals("COM", StringComparison.InvariantCultureIgnoreCase) ? ProtocolMode.Com :
+						value.Equals("EXE", StringComparison.InvariantCultureIgnoreCase) ? ProtocolMode.Exe :
+						ProtocolMode.Auto;
 				}
 			}
 
@@ -126,7 +132,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-handler":
-					status = new ProtocolHandlerAction(logger, stepper, comProtocol).Install();
+					status = new ProtocolHandlerAction(logger, stepper, protocolMode).Install();
 					break;
 
 				case "--install-registry":
@@ -243,7 +249,7 @@ namespace OneMoreSetupActions
 			{
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS &&
-					new ProtocolHandlerAction(logger, stepper, comProtocol).Install() == CustomAction.SUCCESS &&
+					new ProtocolHandlerAction(logger, stepper, protocolMode).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
 				{

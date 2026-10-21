@@ -11,6 +11,22 @@ namespace OneMoreSetupActions
 
 
 	/// <summary>
+	/// How the shell activates the onemore:// protocol.
+	/// </summary>
+	internal enum ProtocolMode
+	{
+		/// <summary>COM when the Defender ASR rule blocking Office child processes is in effect, else Exe</summary>
+		Auto,
+
+		/// <summary>The shell runs OneMoreProtocolHandler.exe as a command</summary>
+		Exe,
+
+		/// <summary>The shell activates OneMoreProtocolHandler.exe as an out-of-process COM server</summary>
+		Com
+	}
+
+
+	/// <summary>
 	/// Registers or unregisters a Windows shell handler for the onemore:// protocol that
 	/// is used to send signals via names pipes to the OneMore addin.
 	/// </summary>
@@ -25,21 +41,23 @@ namespace OneMoreSetupActions
 		private const string ModeKeyPath = @"SOFTWARE\River\OneMoreAddIn";
 		private const string ModeValueName = "ProtocolMode";
 
-		private readonly bool useCom;
+		private readonly ProtocolMode mode;
 
 
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		/// <param name="useCom">
-		/// True to register OneMoreProtocolHandler.exe as an out-of-process COM server for a
+		/// <param name="mode">
+		/// Com registers OneMoreProtocolHandler.exe as an out-of-process COM server for a
 		/// DelegateExecute handler instead of a shell command, for environments that block
-		/// Office applications from creating child processes
+		/// Office applications from creating child processes. Auto chooses Com only when
+		/// Defender's ASR rule for that is in effect.
 		/// </param>
-		public ProtocolHandlerAction(Logger logger, Stepper stepper, bool useCom = false)
+		public ProtocolHandlerAction(
+			Logger logger, Stepper stepper, ProtocolMode mode = ProtocolMode.Auto)
 			: base(logger, stepper)
 		{
-			this.useCom = useCom;
+			this.mode = mode;
 		}
 
 
@@ -139,7 +157,7 @@ namespace OneMoreSetupActions
 			// The shell uses DelegateExecute exclusively when present and does not fall back
 			// to the command, so only write it after the COM class is registered, and always
 			// remove it otherwise.
-			if (useCom && RegisterDelegate(exe))
+			if (ResolveCom() && RegisterDelegate(exe))
 			{
 				logger.WriteLine($"step {stepper.Step()}: setting DelegateExecute {DelegateClsid}");
 				key.SetValue("DelegateExecute", DelegateClsid);
@@ -233,6 +251,29 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
+		/// Returns true if the COM handler should be registered. An explicit Com or Exe
+		/// request wins; Auto chooses COM only when Defender's ASR rule that blocks Office
+		/// child processes is in effect, and Exe when it isn't or can't be determined.
+		/// </summary>
+		private bool ResolveCom()
+		{
+			if (mode != ProtocolMode.Auto)
+			{
+				logger.WriteLine($"step {stepper.Step()}: protocol mode {mode} requested");
+				return mode == ProtocolMode.Com;
+			}
+
+			var state = AsrDetector.Detect(logger);
+			var com = state == AsrState.Blocking;
+
+			logger.WriteLine(
+				$"step {stepper.Step()}: protocol mode Auto, ASR is {state}; using {(com ? "COM" : "EXE")}");
+
+			return com;
+		}
+
+
+		/// <summary>
 		/// Records the requested mode so an upgrade, which is a fresh install once the old
 		/// product is removed, can restore it; see PROTOCOLMODE in Product.wxs. The requested
 		/// mode is saved rather than the applied one so a transient registration failure
@@ -240,15 +281,15 @@ namespace OneMoreSetupActions
 		/// </summary>
 		private void SaveMode()
 		{
-			var mode = useCom ? "COM" : "EXE";
-			logger.WriteLine($"step {stepper.Step()}: saving protocol mode {mode}");
+			var saved = mode.ToString().ToUpperInvariant();
+			logger.WriteLine($"step {stepper.Step()}: saving protocol mode {saved}");
 
 			try
 			{
 				using (var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, GetViews()[0]))
 				using (var key = lm.CreateSubKey(ModeKeyPath, true))
 				{
-					key.SetValue(ModeValueName, mode);
+					key.SetValue(ModeValueName, saved);
 				}
 			}
 			catch (Exception exc)

@@ -207,6 +207,37 @@ Begin
         WriteValue "@ = $defaultValue"; $defaultValue = $null
     }
 
+    function GetAsrState
+    {
+        $rule = 'D4F940AB-401B-4EFC-AADC-AD5F3C50688A'
+        $ns = 'root/Microsoft/Windows/Defender'
+        try
+        {
+            $status = Get-CimInstance -Namespace $ns -ClassName MSFT_MpComputerStatus -ErrorAction Stop -Verbose:$false
+            $pref = Get-CimInstance -Namespace $ns -ClassName MSFT_MpPreference -ErrorAction Stop -Verbose:$false
+        }
+        catch
+        {
+            return 'Unknown'
+        }
+
+        # ASR is only enforced when Defender Antivirus is the active engine
+        if ($status.AMRunningMode -ne 'Normal') { return 'NotBlocking' }
+
+        $ids = @($pref.AttackSurfaceReductionRules_Ids)
+        $acts = @($pref.AttackSurfaceReductionRules_Actions)
+        for ($i = 0; $i -lt [Math]::Min($ids.Count, $acts.Count); $i++)
+        {
+            if (($ids[$i] -replace '[{}]', '') -eq $rule)
+            {
+                # 1 = block, 6 = warn; 0 disabled, 2 audit, 5 not configured
+                if ($acts[$i] -eq 1 -or $acts[$i] -eq 6) { return 'Blocking' }
+                return 'NotBlocking'
+            }
+        }
+        return 'NotBlocking'
+    }
+
     function CheckProtocolMode
     {
         WriteTitle 'Protocol activation'
@@ -220,11 +251,26 @@ Begin
         $mk = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\River\OneMoreAddIn'
         if (Test-Path $mk) { $saved = (Get-ItemProperty $mk).ProtocolMode }
         $live = if ($delegate) { 'COM' } else { 'EXE' }
-        if ($saved -and $saved -ne $live)
+
+        # Defender ASR rule "Block all Office applications from creating child processes";
+        # mirrors OneMoreSetupActions AsrDetector/AsrEvaluator (Get-MpPreference effective values)
+        $asr = GetAsrState
+        WriteOK "saved mode = $(if ($saved) { $saved } else { '(none)' }), ASR = $asr"
+
+        # AUTO is saved as AUTO and re-detected on each install, so compare it with what
+        # detection would choose now; an explicit EXE or COM must match the live registration
+        $expected = $saved
+        if ($saved -eq 'AUTO') { $expected = if ($asr -eq 'Blocking') { 'COM' } else { 'EXE' } }
+        if ($expected -and $expected -ne $live)
         {
-            Write-Host "... saved mode ($saved) differs from live registration ($live)" -Fore Yellow
+            Write-Host "... saved mode ($saved) calls for $expected but live registration is $live" -Fore Yellow
+            Write-Host '... run OneMoreSetupActions.exe --install-handler --protocol=AUTO elevated to re-detect' -Fore Yellow
         }
-        WriteValue "saved mode = $(if ($saved) { $saved } else { '(none)' })"
+
+        if ($asr -eq 'Blocking' -and $live -eq 'EXE')
+        {
+            WriteBad 'ASR blocks Office child processes but EXE mode is registered; onemore: links will fail'
+        }
 
         if (-not $delegate)
         {

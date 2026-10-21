@@ -73,6 +73,10 @@
     <Compile Include="Commands\Clean\RemoveTagsCommandTests.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommandTests.cs" />
     <Compile Include="Commands\Clean\TrimCommandTests.cs" />
+    <Compile Include="Commands\AsrEvaluatorTests.cs" />
+    <Compile Include="..\OneMoreSetupActions\Actions\AsrEvaluator.cs">
+      <Link>Commands\AsrEvaluator.cs</Link>
+    </Compile>
     <Compile Include="Commands\ProtocolUriTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
