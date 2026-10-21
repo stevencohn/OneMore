@@ -157,10 +157,17 @@ namespace River.OneMoreAddIn.Commands
 
 			var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
 
+			// OneNote flags the recycle bin on its section group (isRecycleBin) and on the
+			// sections within it (isInRecycleBin), not on the pages, so test each page's ancestors;
+			// materialize once since the query is enumerated repeatedly below
 			var pagerefs = hierarchy.Descendants(ns + "Page")
-				.Where(e => e.Attribute("isInRrecycleBin") is null);
+				.Where(e => e.Attribute("isInRecycleBin") is null &&
+					!e.Ancestors().Any(a =>
+						a.Attribute("isRecycleBin") is not null ||
+						a.Attribute("isInRecycleBin") is not null))
+				.ToList();
 
-			if (!pagerefs.Any())
+			if (pagerefs.Count == 0)
 			{
 				logger.WriteLine("no pages found in scope");
 				return false;
@@ -169,7 +176,7 @@ namespace River.OneMoreAddIn.Commands
 			var totalPages = 0;
 			var totalMatches = 0;
 			using var progress = new ProgressDialog();
-			progress.SetMaximum(pagerefs.Count());
+			progress.SetMaximum(pagerefs.Count);
 
 			var result = progress.ShowDialogWithCancel(async (dialog, token) =>
 			{
@@ -212,13 +219,13 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.Cancel)
 			{
 				logger.WriteLine("search and replace cancelled, " +
-					$"{totalPages} of {pagerefs.Count()} pages searched");
+					$"{totalPages} of {pagerefs.Count} pages searched");
 			}
 			else
 			{
 				if (totalMatches == 0 && totalPages == 0)
 				{
-					totalPages = pagerefs.Count();
+					totalPages = pagerefs.Count;
 				}
 
 				ShowInfo(string.Format(
