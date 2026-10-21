@@ -130,6 +130,11 @@ namespace River.OneMoreAddIn
 		private const int MinMaxInclusiveHResult = -2146231999;
 		private const int ObjectDoesNotExist = -2147213292;
 
+		private const string SchemaNamespace =
+			"http://schemas.microsoft.com/office/onenote/2013/onenote";
+
+		// compiled once and shared; safe for concurrent validation
+		private static readonly Lazy<XmlSchemaSet> schemaSet = new(BuildSchemaSet);
 
 		private IApplication onenote;
 		private bool disposed = false;
@@ -1915,14 +1920,9 @@ namespace River.OneMoreAddIn
 		public static bool ValidateSchema(XElement root, List<string> errors = null)
 		{
 			var document = new XDocument(root);
-			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
-
-			var schemas = new XmlSchemaSet();
-			schemas.Add(ns.ToString(),
-				XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
 
 			var valid = true;
-			document.Validate(schemas, (o, e) =>
+			document.Validate(schemaSet.Value, (o, e) =>
 			{
 				Logger.Current.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
 				Logger.Current.WriteLine(e.Exception);
@@ -1931,7 +1931,7 @@ namespace River.OneMoreAddIn
 					e.Exception.InnerException?.HResult == MinMaxInclusiveHResult)
 				{
 					// MinInclusive, remove negative
-					if (attribute.Value[0] == '-' && e.Exception.InnerException.Message.Contains("MinInclusive"))
+					if (attribute.Value.Length > 0 && attribute.Value[0] == '-' && e.Exception.InnerException.Message.Contains("MinInclusive"))
 					{
 						var fix = attribute.Value.Substring(1);
 						Logger.Current.WriteLine($"schema error, correcting [{o}] -> adjusted [{fix}]");
@@ -1966,6 +1966,20 @@ namespace River.OneMoreAddIn
 			);
 
 			return valid;
+		}
+
+
+		private static XmlSchemaSet BuildSchemaSet()
+		{
+			var schemas = new XmlSchemaSet();
+			using (var reader = new StringReader(Resx._0336_OneNoteApplication_2013))
+			using (var xmlReader = XmlReader.Create(reader))
+			{
+				schemas.Add(SchemaNamespace, xmlReader);
+			}
+
+			schemas.Compile();
+			return schemas;
 		}
 
 
