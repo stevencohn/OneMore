@@ -275,39 +275,56 @@ namespace River.OneMoreAddIn
 			var cude = DescribeCustom(custom);
 			logger.WriteLine($"Startup: OnStartupComplete(custom[{cude}])");
 
-			try
+			_ = Task.Run(async () =>
 			{
-				Task.Run(async () =>
+				try
 				{
 					// assign factory first so ribbon/hotkey/palette commands invoked
 					// while startup is still running don't NRE on a null factory
 					factory = new CommandFactory(logger, ribbon, trash);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error starting add-on", exc);
+					UI.MoreMessageBox.ShowError(null, Properties.Resources.StartupFailureMessage);
+					return;
+				}
 
-					// theme colors (JSON load + registry check) - pay this once here
-					// instead of on the first dialog the user happens to open
-					_ = UI.ThemeManager.Instance;
+				// each step is isolated so one failure doesn't skip the rest
 
-					// hotkeys
+				// theme colors (JSON load + registry check) - pay this once here
+				// instead of on the first dialog the user happens to open
+				StartupStep("theme", () => { _ = UI.ThemeManager.Instance; });
+
+				// hotkeys
+				await StartupStep("hotkeys", async () =>
+				{
 					await RegisterHotkeys();
 					RegisterMarkdownEnterHotkey();
+				});
 
-					// command listener for Refresh links
-					new CommandService(factory).Startup();
+				// command listener for Refresh links
+				StartupStep("command service", () => new CommandService(factory).Startup());
 
-					// reminder task scanner
-					new Commands.ReminderService().Startup();
+				// reminder task scanner
+				StartupStep("reminder service", () => new Commands.ReminderService().Startup());
 
-					// navigation listener
+				// navigation listener
+				StartupStep("navigation service", () =>
+				{
 					navigationService = new Commands.NavigationService(ribbon);
 					navigationService.Startup();
+				});
 
+				// hashtags scanner
+				StartupStep("pipeline service", () =>
+				{
 					// the stage that reads page content shares each page it reads between hashtags
 					// and, when the user has turned it on, the text index
 					var contentStage = new Commands.HashtagStage();
 					contentStage.AddConsumer(
 						new TextIndex.IndexConsumer(), TextIndex.IndexConsumer.IsEnabled);
 
-					// hashtags scanner
 					new Pipeline.PipelineService(new Pipeline.IPipelineStage[]
 					{
 						new Identity.IdentityStage(),
@@ -319,22 +336,43 @@ namespace River.OneMoreAddIn
 
 						contentStage
 					}).Startup();
-
-					// settings and update check
-					await SetGeneralOptions();
-
-					if (Telemetry)
-					{
-						await TelemetryClient.Warmup();
-					}
-
-					logger.WriteLine($"Startup: ready");
 				});
+
+				// settings and update check
+				await StartupStep("general options", SetGeneralOptions);
+
+				if (Telemetry)
+				{
+					await StartupStep("telemetry", TelemetryClient.Warmup);
+				}
+
+				logger.WriteLine($"Startup: ready");
+			});
+		}
+
+
+		private void StartupStep(string name, Action step)
+		{
+			try
+			{
+				step();
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error starting add-on", exc);
-				UI.MoreMessageBox.ShowError(null, Properties.Resources.StartupFailureMessage);
+				logger.WriteLine($"error starting {name}", exc);
+			}
+		}
+
+
+		private async Task StartupStep(string name, Func<Task> step)
+		{
+			try
+			{
+				await step();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error starting {name}", exc);
 			}
 		}
 
