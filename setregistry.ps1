@@ -11,11 +11,12 @@ The architecture of the add-in to register. This is only used to determine the p
 Resets the registry settings back to the install path.
 
 .PARAMETER Protocol
-How the onemore: protocol is activated. COM (default) registers OneMoreProtocolHandler.exe
-as an out-of-process COM server and sets DelegateExecute so the shell never spawns a child
-of ONENOTE.EXE; this is required where Defender ASR blocks Office child processes. EXE
-registers only the shell command, as the installer does by default. Switching modes removes
-the other mode's registration. Run elevated.
+How the onemore: protocol is activated. AUTO (default) chooses COM when Defender's ASR rule
+"Block all Office applications from creating child processes" is set to block or warn and
+Defender is the active antivirus, otherwise EXE, as the installer does. COM registers
+OneMoreProtocolHandler.exe as an out-of-process COM server and sets DelegateExecute so the
+shell never spawns a child of ONENOTE.EXE. EXE registers only the shell command. Switching
+modes removes the other mode's registration. Run elevated.
 
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
@@ -26,8 +27,8 @@ param (
 	[ValidateSet('x86','x64','ARM64','All')]
 	[string] $Architecture = 'x86',
     [switch] $Reset,
-    [ValidateSet('COM','EXE')]
-    [string] $Protocol = 'COM'
+    [ValidateSet('AUTO','COM','EXE')]
+    [string] $Protocol = 'AUTO'
 )
 
 Begin
@@ -254,6 +255,38 @@ Begin
         return $true
     }
 
+    # mirrors OneMoreSetupActions AsrDetector/AsrEvaluator: Get-MpPreference's effective values
+    function GetAsrState
+    {
+        $rule = 'D4F940AB-401B-4EFC-AADC-AD5F3C50688A'
+        $ns = 'root/Microsoft/Windows/Defender'
+        try
+        {
+            $status = Get-CimInstance -Namespace $ns -ClassName MSFT_MpComputerStatus -ErrorAction Stop -Verbose:$false
+            $pref = Get-CimInstance -Namespace $ns -ClassName MSFT_MpPreference -ErrorAction Stop -Verbose:$false
+        }
+        catch
+        {
+            return 'Unknown'
+        }
+
+        # ASR is only enforced when Defender Antivirus is the active engine
+        if ($status.AMRunningMode -ne 'Normal') { return 'NotBlocking' }
+
+        $ids = @($pref.AttackSurfaceReductionRules_Ids)
+        $acts = @($pref.AttackSurfaceReductionRules_Actions)
+        for ($i = 0; $i -lt [Math]::Min($ids.Count, $acts.Count); $i++)
+        {
+            if (($ids[$i] -replace '[{}]', '') -eq $rule)
+            {
+                # 1 = block, 6 = warn; 0 disabled, 2 audit, 5 not configured
+                if ($acts[$i] -eq 1 -or $acts[$i] -eq 6) { return 'Blocking' }
+                return 'NotBlocking'
+            }
+        }
+        return 'NotBlocking'
+    }
+
     function SetProtocolHandler
     {
         WriteTitle 'Protocol handler'
@@ -283,7 +316,15 @@ Begin
             if (Test-Path $1) { Remove-Item $1 -Recurse -Force }
         }
 
-        if ($Protocol -eq 'COM')
+        $mode = $Protocol
+        if ($mode -eq 'AUTO')
+        {
+            $asr = GetAsrState
+            $mode = if ($asr -eq 'Blocking') { 'COM' } else { 'EXE' }
+            WriteOK "AUTO: ASR is $asr; using $mode"
+        }
+
+        if ($mode -eq 'COM')
         {
             foreach ($view in $views)
             {
