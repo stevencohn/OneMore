@@ -23,6 +23,9 @@ namespace River.OneMoreAddIn.Identity
 		private static readonly Regex PagePattern =
 			new(@"[#&]page-id=(\{[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\})");
 
+		private static readonly Regex ObjectPattern =
+			new(@"[#&]object-id=(\{[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\})");
+
 		private static readonly Regex SectionPattern =
 			new(@"[#&]section-id=(\{[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\})");
 
@@ -43,6 +46,16 @@ namespace River.OneMoreAddIn.Identity
 		public static string SectionGuid(string uri)
 		{
 			return Find(SectionPattern, uri);
+		}
+
+
+		/// <summary>
+		/// Gets the object GUID of a hyperlink, in upper case with braces, or null if the link
+		/// is to a whole page.
+		/// </summary>
+		public static string ObjectGuid(string uri)
+		{
+			return Find(ObjectPattern, uri);
 		}
 
 

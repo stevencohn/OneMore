@@ -88,6 +88,7 @@
     <Compile Include="Commands\File\Evernote\EnexReaderTests.cs" />
     <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />
     <Compile Include="Commands\References\EmbedCommandTests.cs" />
+    <Compile Include="Commands\References\RepairUrlsCommandTests.cs" />
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
     <Compile Include="Commands\Reminders\ReminderLocatorTests.cs" />
     <Compile Include="Commands\Reminders\ReminderSerializerTests.cs" />
