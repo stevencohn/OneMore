@@ -448,21 +448,28 @@ namespace River.OneMoreAddIn
 			AppDomain.CurrentDomain.AssemblyResolve -= CustomAssemblyResolve;
 			AppDomain.CurrentDomain.UnhandledException -= CatchUnhandledException;
 
-			try
+			// hold the image cache lock so in-flight getImage callbacks finish before disposal
+			lock (imageCache)
 			{
-				if (trash.Count > 0)
+				try
 				{
-					logger.WriteLine($"Shutdown: disposing {trash.Count} streams");
-
-					foreach (var item in trash)
+					if (trash.Count > 0)
 					{
-						item?.Dispose();
+						logger.WriteLine($"Shutdown: disposing {trash.Count} streams");
+
+						foreach (var item in trash)
+						{
+							item?.Dispose();
+						}
 					}
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("Shutdown: error disconnecting", exc);
+				catch (Exception exc)
+				{
+					logger.WriteLine("Shutdown: error disconnecting", exc);
+				}
+
+				imageCache.Clear();
+				trash = null;
 			}
 
 			logger.WriteLine("Shutdown: closing log");
@@ -470,7 +477,6 @@ namespace River.OneMoreAddIn
 			logger = null;
 
 			ribbon = null;
-			trash = null;
 
 			GC.Collect();
 			//GC.WaitForPendingFinalizers();

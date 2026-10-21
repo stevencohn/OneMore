@@ -260,6 +260,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Resets the seek pointer so a cached instance can be handed out again.
+		/// </summary>
+		public void Rewind()
+		{
+			if (stream is not null)
+			{
+				stream.Position = 0;
+			}
+		}
+
+
+		/// <summary>
 		/// Writes a specified number of bytes into the stream object starting at the
 		/// current seek pointer.
 		/// </summary>

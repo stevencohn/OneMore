@@ -10,6 +10,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Drawing;
 	using System.Globalization;
@@ -39,6 +40,10 @@ namespace River.OneMoreAddIn
 	{
 		private XElement engines;
 		private XNamespace ns;
+
+		// ribbon image streams by key; getImage callbacks arrive repeatedly (history menu
+		// invalidation, theme changes) so reuse one stream per image instead of accumulating
+		private readonly Dictionary<string, ReadOnlyStream> imageCache = new();
 
 
 		/// <summary>
@@ -589,12 +594,8 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				if (Resx.ResourceManager.GetObject("ribNavigatorButton") is Bitmap res)
-				{
-					var stream = res.GetReadOnlyStream();
-					trash.Add((IDisposable)stream);
-					return stream;
-				}
+				return GetCachedImage("ribNavigatorButton",
+					() => Resx.ResourceManager.GetObject("ribNavigatorButton") as Bitmap);
 			}
 			catch (Exception exc)
 			{
@@ -660,7 +661,6 @@ namespace River.OneMoreAddIn
 		{
 			DebugRibbon($"GetColorizeImage({control.Tag})");
 
-			IStream stream = null;
 			try
 			{
 				var path = Path.Combine(
@@ -673,15 +673,14 @@ namespace River.OneMoreAddIn
 					return null;
 				}
 
-				stream = ((Bitmap)Image.FromFile(path)).GetReadOnlyStream();
-				trash.Add((IDisposable)stream);
+				return GetCachedImage(path, () => (Bitmap)Image.FromFile(path));
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
 
-			return stream;
+			return null;
 		}
 
 
@@ -700,11 +699,12 @@ namespace River.OneMoreAddIn
 
 				try
 				{
-					if (Resx.ResourceManager.GetObject(darkName) is Bitmap res)
+					var dark = GetCachedImage(darkName,
+						() => Resx.ResourceManager.GetObject(darkName) as Bitmap);
+
+					if (dark is not null)
 					{
-						var stream = res.GetReadOnlyStream();
-						trash.Add((IDisposable)stream);
-						return stream;
+						return dark;
 					}
 				}
 				catch
@@ -717,12 +717,8 @@ namespace River.OneMoreAddIn
 			{
 				DebugRibbon($"GetRibbonImage({imageName})");
 
-				if (Resx.ResourceManager.GetObject(imageName) is Bitmap res)
-				{
-					var stream = res.GetReadOnlyStream();
-					trash.Add((IDisposable)stream);
-					return stream;
-				}
+				return GetCachedImage(imageName,
+					() => Resx.ResourceManager.GetObject(imageName) as Bitmap);
 			}
 			catch (Exception exc)
 			{
@@ -742,25 +738,17 @@ namespace River.OneMoreAddIn
 				id = $"rib{id.Substring(3)}";
 			}
 
-			IStream stream = null;
 			try
 			{
-				if (Resx.ResourceManager.GetObject(id) is Bitmap res)
-				{
-					stream = res.GetReadOnlyStream();
-					trash.Add((IDisposable)stream);
-					return stream;
-				}
+				return GetCachedImage(id, () => Resx.ResourceManager.GetObject(id) as Bitmap);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
 
-			return stream;
+			return null;
 		}
-
-
 
 
 		/*
@@ -772,18 +760,55 @@ namespace River.OneMoreAddIn
 		{
 			DebugRibbon($"GetOneMoreRibbonImage({control.Id})");
 
-			IStream stream = null;
 			try
 			{
-				stream = Resx.Logo.GetReadOnlyStream();
-				trash.Add((IDisposable)stream);
+				return GetCachedImage("Logo", () => Resx.Logo);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
 
-			return stream;
+			return null;
+		}
+
+
+		/// <summary>
+		/// Gets the cached stream for the given key, creating it from the loader on first use.
+		/// Callbacks can arrive on arbitrary COM threads so access is synchronized.
+		/// </summary>
+		private IStream GetCachedImage(string key, Func<Bitmap> loader)
+		{
+			lock (imageCache)
+			{
+				// disconnected; streams have been disposed
+				if (trash is null)
+				{
+					return null;
+				}
+
+				if (imageCache.TryGetValue(key, out var cached))
+				{
+					cached.Rewind();
+					return cached;
+				}
+
+				var bitmap = loader();
+				if (bitmap is null)
+				{
+					return null;
+				}
+
+				var stream = bitmap.GetReadOnlyStream() as ReadOnlyStream;
+				if (stream is null)
+				{
+					return null;
+				}
+
+				imageCache.Add(key, stream);
+				trash.Add(stream);
+				return stream;
+			}
 		}
 
 
