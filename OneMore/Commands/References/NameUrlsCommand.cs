@@ -31,6 +31,10 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class NameUrlsCommand : Command
 	{
+		// compiled once to check for <title></title> block
+		private static readonly Regex pattern = new(@"<title>([^<]+)</title>",
+			RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
 
 		public NameUrlsCommand()
 		{
@@ -227,10 +231,6 @@ namespace River.OneMoreAddIn.Commands
 					using var stream = await response.Content
 						.ReadAsStreamAsync()
 						.ConfigureAwait(false);
-
-					// compiled regex to check for <title></title> block
-					var pattern = new Regex(@"<title>([^<]+)</title>",
-						RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 					var chunkSize = 512;
 					var buffer = new byte[chunkSize];

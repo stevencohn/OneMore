@@ -16,6 +16,13 @@ namespace River.OneMoreAddIn
 
 	internal static class XElementExtensions
 	{
+		// compiled once; compiled regexes emit assemblies that .NET Framework never unloads
+		private static readonly Regex anchorRegex = new(@"<\s*a\b[^>]*>(.*?)<\s*/\s*a\s*>",
+			RegexOptions.Compiled | RegexOptions.Singleline);
+
+		private static readonly Regex spanRegex = new(@"<\s*span[^>]*>(.*?)<\s*/\s*span>",
+			RegexOptions.Compiled | RegexOptions.Singleline);
+
 
 		/// <summary>
 		/// OneMore Extension >> Properly deep clones the given element, possibly restoring the
@@ -475,11 +482,6 @@ namespace River.OneMoreAddIn
 				// long tags (e.g. <a\nhref="..."> or <span\nstyle="...">) across lines within
 				// the CDATA, and the lazy content group must be able to cross that line break
 				// to reach the matching close tag.
-				var anchorRegex = new Regex(@"<\s*a\b[^>]*>(.*?)<\s*/\s*a\s*>",
-					RegexOptions.Compiled | RegexOptions.Singleline);
-				var spanRegex = new Regex(@"<\s*span[^>]*>(.*?)<\s*/\s*span>",
-					RegexOptions.Compiled | RegexOptions.Singleline);
-
 				var raw = string.Concat(
 					element.DescendantNodes().OfType<XCData>().Select(cdata => cdata.Value));
 
