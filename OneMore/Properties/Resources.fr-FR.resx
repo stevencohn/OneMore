@@ -5217,6 +5217,14 @@ Onglet Aide</value>
     <value>Histoire</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Afficher les chemins complets</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Afficher les chemins hiérarchiques complets au lieu des noms de pages dans la liste de l'historique</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>ribbon images NODUP</comment>

@@ -5234,6 +5234,14 @@ Help Tab</value>
     <value>History</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Show Full Paths</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Show full hierarchical paths instead of page names in the history list</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>ribbon images NODUP</comment>

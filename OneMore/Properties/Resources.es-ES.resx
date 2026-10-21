@@ -5205,6 +5205,14 @@ Pestaña Ayuda</value>
     <value>Historia</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Mostrar rutas completas</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Mostrar rutas jerárquicas completas en lugar de nombres de páginas en la lista del historial</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imágenes</value>
     <comment>ribbon images NODUP</comment>

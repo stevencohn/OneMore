@@ -5206,6 +5206,14 @@ Tabblad Help</value>
     <value>Geschiedenis</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Toon volledige paden</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Toon volledige hiërarchische paden in plaats van paginanamen in de geschiedenislijst</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Afbeeldingen</value>
     <comment>ribbon images NODUP</comment>

@@ -5205,6 +5205,14 @@ Registerkarte „Hilfe“.</value>
     <value>Geschichte</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Vollständige Pfade anzeigen</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Zeigen Sie in der Verlaufsliste vollständige hierarchische Pfade anstelle von Seitennamen an</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Bilder</value>
     <comment>ribbon images NODUP</comment>
