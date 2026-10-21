@@ -657,7 +657,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (onenote)
 				{
-					var (status, fresh, target) = await ClassifyOneNoteLink(href, token);
+					var (status, fresh, target, foundID) = await ClassifyOneNoteLink(href, token);
 
 					logger.WriteLine(
 						$"link [{status}] text=\"{anchor.Value}\" href={href}" +
@@ -666,7 +666,20 @@ namespace River.OneMoreAddIn.Commands
 					switch (status)
 					{
 						case LinkStatus.Stale:
-							if (href.Contains("object-id="))
+							// a link to the title of a page, such as Copy Link To Page makes, is a
+							// link to the page and can be remade with the title of the page as is
+							var isParagraph = href.Contains("object-id=");
+							if (isParagraph)
+							{
+								var titleLink = await GetTitleLink(href, foundID);
+								if (titleLink is not null)
+								{
+									fresh = titleLink;
+									isParagraph = false;
+								}
+							}
+
+							if (isParagraph)
 							{
 								// a link made from the page alone would lose the paragraph, and
 								// OneNote can still follow this one, so leave it as it is
@@ -829,14 +842,14 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>
 		/// The status of the link and, if the page was found, a new link to it and where it is
 		/// </returns>
-		private async Task<(LinkStatus Status, string Fresh, string Target)> ClassifyOneNoteLink(
+		private async Task<(LinkStatus Status, string Fresh, string Target, string PageID)> ClassifyOneNoteLink(
 			string href, CancellationToken token)
 		{
 			var guid = Identity.LinkGuids.PageGuid(href);
 			if (guid is null)
 			{
 				// not a link to a page
-				return (LinkStatus.Valid, null, null);
+				return (LinkStatus.Valid, null, null, null);
 			}
 
 			string pageID = null;
@@ -857,10 +870,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case Workspaces.ResolveOutcome.Ambiguous:
-						return (LinkStatus.Ambiguous, null, null);
+						return (LinkStatus.Ambiguous, null, null, null);
 
 					case Workspaces.ResolveOutcome.Offline:
-						return (LinkStatus.Offline, null, null);
+						return (LinkStatus.Offline, null, null, null);
 
 					case Workspaces.ResolveOutcome.Pending:
 						pending = true;
@@ -875,13 +888,13 @@ namespace River.OneMoreAddIn.Commands
 				var known = identity?.ReadByGuid(guid);
 				if (known is not null && known.Count > 0 && known.All(r => r.IsMissing))
 				{
-					return (LinkStatus.Offline, null, null);
+					return (LinkStatus.Offline, null, null, null);
 				}
 
 				// a link to a notebook that is not open cannot be judged, so it is not called broken
 				if (IsOutsideOpenNotebooks(href))
 				{
-					return (LinkStatus.Offline, null, null);
+					return (LinkStatus.Offline, null, null, null);
 				}
 
 				await EnsureMap(token);
@@ -893,17 +906,54 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					return (pending ? LinkStatus.Unverified : LinkStatus.Invalid, null, null);
+					return (pending ? LinkStatus.Unverified : LinkStatus.Invalid, null, null, null);
 				}
 			}
 
 			fresh ??= one.GetHyperlink(pageID, string.Empty);
 			if (string.IsNullOrEmpty(fresh))
 			{
-				return (LinkStatus.Unverified, null, null);
+				return (LinkStatus.Unverified, null, null, null);
 			}
 
-			return (IsStale(href, fresh) ? LinkStatus.Stale : LinkStatus.Valid, fresh, target);
+			return (IsStale(href, fresh) ? LinkStatus.Stale : LinkStatus.Valid, fresh, target, pageID);
+		}
+
+
+		/// <summary>
+		/// Makes a new link to the title of a page if the link names the object that is the
+		/// title of that page now; otherwise it names some other paragraph and null is returned.
+		/// </summary>
+		private async Task<string> GetTitleLink(string href, string pageID)
+		{
+			var objectGuid = Identity.LinkGuids.ObjectGuid(href);
+			if (objectGuid is null || string.IsNullOrEmpty(pageID))
+			{
+				return null;
+			}
+
+			try
+			{
+				var found = await one.GetPage(pageID, OneNote.PageDetail.Basic);
+				var titleID = found?.TitleID;
+				if (string.IsNullOrEmpty(titleID))
+				{
+					return null;
+				}
+
+				var link = one.GetHyperlink(pageID, titleID);
+
+				// object IDs are made by this machine, so they are comparable only here
+				return string.Equals(
+					Identity.LinkGuids.ObjectGuid(link), objectGuid, StringComparison.OrdinalIgnoreCase)
+					? link
+					: null;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"could not read the title of page {pageID}", exc);
+				return null;
+			}
 		}
 
 
@@ -1045,15 +1095,32 @@ namespace River.OneMoreAddIn.Commands
 			var hash = body.IndexOf('#');
 			var location = hash > 0 ? body.Substring(0, hash) : null;
 
+			var match = Regex.Match(body, @"[&]base-path=(?<p>.+)$");
+			var basePath = match.Success ? match.Groups["p"].Value : null;
+
 			if (string.IsNullOrEmpty(location))
 			{
-				var match = Regex.Match(body, @"[&]base-path=(?<p>.+)$");
-				location = match.Success ? match.Groups["p"].Value : null;
+				location = basePath;
+			}
+			else if (!string.IsNullOrEmpty(basePath) && !IsAbsoluteLocation(location))
+			{
+				// an intra-notebook link names only the section file, relative to its base-path
+				location = basePath.TrimEnd('/', '\\') + "/" + location;
 			}
 
 			return location is null
 				? null
 				: Uri.UnescapeDataString(location).Replace('\\', '/').TrimStart('/');
+		}
+
+
+		// whether a location names its notebook, as a URL, a drive path or a UNC path
+		private static bool IsAbsoluteLocation(string location)
+		{
+			return location.Contains("://") ||
+				location.StartsWith("\\\\") ||
+				location.StartsWith("//") ||
+				(location.Length > 1 && location[1] == ':');
 		}
 
 
