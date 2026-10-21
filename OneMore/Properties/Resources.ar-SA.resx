@@ -5217,6 +5217,14 @@ ISO-code then comma then language name</comment>
     <value>تاريخ</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>إظهار المسارات الكاملة</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>إظهار المسارات الهرمية الكاملة بدلاً من أسماء الصفحات في قائمة المحفوظات</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>الصور</value>
     <comment>ribbon images NODUP</comment>

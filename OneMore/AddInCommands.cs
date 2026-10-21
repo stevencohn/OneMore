@@ -444,6 +444,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HistoryCommand>(control.Tag); //tag=link
 
 
+		// internal hook for the history dropdown's "Show Full Paths" check box; the pressed
+		// state passed by the ribbon is ignored, the command flips the stored setting
+		public async Task ToggleHistoryPathsCmd(IRibbonControl control, bool pressed)
+			=> await factory.Run<HistoryPathsCommand>();
+
+
 		[Command("ribHashtaggerButton_Label", Keys.Alt | Keys.T, "ribSearchMenu")]
 		public async Task HashtaggerCmd(IRibbonControl control)
 			=> await factory.Run<HashtaggerCommand>(1);

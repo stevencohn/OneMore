@@ -5209,6 +5209,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>歴史</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>フルパスを表示</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>履歴リストにページ名ではなく完全な階層パスを表示します</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>画像</value>
     <comment>ribbon images NODUP</comment>

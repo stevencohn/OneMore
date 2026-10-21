@@ -565,6 +565,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Reports whether the Navigator history dropdown shows full hierarchical paths
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public bool GetHistoryPathsPressed(IRibbonControl control)
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
+			return settings.Get(HistoryMenu.FullPathsSetting, false);
+		}
+
+
+		/// <summary>
 		/// Returns the Navigator button's own icon; used by the "Open Navigator" entry
 		/// inside its History dropdown, which cannot rely on GetRibbonImageByID's
 		/// id-based lookup since it has its own (distinct) control id

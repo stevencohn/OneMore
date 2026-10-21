@@ -11547,6 +11547,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Full Paths.
+        /// </summary>
+        internal static string ribHistoryFullPathsToggle_Label {
+            get {
+                return ResourceManager.GetString("ribHistoryFullPathsToggle_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show full hierarchical paths instead of page names in the history list.
+        /// </summary>
+        internal static string ribHistoryFullPathsToggle_Screentip {
+            get {
+                return ResourceManager.GetString("ribHistoryFullPathsToggle_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Hyperlinks.
         /// </summary>
         internal static string ribCrawlWebPageButton_Label {

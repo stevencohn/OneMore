@@ -5206,6 +5206,14 @@ Zakładka Pomoc</value>
     <value>Historia</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Pokaż pełne ścieżki</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Pokaż pełne ścieżki hierarchiczne zamiast nazw stron na liście historii</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Obrazy</value>
     <comment>ribbon images NODUP</comment>

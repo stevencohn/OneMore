@@ -5220,6 +5220,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>历史</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>显示完整路径</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>在历史列表中显示完整的分层路径而不是页面名称</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>图片</value>
     <comment>ribbon images NODUP</comment>

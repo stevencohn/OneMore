@@ -5206,6 +5206,14 @@ Scheda Aiuto</value>
     <value>Storia</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>Mostra percorsi completi</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Mostra percorsi gerarchici completi invece dei nomi delle pagine nell'elenco della cronologia</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Immagini</value>
     <comment>ribbon images NODUP</comment>

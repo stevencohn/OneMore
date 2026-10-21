@@ -5206,6 +5206,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הִיסטוֹרִיָה</value>
     <comment>ribbon main NODUP</comment>
   </data>
+  <data name="ribHistoryFullPathsToggle_Label" xml:space="preserve">
+    <value>הצג נתיבים מלאים</value>
+    <comment>ribbon navigator</comment>
+  </data>
+  <data name="ribHistoryFullPathsToggle_Screentip" xml:space="preserve">
+    <value>הצג נתיבים היררכיים מלאים במקום שמות עמודים ברשימת ההיסטוריה</value>
+    <comment>ribbon navigator</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>תמונות</value>
     <comment>ribbon images NODUP</comment>

@@ -25,11 +25,15 @@ namespace River.OneMoreAddIn.Commands
 		public const string GotoAction = "GotoHistoryCmd";
 		public const string AddPageAction = "CopyPageToReadingListCmd";
 		public const string AddParagraphAction = "CopyParagraphToReadingListCmd";
+		public const string FullPathsAction = "ToggleHistoryPathsCmd";
+		public const string FullPathsPressed = "GetHistoryPathsPressed";
+		public const string FullPathsSetting = "fullPaths";
 
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string OpenButtonId = "omOpenNavigatorButton";
 		private static readonly string AddPageButtonId = "omAddPageToReadingListButton";
 		private static readonly string AddParagraphButtonId = "omAddParagraphToReadingListButton";
+		private static readonly string FullPathsButtonId = "omHistoryFullPathsToggle";
 		private static readonly string SeparatorId = "omHistorySeparator";
 
 		// the dropdown must stay short even if the user allows a much larger stored
@@ -45,12 +49,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
 			var disabled = settings.Get("disabled", false);
+			var fullPaths = settings.Get(FullPathsSetting, false);
 
 			// when the service is disabled there is no history to show; NavigatorCmd
 			// itself reports the "disabled" message when the Open Navigator entry is used
 			if (disabled)
 			{
-				return BuildMenu(new List<HistoryRecord>(), 0);
+				return BuildMenu(new List<HistoryRecord>(), 0, fullPaths);
 			}
 
 			var depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
@@ -62,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			// continuation (getContent callbacks are inherently synchronous)
 			var log = Task.Run(() => provider.ReadHistoryLog()).GetAwaiter().GetResult();
 
-			return BuildMenu(log.History, Math.Min(MaxItems, depth));
+			return BuildMenu(log.History, Math.Min(MaxItems, depth), fullPaths);
 		}
 
 
@@ -70,12 +75,13 @@ namespace River.OneMoreAddIn.Commands
 		/// Builds the ribbon XML for the given history, capped at the given number of
 		/// items. Pure XML construction, no I/O, so this is the entry point for unit tests.
 		/// </summary>
-		internal static XElement BuildMenu(List<HistoryRecord> history, int max)
+		internal static XElement BuildMenu(List<HistoryRecord> history, int max, bool fullPaths = false)
 		{
 			// the root element returned from a dynamicMenu's getContent callback is typed
 			// as CT_MenuRoot, which carries no id attribute - only its children may have one
 			var root = new XElement(ns + "menu",
-				MakeOpenButton(), MakeAddPageButton(), MakeAddParagraphButton());
+				MakeOpenButton(), MakeAddPageButton(), MakeAddParagraphButton(),
+				MakeFullPathsToggle());
 
 			if (history.Count > 0)
 			{
@@ -87,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 					.Where(r => !string.IsNullOrEmpty(r.Link) && !string.IsNullOrEmpty(r.Name))
 					.Take(max))
 				{
-					root.Add(MakeHistoryButton(record, index++));
+					root.Add(MakeHistoryButton(record, index++, fullPaths));
 				}
 			}
 
@@ -131,24 +137,46 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static XElement MakeHistoryButton(HistoryRecord record, int index)
+		private static XElement MakeFullPathsToggle()
 		{
+			return new XElement(ns + "checkBox",
+				new XAttribute("id", FullPathsButtonId),
+				new XAttribute("onAction", FullPathsAction),
+				new XAttribute("getPressed", FullPathsPressed),
+				new XAttribute("label", Resx.ribHistoryFullPathsToggle_Label),
+				new XAttribute("screentip", Resx.ribHistoryFullPathsToggle_Screentip)
+				);
+		}
+
+
+		private static XElement MakeHistoryButton(HistoryRecord record, int index, bool fullPaths)
+		{
+			var label = fullPaths && !string.IsNullOrEmpty(record.Path) ? record.Path : record.Name;
+
 			// PageId contains characters (braces, hyphens) that aren't safe as a ribbon
 			// control id, so index the id instead; the page identity travels in tag=Link
 			return new XElement(ns + "button",
 				new XAttribute("id", $"omHistory{index}"),
 				new XAttribute("onAction", GotoAction),
 				new XAttribute("imageMso", "GroupInsertLinks"),
-				new XAttribute("label", Chop(record.Name)),
+				new XAttribute("label", Chop(label, label != record.Name)),
 				new XAttribute("tag", record.Link),
 				new XAttribute("screentip", record.Path ?? record.Name)
 				);
 		}
 
 
-		private static string Chop(string s)
+		// a full path keeps its tail, the page name, and elides the leading ancestors
+		private static string Chop(string s, bool keepTail = false)
 		{
-			return s.Length <= 45 ? s : s.Substring(0, 42) + "...";
+			if (s.Length <= 45)
+			{
+				return s;
+			}
+
+			return keepTail
+				? "..." + s.Substring(s.Length - 42)
+				: s.Substring(0, 42) + "...";
 		}
 	}
 }
