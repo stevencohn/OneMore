@@ -210,7 +210,8 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var (pageID, objectID) = ((string pageID, string objectID))e.Link.LinkData;
-				var success = await new OneNote().NavigateTo(pageID, objectID);
+				await using var one = new OneNote();
+				var success = await one.NavigateTo(pageID, objectID);
 				if (!success)
 				{
 					MoreMessageBox.ShowError(this, Resx.HashtagDialog_badLink);
@@ -232,7 +233,8 @@ namespace River.OneMoreAddIn.Commands
 			menu.Items.Add(new MoreMenuItem(Resx.SearchDialog_menuShowInCurrent, null,
 				async (s, ev) =>
 				{
-					var success = await new OneNote().NavigateTo(pageId, objectId);
+					await using var one = new OneNote();
+					var success = await one.NavigateTo(pageId, objectId);
 					if (!success)
 					{
 						MoreMessageBox.ShowError(this, Resx.HashtagDialog_badLink);

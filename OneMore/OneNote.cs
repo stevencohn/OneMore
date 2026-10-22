@@ -1331,25 +1331,46 @@ namespace River.OneMoreAddIn
 			var windows = new List<WindowInfo>();
 
 			ulong currentHandle = 0;
+			Windows currentWindows = null;
+			Window currentWindow = null;
 			try
 			{
-				var currentWindow = onenote.Windows?.CurrentWindow;
+				currentWindows = onenote.Windows;
+				currentWindow = currentWindows?.CurrentWindow;
 				currentHandle = currentWindow?.WindowHandle ?? 0;
 			}
 			catch (COMException exc)
 			{
 				logger.WriteLine($"GetWindows: cannot read CurrentWindow ({exc.ErrorCode:X})", exc);
 			}
+			finally
+			{
+				if (currentWindow is not null && Marshal.IsComObject(currentWindow))
+				{
+					Marshal.ReleaseComObject(currentWindow);
+				}
+				if (currentWindows is not null && Marshal.IsComObject(currentWindows))
+				{
+					Marshal.ReleaseComObject(currentWindows);
+				}
+			}
 
-			var e = onenote.Windows?.GetEnumerator();
+			var allWindows = onenote.Windows;
+			var e = allWindows?.GetEnumerator();
 			if (e is not null)
 			{
 				var bounds = new Native.Rectangle();
 				while (e.MoveNext())
 				{
+					Window window = null;
 					try
 					{
-						var window = e.Current as Window;
+						window = e.Current as Window;
+						if (window is null)
+						{
+							continue;
+						}
+
 						var rawHandle = (IntPtr)window.WindowHandle;
 						var topHandle = GetTopLevelWindow(rawHandle);
 
@@ -1403,7 +1424,21 @@ namespace River.OneMoreAddIn
 					{
 						logger.WriteLine($"GetWindows: cannot read window property ({exc.ErrorCode:X})", exc);
 					}
+					finally
+					{
+						if (window is not null && Marshal.IsComObject(window))
+						{
+							Marshal.ReleaseComObject(window);
+						}
+					}
 				}
+
+				(e as IDisposable)?.Dispose();
+			}
+
+			if (allWindows is not null && Marshal.IsComObject(allWindows))
+			{
+				Marshal.ReleaseComObject(allWindows);
 			}
 
 			return windows;
