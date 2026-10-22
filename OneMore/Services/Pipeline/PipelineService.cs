@@ -105,13 +105,7 @@ namespace River.OneMoreAddIn.Pipeline
 
 
 		/// <summary>
-		/// Gets or sets the priority of the background thread.
-		/// </summary>
-		public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Lowest;
-
-
-		/// <summary>
-		/// Start the service on its own background thread.
+		/// Start the service as a background task.
 		/// </summary>
 		public void Startup()
 		{
@@ -120,19 +114,9 @@ namespace River.OneMoreAddIn.Pipeline
 			serviceToken = new CancellationTokenSource();
 			Application.ApplicationExit += OnApplicationExit;
 
-			// new thread to provide a bit of isolation
-			var thread = new Thread(async () =>
-			{
-				await Run(serviceToken.Token);
-			})
-			{
-				Name = $"{nameof(PipelineService)}Thread"
-			};
-
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.IsBackground = true;
-			thread.Priority = ThreadPriority;
-			thread.Start();
+			// run on the thread pool; an async lambda on a dedicated Thread would be async void
+			// and end that thread at the first await anyway
+			_ = Task.Run(() => Run(serviceToken.Token));
 		}
 
 

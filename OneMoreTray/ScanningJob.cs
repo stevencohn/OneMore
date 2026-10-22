@@ -207,8 +207,7 @@ namespace OneMoreTray
 
 			var service = new PipelineService(new IPipelineStage[] { new IdentityStage(), stage })
 			{
-				Mode = PipelineMode.OneShot,
-				ThreadPriority = rebuild ? ThreadPriority.BelowNormal : ThreadPriority.Lowest
+				Mode = PipelineMode.OneShot
 			};
 
 			service.Startup();

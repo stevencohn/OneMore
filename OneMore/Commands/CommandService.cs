@@ -68,105 +68,76 @@ namespace River.OneMoreAddIn
 
 			logger.WriteLine("Startup: starting command service");
 
-			var thread = new Thread(async () =>
+			ServiceLoop.Start(nameof(CommandService), logger, () => 0, ListenOnce);
+		}
+
+
+		private async Task ListenOnce(CancellationToken token)
+		{
+			using var server = CreateSecuredPipe();
+
+			await server.WaitForConnectionAsync(token);
+
+			var buffer = new byte[MaxBytes];
+			var bytesRead = 0;
+
+			// A client that connects but never writes would wedge the listener
+			// forever; the read timeout unblocks it and lets the loop continue.
+			using var cts = CancellationTokenSource.CreateLinkedTokenSource(token);
+			cts.CancelAfter(TimeSpan.FromSeconds(ReadTimeoutSeconds));
+			try
 			{
-				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
-				// don't fall into an infinite loop. If it somehow miraculously recovers then
-				// errors is reset back to zero and normal processing continues...
+				bytesRead = await server.ReadAsync(buffer, 0, MaxBytes, cts.Token);
+			}
+			catch (OperationCanceledException) when (!token.IsCancellationRequested)
+			{
+				logger.WriteLine("pipe read timed out");
+				return;
+			}
 
-				var errors = 0;
-				while (errors < 5)
+			var data = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim((char)0);
+
+			if (!string.IsNullOrEmpty(data) && data.StartsWith(CliProtocol))
+			{
+				// CLI request: process synchronously so we can write the response
+				// back before disconnecting. The server pipe stays open until the
+				// response is flushed and drained.
+				try
 				{
-					try
-					{
-						string data = null;
-
-						using var server = CreateSecuredPipe();
-
-						//logger.WriteLine($"command pipe started {pipe}");
-						await server.WaitForConnectionAsync();
-
-						var buffer = new byte[MaxBytes];
-						var bytesRead = 0;
-
-						// A client that connects but never writes would wedge the listener
-						// forever; the read timeout unblocks it and lets the loop continue.
-						using var cts = new CancellationTokenSource(
-							TimeSpan.FromSeconds(ReadTimeoutSeconds));
-						try
-						{
-							bytesRead = await server.ReadAsync(buffer, 0, MaxBytes, cts.Token);
-						}
-						catch (OperationCanceledException)
-						{
-							logger.WriteLine("pipe read timed out");
-							continue;
-						}
-
-						data = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim((char)0);
-						//logger.WriteLine($"pipe received [{data}]");
-
-						if (!string.IsNullOrEmpty(data) && data.StartsWith(CliProtocol))
-						{
-							// CLI request: process synchronously so we can write the response
-							// back before disconnecting. The server pipe stays open until the
-							// response is flushed and drained.
-							errors = 0;
-							try
-							{
-								await InvokeCliCommand(data, server);
-							}
-							catch (Exception exc)
-							{
-								logger.WriteLine("error handling CLI command", exc);
-								try { await WriteCliResponse(server, $"ERR:{exc.Message}"); }
-								catch { /* best effort */ }
-							}
-
-							server.Disconnect();
-							server.Close();
-						}
-						else
-						{
-							// Existing onemore:// protocol: disconnect immediately then fire
-							// a worker thread (fire-and-forget, no response).
-							server.Disconnect();
-							server.Close();
-
-							if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
-							{
-								// isolate work into its own thread so any uncaught exceptions
-								// won't tip over the service thread...
-
-								var worker = new Thread(async () => await InvokeCommand(data))
-								{
-									Name = $"{nameof(CommandService)}WorkerThread"
-								};
-
-								worker.SetApartmentState(ApartmentState.STA);
-								worker.IsBackground = true;
-								worker.Start();
-
-								errors = 0;
-							}
-						}
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"pipe exception {errors}", exc);
-						errors++;
-					}
+					await InvokeCliCommand(data, server);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error handling CLI command", exc);
+					try { await WriteCliResponse(server, $"ERR:{exc.Message}"); }
+					catch { /* best effort */ }
 				}
 
-				logger.WriteLine("pipe no longer listening; check for exceptions above");
-			})
+				server.Disconnect();
+				server.Close();
+			}
+			else
 			{
-				Name = $"{nameof(CommandService)}Thread"
-			};
+				// Existing onemore:// protocol: disconnect immediately then fire
+				// a worker thread (fire-and-forget, no response).
+				server.Disconnect();
+				server.Close();
 
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.IsBackground = true;
-			thread.Start();
+				if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
+				{
+					// isolate work into its own thread so any uncaught exceptions
+					// won't tip over the service thread...
+
+					var worker = new Thread(async () => await InvokeCommand(data))
+					{
+						Name = $"{nameof(CommandService)}WorkerThread"
+					};
+
+					worker.SetApartmentState(ApartmentState.STA);
+					worker.IsBackground = true;
+					worker.Start();
+				}
+			}
 		}
 
 

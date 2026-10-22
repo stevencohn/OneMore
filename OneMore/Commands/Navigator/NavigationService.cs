@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Threading;
 	using System.Threading.Tasks;
 
 
@@ -71,39 +70,8 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine("Startup: starting navigation service");
 
-			var thread = new Thread(async () =>
-			{
-				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
-				// don't fall into an infinite loop. If it somehow miraculously recovers then
-				// errors is reset back to zero and normal processing continues...
-
-				var errors = 0;
-				while (errors < 5)
-				{
-					try
-					{
-						await Scan();
-						errors = 0;
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"navigation service exception {errors}", exc);
-						errors++;
-					}
-
-					await Task.Delay(pollingInterval);
-				}
-
-				logger.WriteLine("navigation service has stopped; check for exceptions above");
-			})
-			{
-				Name = $"{nameof(NavigationService)}Thread"
-			};
-
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.IsBackground = true;
-			thread.Priority = ThreadPriority.BelowNormal;
-			thread.Start();
+			ServiceLoop.Start(
+				nameof(NavigationService), logger, () => pollingInterval, _ => Scan());
 		}
 
 

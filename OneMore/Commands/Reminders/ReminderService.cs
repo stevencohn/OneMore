@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.IO;
 	using System.Linq;
-	using System.Threading;
 	using System.Threading.Tasks;
 	using Windows.UI.Notifications;
 	using Resx = Properties.Resources;
@@ -24,39 +23,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.WriteLine("Startup: starting reminder service");
 
-			var thread = new Thread(async () =>
-			{
-				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
-				// don't fall into an infinite loop. If it somehow miraculously recovers then
-				// errors is reset back to zero and normal processing continues...
-
-				var errors = 0;
-				while (errors < 5)
-				{
-					try
-					{
-						await Scan();
-						errors = 0;
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"reminder service exception {errors}", exc);
-						errors++;
-					}
-
-					await Task.Delay(RemindScheduler.SleepyTime);
-				}
-
-				logger.WriteLine("reminder service has stopped; check for exceptions above");
-			})
-			{
-				Name = $"{nameof(ReminderService)}Thread"
-			};
-
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.IsBackground = true;
-			thread.Priority = ThreadPriority.BelowNormal;
-			thread.Start();
+			ServiceLoop.Start(
+				nameof(ReminderService), logger, () => RemindScheduler.SleepyTime, _ => Scan());
 		}
 
 
