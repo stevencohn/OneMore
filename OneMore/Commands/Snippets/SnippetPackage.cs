@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string KindMeta = "omSnippetKind";
 		private const string DateTimePattern = @"{=DATETIME\(([^""]+)\)}";
+		private const string QuarterPattern = @"{=QUARTER}";
 		public const string BodyTag = "{SNIPPET_BODY}";
 
 
@@ -309,7 +310,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Replaces date/time tokens within the text of the snippet content
+		/// Replaces date/time and quarter tokens within the text of the snippet content
 		/// </summary>
 		public static void ExpandDateTimes(XElement content)
 		{
@@ -331,7 +332,20 @@ namespace River.OneMoreAddIn.Commands
 						return DateTime.Now.ToString();
 					}
 				}, RegexOptions.IgnoreCase);
+
+				cdata.Value = ExpandQuarter(cdata.Value);
 			}
+		}
+
+
+		/// <summary>
+		/// Replaces {=QUARTER} tokens with the current calendar quarter, e.g. "Q1"
+		/// </summary>
+		public static string ExpandQuarter(string text)
+		{
+			return Regex.Replace(text, QuarterPattern,
+				_ => $"Q{((DateTime.Now.Month - 1) / 3) + 1}",
+				RegexOptions.IgnoreCase);
 		}
 
 
