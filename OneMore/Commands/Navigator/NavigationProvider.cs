@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -59,6 +59,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						watcher.EnableRaisingEvents = false;
 						watcher.Changed -= NavigationHandler;
+						watcher.Error -= ErrorHandler;
 						watcher.Dispose();
 						watcher = null;
 					}
@@ -95,7 +96,7 @@ namespace River.OneMoreAddIn.Commands
 						NotifyFilter = NotifyFilters.LastWrite
 					};
 					watcher.Changed += NavigationHandler;
-					watcher.Error += Watcher_Error;
+					watcher.Error += ErrorHandler;
 					watcher.EnableRaisingEvents = true;
 				}
 				watcherRefCount++;
@@ -110,27 +111,22 @@ namespace River.OneMoreAddIn.Commands
 				{
 					watcher.EnableRaisingEvents = false;
 					watcher.Changed -= NavigationHandler;
-					watcher.Error -= Watcher_Error;
+					watcher.Error -= ErrorHandler;
 					watcher.Dispose();
 					watcher = null;
 				}
 			}
 		}
 
-		private void Watcher_Error(object sender, ErrorEventArgs e)
-		{
-			watcher.EnableRaisingEvents = false;
-			logger.WriteLine("error in FileSystemWatcher, resetting EnableRaisingEvents", e.GetException());
-			watcher.EnableRaisingEvents = true;
-		}
-
 
 		private async void NavigationHandler(object sender, FileSystemEventArgs e)
 		{
+			// async void on a thread-pool callback; any escaping exception would take down
+			// the process so everything must be caught here
+			await semapub.WaitAsync();
+
 			try
 			{
-				await semapub.WaitAsync();
-
 				// time-check will prevent known bug/feature where FileSystemWatcher.Changed
 				// seems to raise duplicate events within just a couple of ticks of each other;
 				// throttle should be less than NavigationService.PollingInterval
@@ -142,9 +138,37 @@ namespace River.OneMoreAddIn.Commands
 					lastWrite = time;
 				}
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error handling navigation file change", exc);
+			}
 			finally
 			{
 				semapub.Release();
+			}
+		}
+
+
+		private void ErrorHandler(object sender, ErrorEventArgs e)
+		{
+			logger.WriteLine(
+				"error in FileSystemWatcher, resetting EnableRaisingEvents", e.GetException());
+
+			// watcher may be nulled/disposed concurrently by Dispose or the Navigated remove accessor
+			var current = watcher;
+			if (current is null)
+			{
+				return;
+			}
+
+			try
+			{
+				current.EnableRaisingEvents = false;
+				current.EnableRaisingEvents = true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error resetting FileSystemWatcher", exc);
 			}
 		}
 
