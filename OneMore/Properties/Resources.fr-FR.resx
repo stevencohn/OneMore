@@ -7092,6 +7092,10 @@ Des modifications incorrectes peuvent entraîner la perte de données.
     <value>Cet extrait a été enregistré dans l'ancien format et ne peut pas être modifié. Insérez-le sur une page, modifiez-le ici et enregistrez-le à nouveau en tant que nouvel extrait.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Dernière modification</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Mes extraits</value>
     <comment>tab caption</comment>

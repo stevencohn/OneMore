@@ -7084,6 +7084,10 @@ Sei sicuro di voler continuare?</value>
     <value>Questo snippet è stato salvato nel formato precedente e non può essere modificato. Inseriscilo in una pagina, modificalo lì e salvalo di nuovo come nuovo snippet.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Ultima modifica</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>I miei frammenti</value>
     <comment>tab caption</comment>

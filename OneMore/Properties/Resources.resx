@@ -7120,6 +7120,10 @@ Are you sure you want to continue?</value>
     <value>This snippet was saved in the legacy format and cannot be edited. Insert it on a page, edit it there, and save it again as a new snippet.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Last Modified</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>My Snippets</value>
     <comment>tab caption</comment>

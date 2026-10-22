@@ -7081,6 +7081,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Ten fragment został zapisany w starszym formacie i nie można go edytować. Wstaw go na stronę, edytuj tam i zapisz ponownie jako nowy fragment.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Ostatnia modyfikacja</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Moje fragmenty</value>
     <comment>tab caption</comment>

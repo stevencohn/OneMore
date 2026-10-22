@@ -7099,6 +7099,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>此片段以旧格式保存，无法编辑。将其插入页面上，在那里进行编辑，然后再次将其另存为新片段。</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>最后修改时间</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>我的片段</value>
     <comment>tab caption</comment>

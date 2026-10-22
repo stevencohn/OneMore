@@ -29,8 +29,10 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new River.OneMoreAddIn.UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.modifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.editButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -59,7 +61,8 @@ namespace River.OneMoreAddIn.Settings
 			this.gridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameColumn});
+            this.nameColumn,
+            this.modifiedColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.gridView.Location = new System.Drawing.Point(0, 125);
@@ -82,6 +85,20 @@ namespace River.OneMoreAddIn.Settings
 			this.nameColumn.HeaderText = "Name";
 			this.nameColumn.MinimumWidth = 100;
 			this.nameColumn.Name = "nameColumn";
+			//
+			// modifiedColumn
+			//
+			this.modifiedColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.modifiedColumn.DefaultCellStyle = dataGridViewCellStyle2;
+			this.modifiedColumn.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.modifiedColumn.HeaderCell.Style.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.modifiedColumn.HeaderText = "Last Modified";
+			this.modifiedColumn.MinimumWidth = 100;
+			this.modifiedColumn.Name = "modifiedColumn";
+			this.modifiedColumn.ReadOnly = true;
 			//
 			// introBox
 			//
@@ -279,6 +296,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreMenuItem renameButton;
 		private UI.MoreMenuItem editButton;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn modifiedColumn;
 		private UI.MorePanel optionsPanel;
 		private UI.MoreCheckBox codeStyleBox;
 		private UI.MoreTabControl tabs;

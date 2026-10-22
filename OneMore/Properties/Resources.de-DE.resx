@@ -7082,6 +7082,10 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Dieses Snippet wurde im alten Format gespeichert und kann nicht bearbeitet werden. Fügen Sie es auf einer Seite ein, bearbeiten Sie es dort und speichern Sie es erneut als neues Snippet.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Zuletzt geändert</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Meine Ausschnitte</value>
     <comment>tab caption</comment>
