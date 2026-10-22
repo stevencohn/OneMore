@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.UI
 
 			DrawMode = DrawMode.OwnerDrawVariable;
 			Sorted = true;
-			PreviewFontSize = 14;
+			PreviewFontSize = 11;
 
 			CalculateLayout();
 		}
@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.UI
 			base.Dispose(disposing);
 		}
 
-		[Category("Appearance"), DefaultValue(14)]
+		[Category("Appearance"), DefaultValue(11)]
 		public int PreviewFontSize
 		{
 			get { return previewFontSize; }
