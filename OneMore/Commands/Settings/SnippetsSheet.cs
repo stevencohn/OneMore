@@ -23,6 +23,13 @@ namespace River.OneMoreAddIn.Settings
 			public string Name { get; set; }
 			public string Path { get; set; }
 			public DateTime Modified { get; set; }
+
+			// legacy .snp snippets are suffixed so they're distinguishable from .snpx
+			public bool IsLegacy => !SnippetsProvider.IsXml(Path);
+
+			public string DisplayName => IsLegacy
+				? $"{Name}{SnippetsProvider.HtmlExtension}"
+				: Name;
 		}
 
 
@@ -71,9 +78,10 @@ namespace River.OneMoreAddIn.Settings
 			// update my styles gridview
 
 			gridView.AutoGenerateColumns = false;
-			gridView.Columns[0].DataPropertyName = "Name";
-			gridView.Columns[1].DataPropertyName = "Modified";
+			gridView.Columns[0].DataPropertyName = nameof(Snippet.DisplayName);
+			gridView.Columns[1].DataPropertyName = nameof(Snippet.Modified);
 			gridView.Columns[1].DefaultCellStyle.Format = "g";
+			gridView.CellFormatting += FormatLegacyRow;
 
 			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
@@ -142,6 +150,21 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			return list;
+		}
+
+
+		private void FormatLegacyRow(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			if (snippets is null || e.RowIndex < 0 || e.RowIndex >= snippets.Count)
+			{
+				return;
+			}
+
+			if (snippets[e.RowIndex].IsLegacy)
+			{
+				// selection keeps its normal highlight colors so it stays readable
+				e.CellStyle.ForeColor = UI.ThemeManager.Instance.GetColor("GrayText");
+			}
 		}
 
 
