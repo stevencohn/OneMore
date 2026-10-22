@@ -549,7 +549,9 @@ namespace River.OneMoreAddIn.Commands
 			backButton.Visible = forwardButton.Visible = homeButton.Visible = resultsView.HasHits;
 			UpdateHistoryButtons();
 			indexButton.Visible = moveButton.Visible = copyButton.Visible = resultsView.HasHits;
-			resultsHeaderPanel.Visible = resultsView.HasHits;
+
+			// a single page has no multi-page results to select, so the line stays collapsed
+			resultsHeaderPanel.Visible = resultsView.HasHits && scopeBox.SelectedIndex != pageScopeIndex;
 
 			if (!resultsView.HasHits && lastFinder != null)
 			{
