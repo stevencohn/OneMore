@@ -6093,7 +6093,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>新しいスニペットの保存</value>
+    <value>スニペットの保存</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7063,6 +7063,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>このコマンドを使用する前にグリッド線を有効にしてください</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>スニペットの値</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>ボックスの幅:</value>
     <comment>label</comment>
@@ -7078,6 +7082,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>ボックスオプションとマイスニペットを管理する</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>このスニペットは従来の形式で保存されているため、編集できません。ページに挿入し、そこで編集して、新しいスニペットとして再度保存します。</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>私のスニペット</value>

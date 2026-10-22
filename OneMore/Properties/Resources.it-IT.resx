@@ -6090,7 +6090,7 @@ Scheda Aiuto</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Salva nuovo frammento</value>
+    <value>Salva frammento</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7060,6 +7060,10 @@ Sei sicuro di voler continuare?</value>
     <value>Abilita le linee della griglia prima di utilizzare questo comando</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Valori del frammento</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Larghezza della scatola:</value>
     <comment>label</comment>
@@ -7075,6 +7079,10 @@ Sei sicuro di voler continuare?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Gestisci le opzioni della casella e I miei frammenti</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>Questo snippet è stato salvato nel formato precedente e non può essere modificato. Inseriscilo in una pagina, modificalo lì e salvalo di nuovo come nuovo snippet.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>I miei frammenti</value>

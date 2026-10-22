@@ -6099,7 +6099,7 @@ Onglet Aide</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Enregistrer le nouvel extrait</value>
+    <value>Enregistrer l'extrait</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7068,6 +7068,10 @@ Des modifications incorrectes peuvent entraîner la perte de données.
     <value>Activer les lignes de quadrillage avant d'utiliser cette commande</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Valeurs des extraits</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Largeur de la boîte :</value>
     <comment>label</comment>
@@ -7083,6 +7087,10 @@ Des modifications incorrectes peuvent entraîner la perte de données.
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Gérer les options de la boîte et Mes extraits</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>Cet extrait a été enregistré dans l'ancien format et ne peut pas être modifié. Insérez-le sur une page, modifiez-le ici et enregistrez-le à nouveau en tant que nouvel extrait.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Mes extraits</value>

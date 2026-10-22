@@ -14205,7 +14205,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save New Snippet.
+        ///   Looks up a localized string similar to Save Snippet.
         /// </summary>
         internal static string ribSaveSnippetButton_Label {
             get {
@@ -16435,6 +16435,15 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to This snippet was saved in the legacy format and cannot be edited. Insert it on a page, edit it there, and save it again as a new snippet..
+        /// </summary>
+        internal static string SnippetsSheet_LegacyNotEditable {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_LegacyNotEditable", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Manage box options and My Snippets.
         /// </summary>

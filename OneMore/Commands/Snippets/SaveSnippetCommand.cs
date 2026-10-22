@@ -45,6 +45,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var dialog = new SaveSnippetDialog();
+
+			// page opened by SnippetEditor; seed the dialog with the original name
+			var snippetName = page.GetMetaContent(Models.MetaNames.Snippet);
+			if (!string.IsNullOrWhiteSpace(snippetName))
+			{
+				dialog.SnippetName = snippetName;
+			}
+
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;

@@ -21,6 +21,11 @@ namespace River.OneMoreAddIn.Commands
 			dialog.ActivateSheet(SettingsDialog.Sheets.Snippets);
 			dialog.ShowDialog(owner);
 
+			if (!string.IsNullOrEmpty(dialog.SnippetToEdit))
+			{
+				await new SnippetEditor().Open(dialog.SnippetToEdit);
+			}
+
 			await Task.Yield();
 		}
 	}

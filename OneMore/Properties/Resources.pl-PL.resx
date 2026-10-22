@@ -6088,7 +6088,7 @@ Zakładka Pomoc</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Zapisz nowy fragment</value>
+    <value>Zapisz fragment</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7057,6 +7057,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Włącz linie siatki przed użyciem tego polecenia</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Wartości fragmentów</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Szerokość pudełka:</value>
     <comment>label</comment>
@@ -7072,6 +7076,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj opcjami skrzynek i Moimi fragmentami</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>Ten fragment został zapisany w starszym formacie i nie można go edytować. Wstaw go na stronę, edytuj tam i zapisz ponownie jako nowy fragment.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Moje fragmenty</value>
