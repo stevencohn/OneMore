@@ -6549,6 +6549,10 @@ Help Tab</value>
     <value>Save Snippet</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Snippet Values</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
     <value>A snippet named "{0}" already exists. Do you want to overwrite it?</value>
     <comment>confirmation question</comment>

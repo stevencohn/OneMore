@@ -16400,6 +16400,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snippet Values.
+        /// </summary>
+        internal static string SnippetPromptDialog_Text {
+            get {
+                return ResourceManager.GetString("SnippetPromptDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Box width:.
         /// </summary>
         internal static string SnippetsSheet_boxWidthLabel_Text {

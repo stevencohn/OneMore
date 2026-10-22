@@ -1049,7 +1049,7 @@
     <Compile Include="Commands\Snippets\ManageSnippetsCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\SnippetPackage.cs" />
-    <Compile Include="Commands\Snippets\SaveSnippetDialog.cs">
+    <Compile Include="Commands\Snippets\SnippetMacros.cs" />    <Compile Include="Commands\Snippets\SaveSnippetDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Snippets\SaveSnippetDialog.Designer.cs">
