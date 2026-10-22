@@ -361,23 +361,24 @@ namespace River.OneMoreAddIn.Commands
 
 			SetState(false);
 
+			// read control values on the UI thread before starting the worker
+			var scanner = (Scanner)scannerBox.SelectedItem;
+			var dpi = int.Parse(resolutionBox.SelectedItem.ToString().Split(' ')[0]);
+			var props = new ScannerManager.ScanProperties
+			{
+				UseFeeder = ((ScanSource)sourceBox.SelectedItem).Bitmask == ScanHandling.Feeder,
+				ColorIntent = 1 << colorBox.SelectedIndex,
+				Brightness = (int)brightnessBox.Value * 10,
+				Contrast = (int)contrastBox.Value * 10,
+				HorizontalResolution = dpi,
+				VerticalResolution = dpi
+			};
+
 			Task.Run(() =>
 			{
 				try
 				{
-					var scanner = (Scanner)scannerBox.SelectedItem;
 					using var manager = new ScannerManager(scanner.DeviceID);
-
-					var dpi = int.Parse(resolutionBox.SelectedItem.ToString().Split(' ')[0]);
-					var props = new ScannerManager.ScanProperties
-					{
-						UseFeeder = ((ScanSource)sourceBox.SelectedItem).Bitmask == ScanHandling.Feeder,
-						ColorIntent = 1 << colorBox.SelectedIndex,
-						Brightness = (int)brightnessBox.Value * 10,
-						Contrast = (int)contrastBox.Value * 10,
-						HorizontalResolution = dpi,
-						VerticalResolution = dpi
-					};
 
 					ImageData = manager.Scan(props);
 					ImageHeight = manager.ImageHeight;
@@ -396,16 +397,44 @@ namespace River.OneMoreAddIn.Commands
 				{
 					logger.WriteLine(exc);
 
-					progressBar.Visible = false;
-					okButton.Visible = true;
-					SetState(true);
+					InvokeIfAlive(() =>
+					{
+						progressBar.Visible = false;
+						okButton.Visible = true;
+						SetState(true);
+					});
 				}
 				finally
 				{
-					timer.Stop();
-					timer.Dispose();
+					InvokeIfAlive(() =>
+					{
+						timer.Stop();
+						timer.Dispose();
+					});
 				}
 			});
+		}
+
+
+		private void InvokeIfAlive(Action action)
+		{
+			if (IsDisposed || !IsHandleCreated)
+			{
+				return;
+			}
+
+			try
+			{
+				Invoke(action);
+			}
+			catch (ObjectDisposedException)
+			{
+				// dialog closed while scanning
+			}
+			catch (InvalidOperationException)
+			{
+				// handle destroyed while scanning
+			}
 		}
 
 		private void MoveSlider(object sender, EventArgs args)
