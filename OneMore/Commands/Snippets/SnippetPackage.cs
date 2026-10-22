@@ -10,7 +10,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
@@ -27,9 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		public const string KindTable = "table";
 
 		private const string KindMeta = "omSnippetKind";
-		private const string DateTimePattern = @"{=DATETIME\(([^""]+)\)}";
-		private const string QuarterPattern = @"{=QUARTER}";
-		public const string BodyTag = "{SNIPPET_BODY}";
+		public const string BodyTag = SnippetMacros.BodyTag;
 
 
 		//========================================================================================
@@ -310,9 +307,10 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Replaces date/time and quarter tokens within the text of the snippet content
+		/// Replaces macros such as {=DATETIME(fmt)} and {=QUARTER} within the text of the
+		/// snippet content
 		/// </summary>
-		public static void ExpandDateTimes(XElement content)
+		public static void ExpandMacros(XElement content, SnippetMacros macros)
 		{
 			foreach (var cdata in content.DescendantNodes().OfType<XCData>().ToList())
 			{
@@ -321,31 +319,8 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				cdata.Value = Regex.Replace(cdata.Value, DateTimePattern, (m) =>
-				{
-					try
-					{
-						return DateTime.Now.ToString(m.Groups[1].Value);
-					}
-					catch
-					{
-						return DateTime.Now.ToString();
-					}
-				}, RegexOptions.IgnoreCase);
-
-				cdata.Value = ExpandQuarter(cdata.Value);
+				cdata.Value = macros.Expand(cdata.Value);
 			}
-		}
-
-
-		/// <summary>
-		/// Replaces {=QUARTER} tokens with the current calendar quarter, e.g. "Q1"
-		/// </summary>
-		public static string ExpandQuarter(string text)
-		{
-			return Regex.Replace(text, QuarterPattern,
-				_ => $"Q{((DateTime.Now.Month - 1) / 3) + 1}",
-				RegexOptions.IgnoreCase);
 		}
 
 

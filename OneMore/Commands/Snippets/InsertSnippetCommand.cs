@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -18,8 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertSnippetCommand : Command
 	{
-		private const string DateTimePattern = @"{=DATETIME\(([^""]+)\)}";
-		private const string BodyTag = "{SNIPPET_BODY}";
+		private const string BodyTag = SnippetMacros.BodyTag;
 
 
 		public InsertSnippetCommand()
@@ -31,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var path = args[0] as string;
 			string snippet = null;
+			SnippetMacros macros = null;
 			var isXml = false;
 
 			var provider = new SnippetsProvider();
@@ -59,6 +58,13 @@ namespace River.OneMoreAddIn.Commands
 					snippet = await provider.LoadByName(path);
 					if (!string.IsNullOrEmpty(snippet))
 					{
+						// prompt before touching the page so a cancel leaves it unchanged
+						macros = await SnippetMacros.Create(one, page, snippet, owner);
+						if (macros is null)
+						{
+							return;
+						}
+
 						// remove placeholder
 						var updated = new PageEditor(page).EditSelected((s) =>
 						{
@@ -85,6 +91,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				isXml = SnippetsProvider.IsXml(path);
 				snippet = await provider.Load(path);
+				if (!string.IsNullOrWhiteSpace(snippet))
+				{
+					macros = await SnippetMacros.Create(one, page, snippet, owner);
+					if (macros is null)
+					{
+						return;
+					}
+				}
 			}
 
 			if (string.IsNullOrWhiteSpace(snippet))
@@ -95,7 +109,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (isXml)
 			{
-				if (!await InsertXml(one, page, snippet))
+				if (await InsertXml(one, page, snippet, macros))
+				{
+					macros.CommitCounters();
+				}
+				else
 				{
 					ShowError(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
 				}
@@ -108,13 +126,14 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				snippet = await Expand(page, snippet);
+				snippet = await Expand(page, snippet, macros);
 
 				await clippy.Clear();
 				var success = await clippy.SetHtml(snippet);
 				if (success)
 				{
 					await ClipboardProvider.Paste();
+					macros.CommitCounters();
 				}
 				else
 				{
@@ -136,7 +155,8 @@ namespace River.OneMoreAddIn.Commands
 		/// Inserts a snippet stored as page XML directly into the page, bypassing the
 		/// clipboard so all formatting is preserved.
 		/// </summary>
-		private async Task<bool> InsertXml(OneNote one, Page page, string snippet)
+		private async Task<bool> InsertXml(
+			OneNote one, Page page, string snippet, SnippetMacros macros)
 		{
 			var content = SnippetPackage.Parse(snippet, page.Namespace, out var kind, out var root);
 			if (content is null || !content.HasElements)
@@ -144,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			SnippetPackage.ExpandDateTimes(content);
+			SnippetPackage.ExpandMacros(content, macros);
 			SnippetPackage.MergeDefinitions(page, root, content);
 
 			XElement anchor = null;
@@ -184,24 +204,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<string> Expand(Page page, string snippet)
+		private async Task<string> Expand(Page page, string snippet, SnippetMacros macros)
 		{
-			// process datetime patterns
-			snippet = Regex.Replace(snippet, DateTimePattern, (m) =>
-			{
-				var format = m.Groups[1].Value;
-				try
-				{
-					return System.DateTime.Now.ToString(format);
-				}
-				catch
-				{
-					// invalid format, return default datetime formatted string
-					return System.DateTime.Now.ToString();
-				}
-			}, RegexOptions.IgnoreCase);
-
-			snippet = SnippetPackage.ExpandQuarter(snippet);
+			snippet = macros.Expand(snippet);
 
 			if (snippet.ContainsICIC(BodyTag))
 			{
