@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -47,6 +48,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		private string pageId;
 		private int todoIndex = -1;
 		private List<string> todos;
+		private Dictionary<string, XElement> savedEntries;
 
 
 		public PageTocGenerator(TocParameters parameters, string pageId = null)
@@ -98,6 +100,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 			logger.WriteLine($"{op} toc for page {page.Title}");
 
 			PageNamespace.Set(ns);
+
+			// a refresh preserves the user's formatting of existing entries
+			if (refreshing)
+			{
+				savedEntries = CaptureEntries();
+			}
+
 			var container = LocateBestContainerOE();
 
 			var content = new XElement(ns + "OEChildren");
@@ -381,14 +390,16 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				else if (heading.Level == level)
 				{
 					var text = heading.Text;
+					string clean = null;
 					if (!string.IsNullOrEmpty(heading.Link))
 					{
 						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-						var clean = CleanHeadingText(heading.Text);
+						clean = CleanHeadingText(heading.Text);
 
 						text = $"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>";
 					}
 
+					var todoSuffix = string.Empty;
 					if (todoIndex >= 0)
 					{
 						var incomplete = heading.Root.Elements(ns + "Tag")
@@ -396,12 +407,22 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 						if (incomplete > 0)
 						{
-							text = $"{text} <span style='font-family:\"Segoe UI Emoji\"'>{todos[todoIndex]}</span>";
+							todoSuffix = $" <span style='font-family:\"Segoe UI Emoji\"'>{todos[todoIndex]}</span>";
+							text = $"{text}{todoSuffix}";
 						}
 					}
 
 					var textColor = dark ? "#FFFFFF" : "#000000";
-					container.Add(new Paragraph(text).SetStyle($"color:{textColor}"));
+					var paragraph = new Paragraph(text).SetStyle($"color:{textColor}");
+
+					if (savedEntries is not null && clean is not null &&
+						LinkKey(heading.Link) is string key &&
+						savedEntries.TryGetValue(key, out var previous))
+					{
+						KeepFormatting(paragraph, previous, heading.Link, clean, todoSuffix);
+					}
+
+					container.Add(paragraph);
 				}
 				else
 				{
@@ -410,6 +431,137 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 				index++;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets the object ID of the heading targeted by the given hyperlink or markup.
+		/// </summary>
+		private static string LinkKey(string html)
+		{
+			if (string.IsNullOrEmpty(html))
+			{
+				return null;
+			}
+
+			// the GUID is shared by many objects; the short suffix after it identifies the object
+			var match = Regex.Match(html,
+				@"object-id=(\{[0-9A-Fa-f\-]+\})(?:&amp;|&)([0-9A-Fa-f]+)");
+
+			return match.Success
+				? $"{match.Groups[1].Value}&{match.Groups[2].Value}".ToUpperInvariant()
+				: null;
+		}
+
+
+		/// <summary>
+		/// Collects the entries of the existing TOC, keyed by the heading each links to,
+		/// so their user-applied formatting can be reapplied to the rebuilt entries.
+		/// </summary>
+		private Dictionary<string, XElement> CaptureEntries()
+		{
+			var entries = new Dictionary<string, XElement>();
+
+			if (FindMetaElement()?.Parent is not XElement container)
+			{
+				return entries;
+			}
+
+			foreach (var oe in container.Descendants(ns + "OE"))
+			{
+				// the first run holds the link to the heading; skip the title with its
+				// refresh links, which also has an anchor
+				var cdata = oe.Elements(ns + "T").Nodes().OfType<XCData>().FirstOrDefault();
+				if (cdata is null || cdata.Value.Contains(Toc.RefreshUri))
+				{
+					continue;
+				}
+
+				var key = LinkKey(cdata.Value);
+				if (key is not null && !entries.ContainsKey(key))
+				{
+					entries.Add(key, oe);
+				}
+			}
+
+			return entries;
+		}
+
+
+		/// <summary>
+		/// Applies the formatting of a previous TOC entry to its rebuilt replacement
+		/// while keeping the new heading text and link.
+		/// </summary>
+		private void KeepFormatting(
+			Paragraph paragraph, XElement previous, string link, string clean, string todoSuffix)
+		{
+			// paragraph-level formatting...
+
+			// NOTE: the OneNote API cannot preserve text color; it keeps bold, italic, font,
+			// font size and highlight, so a user-applied color is lost on save
+
+			foreach (var name in new[] { "style", "alignment", "quickStyleIndex" })
+			{
+				if (previous.Attribute(name) is XAttribute attr)
+				{
+					paragraph.SetAttributeValue(name, attr.Value);
+				}
+			}
+
+			// run-level formatting...
+
+			var oldRun = previous.Elements(ns + "T").FirstOrDefault();
+			var newRun = paragraph.Elements(ns + "T").FirstOrDefault();
+			if (oldRun?.FirstNode is not XCData cdata || newRun is null)
+			{
+				return;
+			}
+
+			var wrapper = cdata.GetWrapper();
+			var anchor = wrapper.Descendants("a").FirstOrDefault(
+				a => a.Attribute("href")?.Value.StartsWith("onenote:") == true);
+
+			if (anchor is null)
+			{
+				return;
+			}
+
+			anchor.SetAttributeValue("href", link);
+
+			// anything after the link is stale, such as the todo marker
+			var top = anchor;
+			while (top.Parent is not null && top.Parent != wrapper)
+			{
+				top = top.Parent;
+			}
+
+			top.NodesAfterSelf().ToList().ForEach(n => n.Remove());
+
+			// descend to the innermost element wrapping the text, which holds the formatting
+			var target = anchor;
+			while (target.Elements().Count() == 1 &&
+				target.Nodes().OfType<XText>().All(t => string.IsNullOrWhiteSpace(t.Value)))
+			{
+				target = target.Elements().First();
+			}
+
+			// CleanHeadingText returns its own "cdata" wrapper element; keep only its content
+			var content = new XCData(clean).GetWrapper();
+			if (content.Elements().Count() == 1 && content.Elements().First().Name == "cdata")
+			{
+				content = content.Elements().First();
+			}
+
+			target.ReplaceNodes(content.Nodes());
+
+			var html = string.Concat(wrapper.Nodes().Select(n => n.ToString(SaveOptions.DisableFormatting)));
+
+			foreach (var attr in oldRun.Attributes().Where(a => a.Name.LocalName != "selected"))
+			{
+				newRun.SetAttributeValue(attr.Name, attr.Value);
+			}
+
+			newRun.ReplaceNodes(new XCData($"{html}{todoSuffix}"));
 		}
 
 
