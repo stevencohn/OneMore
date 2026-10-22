@@ -597,9 +597,9 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var group in groups)
 			{
 				var name = group.Attribute("name").Value;
-				folderPath = folderPath is null ? name : Path.Combine(folderPath, name);
+				var groupPath = folderPath is null ? name : Path.Combine(folderPath, name);
 
-				await ReportAllPages(container, group, folderPath, skipId);
+				await ReportAllPages(container, group, groupPath, skipId);
 			}
 		}
 
