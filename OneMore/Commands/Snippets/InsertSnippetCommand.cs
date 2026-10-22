@@ -201,6 +201,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}, RegexOptions.IgnoreCase);
 
+			snippet = SnippetPackage.ExpandQuarter(snippet);
+
 			if (snippet.ContainsICIC(BodyTag))
 			{
 				snippet = await ExpandSnippetBody(page, snippet);
