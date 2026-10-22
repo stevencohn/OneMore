@@ -85,7 +85,8 @@ namespace River.OneMoreAddIn.Models
 				.Where(e => !e.Ancestors().Elements(Namespace + "Meta")
 					.Any(m => m.Attribute("name").Value.Equals(Toc.MetaName)));
 
-			var blocks =
+			// materialize once; the query is otherwise enumerated by Any() and again by foreach
+			var blocks = (
 				from e in candidates
 					// get the first non-empty CDATA
 				let c = e.Elements(Namespace + "T").DescendantNodes()
@@ -93,9 +94,9 @@ namespace River.OneMoreAddIn.Models
 						p.NodeType == XmlNodeType.CDATA && (((XCData)p).Value.Length > 0)) as XCData
 				where c?.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
-				select e;
+				select e).ToList();
 
-			if (blocks?.Any() == true)
+			if (blocks.Count > 0)
 			{
 				GetPageColor();
 

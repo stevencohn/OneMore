@@ -1185,7 +1185,7 @@ namespace River.OneMoreAddIn
 				PageId = pageId,
 				TitleId = page.TitleID,
 				Name = page.Root.Attribute("name")?.Value,
-				Link = GetHyperlink(page.PageId, string.Empty)
+				Link = await GetHyperlinkWithRetry(page.PageId, string.Empty)
 			};
 
 			if (sized)
@@ -1287,15 +1287,23 @@ namespace River.OneMoreAddIn
 		/// </returns>
 		public async Task<List<HierarchyNode>> GetPageBreadcrumb(string pageId = null)
 		{
-			var info = await GetPageInfo(pageId);
-			if (info is null)
+			pageId ??= CurrentPageId;
+			if (string.IsNullOrEmpty(pageId))
 			{
 				return null;
 			}
 
-			var segments = new List<HierarchyNode>();
+			// hsSelf lookup avoids fetching the full page content just to get its name/link
+			var page = GetHierarchyNode(pageId);
+			if (page is null)
+			{
+				return null;
+			}
 
-			var id = GetParent(info.PageId);
+			// single walk up the ancestors; collect then reverse to avoid O(n^2) inserts
+			var segments = new List<HierarchyNode> { page };
+
+			var id = GetParent(pageId);
 			while (!string.IsNullOrEmpty(id))
 			{
 				var node = GetHierarchyNode(id);
@@ -1304,18 +1312,11 @@ namespace River.OneMoreAddIn
 					break;
 				}
 
-				segments.Insert(0, node);
+				segments.Add(node);
 				id = GetParent(node.Id);
 			}
 
-			segments.Add(new HierarchyNode
-			{
-				Id = info.PageId,
-				NodeType = NodeType.Page,
-				Name = info.Name,
-				Link = info.Link
-			});
-
+			segments.Reverse();
 			return segments;
 		}
 
