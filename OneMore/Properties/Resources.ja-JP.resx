@@ -7087,6 +7087,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>このスニペットは従来の形式で保存されているため、編集できません。ページに挿入し、そこで編集して、新しいスニペットとして再度保存します。</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>最終更新日</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>私のスニペット</value>
     <comment>tab caption</comment>

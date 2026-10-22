@@ -7081,6 +7081,10 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Dit fragment is opgeslagen in de oude indeling en kan niet worden bewerkt. Voeg het in op een pagina, bewerk het daar en sla het opnieuw op als een nieuw fragment.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Laatst gewijzigd</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Mijn fragmenten</value>
     <comment>tab caption</comment>

@@ -16436,6 +16436,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Modified.
+        /// </summary>
+        internal static string SnippetsSheet_modifiedColumn {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_modifiedColumn", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to This snippet was saved in the legacy format and cannot be edited. Insert it on a page, edit it there, and save it again as a new snippet..
         /// </summary>
         internal static string SnippetsSheet_LegacyNotEditable {

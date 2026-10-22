@@ -7080,6 +7080,10 @@ Estás seguro de que quieres continuar?</value>
     <value>Este fragmento se guardó en el formato heredado y no se puede editar. Insértelo en una página, edítelo allí y guárdelo nuevamente como un nuevo fragmento.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Última modificación</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Mis fragmentos</value>
     <comment>tab caption</comment>

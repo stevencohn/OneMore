@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			public string Name { get; set; }
 			public string Path { get; set; }
+			public DateTime Modified { get; set; }
 		}
 
 
@@ -56,6 +57,7 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
+				modifiedColumn.HeaderText = Resx.SnippetsSheet_modifiedColumn;
 				editButton.ToolTipText = Resx.word_Edit;
 				renameButton.ToolTipText = Resx.word_Rename;
 				deleteButton.ToolTipText = Resx.word_Delete;
@@ -70,6 +72,8 @@ namespace River.OneMoreAddIn.Settings
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
+			gridView.Columns[1].DataPropertyName = "Modified";
+			gridView.Columns[1].DefaultCellStyle.Format = "g";
 
 			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
@@ -132,7 +136,8 @@ namespace River.OneMoreAddIn.Settings
 				list.Add(new Snippet
 				{
 					Name = Path.GetFileNameWithoutExtension(path),
-					Path = path
+					Path = path,
+					Modified = File.GetLastWriteTime(path)
 				});
 			}
 

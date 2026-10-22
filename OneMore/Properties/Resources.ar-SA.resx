@@ -7092,6 +7092,10 @@ ISO-code then comma then language name</comment>
     <value>تم حفظ هذا المقتطف بالتنسيق القديم ولا يمكن تعديله. قم بإدراجه في إحدى الصفحات، ثم قم بتحريره هناك، ثم احفظه مرة أخرى كمقتطف جديد.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>آخر تعديل</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>مقتطفاتي</value>
     <comment>tab caption</comment>

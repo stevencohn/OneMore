@@ -7081,6 +7081,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>קטע זה נשמר בפורמט מדור קודם ולא ניתן לעריכה. הכנס אותו לדף, ערוך אותו שם ושמור אותו שוב כקטע חדש.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>שונה לאחרונה</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>הקטעים שלי</value>
     <comment>tab caption</comment>

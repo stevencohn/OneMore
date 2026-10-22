@@ -7081,6 +7081,10 @@ Você tem certeza que quer continuar?</value>
     <value>Este snippet foi salvo no formato legado e não pode ser editado. Insira-o em uma página, edite-o e salve-o novamente como um novo snippet.</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_modifiedColumn" xml:space="preserve">
+    <value>Última modificação</value>
+    <comment>column header</comment>
+  </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Meus trechos</value>
     <comment>tab caption</comment>
