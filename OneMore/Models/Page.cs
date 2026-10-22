@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn.Models
 				.FirstOrDefault();
 
 			element ??= Root.Elements(Namespace + "Outline")
-				.Last()
+				.LastOrDefault()?
 				.Elements(Namespace + "Size")
 				.FirstOrDefault();
 
