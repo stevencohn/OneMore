@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Net.Http;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
@@ -222,7 +223,11 @@ namespace River.OneMoreAddIn.Commands
 
 				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 				using var response = await client
-					.GetAsync(new Uri(url, UriKind.Absolute), source.Token).ConfigureAwait(false);
+					.GetAsync(
+						new Uri(url, UriKind.Absolute),
+						HttpCompletionOption.ResponseHeadersRead,
+						source.Token)
+					.ConfigureAwait(false);
 
 				watch.Stop();
 
