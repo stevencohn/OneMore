@@ -192,6 +192,22 @@ namespace River.OneMoreAddIn.Settings
 		public bool RestartNeeded => restart;
 
 
+		/// <summary>
+		/// Gets the path of a snippet the user asked to edit; the owning command should open
+		/// it on a page after this dialog has closed.
+		/// </summary>
+		public string SnippetToEdit { get; set; }
+
+
+		/// <summary>
+		/// Saves settings and closes the dialog as if the user clicked OK.
+		/// </summary>
+		public void AcceptAndClose()
+		{
+			okButton.PerformClick();
+		}
+
+
 		public void ActivateSheet(Sheets sheet)
 		{
 			var index = (int)sheet;

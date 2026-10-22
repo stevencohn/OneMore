@@ -6087,7 +6087,7 @@ Pestaña Ayuda</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Guardar nuevo fragmento</value>
+    <value>Guardar fragmento</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7056,6 +7056,10 @@ Estás seguro de que quieres continuar?</value>
     <value>Habilite las líneas de cuadrícula antes de usar este comando</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Valores de fragmentos</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Ancho de la caja:</value>
     <comment>label</comment>
@@ -7071,6 +7075,10 @@ Estás seguro de que quieres continuar?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Administrar opciones de cuadro y Mis fragmentos</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>Este fragmento se guardó en el formato heredado y no se puede editar. Insértelo en una página, edítelo allí y guárdelo nuevamente como un nuevo fragmento.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Mis fragmentos</value>

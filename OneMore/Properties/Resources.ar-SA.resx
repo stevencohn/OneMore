@@ -6099,7 +6099,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>حفظ المقتطف الجديد</value>
+    <value>حفظ مقتطف</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7068,6 +7068,10 @@ ISO-code then comma then language name</comment>
     <value>تمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>قيم المقتطف</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>عرض الصندوق:</value>
     <comment>label</comment>
@@ -7083,6 +7087,10 @@ ISO-code then comma then language name</comment>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>إدارة خيارات المربع ومقتطفاتي</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>تم حفظ هذا المقتطف بالتنسيق القديم ولا يمكن تعديله. قم بإدراجه في إحدى الصفحات، ثم قم بتحريره هناك، ثم احفظه مرة أخرى كمقتطف جديد.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>مقتطفاتي</value>

@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Settings
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.editButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
@@ -101,6 +102,7 @@ namespace River.OneMoreAddIn.Settings
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(18, 18);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editButton,
             this.renameButton,
             this.deleteButton});
 			this.toolStrip.Location = new System.Drawing.Point(0, 96);
@@ -111,24 +113,37 @@ namespace River.OneMoreAddIn.Settings
 			this.toolStrip.TabIndex = 1;
 			this.toolStrip.Text = "Tool Strip";
 			//
+			// editButton
+			//
+			this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.editButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F);
+			this.editButton.ForeColor = System.Drawing.Color.Black;
+			this.editButton.Name = "editButton";
+			this.editButton.Size = new System.Drawing.Size(29, 29);
+			this.editButton.Text = "✎";
+			this.editButton.ToolTipText = "Edit";
+			this.editButton.Click += new System.EventHandler(this.EditItem);
+			//
 			// renameButton
 			//
+			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.renameButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F);
 			this.renameButton.ForeColor = System.Drawing.Color.Black;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
-			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(109, 29);
-			this.renameButton.Text = "Rename";
+			this.renameButton.Size = new System.Drawing.Size(29, 29);
+			this.renameButton.Text = "⌶";
+			this.renameButton.ToolTipText = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameItem);
 			//
 			// deleteButton
 			//
+			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.deleteButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F);
 			this.deleteButton.ForeColor = System.Drawing.Color.Black;
-			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
-			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(96, 29);
-			this.deleteButton.Text = "Delete";
+			this.deleteButton.Size = new System.Drawing.Size(29, 29);
+			this.deleteButton.Text = "\U0001F5D1";
+			this.deleteButton.ToolTipText = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			//
 			// optionsPanel
@@ -165,8 +180,8 @@ namespace River.OneMoreAddIn.Settings
 			//
 			// tabs
 			//
-			this.tabs.Controls.Add(this.boxTypesTab);
 			this.tabs.Controls.Add(this.mySnippetsTab);
+			this.tabs.Controls.Add(this.boxTypesTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabs.Location = new System.Drawing.Point(10, 49);
 			this.tabs.Name = "tabs";
@@ -181,7 +196,7 @@ namespace River.OneMoreAddIn.Settings
 			this.boxTypesTab.Name = "boxTypesTab";
 			this.boxTypesTab.Padding = new System.Windows.Forms.Padding(8);
 			this.boxTypesTab.Size = new System.Drawing.Size(772, 392);
-			this.boxTypesTab.TabIndex = 0;
+			this.boxTypesTab.TabIndex = 1;
 			this.boxTypesTab.Text = "Box Types";
 			//
 			// boxWidthLabel
@@ -224,7 +239,7 @@ namespace River.OneMoreAddIn.Settings
 			this.mySnippetsTab.Location = new System.Drawing.Point(4, 36);
 			this.mySnippetsTab.Name = "mySnippetsTab";
 			this.mySnippetsTab.Size = new System.Drawing.Size(772, 392);
-			this.mySnippetsTab.TabIndex = 1;
+			this.mySnippetsTab.TabIndex = 0;
 			this.mySnippetsTab.Text = "My Snippets";
 			//
 			// SnippetsSheet
@@ -262,6 +277,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreMenuItem deleteButton;
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreMenuItem renameButton;
+		private UI.MoreMenuItem editButton;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private UI.MorePanel optionsPanel;
 		private UI.MoreCheckBox codeStyleBox;

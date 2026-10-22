@@ -30,9 +30,7 @@ namespace River.OneMoreAddIn.Settings
 		private readonly BoxTypesProvider boxTypesProvider;
 		private readonly BoxTypesPanel boxTypesPanel;
 
-		// deferred - built lazily by EnsureSnippetsLoaded() the first time the "My Snippets"
-		// tab is actually selected, since "Box Types" is the default active tab and the
-		// file-listing/grid-binding work here is otherwise wasted on every sheet open
+		// built by EnsureSnippetsLoaded(); "My Snippets" is the first, default tab
 		private BindingList<Snippet> snippets;
 
 		private bool updated = false;
@@ -52,14 +50,15 @@ namespace River.OneMoreAddIn.Settings
 				{
 					"introBox",
 					"codeStyleBox",
-					"renameButton=word_Rename",
-					"deleteButton=word_Delete",
 					"boxTypesTab.Text=BoxTypesPanel_Title",
 					"mySnippetsTab",
 					"boxWidthLabel"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
+				editButton.ToolTipText = Resx.word_Edit;
+				renameButton.ToolTipText = Resx.word_Rename;
+				deleteButton.ToolTipText = Resx.word_Delete;
 			}
 
 			// options
@@ -78,8 +77,9 @@ namespace River.OneMoreAddIn.Settings
 			this.ribbon = ribbon;
 			snipsProvider = new SnippetsProvider();
 
-			// snippets (My Snippets tab) - deferred; see EnsureSnippetsLoaded()
+			// snippets (My Snippets tab) is the default tab so load it now
 			tabs.SelectedIndexChanged += (s, e) => EnsureSnippetsLoaded();
+			EnsureSnippetsLoaded();
 
 			// box types
 
@@ -107,8 +107,8 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
-		/// Builds the file-based "My Snippets" grid the first time that tab is actually
-		/// selected. Safe to call repeatedly; only the first call does anything.
+		/// Builds the file-based "My Snippets" grid. Safe to call repeatedly; only the
+		/// first call, while that tab is selected, does anything.
 		/// </summary>
 		private void EnsureSnippetsLoaded()
 		{
@@ -187,6 +187,37 @@ namespace River.OneMoreAddIn.Settings
 
 			return false;
 		}
+
+		private void EditItem(object sender, EventArgs e)
+		{
+			if (gridView.SelectedCells.Count == 0)
+			{
+				return;
+			}
+
+			int rowIndex = gridView.SelectedCells[0].RowIndex;
+			if (rowIndex >= snippets.Count)
+			{
+				return;
+			}
+
+			var path = snippets[rowIndex].Path;
+
+			if (!SnippetsProvider.IsXml(path))
+			{
+				UI.MoreMessageBox.Show(this, Resx.SnippetsSheet_LegacyNotEditable);
+				return;
+			}
+
+			// do not create the page while this modal dialog is open; hand the path to the
+			// dialog's owner command, which opens the page after the dialog has closed
+			if (FindForm() is SettingsDialog dialog)
+			{
+				dialog.SnippetToEdit = path;
+				dialog.AcceptAndClose();
+			}
+		}
+
 
 		private void RenameItem(object sender, EventArgs e)
 		{

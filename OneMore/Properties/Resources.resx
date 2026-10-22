@@ -6118,7 +6118,7 @@ Help Tab</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Save New Snippet</value>
+    <value>Save Snippet</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -6547,10 +6547,6 @@ Help Tab</value>
   </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Save Snippet</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SnippetPromptDialog.Text" xml:space="preserve">
-    <value>Snippet Values</value>
     <comment>dialog title</comment>
   </data>
   <data name="SaveSnippetDialog_confirmOverwrite" xml:space="preserve">
@@ -7100,6 +7096,10 @@ Are you sure you want to continue?</value>
     <value>Enable grid lines before using this command</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Snippet Values</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Box width:</value>
     <comment>label</comment>
@@ -7115,6 +7115,10 @@ Are you sure you want to continue?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Manage box options and My Snippets</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>This snippet was saved in the legacy format and cannot be edited. Insert it on a page, edit it there, and save it again as a new snippet.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>My Snippets</value>

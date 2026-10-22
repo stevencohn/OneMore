@@ -6088,7 +6088,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Neues Snippet speichern</value>
+    <value>Snippet speichern</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7058,6 +7058,10 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Aktivieren Sie Rasterlinien, bevor Sie diesen Befehl verwenden</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>Snippet-Werte</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>Kastenbreite:</value>
     <comment>label</comment>
@@ -7073,6 +7077,10 @@ Bist du dir sicher, dass du weitermachen willst?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Boxoptionen und „Meine Snippets“ verwalten</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>Dieses Snippet wurde im alten Format gespeichert und kann nicht bearbeitet werden. Fügen Sie es auf einer Seite ein, bearbeiten Sie es dort und speichern Sie es erneut als neues Snippet.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>Meine Ausschnitte</value>

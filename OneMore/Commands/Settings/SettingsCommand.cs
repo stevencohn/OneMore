@@ -30,6 +30,11 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new SettingsDialog(args[0] as IRibbonUI);
 			dialog.ShowDialog(owner);
 
+			if (!string.IsNullOrEmpty(dialog.SnippetToEdit))
+			{
+				await new SnippetEditor().Open(dialog.SnippetToEdit);
+			}
+
 			if (!dialog.RestartNeeded)
 			{
 				return;

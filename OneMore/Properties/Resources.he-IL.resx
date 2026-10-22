@@ -6088,7 +6088,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>שמור קטע קוד חדש</value>
+    <value>שמור את הקטע</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
@@ -7057,6 +7057,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>אפשר קווי רשת לפני השימוש בפקודה זו</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetPromptDialog.Text" xml:space="preserve">
+    <value>ערכי קטע</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
     <value>רוחב קופסא:</value>
     <comment>label</comment>
@@ -7072,6 +7076,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>נהל את אפשרויות התיבה ואת הקטעים שלי</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_LegacyNotEditable" xml:space="preserve">
+    <value>קטע זה נשמר בפורמט מדור קודם ולא ניתן לעריכה. הכנס אותו לדף, ערוך אותו שם ושמור אותו שוב כקטע חדש.</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
     <value>הקטעים שלי</value>
