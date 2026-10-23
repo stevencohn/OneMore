@@ -5129,6 +5129,14 @@ Onglet Aide</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Choisissez favori</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Afficher les chemins complets</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Afficher les chemins hiérarchiques complets au lieu des noms dans la liste des favoris</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoris</value>
     <comment>Ribbon main favorites button</comment>

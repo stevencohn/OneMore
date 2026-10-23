@@ -16,7 +16,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public static readonly string AddAction = "AddFavoritePageCmd";
 		public static readonly string GotoAction = "GotoFavoriteCmd";
 
+		public const string FullPathsAction = "ToggleFavoritesPathsCmd";
+		public const string FullPathsPressed = "GetFavoritesPathsPressed";
+		public const string FullPathsSetting = "fullPaths";
+
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
+		private static readonly string FullPathsButtonId = "omFavoritesFullPathsToggle";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		private static readonly string KbdShortcutsId = "omShowKeyMapsPageButton";
@@ -42,11 +47,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using var provider = new FavoritesProvider();
 			var collection = provider.ReadFavorites();
 
-			var showShortcuts = new Settings.SettingsProvider()
-				.GetCollection(nameof(Settings.FavoritesSheet))?
-				.Get<bool>("kbdshorts") == true;
+			var settings = new Settings.SettingsProvider()
+				.GetCollection(nameof(Settings.FavoritesSheet));
 
-			return BuildMenu(collection, showShortcuts);
+			var showShortcuts = settings?.Get<bool>("kbdshorts") == true;
+			var fullPaths = settings?.Get(FullPathsSetting, false) == true;
+
+			return BuildMenu(collection, showShortcuts, fullPaths);
 		}
 
 
@@ -54,7 +61,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// Builds the ribbon XML for the given favorites collection. Pure XML construction,
 		/// no I/O, so this is the entry point for unit tests.
 		/// </summary>
-		internal static XElement BuildMenu(FavoritesCollection collection, bool showShortcuts)
+		internal static XElement BuildMenu(FavoritesCollection collection, bool showShortcuts, bool fullPaths = false)
 		{
 			var root = MakeMenuRoot();
 
@@ -68,7 +75,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 				foreach (var favorite in folder.Items)
 				{
-					menu.Add(MakeButton(favorite));
+					menu.Add(MakeButton(favorite, fullPaths));
 				}
 
 				root.Add(menu);
@@ -76,7 +83,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			foreach (var favorite in collection.Items)
 			{
-				root.Add(MakeButton(favorite));
+				root.Add(MakeButton(favorite, fullPaths));
 			}
 
 			if (showShortcuts)
@@ -108,6 +115,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			var root = new XElement(ns + "menu",
 				addButton,
 				manageButton,
+				MakeFullPathsToggle(),
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omFavoritesSeparator")
 					)
@@ -117,8 +125,24 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private static XElement MakeButton(Favorite favorite)
+		private static XElement MakeFullPathsToggle()
 		{
+			return new XElement(ns + "checkBox",
+				new XAttribute("id", FullPathsButtonId),
+				new XAttribute("onAction", FullPathsAction),
+				new XAttribute("getPressed", FullPathsPressed),
+				new XAttribute("label", Resx.ribFavoritesFullPathsToggle_Label),
+				new XAttribute("screentip", Resx.ribFavoritesFullPathsToggle_Screentip)
+				);
+		}
+
+
+		private static XElement MakeButton(Favorite favorite, bool fullPaths)
+		{
+			var name = favorite.Alias ?? favorite.Name;
+			var showPath = fullPaths && !string.IsNullOrEmpty(favorite.Location);
+			var label = showPath ? favorite.Location : name;
+
 			var imageMso = !string.IsNullOrWhiteSpace(favorite.PageID)
 				? "GroupInsertLinks"
 				: favorite.Kind switch
@@ -132,7 +156,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("id", $"omFavorite{favorite.ID}"),
 				new XAttribute("onAction", GotoAction),
 				new XAttribute("imageMso", imageMso),
-				new XAttribute("label", Chop(favorite.Alias ?? favorite.Name)),
+				new XAttribute("label", Chop(label, showPath)),
 				// the ID, not a link: the link can be out of date, and the command needs the favorite to
 				// resolve it when the link no longer opens anything
 				new XAttribute("tag", favorite.ID.ToString(System.Globalization.CultureInfo.InvariantCulture)),
@@ -186,9 +210,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private static string Chop(string s)
+		private static string Chop(string s, bool keepTail = false)
 		{
-			return s.Length <= 45 ? s : s.Substring(0, 42) + "...";
+			if (s.Length <= 45)
+			{
+				return s;
+			}
+
+			// paths are most distinctive at the end
+			return keepTail
+				? "..." + s.Substring(s.Length - 42)
+				: s.Substring(0, 42) + "...";
 		}
 	}
 }

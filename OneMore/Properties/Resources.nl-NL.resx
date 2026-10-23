@@ -5118,6 +5118,14 @@ Tabblad Help</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Kies Favoriet</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Toon volledige paden</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Toon volledige hiërarchische paden in plaats van namen in de favorietenlijst</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorieten</value>
     <comment>Ribbon main favorites button</comment>

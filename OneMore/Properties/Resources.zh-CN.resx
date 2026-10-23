@@ -5132,6 +5132,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>选择收藏夹</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>显示完整路径</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>显示完整的分层路径而不是收藏夹列表中的名称</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>收藏夹</value>
     <comment>Ribbon main favorites button</comment>

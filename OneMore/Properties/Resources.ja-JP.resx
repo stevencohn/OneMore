@@ -5121,6 +5121,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>お気に入りを選択</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>フルパスを表示</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>お気に入りリストに名前ではなく完全な階層パスを表示します</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>お気に入り</value>
     <comment>ribbon menu NODUP</comment>

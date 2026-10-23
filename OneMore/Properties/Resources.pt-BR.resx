@@ -5118,6 +5118,14 @@ Guia Ajuda</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Escolha favorito</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Mostrar caminhos completos</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Mostrar caminhos hierárquicos completos em vez de nomes na lista de favoritos</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoritos</value>
     <comment>Ribbon main favorites button</comment>

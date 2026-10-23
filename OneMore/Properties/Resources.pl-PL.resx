@@ -5118,6 +5118,14 @@ Zakładka Pomoc</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Wybierz Ulubione</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Pokaż pełne ścieżki</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Pokaż pełne ścieżki hierarchiczne zamiast nazw na liście ulubionych</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Ulubione</value>
     <comment>Ribbon main favorites button NODUP</comment>

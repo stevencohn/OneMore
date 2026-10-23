@@ -5146,6 +5146,14 @@ Help Tab</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Choose Favorite</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Show Full Paths</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Show full hierarchical paths instead of names in the favorites list</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorites</value>
     <comment>ribbon menu NODUP</comment>
