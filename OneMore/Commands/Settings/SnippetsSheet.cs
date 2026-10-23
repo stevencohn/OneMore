@@ -190,6 +190,10 @@ namespace River.OneMoreAddIn.Settings
 			snipsProvider.Delete(snippet.Path);
 			updated = true;
 
+			// the file is already deleted on disk, so refresh the ribbon menu now in case
+			// the user cancels the settings dialog
+			ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
+
 			rowIndex--;
 			if (rowIndex >= 0)
 			{
