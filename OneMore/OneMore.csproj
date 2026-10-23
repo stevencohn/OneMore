@@ -1379,6 +1379,7 @@
     <Compile Include="Commands\Snippets\Toc\CollateTocCommand.cs" />
     <Compile Include="Commands\References\NameUrlsCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoritesCommand.cs" />
+    <Compile Include="Commands\Workspaces\Favorites\FavoritesPathsCommand.cs" />
     <Compile Include="Commands\Edit\ProofingCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />

@@ -556,6 +556,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Reports whether the Favorites menu shows full hierarchical paths
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public bool GetFavoritesPathsPressed(IRibbonControl control)
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(FavoritesSheet));
+			return settings.Get(FavoritesMenu.FullPathsSetting, false);
+		}
+
+
+		/// <summary>
 		/// Populates the Navigator dynamic menu: an "Open Navigator" entry, the
 		/// reading-list actions, and then the recently-visited-page history
 		/// </summary>

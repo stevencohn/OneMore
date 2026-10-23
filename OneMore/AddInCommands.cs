@@ -438,6 +438,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<FavoritesCommand>(control.Tag); //tag=pageid
 
 
+		// internal hook for the favorites menu's "Show Full Paths" check box; the pressed
+		// state passed by the ribbon is ignored, the command flips the stored setting
+		public async Task ToggleFavoritesPathsCmd(IRibbonControl control, bool pressed)
+			=> await factory.Run<FavoritesPathsCommand>();
+
+
 		// this is the internal history hook for the ribbon dropdown, not directly
 		// accessible to the user
 		public async Task GotoHistoryCmd(IRibbonControl control)

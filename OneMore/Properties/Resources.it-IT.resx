@@ -5118,6 +5118,14 @@ Scheda Aiuto</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Scegli preferito</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Mostra percorsi completi</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Mostra percorsi gerarchici completi invece dei nomi nell'elenco dei preferiti</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Preferito</value>
     <comment>ribbon menu NODUP</comment>

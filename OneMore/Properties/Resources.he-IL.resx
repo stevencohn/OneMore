@@ -5118,6 +5118,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>בחר מועדף</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>הצג נתיבים מלאים</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>הצג נתיבים היררכיים מלאים במקום שמות ברשימת המועדפים</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>מועדפים</value>
     <comment>Ribbon main favorites button NODUP</comment>

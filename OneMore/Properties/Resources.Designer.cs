@@ -11549,6 +11549,24 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Show Full Paths.
         /// </summary>
+        internal static string ribFavoritesFullPathsToggle_Label {
+            get {
+                return ResourceManager.GetString("ribFavoritesFullPathsToggle_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show full hierarchical paths instead of names in the favorites list.
+        /// </summary>
+        internal static string ribFavoritesFullPathsToggle_Screentip {
+            get {
+                return ResourceManager.GetString("ribFavoritesFullPathsToggle_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show Full Paths.
+        /// </summary>
         internal static string ribHistoryFullPathsToggle_Label {
             get {
                 return ResourceManager.GetString("ribHistoryFullPathsToggle_Label", resourceCulture);

@@ -5117,6 +5117,14 @@ Pestaña Ayuda</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Elige Favorito</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Mostrar rutas completas</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Mostrar rutas jerárquicas completas en lugar de nombres en la lista de favoritos</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoritos</value>
     <comment>Ribbon main favorites button</comment>

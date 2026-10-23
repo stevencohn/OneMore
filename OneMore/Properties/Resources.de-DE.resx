@@ -5117,6 +5117,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Favorit wählen</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>Vollständige Pfade anzeigen</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>Zeigen Sie in der Favoritenliste vollständige hierarchische Pfade anstelle von Namen an</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoriten</value>
     <comment>Ribbon main favorites button</comment>

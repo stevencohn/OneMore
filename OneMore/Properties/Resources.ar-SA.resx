@@ -5129,6 +5129,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>اختر المفضلة</value>
   </data>
+  <data name="ribFavoritesFullPathsToggle_Label" xml:space="preserve">
+    <value>إظهار المسارات الكاملة</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribFavoritesFullPathsToggle_Screentip" xml:space="preserve">
+    <value>إظهار المسارات الهرمية الكاملة بدلاً من الأسماء في قائمة المفضلة</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>المفضلة</value>
     <comment>Ribbon main favorites button</comment>
