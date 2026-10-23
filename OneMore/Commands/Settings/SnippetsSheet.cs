@@ -268,7 +268,15 @@ namespace River.OneMoreAddIn.Settings
 				{
 					snippet.Name = dialog.SnippetName;
 					snippet.Path = path;
+					snippet.Modified = File.GetLastWriteTime(path);
 					updated = true;
+
+					// Snippet doesn't raise change notifications so tell the grid to repaint the row
+					snippets.ResetItem(rowIndex);
+
+					// the file is already renamed on disk, so refresh the ribbon menu now in case
+					// the user cancels the settings dialog
+					ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
 				}
 			}
 		}
