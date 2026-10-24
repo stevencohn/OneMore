@@ -3272,6 +3272,10 @@
     <value>تتبع الملاحظات السريعة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>قم بالتمرير التلقائي لجزء دفاتر الملاحظات إلى دفتر الملاحظات أو القسم الحالي</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>هل أنت متأكد أنك تريد حذف {0} من السجلات المحددة؟</value>
     <comment>messagebox</comment>

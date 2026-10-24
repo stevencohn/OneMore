@@ -3273,6 +3273,10 @@ Do you want to refresh the existing page?</value>
     <value>Track Quick Notes</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Auto-scroll the Notebooks pane to the current notebook or section</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Are you sure you want to delete the {0} selected records?</value>
     <comment>messagebox</comment>

@@ -3272,6 +3272,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Suivre les notes rapides</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Faire défiler automatiquement le volet Carnets jusqu'au bloc-notes ou à la section actuelle</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer les {0} enregistrements sélectionnés ?</value>
     <comment>messagebox</comment>

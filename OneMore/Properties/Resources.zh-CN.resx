@@ -3275,6 +3275,10 @@ OneNote 文件 (*.one)</value>
     <value>追踪快速笔记</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>自动滚动笔记本窗格到当前笔记本或部分</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>您确定要删除所选的 {0} 条记录吗？</value>
     <comment>messagebox</comment>

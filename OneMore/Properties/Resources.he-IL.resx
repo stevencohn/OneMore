@@ -3269,6 +3269,10 @@ Total Row Font
     <value>עקוב אחר הערות מהירות</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>גלול אוטומטית בחלונית מחברות למחברת או למקטע הנוכחיים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>האם אתה בטוח שברצונך למחוק את {0} הרשומות שנבחרו?</value>
     <comment>messagebox</comment>

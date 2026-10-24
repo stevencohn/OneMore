@@ -7647,6 +7647,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-scroll the Notebooks pane to the current notebook or section.
+        /// </summary>
+        internal static string NavigatorSheet_scrollBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_scrollBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected records?.
         /// </summary>
         internal static string NavigatorWindow_confirmDelete {

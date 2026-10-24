@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int pollingInterval;
 		private readonly int historyDepth;
 		private readonly bool disabled;
-
+		private readonly bool scrollPane;
 		private IRibbonUI ribbon;
 		private readonly NavigationProvider provider;
 		private string currentId = null;
@@ -46,7 +46,8 @@ namespace River.OneMoreAddIn.Commands
 			pollingInterval = collection.Get("interval", DefaultPollingInterval);
 			historyDepth = collection.Get("depth", DefaultHistoryDepth);
 			disabled = collection.Get("disabled", false);
-		}
+
+			scrollPane = collection.Get("scrollPane", false);		}
 
 
 		/// <summary>
@@ -62,7 +63,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Startup()
 		{
-			if (disabled)
+			// the poller also drives navigation pane scrolling, independent of history
+			if (disabled && !scrollPane)
 			{
 				logger.WriteLine("Startup: navigation service is disabled");
 				return;
@@ -90,7 +92,13 @@ namespace River.OneMoreAddIn.Commands
 				commitment++;
 				if (commitment == 1)
 				{
-					if (await provider.RecordHistory(pageId, historyDepth))
+					// the page has been stable for one interval; bring its section into view
+					if (scrollPane)
+					{
+						NavPaneScroller.Scroll(one.WindowHandle);
+					}
+
+					if (!disabled && await provider.RecordHistory(pageId, historyDepth))
 					{
 						ribbon.SafeInvalidateControl("ribNavigatorButton");
 					}

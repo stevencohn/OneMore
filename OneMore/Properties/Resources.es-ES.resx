@@ -3264,6 +3264,10 @@ Cuadrado Marrón</value>
     <value>Seguimiento de notas rápidas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Desplazarse automáticamente por el panel Cuadernos hasta el cuaderno o sección actual</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>¿Está seguro de que desea eliminar los {0} registros seleccionados?</value>
     <comment>messagebox</comment>

@@ -3264,6 +3264,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Verfolgen Sie schnelle Notizen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Scrollen Sie im Bereich „Notizbücher“ automatisch zum aktuellen Notizbuch oder Abschnitt</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie die {0} ausgewählten Datensätze löschen möchten?</value>
     <comment>messagebox</comment>
