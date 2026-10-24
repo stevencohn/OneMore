@@ -23,6 +23,9 @@ namespace River.OneMoreAddIn.UI
 		{
 			InitializeComponent();
 
+			// this window fades itself out from full opacity
+			ApplyDialogOpacity = false;
+
 			if (NeedsLocalizing())
 			{
 				Localize(new string[]

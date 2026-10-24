@@ -31,6 +31,10 @@ namespace River.OneMoreAddIn
 		public const int CDRF_SKIPDEFAULT = 0x00000004;
 		public const int CDRF_NOTIFYITEMDRAW = 0x00000020;
 
+		public const UInt32 TBM_GETTHUMBRECT = 0x0419; // WM_USER + 25
+		public const int TBCD_THUMB = 2;
+		public const int TBCD_CHANNEL = 3;
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct NMHDR
 		{
@@ -512,6 +516,10 @@ namespace River.OneMoreAddIn
 
 		[DllImport("user32.dll")]
 		public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 m, IntPtr wParam, IntPtr lParam);
+
+
+		[DllImport("user32.dll")]
+		public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 m, IntPtr wParam, ref RECT lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey

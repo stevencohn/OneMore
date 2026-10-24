@@ -2127,6 +2127,10 @@ OneNoteファイル (*.one)</value>
     <value>言語が異なる場合でもワークステーションのロケールを維持する</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_opacityLabel.Text" xml:space="preserve">
+    <value>ダイアログの不透明度</value>
+    <comment>label</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>コマンド パレットで連続しない名前の一致を許可する</value>
     <comment>checkbox</comment>

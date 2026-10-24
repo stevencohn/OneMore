@@ -42,8 +42,12 @@ namespace River.OneMoreAddIn.Settings
 			this.langLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.keepLocaleBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.checkUpdatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.opacityLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.opacityBar = new River.OneMoreAddIn.UI.MoreSlider();
+			this.opacityValueLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.opacityBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -70,11 +74,14 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.langLabel);
 			this.layoutPanel.Controls.Add(this.keepLocaleBox);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
+			this.layoutPanel.Controls.Add(this.opacityValueLabel);
+			this.layoutPanel.Controls.Add(this.opacityBar);
+			this.layoutPanel.Controls.Add(this.opacityLabel);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
+			this.layoutPanel.Size = new System.Drawing.Size(772, 468);
 			this.layoutPanel.TabIndex = 4;
 			// 
 			// sequentialBox
@@ -82,7 +89,7 @@ namespace River.OneMoreAddIn.Settings
 			this.sequentialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.sequentialBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sequentialBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.sequentialBox.Location = new System.Drawing.Point(25, 185);
+			this.sequentialBox.Location = new System.Drawing.Point(25, 237);
 			this.sequentialBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.sequentialBox.Name = "sequentialBox";
 			this.sequentialBox.Size = new System.Drawing.Size(461, 25);
@@ -129,7 +136,7 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
 			this.advancedGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.advancedGroup.Location = new System.Drawing.Point(7, 278);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 330);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
 			this.advancedGroup.ShowOnlyTopEdge = true;
@@ -231,7 +238,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkUpdatesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkUpdatesBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 220);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 272);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
@@ -241,6 +248,44 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.ThemedBack = null;
 			this.checkUpdatesBox.ThemedFore = null;
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
+			// 
+			// opacityLabel
+			// 
+			this.opacityLabel.AutoSize = true;
+			this.opacityLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.opacityLabel.Location = new System.Drawing.Point(21, 178);
+			this.opacityLabel.Name = "opacityLabel";
+			this.opacityLabel.Size = new System.Drawing.Size(103, 20);
+			this.opacityLabel.TabIndex = 7;
+			this.opacityLabel.Text = "Dialog opacity";
+			this.opacityLabel.ThemedBack = null;
+			this.opacityLabel.ThemedFore = null;
+			// 
+			// opacityBar
+			// 
+			this.opacityBar.AutoSize = false;
+			this.opacityBar.LargeChange = 5;
+			this.opacityBar.Location = new System.Drawing.Point(186, 172);
+			this.opacityBar.Maximum = 100;
+			this.opacityBar.Minimum = 70;
+			this.opacityBar.Name = "opacityBar";
+			this.opacityBar.Size = new System.Drawing.Size(300, 40);
+			this.opacityBar.TabIndex = 8;
+			this.opacityBar.TickFrequency = 5;
+			this.opacityBar.Value = 100;
+			this.opacityBar.ValueChanged += new System.EventHandler(this.ChangeOpacity);
+			// 
+			// opacityValueLabel
+			// 
+			this.opacityValueLabel.AutoSize = true;
+			this.opacityValueLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.opacityValueLabel.Location = new System.Drawing.Point(492, 178);
+			this.opacityValueLabel.Name = "opacityValueLabel";
+			this.opacityValueLabel.Size = new System.Drawing.Size(45, 20);
+			this.opacityValueLabel.TabIndex = 9;
+			this.opacityValueLabel.Text = "100%";
+			this.opacityValueLabel.ThemedBack = null;
+			this.opacityValueLabel.ThemedFore = null;
 			// 
 			// GeneralSheet
 			// 
@@ -252,10 +297,11 @@ namespace River.OneMoreAddIn.Settings
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Name = "GeneralSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
-			this.Size = new System.Drawing.Size(800, 500);
+			this.Size = new System.Drawing.Size(800, 552);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
 			this.advancedGroup.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.opacityBar)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -275,5 +321,8 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreLabel themeLabel;
 		private UI.MoreCheckBox sequentialBox;
 		private UI.MoreCheckBox telemetryBox;
+		private UI.MoreLabel opacityLabel;
+		private UI.MoreSlider opacityBar;
+		private UI.MoreLabel opacityValueLabel;
 	}
 }

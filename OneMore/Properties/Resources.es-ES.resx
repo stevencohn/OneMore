@@ -2119,6 +2119,10 @@ Rangos relativos: A1: Cell (0, -1)</value>
     <value>Mantener la configuración regional de la estación de trabajo cuando el idioma sea diferente</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_opacityLabel.Text" xml:space="preserve">
+    <value>Opacidad del diálogo</value>
+    <comment>label</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>Permitir coincidencias de nombres no secuenciales en las paletas de comandos</value>
     <comment>checkbox</comment>

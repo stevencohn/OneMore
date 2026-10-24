@@ -2128,6 +2128,10 @@ Relative ranges: A1:cell(0,-1)</value>
     <value>Keep workstation locale when Language differs from it</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_opacityLabel.Text" xml:space="preserve">
+    <value>Dialog opacity</value>
+    <comment>label</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>Allow nonsequential name matching in Command Palettes</value>
     <comment>checkbox</comment>

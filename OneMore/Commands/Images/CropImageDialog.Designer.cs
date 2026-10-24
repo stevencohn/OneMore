@@ -39,7 +39,7 @@
 			this.introText = new System.Windows.Forms.Label();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.rotationBox = new System.Windows.Forms.NumericUpDown();
-			this.rotationBar = new System.Windows.Forms.TrackBar();
+			this.rotationBar = new River.OneMoreAddIn.UI.MoreSlider();
 			this.selectButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cropButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -288,7 +288,7 @@
 		private UI.MoreButton selectButton;
 		private System.Windows.Forms.Panel introPanel;
 		private System.Windows.Forms.Label introText;
-		private System.Windows.Forms.TrackBar rotationBar;
+		private UI.MoreSlider rotationBar;
 		private System.Windows.Forms.NumericUpDown rotationBox;
 	}
 }
