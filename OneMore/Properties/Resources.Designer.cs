@@ -15297,6 +15297,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No scanners found.
+        /// </summary>
+        internal static string ScanDialog_noScanners {
+            get {
+                return ResourceManager.GetString("ScanDialog_noScanners", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Scanner.
         /// </summary>
         internal static string ScanDialog_scannLabel_Text {

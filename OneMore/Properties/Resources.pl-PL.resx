@@ -6564,6 +6564,10 @@ Czarno -biały</value>
     <value>Format kolorów</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog_noScanners" xml:space="preserve">
+    <value>Nie znaleziono skanerów</value>
+    <comment>message box text</comment>
+  </data>
   <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
     <value>Profil</value>
     <comment>label</comment>

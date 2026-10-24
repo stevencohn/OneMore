@@ -6570,6 +6570,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>カラー形式</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog_noScanners" xml:space="preserve">
+    <value>スキャナーが見つかりませんでした</value>
+    <comment>message box text</comment>
+  </data>
   <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
     <value>プロフィール</value>
     <comment>label</comment>

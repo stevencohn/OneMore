@@ -6564,6 +6564,10 @@ Zwart en wit</value>
     <value>Kleurformaat</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog_noScanners" xml:space="preserve">
+    <value>Geen scanners gevonden</value>
+    <comment>message box text</comment>
+  </data>
   <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
     <value>Profiel</value>
     <comment>label</comment>

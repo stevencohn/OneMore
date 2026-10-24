@@ -6578,6 +6578,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>颜色格式</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog_noScanners" xml:space="preserve">
+    <value>未找到扫描仪</value>
+    <comment>message box text</comment>
+  </data>
   <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
     <value>文档类型</value>
     <comment>label</comment>

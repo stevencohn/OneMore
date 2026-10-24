@@ -12,10 +12,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class ScanCommand : Command
 	{
+		private static bool commandIsActive;
+
+
 		public ScanCommand()
 		{
 		}
@@ -23,39 +27,53 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var infos = ScannerManager.ListScannerDevices();
-
-			if (!infos.Any())
+			if (commandIsActive)
 			{
-				MoreMessageBox.Show(owner, "No scanners found",
-					MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 				return;
 			}
+
+			commandIsActive = true;
 
 			int imageWidth, imageHeight;
 			string imageData;
 
 			try
 			{
-				using var dialog = new ScanDialog(infos);
-				var result = dialog.ShowDialog(owner);
+				var infos = ScannerManager.ListScannerDevices();
 
-				if (result != DialogResult.OK)
+				if (!infos.Any())
 				{
+					MoreMessageBox.Show(owner, Resx.ScanDialog_noScanners,
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 					return;
 				}
 
-				imageData = dialog.ImageData;
-				imageWidth = dialog.ImageWidth;
-				imageHeight = dialog.ImageHeight;
+				try
+				{
+					using var dialog = new ScanDialog(infos);
+					var result = dialog.ShowDialog(owner);
+
+					if (result != DialogResult.OK)
+					{
+						return;
+					}
+
+					imageData = dialog.ImageData;
+					imageWidth = dialog.ImageWidth;
+					imageHeight = dialog.ImageHeight;
+				}
+				finally
+				{
+					foreach (var info in infos)
+					{
+						Marshal.ReleaseComObject(info);
+					}
+				}
 			}
 			finally
 			{
-				foreach (var info in infos)
-				{
-					Marshal.ReleaseComObject(info);
-				}
+				commandIsActive = false;
 			}
 
 			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);

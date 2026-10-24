@@ -6595,6 +6595,10 @@ Black and White</value>
     <value>Color format</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog_noScanners" xml:space="preserve">
+    <value>No scanners found</value>
+    <comment>message box text</comment>
+  </data>
   <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
     <value>Profile</value>
     <comment>label</comment>
