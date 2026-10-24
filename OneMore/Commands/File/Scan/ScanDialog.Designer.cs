@@ -40,8 +40,8 @@
 			this.contentPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.contrastBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.brightnessBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
-			this.contrastSlider = new System.Windows.Forms.TrackBar();
-			this.brightnessSlider = new System.Windows.Forms.TrackBar();
+			this.contrastSlider = new River.OneMoreAddIn.UI.MoreSlider();
+			this.brightnessSlider = new River.OneMoreAddIn.UI.MoreSlider();
 			this.constrastLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.brightnessLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.resolutionLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -438,10 +438,10 @@
 		private UI.MoreLabel colorLabel;
 		private UI.MoreComboBox colorBox;
 		private UI.MoreComboBox sizeBox;
-		private System.Windows.Forms.TrackBar brightnessSlider;
+		private UI.MoreSlider brightnessSlider;
 		private UI.MoreLabel constrastLabel;
 		private UI.MoreLabel brightnessLabel;
-		private System.Windows.Forms.TrackBar contrastSlider;
+		private UI.MoreSlider contrastSlider;
 		private System.Windows.Forms.ProgressBar progressBar;
 		private UI.MoreNumericUpDown contrastBox;
 		private UI.MoreNumericUpDown brightnessBox;

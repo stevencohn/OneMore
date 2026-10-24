@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.IO;
@@ -34,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 					"themeBox",
 					"langLabel=word_Language",
 					"keepLocaleBox",
+					"opacityLabel",
 					"sequentialBox",
 					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
@@ -67,6 +69,11 @@ namespace River.OneMoreAddIn.Settings
 
 			keepLocaleBox.Checked = settings.Get("keepWorkstationLocale", false);
 
+			// shared with MoreForm so the slider and the dialogs agree on the valid range
+			opacityBar.Minimum = MoreForm.MinOpacityPercent;
+			opacityBar.Value = MoreForm.GetDialogOpacityPercent();
+			opacityValueLabel.Text = $"{opacityBar.Value}%";
+
 			sequentialBox.Checked = settings.Get("nonseqMatching", false);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 			experimentalBox.Checked = settings.Get("experimental", false);
@@ -82,6 +89,21 @@ namespace River.OneMoreAddIn.Settings
 			if (loglevel == "debug")
 			{
 				verboseBox.Enabled = false;
+			}
+		}
+
+
+		private void ChangeOpacity(object sender, EventArgs e)
+		{
+			opacityValueLabel.Text = $"{opacityBar.Value}%";
+
+			// preview immediately on the Settings dialog; not yet parented while loading.
+			// Cancelling needs no revert because the dialog closes and the next one reads
+			// the saved value
+			var form = FindForm();
+			if (form is not null)
+			{
+				form.Opacity = opacityBar.Value / 100.0;
 			}
 		}
 
@@ -150,6 +172,16 @@ namespace River.OneMoreAddIn.Settings
 			updated = keepLocaleBox.Checked
 				? settings.Add("keepWorkstationLocale", true) || updated
 				: settings.Remove("keepWorkstationLocale") || updated;
+
+			// does not require a restart; applies to dialogs opened hereafter
+			if (opacityBar.Value >= 100)
+			{
+				save = settings.Remove("dialogOpacity") || save;
+			}
+			else
+			{
+				save = settings.Add("dialogOpacity", opacityBar.Value) || save;
+			}
 
 			// does not require a restart
 			save = sequentialBox.Checked

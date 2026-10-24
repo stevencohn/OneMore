@@ -2124,6 +2124,10 @@ Intervalli relativi: A1:cella(0,-1)</value>
     <value>Mantieni la locale della workstation quando la lingua è diversa da essa</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_opacityLabel.Text" xml:space="preserve">
+    <value>Opacità del dialogo</value>
+    <comment>label</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>Consenti la corrispondenza dei nomi non sequenziali nelle tavolozze dei comandi</value>
     <comment>checkbox</comment>

@@ -4773,7 +4773,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("GeneralSheet_keepLocaleBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog opacity.
+        /// </summary>
+        internal static string GeneralSheet_opacityLabel_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_opacityLabel.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Allow nonsequential name matching in Command Palettes.
         /// </summary>

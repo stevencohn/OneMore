@@ -122,6 +122,13 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Lets inheritors opt out of the user's dialog opacity preference, e.g. forms
+		/// that manage their own opacity such as MoreBubbleWindow
+		/// </summary>
+		protected bool ApplyDialogOpacity { get; set; } = true;
+
+
+		/// <summary>
 		/// Lets inheritors disable theming for specialized cases like TimerWindow
 		/// </summary>
 		protected bool ThemeEnabled { get; set; } = true;
@@ -132,6 +139,37 @@ namespace River.OneMoreAddIn.UI
 		/// position this window upon load. This can be either a positive or negative value.
 		/// </summary>
 		public int VerticalOffset { private get; set; }
+
+
+		/// <summary>
+		/// The smallest dialog opacity percentage the user can choose.
+		/// </summary>
+		public const int MinOpacityPercent = 70;
+
+
+		/// <summary>
+		/// Gets the user's preferred dialog opacity percentage, 70 to 100 inclusive, as
+		/// saved by the General settings sheet; 100 if not set or invalid.
+		/// </summary>
+		public static int GetDialogOpacityPercent()
+		{
+			var percent = new SettingsProvider()
+				.GetCollection(nameof(GeneralSheet))
+				.Get("dialogOpacity", 100);
+
+			if (percent <= 0 || percent > 100)
+			{
+				return 100;
+			}
+
+			return Math.Max(percent, MinOpacityPercent);
+		}
+
+
+		private static double GetDialogOpacity()
+		{
+			return GetDialogOpacityPercent() / 100.0;
+		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -398,6 +436,13 @@ namespace River.OneMoreAddIn.UI
 			if (ThemeEnabled)
 			{
 				manager.InitializeTheme(this);
+			}
+
+			// only override the default; forms that set their own opacity, e.g. hidden worker
+			// dialogs, are left alone
+			if (!DesignMode && ApplyDialogOpacity && Opacity == 1.0)
+			{
+				Opacity = GetDialogOpacity();
 			}
 
 			LoadControls(Controls);
