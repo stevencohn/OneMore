@@ -3269,6 +3269,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Śledź szybkie notatki</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Automatycznie przewiń okienko notesów do bieżącego notesu lub sekcji</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć wybrane rekordy ({0})?</value>
     <comment>messagebox</comment>

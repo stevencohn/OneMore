@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Settings
 					"quickBox",
 					"corrallBox",
 					"elevateBox",
-					"advancedGroup=phrase_AdvancedOptions",
+					"scrollBox",					"advancedGroup=phrase_AdvancedOptions",
 					"disabledBox"
 				});
 			}
@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Settings
 			//}
 
 			elevateBox.Checked = settings.Get("elevated", false);
-			disabledBox.Checked = settings.Get("disabled", false);
+			scrollBox.Checked = settings.Get("scrollPane", false);			disabledBox.Checked = settings.Get("disabled", false);
 		}
 
 
@@ -93,6 +93,10 @@ namespace River.OneMoreAddIn.Settings
 			updated = elevateBox.Checked
 				? settings.Add("elevated", true) || updated
 				: settings.Remove("elevated") || updated;
+
+			updated = scrollBox.Checked
+				? settings.Add("scrollPane", true) || updated
+				: settings.Remove("scrollPane") || updated;
 
 			updated = disabledBox.Checked
 				? settings.Add("disabled", true) || updated

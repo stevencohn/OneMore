@@ -3272,6 +3272,10 @@ OneNoteファイル (*.one)</value>
     <value>クイックノートを追跡</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>ノートブック ペインを現在のノートブックまたはセクションまで自動スクロールします</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>選択した {0} レコードを削除してもよろしいですか?</value>
     <comment>messagebox</comment>

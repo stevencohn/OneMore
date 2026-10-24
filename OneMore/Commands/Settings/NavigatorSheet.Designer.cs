@@ -43,6 +43,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthBox = new System.Windows.Forms.NumericUpDown();
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.scrollBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
@@ -65,6 +66,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.scrollBox);
 			this.layoutPanel.Controls.Add(this.elevateBox);
 			this.layoutPanel.Controls.Add(this.hidePinnedBox);
 			this.layoutPanel.Controls.Add(this.quickBox);
@@ -98,9 +100,25 @@ namespace River.OneMoreAddIn.Settings
 			this.elevateBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.elevateBox, "Keep Navigator on top when OneNote has focus");
 			this.elevateBox.UseVisualStyleBackColor = true;
-			// 
+			//
+			// scrollBox
+			//
+			this.scrollBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.scrollBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.scrollBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.scrollBox.Location = new System.Drawing.Point(7, 234);
+			this.scrollBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+			this.scrollBox.Name = "scrollBox";
+			this.scrollBox.Size = new System.Drawing.Size(620, 25);
+			this.scrollBox.StylizeImage = false;
+			this.scrollBox.TabIndex = 6;
+			this.scrollBox.Text = "Auto-scroll the Notebooks pane to the current notebook or section";
+			this.scrollBox.ThemedBack = null;
+			this.scrollBox.ThemedFore = null;
+			this.scrollBox.UseVisualStyleBackColor = true;
+			//
 			// hidePinnedBox
-			// 
+			//
 			this.hidePinnedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.hidePinnedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hidePinnedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -138,12 +156,12 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.BorderThickness = 3;
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 274);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 294);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
 			this.advancedGroup.ShowOnlyTopEdge = true;
-			this.advancedGroup.Size = new System.Drawing.Size(759, 139);
-			this.advancedGroup.TabIndex = 6;
+			this.advancedGroup.Size = new System.Drawing.Size(759, 119);
+			this.advancedGroup.TabIndex = 7;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
 			this.advancedGroup.ThemedBorder = null;
@@ -292,5 +310,5 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox quickBox;
 		private UI.MoreCheckBox hidePinnedBox;
 		private UI.MoreCheckBox elevateBox;
-	}
+		private UI.MoreCheckBox scrollBox;	}
 }

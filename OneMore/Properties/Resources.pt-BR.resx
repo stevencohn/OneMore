@@ -3269,6 +3269,10 @@ Deseja atualizar a página existente?</value>
     <value>Acompanhe notas rápidas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Rolar automaticamente o painel Notebooks para o notebook ou seção atual</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Tem certeza de que deseja excluir os {0} registros selecionados?</value>
     <comment>messagebox</comment>

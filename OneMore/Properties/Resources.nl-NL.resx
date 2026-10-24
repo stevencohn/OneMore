@@ -3269,6 +3269,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Houd snelle notities bij</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_scrollBox.Text" xml:space="preserve">
+    <value>Blader automatisch door het deelvenster Notitieblokken naar het huidige notitieblok of de huidige sectie</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
     <value>Weet u zeker dat u de {0} geselecteerde records wilt verwijderen?</value>
     <comment>messagebox</comment>
