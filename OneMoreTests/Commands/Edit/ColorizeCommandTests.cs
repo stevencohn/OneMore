@@ -382,7 +382,118 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 		private static List<string> Highlight(string key, string[] lines)
 		{
 			var oracle = new Colorizer(key, "light", false);
-			return lines.Select(oracle.ColorizeOne).ToList();
+			return lines.Select(oracle.ColorizeOne).Select(StripEmptySpans).ToList();
+		}
+
+
+		/// <summary>
+		/// Removes empty styled spans and merges adjacent spans of the same style. A construct
+		/// spanning lines, such as a block comment, is now matched as a whole instead of via
+		/// per-line scope overrides, which drops the zero-width end-of-line spans and the
+		/// per-token splits the per-line oracle emits; rendering is identical.
+		/// </summary>
+		private static string StripEmptySpans(string text)
+		{
+			var empty = new System.Text.RegularExpressions.Regex(
+				@"<span style=""[^""]*""></span>");
+
+			var merge = new System.Text.RegularExpressions.Regex(
+				@"(<span style=""([^""]*)"">[^<]*)</span><span style=""\2"">");
+
+			string previous;
+			do
+			{
+				previous = text;
+				text = merge.Replace(empty.Replace(text, string.Empty), "$1");
+			}
+			while (text != previous);
+
+			return text;
+		}
+
+
+		private static void AssertSpansParagraphs(string key, string[] lines)
+		{
+			var (page, runs) = BuildCodeBlock("Spanning Test", lines);
+			var command = new ColorizeCommand(page, false);
+
+			var updated = command.Colorize(key, runs);
+
+			Assert.IsTrue(updated);
+			Assert.AreEqual(lines.Length, runs.Count);
+
+			for (var i = 0; i < runs.Count; i++)
+			{
+				var cdata = runs[i].GetCData().Value;
+
+				// every paragraph keeps its text, including leading indentation
+				Assert.AreEqual(lines[i], cdata.PlainText(), $"Text changed on line {i}");
+
+				// continuation lines are styled by the spanning construct
+				if (i > 0)
+				{
+					StringAssert.Contains(cdata, "<span", $"Line {i} was not colorized");
+				}
+			}
+		}
+
+
+		[TestMethod]
+		public void Colorize_XmlTagSpanningParagraphs_RecognizedAsOneConstruct()
+		{
+			var lines = new[]
+			{
+				"<address",
+				"  street=\"123 Main St\"",
+				"  city=\"Anytown\" />"
+			};
+
+			AssertSpansParagraphs("xml", lines);
+
+			// per-line colorizing cannot see the whole tag, so the results must differ
+			var (page, runs) = BuildCodeBlock("Spanning Xml", lines);
+			new ColorizeCommand(page, false).Colorize("xml", runs);
+			Assert.AreNotEqual(
+				Highlight("xml", lines)[1], StripEmptySpans(runs[1].GetCData().Value));
+		}
+
+
+		[TestMethod]
+		public void Colorize_XmlCDataSpanningParagraphs_KeepsTextAndIndentation()
+		{
+			AssertSpansParagraphs("xml", new[]
+			{
+				"<![CDATA[",
+				"  first line",
+				"  second line",
+				"]]>"
+			});
+		}
+
+
+		[TestMethod]
+		public void Colorize_CSharpVerbatimStringSpanningParagraphs_KeepsTextAndIndentation()
+		{
+			AssertSpansParagraphs("csharp", new[]
+			{
+				"var s = @\"first",
+				"    second",
+				"    third\";"
+			});
+		}
+
+
+		[TestMethod]
+		public void ColorizeMany_ReturnsOneStringPerLineIncludingBlankLines()
+		{
+			var lines = new[] { "<a", "", "  b=\"1\" />", "" };
+			var result = new Colorizer("xml", "light", false).ColorizeMany(lines);
+
+			Assert.AreEqual(lines.Length, result.Count);
+			for (var i = 0; i < lines.Length; i++)
+			{
+				Assert.AreEqual(lines[i], result[i].PlainText());
+			}
 		}
 
 
@@ -411,7 +522,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			for (var i = 0; i < runs.Count; i++)
 			{
 				Assert.AreEqual("yo", runs[i].Attribute("lang")?.Value);
-				Assert.AreEqual(expected[i], runs[i].GetCData().Value,
+				Assert.AreEqual(expected[i], StripEmptySpans(runs[i].GetCData().Value),
 					$"Mismatch on C# line {i}: \"{CSharpLines[i]}\"");
 			}
 
@@ -440,7 +551,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			for (var i = 0; i < runs.Count; i++)
 			{
 				Assert.AreEqual("yo", runs[i].Attribute("lang")?.Value);
-				Assert.AreEqual(expected[i], runs[i].GetCData().Value,
+				Assert.AreEqual(expected[i], StripEmptySpans(runs[i].GetCData().Value),
 					$"Mismatch on JSON line {i}: \"{JsonLines[i]}\"");
 			}
 		}
@@ -461,7 +572,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			for (var i = 0; i < runs.Count; i++)
 			{
 				Assert.AreEqual("yo", runs[i].Attribute("lang")?.Value);
-				Assert.AreEqual(expected[i], runs[i].GetCData().Value,
+				Assert.AreEqual(expected[i], StripEmptySpans(runs[i].GetCData().Value),
 					$"Mismatch on SQL line {i}: \"{SqlLines[i]}\"");
 			}
 		}
@@ -482,7 +593,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			for (var i = 0; i < runs.Count; i++)
 			{
 				Assert.AreEqual("yo", runs[i].Attribute("lang")?.Value);
-				Assert.AreEqual(expected[i], runs[i].GetCData().Value,
+				Assert.AreEqual(expected[i], StripEmptySpans(runs[i].GetCData().Value),
 					$"Mismatch on XML line {i}: \"{XmlLines[i]}\"");
 			}
 		}

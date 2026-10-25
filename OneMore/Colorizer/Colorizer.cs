@@ -240,6 +240,88 @@ namespace River.OneMoreAddIn.Colorizer
 
 
 		/// <summary>
+		/// Colorizes the given lines as a single block so that constructs spanning lines can
+		/// be recognized, producing one raw HTML-style string per input line.
+		/// </summary>
+		/// <param name="lines">The original source lines, one per OneNote paragraph</param>
+		/// <returns>
+		/// A list with exactly one colorized string for each input line, in the same order
+		/// </returns>
+		public List<string> ColorizeMany(IList<string> lines)
+		{
+			var results = new List<string>(lines.Count);
+			var builder = new StringBuilder();
+
+			void CloseLine()
+			{
+				if (fontStyle != null)
+				{
+					builder.Insert(0, $"<span style='{fontStyle}'>");
+					builder.Append("</span>");
+				}
+
+				results.Add(builder.ToString());
+				builder.Clear();
+			}
+
+			parser.Parse(string.Join("\n", lines), (code, scope) =>
+			{
+				// ignore the end-of-line token; the newline chars themselves are reported
+				// as text so splitting on them keeps lines aligned with the input
+				if (string.IsNullOrEmpty(code))
+				{
+					// empty captures from real rules are still styled, as ColorizeOne does
+					if (scope is not null && scope != "$")
+					{
+						builder.Append(Stylize(string.Empty, scope));
+					}
+
+					return;
+				}
+
+				var pieces = code.Split('\n');
+				for (var i = 0; i < pieces.Length; i++)
+				{
+					if (i > 0)
+					{
+						CloseLine();
+					}
+
+					if (pieces[i].Length > 0)
+					{
+						builder.Append(Stylize(pieces[i], scope));
+					}
+				}
+			});
+
+			CloseLine();
+
+			return results;
+		}
+
+
+		private string Stylize(string code, string scope)
+		{
+			code = HttpUtility.HtmlEncode(code);
+
+			if (scope == null)
+			{
+				// simple conversion of tabs to spaces (shouldn't be tabs in OneNote)
+				code = code.Replace("\t", " ");
+				scope = "plaintext";
+			}
+
+			if (theme == null)
+			{
+				return code;
+			}
+
+			var style = theme.GetStyle(scope);
+			return style == null ? code : style.Apply(code);
+		}
+
+
+		/// <summary>
 		/// Apply diff styling to OE
 		/// </summary>
 		/// <param name="element">An OE element</param>
