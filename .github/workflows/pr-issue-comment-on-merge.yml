@@ -3,7 +3,7 @@ name: Comment on Issue on PR Merge
 on:
   pull_request:
     types: [closed]
-    branches: [main]
+    branches: [main, next]
 
 jobs:
   comment-on-merge:
