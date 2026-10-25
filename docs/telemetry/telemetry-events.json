@@ -67,6 +67,7 @@
     "CreateJournalCLI",
     "CreatePages",
     "CropImage",
+    "CustomSort",
     "DateStamp",
     "DecreaseFontSize",
     "DeleteFormula",

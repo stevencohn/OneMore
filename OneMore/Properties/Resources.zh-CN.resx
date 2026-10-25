@@ -1310,6 +1310,86 @@
     <value>CustomColors.xml</value>
     <comment>FILENAME</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>表至少需要两行数据才能排序</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>将光标置于表格单元格中以对该表格进行排序</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>排序表</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>添加规则</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>升序</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>自动检测</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0}（第 {1} 列）</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>柱子</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>柱子</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>第 {0} 列</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>日期/时间</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>降序</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>空白单元格总是排在最后。</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>数量/货币</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>命令</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>排序顺序</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>排序规则（第一个是主要的）</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>文本</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>数据类型</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>数据类型</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -5024,6 +5104,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>片段管理</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>自定义排序</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>按多列对表格进行排序</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>自定义样式</value>

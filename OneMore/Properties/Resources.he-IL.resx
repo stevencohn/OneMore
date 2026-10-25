@@ -1306,6 +1306,86 @@
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>הטבלה צריכה לפחות שתי שורות נתונים כדי למיין</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>מקם את הסמן בתא טבלה כדי למיין את הטבלה</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>מיין טבלה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>הוסף כלל</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>עוֹלֶה</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>זיהוי אוטומטי</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (עמודה {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>עַמוּדָה</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>עַמוּדָה</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>עמודה {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>תאריך/שעה</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>יורד</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>תאים ריקים תמיד ממיינים אחרונים.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>מספר/מטבע</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>לְהַזמִין</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>סדר מיון</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>כללי מיון (הראשון הוא ראשי)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>טֶקסט</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>סוג נתונים</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>סוג נתונים</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -5010,6 +5090,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>הקטעים שלי</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>מיון מותאם אישית</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>מיין את הטבלה לפי מספר עמודות</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>הסגנונות שלי</value>

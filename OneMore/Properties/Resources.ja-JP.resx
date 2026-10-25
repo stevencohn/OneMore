@@ -1309,6 +1309,86 @@
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>テーブルを並べ替えるには少なくとも 2 つのデータ行が必要です</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>表のセルにカーソルを置くと、その表がソートされます。</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>ソートテーブル</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>ルールの追加</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>上昇</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>自動検出</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (列 {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>カラム</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>カラム</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>列 {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>日付/時刻</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>降順</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>空白セルは常に最後に並べ替えられます。</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>数値/通貨</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>注文</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>並べ替え順序</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>並べ替えルール (最初がプライマリ)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>文章</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>データ型</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>データ型</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for My Styles gallery tiles</comment>
@@ -5013,6 +5093,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>マイスニペット</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>カスタムソート</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>複数の列でテーブルを並べ替える</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>カスタムスタイル</value>

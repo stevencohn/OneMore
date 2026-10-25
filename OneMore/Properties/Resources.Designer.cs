@@ -2681,6 +2681,186 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CustomColorsFilesname", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The table needs at least two data rows to sort.
+        /// </summary>
+        internal static string CustomSortCommand_NoRows {
+            get {
+                return ResourceManager.GetString("CustomSortCommand_NoRows", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Place the cursor in a table cell to sort that table.
+        /// </summary>
+        internal static string CustomSortCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("CustomSortCommand_NoSelection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add rule.
+        /// </summary>
+        internal static string CustomSortDialog_addButton_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_addButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Ascending.
+        /// </summary>
+        internal static string CustomSortDialog_ascending {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_ascending", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-detect.
+        /// </summary>
+        internal static string CustomSortDialog_auto {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_auto", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (column {1}).
+        /// </summary>
+        internal static string CustomSortDialog_ColumnDisplay {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_ColumnDisplay", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        internal static string CustomSortDialog_columnHeader {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_columnHeader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        internal static string CustomSortDialog_columnLabel_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_columnLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Column {0}.
+        /// </summary>
+        internal static string CustomSortDialog_ColumnName {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_ColumnName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date/Time.
+        /// </summary>
+        internal static string CustomSortDialog_dateTimeType {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_dateTimeType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        internal static string CustomSortDialog_descending {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_descending", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blank cells always sort last..
+        /// </summary>
+        internal static string CustomSortDialog_noteLabel_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_noteLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Number/Currency.
+        /// </summary>
+        internal static string CustomSortDialog_numberType {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_numberType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        internal static string CustomSortDialog_orderHeader {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_orderHeader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort order.
+        /// </summary>
+        internal static string CustomSortDialog_orderLabel_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_orderLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort rules (first is primary).
+        /// </summary>
+        internal static string CustomSortDialog_rulesLabel_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_rulesLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Table.
+        /// </summary>
+        internal static string CustomSortDialog_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string CustomSortDialog_textType {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_textType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Data type.
+        /// </summary>
+        internal static string CustomSortDialog_typeHeader {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_typeHeader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Data type.
+        /// </summary>
+        internal static string CustomSortDialog_typeLabel_Text {
+            get {
+                return ResourceManager.GetString("CustomSortDialog_typeLabel.Text", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} (Ctrl+Alt+Shift + {1}).
@@ -11762,6 +11942,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Sort.
+        /// </summary>
+        internal static string ribCustomSortButton_Label {
+            get {
+                return ResourceManager.GetString("ribCustomSortButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort the table by multiple columns.
+        /// </summary>
+        internal static string ribCustomSortButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCustomSortButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to My Styles.
         /// </summary>

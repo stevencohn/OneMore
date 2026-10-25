@@ -1306,6 +1306,86 @@ Normalna</value>
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>Aby posortować tabelę, potrzebne są co najmniej dwa wiersze danych</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>Umieść kursor w komórce tabeli, aby posortować tę tabelę</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>Sortuj tabelę</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>Dodaj regułę</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>Rosnąco</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>Automatyczne wykrywanie</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (kolumna {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>Kolumna</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>Kolumna</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>Kolumna {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>Data/godzina</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>Malejąco</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>Puste komórki zawsze sortują jako ostatnie.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>Numer/waluta</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>Zamówienie</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>Kolejność sortowania</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>Reguły sortowania (pierwsza jest podstawowa)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>Tekst</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>Typ danych</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>Typ danych</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -5010,6 +5090,14 @@ Zakładka Pomoc</value>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Moje fragmenty</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>Sortowanie niestandardowe</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>Posortuj tabelę według wielu kolumn</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Moje style</value>

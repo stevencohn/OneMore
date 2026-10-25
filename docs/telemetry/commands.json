@@ -221,6 +221,7 @@
     "StylizeImages",
     "SyncNotebooks",
     "TextToTable",
+    "CustomSort",
     "Lowercase",
     "ToggleDttm",
     "Titlecase",
