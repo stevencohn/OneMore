@@ -4569,6 +4569,14 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء تقرير عن التخزين المستخدم بواسطة القسم أو الكمبيوتر الدفتري</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>علق على الألوان السداسية</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>قم ببادئة قيم #rrggbb مع مربع الألوان</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>تطبيق التنسيق الشرطي</value>
     <comment>ribbon styles</comment>

@@ -4558,6 +4558,14 @@ Stilistisch, entiteit, media</value>
     <value>Genereer een rapport van gebruikte opslagruimte per sectie of notitieblok</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Annoteer hexadecimale kleuren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Voeg #rrggbb-waarden voor met een kleurvak</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Voorwaardelijke opmaak toepassen</value>
     <comment>ribbon styles</comment>

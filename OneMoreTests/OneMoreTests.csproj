@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Commands\ProtocolUriTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
+    <Compile Include="Commands\Edit\AnnotateHexColorsCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
     <Compile Include="Models\HierarchyDiffTests.cs" />
     <Compile Include="Models\PageHeadingsTests.cs" />

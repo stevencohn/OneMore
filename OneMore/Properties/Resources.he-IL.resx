@@ -4558,6 +4558,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>צור דוח אחסון המשמש את החלק או המחברת</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>הערה צבעי משושה</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>קידומת ערכי #rrggbb עם תיבת צבע</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>החל עיצוב מותנה</value>
     <comment>ribbon styles</comment>
