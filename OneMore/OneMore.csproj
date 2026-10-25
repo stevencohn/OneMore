@@ -1175,6 +1175,9 @@
     <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Page\WordCountCommand.cs" />
+    <Compile Include="Commands\Tables\CustomSortCommand.cs" />
+    <Compile Include="Commands\Tables\SortRule.cs" />
+    <Compile Include="Commands\Tables\TableSorter.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
@@ -1334,6 +1337,12 @@
     </Compile>
     <Compile Include="UI\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tables\CustomSortDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\CustomSortDialog.Designer.cs">
+      <DependentUpon>CustomSortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\TextToTableDialog.cs">
       <SubType>Form</SubType>
@@ -2273,6 +2282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\CustomSortDialog.resx">
+      <DependentUpon>CustomSortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>

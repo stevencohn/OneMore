@@ -1219,6 +1219,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TextToTableCommand>();
 
 
+		[Command("ribCustomSortButton_Label", Keys.None, "ribTableMenu")]
+		public async Task CustomSortCmd(IRibbonControl control)
+			=> await factory.Run<CustomSortCommand>();
+
+
 		[Command("ribLowercaseButton_Label", Keys.Control | Keys.Shift | Keys.U, "ribEditMenu")]
 		public async Task LowercaseCmd(IRibbonControl control)
 			=> await factory.Run<LowercaseCommand>();

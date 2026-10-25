@@ -1143,6 +1143,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="TextToTableCmd"/>
       <button
+        id="ribCustomSortButton"
+        imageMso="SortDialog"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CustomSortCmd"/>
+      <button
         id="ribInsertCellsButton"
         imageMso="TableInsertCellsDialog"
         getLabel="GetRibbonLabel"
