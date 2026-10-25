@@ -4581,6 +4581,14 @@ Stilistisch, Entität, Medien</value>
     <value>Generieren Sie einen Bericht über den von Abschnitt oder Notizbuch verwendeten Speicher</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Kommentieren Sie Hex-Farben</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Stellen Sie #rrggbb-Werten ein Farbfeld voran</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Bedingte Formatierung anwenden</value>
     <comment>ribbon styles</comment>

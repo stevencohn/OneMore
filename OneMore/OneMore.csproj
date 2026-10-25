@@ -1213,6 +1213,7 @@
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Snippets\Emoji\InsertEmojiCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
+    <Compile Include="Commands\Edit\AnnotateHexColorsCommand.cs" />
     <Compile Include="Commands\Tools\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\References\FootnoteEditor.cs" />

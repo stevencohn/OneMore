@@ -4593,6 +4593,14 @@ Stylistique, Entité, Média</value>
     <value>Générer un rapport de stockage utilisé par section ou notebook</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Annoter les couleurs hexadécimales</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Préfixez les valeurs #rrggbb avec une case de couleur</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Appliquer une mise en forme conditionnelle</value>
     <comment>ribbon styles</comment>

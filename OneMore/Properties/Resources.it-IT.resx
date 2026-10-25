@@ -4582,6 +4582,14 @@ Stilistica, Entità, Media</value>
     <value>Genera un report sullo spazio di archiviazione utilizzato per sezione o notebook</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Annota i colori esadecimali</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Prefisso i valori #rrggbb con una casella di colore</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Applica formattazione condizionale</value>
     <comment>ribbon styles</comment>

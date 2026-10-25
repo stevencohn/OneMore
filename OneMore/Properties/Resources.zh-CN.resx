@@ -4596,6 +4596,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>生成部分或笔记本使用的存储报告</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>注释十六进制颜色</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>使用颜色框为 #rrggbb 值添加前缀</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>应用条件格式</value>
     <comment>ribbon styles</comment>

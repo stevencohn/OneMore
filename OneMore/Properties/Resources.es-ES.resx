@@ -4581,6 +4581,14 @@ Estilístico, Entidad, Medios</value>
     <value>Genere un informe de almacenamiento utilizado por sección o libreta</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Anotar colores hexadecimales</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Prefije los valores #rrggbb con un cuadro de color</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Aplicar formato condicional</value>
     <comment>ribbon styles</comment>

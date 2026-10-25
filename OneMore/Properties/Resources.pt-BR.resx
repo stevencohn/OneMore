@@ -4582,6 +4582,14 @@ Estilístico, Entidade, Mídia</value>
     <value>Gere um relatório de armazenamento usado por seção ou notebook</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Anotar cores hexadecimais</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Prefixe valores #rrggbb com uma caixa colorida</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Aplicar formatação condicional</value>
     <comment>ribbon styles</comment>

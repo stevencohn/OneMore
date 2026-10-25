@@ -10708,6 +10708,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Annotate Hex Colors.
+        /// </summary>
+        internal static string ribAnnotateHexColorsButton_Label {
+            get {
+                return ResourceManager.GetString("ribAnnotateHexColorsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prefix #rrggbb values with a color box.
+        /// </summary>
+        internal static string ribAnnotateHexColorsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAnnotateHexColorsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Conditional Formatting.
         /// </summary>
         internal static string ribApplyConditionalFormatButton_Label {

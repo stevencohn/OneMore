@@ -74,6 +74,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AnalyzeCommand>();
 
 
+		[Command("ribAnnotateHexColorsButton_Label", Keys.None, "ribEditMenu")]
+		public async Task AnnotateHexColorsCmd(IRibbonControl control)
+			=> await factory.Run<AnnotateHexColorsCommand>();
+
+
 		[Command("ribApplyConditionalFormatButton_Label", Keys.None)]
 		public async Task ApplyConditionalFormatCmd(IRibbonControl control)
 			=> await factory.Run<ApplyConditionalFormatCommand>();
