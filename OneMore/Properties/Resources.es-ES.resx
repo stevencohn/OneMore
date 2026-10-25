@@ -4266,6 +4266,10 @@ Estilístico, Entidad, Medios</value>
     <value>Más de una página coincide; pueden ser copias</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>El texto del enlace no coincide con la página: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>No se pudo encontrar la página.</value>
     <comment>message</comment>
@@ -4309,6 +4313,26 @@ Estilístico, Entidad, Medios</value>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>Comprobando enlaces en {0} páginas</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>computadora portátil</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>nombre de la página</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>sección</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>grupo de sección</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>Informar del texto del enlace que no coincide con la página o su ruta</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>Marcar enlaces no válidos con</value>

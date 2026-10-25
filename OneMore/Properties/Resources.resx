@@ -4295,6 +4295,10 @@ Stylistic, Entity, Media</value>
     <value>More than one page matches; they may be copies</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>The link text does not match the page: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>The page could not be found</value>
     <comment>message</comment>
@@ -4338,6 +4342,26 @@ Stylistic, Entity, Media</value>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>Checking links on {0} pages</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>notebook</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>page name</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>section</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>section group</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>Report link text that does not match the page or its path</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>Highlight color</value>

@@ -4278,6 +4278,10 @@ ISO-code then comma then language name</comment>
     <value>أكثر من صفحة متطابقة؛ قد تكون نسخًا</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>نص الارتباط لا يتطابق مع الصفحة: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>لا يمكن العثور على الصفحة</value>
     <comment>message</comment>
@@ -4321,6 +4325,26 @@ ISO-code then comma then language name</comment>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>التحقق من الروابط في صفحات {0}.</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>دفتر</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>اسم الصفحة</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>قسم</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>مجموعة القسم</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>الإبلاغ عن نص الرابط الذي لا يتطابق مع الصفحة أو مسارها</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>وضع علامة على الروابط غير الصالحة باستخدام</value>

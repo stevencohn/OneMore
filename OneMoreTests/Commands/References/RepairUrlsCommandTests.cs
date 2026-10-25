@@ -88,5 +88,50 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 
 			Assert.IsFalse(RepairUrlsCommand.IsStale(href, fresh));
 		}
+
+
+		private const string Path = "Client/Section/My Page";
+
+
+		[TestMethod]
+		public void CaptionMatchesPageName()
+		{
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("My Page", Path));
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("  my   PAGE ", Path));
+		}
+
+
+		[TestMethod]
+		public void CaptionMatchesPathForms()
+		{
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("Client → Section → My Page", Path));
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("Section/My Page", Path));
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("Section", Path));
+		}
+
+
+		[TestMethod]
+		public void CaptionAbbreviatedIsReported()
+		{
+			Assert.IsNotNull(RepairUrlsCommand.CaptionMismatch("My", Path));
+		}
+
+
+		[TestMethod]
+		public void CaptionWithWrongComponentIsReported()
+		{
+			var parts = RepairUrlsCommand.CaptionMismatch("Client → Other → My Page", Path);
+			Assert.IsNotNull(parts);
+			Assert.IsFalse(parts.Contains(","));
+		}
+
+
+		[TestMethod]
+		public void CaptionNotJudged()
+		{
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("", Path));
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("onenote:foo", Path));
+			Assert.IsNull(RepairUrlsCommand.CaptionMismatch("My Page", null));
+		}
 	}
 }

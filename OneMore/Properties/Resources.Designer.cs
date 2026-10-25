@@ -10024,6 +10024,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report link text that does not match the page or its path.
+        /// </summary>
+        internal static string RepairUrlsDialog_captionBox_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_captionBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The link text does not match the page: {0}.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailCaption {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailCaption", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to notebook.
+        /// </summary>
+        internal static string RepairUrlsCommand_partNotebook {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_partNotebook", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to section.
+        /// </summary>
+        internal static string RepairUrlsCommand_partSection {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_partSection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to section group.
+        /// </summary>
+        internal static string RepairUrlsCommand_partSectionGroup {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_partSectionGroup", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to page name.
+        /// </summary>
+        internal static string RepairUrlsCommand_partPage {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_partPage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Check only onenote: URLs.
         /// </summary>
         internal static string RepairUrlsDialog_onenoteBox_Text {

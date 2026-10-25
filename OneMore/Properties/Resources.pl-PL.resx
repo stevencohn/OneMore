@@ -4267,6 +4267,10 @@ Stylistyka, podmiot, media</value>
     <value>Pasuje więcej niż jedna strona; mogą to być kopie</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>Tekst linku nie pasuje do strony: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>Nie można znaleźć strony</value>
     <comment>message</comment>
@@ -4310,6 +4314,26 @@ Stylistyka, podmiot, media</value>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>Sprawdzanie linków na stronach {0}</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>zeszyt</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>nazwa strony</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>sekcja</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>grupa sekcji</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>Zgłoś tekst linku, który nie pasuje do strony lub jej ścieżki</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>Oznacz nieprawidłowe linki za pomocą</value>

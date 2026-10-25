@@ -4267,6 +4267,10 @@ Stilistica, Entità, Media</value>
     <value>Più di una pagina corrisponde; potrebbero essere copie</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>Il testo del collegamento non corrisponde alla pagina: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>Impossibile trovare la pagina</value>
     <comment>message</comment>
@@ -4310,6 +4314,26 @@ Stilistica, Entità, Media</value>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>Controllo dei collegamenti su {0} pagine</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>taccuino</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>nome della pagina</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>sezione</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>gruppo di sezioni</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>Segnala il testo del collegamento che non corrisponde alla pagina o al suo percorso</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>Contrassegna i collegamenti non validi con</value>
