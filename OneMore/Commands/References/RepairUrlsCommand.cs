@@ -691,7 +691,7 @@ namespace River.OneMoreAddIn.Commands
 								// a link made from the page alone would lose the paragraph, and
 								// OneNote can still follow this one, so leave it as it is
 								Interlocked.Increment(ref paragraphCount);
-								AddResult(RepairUrlsOutcome.Unchanged, anchor,
+								AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 									string.Format(Resx.RepairUrlsCommand_detailParagraph, target));
 							}
 							else if (repairLinks)
@@ -699,19 +699,19 @@ namespace River.OneMoreAddIn.Commands
 								anchor.SetAttributeValue("href", fresh);
 								Interlocked.Increment(ref repairedCount);
 								item.Changed = true;
-								AddResult(RepairUrlsOutcome.Repaired, anchor,
+								AddResult(RepairUrlsOutcome.Repaired, anchor, href,
 									string.Format(Resx.RepairUrlsCommand_detailRepaired, target));
 							}
 							else if (markLinks)
 							{
 								Mark(anchor);
 								item.Changed = true;
-								AddResult(RepairUrlsOutcome.Highlighted, anchor,
+								AddResult(RepairUrlsOutcome.Highlighted, anchor, href,
 									string.Format(Resx.RepairUrlsCommand_detailStale, target));
 							}
 							else
 							{
-								AddResult(RepairUrlsOutcome.Unchanged, anchor,
+								AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 									string.Format(Resx.RepairUrlsCommand_detailStale, target));
 							}
 							break;
@@ -721,31 +721,31 @@ namespace River.OneMoreAddIn.Commands
 							{
 								Mark(anchor);
 								item.Changed = true;
-								AddResult(RepairUrlsOutcome.Highlighted, anchor,
+								AddResult(RepairUrlsOutcome.Highlighted, anchor, href,
 									Resx.RepairUrlsCommand_detailNotFound);
 							}
 							else
 							{
-								AddResult(RepairUrlsOutcome.Unchanged, anchor,
+								AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 									Resx.RepairUrlsCommand_detailNotFound);
 							}
 							break;
 
 						case LinkStatus.Unverified:
 							Interlocked.Increment(ref unverifiedCount);
-							AddResult(RepairUrlsOutcome.Unchanged, anchor,
+							AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 								Resx.RepairUrlsCommand_detailUnverified);
 							break;
 
 						case LinkStatus.Offline:
 							Interlocked.Increment(ref offlineCount);
-							AddResult(RepairUrlsOutcome.Unchanged, anchor,
+							AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 								Resx.RepairUrlsCommand_detailOffline);
 							break;
 
 						case LinkStatus.Ambiguous:
 							Interlocked.Increment(ref ambiguousCount);
-							AddResult(RepairUrlsOutcome.Unchanged, anchor,
+							AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
 								Resx.RepairUrlsCommand_detailAmbiguous);
 							break;
 					}
@@ -762,11 +762,11 @@ namespace River.OneMoreAddIn.Commands
 					{
 						Mark(anchor);
 						item.Changed = true;
-						AddResult(RepairUrlsOutcome.Highlighted, anchor, Resx.RepairUrlsCommand_detailWeb);
+						AddResult(RepairUrlsOutcome.Highlighted, anchor, href, Resx.RepairUrlsCommand_detailWeb);
 					}
 					else
 					{
-						AddResult(RepairUrlsOutcome.Unchanged, anchor, Resx.RepairUrlsCommand_detailWeb);
+						AddResult(RepairUrlsOutcome.Unchanged, anchor, href, Resx.RepairUrlsCommand_detailWeb);
 					}
 				}
 			}
@@ -808,7 +808,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			AddResult(RepairUrlsOutcome.Unchanged, anchor, detail);
+			AddResult(RepairUrlsOutcome.Unchanged, anchor, href, detail);
 		}
 
 
@@ -907,7 +907,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AddResult(RepairUrlsOutcome outcome, XElement anchor, string detail)
+		private void AddResult(
+			RepairUrlsOutcome outcome, XElement anchor, string href, string detail)
 		{
 			lock (results)
 			{
@@ -915,6 +916,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					Outcome = outcome,
 					LinkText = anchor.Value,
+					Href = href,
 					PageID = sourceID,
 					PageTitle = sourceTitle,
 					Detail = detail

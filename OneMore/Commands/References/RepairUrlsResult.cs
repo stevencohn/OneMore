@@ -31,6 +31,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>The visible text of the link</summary>
 		public string LinkText { get; set; }
 
+		/// <summary>The address of the link as found, before any repair</summary>
+		public string Href { get; set; }
+
 		/// <summary>The ID of the page that holds the link, used to go to it</summary>
 		public string PageID { get; set; }
 
