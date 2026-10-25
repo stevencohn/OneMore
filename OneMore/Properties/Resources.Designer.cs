@@ -10184,7 +10184,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RepairUrlsCommand_noneMsg", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page is a Repair URLs report and its links are not checked.
+        /// </summary>
+        internal static string RepairUrlsCommand_reportMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_reportMsg", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Repair URLs Results.
         /// </summary>

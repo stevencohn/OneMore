@@ -4359,6 +4359,10 @@ Stylistic, Entity, Media</value>
     <value>section group</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>This page is a Repair URLs report and its links are not checked</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Report link text that does not match the page or its path</value>
     <comment>check box</comment>

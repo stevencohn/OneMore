@@ -31,6 +31,13 @@ namespace River.OneMoreAddIn.Commands
 		private const string SettingsName = nameof(RepairUrlsCommand);
 		private const string DefaultMarkColor = "#FF0000";
 
+		private static readonly TimeSpan WebTimeout = TimeSpan.FromSeconds(10);
+		private static readonly TimeSpan MaxRetryDelay = TimeSpan.FromSeconds(5);
+		private const int MaxWebRequests = 4;
+
+		// limits how many web addresses are fetched at once
+		private readonly SemaphoreSlim webGate = new(MaxWebRequests);
+
 		private RepairUrlsScope scope;
 		private string markColor = DefaultMarkColor;
 		private List<string> pageIDs;
@@ -86,6 +93,12 @@ namespace River.OneMoreAddIn.Commands
 
 			await using (one = new OneNote(out page, out _))
 			{
+				// a report of a previous check is full of the broken links it reports
+				if (page.GetMetaContent(MetaNames.RepairUrlsReport) == "true")
+				{
+					ShowInfo(Resx.RepairUrlsCommand_reportMsg);
+					return;
+				}
 
 				// the hierarchy of the current notebook tells which scopes make sense
 				var hierarchy = await one.GetNotebook(OneNote.Scope.Pages);
@@ -544,9 +557,14 @@ namespace River.OneMoreAddIn.Commands
 				Step();
 
 				// a cheap look at the page before paying to load all of it
-				if (pageID != page.PageId && !one.GetPageXml(pageID).Contains("href="))
+				if (pageID != page.PageId)
 				{
-					continue;
+					var xml = one.GetPageXml(pageID);
+					if (!xml.Contains("href=") || xml.Contains(MetaNames.RepairUrlsReport))
+					{
+						// no links, or the report of a previous check
+						continue;
+					}
 				}
 
 				var target = pageID == page.PageId
@@ -756,17 +774,27 @@ namespace River.OneMoreAddIn.Commands
 						await ReportCaption(anchor, href, target, foundID, resultCount);
 					}
 				}
-				else if (await InvalidWebUrl(href))
+				else
 				{
-					if (markLinks)
+					var web = await CheckWebUrl(href, token);
+					if (web == WebStatus.Broken)
 					{
-						Mark(anchor);
-						item.Changed = true;
-						AddResult(RepairUrlsOutcome.Highlighted, anchor, href, Resx.RepairUrlsCommand_detailWeb);
+						if (markLinks)
+						{
+							Mark(anchor);
+							item.Changed = true;
+							AddResult(RepairUrlsOutcome.Highlighted, anchor, href, Resx.RepairUrlsCommand_detailWeb);
+						}
+						else
+						{
+							AddResult(RepairUrlsOutcome.Unchanged, anchor, href, Resx.RepairUrlsCommand_detailWeb);
+						}
 					}
-					else
+					else if (web == WebStatus.Unverified)
 					{
-						AddResult(RepairUrlsOutcome.Unchanged, anchor, href, Resx.RepairUrlsCommand_detailWeb);
+						Interlocked.Increment(ref unverifiedCount);
+						AddResult(RepairUrlsOutcome.Unchanged, anchor, href,
+							Resx.RepairUrlsCommand_detailUnverified);
 					}
 				}
 			}
@@ -1303,10 +1331,63 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> InvalidWebUrl(string url)
+		private enum WebStatus
 		{
-			var invalid = false;
+			/// <summary>The address answered</summary>
+			Valid,
 
+			/// <summary>The address is gone: not found, or its host does not exist</summary>
+			Broken,
+
+			/// <summary>
+			/// The address did not say, such as when a site limits requests, refuses a program,
+			/// fails for a moment or is slow; it is not called broken
+			/// </summary>
+			Unverified
+		}
+
+
+		/// <summary>
+		/// Checks a web address. Only an answer that says the address is gone is called broken.
+		/// </summary>
+		private async Task<WebStatus> CheckWebUrl(string url, CancellationToken token)
+		{
+			// many links to one site at once get limited by that site
+			try
+			{
+				await webGate.WaitAsync(token).ConfigureAwait(false);
+			}
+			catch (OperationCanceledException)
+			{
+				return WebStatus.Unverified;
+			}
+
+			try
+			{
+				var status = await TryWebUrl(url, token).ConfigureAwait(false);
+				if (status.Retry && !token.IsCancellationRequested)
+				{
+					logger.WriteLine($"retrying {url} in {status.Delay.TotalSeconds}s");
+					await Task.Delay(status.Delay, token).ConfigureAwait(false);
+					status = await TryWebUrl(url, token).ConfigureAwait(false);
+				}
+
+				return status.Status;
+			}
+			catch (OperationCanceledException)
+			{
+				return WebStatus.Unverified;
+			}
+			finally
+			{
+				webGate.Release();
+			}
+		}
+
+
+		private async Task<(WebStatus Status, bool Retry, TimeSpan Delay)> TryWebUrl(
+			string url, CancellationToken token)
+		{
 			var watch = new System.Diagnostics.Stopwatch();
 			watch.Start();
 
@@ -1315,7 +1396,9 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"fetching {url}");
 				var client = HttpClientFactory.Create();
 
-				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+				using var source = CancellationTokenSource.CreateLinkedTokenSource(token);
+				source.CancelAfter(WebTimeout);
+
 				using var response = await client
 					.GetAsync(
 						new Uri(url, UriKind.Absolute),
@@ -1328,25 +1411,63 @@ namespace River.OneMoreAddIn.Commands
 				if (response.IsSuccessStatusCode)
 				{
 					logger.WriteLine($"resolved {url} in {watch.ElapsedMilliseconds}ms");
+					return (WebStatus.Valid, false, TimeSpan.Zero);
 				}
-				else
-				{
-					invalid = true;
-					logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
 
-					logger.WriteLine(
-						$"- Status [{response.StatusCode}] Reason [{response.ReasonPhrase}]");
+				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+				logger.WriteLine(
+					$"- Status [{response.StatusCode}] Reason [{response.ReasonPhrase}]");
+
+				var code = (int)response.StatusCode;
+				if (code == 404 || code == 410)
+				{
+					return (WebStatus.Broken, false, TimeSpan.Zero);
 				}
+
+				if (code == 429)
+				{
+					var delay = response.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(2);
+					if (delay > MaxRetryDelay)
+					{
+						delay = MaxRetryDelay;
+					}
+
+					return (WebStatus.Unverified, true, delay);
+				}
+
+				// 401, 403, 5xx and the like: the site is there but will not say
+				return (WebStatus.Unverified, false, TimeSpan.Zero);
+			}
+			catch (OperationCanceledException) when (token.IsCancellationRequested)
+			{
+				throw;
+			}
+			catch (OperationCanceledException)
+			{
+				// timed out
+				watch.Stop();
+				logger.WriteLine($"timed out {url} after {watch.ElapsedMilliseconds}ms");
+				return (WebStatus.Unverified, true, TimeSpan.FromSeconds(1));
+			}
+			catch (HttpRequestException exc)
+			{
+				watch.Stop();
+				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+				logger.WriteLine($"ERROR: {exc.Message}");
+
+				// a host that does not exist is gone; other failures may pass
+				var broken = exc.InnerException is System.Net.WebException web &&
+					web.Status == System.Net.WebExceptionStatus.NameResolutionFailure;
+
+				return (broken ? WebStatus.Broken : WebStatus.Unverified, false, TimeSpan.Zero);
 			}
 			catch (Exception exc)
 			{
 				watch.Stop();
 				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
 				logger.WriteLine($"ERROR: {exc.Message}");
-				invalid = true;
+				return (WebStatus.Unverified, false, TimeSpan.Zero);
 			}
-
-			return invalid;
 		}
 
 

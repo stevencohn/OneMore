@@ -4331,6 +4331,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>קבוצת מדור</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>דף זה הוא דוח כתובות אתרים לתיקון והקישורים שלו אינם מסומנים</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>דווח על טקסט קישור שאינו תואם לדף או לנתיב שלו</value>
     <comment>check box</comment>

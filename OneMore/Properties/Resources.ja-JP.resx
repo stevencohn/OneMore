@@ -4334,6 +4334,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>セクショングループ</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>このページは URL の修復レポートであり、そのリンクはチェックされていません</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>ページまたはそのパスと一致しないリンク テキストを報告する</value>
     <comment>check box</comment>

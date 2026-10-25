@@ -29,6 +29,9 @@ namespace River.OneMoreAddIn.Models
 		// page is a reference map, so don't include it in subsequent maps
 		public static readonly string PageMap = "omPageMap";
 
+		// page is a Repair URLs report, so don't check its links
+		public static readonly string RepairUrlsReport = "omRepairUrlsReport";
+
 		// serialized reminder store for current page
 		public static readonly string Reminder = "omReminder";
 

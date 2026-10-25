@@ -264,6 +264,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var page = await one.GetPage(pageId);
 				page.Title = Resx.RepairUrlsResultsDialog_pageTitle;
+				page.SetMeta(MetaNames.RepairUrlsReport, "true");
 
 				var ns = page.Namespace;
 				PageNamespace.Set(ns);
