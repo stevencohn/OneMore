@@ -4345,6 +4345,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>节组</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>此页面是修复 URL 报告，其链接未检查</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>报告与页面或其路径不匹配的链接文本</value>
     <comment>check box</comment>

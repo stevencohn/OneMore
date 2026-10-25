@@ -4342,6 +4342,10 @@ Stylistique, Entité, Média</value>
     <value>groupe de sections</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>Cette page est un rapport de réparation d'URL et ses liens ne sont pas vérifiés</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Signaler le texte du lien qui ne correspond pas à la page ou à son chemin</value>
     <comment>check box</comment>

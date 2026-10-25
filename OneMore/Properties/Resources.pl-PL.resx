@@ -4331,6 +4331,10 @@ Stylistyka, podmiot, media</value>
     <value>grupa sekcji</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>Ta strona jest raportem dotyczącym naprawy adresów URL i zawarte w niej linki nie są sprawdzane</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Zgłoś tekst linku, który nie pasuje do strony lub jej ścieżki</value>
     <comment>check box</comment>

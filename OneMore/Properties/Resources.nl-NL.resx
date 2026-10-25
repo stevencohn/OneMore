@@ -4331,6 +4331,10 @@ Stilistisch, entiteit, media</value>
     <value>sectie groep</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>Deze pagina is een rapport voor reparatie-URL's en de koppelingen ervan zijn niet gecontroleerd</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Rapporteer linktekst die niet overeenkomt met de pagina of het pad ervan</value>
     <comment>check box</comment>

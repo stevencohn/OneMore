@@ -4330,6 +4330,10 @@ Stilistisch, Entität, Medien</value>
     <value>Abschnittsgruppe</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>Bei dieser Seite handelt es sich um einen Reparatur-URLs-Bericht und ihre Links werden nicht überprüft</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Linktext melden, der nicht mit der Seite oder ihrem Pfad übereinstimmt</value>
     <comment>check box</comment>

@@ -4342,6 +4342,10 @@ ISO-code then comma then language name</comment>
     <value>مجموعة القسم</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>هذه الصفحة عبارة عن تقرير لإصلاح عناوين URL ولم يتم التحقق من روابطها</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>الإبلاغ عن نص الرابط الذي لا يتطابق مع الصفحة أو مسارها</value>
     <comment>check box</comment>

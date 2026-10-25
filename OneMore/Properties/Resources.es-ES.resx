@@ -4330,6 +4330,10 @@ Estilístico, Entidad, Medios</value>
     <value>grupo de sección</value>
     <comment>phrase</comment>
   </data>
+  <data name="RepairUrlsCommand_reportMsg" xml:space="preserve">
+    <value>Esta página es un informe de reparación de URL y sus enlaces no están verificados.</value>
+    <comment>message</comment>
+  </data>
   <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
     <value>Informar del texto del enlace que no coincide con la página o su ruta</value>
     <comment>check box</comment>
