@@ -37,11 +37,13 @@ namespace River.OneMoreAddIn.UI
 		{
 			public static readonly CellStyle Default = new(0, false, null);
 
-			public CellStyle(int indent, bool muted, string foreColorKey = null)
+			public CellStyle(
+				int indent, bool muted, string foreColorKey = null, bool underline = false)
 			{
 				Indent = indent;
 				Muted = muted;
 				ForeColorKey = foreColorKey;
+				Underline = underline;
 			}
 
 			/// <summary>
@@ -60,6 +62,11 @@ namespace River.OneMoreAddIn.UI
 			/// e.g. "ErrorText". Ignored while the row is selected.
 			/// </summary>
 			public string ForeColorKey { get; }
+
+			/// <summary>
+			/// True to underline this cell's text, e.g. to make it look like a hyperlink.
+			/// </summary>
+			public bool Underline { get; }
 		}
 
 
@@ -543,6 +550,11 @@ namespace River.OneMoreAddIn.UI
 			{
 				using var italic = new Font(e.Item.Font, FontStyle.Italic);
 				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, italic, bounds, foreColor, flags);
+			}
+			else if (style.Underline)
+			{
+				using var underlined = new Font(e.Item.Font, FontStyle.Underline);
+				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, underlined, bounds, foreColor, flags);
 			}
 			else
 			{

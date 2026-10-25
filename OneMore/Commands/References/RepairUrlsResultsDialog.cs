@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Linq;
 	using System.Net;
 	using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string HeaderShading = "#DEEBF6";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+		private const int LinkColumn = 2;
 
 		private readonly IReadOnlyList<RepairUrlsResult> results;
 		private readonly string sectionID;
@@ -65,7 +67,10 @@ namespace River.OneMoreAddIn.Commands
 
 			listView.SetColumnProportions(0.14f, 0.22f, 0.26f, 0.38f);
 
+			listView.GetCellStyle = GetCellStyle;
 			listView.MouseMove += ShowPagePath;
+			listView.MouseMove += ShowLinkCursor;
+			listView.MouseClick += GoToLink;
 			listView.MouseLeave += (s, e) => HidePagePath();
 			Disposed += (s, e) => tooltip.Dispose();
 
@@ -133,6 +138,57 @@ namespace River.OneMoreAddIn.Commands
 
 			goButton.Enabled = listView.Items.Count > 0;
 			copyButton.Enabled = !copying && listView.Items.Count > 0;
+		}
+
+
+		// the text of a link is drawn as a hyperlink so it looks like it can be tried out
+		private static MoreListView.CellStyle GetCellStyle(ListViewItem item, int column)
+		{
+			return column == LinkColumn &&
+				item.Tag is RepairUrlsResult result &&
+				!string.IsNullOrEmpty(result.Href)
+				? new MoreListView.CellStyle(0, false, "LinkColor", true)
+				: MoreListView.CellStyle.Default;
+		}
+
+
+		// gets the result whose link text is under the pointer, if it can be followed
+		private RepairUrlsResult HitLink(Point location)
+		{
+			var hit = listView.HitTest(location);
+			return hit.Item is not null && hit.SubItem is not null &&
+				hit.Item.SubItems.IndexOf(hit.SubItem) == LinkColumn &&
+				hit.Item.Tag is RepairUrlsResult result &&
+				!string.IsNullOrEmpty(result.Href)
+				? result
+				: null;
+		}
+
+
+		private void ShowLinkCursor(object sender, MouseEventArgs e)
+		{
+			listView.Cursor = HitLink(e.Location) is null ? Cursors.Default : Cursors.Hand;
+		}
+
+
+		// follows the link exactly as it was found so the user can see if it works now
+		private async void GoToLink(object sender, MouseEventArgs e)
+		{
+			var result = e.Button == MouseButtons.Left ? HitLink(e.Location) : null;
+			if (result is null)
+			{
+				return;
+			}
+
+			try
+			{
+				await using var one = new OneNote();
+				await one.NavigateTo(result.Href);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error following link [{result.LinkText}]", exc);
+			}
 		}
 
 
@@ -305,7 +361,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				row[1].SetContent(cell);
-				row[2].SetContent(WebUtility.HtmlEncode(result.LinkText));
+
+				// the link as it was found, to try it out
+				var text = WebUtility.HtmlEncode(result.LinkText);
+				row[2].SetContent(string.IsNullOrEmpty(result.Href)
+					? text
+					: $"<a href=\"{result.Href}\">{text}</a>");
+
 				row[3].SetContent(WebUtility.HtmlEncode(result.Detail));
 			}
 
