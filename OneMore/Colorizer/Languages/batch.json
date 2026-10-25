@@ -1,0 +1,90 @@
+{
+  "name": "Batch",
+  "aliases": [
+    "bat",
+    "cmd"
+  ],
+  "rules": [
+    {
+      // rem comment, @rem comment, :: comment
+      "pattern": "(?i)^\\s*(@?rem\\b.*?|::.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // batch has no backslash escape; "" is a literal quote
+      "pattern": "(\"[^\\n]*?\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // :label
+      "pattern": "^\\s*(:[\\w.\\-]+)",
+      "captures": [
+        "PsuedoKeyword"
+      ]
+    },
+    {
+      // %%i, %%~i loop variables
+      "pattern": "(%%~?[a-zA-Z])",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+      // %PATH% environment variables
+      "pattern": "(%[A-Za-z_][^%\\s]*%)",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+      // %0-%9, %*, %~dp0 arguments and modifiers
+      "pattern": "(%~?[a-zA-Z]*[0-9*])",
+      "captures": [
+        "ShellKnownVariable"
+      ]
+    },
+    {
+      // !var! delayed expansion
+      "pattern": "(![A-Za-z_][^!\\s]*!)",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(if|else|for|in|do|goto|call|exit|setlocal|endlocal|shift|not|exist|defined|errorlevel|equ|neq|lss|leq|gtr|geq)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(echo|set|cd|chdir|copy|del|dir|md|mkdir|move|pause|rd|rmdir|ren|start|type|title|cls|pushd|popd|xcopy|robocopy|choice)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // @, redirection, pipes, and command separators
+      "pattern": "(@|\\d?>>?(?:&\\d)?|<|\\|\\|?|&&?)",
+      "captures": [
+        "Operator"
+      ]
+    },
+    {
+      // /s /? switches
+      "pattern": "(?<=\\s)(/[a-zA-Z?])\\b",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]+)\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

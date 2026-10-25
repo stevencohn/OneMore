@@ -22,6 +22,12 @@
       <Component Id="LangBashPng">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\bash.png" KeyPath="yes" />
       </Component>
+      <Component Id="LangBatchJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\batch.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangBatchPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\batch.png" KeyPath="yes" />
+      </Component>
       <Component Id="LangCppJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\cpp.json" KeyPath="yes" />
       </Component>
