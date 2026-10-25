@@ -1167,6 +1167,13 @@
         getScreentip="GetRibbonScreentip"
         onAction="SelectTablesCmd"/>
       <button
+        id="ribSplitTableButton"
+        imageMso="TableSplitTable"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SplitTableCmd"/>
+      <menuSeparator id="sepTableMenu1"/>
+      <button
         id="ribCopyAcrossButton"
         imageMso="TableRowSelect"
         getLabel="GetRibbonLabel"
@@ -1190,12 +1197,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="FillDownCmd"/>
-      <button
-        id="ribSplitTableButton"
-        imageMso="TableSplitTable"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SplitTableCmd"/>
     </menu>
     <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true" keytip="EX">
       <button
