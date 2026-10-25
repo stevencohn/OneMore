@@ -4586,6 +4586,14 @@ Stylistic, Entity, Media</value>
     <value>Generate a report of storage used by section or notebook</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Annotate Hex Colors</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Prefix #rrggbb values with a color box</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Apply Conditional Formatting</value>
     <comment>ribbon styles</comment>

@@ -4561,6 +4561,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>セクションまたはノートブックによるストレージの使用状況を報告</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>16 進カラーに注釈を付ける</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>#rrggbb 値の前にカラー ボックスを付けます</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>条件付き書式を適用する</value>
     <comment>ribbon styles</comment>

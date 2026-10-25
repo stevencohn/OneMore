@@ -4558,6 +4558,14 @@ Stylistyka, podmiot, media</value>
     <value>Wygeneruj raport dotyczący pamięci używanej przez sekcję lub notatnik</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
+    <value>Opisz kolory szesnastkowe</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
+    <value>Poprzedź wartości #rrggbb kolorową ramką</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
     <value>Zastosuj formatowanie warunkowe</value>
     <comment>ribbon styles</comment>
