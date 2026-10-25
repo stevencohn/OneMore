@@ -45,6 +45,7 @@ namespace River.OneMoreAddIn.Commands
 					"notebookRadio=phrase_AllSectionInTheCurrentNotebook",
 					"notebooksRadio=phrase_AllNotebooks",
 					"onenoteBox",
+					"captionBox",
 					"repairBox",
 					"markBox",
 					"colorLabel",
@@ -76,6 +77,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get => onenoteBox.Checked;
 			set => onenoteBox.Checked = value;
+		}
+
+
+		/// <summary>
+		/// Gets or sets whether links whose text does not match the page name are reported.
+		/// </summary>
+		public bool CheckCaptions
+		{
+			get => captionBox.Checked;
+			set => captionBox.Checked = value;
 		}
 
 

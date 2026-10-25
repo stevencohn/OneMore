@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool repairLinks = true;
 		private bool markLinks = true;
 		private bool onenoteOnly;
+		private bool checkCaptions;
 
 		private ProgressDialog progressDialog;
 		private readonly TaskCompletionSource<bool> progressClosed = new();
@@ -113,6 +114,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Repair = settings.Get("repair", true);
 				dialog.Mark = settings.Get("mark", true);
 				dialog.OnenoteOnly = settings.Get("onenoteOnly", false);
+				dialog.CheckCaptions = settings.Get("captions", false);
 
 				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
@@ -125,8 +127,10 @@ namespace River.OneMoreAddIn.Commands
 				repairLinks = dialog.Repair;
 				markLinks = dialog.Mark;
 				onenoteOnly = dialog.OnenoteOnly;
+				checkCaptions = dialog.CheckCaptions;
 
 				settings.Add("onenoteOnly", onenoteOnly);
+				settings.Add("captions", checkCaptions);
 				settings.Add("markColor", markColor);
 				settings.Add("repair", repairLinks);
 				settings.Add("mark", markLinks);
@@ -664,6 +668,8 @@ namespace River.OneMoreAddIn.Commands
 						$"link [{status}] text=\"{anchor.Value}\" href={href}" +
 						(fresh is null ? string.Empty : $" fresh={fresh}"));
 
+					var resultCount = results.Count;
+
 					switch (status)
 					{
 						case LinkStatus.Stale:
@@ -743,6 +749,12 @@ namespace River.OneMoreAddIn.Commands
 								Resx.RepairUrlsCommand_detailAmbiguous);
 							break;
 					}
+
+					if (checkCaptions && target is not null &&
+						(status == LinkStatus.Valid || status == LinkStatus.Stale))
+					{
+						await ReportCaption(anchor, href, target, foundID, resultCount);
+					}
 				}
 				else if (await InvalidWebUrl(href))
 				{
@@ -758,6 +770,140 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Reports, without changing the link, that its text does not name the page it targets.
+		/// </summary>
+		/// <param name="resultCount">
+		/// The number of results before this link was checked; if the link already has a result
+		/// then the note is added to it rather than reported as a second row
+		/// </param>
+		private async Task ReportCaption(
+			XElement anchor, string href, string target, string pageID, int resultCount)
+		{
+			var parts = CaptionMismatch(anchor.Value, target);
+			if (parts is null)
+			{
+				return;
+			}
+
+			// a link to some other paragraph of the page is not named for the page; but the title
+			// of the page, which Copy Link To Page links to, is. This is checked last because
+			// it costs a call to OneNote
+			if (href.Contains("object-id=") && await GetTitleLink(href, pageID) is null)
+			{
+				return;
+			}
+
+			var detail = string.Format(Resx.RepairUrlsCommand_detailCaption, $"{parts} ({target})");
+
+			lock (results)
+			{
+				if (results.Count > resultCount)
+				{
+					results[results.Count - 1].Detail += "; " + detail;
+					return;
+				}
+			}
+
+			AddResult(RepairUrlsOutcome.Unchanged, anchor, detail);
+		}
+
+
+		/// <summary>
+		/// Compares the text of a link with the path of the page it targets. The text matches
+		/// if it is the name of the page, or of its section or notebook, or the path of the page
+		/// or a trailing part of it, with / or arrows between the names.
+		/// </summary>
+		/// <param name="caption">The visible text of the link</param>
+		/// <param name="target">The path Notebook/[SectionGroup/]Section/Page</param>
+		/// <returns>
+		/// Null if the text is fine or cannot be judged; otherwise names the parts that differ
+		/// </returns>
+		internal static string CaptionMismatch(string caption, string target)
+		{
+			if (string.IsNullOrWhiteSpace(caption) || string.IsNullOrWhiteSpace(target))
+			{
+				return null;
+			}
+
+			caption = caption.Trim();
+			if (caption.StartsWith("onenote:") || caption.StartsWith("http"))
+			{
+				// the text is the address itself
+				return null;
+			}
+
+			var parts = target.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries)
+				.Select(p => Regex.Replace(p.Trim(), @"\s+", " "))
+				.ToList();
+
+			if (parts.Count == 0)
+			{
+				return null;
+			}
+
+			var pieces = Regex.Split(caption, @"\s*[/\\>→»]+\s*")
+				.Select(p => Regex.Replace(p.Trim(), @"\s+", " "))
+				.Where(p => p.Length > 0)
+				.ToList();
+
+			if (pieces.Count == 0)
+			{
+				return null;
+			}
+
+			// the pieces are the last names of the path, so line them up from the end
+			var offset = parts.Count - pieces.Count;
+			if (offset >= 0)
+			{
+				var same = true;
+				for (var i = 0; i < pieces.Count && same; i++)
+				{
+					same = string.Equals(
+						pieces[i], parts[offset + i], StringComparison.CurrentCultureIgnoreCase);
+				}
+
+				if (same)
+				{
+					return null;
+				}
+			}
+
+			if (pieces.Count == 1)
+			{
+				// a lone name may be the section or notebook instead of the page
+				if (parts.Any(p => string.Equals(
+					p, pieces[0], StringComparison.CurrentCultureIgnoreCase)))
+				{
+					return null;
+				}
+
+				return Resx.RepairUrlsCommand_partPage;
+			}
+
+			if (offset < 0)
+			{
+				return Resx.RepairUrlsCommand_partPage;
+			}
+
+			var differ = new List<string>();
+			for (var i = 0; i < pieces.Count; i++)
+			{
+				if (!string.Equals(
+					pieces[i], parts[offset + i], StringComparison.CurrentCultureIgnoreCase))
+				{
+					differ.Add(
+						offset + i == parts.Count - 1 ? Resx.RepairUrlsCommand_partPage
+						: offset + i == 0 ? Resx.RepairUrlsCommand_partNotebook
+						: offset + i == parts.Count - 2 ? Resx.RepairUrlsCommand_partSection
+						: Resx.RepairUrlsCommand_partSectionGroup);
+				}
+			}
+
+			return string.Join(", ", differ.Distinct());
 		}
 
 

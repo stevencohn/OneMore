@@ -4270,6 +4270,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>複数のページが一致します。それらはコピーかもしれない</value>
     <comment>message</comment>
   </data>
+  <data name="RepairUrlsCommand_detailCaption" xml:space="preserve">
+    <value>リンク テキストがページと一致しません: {0}</value>
+    <comment>message; {0} lists the parts that differ and the actual path</comment>
+  </data>
   <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
     <value>ページが見つかりませんでした</value>
     <comment>message</comment>
@@ -4313,6 +4317,26 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
     <value>{0} ページのリンクをチェックしています</value>
     <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_partNotebook" xml:space="preserve">
+    <value>ノート</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partPage" xml:space="preserve">
+    <value>ページ名</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSection" xml:space="preserve">
+    <value>セクション</value>
+    <comment>word</comment>
+  </data>
+  <data name="RepairUrlsCommand_partSectionGroup" xml:space="preserve">
+    <value>セクショングループ</value>
+    <comment>phrase</comment>
+  </data>
+  <data name="RepairUrlsDialog_captionBox.Text" xml:space="preserve">
+    <value>ページまたはそのパスと一致しないリンク テキストを報告する</value>
+    <comment>check box</comment>
   </data>
   <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
     <value>無効なリンクにマークを付ける</value>

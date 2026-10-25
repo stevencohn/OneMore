@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			this.repairBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.markBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.onenoteBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.captionBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(311, 496);
+			this.okButton.Location = new System.Drawing.Point(311, 533);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
@@ -72,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(437, 496);
+			this.cancelButton.Location = new System.Drawing.Point(437, 533);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
@@ -175,7 +176,7 @@ namespace River.OneMoreAddIn.Commands
 			// colorLabel
 			// 
 			this.colorLabel.AutoSize = true;
-			this.colorLabel.Location = new System.Drawing.Point(71, 440);
+			this.colorLabel.Location = new System.Drawing.Point(71, 477);
 			this.colorLabel.Name = "colorLabel";
 			this.colorLabel.Size = new System.Drawing.Size(109, 20);
 			this.colorLabel.TabIndex = 10;
@@ -188,7 +189,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorSwatch.BackColor = System.Drawing.Color.Red;
 			this.colorSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.colorSwatch.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.colorSwatch.Location = new System.Drawing.Point(252, 438);
+			this.colorSwatch.Location = new System.Drawing.Point(252, 475);
 			this.colorSwatch.Name = "colorSwatch";
 			this.colorSwatch.Size = new System.Drawing.Size(123, 26);
 			this.colorSwatch.TabIndex = 11;
@@ -244,6 +245,21 @@ namespace River.OneMoreAddIn.Commands
 			this.onenoteBox.ThemedFore = null;
 			this.onenoteBox.UseVisualStyleBackColor = true;
 			//
+			// captionBox
+			//
+			this.captionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.captionBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.captionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.captionBox.Location = new System.Drawing.Point(46, 428);
+			this.captionBox.Name = "captionBox";
+			this.captionBox.Size = new System.Drawing.Size(485, 25);
+			this.captionBox.StylizeImage = false;
+			this.captionBox.TabIndex = 14;
+			this.captionBox.Text = "Report link text that does not match the page or its path";
+			this.captionBox.ThemedBack = null;
+			this.captionBox.ThemedFore = null;
+			this.captionBox.UseVisualStyleBackColor = true;
+			//
 			// RepairUrlsDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -251,7 +267,8 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(580, 557);
+			this.ClientSize = new System.Drawing.Size(580, 594);
+			this.Controls.Add(this.captionBox);
 			this.Controls.Add(this.onenoteBox);
 			this.Controls.Add(this.markBox);
 			this.Controls.Add(this.repairBox);
@@ -291,5 +308,6 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreCheckBox repairBox;
 		private UI.MoreCheckBox markBox;
 		private UI.MoreCheckBox onenoteBox;
+		private UI.MoreCheckBox captionBox;
 	}
 }
