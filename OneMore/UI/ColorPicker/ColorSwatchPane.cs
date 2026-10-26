@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.UI
 		/// Sets the scale factor to lay out with, so this pane agrees with its host's layout
 		/// rather than measuring the window DPI itself
 		/// </summary>
-		public float Scale
+		public new float Scale
 		{
 			set => fixedScale = value;
 		}

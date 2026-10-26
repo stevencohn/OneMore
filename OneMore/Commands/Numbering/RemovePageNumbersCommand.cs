@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		public RemovePageNumbersCommand()
 		{
 			// <span style='font-family:"Calibri Light"' lang=en-US>(1)</span>
-			var spanner = @"^((?:<span[^>]+\>)?\({0}\)\s*(?:</span>)?\s*)(?:.+)";
+			var spanner = @"^(?<open><span[^>]*>)?(?<num>\({0}\)\s*)(?<close></span>\s*)?(?:.+)";
 
 			npattern = new Regex(string.Format(spanner, @"(?:\d+\.{0,1})+"));
 			apattern = new Regex(string.Format(spanner, @"[a-z]+"));
@@ -106,12 +106,38 @@ namespace River.OneMoreAddIn.Commands
 
 			if (match.Success)
 			{
-				clean = name.Substring(match.Groups[1].Length);
+				var open = match.Groups["open"];
+				var close = match.Groups["close"];
+				var length = (open.Success ? open.Length : 0) + match.Groups["num"].Length
+					+ (close.Success ? close.Length : 0);
+
+				// if the number lived inside a span that also wraps the title text,
+				// keep the opening span so the title retains its styling
+				clean = open.Success && !close.Success
+					? open.Value + name.Substring(length)
+					: name.Substring(length);
+
 				return true;
 			}
 
 			clean = name;
 			return false;
+		}
+
+
+		/// <summary>
+		/// Prepends text to raw title markup without disturbing its styling; if the title
+		/// starts with a span, the text is placed inside it so it adopts that styling
+		/// </summary>
+		/// <param name="markup">The raw CDATA content of a title run</param>
+		/// <param name="prefix">The text to prepend, including any trailing space</param>
+		/// <returns></returns>
+		public static string PrependTitle(string markup, string prefix)
+		{
+			var match = Regex.Match(markup, @"^<span[^>]*>");
+			return match.Success
+				? match.Value + prefix + markup.Substring(match.Length)
+				: prefix + markup;
 		}
 	}
 }

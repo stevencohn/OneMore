@@ -109,7 +109,8 @@ namespace River.OneMoreAddIn.Commands
 				var text = cdata.Value;
 				cleaner?.RemoveNumbering(cdata.Value, out text);
 
-				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + text;
+				cdata.Value = RemovePageNumbersCommand.PrependTitle(
+						text, BuildPrefix(counter, numeric, level, prefix) + " ");
 				await one.Update(page);
 
 				index++;

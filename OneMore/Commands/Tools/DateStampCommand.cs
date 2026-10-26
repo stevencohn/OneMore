@@ -4,9 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -26,6 +28,9 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private UI.ProgressDialog progress;
 		private Regex regex;
+
+		private static readonly Regex stampPattern = new Regex(
+			@"^(?<open><span[^>]*>)?\d{4}-\d{2}-\d{2}\s", RegexOptions.Compiled);
 
 
 		public DateStampCommand()
@@ -104,7 +109,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var page = await one.GetPage(info.ID, OneNote.PageDetail.Basic);
-			page.Title = $"{stamp} {page.Title}";
+			var cdata = GetTitleCData(page);
+			if (cdata is null)
+			{
+				return;
+			}
+
+			// edit the raw markup so the title's existing styling is preserved
+			cdata.Value = RemovePageNumbersCommand.PrependTitle(cdata.Value, $"{stamp} ");
 
 			await one.Update(page);
 		}
@@ -115,9 +127,30 @@ namespace River.OneMoreAddIn.Commands
 			if (regex.Match(info.Name).Success)
 			{
 				var page = await one.GetPage(info.ID, OneNote.PageDetail.Basic);
-				page.Title = page.Title.Substring(11);
-				await one.Update(page);
+				var cdata = GetTitleCData(page);
+				if (cdata is null)
+				{
+					return;
+				}
+
+				var match = stampPattern.Match(cdata.Value);
+				if (match.Success)
+				{
+					cdata.Value = match.Groups["open"].Value + cdata.Value.Substring(match.Length);
+					await one.Update(page);
+				}
 			}
+		}
+
+
+		private static XCData GetTitleCData(Page page)
+		{
+			return page.Root
+				.Elements(page.Namespace + "Title")
+				.Elements(page.Namespace + "OE")
+				.Elements(page.Namespace + "T")
+				.FirstOrDefault()?
+				.GetCData();
 		}
 	}
 }
