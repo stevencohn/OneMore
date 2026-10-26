@@ -97,7 +97,8 @@
       "foreground": "Firebrick"
     },
     {
-      "name": "Delimeter"
+      "name": "Delimeter",
+      "foreground": "Gray"
     },
     {
       "name": "DiffAdd",
@@ -174,7 +175,7 @@
     },
     {
       "name": "Namespace",
-      "foreground": "Navy"
+      "foreground": "#A67C00"
     },
     {
       "name": "Number",

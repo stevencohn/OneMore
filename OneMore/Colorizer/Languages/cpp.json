@@ -25,34 +25,85 @@
       ]
     },
     {
+      "pattern": "(///|//!)([^\\r\\n]*)",
+      "captures": [
+        "XmlDocTag",
+        "XmlDocComment"
+      ]
+    },
+    {
       "pattern": "(//.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "pattern": "(?s)((?:u8|u|U|L)?R\"\\(.*?\\)\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "pattern": "((?:u8|u|U|L)?'[^\\n]*?(?<!\\\\)')",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "^\\s*(\\#(?:define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|undef))\\s+(\\<[^\\s]+\\>)?",
+      "pattern": "(?s)((?:u8|u|U|L)?\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "^\\s*(\\#\\s*(?:define|elif|elifdef|elifndef|else|endif|endregion|error|if|ifdef|ifndef|import|include|line|pragma|region|undef|warning))\\b\\s*(<[^>\\r\\n]+>|\"[^\"\\r\\n]+\")?",
       "captures": [
         "PreprocessorKeyword",
         "PreprocessorParameter"
       ]
     },
     {
-      "pattern": "\\b(alignas|alignof|and|and_eq|asm|auto|bitand|bitor|bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|co_await|co_return|co_yield|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|import|inline|int|long|module|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|true|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while|xor|xor_eq)\\b",
+      "pattern": "\\b(break|case|catch|co_await|co_return|co_yield|continue|default|do|else|for|goto|if|return|switch|throw|try|while)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(auto|bool|char|char8_t|char16_t|char32_t|double|float|int|intmax_t|intptr_t|int8_t|int16_t|int32_t|int64_t|long|nullptr_t|ptrdiff_t|short|signed|size_t|ssize_t|time_t|off_t|uint8_t|uintmax_t|uintptr_t|uint16_t|uint32_t|uint64_t|unsigned|void|wchar_t)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(false|NULL|nullptr|true)\\b",
       "captures": [
         "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(class|struct|union|enum(?:\\s+(?:class|struct))?|typename|concept)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(alignas|alignof|and|and_eq|asm|bitand|bitor|class|compl|concept|const|const_cast|consteval|constexpr|constinit|decltype|delete|dynamic_cast|enum|explicit|export|extern|final|friend|import|inline|module|mutable|namespace|new|noexcept|not|not_eq|operator|or|or_eq|override|private|protected|public|register|reinterpret_cast|requires|sizeof|static|static_assert|static_cast|struct|template|this|thread_local|typedef|typeid|typename|union|using|virtual|volatile|xor|xor_eq)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z_]\\w*)(::)(?=[A-Za-z_~:])",
+      "captures": [
+        "Namespace",
+        "Delimeter"
+      ]
+    },
+    {
+      "pattern": "(?<=::)([A-Za-z_]\\w*)(?!\\w|\\s*\\()",
+      "captures": [
+        "ClassName"
       ]
     },
     {
@@ -62,9 +113,33 @@
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      "pattern": "\\b([A-Z][A-Z0-9_]+)\\b",
+      "captures": [
+        "Macro"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z_]\\w*)\\s*(?=\\()",
+      "captures": [
+        "BuiltinFunction"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0[xX][0-9a-fA-F']+|0[bB][01']+|[0-9][0-9']*(?:\\.[0-9']*)?(?:[eE][+-]?[0-9]+)?)(?:[uU]?[lL]{0,2}|[fF])?)\\b",
       "captures": [
         "Number"
+      ]
+    },
+    {
+      "pattern": "(\\[\\[[^\\]\\r\\n]*\\]\\])",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "([\\[\\]])",
+      "captures": [
+        "Delimeter"
       ]
     }
   ]
