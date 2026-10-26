@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.UI
 		private const int PaneHeight = 332;
 
 		// room below the Recent Colors for the expand button, regardless of which rows are shown
-		private const int GlyphRoom = 24;
+		private const int GlyphRoom = 28;
 		private const int BarHeight = 38;
 		private const int TitleHeight = 30;
 
