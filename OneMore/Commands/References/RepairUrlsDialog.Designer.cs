@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 12;
+			this.okButton.TabIndex = 13;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 13;
+			this.cancelButton.TabIndex = 14;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorLabel.Location = new System.Drawing.Point(71, 477);
 			this.colorLabel.Name = "colorLabel";
 			this.colorLabel.Size = new System.Drawing.Size(109, 20);
-			this.colorLabel.TabIndex = 10;
+			this.colorLabel.TabIndex = 11;
 			this.colorLabel.Text = "Highlight color";
 			this.colorLabel.ThemedBack = null;
 			this.colorLabel.ThemedFore = null;
@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorSwatch.Location = new System.Drawing.Point(252, 475);
 			this.colorSwatch.Name = "colorSwatch";
 			this.colorSwatch.Size = new System.Drawing.Size(123, 26);
-			this.colorSwatch.TabIndex = 11;
+			this.colorSwatch.TabIndex = 12;
 			this.colorSwatch.Click += new System.EventHandler(this.ChooseColor);
 			// 
 			// repairBox
@@ -219,11 +219,11 @@ namespace River.OneMoreAddIn.Commands
 			this.markBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.markBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.markBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.markBox.Location = new System.Drawing.Point(46, 391);
+			this.markBox.Location = new System.Drawing.Point(46, 428);
 			this.markBox.Name = "markBox";
 			this.markBox.Size = new System.Drawing.Size(285, 25);
 			this.markBox.StylizeImage = false;
-			this.markBox.TabIndex = 9;
+			this.markBox.TabIndex = 10;
 			this.markBox.Text = "Highlight links that cannot be fixed";
 			this.markBox.ThemedBack = null;
 			this.markBox.ThemedFore = null;
@@ -250,11 +250,11 @@ namespace River.OneMoreAddIn.Commands
 			this.captionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.captionBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.captionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.captionBox.Location = new System.Drawing.Point(46, 428);
+			this.captionBox.Location = new System.Drawing.Point(46, 391);
 			this.captionBox.Name = "captionBox";
 			this.captionBox.Size = new System.Drawing.Size(485, 25);
 			this.captionBox.StylizeImage = false;
-			this.captionBox.TabIndex = 14;
+			this.captionBox.TabIndex = 9;
 			this.captionBox.Text = "Report link text that does not match the page or its path";
 			this.captionBox.ThemedBack = null;
 			this.captionBox.ThemedFore = null;

@@ -7701,6 +7701,141 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        internal static string MoreColorPicker_automatic {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_automatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        internal static string MoreColorPicker_blue {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show fewer options.
+        /// </summary>
+        internal static string MoreColorPicker_collapse {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_collapse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show more options.
+        /// </summary>
+        internal static string MoreColorPicker_expand {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color model:.
+        /// </summary>
+        internal static string MoreColorPicker_colorModel {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_colorModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        internal static string MoreColorPicker_current {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors shown as on a dark page.
+        /// </summary>
+        internal static string MoreColorPicker_darkPage {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_darkPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        internal static string MoreColorPicker_green {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hex:.
+        /// </summary>
+        internal static string MoreColorPicker_hex {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_hex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hue.
+        /// </summary>
+        internal static string MoreColorPicker_hue {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_hue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luminance.
+        /// </summary>
+        internal static string MoreColorPicker_luminance {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_luminance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Colors.
+        /// </summary>
+        internal static string MoreColorPicker_recentColors {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_recentColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        internal static string MoreColorPicker_red {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Colors.
+        /// </summary>
+        internal static string MoreColorPicker_standardColors {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_standardColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme Colors.
+        /// </summary>
+        internal static string MoreColorPicker_themeColors {
+            get {
+                return ResourceManager.GetString("MoreColorPicker_themeColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no pages selected to move.
         /// </summary>
         internal static string MovePageCommand_noPages {

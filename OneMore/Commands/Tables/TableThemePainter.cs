@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System.Drawing;
 
 
@@ -14,7 +15,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly Image image;
 		private readonly Rectangle bounds;
-		private readonly Color background;
+		private Color background;
+		private bool dark;
 
 
 		public TableThemePainter(Image image, Rectangle bounds, Color background)
@@ -22,6 +24,17 @@ namespace River.OneMoreAddIn.Commands
 			this.image = image;
 			this.bounds = bounds;
 			this.background = background;
+		}
+
+
+		/// <summary>
+		/// Sets the page background the table is drawn on; if dark then colors are drawn as
+		/// OneNote renders them on a dark page
+		/// </summary>
+		public void SetPage(Color background, bool dark)
+		{
+			this.background = background;
+			this.dark = dark;
 		}
 
 
@@ -64,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						for (var c = 0; c < MaxCols; c++)
 						{
-							using var brush = new SolidBrush(ColorTranslator.FromHtml(
+							using var brush = NewBrush(ColorTranslator.FromHtml(
 								TableTheme.LightColorNames[r % TableTheme.LightColorNames.Length]));
 							FillCell(g, c, r, brush);
 						}
@@ -79,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						for (var r = 0; r < MaxRows; r++)
 						{
-							using var brush = new SolidBrush(ColorTranslator.FromHtml(
+							using var brush = NewBrush(ColorTranslator.FromHtml(
 								TableTheme.LightColorNames[c % TableTheme.LightColorNames.Length]));
 							FillCell(g, c, r, brush);
 						}
@@ -111,8 +124,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!c0.IsEmpty)
 			{
-				using var b0 = new SolidBrush(c0);
-				using var b1 = new SolidBrush(c1);
+				using var b0 = NewBrush(c0);
+				using var b1 = NewBrush(c1);
 				for (var c = 0; c < MaxCols; c++)
 				{
 					for (var r = 0; r < MaxRows; r++)
@@ -130,14 +143,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int r = 0; r < MaxRows; r++)
 				{
-					using var b = new SolidBrush(ColorTranslator.FromHtml(
+					using var b = NewBrush(ColorTranslator.FromHtml(
 						TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length]));
 					FillCell(g, 0, r, b);
 				}
 			}
 			else if (!theme.FirstColumn.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.FirstColumn);
+				using var b = NewBrush(theme.FirstColumn);
 				for (int r = 0; r < MaxRows; r++)
 				{
 					FillCell(g, 0, r, b);
@@ -146,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!theme.LastColumn.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.LastColumn);
+				using var b = NewBrush(theme.LastColumn);
 				for (int r = 0; r < MaxRows; r++)
 				{
 					FillCell(g, MaxCols - 1, r, b);
@@ -157,14 +170,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int c = 0; c < MaxCols; c++)
 				{
-					using var b = new SolidBrush(
+					using var b = NewBrush(
 						ColorTranslator.FromHtml(TableTheme.MediumColorNames[c % 6]));
 					FillCell(g, c, 0, b);
 				}
 			}
 			else if (!theme.HeaderRow.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.HeaderRow);
+				using var b = NewBrush(theme.HeaderRow);
 				for (int c = 0; c < MaxCols; c++)
 				{
 					FillCell(g, c, 0, b);
@@ -173,7 +186,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!theme.TotalRow.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.TotalRow);
+				using var b = NewBrush(theme.TotalRow);
 				for (int c = 0; c < MaxCols; c++)
 				{
 					FillCell(g, c, MaxRows - 1, b);
@@ -182,27 +195,33 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!theme.HeaderFirstCell.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.HeaderFirstCell);
+				using var b = NewBrush(theme.HeaderFirstCell);
 				FillCell(g, 0, 0, b);
 			}
 
 			if (!theme.HeaderLastCell.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.HeaderLastCell);
+				using var b = NewBrush(theme.HeaderLastCell);
 				FillCell(g, MaxCols - 1, 0, b);
 			}
 
 			if (!theme.TotalFirstCell.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.TotalFirstCell);
+				using var b = NewBrush(theme.TotalFirstCell);
 				FillCell(g, 0, MaxRows - 1, b);
 			}
 
 			if (!theme.TotalLastCell.IsEmpty)
 			{
-				using var b = new SolidBrush(theme.TotalLastCell);
+				using var b = NewBrush(theme.TotalLastCell);
 				FillCell(g, MaxCols - 1, MaxRows - 1, b);
 			}
+		}
+
+
+		private SolidBrush NewBrush(Color color)
+		{
+			return new SolidBrush(dark ? ColorPalette.ToDark(color) : color);
 		}
 
 
@@ -218,7 +237,8 @@ namespace River.OneMoreAddIn.Commands
 
 			x += (int)(columnWidth * 0.30);
 			y += (rowHeight - 1) / 2;
-			g.DrawLine(Pens.Black, x, y, x + (int)(columnWidth * 0.40), y);
+			using var pen = new Pen(dark ? ColorPalette.ToDark(Color.Black) : Color.Black);
+			g.DrawLine(pen, x, y, x + (int)(columnWidth * 0.40), y);
 		}
 	}
 }
