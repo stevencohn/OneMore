@@ -99,7 +99,8 @@
       "foreground": "Firebrick"
     },
     {
-      "name": "Delimeter"
+      "name": "Delimeter",
+      "foreground": "Gray"
     },
     {
       "name": "DiffAdd",
