@@ -31,7 +31,7 @@
       ]
     },
     {
-      "pattern": "((?:[a-z]+)?\"{3}[^\\r\\n]*?\"{3})",
+      "pattern": "(?s)((?:[a-z]+)?\"{3}.*?\"{3})",
       "captures": [
         "String"
       ]
@@ -51,19 +51,32 @@
     {
       "pattern": "(@[a-zA-Z_][a-zA-Z0-9_]*)",
       "captures": [
-        "Macro"
+        "Attribute"
       ]
     },
     {
-      "pattern": "\\b(abstract|case|catch|class|def|derives|do|else|enum|export|extends|extension|false|final|finally|for|forSome|given|if|implicit|import|inline|lazy|macro|match|new|null|object|opaque|open|override|package|private|protected|return|sealed|super|then|this|throw|trait|transparent|true|try|type|using|val|var|while|with|yield)\\b",
+      "pattern": "\\b(case|catch|do|else|finally|for|if|match|return|then|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(Any|AnyRef|AnyVal|Array|BigDecimal|BigInt|Boolean|Byte|Char|Double|Either|Failure|Float|Future|Int|Left|List|Long|Map|Nil|None|Nothing|Null|Option|Right|Seq|Set|Short|Some|String|Success|Try|Tuple|Unit|Vector)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class|trait|object|enum|type)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|class|def|derives|enum|export|extends|extension|false|final|forSome|given|implicit|import|inline|lazy|macro|new|null|object|opaque|open|override|package|private|protected|sealed|super|this|trait|transparent|true|type|using|val|var|with)\\b",
       "captures": [
         "Keyword"
-      ]
-    },
-    {
-      "pattern": "\\b(Any|AnyRef|AnyVal|Array|Boolean|Byte|Char|Double|Either|Failure|Float|Future|Int|Left|List|Long|Map|None|Nothing|Null|Option|Right|Seq|Set|Short|Some|String|Success|Try|Tuple|Unit|Vector)\\b",
-      "captures": [
-        "PsuedoKeyword"
       ]
     },
     {

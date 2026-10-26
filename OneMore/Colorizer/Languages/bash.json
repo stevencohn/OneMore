@@ -5,36 +5,38 @@
   ],
   "rules": [
     {
+      "pattern": "\\A(#![^\\r\\n]*)",
+      "captures": [
+        "Shebang"
+      ]
+    },
+    {
       "pattern": "(#.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // TODO: embedded variables
       "pattern": "('[^\\n]*?(?<!\\\\)')",
       "captures": [
         "String"
       ]
     },
     {
-      // TODO: embedded variables
       "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
       ]
     },
     {
-      // This one was particularlly troublesome, needing to fully specify both captures:
-      // one for the "$$" list, and one for the "$HOME" list, including starting $ token
-      // and different \b boundary specifiers. The "$$" needs a look-behind so it doesn't
-      // falsely treat the second token as a boundary, while the HOME list needs a simple \b
-      // specifier. Altogether, this made it match left-to-right and stop here rather than
-      // proceeding to the ShellUserVariable pattern below,
+      "pattern": "(\\$\\{[^}\\r\\n]+\\})",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
       "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
       "captures": [
-        // there are, in fact, two captures in the pattern, but only one should match at a time
-        // need both to make Verify Compiler.ValidateRule happy
         "ShellKnownVariable",
         "ShellKnownVariable"
       ]
@@ -46,8 +48,19 @@
       ]
     },
     {
-
-      "pattern": "\\b(if|then|elif|else|fi|time|for|in|until|while|do|done|case|esac|coproc|select|function)\\b",
+      "pattern": "\\b(break|case|continue|do|done|elif|else|esac|exit|fi|for|if|return|then|until|while)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(alias|cd|declare|echo|eval|exec|export|kill|local|printf|pwd|read|readonly|set|shift|source|test|trap|unset|wait)\\b",
+      "captures": [
+        "BuiltinFunction"
+      ]
+    },
+    {
+      "pattern": "\\b(coproc|function|in|select|time)\\b",
       "captures": [
         "Keyword"
       ]

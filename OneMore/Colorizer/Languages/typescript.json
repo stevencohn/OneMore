@@ -31,27 +31,64 @@
       ]
     },
     {
-      "pattern": "('[^\\n]*?')",
+      "pattern": "('(?:\\\\.|[^'\\\\\\n])*')",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(\"[^\\n]*?\")",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\n])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(`[^\\r\\n]*?(?<!\\\\)`)",
+      "pattern": "(?s)(`(?:\\\\.|[^`\\\\])*`)",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "\\b(abstract|any|as|asserts|async|await|bool|boolean|break|byte|case|catch|char|class|const|constructor|continue|debugger|declare|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|infer|instanceof|int|interface|is|keyof|let|long|module|namespace|native|never|new|number|null|of|out|package|private|protected|public|readonly|return|satisfies|short|static|string|super|switch|synchronized|this|throw|throws|transient|true|try|type|typeof|unknown|var|void|volatile|while|with|yield)\\b",
+      "pattern": "(?<=[=\\(:,!&|?{};]\\s*)(/(?![/*])(?:\\\\.|\\[(?:\\\\.|[^\\]\\r\\n\\\\])*\\]|[^/\\\\\\r\\n\\[])+/[dgimsuvy]*)",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(@[A-Za-z_$][\\w$.]*)",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b(break|case|catch|continue|default|do|else|finally|for|goto|if|return|switch|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(any|Array|BigInt|bigint|Boolean|boolean|Date|Error|JSON|Map|Math|never|Number|number|Object|object|Promise|RegExp|Set|String|string|Symbol|symbol|undefined|unknown|WeakMap|WeakSet)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class|interface|enum|type|namespace)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|accessor|as|asserts|async|await|class|const|constructor|debugger|declare|delete|enum|export|extends|false|function|implements|import|in|infer|Infinity|instanceof|interface|is|keyof|let|module|namespace|NaN|new|null|of|out|override|private|protected|public|readonly|satisfies|static|super|this|true|type|typeof|var|void|with)\\b",
       "captures": [
         "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bBoO][01_0-7]+|[0-9][0-9_]*(?:\\.[0-9][0-9_]*)?(?:[eE][+-]?[0-9]+)?)(?:n)?)\\b",
+      "captures": [
+        "Number"
       ]
     }
   ]

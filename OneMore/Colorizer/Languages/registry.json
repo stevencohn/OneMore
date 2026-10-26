@@ -5,33 +5,41 @@
   ],
   "rules": [
     {
-      // ;comment
       "pattern": "^\\s*(;.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // title: Windows Registry Editor Version 5.00
       "pattern": "(Windows Registry Editor Version \\d\\.\\d+)",
       "captures": [
         "Keyword"
       ]
     },
     {
-      // -[delete]
       "pattern": "^(\\-\\s*\\[.*)$",
       "captures": [
         "RegDelete"
       ]
     },
     {
-      // [key]
       "pattern": "[^\\-]?(\\[)([^[]+)(])$",
       "captures": [
         "PlainText",
         "PsuedoKeyword",
         "PlainText"
+      ]
+    },
+    {
+      "pattern": "(?<=dword:)([0-9a-fA-F]{1,8})\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "(?<=hex(?:\\([0-9a-fA-F]+\\))?:)([0-9a-fA-F]{2}(?:,(?:\\\\\\r?\\n\\s*)?[0-9a-fA-F]{2})*)",
+      "captures": [
+        "Number"
       ]
     },
     {
@@ -41,14 +49,12 @@
       ]
     },
     {
-      // =dword:
-      "pattern": "=\\s*(hex|hexadecimal|dword)",
+      "pattern": "=\\s*(hex(?:\\([0-9a-fA-F]+\\))?|hexadecimal|dword)",
       "captures": [
         "Type"
       ]
     },
     {
-      // ="string"
       "pattern": "=\\s*(\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
