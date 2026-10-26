@@ -289,7 +289,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			g.SmoothingMode = SmoothingMode.AntiAlias;
-			using var pen = new Pen(manager.GetColor("WindowText"), Math.Max(1.5f, Height / 6f))
+			using var pen = new Pen(manager.GetColor("WindowText"), Math.Max(1f, Height / 12f))
 			{
 				StartCap = LineCap.Round,
 				EndCap = LineCap.Round,

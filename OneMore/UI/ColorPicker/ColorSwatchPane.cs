@@ -295,21 +295,25 @@ namespace River.OneMoreAddIn.UI
 					g.FillRectangle(brush, swatch.Bounds);
 				}
 
-				if (i == selected)
-				{
-					using var pen = new Pen(accent, 2);
-					// drawn inside the cell since neighboring grid rows touch
-					g.DrawRectangle(pen, Rectangle.Inflate(swatch.Bounds, -1, -1));
-				}
-				else if (i == hot)
-				{
-					using var pen = new Pen(accent);
-					g.DrawRectangle(pen, Rectangle.Inflate(swatch.Bounds, 0, 0));
-				}
-				else if (swatch.Border)
+				if (i != selected && i != hot && swatch.Border)
 				{
 					g.DrawRectangle(borderPen, swatch.Bounds);
 				}
+			}
+
+			// highlights are drawn after all fills so the next touching grid row
+			// doesn't paint over their bottom edge
+			if (hot >= 0 && hot != selected)
+			{
+				using var pen = new Pen(accent);
+				g.DrawRectangle(pen, swatches[hot].Bounds);
+			}
+
+			if (selected >= 0)
+			{
+				using var pen = new Pen(accent, 2);
+				// drawn inside the cell
+				g.DrawRectangle(pen, Rectangle.Inflate(swatches[selected].Bounds, -1, -1));
 			}
 		}
 
