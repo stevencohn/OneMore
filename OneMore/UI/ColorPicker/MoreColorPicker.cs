@@ -132,19 +132,23 @@ namespace River.OneMoreAddIn.UI
 			modeBox.SelectedIndex = 0;
 			modeBox.SelectedIndexChanged += ChangeMode;
 
-			Controls.Add(NewLabel(Resx.MoreColorPicker_colorModel, 300, 186, 90));
+			var modeLabel = NewLabel(Resx.MoreColorPicker_colorModel, 300, 182, 90, 24);
+			Controls.Add(modeLabel);
+			CenterOn(modeLabel, modeBox);
 
 			for (var i = 0; i < 3; i++)
 			{
-				labels[i] = NewLabel(string.Empty, 300, 216 + (i * 26), 90);
+				labels[i] = NewLabel(string.Empty, 300, 212 + (i * 26), 90, 24);
 				spinners[i] = new MoreNumericUpDown { Bounds = Rect(392, 212 + (i * 26), 70, 24) };
 				spinners[i].ValueChanged += SpinnerChanged;
 				Controls.Add(labels[i]);
 				Controls.Add(spinners[i]);
+				CenterOn(labels[i], spinners[i]);
 			}
 
-			hexLabel = NewLabel(Resx.MoreColorPicker_hex, 300, 294, 90);
+			hexLabel = NewLabel(Resx.MoreColorPicker_hex, 300, 290, 90, 24);
 			hexBox = new MoreTextBox { Bounds = Rect(392, 290, 80, 24), MaxLength = 7 };
+			CenterOn(hexLabel, hexBox);
 			hexBox.TextChanged += HexChanged;
 			hexBox.Leave += (s, e) => ShowHex();
 
@@ -340,15 +344,32 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private MoreLabel NewLabel(string text, int lx, int ly, int lw)
+		private MoreLabel NewLabel(string text, int lx, int ly, int lw, int lh = 20)
 		{
 			return new MoreLabel
 			{
 				Text = text,
 				AutoSize = false,
-				Bounds = Rect(lx, ly, lw, 20),
+				Bounds = Rect(lx, ly, lw, lh),
 				TextAlign = ContentAlignment.MiddleLeft
 			};
+		}
+
+
+		/// <summary>
+		/// Keeps the label vertically centered on its input box. The box may size itself to its
+		/// font, so follow its actual bounds rather than the requested ones.
+		/// </summary>
+		private static void CenterOn(Control label, Control box)
+		{
+			void Center()
+			{
+				label.Top = box.Top + ((box.Height - label.Height) / 2);
+			}
+
+			box.SizeChanged += (s, e) => Center();
+			box.LocationChanged += (s, e) => Center();
+			Center();
 		}
 
 
