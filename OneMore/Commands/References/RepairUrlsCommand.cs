@@ -108,9 +108,17 @@ namespace River.OneMoreAddIn.Commands
 				// kept for the results dialog, which copies its list to a page in this section
 				sectionID = current?.Parent?.Attribute("ID")?.Value;
 
+				// the page background determines how OneNote renders the highlight color
+				var pageColor = page.GetPageColor(out var pageAutomatic, out var pageBlack);
+				if (pageAutomatic)
+				{
+					pageColor = pageBlack ? UI.BasicColors.BlackSmoke : Color.White;
+				}
+
 				using var dialog = new RepairUrlsDialog(
 					GetPageGroup(current, ns, out _) is not null,
-					GetSectionGroup(current, ns) is not null);
+					GetSectionGroup(current, ns) is not null,
+					pageColor);
 
 				var provider = new SettingsProvider();
 				var settings = provider.GetCollection(SettingsName);

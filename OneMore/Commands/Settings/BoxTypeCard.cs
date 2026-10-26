@@ -78,6 +78,10 @@ namespace River.OneMoreAddIn.Settings
 		private bool expanded;
 		private bool contentBuilt;
 
+		// the box colors are applied to page content so, as in MoreColorPicker, the card shows
+		// how OneNote renders them on a dark page while the stored values stay as applied
+		private readonly bool darkPage = MoreColorPicker.IsDarkPage(Color.Empty);
+
 
 		public BoxTypeCard(BoxType box)
 		{
@@ -117,7 +121,7 @@ namespace River.OneMoreAddIn.Settings
 			// so title/sublabel text can sit on top of it. It's a plain absolutely-positioned
 			// Panel, sent to the back (below) so it paints behind the swatch/labels/indicator,
 			// resized on every headerPanel resize.
-			var shadingColor = SafeColor(box.Shading);
+			var shadingColor = Rendered(SafeColor(box.Shading));
 
 			shadingPanel = new Panel
 			{
@@ -141,7 +145,7 @@ namespace River.OneMoreAddIn.Settings
 			// directly would silently overwrite this the first time the dialog loads.
 			var chromeText = GetChromeTextColor(shadingColor);
 
-			swatch = new Swatch(box)
+			swatch = new Swatch(box, darkPage)
 			{
 				Location = new Point(8, (HeaderHeight - SwatchSize) / 2),
 				Size = new Size(SwatchSize, SwatchSize)
@@ -152,7 +156,7 @@ namespace River.OneMoreAddIn.Settings
 				AutoSize = true,
 				Font = boldTitleFont,
 				Location = new Point(48, 6),
-				ForeColor = SafeColor(box.TitleColor),
+				ForeColor = Rendered(SafeColor(box.TitleColor)),
 				BackColor = shadingColor,
 				Text = box.Title
 			};
@@ -388,7 +392,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					Box.Shading = c;
 					swatch.Invalidate();
-					var shading = SafeColor(c);
+					var shading = Rendered(SafeColor(c));
 					shadingPanel.BackColor = shading;
 					titleLabel.BackColor = shading;
 					subLabel.BackColor = shading;
@@ -399,7 +403,7 @@ namespace River.OneMoreAddIn.Settings
 				fieldsTable, 1, 0, Resx.BoxTypeCard_TitleColor, Box.TitleColor, c =>
 				{
 					Box.TitleColor = c;
-					titleLabel.ForeColor = SafeColor(c);
+					titleLabel.ForeColor = Rendered(SafeColor(c));
 				});
 
 			(symbolColorSwatch, symbolColorBox) = AddColorField(
@@ -629,7 +633,7 @@ namespace River.OneMoreAddIn.Settings
 				Size = new Size(22, 22),
 				BorderStyle = BorderStyle.FixedSingle,
 				Cursor = Cursors.Hand,
-				BackColor = SafeColor(hex)
+				BackColor = Rendered(SafeColor(hex))
 			};
 
 			// fixed width sized for "#RRGGBB" (7 chars) - no need to stretch with the card
@@ -644,23 +648,24 @@ namespace River.OneMoreAddIn.Settings
 			colorSwatch.Click += (s, e) =>
 			{
 				var location = PointToScreen(colorSwatch.Location);
-				using var dialog = new MoreColorDialog(caption,
-					location.X + colorSwatch.Width / 2, location.Y - 50)
+				using var picker = new MoreColorPicker(Color.Empty,
+					location.X + colorSwatch.Width / 2, location.Y - 50, caption)
 				{
-					Color = colorSwatch.BackColor
+					Color = SafeColor(hexBox.Text),
+					AutomaticVisible = false
 				};
 
-				if (dialog.ShowDialog(this) == DialogResult.OK)
+				if (picker.ShowDialog(this) == DialogResult.OK)
 				{
-					colorSwatch.BackColor = dialog.Color;
-					hexBox.Text = dialog.Color.ToRGBHtml();
+					colorSwatch.BackColor = Rendered(picker.Color);
+					hexBox.Text = picker.Color.ToRGBHtml();
 				}
 			};
 
 			hexBox.TextChanged += (s, e) =>
 			{
 				MarkValidity(hexBox, HexColorPattern.IsMatch(hexBox.Text));
-				var color = SafeColor(hexBox.Text);
+				var color = Rendered(SafeColor(hexBox.Text));
 				colorSwatch.BackColor = color;
 				apply(hexBox.Text);
 				RaiseChanged();
@@ -699,6 +704,15 @@ namespace River.OneMoreAddIn.Settings
 		private void MarkValidity(Control control, bool valid)
 		{
 			control.ForeColor = valid ? manager.GetColor("WindowText") : Color.Red;
+		}
+
+
+		/// <summary>
+		/// Gets the color OneNote shows for the given applied color on this page
+		/// </summary>
+		private Color Rendered(Color color)
+		{
+			return darkPage ? ColorPalette.ToDark(color) : color;
 		}
 
 
@@ -770,13 +784,13 @@ namespace River.OneMoreAddIn.Settings
 			titleLabel.Text = Box.Title;
 			titleBox.Text = Box.Title;
 			shadingBox.Text = Box.Shading;
-			shadingSwatch.BackColor = SafeColor(Box.Shading);
+			shadingSwatch.BackColor = Rendered(SafeColor(Box.Shading));
 			titleColorBox.Text = Box.TitleColor;
-			titleColorSwatch.BackColor = SafeColor(Box.TitleColor);
+			titleColorSwatch.BackColor = Rendered(SafeColor(Box.TitleColor));
 			textColorBox.Text = Box.TextColor;
-			textColorSwatch.BackColor = SafeColor(Box.TextColor);
+			textColorSwatch.BackColor = Rendered(SafeColor(Box.TextColor));
 			symbolColorBox.Text = Box.SymbolColor;
-			symbolColorSwatch.BackColor = SafeColor(Box.SymbolColor);
+			symbolColorSwatch.BackColor = Rendered(SafeColor(Box.SymbolColor));
 			symbolSizeBox.Value = Box.SymbolSize;
 			symbolCodeBox.Text = Box.Symbol;
 
@@ -811,10 +825,12 @@ namespace River.OneMoreAddIn.Settings
 		private sealed class Swatch : Panel
 		{
 			private readonly BoxType box;
+			private readonly bool dark;
 
-			public Swatch(BoxType box)
+			public Swatch(BoxType box, bool dark)
 			{
 				this.box = box;
+				this.dark = dark;
 				DoubleBuffered = true;
 			}
 
@@ -830,7 +846,7 @@ namespace River.OneMoreAddIn.Settings
 					shading = Color.LightGray;
 				}
 
-				using (var brush = new SolidBrush(shading))
+				using (var brush = new SolidBrush(dark ? ColorPalette.ToDark(shading) : shading))
 				{
 					e.Graphics.FillRectangle(brush, ClientRectangle);
 				}
@@ -848,7 +864,7 @@ namespace River.OneMoreAddIn.Settings
 					var size = Math.Max(8f, box.SymbolSize * 0.7f);
 
 					using var font = new Font(BoxTypesProvider.SymbolFont, size);
-					using var brush = new SolidBrush(color);
+					using var brush = new SolidBrush(dark ? ColorPalette.ToDark(color) : color);
 					using var format = new StringFormat
 					{
 						Alignment = StringAlignment.Center,

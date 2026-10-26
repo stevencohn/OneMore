@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Color pageColor;
 		private bool optionsAvailable;
 		private readonly bool darkMode;
+		private readonly PageColors pageColors = new();
 
 
 		public PageColorDialog()
@@ -160,9 +161,20 @@ namespace River.OneMoreAddIn.Commands
 		public string ThemeKey => theme.Key;
 
 
+		/// <summary>
+		/// Gets the color OneNote renders for the color applied to the page; on a dark page,
+		/// colors in the page color palette use their measured rendering and any other color
+		/// has its lightness inverted
+		/// </summary>
 		private Color EstimateOneNoteColor(Color color)
 		{
-			return darkMode ? color.Invert() : color;
+			if (!darkMode || color.IsEmpty || color.A == 0)
+			{
+				return color;
+			}
+
+			var known = pageColors.Find(s => ColorMath.SameRgb(s.Color, color));
+			return known is not null ? known.Paint : ColorPalette.ToDark(color);
 		}
 
 
@@ -234,21 +246,22 @@ namespace River.OneMoreAddIn.Commands
 
 			var location = PointToScreen(customBox.Location);
 
-			using var dialog = new UI.MoreColorDialog(
-				Resx.PageColorDialog_Text,
+			// empty page color means dark mode follows the Office theme, same as darkMode above
+			using var picker = new UI.MoreColorPicker(Color.Empty,
 				location.X + 30,
-				location.Y + customBox.Height - 4
-				);
+				location.Y + customBox.Height - 4,
+				Resx.PageColorDialog_Text)
+			{
+				Color = (Color)customBox.Tag,
+				AutomaticVisible = false
+			};
 
-			dialog.Color = (Color)customBox.Tag;
-			dialog.FullOpen = true;
-
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (picker.ShowDialog(this) == DialogResult.OK)
 			{
 				// use Tag as a cache for ApplyCustomColor
-				customBox.Tag = dialog.Color;
+				customBox.Tag = picker.Color;
 
-				var estimate = EstimateOneNoteColor(dialog.Color);
+				var estimate = EstimateOneNoteColor(picker.Color);
 				FillBox(customBox, estimate);
 				TipBox(customBox, estimate);
 

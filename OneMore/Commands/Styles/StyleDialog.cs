@@ -386,6 +386,7 @@ namespace River.OneMoreAddIn.Commands
 			var vcenter = previewBox.Height / 2;
 
 			var background = BestBackgroundColor();
+			var darkSample = background.GetBrightness() < 0.5f;
 
 			tooltip.SetToolTip(previewBox,
 				$"pageColor:{pageColor.ToRGBHtml()}\n" +
@@ -437,7 +438,8 @@ namespace River.OneMoreAddIn.Commands
 				!selection.Background.IsEmpty &&
 				!selection.Background.Equals(Color.Transparent))
 			{
-				using var highBrush = new SolidBrush(selection.Background);
+				using var highBrush = new SolidBrush(
+					darkSample ? ColorPalette.ToDark(selection.Background) : selection.Background);
 				if (offset)
 				{
 					e.Graphics.FillRectangle(highBrush,
@@ -453,7 +455,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var format = new StringFormat(StringFormatFlags.NoWrap);
 
-			var textColor = selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
+			// on a dark page OneNote renders applied colors with inverted lightness
+			var textColor = selection?.ApplyColors == true
+				? (darkSample ? ColorPalette.ToDark(selection.Foreground) : selection.Foreground)
+				: contrastPen.Color;
 			using var textBrush = new SolidBrush(textColor);
 
 			var sampleColor = offset ? Color.Gray : textColor;
@@ -658,7 +663,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeColor(object sender, EventArgs e)
 		{
-			var color = SelectColor("Text Color", colorButton.Bounds, selection.Foreground);
+			var color = SelectColor(colorButton.ToolTipText, colorButton.Bounds, selection.Foreground, Color.Black);
 			if (!color.Equals(Color.Empty))
 			{
 				selection.Foreground = color;
@@ -675,7 +680,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeHighlightColor(object sender, EventArgs e)
 		{
-			var color = SelectColor("Highlight Color", backColorButton.Bounds, selection.Background);
+			var color = SelectColor(backColorButton.ToolTipText, backColorButton.Bounds, selection.Background, Color.Transparent);
 			if (!color.Equals(Color.Empty))
 			{
 				selection.Background = color;
@@ -690,19 +695,24 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Color SelectColor(string title, Rectangle bounds, Color color)
+		private Color SelectColor(string title, Rectangle bounds, Color color, Color automaticColor)
 		{
 			var location = PointToScreen(fontTools.Location);
 
-			using var dialog = new UI.MoreColorDialog(title,
+			var page = pageColor.IsEmpty || pageColor.A == 0
+				? (darkMode ? BasicColors.BlackSmoke : Color.White)
+				: pageColor;
+
+			using var picker = new MoreColorPicker(page,
 				location.X + bounds.Location.X,
-				location.Y + bounds.Height + 4);
+				location.Y + bounds.Bottom + 4,
+				title);
 
-			dialog.Color = color;
+			picker.Color = color;
 
-			if (dialog.ShowDialog(this) == DialogResult.OK)
+			if (picker.ShowDialog(this) == DialogResult.OK)
 			{
-				return dialog.Color;
+				return picker.Automatic ? automaticColor : picker.Color;
 			}
 
 			return Color.Empty;

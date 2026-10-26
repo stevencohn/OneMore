@@ -14,6 +14,11 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private Color markColor = Color.Red;
 
+		// the highlight is applied to page content so, as in MoreColorPicker, the swatch shows
+		// how OneNote renders it on a dark page while markColor stays the applied color
+		private readonly Color pageColor;
+		private readonly bool darkPage;
+
 
 		/// <summary>
 		/// Initializes a new dialog.
@@ -24,9 +29,16 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="hasSectionGroup">
 		/// True if the current section is inside a section group
 		/// </param>
-		public RepairUrlsDialog(bool hasPageGroup, bool hasSectionGroup)
+		/// <param name="pageColor">
+		/// The background color of the current page, which determines dark-mode rendering of the
+		/// highlight color; empty means the page follows the Office theme
+		/// </param>
+		public RepairUrlsDialog(bool hasPageGroup, bool hasSectionGroup, Color pageColor = default)
 		{
 			InitializeComponent();
+
+			this.pageColor = pageColor;
+			darkPage = UI.MoreColorPicker.IsDarkPage(pageColor);
 
 			pageGroupRadio.Enabled = hasPageGroup;
 			sectionGroupRadio.Enabled = hasSectionGroup;
@@ -65,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			set
 			{
 				markColor = value;
-				colorSwatch.BackColor = value;
+				colorSwatch.BackColor = Rendered(value);
 			}
 		}
 
@@ -144,25 +156,31 @@ namespace River.OneMoreAddIn.Commands
 			base.OnShown(e);
 
 			// theming may have reset the swatch and the label
-			colorSwatch.BackColor = markColor;
+			colorSwatch.BackColor = Rendered(markColor);
 			MarkChanged(this, EventArgs.Empty);
+		}
+
+
+		private Color Rendered(Color color)
+		{
+			return darkPage ? UI.ColorPalette.ToDark(color) : color;
 		}
 
 
 		private void ChooseColor(object sender, EventArgs e)
 		{
-			using var dialog = new UI.MoreColorDialog(
-				"Select Highlight Color", Left + colorSwatch.Left, Top + colorSwatch.Bottom)
+			using var picker = new UI.MoreColorPicker(pageColor,
+				Left + colorSwatch.Left, Top + colorSwatch.Bottom, "Select Highlight Color")
 			{
 				Color = markColor,
-				FullOpen = true
+				AutomaticVisible = false
 			};
 
-			// use the elevator to force ColorDialog to top-most first time used
-			using var elevator = new UI.WindowElevator(dialog);
+			// use the elevator to force the picker to top-most first time used
+			using var elevator = new UI.WindowElevator(picker);
 			if (elevator.ShowDialog(this) == DialogResult.OK)
 			{
-				MarkColor = dialog.Color;
+				MarkColor = picker.Color;
 			}
 		}
 	}

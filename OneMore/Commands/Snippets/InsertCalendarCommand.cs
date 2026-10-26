@@ -49,7 +49,14 @@ namespace River.OneMoreAddIn.Commands
 			using var guard = EnterOnce();
 			if (guard is null) { return; }
 
-			using var dialog = new InsertCalendarDialog();
+			// the page background determines how OneNote renders the shading color
+			var pageColor = page.GetPageColor(out var pageAutomatic, out var pageBlack);
+			if (pageAutomatic)
+			{
+				pageColor = pageBlack ? UI.BasicColors.BlackSmoke : System.Drawing.Color.White;
+			}
+
+			using var dialog = new InsertCalendarDialog(pageColor);
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;

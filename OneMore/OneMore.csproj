@@ -1452,6 +1452,18 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BasicColors.cs" />
+    <Compile Include="UI\ColorPicker\ColorMapControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\ColorMath.cs" />
+    <Compile Include="UI\ColorPicker\ColorPalette.cs" />
+    <Compile Include="UI\ColorPicker\ColorSwatchPane.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\MoreColorPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\RecentColors.cs" />
     <Compile Include="Helpers\Extensions\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
@@ -1520,9 +1532,6 @@
     </Compile>
     <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\MoreColorDialog.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Snippets\Emoji\EmojiDialog.cs">
       <SubType>Form</SubType>
