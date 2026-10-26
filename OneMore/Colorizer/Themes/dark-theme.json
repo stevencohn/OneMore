@@ -4,30 +4,31 @@
     "Auto": "#F0F0F0",
     "AutoNative": "#000000",
     "Black": "#000000",
-    "Blue": "#2E75B5",
+    "Blue": "#569CD6",
     "CornflowerBlue": "#5B9BD5",
-    "DarkCyan": "#008B8B",
-    "DarkOliveGreen": "#556B2F",
-    "DarkRed": "#7D180D",
-    "DarkYellow": "#BF9000",
+    "DarkCyan": "#3DC9C9",
+    "DarkOliveGreen": "#8FA860",
+    "DarkRed": "#E06C60",
+    "DarkYellow": "#E0B040",
     "DiffGreen": "#CCFFCC",
     "DiffRed": "#F2DCDB",
-    "Firebrick": "#B22222",
+    "Firebrick": "#CE9178",
     "Gray": "#808080",
-    "Green": "#008000",
+    "Green": "#57A64A",
     "LightGray": "#A5A5A5",
     "LightGreen": "#00B050",
     "LightSeaGreen": "#20B2AA",
-    "Magenta": "#CC00FF",
+    "Magenta": "#E066FF",
     "MediumTurqoise": "#48D1CC",
     // DarkNavy is light blue
     "Navy": "#92CAF4",
-    "OliveDrab": "#6B8E23",
-    "Orange": "#FF5800",
-    "Purple": "#8064A2",
-    "Red": "#E30303",
+    "OliveDrab": "#A4C639",
+    "Orange": "#FF8A3D",
+    "Orchid": "#C586C0",
+    "Purple": "#B39DDB",
+    "Red": "#F44747",
     "Salmon": "#F1937A",
-    "Teal": "#008080",
+    "Teal": "#4EC9B0",
     "Yellow": "#FFFF00"
   },
   "styles": [
@@ -84,7 +85,7 @@
     },
     {
       "name": "ControlKeyword",
-      "foreground": "Blue"
+      "foreground": "Orchid"
     },
     {
       "name": "CssPropertyName",
@@ -119,7 +120,11 @@
       "foreground": "LightGreen"
     },
     {
-      "name": "HtmlTagDelimeter",
+      "name": "HtmlTagDelimiter",
+      "foreground": "Blue"
+    },
+    {
+      "name": "HtmlDelimiter",
       "foreground": "Blue"
     },
     {
@@ -145,6 +150,9 @@
     {
       "name": "JsonKey",
       "foreground": "Orange"
+    },
+    {
+      "name": "Identifier"
     },
     {
       "name": "Keyword",
@@ -313,7 +321,7 @@
     },
     {
       "name": "XmlAttributeQuotes",
-      "foreground": "Black"
+      "foreground": "Auto"
     },
     {
       "name": "XmlAttributeValue",

@@ -22,6 +22,7 @@
     "Navy": "#000080",
     "OliveDrab": "#6B8E23",
     "Orange": "#FF5800",
+    "Orchid": "#AF00DB",
     "Purple": "#8064A2",
     "Red": "#E30303",
     "Salmon": "#F1937A",
@@ -82,7 +83,7 @@
     },
     {
       "name": "ControlKeyword",
-      "foreground": "Blue"
+      "foreground": "Orchid"
     },
     {
       "name": "CssPropertyName",
@@ -117,7 +118,11 @@
       "foreground": "LightGreen"
     },
     {
-      "name": "HtmlTagDelimeter",
+      "name": "HtmlTagDelimiter",
+      "foreground": "Blue"
+    },
+    {
+      "name": "HtmlDelimiter",
       "foreground": "Blue"
     },
     {
@@ -143,6 +148,9 @@
     {
       "name": "JsonKey",
       "foreground": "Blue"
+    },
+    {
+      "name": "Identifier"
     },
     {
       "name": "Keyword",

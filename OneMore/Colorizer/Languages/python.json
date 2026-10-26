@@ -2,16 +2,18 @@
   "name": "Python",
   "rules": [
     {
-      // [2] (""" comment """)
-      // single line multi-line comment
       "pattern": "^((?:\\s*)\"{3}[^\\r\\n]*?\"{3}(?:\\s*))$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // [3] (""" comment)
-      // start of a multi-line comment
+      "pattern": "^((?:\\s*)'{3}[^\\r\\n]*?'{3}(?:\\s*))$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
       "pattern": "^((?:\\s*)\"{3}[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
@@ -19,8 +21,6 @@
       ]
     },
     {
-      // [4] (comment """)
-      // end of a multi-line comment
       "pattern": "([^\\r\\n\"]*\"{3}(?:\\s*))",
       "scope": "",
       "captures": [
@@ -28,80 +28,92 @@
       ]
     },
     {
-      // shebang line, must be the very first line of the file
       "pattern": "\\A(#![^\\r\\n]*)",
       "captures": [
         "Shebang"
       ]
     },
     {
-      // [5] (# comment)
       "pattern": "(#[^\\r\\n]*)[]\\r\\n]?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // prefixed triple-quoted string (single-line): f"""...""", r"""...""", b"""...""", rb"""..."""
       "pattern": "((?:[rRbBfFuU]{1,2})\"{3}[^\\r\\n]*?\"{3})",
       "captures": [
         "String"
       ]
     },
     {
-      // prefixed triple-quoted string (single-line, single-quoted): f'''...''', r'''...''', etc.
       "pattern": "((?:[rRbBfFuU]{1,2})'{3}[^\\r\\n]*?'{3})",
       "captures": [
         "String"
       ]
     },
     {
-      // prefixed string (double-quoted): f"...", r"...", b"...", rb"...", fr"..."
-      "pattern": "((?:[rRbBfFuU]{1,2})\"[^\\r\\n\"]*?\")",
+      "pattern": "((?:[rRbBfFuU]{1,2})\"(?:\\\\.|[^\"\\\\\\r\\n])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      // prefixed string (single-quoted): f'...', r'...', b'...', etc.
-      "pattern": "((?:[rRbBfFuU]{1,2})'[^\\r\\n']*?')",
+      "pattern": "((?:[rRbBfFuU]{1,2})'(?:\\\\.|[^'\\\\\\r\\n])*')",
       "captures": [
         "String"
       ]
     },
     {
-      // [6] ('string')
-      "pattern": "('[^\\r\\n\\']*\\')",
+      "pattern": "('(?:\\\\.|[^'\\\\\\r\\n])*')",
       "captures": [
         "String"
       ]
     },
     {
-      // [7] ("string")
-      "pattern": "(\"[^\\r\\n\"]*\")",
-      //"pattern": "\"(?:([^{}\"]+)|(\\{[^{}\"]+\\})+)\"", ;string,number
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      // decorator at line start: @decorator, @module.func, @obj.method
-      // line-anchored to avoid matching the @ matrix-multiplication operator (Python 3.5+)
       "pattern": "^\\s*(@[a-zA-Z_][a-zA-Z0-9_\\.]*)",
       "captures": [
-        "Macro"
+        "Attribute"
       ]
     },
     {
-      // [8] (keyword)
-      "pattern": "\\b(and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|False|finally|for|from|global|if|import|in|is|lambda|match|None|nonlocal|not|or|pass|print|raise|return|True|try|while|with|yield)\\b",
+      "pattern": "\\b(break|case|continue|elif|else|except|finally|for|if|match|raise|return|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(bool|bytearray|bytes|complex|dict|float|frozenset|int|list|object|range|set|str|tuple|type)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(and|as|assert|async|await|class|def|del|exec|False|from|global|import|in|is|lambda|None|nonlocal|not|or|pass|print|True|with)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      // [9] (1234)
-      "pattern": "\\b([0-9]{1,})\\b",
+      "pattern": "\\b(__[A-Za-z0-9_]+__)\\b",
+      "captures": [
+        "PsuedoKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|[0-9][0-9_]*(?:\\.[0-9_]*)?(?:[eE][+-]?[0-9]+)?)[jJ]?)\\b",
       "captures": [
         "Number"
       ]

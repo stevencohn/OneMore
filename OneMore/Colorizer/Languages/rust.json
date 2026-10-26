@@ -25,43 +25,100 @@
       ]
     },
     {
+      "pattern": "(///|//!)([^\\r\\n]*)",
+      "captures": [
+        "XmlDocTag",
+        "XmlDocComment"
+      ]
+    },
+    {
       "pattern": "(//.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      "pattern": "('#[^\\n]*?(?<!\\\\)')",
+      "pattern": "(?s)((?:b)?r#\"(?:[^\"]|\"(?!#))*\"#)",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "pattern": "(?s)((?:b)?r\"[^\"]*\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "^\\s*(\\#\\[[^\\]]*\\])",
+      "pattern": "(?s)(b?\"(?:\\\\.|[^\"\\\\])*\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(b?'(?:\\\\(?:x[0-9a-fA-F]{2}|u\\{[0-9a-fA-F_]+\\}|.)|[^\\\\'\\r\\n])')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "('[A-Za-z_]\\w*)(?!['\\w])",
+      "captures": [
+        "TypeVariable"
+      ]
+    },
+    {
+      "pattern": "(\\#!?\\[[^\\]\\r\\n]*\\])",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z_]\\w*!)(?=\\s*[\\(\\[\\{])",
       "captures": [
         "Macro"
       ]
     },
     {
-      "pattern": "\\b(as|async|await|break|const|continue|crate|dyn|else|enum|extern|false|fn|for|if|impl|in|let|loop|match|mod|move|mut|pub|ref|return|self|Self|static|struct|super|trait|true|type|union|unsafe|use|where|while)\\b",
+      "pattern": "\\b(break|continue|else|for|if|loop|match|return|while)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(Arc|bool|Box|BTreeMap|char|f32|f64|HashMap|HashSet|i128|i16|i32|i64|i8|isize|Option|Rc|Result|str|String|u128|u16|u32|u64|u8|usize|Vec)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(struct|enum|trait|union|type|mod)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(as|async|await|const|crate|dyn|enum|extern|false|fn|impl|in|let|mod|move|mut|pub|ref|Self|self|static|struct|super|trait|true|type|union|unsafe|use|where)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      "pattern": "\\b(_*[a-zA-Z][a-zA-Z0-9_]*!?)\\b",
+      "pattern": "\\b([a-z_]\\w*)(::)(?=[A-Za-z_])",
       "captures": [
-        "Identifier"
+        "Namespace",
+        "Delimeter"
       ]
     },
     {
-      "pattern": "\\b([0-9]+(?:_[0-9]+)*|0[xX][0-9a-fA-F]+(?:_[0-9a-fA-F]+)*|0[oO][0-7]+(?:_[0-7]+)*|0[bB][01]+(?:_[01]+)*)\\b",
+      "pattern": "(?<=::)([A-Z]\\w*)\\b(?!\\s*\\()",
+      "captures": [
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0x[0-9a-fA-F_]+|0b[01_]+|0o[0-7_]+|[0-9][0-9_]*(?:\\.[0-9][0-9_]*)?(?:[eE][+-]?[0-9_]+)?)(?:_?(?:[iu](?:8|16|32|64|128|size)|f32|f64))?)\\b",
       "captures": [
         "Number"
       ]

@@ -28,25 +28,62 @@
       ]
     },
     {
+      "pattern": "(?s)(\"\"\"[\\s\\S]*?\"\"\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
       "pattern": "('[^\\n]*?(?<!\\\\)')",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(\"[^\\n]*?(?<!\\\\)\")",
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "\\b(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|false|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|non-sealed|null|package|permits|private|protected|public|record|return|sealed|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|true|try|var|void|volatile|while|yield)\\b",
+      "pattern": "(@interface)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      "pattern": "(@(?!interface\\b)[A-Za-z_][\\w.]*)",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b(break|case|catch|continue|default|do|else|finally|for|goto|if|return|switch|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(Boolean|boolean|Byte|byte|char|Character|Double|double|Float|float|int|Integer|List|Long|long|Map|Number|Object|Optional|Set|Short|short|String|void)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class|interface|enum|record)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|assert|class|const|enum|extends|false|final|implements|import|instanceof|interface|native|new|non-sealed|null|package|permits|private|protected|public|record|sealed|static|strictfp|super|synchronized|this|throws|transient|true|var|volatile)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|[0-9][0-9_]*(?:\\.[0-9][0-9_]*)?(?:[eE][+-]?[0-9]+)?)(?:[lLfFdD])?)\\b",
       "captures": [
         "Number"
       ]

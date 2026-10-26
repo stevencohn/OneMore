@@ -95,7 +95,7 @@
       ]
     },
     {
-      "pattern": "(?i)(&[a-z0-9]+?;)",
+      "pattern": "(?i)(&#?[a-z0-9]+?;)",
       "captures": [
         "XmlAttribute"
       ]

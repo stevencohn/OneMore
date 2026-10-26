@@ -25,6 +25,18 @@
       ]
     },
     {
+      "pattern": "(<\\?php|<\\?=|\\?>)",
+      "captures": [
+        "PreprocessorKeyword"
+      ]
+    },
+    {
+      "pattern": "(\\#\\[[^\\]\\r\\n]*\\])",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
       "pattern": "((?://|#).*?)\\r?$",
       "captures": [
         "Comment"
@@ -43,21 +55,40 @@
       ]
     },
     {
-      "pattern": "\\b\\$([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+      "pattern": "(\\$[a-zA-Z_][a-zA-Z0-9_]*)",
       "captures": [
         "Variable"
       ]
     },
     {
-      "pattern": "\\b(__halt_compiler|abstract|and|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|enum|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|new|or|print|private|protected|public|readonly|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\\b",
+      "pattern": "\\b(break|case|catch|continue|default|die|do|else|elseif|endfor|endforeach|endif|endswitch|endwhile|exit|finally|for|foreach|goto|if|match|return|switch|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(array|bool|callable|double|float|int|integer|iterable|mixed|never|numeric|object|parent|real|self|string|void)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(FALSE|false|NULL|null|TRUE|true)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      "pattern": "\\b(array|bool|double|false|float|int|integer|object|mixed|never|null|numeric|real|string|true|void)\\b",
+      "pattern": "\\b(class|interface|trait|enum)\\s+([A-Za-z_]\\w*)",
       "captures": [
-        "Type"
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(__halt_compiler|abstract|and|as|class|clone|const|declare|echo|empty|enddeclare|enum|eval|extends|final|fn|function|global|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|print|private|protected|public|readonly|require|require_once|static|trait|unset|use|var|xor)\\b",
+      "captures": [
+        "Keyword"
       ]
     },
     {
@@ -67,25 +98,7 @@
       ]
     },
     {
-      "pattern": "\\b(0|[1-9][0-9]*(?>_[0-9]+)*)\\b",
-      "captures": [
-        "Number"
-      ]
-    },
-    {
-      "pattern": "\\b(0[xX][0-9a-fA-F]+(?>_[0-9a-fA-F]+)*)\\b",
-      "captures": [
-        "Number"
-      ]
-    },
-    {
-      "pattern": "\\b(0[oO]?[0-7]+(?>_[0-7]+)*)\\b",
-      "captures": [
-        "Number"
-      ]
-    },
-    {
-      "pattern": "\\b(0[bB][01]+(?>_[01]+)*)\\b",
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|0[oO]?[0-7_]+|[0-9][0-9_]*(?:\\.[0-9_]*)?(?:[eE][+-]?[0-9]+)?))\\b",
       "captures": [
         "Number"
       ]
