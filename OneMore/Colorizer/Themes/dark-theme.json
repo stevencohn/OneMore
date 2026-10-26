@@ -177,7 +177,7 @@
     },
     {
       "name": "Namespace",
-      "foreground": "Navy"
+      "foreground": "#E5C07B"
     },
     {
       "name": "Number",

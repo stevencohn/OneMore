@@ -25,6 +25,13 @@
       ]
     },
     {
+      "pattern": "(///|//!)([^\\r\\n]*)",
+      "captures": [
+        "XmlDocTag",
+        "XmlDocComment"
+      ]
+    },
+    {
       "pattern": "(//.*?)\\r?$",
       "captures": [
         "Comment"
@@ -62,7 +69,7 @@
       ]
     },
     {
-      "pattern": "\\b(auto|bool|char|char8_t|char16_t|char32_t|double|float|int|int8_t|int16_t|int32_t|int64_t|long|nullptr_t|ptrdiff_t|short|signed|size_t|uint8_t|uint16_t|uint32_t|uint64_t|unsigned|void|wchar_t)\\b",
+      "pattern": "\\b(auto|bool|char|char8_t|char16_t|char32_t|double|float|int|intmax_t|intptr_t|int8_t|int16_t|int32_t|int64_t|long|nullptr_t|ptrdiff_t|short|signed|size_t|ssize_t|time_t|off_t|uint8_t|uintmax_t|uintptr_t|uint16_t|uint32_t|uint64_t|unsigned|void|wchar_t)\\b",
       "captures": [
         "Type"
       ]
@@ -71,6 +78,13 @@
       "pattern": "\\b(false|NULL|nullptr|true)\\b",
       "captures": [
         "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(class|struct|union|enum(?:\\s+(?:class|struct))?|typename|concept)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
       ]
     },
     {
@@ -111,9 +125,27 @@
       ]
     },
     {
+      "pattern": "\\b([A-Z][A-Z0-9_]+)\\b",
+      "captures": [
+        "Macro"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z_]\\w*)\\s*(?=\\()",
+      "captures": [
+        "BuiltinFunction"
+      ]
+    },
+    {
       "pattern": "\\b((?:0[xX][0-9a-fA-F']+|0[bB][01']+|[0-9][0-9']*(?:\\.[0-9']*)?(?:[eE][+-]?[0-9]+)?)(?:[uU]?[lL]{0,2}|[fF])?)\\b",
       "captures": [
         "Number"
+      ]
+    },
+    {
+      "pattern": "(\\[\\[[^\\]\\r\\n]*\\]\\])",
+      "captures": [
+        "Attribute"
       ]
     },
     {
