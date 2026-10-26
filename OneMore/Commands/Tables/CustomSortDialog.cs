@@ -23,7 +23,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public CustomSortDialog(
-			IReadOnlyList<string> names, IReadOnlyList<SortDataType> detected)
+			IReadOnlyList<string> names, IReadOnlyList<SortDataType> detected,
+			IReadOnlyList<SortRule> initial = null)
 			: this()
 		{
 			this.names = names;
@@ -70,6 +71,20 @@ namespace River.OneMoreAddIn.Commands
 			typeBox.SelectedIndex = 0;
 
 			RefreshColumns();
+
+			if (initial is not null)
+			{
+				foreach (var rule in initial)
+				{
+					AddRule(rule);
+				}
+
+				if (ruleList.Items.Count > 0)
+				{
+					ruleList.Items[0].Selected = true;
+				}
+			}
+
 			UpdateButtons();
 		}
 
@@ -174,6 +189,12 @@ namespace River.OneMoreAddIn.Commands
 				DataType = (SortDataType)typeBox.SelectedIndex
 			};
 
+			AddRule(rule);
+		}
+
+
+		private void AddRule(SortRule rule)
+		{
 			if (rule.DataType == SortDataType.Auto)
 			{
 				rule.DataType = detected[rule.ColumnIndex];

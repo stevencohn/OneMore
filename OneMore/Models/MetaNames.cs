@@ -48,6 +48,9 @@ namespace River.OneMoreAddIn.Models
 		// page is a section or notebook TOC
 		public static readonly string TableOfContents = "omTableOfContents";
 
+		// OE containing a table; content is the last applied custom sort, e.g. "2-n,0+t"
+		public static readonly string TableSort = "omTableSort";
+
 		// Outline meta to mark visible word bank
 		public static readonly string TaggingBank = "omTaggingBank";
 

@@ -70,7 +70,14 @@ namespace River.OneMoreAddIn.Commands
 					text.Select(t => column < t.Length ? t[column] : null), AddIn.Locale));
 			}
 
-			using var dialog = new CustomSortDialog(names, types);
+			// the OE containing the table remembers the last applied sort
+			var container = table.Root.Parent;
+			var saved = container?.Elements(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name")?.Value == MetaNames.TableSort);
+
+			var initial = SortRule.Parse(saved?.Attribute("content")?.Value, columnCount);
+
+			using var dialog = new CustomSortDialog(names, types, initial);
 			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
 				return;
@@ -89,6 +96,19 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var index in order)
 			{
 				table.AddRow(roots[index]);
+			}
+
+			if (container is not null)
+			{
+				var content = SortRule.Serialize(dialog.Rules);
+				if (saved is not null)
+				{
+					saved.SetAttributeValue("content", content);
+				}
+				else
+				{
+					container.AddFirst(new Meta(ns, MetaNames.TableSort, content));
+				}
 			}
 
 			await one.Update(page);
