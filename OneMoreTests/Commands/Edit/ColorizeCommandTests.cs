@@ -267,6 +267,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			"// end"
 		};
 
+		private static readonly string[] RegexLines =
+		{
+			@"^(?<year>\d{4})-(?:0[1-9]|1[0-2])$",
+			@"(?i)\b(foo|bar)+?\b(?=\s)",
+			@"[A-Za-z_][\w-]*[(]x",
+			@"[^\]\\]+\p{L}\k<year>\1a{2,}b{,3}\(\[",
+			@"(?<!\\)""([^""\\]|\\.)*"""
+		};
+
 		private static readonly string[] JsonLines =
 		{
 			"{",
@@ -533,6 +542,26 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			var diffStyle = runs[diffIndex].Attribute("style");
 			Assert.IsNotNull(diffStyle, "Expected the diff-marked line to receive a background style");
 			StringAssert.Contains(diffStyle.Value, $"background:{GetThemeBackground("diffadd")}");
+		}
+
+
+		[TestMethod]
+		public void Colorize_RegexBlock_MatchesEngineOutput()
+		{
+			var (page, runs) = BuildCodeBlock("Regex Test", RegexLines);
+			var command = new ColorizeCommand(page, false);
+			var expected = Highlight("regex", RegexLines);
+
+			var updated = command.Colorize("regex", runs);
+
+			Assert.IsTrue(updated);
+			Assert.AreEqual(RegexLines.Length, runs.Count);
+
+			for (var i = 0; i < runs.Count; i++)
+			{
+				Assert.AreEqual(expected[i], StripEmptySpans(runs[i].GetCData().Value),
+					$"Mismatch on Regex line {i}: \"{RegexLines[i]}\"");
+			}
 		}
 
 

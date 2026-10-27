@@ -272,6 +272,10 @@
       "foreground": "Gray"
     },
     {
+      "name": "RegexAttribute",
+      "foreground": "DarkCyan"
+    },
+    {
       "name": "Shebang",
       "foreground": "OliveDrab"
     },

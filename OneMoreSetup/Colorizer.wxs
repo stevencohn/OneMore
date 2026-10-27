@@ -118,6 +118,12 @@
       <Component Id="LangRPng">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\r.png" KeyPath="yes" />
       </Component>
+      <Component Id="LangRegexJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\regex.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRegexPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\regex.png" KeyPath="yes" />
+      </Component>
       <Component Id="LangRegistryJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\registry.json" KeyPath="yes" />
       </Component>
