@@ -1,0 +1,168 @@
+{
+  "name": "Regex",
+  "aliases": [
+    "regex",
+    "regexp",
+    "re"
+  ],
+  "rules": [
+    {
+      // inline comment group: (?# ... )
+      "pattern": "(\\(\\?#[^)]*\\))",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // POSIX class inside a character class: [:alpha:]
+      "pattern": "(?<=(?<!\\\\)\\[\\^?(?:\\\\.|[^\\]\\\\\\n])*)(\\[:\\^?\\w+:\\])",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      // shorthand and property classes inside a character class: \d \w \p{L}
+      "pattern": "(?<=(?<!\\\\)\\[\\^?(?:\\\\.|[^\\]\\\\\\n])*)(\\\\[dDwWsShH]|\\\\[pP]\\{[^}]+\\})",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      // escapes inside a character class: \n \xHH \uHHHH \]
+      "pattern": "(?<=(?<!\\\\)\\[\\^?(?:\\\\.|[^\\]\\\\\\n])*)(\\\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|c.|[0-7]{1,3}|.))",
+      "captures": [
+        "StringEscape"
+      ]
+    },
+    {
+      // closing bracket of a character class
+      "pattern": "(?<=(?<!\\\\)\\[\\^?(?:\\\\.|[^\\]\\\\\\n])*)(\\])",
+      "captures": [
+        "Delimeter"
+      ]
+    },
+    {
+      // literal characters and ranges inside a character class
+      "pattern": "(?<=(?<!\\\\)\\[\\^?(?:\\\\.|[^\\]\\\\\\n])*)([^\\]\\\\\\[\\n]+)",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // opening bracket of a character class: [ or [^
+      "pattern": "(\\[\\^?)",
+      "captures": [
+        "Delimeter"
+      ]
+    },
+    {
+      // named group (?<name>, (?P<name> or balancing (?<a-b>
+      "pattern": "(\\(\\?P?<)([A-Za-z_]\\w*(?:-[A-Za-z_]\\w*)?)(>)",
+      "captures": [
+        "Delimeter",
+        "Variable",
+        "Delimeter"
+      ]
+    },
+    {
+      // named group with quotes: (?'name'
+      "pattern": "(\\(\\?')(\\w+(?:-\\w+)?)(')",
+      "captures": [
+        "Delimeter",
+        "Variable",
+        "Delimeter"
+      ]
+    },
+    {
+      // lookaround, atomic and conditional openers: (?= (?! (?<= (?<! (?> (?(
+      "pattern": "(\\(\\?(?:<=|<!|=|!|>|\\())",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // non-capturing group: (?:
+      "pattern": "(\\(\\?:)",
+      "captures": [
+        "Delimeter"
+      ]
+    },
+    {
+      // inline options: (?i) (?i-s:) (?-i)
+      "pattern": "(\\(\\?(?:[imnsx]+(?:-[imnsx]*)?|-[imnsx]+)[:)])",
+      "captures": [
+        "RegexAttribute"
+      ]
+    },
+    {
+      // plain group delimiters: ( and )
+      "pattern": "(\\(|\\))",
+      "captures": [
+        "Delimeter"
+      ]
+    },
+    {
+      // backreferences: \1 \k<name> \k'name' \k{name}
+      "pattern": "(\\\\(?:[1-9]\\d*|k<\\w+>|k'\\w+'|k\\{\\w+\\}))",
+      "captures": [
+        "Variable"
+      ]
+    },
+    {
+      // anchors and boundaries: \b \B \A \z \Z \G \K
+      "pattern": "(\\\\[bBAzZGK])",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // shorthand and property classes: \d \w \s \h \p{L}
+      "pattern": "(\\\\[dDwWsShHRNX]|\\\\[pP]\\{[^}]+\\}|\\\\[pP]\\w)",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      // all other escapes: \n \xHH \uHHHH \cX and escaped literals such as \. \( \[
+      "pattern": "(\\\\(?:x[0-9a-fA-F]{2}|x\\{[0-9a-fA-F]+\\}|u[0-9a-fA-F]{4}|c.|0[0-7]{0,2}|.))",
+      "captures": [
+        "StringEscape"
+      ]
+    },
+    {
+      // counted quantifiers: {n} {n,} {n,m} {,m}
+      "pattern": "(\\{(?:\\d+(?:,\\d*)?|,\\d+)\\})",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      // quantifiers with optional lazy or possessive suffix: * + ? *? +? ??
+      "pattern": "([*+?][?+]?)",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      // anchors: ^ and $
+      "pattern": "(\\^|\\$)",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // alternation and any-character: | and .
+      "pattern": "(\\||\\.)",
+      "captures": [
+        "Macro"
+      ]
+    },
+    {
+      // stray closing bracket, such as the end of class subtraction [a-z-[aeiou]]
+      "pattern": "(\\])",
+      "captures": [
+        "Delimeter"
+      ]
+    }
+  ]
+}
