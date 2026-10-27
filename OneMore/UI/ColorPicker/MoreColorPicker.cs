@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal sealed class MoreColorPicker : MoreForm
 	{
-		private const int FormWidth = 640;
+		private const int FormWidth = 618;
 		private const int PaneHeight = 332;
 
 		// room below the Recent Colors for the expand button, regardless of which rows are shown
@@ -152,15 +152,19 @@ namespace River.OneMoreAddIn.UI
 			hexBox.TextChanged += HexChanged;
 			hexBox.Leave += (s, e) => ShowHex();
 
-			Controls.Add(NewLabel(Resx.word_New, 560, 24, 64));
-			newSwatch = NewPreview(560, 48, 64, 40);
-			currentSwatch = NewPreview(560, 88, 64, 40);
-			Controls.Add(NewLabel(Resx.MoreColorPicker_current, 560, 134, 64));
+			var newLabel = NewLabel(Resx.word_New, 538, 24, 64);
+			newLabel.TextAlign = ContentAlignment.MiddleCenter;
+			Controls.Add(newLabel);
+			newSwatch = NewPreview(538, 48, 64, 40);
+			currentSwatch = NewPreview(538, 88, 64, 40);
+			var currentLabel = NewLabel(Resx.MoreColorPicker_current, 538, 134, 64);
+			currentLabel.TextAlign = ContentAlignment.MiddleCenter;
+			Controls.Add(currentLabel);
 
 			if (darkPage)
 			{
 				// let the user know the swatches show how OneNote renders colors on a dark page
-				darkHint = NewLabel(Resx.MoreColorPicker_darkPage, 556, 172, 72);
+				darkHint = NewLabel(Resx.MoreColorPicker_darkPage, 534, 172, 72);
 				darkHint.Height = S(64);
 				darkHint.TextAlign = ContentAlignment.TopCenter;
 				Controls.Add(darkHint);
