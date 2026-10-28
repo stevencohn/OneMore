@@ -62,6 +62,7 @@
 			this.yearLabel.Size = new System.Drawing.Size(43, 20);
 			this.yearLabel.TabIndex = 0;
 			this.yearLabel.Text = "Year";
+			this.yearLabel.Scrubber = this.yearBox;
 			// 
 			// yearBox
 			// 

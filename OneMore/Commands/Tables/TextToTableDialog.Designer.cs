@@ -40,8 +40,8 @@
 			this.group2 = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.rowsBox = new System.Windows.Forms.NumericUpDown();
 			this.columnsBox = new System.Windows.Forms.NumericUpDown();
-			this.rowsLabel = new System.Windows.Forms.Label();
-			this.columnsLabel = new System.Windows.Forms.Label();
+			this.rowsLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.columnsLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.headerBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.unquoteBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.group1.SuspendLayout();
@@ -241,6 +241,7 @@
 			this.rowsLabel.Size = new System.Drawing.Size(120, 20);
 			this.rowsLabel.TabIndex = 1;
 			this.rowsLabel.Text = "Number of rows";
+			this.rowsLabel.Scrubber = this.rowsBox;
 			// 
 			// columnsLabel
 			// 
@@ -251,6 +252,7 @@
 			this.columnsLabel.Size = new System.Drawing.Size(146, 20);
 			this.columnsLabel.TabIndex = 0;
 			this.columnsLabel.Text = "Number of columns";
+			this.columnsLabel.Scrubber = this.columnsBox;
 			// 
 			// headerBox
 			// 
@@ -323,8 +325,8 @@
 		private UI.MoreGroupBox group2;
 		private System.Windows.Forms.NumericUpDown rowsBox;
 		private System.Windows.Forms.NumericUpDown columnsBox;
-		private System.Windows.Forms.Label rowsLabel;
-		private System.Windows.Forms.Label columnsLabel;
+		private UI.MoreLabel rowsLabel;
+		private UI.MoreLabel columnsLabel;
 		private UI.MoreCheckBox headerBox;
 		private UI.MoreCheckBox unquoteBox;
 	}
