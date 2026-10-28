@@ -4910,6 +4910,240 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Place the cursor in a table cell or select cells to format.
+        /// </summary>
+        internal static string FormatCellsCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("FormatCellsCommand_NoSelection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Format Cells.
+        /// </summary>
+        internal static string FormatCellsDialog_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to After.
+        /// </summary>
+        internal static string FormatCellsDialog_afterHeader {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_afterHeader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Before.
+        /// </summary>
+        internal static string FormatCellsDialog_beforeHeader {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_beforeHeader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string FormatCellsDialog_categoryLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_categoryLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Entire columns (columns: {0}, cells: {1}).
+        /// </summary>
+        internal static string FormatCellsDialog_ColumnsScope {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_ColumnsScope", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string FormatCellsDialog_Currency {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Currency", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string FormatCellsDialog_Date {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Date", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date and Time.
+        /// </summary>
+        internal static string FormatCellsDialog_DateTime {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_DateTime", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Decimal places.
+        /// </summary>
+        internal static string FormatCellsDialog_decimalsLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_decimalsLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Locale default).
+        /// </summary>
+        internal static string FormatCellsDialog_DefaultSymbol {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_DefaultSymbol", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Detected: {0}.
+        /// </summary>
+        internal static string FormatCellsDialog_Detected {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Detected", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Value is a fraction (0.25 becomes 25%).
+        /// </summary>
+        internal static string FormatCellsDialog_fractionRadio_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_fractionRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string FormatCellsDialog_General {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_General", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Negative numbers.
+        /// </summary>
+        internal static string FormatCellsDialog_negativeLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_negativeLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        internal static string FormatCellsDialog_Number {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Number", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string FormatCellsDialog_patternLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_patternLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Percent.
+        /// </summary>
+        internal static string FormatCellsDialog_Percent {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Percent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Value is already a percent (25 becomes 25%).
+        /// </summary>
+        internal static string FormatCellsDialog_percentRadio_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_percentRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string FormatCellsDialog_previewLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_previewLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to.
+        /// </summary>
+        internal static string FormatCellsDialog_scopeGroup_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_scopeGroup.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selected cells (cells: {0}).
+        /// </summary>
+        internal static string FormatCellsDialog_SelectedScope {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_SelectedScope", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Use 1000 separator.
+        /// </summary>
+        internal static string FormatCellsDialog_separatorBox_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_separatorBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (skipped).
+        /// </summary>
+        internal static string FormatCellsDialog_Skipped {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Skipped", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol.
+        /// </summary>
+        internal static string FormatCellsDialog_symbolLabel_Text {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_symbolLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string FormatCellsDialog_Time {
+            get {
+                return ResourceManager.GetString("FormatCellsDialog_Time", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Formula.
         /// </summary>
         internal static string FormulaDialog_Text {
@@ -12491,6 +12725,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Format Cells.
+        /// </summary>
+        internal static string ribFormatCellsButton_Label {
+            get {
+                return ResourceManager.GetString("ribFormatCellsButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Format selected cells or columns as numbers, percents, currency, dates, or times.
+        /// </summary>
+        internal static string ribFormatCellsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFormatCellsButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Fill Down.
         /// </summary>

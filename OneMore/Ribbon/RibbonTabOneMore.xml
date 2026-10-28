@@ -1149,6 +1149,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="CustomSortCmd"/>
       <button
+        id="ribFormatCellsButton"
+        imageMso="FormatCellsDialog"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="FormatCellsCmd"/>
+      <button
         id="ribInsertCellsButton"
         imageMso="TableInsertCellsDialog"
         getLabel="GetRibbonLabel"
