@@ -53,8 +53,8 @@ namespace River.OneMoreAddIn.Commands
 			"yyyy-MM-dd HH:mm",
 			"yyyy-MM-dd HH:mm:ss",
 			"MMM d, yyyy h:mm tt",
-			"yyyy-MM-ddTHH:mm:ss",
-			"dddd, MMMM d, yyyy h:mm tt"
+			"dddd, MMMM d, yyyy h:mm tt",
+			"yyyy-MM-ddTHH:mm:ss"
 		};
 
 
