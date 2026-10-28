@@ -1,5 +1,5 @@
 //************************************************************************************************
-// Copyright © 2026 Steven M Cohn.  All rights reserved.
+// Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -53,7 +53,8 @@ namespace River.OneMoreAddIn.Commands
 			"yyyy-MM-dd HH:mm",
 			"yyyy-MM-dd HH:mm:ss",
 			"MMM d, yyyy h:mm tt",
-			"yyyy-MM-ddTHH:mm:ss"
+			"yyyy-MM-ddTHH:mm:ss",
+			"dddd, MMMM d, yyyy h:mm tt"
 		};
 
 

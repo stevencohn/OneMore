@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3011 // Reflection should not be used to increase accessibility
