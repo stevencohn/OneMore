@@ -391,7 +391,6 @@ namespace River.OneMoreAddIn.Commands
 			this.qualityLabel.TabIndex = 1;
 			this.qualityLabel.Text = "Quality";
 			this.qualityLabel.Scrubber = this.qualBox;
-			this.qualityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// qualBar
 			// 
@@ -439,7 +438,6 @@ namespace River.OneMoreAddIn.Commands
 			this.opacityLabel.TabIndex = 24;
 			this.opacityLabel.Text = "Opacity";
 			this.opacityLabel.Scrubber = this.opacityBox;
-			this.opacityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// previewGroup
 			// 
@@ -480,7 +478,6 @@ namespace River.OneMoreAddIn.Commands
 			this.brightnessLabel.TabIndex = 28;
 			this.brightnessLabel.Text = "Brightness";
 			this.brightnessLabel.Scrubber = this.brightnessBox;
-			this.brightnessLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// brightnessBox
 			// 
@@ -508,7 +505,6 @@ namespace River.OneMoreAddIn.Commands
 			this.contrastLabel.TabIndex = 31;
 			this.contrastLabel.Text = "Contrast";
 			this.contrastLabel.Scrubber = this.contrastBox;
-			this.contrastLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// contrastBox
 			// 
@@ -674,7 +670,6 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationLabel.TabIndex = 47;
 			this.saturationLabel.Text = "Saturation";
 			this.saturationLabel.Scrubber = this.saturationBox;
-			this.saturationLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// saturationBox
 			// 
