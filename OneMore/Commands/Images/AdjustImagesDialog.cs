@@ -637,21 +637,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ResetDoubleClick(object sender, EventArgs e)
-		{
-			if (sender == opacityLabel) opacityBox.Value = 100;
-			else if (sender == brightnessLabel) brightnessBox.Value = 0;
-			else if (sender == contrastLabel) contrastBox.Value = 0;
-			else if (sender == saturationLabel) saturationBox.Value = 0;
-			else if (sender == qualityLabel) qualBox.Value = 100;
-
-			if (image != null)
-			{
-				DrawPreview();
-			}
-		}
-
-
 		private void ResetDefaultValues(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			if (limitsBox.Items.Count > 0)

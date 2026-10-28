@@ -19,6 +19,10 @@ namespace River.OneMoreAddIn.UI
 		private bool scrubbing;
 		private int startX;
 		private decimal startValue;
+		private Control scrubber;
+		private Form shownForm;
+		private bool hasOriginal;
+		private decimal originalValue;
 
 
 		public string ThemedBack { get; set; }
@@ -29,9 +33,87 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Gets or sets a NumericUpDown or TrackBar whose value is adjusted by clicking this
 		/// label and dragging left or right. Shift is fine-grained, Ctrl is coarse.
+		/// Double-clicking the label restores the value the control had when the form was
+		/// first shown.
 		/// </summary>
 		[DefaultValue(null)]
-		public Control Scrubber { get; set; }
+		public Control Scrubber
+		{
+			get => scrubber;
+			set
+			{
+				scrubber = value;
+				hasOriginal = false;
+			}
+		}
+
+
+		protected override void OnHandleCreated(EventArgs e)
+		{
+			base.OnHandleCreated(e);
+
+			// dialogs typically assign initial values while loading, so remember the value
+			// once the form is shown; otherwise it is captured on first interaction
+			if (shownForm is null && Scrubber is not null)
+			{
+				shownForm = FindForm();
+				if (shownForm is not null && !shownForm.Visible)
+				{
+					shownForm.Shown += CaptureOriginal;
+				}
+			}
+		}
+
+
+		private void CaptureOriginal(object sender, EventArgs e)
+		{
+			if (shownForm is not null)
+			{
+				shownForm.Shown -= CaptureOriginal;
+			}
+
+			if (!hasOriginal && Scrubber is not null)
+			{
+				originalValue = GetScrubValue();
+				hasOriginal = true;
+			}
+		}
+
+
+		private decimal GetScrubValue()
+		{
+			return Scrubber is NumericUpDown nud
+				? nud.Value
+				: ((TrackBar)Scrubber).Value;
+		}
+
+
+		protected override void OnDoubleClick(EventArgs e)
+		{
+			base.OnDoubleClick(e);
+
+			if (!CanScrub || !hasOriginal)
+			{
+				return;
+			}
+
+			if (Scrubber is NumericUpDown box)
+			{
+				var value = Math.Max(box.Minimum, Math.Min(box.Maximum, originalValue));
+				if (value != box.Value)
+				{
+					box.Value = value;
+				}
+			}
+			else if (Scrubber is TrackBar bar)
+			{
+				var value = (int)Math.Max(bar.Minimum, Math.Min(bar.Maximum, originalValue));
+				if (value != bar.Value)
+				{
+					bar.Value = value;
+				}
+			}
+		}
 
 
 		void ILoadControl.OnLoad()
@@ -68,9 +150,14 @@ namespace River.OneMoreAddIn.UI
 				dragging = true;
 				scrubbing = false;
 				startX = e.X;
-				startValue = Scrubber is NumericUpDown nud
-					? nud.Value
-					: ((TrackBar)Scrubber).Value;
+				startValue = GetScrubValue();
+
+				// fallback when the form was already shown before this label was linked
+				if (!hasOriginal)
+				{
+					originalValue = startValue;
+					hasOriginal = true;
+				}
 			}
 		}
 
