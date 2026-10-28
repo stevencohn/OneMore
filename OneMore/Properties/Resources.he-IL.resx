@@ -2121,6 +2121,110 @@ Total Row Font
     <value>התאם רשת לטקסט</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>מקם את הסמן בתא טבלה או בחר תאים לעיצוב</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>עיצוב תאים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>לְאַחַר</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>לִפנֵי</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>קָטֵגוֹרִיָה</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>עמודות שלמות (עמודות: {0}, תאים: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>מַטְבֵּעַ</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>תַאֲרִיך</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>תאריך ושעה</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>מקומות עשרוניים</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(ברירת מחדל מקומית)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>זוהה: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>הערך הוא שבריר (0.25 הופך ל-25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>כְּלָלִי</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>מספרים שליליים</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>מִספָּר</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>סוּג</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>אָחוּז</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>הערך הוא כבר אחוז (25 הופך ל-25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>תצוגה מקדימה</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>הגשת בקשה ל</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>תאים שנבחרו (תאים: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>השתמש במפריד 1000</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(דילג)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>סֵמֶל</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>זְמַן</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>התאים שנבחרו חייבים להיות באותה שורה או באותה עמודה</value>
     <comment>warning message</comment>
@@ -5361,6 +5465,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>שינוי גודל רשת רקע כדי להתאים לגודל הגופן הנפוץ</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>עיצוב תאים</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>עיצוב תאים או עמודות שנבחרו כמספרים, אחוזים, מטבע, תאריכים או שעות</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>החלף כתובות אתרים בתמונות</value>

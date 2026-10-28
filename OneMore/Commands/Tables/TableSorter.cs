@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Parses plain numbers, currency in the culture's symbol, currency in any other
 		/// culture's symbol, and percentages (sorted by their numeric value).
 		/// </summary>
-		private static bool TryParseNumber(string text, CultureInfo culture, out decimal value)
+		internal static bool TryParseNumber(string text, CultureInfo culture, out decimal value)
 		{
 			var s = text.Trim();
 
@@ -254,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 		/// how Time formulas write their results. Durations are anchored to today so they
 		/// compare consistently with times of day.
 		/// </summary>
-		private static bool TryParseDate(string text, CultureInfo culture, out DateTime value)
+		internal static bool TryParseDate(string text, CultureInfo culture, out DateTime value)
 		{
 			var s = text.Trim();
 			if (DateTime.TryParse(s, culture, DateTimeStyles.None, out value))

@@ -2116,6 +2116,110 @@ OneNote-Datei (*.one)</value>
     <value>Raster an Text anpassen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>Platzieren Sie den Cursor in einer Tabellenzelle oder wählen Sie Zellen zum Formatieren aus</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>Zellen formatieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>Nach</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>Vor</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>Kategorie</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>Ganze Spalten (Spalten: {0}, Zellen: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>Währung</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>Datum</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>Datum und Uhrzeit</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>Dezimalstellen</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(Gebietsschema-Standard)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>Erkannt: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>Der Wert ist ein Bruch (0,25 wird zu 25 %).</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>Allgemein</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>Negative Zahlen</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>Nummer</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>Typ</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>Prozent</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>Der Wert beträgt bereits ein Prozent (25 wird zu 25 %).</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>Vorschau</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Gelten</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>Ausgewählte Zellen (Zellen: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>Verwenden Sie das 1000er-Trennzeichen</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(übersprungen)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>Symbol</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>Zeit</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Ausgewählte Zellen müssen sich in derselben Zeile oder in derselben Spalte befinden</value>
     <comment>warning message</comment>
@@ -5360,6 +5464,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Passen Sie die Größe des Hintergrundgitters an die übliche Schriftgröße an</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>Zellen formatieren</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>Formatieren Sie ausgewählte Zellen oder Spalten als Zahlen, Prozente, Währungen, Datumsangaben oder Uhrzeiten</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>URLs durch Bilder ersetzen</value>

@@ -2121,6 +2121,110 @@ Arquivo OneNote (* .one)</value>
     <value>Ajustar grade ao texto</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>Coloque o cursor em uma célula da tabela ou selecione células para formatar</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>Formatar células</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>Depois</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>Antes</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>Categoria</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>Colunas inteiras (colunas: {0}, células: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>Moeda</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>Data</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>Data e hora</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>Casas decimais</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(Padrão de localidade)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>Detectado: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>O valor é uma fração (0,25 se torna 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>Em geral</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>Números negativos</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>Número</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>Tipo</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>Por cento</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>O valor já é um percentual (25 se torna 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>Visualização</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Inscreva-se em</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>Células selecionadas (células: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>Use separador 1000</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(ignorado)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>Símbolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>Tempo</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>As células selecionadas devem estar na mesma linha ou na mesma coluna</value>
     <comment>warning message</comment>
@@ -5361,6 +5465,14 @@ Guia Ajuda</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Redimensione a grade de plano de fundo para corresponder ao tamanho de fonte comum</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>Formatar células</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>Formate células ou colunas selecionadas como números, porcentagens, moeda, datas ou horas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Substituir URLs por imagens</value>

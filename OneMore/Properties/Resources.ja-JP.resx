@@ -2124,6 +2124,110 @@ OneNoteファイル (*.one)</value>
     <value>グリッドをテキストに合わせる</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>表のセルにカーソルを置くか、書式設定するセルを選択します</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>セルの書式設定</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>後</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>前に</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>カテゴリ</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>列全体 (列: {0}、セル: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>通貨</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>日付</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>日時</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>小数点以下の桁数</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(ロケールのデフォルト)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>検出されました: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>値は分数です (0.25 は 25% になります)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>一般的な</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>負の数</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>番号</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>タイプ</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>パーセント</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>値はすでにパーセントです (25 は 25% になります)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>プレビュー</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>申請先</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>選択したセル (セル: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>1000 区切り文字を使用する</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(省略)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>シンボル</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>時間</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>選択されたセルは同じ行または同じ列にある必要があります</value>
     <comment>warning message</comment>
@@ -5364,6 +5468,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>背景グリッドを共通のフォントサイズに合わせてサイズ変更する</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>セルの書式設定</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>選択したセルまたは列を数値、パーセント、通貨、日付、または時刻として書式設定します</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>イメージファイルのURLを画像に置換</value>
