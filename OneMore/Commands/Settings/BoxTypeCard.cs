@@ -423,7 +423,8 @@ namespace River.OneMoreAddIn.Settings
 				Padding = new Padding(0),
 				Margin = new Padding(0)
 			};
-			sizeGroup.Controls.Add(MakeCaption(Resx.BoxTypeCard_SymbolSize, DockStyle.Top, 0));
+			var sizeCaption = MakeCaption(Resx.BoxTypeCard_SymbolSize, DockStyle.Top, 0);
+			sizeGroup.Controls.Add(sizeCaption);
 
 			symbolSizeBox = new MoreNumericUpDown
 			{
@@ -443,6 +444,7 @@ namespace River.OneMoreAddIn.Settings
 				swatch.Invalidate();
 				RaiseChanged();
 			};
+			sizeCaption.Scrubber = symbolSizeBox;
 			sizeGroup.Controls.Add(symbolSizeBox);
 			fieldsTable.Controls.Add(sizeGroup, 0, 2);
 

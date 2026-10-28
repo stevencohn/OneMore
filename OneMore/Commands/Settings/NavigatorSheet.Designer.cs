@@ -39,9 +39,9 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.secLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
-			this.intervalLabel = new System.Windows.Forms.Label();
+			this.intervalLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.depthBox = new System.Windows.Forms.NumericUpDown();
-			this.depthLabel = new System.Windows.Forms.Label();
+			this.depthLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scrollBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -228,6 +228,7 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.Size = new System.Drawing.Size(274, 20);
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Min read time before adding to history";
+			this.intervalLabel.Scrubber = this.intervalBox;
 			// 
 			// depthBox
 			// 
@@ -254,6 +255,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthLabel.Size = new System.Drawing.Size(203, 20);
 			this.depthLabel.TabIndex = 1;
 			this.depthLabel.Text = "Max length of stored history";
+			this.depthLabel.Scrubber = this.depthBox;
 			// 
 			// corrallBox
 			// 
@@ -300,9 +302,9 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox corrallBox;
 		private System.Windows.Forms.NumericUpDown depthBox;
-		private System.Windows.Forms.Label depthLabel;
+		private UI.MoreLabel depthLabel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
-		private System.Windows.Forms.Label intervalLabel;
+		private UI.MoreLabel intervalLabel;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.Label secLabel;
 		private UI.MoreGroupBox advancedGroup;

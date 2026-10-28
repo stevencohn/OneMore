@@ -256,6 +256,7 @@
 			this.constrastLabel.Size = new System.Drawing.Size(70, 20);
 			this.constrastLabel.TabIndex = 18;
 			this.constrastLabel.Text = "Contrast";
+			this.constrastLabel.Scrubber = this.contrastBox;
 			this.constrastLabel.ThemedBack = null;
 			this.constrastLabel.ThemedFore = null;
 			// 
@@ -267,6 +268,7 @@
 			this.brightnessLabel.Size = new System.Drawing.Size(85, 20);
 			this.brightnessLabel.TabIndex = 17;
 			this.brightnessLabel.Text = "Brightness";
+			this.brightnessLabel.Scrubber = this.brightnessBox;
 			this.brightnessLabel.ThemedBack = null;
 			this.brightnessLabel.ThemedFore = null;
 			// 

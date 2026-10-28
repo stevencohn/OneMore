@@ -140,6 +140,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				labels[i] = NewLabel(string.Empty, 300, 212 + (i * 26), 90, 24);
 				spinners[i] = new MoreNumericUpDown { Bounds = Rect(392, 212 + (i * 26), 70, 24) };
+				labels[i].Scrubber = spinners[i];
 				spinners[i].ValueChanged += SpinnerChanged;
 				Controls.Add(labels[i]);
 				Controls.Add(spinners[i]);

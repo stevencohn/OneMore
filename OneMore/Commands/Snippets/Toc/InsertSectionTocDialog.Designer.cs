@@ -130,6 +130,7 @@ namespace River.OneMoreAddIn.Commands
 			this.levelsLabel.Size = new System.Drawing.Size(98, 20);
 			this.levelsLabel.TabIndex = 11;
 			this.levelsLabel.Text = "Show Levels";
+			this.levelsLabel.Scrubber = this.levelsBox;
 			this.levelsLabel.ThemedBack = null;
 			this.levelsLabel.ThemedFore = null;
 			// 
