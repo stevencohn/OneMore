@@ -765,7 +765,9 @@
       <DependentUpon>CreatePagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
+    <Compile Include="Commands\Edit\AddAnnotationCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
+    <Compile Include="Commands\Edit\HighlightRotator.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Images\SelectImagesCommand.cs" />

@@ -566,6 +566,12 @@
     </menu>
     <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true" keytip="ED">
       <button
+        id="ribAddAnnotationButton"
+        imageMso="ReviewNewComment"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddAnnotationCmd"/>
+      <button
         id="ribAnnotateHexColorsButton"
         imageMso="AppointmentColor2"
         getLabel="GetRibbonLabel"

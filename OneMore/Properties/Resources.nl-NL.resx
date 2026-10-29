@@ -149,6 +149,10 @@
     <value>Versie {0} met OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Selecteer de tekst die u wilt annoteren</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Kan geen bijschrift toevoegen aan een achtergrondafbeelding op de pagina. Afbeeldingen moeten zich in een overzichtscontainer bevinden om van ondertiteling te kunnen voorzien.</value>
     <comment>error message</comment>
@@ -4737,6 +4741,14 @@ Stilistisch, entiteit, media</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>Toon informatie over OneMore</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Annotatie toevoegen</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Markeer de geselecteerde tekst en voeg er een bijpassende annotatie aan toe</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bijschrift toevoegen</value>

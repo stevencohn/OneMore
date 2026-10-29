@@ -149,6 +149,10 @@
     <value>Versão {0} com OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Selecione o texto para anotar</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Não é possível adicionar uma legenda a uma imagem de fundo da página. As imagens devem estar em um contêiner de contorno para serem legendadas.</value>
     <comment>error message</comment>
@@ -4737,6 +4741,14 @@ Estilístico, Entidade, Mídia</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>Mostrar informações sobre OneMore</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Adicionar anotação</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Destaque o texto selecionado e adicione uma anotação correspondente ao lado dele</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Adicionar legenda</value>
