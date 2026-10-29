@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using River.OneMoreAddIn.Commands;
@@ -14,6 +15,9 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class HighlightsSheet : SheetBase
 	{
+		// box metrics are in design pixels, authored at 150% (144 DPI) where the pictures
+		// are DesignWidth wide; they are scaled by the ratio of the actual picture width
+		private const int DesignWidth = 436;
 		private const int BoxSpacing = 6;
 		private const int BoxSize = 37;
 		private const int BoxTop = 2;
@@ -165,14 +169,19 @@ namespace River.OneMoreAddIn.Settings
 			};
 
 
-			DrawScheme(e.Graphics, picture.BackColor, scheme.GetSet(Dark), extendBox.Checked, Dark);
+			DrawScheme(e.Graphics, picture.Width, picture.BackColor, scheme.GetSet(Dark), extendBox.Checked, Dark);
 		}
 
 
 		private void DrawScheme(
-			Graphics g, Color backColor, HighlightColorSet scheme, bool extended, bool dark)
+			Graphics g, int width, Color backColor, HighlightColorSet scheme, bool extended, bool dark)
 		{
 			g.Clear(backColor);
+
+			var scale = (float)width / DesignWidth;
+			var size = (int)Math.Round(BoxSize * scale);
+			var spacing = (int)Math.Round(BoxSpacing * scale);
+			var top = (int)Math.Round(BoxTop * scale);
 
 			var border = dark ? Pens.DimGray : Pens.LightGray;
 			var fore = dark ? Color.White : Color.Black;
@@ -180,30 +189,31 @@ namespace River.OneMoreAddIn.Settings
 			var x = 0;
 			foreach (var color in scheme.Colors)
 			{
-				DrawBox(g, x, color, border, fore);
-				x += BoxSize + BoxSpacing;
+				DrawBox(g, x, top, size, color, border, fore);
+				x += size + spacing;
 			}
 
 			if (extended)
 			{
 				foreach (var color in scheme.Extended)
 				{
-					DrawBox(g, x, color, border, fore);
-					x += BoxSize + BoxSpacing;
+					DrawBox(g, x, top, size, color, border, fore);
+					x += size + spacing;
 				}
 			}
 		}
 
 
-		private void DrawBox(Graphics g, int x, string color, Pen border, Color fore)
+		private void DrawBox(
+			Graphics g, int x, int top, int size, string color, Pen border, Color fore)
 		{
 			using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
 			{
-				g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-				g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
+				g.FillRectangle(brush, x, top, size, size);
+				g.DrawRectangle(border, x, top, size - 1, size - 1);
 			}
 
-			TextRenderer.DrawText(g, "Aa", Font, new Rectangle(x, BoxTop, BoxSize, BoxSize), fore,
+			TextRenderer.DrawText(g, "Aa", Font, new Rectangle(x, top, size, size), fore,
 				TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
 				TextFormatFlags.NoPadding);
 		}
