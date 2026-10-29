@@ -3453,6 +3453,10 @@ OneNote 文件 (*.one)</value>
     <value>当前的</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>双击重置</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>颜色显示为深色页面</value>
     <comment>color picker</comment>

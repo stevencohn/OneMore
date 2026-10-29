@@ -3447,6 +3447,10 @@ Total Row Font
     <value>נוֹכְחִי</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>לחץ פעמיים כדי לאפס</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>צבעים מוצגים כמו על דף כהה</value>
     <comment>color picker</comment>

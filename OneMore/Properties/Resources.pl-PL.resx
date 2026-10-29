@@ -3447,6 +3447,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Aktualny</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Kliknij dwukrotnie, aby zresetować</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Kolory pokazane jak na ciemnej stronie</value>
     <comment>color picker</comment>

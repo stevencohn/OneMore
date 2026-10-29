@@ -3451,6 +3451,10 @@ Do you want to refresh the existing page?</value>
     <value>Current</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Double-click to reset</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Colors shown as on a dark page</value>
     <comment>color picker</comment>

@@ -3447,6 +3447,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Huidig</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Dubbelklik om te resetten</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Kleuren weergegeven zoals op een donkere pagina</value>
     <comment>color picker</comment>

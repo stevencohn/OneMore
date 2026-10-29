@@ -3450,6 +3450,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Actuelle</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Double-cliquez pour réinitialiser</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Couleurs affichées comme sur une page sombre</value>
     <comment>color picker</comment>

@@ -3450,6 +3450,10 @@ OneNoteファイル (*.one)</value>
     <value>現在</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>ダブルクリックしてリセットします</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>暗いページのように色が表示される</value>
     <comment>color picker</comment>
