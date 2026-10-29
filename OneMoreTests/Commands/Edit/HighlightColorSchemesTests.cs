@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 		{
 			var schemes = new HighlightColorSchemes();
 			CollectionAssert.AreEqual(
-				new[] { "#FFFF00", "#00FF00", "#00FFFF", "#FF00FF", "#6060FF" },
+				new[] { "#FFFF00", "#00FF00", "#00FFFF", "#FF00FF", "#7070FF" },
 				schemes.GetScheme("Bright").Colors);
 
 			CollectionAssert.AreEqual(

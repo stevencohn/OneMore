@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Settings
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -21,6 +22,9 @@ namespace River.OneMoreAddIn.Settings
 	internal partial class IndexSheet : SheetBase
 	{
 		private const double Megabyte = 1024d * 1024d;
+
+		// pages to build before the time remaining is estimated
+		private const int EstimateAfter = 3;
 
 		private readonly bool available;
 		private bool hasIndex;
@@ -102,6 +106,16 @@ namespace River.OneMoreAddIn.Settings
 
 					var all = allBox.Checked;
 					var stats = index.ReadStatistics(key => all || chosen.Contains(key));
+
+					if (stats.TotalPages > 0)
+					{
+						statusLabel.Text = string.Format(
+							Resx.IndexSheet_statusOf,
+							stats.Pages, Math.Max(stats.TotalPages, stats.Pages),
+							stats.Paragraphs, stats.Bytes / Megabyte);
+
+						return;
+					}
 
 					if (stats.Pages > 0)
 					{
@@ -202,10 +216,13 @@ namespace River.OneMoreAddIn.Settings
 			IndexBuildResult result = null;
 			Exception error = null;
 			var maximum = 0;
+			var clock = new Stopwatch();
+			var lastShown = TimeSpan.Zero;
 
 			using (var progress = new ProgressDialog())
 			{
 				progress.SetMessage(Resx.IndexSheet_buildMessage);
+				progress.SetHint(Resx.IndexSheet_buildHint);
 
 				progress.ShowDialogWithCancel(async (dialog, token) =>
 				{
@@ -219,7 +236,30 @@ namespace River.OneMoreAddIn.Settings
 								dialog.SetMaximum(Math.Max(expected, 1));
 							}
 
-							dialog.SetMessage(string.Format(Resx.IndexSheet_buildProgress, done, expected));
+							if (!clock.IsRunning)
+							{
+								clock.Start();
+							}
+
+							// the estimate needs a few pages to average, and is refreshed about once
+							// a second so that it does not flicker
+							var elapsed = clock.Elapsed;
+							if (done >= EstimateAfter && expected > done
+								&& elapsed - lastShown >= TimeSpan.FromSeconds(1))
+							{
+								lastShown = elapsed;
+								var remaining = TimeSpan.FromTicks(
+									elapsed.Ticks / done * (expected - done));
+
+								dialog.SetMessage(string.Format(
+									Resx.IndexSheet_buildEta, done, expected, FormatRemaining(remaining)));
+							}
+							else if (done < EstimateAfter)
+							{
+								dialog.SetMessage(
+									string.Format(Resx.IndexSheet_buildProgress, done, expected));
+							}
+
 							dialog.Increment();
 						},
 						token, all);
@@ -255,6 +295,23 @@ namespace River.OneMoreAddIn.Settings
 					? string.Format(Resx.IndexSheet_buildCancelled, result.Indexed)
 					: string.Format(Resx.IndexSheet_buildDone, result.Indexed));
 			}
+		}
+
+
+		internal static string FormatRemaining(TimeSpan remaining)
+		{
+			if (remaining < TimeSpan.FromMinutes(1))
+			{
+				return Resx.IndexSheet_etaLessMinute;
+			}
+
+			if (remaining < TimeSpan.FromHours(1))
+			{
+				return string.Format(Resx.IndexSheet_etaMinutes, Math.Ceiling(remaining.TotalMinutes));
+			}
+
+			var minutes = (int)Math.Round(remaining.TotalMinutes);
+			return string.Format(Resx.IndexSheet_etaHours, minutes / 60, minutes % 60);
 		}
 
 

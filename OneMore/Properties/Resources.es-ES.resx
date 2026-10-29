@@ -2972,8 +2972,14 @@ Fondo amarillo</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>{0:N0} páginas indexadas</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>Indexado {0:N0} de {1:N0} páginas, quedan {2}</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote no se pudo leer, por lo que no se indexó nada</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Cancelar para reanudar la indexación en segundo plano</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Cree el índice ahora</value>
@@ -2999,6 +3005,15 @@ Fondo amarillo</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Mantener actualizado un índice de búsqueda de mis cuadernos</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>aproximadamente {0:N0} hora {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>menos de un minuto</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>aproximadamente {0:N0} minutos</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Cree un índice del texto de sus cuadernos para que el comando Buscar pueda encontrar texto casi instantáneamente. El índice se guarda en esta computadora y se actualiza en segundo plano. Tus páginas nunca cambian.</value>
   </data>
@@ -3010,6 +3025,9 @@ Fondo amarillo</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Aún no hay páginas indexadas</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} de {1:N0} páginas ({2:N0} párrafos) están indexadas, utilizando {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Índice de búsqueda</value>
