@@ -34,6 +34,7 @@
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.messageLabel = new System.Windows.Forms.Label();
 			this.cancelButton = new UI.MoreButton();
+			this.hintLabel = new System.Windows.Forms.Label();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
@@ -64,9 +65,18 @@
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
-			// 
+			//
+			// hintLabel
+			//
+			this.hintLabel.AutoSize = true;
+			this.hintLabel.Location = new System.Drawing.Point(28, 116);
+			this.hintLabel.Name = "hintLabel";
+			this.hintLabel.Size = new System.Drawing.Size(0, 20);
+			this.hintLabel.TabIndex = 3;
+			this.hintLabel.Visible = false;
+			//
 			// timer
-			// 
+			//
 			this.timer.Interval = 1000;
 			// 
 			// ProgressDialog
@@ -75,6 +85,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(771, 162);
 			this.ControlBox = false;
+			this.Controls.Add(this.hintLabel);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.messageLabel);
@@ -99,6 +110,7 @@
 		private System.Windows.Forms.Label messageLabel;
 		private System.Windows.Forms.ProgressBar progressBar;
 		private UI.MoreButton cancelButton;
+		private System.Windows.Forms.Label hintLabel;
 		private System.Windows.Forms.Timer timer;
 	}
 }

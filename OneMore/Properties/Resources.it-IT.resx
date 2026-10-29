@@ -2977,8 +2977,14 @@ Sfondo giallo</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Pagine {0:N0} indicizzate</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>{0:N0} pagine indicizzate su {1:N0}, {2} rimanenti</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>Non è stato possibile leggere OneNote, quindi non è stato indicizzato nulla</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Annulla per riprendere l'indicizzazione in background</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Costruisci l'indice adesso</value>
@@ -3004,6 +3010,15 @@ Sfondo giallo</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Mantieni aggiornato l'indice di ricerca dei miei taccuini</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>circa {0:N0} ora {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>meno di un minuto</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>circa {0:N0} min</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Crea un indice del testo dei tuoi taccuini in modo che il comando Cerca possa trovare il testo quasi istantaneamente. L'indice viene conservato su questo computer e aggiornato in background. Le tue pagine non vengono mai modificate.</value>
   </data>
@@ -3015,6 +3030,9 @@ Sfondo giallo</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Nessuna pagina è ancora indicizzata</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} di {1:N0} pagine ({2:N0} paragrafi) vengono indicizzati, utilizzando {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Indice di ricerca</value>

@@ -265,6 +265,29 @@ namespace River.OneMoreAddIn.Tests.TextIndex
 
 
 		[TestMethod]
+		public void ReadStatistics_TotalPages_CountsKnownPagesOfChosenNotebooks()
+		{
+			using (var cmd = connection.CreateCommand())
+			{
+				cmd.CommandText =
+					"CREATE TABLE identity_page (pageKey INTEGER PRIMARY KEY, notebookKey TEXT, missingSince TEXT);" +
+					"INSERT INTO identity_page VALUES (1, 'keep', NULL);" +
+					"INSERT INTO identity_page VALUES (2, 'keep', NULL);" +
+					"INSERT INTO identity_page VALUES (3, 'keep', '2026-01-01');" +
+					"INSERT INTO identity_page VALUES (4, 'other', NULL);";
+				cmd.ExecuteNonQuery();
+			}
+
+			provider.ReplacePage(1, "id1", Modified, Text("kept text"));
+
+			var stats = provider.ReadStatistics(key => key == "keep");
+
+			Assert.AreEqual(1, stats.Pages);
+			Assert.AreEqual(2, stats.TotalPages);
+		}
+
+
+		[TestMethod]
 		public async Task NotebookNoLongerChosen_IsRemovedFromTheIndex()
 		{
 			// both notebooks were indexed, say when every notebook was chosen

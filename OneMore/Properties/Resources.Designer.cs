@@ -19828,6 +19828,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel to resume indexing in the background.
+        /// </summary>
+        internal static string IndexSheet_buildHint {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildHint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Indexed {0:N0} of {1:N0} pages, {2} remaining.
+        /// </summary>
+        internal static string IndexSheet_buildEta {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildEta", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to less than a minute.
+        /// </summary>
+        internal static string IndexSheet_etaLessMinute {
+            get {
+                return ResourceManager.GetString("IndexSheet_etaLessMinute", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to about {0:N0} min.
+        /// </summary>
+        internal static string IndexSheet_etaMinutes {
+            get {
+                return ResourceManager.GetString("IndexSheet_etaMinutes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to about {0:N0} hr {1:N0} min.
+        /// </summary>
+        internal static string IndexSheet_etaHours {
+            get {
+                return ResourceManager.GetString("IndexSheet_etaHours", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} of {1:N0} pages ({2:N0} paragraphs) are indexed, using {3:N1} MB.
+        /// </summary>
+        internal static string IndexSheet_statusOf {
+            get {
+                return ResourceManager.GetString("IndexSheet_statusOf", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Indexed {0:N0} of {1:N0} pages.
         /// </summary>
         internal static string IndexSheet_buildProgress {

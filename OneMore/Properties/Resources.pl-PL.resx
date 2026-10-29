@@ -2977,8 +2977,14 @@ Czerwony pierwszy plan
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Zaindeksowane strony: {0:N0}</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>Zaindeksowano {0:N0} z {1:N0} stron, pozostało {2}</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>Nie można odczytać programu OneNote, więc nic nie zostało zindeksowane</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Anuluj, aby wznowić indeksowanie w tle</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Zbuduj indeks teraz</value>
@@ -3004,6 +3010,15 @@ Czerwony pierwszy plan
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Aktualizuj indeks wyszukiwania moich notatników</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>około {0:N0} godz. {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>mniej niż minutę</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>około {0:N0} min</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Utwórz indeks tekstu swoich notatników, aby polecenie Szukaj mogło niemal natychmiast znaleźć tekst. Indeks jest przechowywany na tym komputerze i jest aktualizowany w tle. Twoje strony nigdy nie są zmieniane.</value>
   </data>
@@ -3015,6 +3030,9 @@ Czerwony pierwszy plan
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Żadna strona nie jest jeszcze zindeksowana</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} z {1:N0} stron ({2:N0} akapitów) jest indeksowanych przy użyciu {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Indeks wyszukiwania</value>

@@ -2980,8 +2980,14 @@ Fond jaune</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Pages {0:N0} indexées</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>{0:N0} indexées sur {1:N0} pages, {2} restantes</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote n'a pas pu être lu, donc rien n'a été indexé</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Annuler pour reprendre l'indexation en arrière-plan</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Construisez l'index maintenant</value>
@@ -3007,6 +3013,15 @@ Fond jaune</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Tenir à jour un index de recherche de mes carnets</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>environ {0:N0} heure {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>moins d'une minute</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>environ {0:N0} minutes</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Créez un index du texte de vos cahiers afin que la commande Rechercher puisse trouver du texte presque instantanément. L'index est conservé sur cet ordinateur et est mis à jour en arrière-plan. Vos pages ne sont jamais modifiées.</value>
   </data>
@@ -3018,6 +3033,9 @@ Fond jaune</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Aucune page n'est encore indexée</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} pages sur {1:N0} ({2:N0} paragraphes) sont indexées, en utilisant {3:N1} Mo</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Index de recherche</value>

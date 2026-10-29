@@ -293,7 +293,7 @@ namespace River.OneMoreAddIn.Tests.TextIndex
 
 		private void CreateIdentity(params (long Key, string Notebook)[] pages)
 		{
-			Execute("CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY, notebookKey TEXT)");
+			Execute("CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY, notebookKey TEXT, missingSince TEXT)");
 			foreach (var (key, notebook) in pages)
 			{
 				Execute($"INSERT INTO identity_page (pageKey, notebookKey) VALUES ({key}, '{notebook}')");
