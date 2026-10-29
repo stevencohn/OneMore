@@ -132,5 +132,126 @@ namespace River.OneMoreAddIn.Tests.Commands.Snippets
 			Assert.AreEqual("two", target.Root.Descendants(Ns + "T")
 				.Single(t => t.Attribute("selected") is not null).Value);
 		}
+
+
+		[TestMethod]
+		public void InsertRunsAtEmptyLineKeepsParagraphStyle()
+		{
+			var target = Make(Para("keep", "0"), Para(string.Empty, "0", selected: true));
+
+			var oe = Para("styled");
+			oe.SetAttributeValue("style", "font-family:Calibri;font-size:11.0pt;color:#E84C22");
+			var content = new XElement(Ns + "OEChildren", oe);
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindRuns);
+
+			var inserted = target.Root.Descendants(Ns + "OE")
+				.Single(e => e.Element(Ns + "T").Value == "styled");
+			Assert.AreEqual(
+				"font-family:Calibri;font-size:11.0pt;color:#E84C22",
+				inserted.Attribute("style").Value);
+			Assert.AreEqual(2, target.Root.Descendants(Ns + "OE").Count());
+		}
+
+
+		[TestMethod]
+		public void InsertRunsIntoTextMergesInline()
+		{
+			var target = Make(Line("abc", string.Empty, "def"));
+			var content = new XElement(Ns + "OEChildren", Para("xyz"));
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindRuns);
+
+			Assert.AreEqual(1, target.Root.Descendants(Ns + "OE").Count());
+			Assert.AreEqual("abcxyzdef", Texts(target));
+		}
+
+
+		// builds a paragraph of runs; the empty run is the selected text cursor and a run
+		// prefixed with '*' is a selected non-empty run
+		private static XElement Line(params string[] runs)
+		{
+			var oe = new XElement(Ns + "OE", new XAttribute("quickStyleIndex", "0"));
+			foreach (var run in runs)
+			{
+				var selected = run.Length == 0 || run[0] == '*';
+				var t = new XElement(Ns + "T", new XCData(run.TrimStart('*')));
+				if (selected)
+				{
+					t.SetAttributeValue("selected", "all");
+				}
+
+				oe.Add(t);
+			}
+
+			return oe;
+		}
+
+
+		private static string Texts(Page page)
+		{
+			return string.Concat(page.Root.Descendants(Ns + "T").Select(e => e.Value));
+		}
+
+
+		[TestMethod]
+		public void InsertParagraphsAtCursorSplitsParagraph()
+		{
+			var target = Make(Line("abc", string.Empty, "def"));
+			var content = new XElement(Ns + "OEChildren", Para("one"), Para("two"));
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindParagraphs);
+
+			var paragraphs = target.Root.Descendants(Ns + "OE")
+				.Select(oe => string.Concat(oe.Elements(Ns + "T").Select(t => t.Value)))
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "abc", "one", "two", "def" }, paragraphs);
+		}
+
+
+		[TestMethod]
+		public void InsertParagraphsAtStartOfParagraphGoesFirst()
+		{
+			var target = Make(Line(string.Empty, "abc"));
+			var content = new XElement(Ns + "OEChildren", Para("one"));
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindParagraphs);
+
+			var paragraphs = target.Root.Descendants(Ns + "OE")
+				.Select(oe => string.Concat(oe.Elements(Ns + "T").Select(t => t.Value)))
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "one", "abc" }, paragraphs);
+		}
+
+
+		[TestMethod]
+		public void InsertRunsReplacesSelectedText()
+		{
+			var target = Make(Line("abc", "*SEL", "def"));
+			var content = new XElement(Ns + "OEChildren", Para("xyz"));
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindRuns);
+
+			Assert.AreEqual(1, target.Root.Descendants(Ns + "OE").Count());
+			Assert.AreEqual("abcxyzdef", Texts(target));
+		}
+
+
+		[TestMethod]
+		public void InsertParagraphsReplacesSelectedText()
+		{
+			var target = Make(Line("abc", "*SEL", "def"));
+			var content = new XElement(Ns + "OEChildren", Para("one"));
+
+			SnippetPackage.Insert(target, content, SnippetPackage.KindParagraphs);
+
+			var paragraphs = target.Root.Descendants(Ns + "OE")
+				.Select(oe => string.Concat(oe.Elements(Ns + "T").Select(t => t.Value)))
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "abc", "one", "def" }, paragraphs);
+		}
 	}
 }
