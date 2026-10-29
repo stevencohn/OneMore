@@ -493,17 +493,23 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor is not null)
 			{
-				if (anchor.Name.LocalName.In("OE", "HTMLBlock"))
-				{
-					anchor.AddAfterSelf(items);
-				}
-				else
-				{
-					anchor.AddFirst(items);
-				}
-
-				PlaceCursor(page, items);
+				InsertAtAnchor(page, anchor, items);
 				return;
+			}
+
+			var range = new SelectionRange(page);
+			range.GetSelection(true);
+
+			if (range.Scope == SelectionScope.Range && !range.SingleParagraph)
+			{
+				// selection spans paragraphs; remove it and insert where it was
+				var editor = new PageEditor(page);
+				editor.ExtractSelectedContent(breakParagraph: true);
+				if (editor.Anchor is not null)
+				{
+					InsertAtAnchor(page, editor.Anchor, items);
+					return;
+				}
 			}
 
 			var cursor = page.Root.Elements(ns + "Outline").Descendants()
@@ -519,12 +525,49 @@ namespace River.OneMoreAddIn.Commands
 
 			var current = cursor.Parent;
 
+			// a non-empty selection within one paragraph is replaced; reduce it to an empty
+			// run so it behaves just like the text cursor
+			var replace = range.Scope is SelectionScope.Run or SelectionScope.Range;
+			if (replace)
+			{
+				var selection = current.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
+
+				for (var i = 1; i < selection.Count; i++)
+				{
+					selection[i].Remove();
+				}
+
+				cursor = selection[0];
+				cursor.GetCData().Value = string.Empty;
+			}
+
 			// selected state moves to the end of the inserted snippet
 			new PageEditor(page).Deselect();
 
 			var runs = items.Count == 1 ? items[0].Elements(ns + "T").ToList() : null;
 
-			if (kind == KindRuns && cursor.Name.LocalName == "T" && runs?.Count > 0)
+			// content before and after the insert point, ignoring headers and nested children
+			var before = cursor.ElementsBeforeSelf().ToList();
+			if (!replace && !(cursor.Name.LocalName == "T" && cursor.GetCData().Value.Length == 0))
+			{
+				// zero-length selection of a link or a selected image; insert after it
+				before.Add(cursor);
+			}
+
+			var after = cursor.ElementsAfterSelf().ToList();
+
+			var beforeBlank = before.All(e => IsBlank(e, schema));
+			var afterBlank = after.All(e => IsBlank(e, schema) || e.Name.LocalName == "OEChildren");
+			var hasChildren = after.Any(e => e.Name.LocalName == "OEChildren");
+
+			var blank = beforeBlank && afterBlank && !hasChildren;
+
+			// merge runs inline only into existing text; on a blank line insert the whole
+			// paragraph so its quick style, color, font and alignment are preserved
+			if (kind == KindRuns && !(beforeBlank && afterBlank) &&
+				cursor.Name.LocalName == "T" && runs?.Count > 0)
 			{
 				// merge inline at the cursor position
 				var copies = runs.Select(r => new XElement(r)).ToList();
@@ -536,15 +579,57 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var blank = current.Elements().All(e =>
-				e.Name.LocalName.In(schema.OeHeaders) ||
-				(e.Name.LocalName == "T" && string.IsNullOrWhiteSpace(e.GetCData().Value)));
-
-			current.AddAfterSelf(items);
-			if (blank)
+			if (beforeBlank && !afterBlank)
 			{
-				// paste over an empty line rather than leaving a gap
-				current.Remove();
+				// cursor at the start of a paragraph so insert ahead of it
+				current.AddBeforeSelf(items);
+			}
+			else if (!beforeBlank && !afterBlank)
+			{
+				// cursor within a paragraph so split it, moving the trailing content,
+				// including nested children, into a new paragraph following the snippet
+				var tail = new XElement(ns + "OE",
+					current.Attributes().Where(a => !a.Name.LocalName.In("objectID", "selected")));
+
+				foreach (var node in after)
+				{
+					node.Remove();
+					tail.Add(node);
+				}
+
+				current.AddAfterSelf(items);
+				items[items.Count - 1].AddAfterSelf(tail);
+			}
+			else
+			{
+				current.AddAfterSelf(items);
+				if (blank)
+				{
+					// paste over an empty line rather than leaving a gap
+					current.Remove();
+				}
+			}
+
+			PlaceCursor(page, items);
+		}
+
+
+		private static bool IsBlank(XElement element, PageSchema schema)
+		{
+			return element.Name.LocalName.In(schema.OeHeaders) ||
+				(element.Name.LocalName == "T" && string.IsNullOrWhiteSpace(element.GetCData().Value));
+		}
+
+
+		private static void InsertAtAnchor(Page page, XElement anchor, List<XElement> items)
+		{
+			if (anchor.Name.LocalName.In("OE", "HTMLBlock"))
+			{
+				anchor.AddAfterSelf(items);
+			}
+			else
+			{
+				anchor.AddFirst(items);
 			}
 
 			PlaceCursor(page, items);
