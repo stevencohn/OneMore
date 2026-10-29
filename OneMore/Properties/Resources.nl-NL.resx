@@ -2777,8 +2777,14 @@ Gele achtergrond</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Geïndexeerde {0:N0} pagina's</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>{0:N0} van {1:N0} pagina's geïndexeerd, nog {2} over</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote kon niet worden gelezen, dus er werd niets geïndexeerd</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Annuleer om het indexeren op de achtergrond te hervatten</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Bouw nu de index</value>
@@ -2804,6 +2810,15 @@ Gele achtergrond</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Houd een zoekindex van mijn notitieboekjes up-to-date</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>ongeveer {0:N0} uur {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>minder dan een minuut</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>ongeveer {0:N0} min</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Bouw een index van de tekst van uw notitieboekjes, zodat de opdracht Zoeken vrijwel onmiddellijk tekst kan vinden. De index wordt op deze computer bijgehouden en op de achtergrond bijgewerkt. Uw pagina's worden nooit gewijzigd.</value>
   </data>
@@ -2815,6 +2830,9 @@ Gele achtergrond</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Er zijn nog geen pagina's geïndexeerd</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} van {1:N0} pagina's ({2:N0} alinea's) worden geïndexeerd met behulp van {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Zoekindex</value>

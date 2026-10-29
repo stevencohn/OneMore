@@ -69,6 +69,11 @@ namespace River.OneMoreAddIn.TextIndex
 		public int Pages { get; set; }
 		public int Paragraphs { get; set; }
 
+		/// <summary>Gets the number of pages known to the identity catalog in the chosen
+		/// notebooks, or zero if that was not asked for. It may include a few pages, such as
+		/// generated hashtag indexes, that are never indexed.</summary>
+		public int TotalPages { get; set; }
+
 		/// <summary>Gets the size the index takes in the database file, or zero if it could
 		/// not be measured.</summary>
 		public long Bytes { get; set; }
@@ -758,6 +763,25 @@ namespace River.OneMoreAddIn.TextIndex
 							stats.Pages += reader.GetInt32(1);
 							stats.Paragraphs += reader.GetInt32(2);
 						}
+					}
+				}
+			}
+
+			if (isChosen is not null && TableExists("identity_page"))
+			{
+				// every page the identity catalog knows, which is what indexing works toward
+				using var cmd = con.CreateCommand();
+				cmd.CommandType = CommandType.Text;
+				cmd.CommandText =
+					"SELECT notebookKey, COUNT(1) FROM identity_page " +
+					"WHERE missingSince IS NULL GROUP BY notebookKey";
+
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					if (isChosen(reader.GetString(0)))
+					{
+						stats.TotalPages += reader.GetInt32(1);
 					}
 				}
 			}

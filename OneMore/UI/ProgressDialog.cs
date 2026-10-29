@@ -391,6 +391,18 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Shows a hint at the bottom left of the dialog, centered vertically on the cancel button
+		/// </summary>
+		public void SetHint(string value)
+		{
+			hintLabel.Text = value;
+			hintLabel.Left = messageLabel.Left;
+			hintLabel.Top = cancelButton.Top + ((cancelButton.Height - hintLabel.Height) / 2);
+			hintLabel.Visible = !string.IsNullOrEmpty(value);
+		}
+
+
+		/// <summary>
 		/// Starts the second countdown timer, up to Maximum seconds.
 		/// If Maximum seconds ellapse then the dialog is closed and DialogResult is set to Abort.
 		/// </summary>

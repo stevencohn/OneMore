@@ -2781,8 +2781,14 @@ Yellow Background</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Indexed {0:N0} pages</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>Indexed {0:N0} of {1:N0} pages, {2} remaining</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote could not be read, so nothing was indexed</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Cancel to resume indexing in the background</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Build the index now</value>
@@ -2808,6 +2814,15 @@ Yellow Background</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Keep a search index of my notebooks up to date</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>about {0:N0} hr {1:N0} min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>less than a minute</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>about {0:N0} min</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Build an index of the text of your notebooks so that the Search command can find text almost instantly. The index is kept on this computer and is brought up to date in the background. Your pages are never changed.</value>
   </data>
@@ -2819,6 +2834,9 @@ Yellow Background</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>No pages are indexed yet</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} of {1:N0} pages ({2:N0} paragraphs) are indexed, using {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Search Index</value>

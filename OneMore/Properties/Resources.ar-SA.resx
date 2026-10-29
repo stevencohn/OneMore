@@ -2780,8 +2780,14 @@
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>الصفحات المفهرسة {0:N0}.</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>تمت فهرسة {0:N0} من {1:N0} من الصفحات، ويتبقى {2}.</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>تعذرت قراءة OneNote، لذلك لم تتم فهرسة أي شيء</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>إلغاء لاستئناف الفهرسة في الخلفية</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>قم ببناء الفهرس الآن</value>
@@ -2807,6 +2813,15 @@
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>احتفظ بفهرس البحث في دفاتر ملاحظاتي محدثًا</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>حوالي {0:N0} ساعة {1:N0} دقيقة</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>أقل من دقيقة</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>حوالي {0:N0} دقيقة</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>أنشئ فهرسًا لنص دفاتر الملاحظات الخاصة بك حتى يتمكن أمر البحث من العثور على النص على الفور تقريبًا. يتم الاحتفاظ بالفهرس على هذا الكمبيوتر ويتم تحديثه في الخلفية. صفحاتك لا تتغير أبدا.</value>
   </data>
@@ -2818,6 +2833,9 @@
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>لم تتم فهرسة أي صفحات حتى الآن</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>تمت فهرسة {0:N0} من {1:N0} صفحة (فقرات {2:N0})، باستخدام {3:N1} ميغابايت</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>فهرس البحث</value>

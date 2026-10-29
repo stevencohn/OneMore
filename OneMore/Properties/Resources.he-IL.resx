@@ -2777,8 +2777,14 @@ Total Row Font
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>נוספו לאינדקס של {0:N0} דפים</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>נוספו לאינדקס {0:N0} של {1:N0} דפים, נותרו {2}</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>לא ניתן היה לקרוא את OneNote, כך ששום דבר לא הוכנס לאינדקס</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>בטל כדי לחדש את ההוספה לאינדקס ברקע</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>בנה את האינדקס עכשיו</value>
@@ -2804,6 +2810,15 @@ Total Row Font
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>עדכן אינדקס חיפוש של המחברות שלי</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>בערך {0:N0} שעה {1:N0} דקות</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>פחות מדקה</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>בערך {0:N0} דקות</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>בנה אינדקס של הטקסט של המחברות שלך כך שפקודת החיפוש תוכל למצוא טקסט כמעט באופן מיידי. האינדקס שמור במחשב זה ומעודכן ברקע. הדפים שלך לעולם לא משתנים.</value>
   </data>
@@ -2815,6 +2830,9 @@ Total Row Font
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>אין עדיין דפים באינדקס</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} מתוך {1:N0} דפים ({2:N0} פסקאות) מתווספים לאינדקס, תוך שימוש ב-{3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>אינדקס חיפוש</value>

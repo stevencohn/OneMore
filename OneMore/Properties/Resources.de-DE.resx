@@ -2772,8 +2772,14 @@ Gelber Hintergrund</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>Indizierte {0:N0} Seiten</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>Indexiert {0:N0} von {1:N0} Seiten, noch {2} übrig</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote konnte nicht gelesen werden, daher wurde nichts indiziert</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>Abbrechen, um die Indizierung im Hintergrund fortzusetzen</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>Erstellen Sie jetzt den Index</value>
@@ -2799,6 +2805,15 @@ Gelber Hintergrund</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>Halten Sie einen Suchindex meiner Notizbücher auf dem neuesten Stand</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>ca. {0:N0} Std. {1:N0} Min</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>weniger als eine Minute</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>ca. {0:N0} Min</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>Erstellen Sie einen Index für den Text Ihrer Notizbücher, damit der Suchbefehl Text fast sofort finden kann. Der Index wird auf diesem Rechner geführt und im Hintergrund aktualisiert. Ihre Seiten werden nie verändert.</value>
   </data>
@@ -2810,6 +2825,9 @@ Gelber Hintergrund</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>Es sind noch keine Seiten indexiert</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} von {1:N0} Seiten ({2:N0} Absätze) werden mit {3:N1} MB indexiert</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>Suchindex</value>
