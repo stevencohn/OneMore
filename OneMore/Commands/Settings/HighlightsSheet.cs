@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn.Settings
 	using System.Drawing;
 	using System.Windows.Forms;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
 
@@ -35,7 +37,10 @@ namespace River.OneMoreAddIn.Settings
 					"extendBox",
 					"normalRadio",
 					"fadedRadio",
-					"deepRadio"
+					"deepRadio",
+					"modeLabel",
+					"lightRadio",
+					"darkRadio"
 				});
 			}
 
@@ -57,6 +62,14 @@ namespace River.OneMoreAddIn.Settings
 			deepPicture.Paint += PaintScheme;
 
 			extendBox.Checked = settings.Get<bool>("extended");
+
+			// preview defaults to the Office theme; not persisted
+			if (Office.IsBlackThemeEnabled())
+			{
+				darkRadio.Checked = true;
+			}
+
+			ApplyBackdrop();
 		}
 
 
@@ -101,6 +114,27 @@ namespace River.OneMoreAddIn.Settings
 			}
 		}
 
+		private bool Dark => darkRadio.Checked;
+
+
+		private void ChangeMode(object sender, System.EventArgs e)
+		{
+			ApplyBackdrop();
+		}
+
+
+		// one backdrop behind all rows emulates a page of the selected color
+		private void ApplyBackdrop()
+		{
+			var color = Dark ? ColorPalette.Theme(true)[0] : Color.White;
+			backdrop.BackColor = color;
+			normalPicture.BackColor = color;
+			fadedPicture.BackColor = color;
+			deepPicture.BackColor = color;
+			DrawSchemes(null, null);
+		}
+
+
 		private void DrawSchemes(object sender, System.EventArgs e)
 		{
 			normalPicture.Invalidate();
@@ -121,16 +155,17 @@ namespace River.OneMoreAddIn.Settings
 			};
 
 
-			DrawScheme(e.Graphics, picture.BackColor, scheme, extendBox.Checked);
+			DrawScheme(e.Graphics, picture.BackColor, scheme.GetSet(Dark), extendBox.Checked, Dark);
 		}
 
 
 		private static void DrawScheme(
-			Graphics g, Color backColor, HighlightColorScheme scheme, bool extended)
+			Graphics g, Color backColor, HighlightColorSet scheme, bool extended, bool dark)
 		{
 			// LightGrayBorder = #E2E4E7
 
 			g.Clear(backColor);
+			var border = dark ? Pens.DimGray : Pens.LightGray;
 
 			int x = 0;
 			foreach (var color in scheme.Colors)
@@ -138,7 +173,7 @@ namespace River.OneMoreAddIn.Settings
 				using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
 				{
 					g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-					g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
+					g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
 				}
 
 				x += BoxSize + BoxSpacing;
@@ -151,7 +186,7 @@ namespace River.OneMoreAddIn.Settings
 					using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
 					{
 						g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-						g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
+						g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
 					}
 
 					x += BoxSize + BoxSpacing;

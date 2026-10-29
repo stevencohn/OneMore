@@ -2529,6 +2529,10 @@ Gele achtergrond</value>
     <value>Geen formules gevonden op deze pagina</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>Donkere pagina</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Diep</value>
     <comment>radio</comment>
@@ -2542,8 +2546,16 @@ Gele achtergrond</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>De markeerstiftopdracht bladert door de kleuren van het gekozen thema. </value>
+    <value>Het markeerstiftcommando doorloopt de kleuren van het gekozen thema. Kleuren zijn afhankelijk van de pagina-achtergrond; kies Licht of Donker om er een voorbeeld van te bekijken.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>Lichte pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Achtergrond weergeven als:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Helder</value>

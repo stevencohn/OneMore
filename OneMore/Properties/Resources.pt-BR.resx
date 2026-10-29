@@ -2529,6 +2529,10 @@ Fundo Amarelo</value>
     <value>Nenhuma fórmula encontrada nesta página</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>Página escura</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Profundo</value>
     <comment>radio</comment>
@@ -2542,8 +2546,16 @@ Fundo Amarelo</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>O comando do realce percorrerá as cores do tema escolhido. </value>
+    <value>O comando do marcador percorrerá as cores do tema escolhido. As cores dependem do fundo da página; escolha Claro ou Escuro para visualizá-los.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>Página clara</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Mostrar plano de fundo como:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Brilhante</value>

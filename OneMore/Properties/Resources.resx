@@ -2533,6 +2533,10 @@ Yellow Background</value>
     <value>No formulas found on this page</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>Dark page</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Deep</value>
     <comment>radio</comment>
@@ -2546,8 +2550,16 @@ Yellow Background</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors</value>
+    <value>The highlighter command will cycle through the colors of the chosen theme. Colors depend on the page background; choose Light or Dark to preview them.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>Light page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Show background as:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Bright</value>

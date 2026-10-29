@@ -2529,6 +2529,10 @@ Total Row Font
     <value>לא נמצאו נוסחאות בדף זה</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>עמוד כהה</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>עָמוֹק</value>
     <comment>radio</comment>
@@ -2542,8 +2546,16 @@ Total Row Font
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>פקודת ההדגשה תעבור בין הצבעים של הנושא הנבחר. הצבעים המוצגים כאן מיועדים לדפי רקע בהירים. דפי רקע כהים משתמשים בצבעי הדגשה אוטומטיים</value>
+    <value>פקודת ההדגשה תעבור בין הצבעים של הנושא הנבחר. הצבעים תלויים ברקע העמוד; בחר בהיר או כהה כדי להציג אותם בתצוגה מקדימה.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>דף קליל</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>הצג רקע כ:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>בָּהִיר</value>

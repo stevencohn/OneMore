@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 
 
 	/// <summary>
@@ -37,7 +38,8 @@ namespace River.OneMoreAddIn.Commands
 				_ => "Bright"
 			};
 
-			var scheme = new HighlightColorSchemes().GetScheme(schemeName);
+			var dark = MoreColorPicker.IsDarkPage(page.GetPageColor(out _, out _));
+			var scheme = new HighlightColorSchemes().GetScheme(schemeName).GetSet(dark);
 			var max = extended ? scheme.Colors.Count + scheme.Extended.Count : scheme.Colors.Count;
 
 			var meta = page.GetMetaContent(MetaNames.HighlightIndex);
@@ -49,11 +51,25 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return (index, GetColor(scheme, index, extended));
+			return (index, GetColor(scheme, index, extended, dark));
 		}
 
 
-		private static string GetColor(HighlightColorScheme scheme, int index, bool extended)
+		private static string GetColor(
+			HighlightColorSet scheme, int index, bool extended, bool dark)
+		{
+			var color = PickColor(scheme, index, extended);
+			if (!dark || !ColorMath.TryParseHex(color, out var rendered))
+			{
+				return color;
+			}
+
+			// dark colors are what we want to see, so store what OneNote will invert into them
+			return ColorMath.ToHex(ColorPalette.ToLight(rendered));
+		}
+
+
+		private static string PickColor(HighlightColorSet scheme, int index, bool extended)
 		{
 			if (extended && index >= scheme.Colors.Count)
 			{
