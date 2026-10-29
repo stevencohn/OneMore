@@ -158,6 +158,7 @@ namespace River.OneMoreAddIn.UI
 			Controls.Add(newLabel);
 			newSwatch = NewPreview(538, 48, 64, 40);
 			currentSwatch = NewPreview(538, 88, 64, 40);
+			currentSwatch.DoubleClick += (s, e) => ResetToCurrent();
 			var currentLabel = NewLabel(Resx.MoreColorPicker_current, 538, 134, 64);
 			currentLabel.TextAlign = ContentAlignment.MiddleCenter;
 			Controls.Add(currentLabel);
@@ -417,6 +418,21 @@ namespace River.OneMoreAddIn.UI
 			// the expand button is anchored to the swatch layout, which is now known
 			ApplyLayout();
 
+			ResetToCurrent();
+
+			var screen = Screen.FromPoint(new Point(Math.Abs(x), y)).WorkingArea;
+			var left = x < 0 ? -x - Width : x;
+			Location = new Point(
+				Math.Max(screen.Left, Math.Min(left, screen.Right - Width)),
+				Math.Max(screen.Top, Math.Min(y, screen.Bottom - Height)));
+		}
+
+
+		/// <summary>
+		/// Sets the Current swatch and resets all controls to match the current color
+		/// </summary>
+		private void ResetToCurrent()
+		{
 			if (current.IsEmpty || current.A == 0)
 			{
 				currentSwatch.Color = Color.Empty;
@@ -434,12 +450,6 @@ namespace River.OneMoreAddIn.UI
 				currentSwatch.Color = Rendered(current);
 				SetColor(current, false, true);
 			}
-
-			var screen = Screen.FromPoint(new Point(Math.Abs(x), y)).WorkingArea;
-			var left = x < 0 ? -x - Width : x;
-			Location = new Point(
-				Math.Max(screen.Left, Math.Min(left, screen.Right - Width)),
-				Math.Max(screen.Top, Math.Min(y, screen.Bottom - Height)));
 		}
 
 
