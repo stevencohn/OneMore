@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string ColorSchemesJson =
 			@"{
   ""Bright"": {
-    ""colors"": [ ""#FFFF00"", ""#00FF00"", ""#00FFFF"", ""#FF00FF"", ""#0000FF"" ],
+    ""colors"": [ ""#FFFF00"", ""#00FF00"", ""#00FFFF"", ""#FF00FF"", ""#6060FF"" ],
     ""extended"": [ ""#FF0000"", ""#00AAFF"", ""#FF8000"", ""#FF0080"", ""#C0C0C0"" ],
     ""dark"": {
       ""colors"": [ ""#7B7B00"", ""#008B00"", ""#008585"", ""#D200D2"", ""#6161FF"" ],

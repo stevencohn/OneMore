@@ -153,7 +153,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private static CellFormatCategory? Classify(string text, CultureInfo culture)
 		{
-			if (TableSorter.TryParseNumber(text, culture, out _))
+			// decimal parsing tolerates misplaced group separators, so a date such as
+			// "28.10.2026" in a culture that groups with "." also looks like a number
+			if (TableSorter.TryParseNumber(text, culture, out _) &&
+				!(HasIrregularGrouping(text, culture) && TableSorter.TryParseDate(text, culture, out _)))
 			{
 				if (HasPercentSign(text, culture))
 				{
@@ -190,6 +193,36 @@ namespace River.OneMoreAddIn.Commands
 			return rest.Any(char.IsLetterOrDigit)
 				? CellFormatCategory.DateTime
 				: CellFormatCategory.Time;
+		}
+
+
+		private static bool HasIrregularGrouping(string text, CultureInfo culture)
+		{
+			var group = culture.NumberFormat.NumberGroupSeparator;
+			if (string.IsNullOrEmpty(group))
+			{
+				return false;
+			}
+
+			// only the integer part is grouped
+			var integer = text;
+			var point = text.IndexOf(culture.NumberFormat.NumberDecimalSeparator, StringComparison.Ordinal);
+			if (point >= 0)
+			{
+				integer = text.Substring(0, point);
+			}
+
+			var escaped = Regex.Escape(group);
+			foreach (Match run in Regex.Matches(integer, $@"\d+(?:{escaped}\d+)+"))
+			{
+				var parts = run.Value.Split(new[] { group }, StringSplitOptions.None);
+				if (parts[0].Length > 3 || parts.Skip(1).Any(p => p.Length != 3))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 

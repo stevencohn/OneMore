@@ -159,23 +159,18 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private static void DrawScheme(
+		private void DrawScheme(
 			Graphics g, Color backColor, HighlightColorSet scheme, bool extended, bool dark)
 		{
-			// LightGrayBorder = #E2E4E7
-
 			g.Clear(backColor);
-			var border = dark ? Pens.DimGray : Pens.LightGray;
 
-			int x = 0;
+			var border = dark ? Pens.DimGray : Pens.LightGray;
+			var fore = dark ? Color.White : Color.Black;
+
+			var x = 0;
 			foreach (var color in scheme.Colors)
 			{
-				using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
-				{
-					g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-					g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
-				}
-
+				DrawBox(g, x, color, border, fore);
 				x += BoxSize + BoxSpacing;
 			}
 
@@ -183,15 +178,24 @@ namespace River.OneMoreAddIn.Settings
 			{
 				foreach (var color in scheme.Extended)
 				{
-					using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
-					{
-						g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-						g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
-					}
-
+					DrawBox(g, x, color, border, fore);
 					x += BoxSize + BoxSpacing;
 				}
 			}
+		}
+
+
+		private void DrawBox(Graphics g, int x, string color, Pen border, Color fore)
+		{
+			using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
+			{
+				g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
+				g.DrawRectangle(border, x, BoxTop, BoxSize - 1, BoxSize);
+			}
+
+			TextRenderer.DrawText(g, "Aa", Font, new Rectangle(x, BoxTop, BoxSize, BoxSize), fore,
+				TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
+				TextFormatFlags.NoPadding);
 		}
 	}
 }
