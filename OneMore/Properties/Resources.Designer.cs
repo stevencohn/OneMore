@@ -5735,11 +5735,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors.
+        ///   Looks up a localized string similar to The highlighter command will cycle through the colors of the chosen theme. Colors depend on the page background; choose Light or Dark to preview them.
         /// </summary>
         internal static string HighlightsSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("HighlightsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark page.
+        /// </summary>
+        internal static string HighlightsSheet_darkRadio_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_darkRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light page.
+        /// </summary>
+        internal static string HighlightsSheet_lightRadio_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_lightRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show background as:.
+        /// </summary>
+        internal static string HighlightsSheet_modeLabel_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_modeLabel.Text", resourceCulture);
             }
         }
         

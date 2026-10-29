@@ -114,6 +114,7 @@
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\CopyAsMarkdownCommandTests.cs" />
+    <Compile Include="Commands\Edit\HighlightColorSchemesTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommandTests.cs" />
     <Compile Include="Commands\Numbering\ResetListStyleCommandTests.cs" />

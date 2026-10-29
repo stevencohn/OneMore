@@ -2535,6 +2535,10 @@ OneNote 文件 (*.one)</value>
     <value>在此页面上找不到公式</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>暗页</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>深色</value>
     <comment>radio</comment>
@@ -2550,6 +2554,14 @@ OneNote 文件 (*.one)</value>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
     <value>荧光高亮命令将循环切换所选的主题颜色。</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>光页</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>显示背景为：</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>亮色</value>

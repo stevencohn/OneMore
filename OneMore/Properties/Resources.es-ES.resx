@@ -2524,6 +2524,10 @@ Fondo amarillo</value>
     <value>No se encontraron fórmulas en esta página</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>pagina oscura</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Profundo</value>
     <comment>radio</comment>
@@ -2537,8 +2541,16 @@ Fondo amarillo</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>El comando del resaltador recorrerá los colores del tema elegido. </value>
+    <value>El comando de resaltado recorrerá los colores del tema elegido. Los colores dependen del fondo de la página; elija Claro u Oscuro para obtener una vista previa de ellos.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>pagina ligera</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Mostrar fondo como:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Brillante</value>
