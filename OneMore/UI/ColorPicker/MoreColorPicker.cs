@@ -159,6 +159,7 @@ namespace River.OneMoreAddIn.UI
 			newSwatch = NewPreview(538, 48, 64, 40);
 			currentSwatch = NewPreview(538, 88, 64, 40);
 			currentSwatch.DoubleClick += (s, e) => ResetToCurrent();
+			toolTip.SetToolTip(currentSwatch, Resx.MoreColorPicker_currentTip);
 			var currentLabel = NewLabel(Resx.MoreColorPicker_current, 538, 134, 64);
 			currentLabel.TextAlign = ContentAlignment.MiddleCenter;
 			Controls.Add(currentLabel);

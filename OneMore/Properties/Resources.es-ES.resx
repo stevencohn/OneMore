@@ -3442,6 +3442,10 @@ Cuadrado Marrón</value>
     <value>Actual</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Haga doble clic para restablecer</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Colores mostrados como en una página oscura.</value>
     <comment>color picker</comment>

@@ -3450,6 +3450,10 @@
     <value>حاضِر</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>انقر نقرًا مزدوجًا لإعادة التعيين</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>تظهر الألوان كما في صفحة داكنة</value>
     <comment>color picker</comment>

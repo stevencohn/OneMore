@@ -3447,6 +3447,10 @@ Deseja atualizar a página existente?</value>
     <value>Atual</value>
     <comment>color picker</comment>
   </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Clique duas vezes para redefinir</value>
+    <comment>color picker</comment>
+  </data>
   <data name="MoreColorPicker_darkPage" xml:space="preserve">
     <value>Cores mostradas como em uma página escura</value>
     <comment>color picker</comment>
