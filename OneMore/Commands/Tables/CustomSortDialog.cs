@@ -70,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			orderBox.SelectedIndex = 0;
 			typeBox.SelectedIndex = 0;
 
+			columnBox.SelectedIndexChanged += SelectColumn;
 			RefreshColumns();
 
 			if (initial is not null)
@@ -171,6 +172,18 @@ namespace River.OneMoreAddIn.Commands
 				case SortDataType.Number: return Resx.CustomSortDialog_numberType;
 				case SortDataType.Text: return Resx.CustomSortDialog_textType;
 				default: return Resx.CustomSortDialog_auto;
+			}
+		}
+
+
+		// preselect the data type auto-detected for the newly selected column;
+		// the type box items are ordered to match the SortDataType enum values
+		private void SelectColumn(object sender, EventArgs e)
+		{
+			if (columnBox.SelectedItem is ColumnItem column &&
+				column.Index < detected.Count)
+			{
+				typeBox.SelectedIndex = (int)detected[column.Index];
 			}
 		}
 
