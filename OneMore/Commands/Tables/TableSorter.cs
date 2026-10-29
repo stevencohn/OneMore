@@ -22,45 +22,27 @@ namespace River.OneMoreAddIn.Commands
 	internal static class TableSorter
 	{
 		/// <summary>
-		/// Determines the data type that best describes the non-blank values of a column.
+		/// Determines the data type that best describes the non-blank values of a column,
+		/// using the same 80% sampling as the Format Cells command so that a few stray
+		/// values do not force the column to Text.
 		/// </summary>
 		public static SortDataType Detect(IEnumerable<string> values, CultureInfo culture)
 		{
-			var any = false;
-			var numbers = true;
-			var dates = true;
-
-			foreach (var value in values)
+			switch (CellFormatter.DetectCategory(values, culture))
 			{
-				if (string.IsNullOrWhiteSpace(value))
-				{
-					continue;
-				}
+				case CellFormatCategory.Number:
+				case CellFormatCategory.Percent:
+				case CellFormatCategory.Currency:
+					return SortDataType.Number;
 
-				any = true;
+				case CellFormatCategory.Date:
+				case CellFormatCategory.Time:
+				case CellFormatCategory.DateTime:
+					return SortDataType.DateTime;
 
-				if (numbers && !TryParseNumber(value, culture, out _))
-				{
-					numbers = false;
-				}
-
-				if (dates && !TryParseDate(value, culture, out _))
-				{
-					dates = false;
-				}
-
-				if (!numbers && !dates)
-				{
+				default:
 					return SortDataType.Text;
-				}
 			}
-
-			if (!any)
-			{
-				return SortDataType.Text;
-			}
-
-			return numbers ? SortDataType.Number : SortDataType.DateTime;
 		}
 
 
