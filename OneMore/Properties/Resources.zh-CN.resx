@@ -149,6 +149,10 @@
     <value>插件版本 {0} 安装在 Onenote版本 {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>选择要注释的文本</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>无法为页面上的背景图像添加说明。图像必须位于容器中才能添加图片说明。</value>
     <comment>error message</comment>
@@ -4751,6 +4755,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>显示有关 OneMore 插件的信息</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>添加注释</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>突出显示所选文本并在其旁边添加匹配的注释</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>添加说明</value>

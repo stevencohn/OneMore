@@ -149,6 +149,10 @@
     <value>Version {0} mit OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Wählen Sie den Text aus, den Sie mit Anmerkungen versehen möchten</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Einem Hintergrundbild auf der Seite kann keine Beschriftung hinzugefügt werden. Bilder müssen sich in einem Gliederungscontainer befinden, damit sie mit Untertiteln versehen werden können.</value>
     <comment>error message</comment>
@@ -4736,6 +4740,14 @@ Stilistisch, Entität, Medien</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>Informationen zu OneMore anzeigen</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Anmerkung hinzufügen</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Markieren Sie den ausgewählten Text und fügen Sie daneben eine passende Anmerkung hinzu</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bildunterschrift hinzufügen</value>

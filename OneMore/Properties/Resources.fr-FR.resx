@@ -149,6 +149,10 @@
     <value>Version {0} avec OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Sélectionnez le texte à annoter</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Impossible d'ajouter une légende à une image d'arrière-plan sur la page. Les images doivent être dans un conteneur de contour pour être sous-titrées.</value>
     <comment>error message</comment>
@@ -4748,6 +4752,14 @@ Stylistique, Entité, Média</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>Afficher des informations sur OneMore</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Ajouter une annotation</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Mettez en surbrillance le texte sélectionné et ajoutez une annotation correspondante à côté</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Ajouter une légende</value>

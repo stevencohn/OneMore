@@ -12841,7 +12841,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribHighlightButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add Annotation.
+        /// </summary>
+        internal static string ribAddAnnotationButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddAnnotationButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight the selected text and add a matching annotation beside it.
+        /// </summary>
+        internal static string ribAddAnnotationButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddAnnotationButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the text to annotate.
+        /// </summary>
+        internal static string AddAnnotationCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("AddAnnotationCommand_NoSelection", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Highlight Formula.
         /// </summary>

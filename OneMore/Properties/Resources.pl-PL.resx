@@ -149,6 +149,10 @@
     <value>Wersja {0} z OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Wybierz tekst, który chcesz opatrzyć adnotacją</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Nie można dodać podpisu do obrazu tła na stronie. Aby obrazy mogły zostać opatrzone podpisami, muszą znajdować się w kontenerze konspektu.</value>
     <comment>error message</comment>
@@ -4737,6 +4741,14 @@ Stylistyka, podmiot, media</value>
   <data name="ribAboutButton_Screentip" xml:space="preserve">
     <value>Pokaż informacje o OneMore</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Dodaj adnotację</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Zaznacz zaznaczony tekst i dodaj obok niego pasującą adnotację</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Dodaj podpis</value>

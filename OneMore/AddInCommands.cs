@@ -471,6 +471,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HighlightCommand>(1);
 
 
+		[Command("ribAddAnnotationButton_Label", Keys.None, "ribEditMenu")]
+		public async Task AddAnnotationCmd(IRibbonControl control)
+			=> await factory.Run<AddAnnotationCommand>();
+
+
 		[Command("ribHighlightLastButton_Label", Keys.Control | Keys.Shift | Keys.J, "ribEditMenu")]
 		public async Task HighlightLastCmd(IRibbonControl control)
 			=> await factory.Run<HighlightCommand>(0);
