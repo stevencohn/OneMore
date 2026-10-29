@@ -63,6 +63,9 @@ namespace River.OneMoreAddIn.Commands
 				dialog.SnippetName);
 
 			ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
+
+			// return focus to the page so the user can continue typing
+			Native.SetForegroundWindow(one.WindowHandle);
 		}
 	}
 }
