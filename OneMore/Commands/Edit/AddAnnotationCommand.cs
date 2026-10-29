@@ -105,24 +105,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// Sums the estimated heights of every paragraph preceding the one containing the
-		// first selected run, in document order. Parents precede their children both in the
-		// document and on the page so a simple descendant walk is sufficient.
+		// Sums the estimated heights of everything preceding the paragraph containing the
+		// first selected run. Tables are measured row by row, each row as tall as its tallest
+		// cell, since cells within a row sit side by side rather than stacking.
 		private static double EstimateOffset(XElement outline, XElement first, XNamespace ns)
 		{
 			var target = first.Ancestors(ns + "OE").FirstOrDefault();
 			var width = GetDouble(outline.Element(ns + "Size"), "width", DefaultOutlineWidth);
 			var offset = 0.0;
 
-			foreach (var paragraph in outline.Descendants(ns + "OE"))
-			{
-				if (paragraph == target)
-				{
-					break;
-				}
-
-				offset += EstimateHeight(paragraph, width, ns) + ParagraphGap;
-			}
+			Walk(outline, target, width, 0, ns, ref offset);
 
 			// never place beyond the outline's known extent
 			var height = GetDouble(outline.Element(ns + "Size"), "height", double.MaxValue);
@@ -130,7 +122,99 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static double EstimateHeight(XElement paragraph, double outlineWidth, XNamespace ns)
+		// Accumulates the heights of content preceding target; returns true once it is found
+		private static bool Walk(
+			XElement parent, XElement target, double width, int depth, XNamespace ns, ref double offset)
+		{
+			foreach (var oe in parent.Elements(ns + "OEChildren").Elements(ns + "OE"))
+			{
+				if (oe == target)
+				{
+					return true;
+				}
+
+				if (!oe.Descendants(ns + "OE").Contains(target))
+				{
+					offset += EstimateHeight(oe, width, depth, ns) + ParagraphGap;
+					continue;
+				}
+
+				// target is nested within this paragraph; add its own text first
+				offset += EstimateTextHeight(oe, width, depth, ns) + ParagraphGap;
+
+				foreach (var table in oe.Elements(ns + "Table"))
+				{
+					if (!table.Descendants(ns + "OE").Contains(target))
+					{
+						offset += EstimateTableHeight(table, width, ns);
+						continue;
+					}
+
+					var cellWidth = GetCellWidth(table, width, ns);
+					foreach (var row in table.Elements(ns + "Row"))
+					{
+						if (!row.Descendants(ns + "OE").Contains(target))
+						{
+							offset += EstimateRowHeight(row, cellWidth, ns);
+							continue;
+						}
+
+						var cell = row.Elements(ns + "Cell")
+							.FirstOrDefault(c => c.Descendants(ns + "OE").Contains(target));
+
+						return cell is not null && Walk(cell, target, cellWidth, 0, ns, ref offset);
+					}
+
+					return true;
+				}
+
+				return Walk(oe, target, width, depth + 1, ns, ref offset);
+			}
+
+			return false;
+		}
+
+
+		private static double GetCellWidth(XElement table, double width, XNamespace ns)
+		{
+			var columns = table.Element(ns + "Columns")?.Elements(ns + "Column").Count() ?? 1;
+			return width / Math.Max(1, columns);
+		}
+
+
+		private static double EstimateTableHeight(XElement table, double width, XNamespace ns)
+		{
+			var cellWidth = GetCellWidth(table, width, ns);
+			return table.Elements(ns + "Row").Sum(r => EstimateRowHeight(r, cellWidth, ns));
+		}
+
+
+		private static double EstimateRowHeight(XElement row, double cellWidth, XNamespace ns)
+		{
+			return row.Elements(ns + "Cell")
+				.Select(c => c.Elements(ns + "OEChildren").Elements(ns + "OE")
+					.Sum(oe => EstimateHeight(oe, cellWidth, 0, ns) + ParagraphGap))
+				.DefaultIfEmpty(LineHeight)
+				.Max();
+		}
+
+
+		// Full height of a paragraph including its tables and nested children
+		private static double EstimateHeight(XElement oe, double width, int depth, XNamespace ns)
+		{
+			var height = EstimateTextHeight(oe, width, depth, ns);
+
+			height += oe.Elements(ns + "Table").Sum(t => EstimateTableHeight(t, width, ns));
+
+			height += oe.Elements(ns + "OEChildren").Elements(ns + "OE")
+				.Sum(c => EstimateHeight(c, width, depth + 1, ns) + ParagraphGap);
+
+			return height;
+		}
+
+
+		private static double EstimateTextHeight(
+			XElement paragraph, double outlineWidth, int depth, XNamespace ns)
 		{
 			var runs = paragraph.Elements(ns + "T").ToList();
 			if (runs.Count == 0)
@@ -145,12 +229,10 @@ namespace River.OneMoreAddIn.Commands
 					return imageHeight;
 				}
 
-				// table cells are counted as their own paragraphs, so the table row itself adds
-				// nothing; otherwise this is an empty paragraph
+				// a table adds no text line of its own; otherwise this is an empty paragraph
 				return paragraph.Elements(ns + "Table").Any() ? 0.0 : LineHeight;
 			}
 
-			var depth = paragraph.Ancestors(ns + "OEChildren").Count() - 1;
 			var available = Math.Max(AverageCharWidth, outlineWidth - (depth * IndentWidth));
 			var charsPerLine = Math.Max(1.0, Math.Floor(available / AverageCharWidth));
 
