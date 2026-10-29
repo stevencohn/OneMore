@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string ColorSchemesJson =
 			@"{
   ""Bright"": {
-    ""colors"": [ ""#FFFF00"", ""#00FF00"", ""#00FFFF"", ""#FF00FF"", ""#6060FF"" ],
+    ""colors"": [ ""#FFFF00"", ""#00FF00"", ""#00FFFF"", ""#FF00FF"", ""#7070FF"" ],
     ""extended"": [ ""#FF0000"", ""#00AAFF"", ""#FF8000"", ""#FF0080"", ""#C0C0C0"" ],
     ""dark"": {
       ""colors"": [ ""#7B7B00"", ""#008B00"", ""#008585"", ""#D200D2"", ""#6161FF"" ],
@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
   },
   ""Deep"": {
     ""colors"": [ ""#FFC000"", ""#92D050"", ""#33CCCC"", ""#CC99FF"", ""#00B0F0"" ],
-    ""extended"": [ ""#FF5050"", ""#4F6BED"", ""#8C8C8C"", ""#E84CA8"", ""#A0522D"" ],
+    ""extended"": [ ""#FF5050"", ""#617AEF"", ""#8C8C8C"", ""#E84CA8"", ""#A0522D"" ],
     ""dark"": {
       ""colors"": [ ""#84670F"", ""#44770D"", ""#0D7777"", ""#9037E9"", ""#117396"" ],
       ""extended"": [ ""#D31717"", ""#3D5CE9"", ""#6A6A6A"", ""#C91680"", ""#B54814"" ]

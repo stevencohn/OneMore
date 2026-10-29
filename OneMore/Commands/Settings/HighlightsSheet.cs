@@ -57,6 +57,7 @@ namespace River.OneMoreAddIn.Settings
 
 			schemes = new HighlightColorSchemes();
 
+			backdrop.Paint += PaintBackdropBorder;
 			normalPicture.Paint += PaintScheme;
 			fadedPicture.Paint += PaintScheme;
 			deepPicture.Paint += PaintScheme;
@@ -132,6 +133,15 @@ namespace River.OneMoreAddIn.Settings
 			fadedPicture.BackColor = color;
 			deepPicture.BackColor = color;
 			DrawSchemes(null, null);
+		}
+
+
+		private void PaintBackdropBorder(object sender, PaintEventArgs e)
+		{
+			using (var pen = new Pen(ThemeManager.Instance.GetColor("ButtonBorder")))
+			{
+				e.Graphics.DrawRectangle(pen, 0, 0, backdrop.Width - 1, backdrop.Height - 1);
+			}
 		}
 
 
