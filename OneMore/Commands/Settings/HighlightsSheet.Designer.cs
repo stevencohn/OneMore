@@ -131,7 +131,7 @@
 			this.deepPicture.Location = new System.Drawing.Point(8, 122);
 			this.deepPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.deepPicture.Name = "deepPicture";
-			this.deepPicture.Size = new System.Drawing.Size(486, 42);
+			this.deepPicture.Size = new System.Drawing.Size(436, 42);
 			this.deepPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.deepPicture.TabIndex = 8;
 			this.deepPicture.TabStop = false;
@@ -142,7 +142,7 @@
 			this.fadedPicture.Location = new System.Drawing.Point(8, 65);
 			this.fadedPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.fadedPicture.Name = "fadedPicture";
-			this.fadedPicture.Size = new System.Drawing.Size(486, 42);
+			this.fadedPicture.Size = new System.Drawing.Size(436, 42);
 			this.fadedPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.fadedPicture.TabIndex = 7;
 			this.fadedPicture.TabStop = false;
@@ -153,7 +153,7 @@
 			this.normalPicture.Location = new System.Drawing.Point(8, 8);
 			this.normalPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.normalPicture.Name = "normalPicture";
-			this.normalPicture.Size = new System.Drawing.Size(486, 42);
+			this.normalPicture.Size = new System.Drawing.Size(436, 42);
 			this.normalPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.normalPicture.TabIndex = 6;
 			this.normalPicture.TabStop = false;
