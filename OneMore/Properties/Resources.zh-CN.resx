@@ -2783,8 +2783,14 @@ OneNote 文件 (*.one)</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>已编入索引的 {0:N0} 页</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>已对 {0:N0} 个页面（共 {1:N0} 个）建立索引，还剩 {2} 个</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote 无法读取，因此没有索引任何内容</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>取消以在后台恢复索引</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>立即建立索引</value>
@@ -2810,6 +2816,15 @@ OneNote 文件 (*.one)</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>使我的笔记本的搜索索引保持最新</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>约 {0:N0} 小时 {1:N0} 分钟</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>不到一分钟</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>约 {0:N0} 分钟</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>建立笔记本文本的索引，以便“搜索”命令几乎可以立即找到文本。索引保存在这台计算机上，并在后台更新。您的页面永远不会改变。</value>
   </data>
@@ -2821,6 +2836,9 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>尚未对任何页面建立索引</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{0:N0} 个页面（共 {1:N0} 个页面）（{2:N0} 个段落）已编入索引，使用 {3:N1} MB</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>搜索索引</value>

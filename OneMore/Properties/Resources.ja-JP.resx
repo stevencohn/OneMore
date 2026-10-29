@@ -2780,8 +2780,14 @@ OneNoteファイル (*.one)</value>
   <data name="IndexSheet_buildDone" xml:space="preserve">
     <value>{0:N0} ページのインデックスが作成されました</value>
   </data>
+  <data name="IndexSheet_buildEta" xml:space="preserve">
+    <value>{1:N0} ページ中 {0:N0} がインデックス付けされました、残り {2}</value>
+  </data>
   <data name="IndexSheet_buildFailed" xml:space="preserve">
     <value>OneNote を読み取れなかったため、何もインデックスが作成されませんでした</value>
+  </data>
+  <data name="IndexSheet_buildHint" xml:space="preserve">
+    <value>キャンセルしてバックグラウンドでのインデックス作成を再開します</value>
   </data>
   <data name="IndexSheet_buildLink.Text" xml:space="preserve">
     <value>今すぐインデックスを構築する</value>
@@ -2807,6 +2813,15 @@ OneNoteファイル (*.one)</value>
   <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
     <value>ノートブックの検索インデックスを最新の状態に保つ</value>
   </data>
+  <data name="IndexSheet_etaHours" xml:space="preserve">
+    <value>約 {0:N0} 時間 {1:N0} 分</value>
+  </data>
+  <data name="IndexSheet_etaLessMinute" xml:space="preserve">
+    <value>1分未満</value>
+  </data>
+  <data name="IndexSheet_etaMinutes" xml:space="preserve">
+    <value>約 {0:N0} 分</value>
+  </data>
   <data name="IndexSheet_introBox.Text" xml:space="preserve">
     <value>ノートブックのテキストのインデックスを作成して、検索コマンドでほぼ即座にテキストを検索できるようにします。 インデックスはこのコンピュータに保存され、バックグラウンドで最新の状態に更新されます。 あなたのページは決して変更されません。</value>
   </data>
@@ -2818,6 +2833,9 @@ OneNoteファイル (*.one)</value>
   </data>
   <data name="IndexSheet_statusNone" xml:space="preserve">
     <value>まだインデックスされたページはありません</value>
+  </data>
+  <data name="IndexSheet_statusOf" xml:space="preserve">
+    <value>{1:N0} ページ中 {0:N0} ページ ({2:N0} 段落) がインデックス付けされており、{3:N1} MB を使用しています</value>
   </data>
   <data name="IndexSheet_Title" xml:space="preserve">
     <value>検索インデックス</value>
