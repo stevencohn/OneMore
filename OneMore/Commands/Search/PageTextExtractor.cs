@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -126,14 +127,24 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Selects the images of the page body that OneNote recognized text in.
+		/// Selects the images of the page body that OneNote recognized text in, plus the file
+		/// printout images that sit directly on the page, outside any outline.
 		/// </summary>
+		/// <remarks>
+		/// Other page-level images are background images, which are design and not content.
+		/// </remarks>
 		public static List<XElement> SelectImages(Page page)
 		{
 			var ns = page.Namespace;
 
+			var printouts = page.Root
+				.Elements(ns + "Image")
+				.Where(e => string.Equals(
+					(string)e.Attribute("isPrintOut"), "true", StringComparison.OrdinalIgnoreCase));
+
 			return page.BodyOutlines
 				.Descendants(ns + "Image")
+				.Concat(printouts)
 				.Where(e => e.Elements(ns + "OCRData").Elements(ns + "OCRText").Any())
 				.ToList();
 		}
