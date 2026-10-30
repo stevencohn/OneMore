@@ -123,6 +123,10 @@ namespace River.OneMoreAddIn.Commands
 		// "next in rotation" text; every other item is a hex color drawn as a filled rectangle.
 		private sealed class ColorComboBox : UI.MoreComboBox
 		{
+			// palette index of the color that "next in rotation" will apply, or -1
+			public int NextIndex { get; set; } = -1;
+
+
 			protected override void OnDrawItem(DrawItemEventArgs e)
 			{
 				if (e.Index <= 0 || e.Index >= Items.Count ||
@@ -167,10 +171,35 @@ namespace River.OneMoreAddIn.Commands
 				var textBounds = new Rectangle(
 					swatch.Right + 8, e.Bounds.Y, e.Bounds.Right - swatch.Right - 8, e.Bounds.Height);
 
+				var label = ((string)Items[e.Index]).ToUpperInvariant();
+				if (e.Index - 1 == NextIndex && (e.State & DrawItemState.ComboBoxEdit) == 0)
+				{
+					label += "  ←";
+				}
+
 				TextRenderer.DrawText(
-					e.Graphics, ((string)Items[e.Index]).ToUpperInvariant(), Font, textBounds, fore,
+					e.Graphics, label, Font, textBounds, fore,
 					TextFormatFlags.VerticalCenter | TextFormatFlags.Left |
 					TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the number of colors in the chooser, not counting the next-in-rotation item.
+		/// </summary>
+		public int PaletteCount => palette?.Count ?? 0;
+
+
+		/// <summary>
+		/// Marks the color that choosing "next in rotation" would apply.
+		/// </summary>
+		public void SetNextIndex(int index)
+		{
+			if (colorBox is ColorComboBox box)
+			{
+				box.NextIndex = index;
+				box.Invalidate();
 			}
 		}
 
