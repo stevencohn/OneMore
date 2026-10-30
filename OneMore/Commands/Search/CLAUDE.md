@@ -77,7 +77,9 @@ paragraphs, so "include TOC" and the single-page scope always read. The CLI path
 
 **Image text (OCR).** `PageTextExtractor.Extract(page, includeToc, includeOcr)` also returns the
 `one:Image/one:OCRData/one:OCRText` of each image as one `ParagraphKind.Image` item, collapsed to one
-line and not cleaned like typed text, in document order among the paragraphs. The indexer always
+line and not cleaned like typed text, in document order among the paragraphs. Images in outlines are
+included, plus page-level `isPrintOut="true"` images (File Printouts); other page-level images are
+background design and are skipped. The indexer always
 passes `includeOcr: true` and stores `index_text.kind` (0 text, 1 image); queries add `kind = 0`
 unless `SearchOptions.IncludeOcr` (the dialog's "Search text in images" box, off by default) is set,
 so toggling the box needs no reindex. The live scan goes through the same `Extract`, which keeps both
