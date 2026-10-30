@@ -5,7 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ReportRemindersReuseDialog : UI.MoreForm
@@ -13,6 +13,11 @@ namespace River.OneMoreAddIn.Commands
 		public ReportRemindersReuseDialog()
 		{
 			InitializeComponent();
+
+			FormBorderStyle = FormBorderStyle.FixedDialog;
+			MaximizeBox = false;
+			MinimizeBox = false;
+			ShowInTaskbar = false;
 
 			if (NeedsLocalizing())
 			{

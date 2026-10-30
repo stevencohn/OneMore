@@ -974,6 +974,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="SearchAndHighlightCmd"/>
         <button
+          id="ribSummarizeHighlightsButton"
+          imageMso="AppointmentColorDialog"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SummarizeHighlightsCmd"/>
+        <button
           id="ribSearchAndReplaceButton"
           imageMso="ReplaceDialog"
           getLabel="GetRibbonLabel"

@@ -61,6 +61,9 @@ namespace River.OneMoreAddIn.Models
 		// page is a hashtag index page
 		public static readonly string TagIndex = "omTagIndex";
 
+		// page is a highlights summary report, content is scope
+		public static readonly string HighlightsReport = "omHighlightsReport";
+
 		// page is a search results index page
 		public static readonly string SearchIndex = "omSearchIndex";
 
