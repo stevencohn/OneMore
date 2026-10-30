@@ -94,5 +94,99 @@ namespace River.OneMoreAddIn.Tests.Commands.Search
 			Assert.AreNotEqual("hello world", runs[1].GetCData().Value,
 				"plain text run should still have been replaced");
 		}
+
+
+		private static string Highlight(string cdata, string pattern, out int count)
+		{
+			var t = new XElement(Ns + "T", new XCData(cdata));
+
+			var oe = new XElement(Ns + "OE",
+				new XAttribute("objectID", "{OE1}"),
+				new XAttribute("lastModifiedTime", "2026-01-01T00:00:00.000Z"),
+				t);
+
+			var page = new PageBuilder().WithElement(oe).BuildElement();
+			var paragraph = page.Elements(Ns + "Outline").Descendants(Ns + "OE").First();
+
+			var editor = new SearchAndReplaceEditor(pattern, false, false, "#FFFF00");
+			count = editor.SearchAndReplace(paragraph);
+
+			return paragraph.Element(Ns + "T").GetCData().Value;
+		}
+
+
+		[TestMethod]
+		public void Highlight_PlainText_WrapsMatchOnly()
+		{
+			var result = Highlight("hello world", "world", out var count);
+
+			Assert.AreEqual(1, count);
+			Assert.AreEqual("hello <span style=\"background:#FFFF00\">world</span>", result);
+		}
+
+
+		[TestMethod]
+		public void Highlight_StyledSpan_KeepsExistingStyles()
+		{
+			var result = Highlight("<span style='font-weight:bold'>world</span>", "world", out _);
+
+			StringAssert.Contains(result.ToLowerInvariant(), "bold");
+			StringAssert.Contains(result.ToUpperInvariant(), "FFFF00");
+		}
+
+
+		[TestMethod]
+		public void Highlight_ExistingBackground_IsReplaced()
+		{
+			var result = Highlight(
+				"<span style='background:#00FF00;font-style:italic'>world</span>", "world", out _);
+
+			Assert.IsFalse(result.ToUpperInvariant().Contains("00FF00"));
+			StringAssert.Contains(result.ToUpperInvariant(), "FFFF00");
+			StringAssert.Contains(result.ToLowerInvariant(), "italic");
+		}
+
+
+		[TestMethod]
+		public void Highlight_PartialSpan_LeavesRestUnhighlighted()
+		{
+			var result = Highlight(
+				"<span style='font-weight:bold'>hello world</span>", "world", out _);
+
+			StringAssert.Contains(result.ToLowerInvariant(), "bold");
+			// consecutive sibling spans, not a span nested in a span, so OneNote cannot fold
+			// the neighboring text into the highlight
+			StringAssert.Contains(result, "hello </span>");
+			StringAssert.Contains(result, ">world</span>");
+			Assert.IsFalse(result.Contains("</span></span>"));
+			Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(
+				result.ToUpperInvariant(), "FFFF00").Count);
+		}
+
+
+		[TestMethod]
+		public void Highlight_TrailingSpace_IsNotLeftAsAStyledRunOfItsOwn()
+		{
+			var result = Highlight(
+				"<span style='font-weight:bold'>Searching </span><span style='font-style:italic'>line</span>",
+				"Searching", out _);
+
+			// OneNote folds a whitespace-only span into the highlighted run before it
+			Assert.IsFalse(result.Contains("> </span>"), result);
+			StringAssert.Contains(result, "> line</span>");
+			Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(
+				result.ToUpperInvariant(), "FFFF00").Count);
+		}
+
+
+		[TestMethod]
+		public void Highlight_MatchSpanningSpans_HighlightsBothParts()
+		{
+			var result = Highlight("hel<span style='font-weight:bold'>lo wo</span>rld", "llo wo", out var count);
+
+			Assert.AreEqual(1, count);
+			Assert.AreEqual(2, System.Text.RegularExpressions.Regex.Matches(
+				result.ToUpperInvariant(), "FFFF00").Count);
+		}
 	}
 }

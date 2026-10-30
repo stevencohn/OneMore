@@ -5,7 +5,10 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Web;
@@ -16,12 +19,25 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchAndReplaceDialog : UI.MoreForm
 	{
+		private readonly bool highlighting;
+		private bool canSearch;
+		private bool busy;
 		private XElement whats;
+		private UI.MoreComboBox colorBox;
+		private List<(string Display, string Stored)> palette;
 
 
-		public SearchAndReplaceDialog()
+		/// <summary>
+		/// Initializes a new dialog.
+		/// </summary>
+		/// <param name="highlighting">
+		/// True to replace the "Replace with" field with a highlighter color chooser
+		/// </param>
+		public SearchAndReplaceDialog(bool highlighting = false)
 		{
 			InitializeComponent();
+
+			this.highlighting = highlighting;
 
 			if (NeedsLocalizing())
 			{
@@ -35,10 +51,10 @@ namespace River.OneMoreAddIn.Commands
 					"regBox",
 					"scopeLabel=word_Scope",
 					"scopeBox",
-					"rawBox",
-					"replaceButton",
+					"findNextButton",
+					"replaceButton=word_Replace",
 					"replaceAllButton",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Close"
 				});
 			}
 
@@ -47,20 +63,121 @@ namespace River.OneMoreAddIn.Commands
 
 			scopeBox.SelectedIndex = 0;
 
+			if (highlighting)
+			{
+				MorphToHighlight();
+			}
+
 			LoadSettings();
+		}
+
+
+		// Swap the replacement field for a highlighter chooser
+		private void MorphToHighlight()
+		{
+			Text = Resx.SearchAndHighlightDialog_Text;
+			withLabel.Text = Resx.SearchAndHighlightDialog_withLabel;
+			replaceButton.Text = Resx.SearchAndHighlightDialog_highlightOneButton;
+			replaceAllButton.Text = Resx.SearchAndHighlightDialog_highlightButton;
+
+			withBox.Visible = false;
+			withStatusLabel.Visible = false;
+
+			colorBox = new ColorComboBox
+			{
+				Anchor = withBox.Anchor,
+				DropDownStyle = ComboBoxStyle.DropDownList,
+				Font = withBox.Font,
+				ItemHeight = withBox.Height - 6,
+				Location = withBox.Location,
+				Name = "colorBox",
+				Size = withBox.Size,
+				TabIndex = withBox.TabIndex
+			};
+
+			Controls.Add(colorBox);
+		}
+
+
+		/// <summary>
+		/// Populates the color chooser. The first choice is always the next color in the
+		/// rotating sequence, followed by each color of the configured scheme.
+		/// </summary>
+		public void SetPalette(List<(string Display, string Stored)> colors)
+		{
+			palette = colors;
+
+			colorBox.Items.Clear();
+			colorBox.Items.Add(Resx.SearchAndHighlightDialog_next);
+			foreach (var color in colors)
+			{
+				colorBox.Items.Add(color.Display);
+			}
+
+			colorBox.SelectedIndex = 0;
+		}
+
+
+		// MoreComboBox.OnDrawItem paints the item text over anything a DrawItem handler draws,
+		// so the swatches must be drawn by overriding OnDrawItem itself. The first item is the
+		// "next in rotation" text; every other item is a hex color drawn as a filled rectangle.
+		private sealed class ColorComboBox : UI.MoreComboBox
+		{
+			protected override void OnDrawItem(DrawItemEventArgs e)
+			{
+				if (e.Index <= 0 || e.Index >= Items.Count ||
+					!ColorMath.TryParseHex((string)Items[e.Index], out var color))
+				{
+					base.OnDrawItem(e);
+					return;
+				}
+
+				var manager = ThemeManager.Instance;
+				var selected = (e.State & DrawItemState.ComboBoxEdit) == 0 &&
+					(e.State & DrawItemState.Selected) != 0;
+
+				var back = selected
+					? manager.GetColor("Highlight")
+					: manager.GetColor("Window", ThemedBack);
+
+				using (var backBrush = new SolidBrush(back))
+				{
+					e.Graphics.FillRectangle(backBrush, e.Bounds);
+				}
+
+				// a color box twice as wide as it is tall, then 8px, then the #RRGGBB value
+				var height = e.Bounds.Height - 4;
+				var swatch = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 2, height * 2, height);
+
+				using (var brush = new SolidBrush(color))
+				{
+					e.Graphics.FillRectangle(brush, swatch);
+				}
+
+				var fore = selected
+					? manager.GetColor("HighlightText")
+					: manager.GetColor("WindowText", ThemedFore);
+
+				using (var pen = new Pen(fore))
+				{
+					e.Graphics.DrawRectangle(
+						pen, swatch.X, swatch.Y, swatch.Width - 1, swatch.Height - 1);
+				}
+
+				var textBounds = new Rectangle(
+					swatch.Right + 8, e.Bounds.Y, e.Bounds.Right - swatch.Right - 8, e.Bounds.Height);
+
+				TextRenderer.DrawText(
+					e.Graphics, ((string)Items[e.Index]).ToUpperInvariant(), Font, textBounds, fore,
+					TextFormatFlags.VerticalCenter | TextFormatFlags.Left |
+					TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
+			}
 		}
 
 
 		private void LoadSettings()
 		{
 			var provider = new SettingsProvider();
-
-			var experimental = provider.GetCollection("GeneralSheet").Get<bool>("experimental");
-			if (!experimental)
-			{
-				rawBox.Visible = false;
-				Height -= rawBox.Height;
-			}
 
 			var settings = provider.GetCollection("SearchReplace");
 			if (settings != null)
@@ -92,13 +209,46 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool MatchCase => matchBox.Checked;
+		/// <summary>
+		/// Gets the color chosen when highlighting, or null to use the next color in the
+		/// rotating sequence.
+		/// </summary>
+		public string HighlightColor => HighlightIndex >= 0 ? palette[HighlightIndex].Stored : null;
 
-		public XElement RawXml { get; private set; }
+		/// <summary>
+		/// Gets the rotation index of the chosen color, or -1 for the next in sequence.
+		/// </summary>
+		public int HighlightIndex => colorBox is null ? -1 : colorBox.SelectedIndex - 1;
+
+		public bool MatchCase => matchBox.Checked;
 
 		public OneNote.Scope Scope { get; private set; } = OneNote.Scope.Self;
 
-		public bool StepwiseMode => DialogResult == DialogResult.Yes;
+		/// <summary>Raised when the user asks to select the next match on the page</summary>
+		public event EventHandler FindNextClicked;
+
+		/// <summary>Raised when the user asks to replace or highlight the current match</summary>
+		public event EventHandler ReplaceClicked;
+
+		/// <summary>Raised when the user asks to replace or highlight every match in scope</summary>
+		public event EventHandler ReplaceAllClicked;
+
+		/// <summary>
+		/// Disables the action buttons while an action is running.
+		/// </summary>
+		public void SetBusy(bool busy)
+		{
+			this.busy = busy;
+			UpdateButtonStates();
+		}
+
+		/// <summary>
+		/// Shows the outcome of the last action.
+		/// </summary>
+		public void SetStatus(string text)
+		{
+			statusLabel.Text = text;
+		}
 
 		public string WithText => withBox.Text;
 
@@ -121,12 +271,6 @@ namespace River.OneMoreAddIn.Commands
 		private void ToggleRegex(object sender, EventArgs e)
 		{
 			CheckPattern(sender, e);
-		}
-
-
-		private void ToggleRawXml(object sender, EventArgs e)
-		{
-			CheckXmlFormat(sender, e);
 		}
 
 
@@ -163,75 +307,64 @@ namespace River.OneMoreAddIn.Commands
 						withStatusLabel.Text = string.Empty;
 					}
 
-					var hasText = whatBox.Text.Length > 0;
-					replaceAllButton.Enabled = hasText;
-					UpdateReplaceButtonState(hasText);
+					canSearch = whatBox.Text.Length > 0;
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine(text, exc);
 					whatStatusLabel.Text = exc.Message;
 					withStatusLabel.Text = string.Empty;
-					replaceAllButton.Enabled = false;
-					replaceButton.Enabled = false;
+					canSearch = false;
 				}
 			}
 			else
 			{
 				whatStatusLabel.Text = string.Empty;
 				withStatusLabel.Text = string.Empty;
-				var hasText = whatBox.Text.Length > 0;
-				replaceAllButton.Enabled = hasText;
-				UpdateReplaceButtonState(hasText);
+				canSearch = whatBox.Text.Length > 0;
 			}
+
+			UpdateButtonStates();
 		}
 
 
-		private void UpdateReplaceButtonState(bool hasText)
+		// Find Next and Replace step through one page so they only apply to This Page;
+		// every scope can replace or highlight all
+		private void UpdateButtonStates()
 		{
-			replaceButton.Enabled = hasText && Scope == OneNote.Scope.Self;
+			var single = canSearch && !busy && Scope == OneNote.Scope.Self;
 
-			AcceptButton = replaceButton.Enabled && Scope == OneNote.Scope.Self
-				? replaceButton
-				: replaceAllButton;
+			findNextButton.Enabled = single;
+			replaceButton.Enabled = single;
+			replaceAllButton.Enabled = canSearch && !busy;
+
+			AcceptButton = single ? findNextButton : replaceAllButton;
 		}
 
 
-		private void CheckXmlFormat(object sender, EventArgs e)
+		// a modeless form is not closed by a button's DialogResult, so close it explicitly
+		private void CloseDialog(object sender, EventArgs e)
 		{
-			if (rawBox.Checked)
-			{
-				// rawBox lets users replace content with XML snippets;
-				// it does not replace XML with xML!
-
-				var xml = withBox.Text.Trim();
-				try
-				{
-					// if XML then ensure the 'one' prefix is defined as an xmlns...
-
-					var match = Regex.Match(xml, @"^<(?:(?<prefix>\w+):)?\w+(?<space>\s*)>");
-					if (match.Success && match.Groups["prefix"].Length > 0)
-					{
-						xml = xml.Insert(6, $" xmlns:{match.Groups["prefix"].Value}='anything'");
-					}
-
-					RawXml = XElement.Parse(xml);
-				}
-				catch
-				{
-					withStatusLabel.Text = "XML format is not correct";
-					return;
-				}
-			}
-			else
-			{
-				RawXml = null;
-			}
-
-			// ensure whatStatus is restored correctly
-			CheckPattern(sender, e);
+			Close();
 		}
 
+
+		private void FindNext(object sender, EventArgs e)
+		{
+			FindNextClicked?.Invoke(this, e);
+		}
+
+
+		private void ReplaceOne(object sender, EventArgs e)
+		{
+			ReplaceClicked?.Invoke(this, e);
+		}
+
+
+		private void ReplaceAll(object sender, EventArgs e)
+		{
+			ReplaceAllClicked?.Invoke(this, e);
+		}
 
 
 		private void SelectedWhat(object sender, EventArgs e)
@@ -269,7 +402,7 @@ namespace River.OneMoreAddIn.Commands
 				_ => OneNote.Scope.Self
 			};
 
-			UpdateReplaceButtonState(replaceAllButton.Enabled);
+			UpdateButtonStates();
 		}
 	}
 }

@@ -15273,6 +15273,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search and Highlight.
+        /// </summary>
+        internal static string ribSearchAndHighlightButton_Label {
+            get {
+                return ResourceManager.GetString("ribSearchAndHighlightButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Find text and highlight every match using the next highlighter color or a chosen color.
+        /// </summary>
+        internal static string ribSearchAndHighlightButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSearchAndHighlightButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string ribSearchAndReplaceButton_Label {
@@ -16403,6 +16421,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highlighted {0} matches on {1} pages.
+        /// </summary>
+        internal static string SearchAndHighlightCommand_Results {
+            get {
+                return ResourceManager.GetString("SearchAndHighlightCommand_Results", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight All.
+        /// </summary>
+        internal static string SearchAndHighlightDialog_highlightButton {
+            get {
+                return ResourceManager.GetString("SearchAndHighlightDialog_highlightButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Next in rotation.
+        /// </summary>
+        internal static string SearchAndHighlightDialog_next {
+            get {
+                return ResourceManager.GetString("SearchAndHighlightDialog_next", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Highlight.
+        /// </summary>
+        internal static string SearchAndHighlightDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchAndHighlightDialog_Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight with.
+        /// </summary>
+        internal static string SearchAndHighlightDialog_withLabel {
+            get {
+                return ResourceManager.GetString("SearchAndHighlightDialog_withLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to No matches found on this page..
         /// </summary>
         internal static string SearchAndReplaceCommand_NoMatches {
@@ -16428,13 +16491,40 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchAndReplaceDialog_matchBox.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Replace with raw XML.
+        ///   Looks up a localized string similar to Highlight.
         /// </summary>
-        internal static string SearchAndReplaceDialog_rawBox_Text {
+        internal static string SearchAndHighlightDialog_highlightOneButton {
             get {
-                return ResourceManager.GetString("SearchAndReplaceDialog_rawBox.Text", resourceCulture);
+                return ResourceManager.GetString("SearchAndHighlightDialog_highlightOneButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Find Next.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_findNextButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_findNextButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Match {0} of {1}.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_matchStatus {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_matchStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Match {0} of {1}, continued from the top.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_matchWrapped {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_matchWrapped", resourceCulture);
             }
         }
         

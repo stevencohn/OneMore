@@ -6477,6 +6477,14 @@ Zakładka Pomoc</value>
     <value>Zaplanuj skanowanie hashtagów</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>Wyszukaj i wyróżnij</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>Znajdź tekst i zaznacz każde dopasowanie, używając kolejnego koloru zakreślacza lub wybranego koloru</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Wyszukaj i zamień</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -6972,6 +6980,30 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
     <value>Wybrane notebooki ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>Wyróżniono {0} dopasowań na {1} stronach</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>Atrakcja</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>Następny w kolejności</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>Wyszukaj i wyróżnij</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>Zaznacz za pomocą</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>Na tej stronie nie znaleziono żadnych dopasowań.</value>
     <comment>message box</comment>
@@ -6980,13 +7012,21 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
     <value>Zastąpiono dopasowania {0} na stronach {1}</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>Znajdź następny</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Sprawa meczu</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>Zastąp surowym kodem XML</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>Dopasuj {0} z {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>Dopasowanie {0} z {1}, ciąg dalszy od góry</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>

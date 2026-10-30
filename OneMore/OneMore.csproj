@@ -1410,6 +1410,7 @@
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\Search\MatchInfo.cs" />
+    <Compile Include="Commands\Search\SearchAndHighlightCommand.cs" />
     <Compile Include="Commands\Search\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\Search\Atoms\AtomicFactory.cs" />
     <Compile Include="Commands\Search\Atoms\ElementAtom.cs" />
@@ -1450,12 +1451,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\SearchAndReplaceSessionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Commands\Search\SearchAndReplaceSessionDialog.Designer.cs">
-      <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\Search\SearchAndReplaceSession.cs" />
     <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1768,9 +1764,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\EmbedDialog.resx">
       <DependentUpon>EmbedDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\SearchAndReplaceSessionDialog.resx">
-      <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\TableThemesSheet.resx">
       <DependentUpon>TableThemesSheet.cs</DependentUpon>

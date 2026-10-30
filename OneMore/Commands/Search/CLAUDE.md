@@ -11,7 +11,8 @@ This directory implements all search-related commands for the OneMore OneNote ad
 | Class | Entry point | What it does |
 |---|---|---|
 | `SearchCommand` | `Execute()` | Modeless dialog to search pages across sections/notebooks, then move or copy the selected pages to a target section |
-| `SearchAndReplaceCommand` | `Execute()` | Find-and-replace across a page, section, or all notebooks; supports regex, capture group substitution, and replacing matched text with a raw `XElement` |
+| `SearchAndReplaceCommand` | `Execute()` | Find-and-replace across a page, section, or all notebooks; supports regex and capture group substitution |
+| `SearchAndHighlightCommand` | `Execute()` | Subclass of `SearchAndReplaceCommand` (overrides `Highlighting`); opens the same `SearchAndReplaceDialog` in highlight mode, where "Replace with" becomes a highlighter color chooser (next in sequence, or a specific color from the configured scheme). Matches get a `background` color; existing span styles are preserved and an existing background is replaced. The rotation index is saved on the page via `HighlightRotator.SaveIndex` |
 | `SearchWebCommand` | `Execute(uri)` | Grabs selected text from the current page and opens a formatted web search URL in the default browser |
 
 ## Architecture
@@ -35,11 +36,17 @@ Abstracts over OneNote's mixed-content CDATA (interleaved `XText` and `XElement`
 
 ### `SearchAndReplaceEditor`
 
-The core replace engine used by both `SearchAndReplaceCommand` and `LinkReferencesCommand` (external caller). Two constructor overloads:
+The core replace engine used by both `SearchAndReplaceCommand` and `LinkReferencesCommand` (external caller). Three constructor overloads (the third, `(pattern, enableRegex, caseSensitive, highlightColor)`, highlights matches via `Highlight`/`HighlightNode` instead of replacing them):
 - `(pattern, replacement string, enableRegex, caseSensitive)` — replaces with a string, supports `$1`…`$n` capture group substitution
 - `(pattern, replacement XElement, enableRegex, caseSensitive)` — replaces matched text with an XML element (e.g. a hyperlink)
 
 `ScanElement` works backwards through `Regex.Matches` to avoid cumulative offset drift. After all replacements, `PatchEndingBreaks` appends `&nbsp;` to any `T` that ends with `<br>\n` to match OneNote's own behavior.
+
+### Find Next / Replace session (`SearchAndReplaceSession`)
+
+`SearchAndReplaceDialog` is modeless and, like Visual Studio, has Find Next, Replace (Highlight in highlight mode) and Replace All (Highlight All). Find Next and Replace only apply to scope This Page; other scopes enable Replace All only. The command wires the dialog's `FindNextClicked`/`ReplaceClicked`/`ReplaceAllClicked` events to a `SearchAndReplaceSession`, which re-reads the page (`PageDetail.Basic`) on every step so edits made between clicks are respected.
+
+To show a match, `Select` splits its `T` run into before / match (`selected="all"`) / after runs so exactly the matched characters are selected. The original run and the CDATA of the pieces are remembered in `Pending`; `Restore` puts the original run back at the start of the next step, in `ApplyAll`, and on `Release` (dialog closed). If the pieces no longer match (OneNote recombined them or the user edited) nothing is touched. Position between steps is a `(run index, char index)` cursor; `Reset` is called when the search criteria change. Because the session reads Basic pages it searches the whole page, not just a selection.
 
 ### `TextMatchBuilder`
 
