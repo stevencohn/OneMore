@@ -331,12 +331,6 @@
         getScreentip="GetRibbonScreentip"
         onAction="SearchAndHighlightCmd"/>
       <button
-        id="ribSummarizeHighlightsButton"
-        imageMso="AppointmentColorDialog"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SummarizeHighlightsCmd"/>
-      <button
         id="ribSearchAndReplaceButton"
         imageMso="ReplaceDialog"
         getLabel="GetRibbonLabel"
@@ -378,6 +372,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="PreviousUnreadPageCmd"/>
+      <button
+        id="ribSummarizeHighlightsButton"
+        imageMso="ReviewHighlightChanges"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SummarizeHighlightsCmd"/>
     </menu>
   </group>
 
