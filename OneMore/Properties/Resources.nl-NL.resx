@@ -4877,7 +4877,7 @@ Stilistisch, entiteit, media</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Annoteer hexadecimale kleuren</value>
+    <value>Hex-kleurstalen toevoegen</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

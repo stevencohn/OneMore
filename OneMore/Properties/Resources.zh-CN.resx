@@ -4891,7 +4891,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>注释十六进制颜色</value>
+    <value>添加十六进制颜色样本</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

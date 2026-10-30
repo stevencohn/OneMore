@@ -4877,7 +4877,7 @@ Estilístico, Entidade, Mídia</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Anotar cores hexadecimais</value>
+    <value>Adicionar amostras de cores hexadecimais</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

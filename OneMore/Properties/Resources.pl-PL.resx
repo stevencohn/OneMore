@@ -4877,7 +4877,7 @@ Stylistyka, podmiot, media</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Opisz kolory szesnastkowe</value>
+    <value>Dodaj próbki kolorów szesnastkowych</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

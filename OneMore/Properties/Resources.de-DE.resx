@@ -4876,7 +4876,7 @@ Stilistisch, Entität, Medien</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Kommentieren Sie Hex-Farben</value>
+    <value>Fügen Sie Hex-Farbfelder hinzu</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

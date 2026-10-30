@@ -4905,7 +4905,7 @@ Stylistic, Entity, Media</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Annotate Hex Colors</value>
+    <value>Add Hex Color Swatches</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

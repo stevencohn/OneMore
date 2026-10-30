@@ -11578,7 +11578,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Annotate Hex Colors.
+        ///   Looks up a localized string similar to Add Hex Color Swatches.
         /// </summary>
         internal static string ribAnnotateHexColorsButton_Label {
             get {

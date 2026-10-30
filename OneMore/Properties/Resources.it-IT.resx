@@ -4877,7 +4877,7 @@ Stilistica, Entità, Media</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Annota i colori esadecimali</value>
+    <value>Aggiungi campioni di colore esadecimali</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

@@ -4888,7 +4888,7 @@ Stylistique, Entité, Média</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Annoter les couleurs hexadécimales</value>
+    <value>Ajouter des échantillons de couleurs hexagonales</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">

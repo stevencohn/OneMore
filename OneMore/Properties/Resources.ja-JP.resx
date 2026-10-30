@@ -4880,7 +4880,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>16 進カラーに注釈を付ける</value>
+    <value>16 進数の色見本を追加する</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
