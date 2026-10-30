@@ -6713,6 +6713,14 @@ Guia Ajuda</value>
     <value>Recolorir imagens usando o estilo selecionado</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Resumir os destaques</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Crie uma página de relatório com todo o texto destacado na página, seção, grupo de seções, bloco de notas ou todos os blocos de notas</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Sincronizar cadernos</value>
     <comment>command</comment>
@@ -7794,6 +7802,58 @@ Invertido</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Estilizar imagens</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Todos os cadernos</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Agrupados por caderno, grupo de seções e seção. Cada nome de página está vinculado à página; "Ir para o parágrafo" vincula ao parágrafo.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Ir para o parágrafo</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Modificado {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>Nenhum texto destacado foi encontrado no escopo selecionado</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Escopo: {0} · {1} destaques em {2} parágrafos em {3} páginas</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Esta página</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Esta seção</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Destaques - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Todas as seções do grupo de seções atual</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Resuma o texto destacado em:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>A página atual</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Resumir os destaques</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

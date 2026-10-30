@@ -6724,6 +6724,14 @@ Onglet Aide</value>
     <value>Recolorer les images en utilisant le style sélectionné</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Résumer les faits saillants</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Créer une page de rapport de tout le texte en surbrillance sur la page, la section, le groupe de sections, le bloc-notes ou tous les blocs-notes</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Synchroniser les blocs-notes</value>
     <comment>command</comment>
@@ -7804,6 +7812,58 @@ Inverser</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Styliser les images</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Tous les cahiers</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Regroupés par cahier, groupe de sections et section. Chaque nom de page renvoie à la page ; "Aller au paragraphe" renvoie au paragraphe.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Aller au paragraphe</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Modifié {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>Aucun texte en surbrillance n'a été trouvé dans la portée sélectionnée</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Portée : {0} · {1} points forts dans {2} paragraphes sur {3} pages</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Cette page</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Cette rubrique</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Points forts – {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Toutes les sections du groupe de sections actuel</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Résumez le texte surligné dans :</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>La page actuelle</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Résumer les faits saillants</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

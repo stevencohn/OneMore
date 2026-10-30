@@ -6727,6 +6727,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>对所选图像使用选定的风格重新重色</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>总结亮点</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>创建包含页面、部分、部分组、笔记本或所有笔记本上所有突出显示文本的报告页面</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>同步笔记本</value>
     <comment>command</comment>
@@ -7812,6 +7820,58 @@ Code——代码块段落
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>调整图像风格</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>所有笔记本</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>按笔记本、分区组和分区分组。 每个页面名称链接到该页面； “转到段落”链接到该段落。</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>转到段落</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>已修改{0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>在所选范围内未找到突出显示的文本</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>范围：{0} · {3} 页上的 {2} 个段落中的 {1} 个突出显示内容</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>本页</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>本节</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>亮点 - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>当前分区组中的所有分区</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>总结突出显示的文本：</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>当前页面</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>总结亮点</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

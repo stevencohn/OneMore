@@ -6713,6 +6713,14 @@ Registerkarte „Hilfe“.</value>
     <value>Färben Sie Bilder mit dem ausgewählten Stil neu</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Highlights zusammenfassen</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Erstellen Sie eine Berichtsseite mit dem gesamten hervorgehobenen Text auf der Seite, im Abschnitt, in der Abschnittsgruppe, im Notizbuch oder in allen Notizbüchern</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Notizbücher synchronisieren</value>
     <comment>command</comment>
@@ -7794,6 +7802,58 @@ Umkehren</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Bilder stilisieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Alle Notizbücher</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Gruppiert nach Notizbuch, Abschnittsgruppe und Abschnitt. Jeder Seitenname verlinkt auf die Seite; „Gehe zu Absatz“ verlinkt zum Absatz.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Gehe zum Absatz</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Geändert {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>Im ausgewählten Bereich wurde kein hervorgehobener Text gefunden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Geltungsbereich: {0} · {1} Hervorhebungen in {2} Absätzen auf {3} Seiten</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Diese Seite</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Dieser Abschnitt</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Highlights - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Alle Abschnitte in der aktuellen Abschnittsgruppe</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Markierten Text zusammenfassen in:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>Die aktuelle Seite</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Highlights zusammenfassen</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

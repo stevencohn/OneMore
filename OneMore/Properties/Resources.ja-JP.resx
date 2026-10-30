@@ -6718,6 +6718,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>選択したスタイルを使用して画像の色を変更</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>ハイライトを要約する</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>ページ、セクション、セクション グループ、ノートブック、またはすべてのノートブック上のすべての強調表示されたテキストのレポート ページを作成します。</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>ノートブックを同期する</value>
     <comment>command</comment>
@@ -7800,6 +7808,58 @@ TF-IDF コサイン、語彙の重複、構造</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>画像のスタイル</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>すべてのノートブック</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>ノートブック、セクショングループ、セクションごとにグループ化されています。 各ページ名はページにリンクしています。 「段落へ移動」は段落へリンクします。</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>段落へ進む</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>変更された {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>選択された範囲内で強調表示されたテキストが見つかりませんでした</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>範囲: {3} ページの {2} 段落内の {0} · {1} 個のハイライト</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>このページ</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>このセクション</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>ハイライト - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>現在のセクショングループ内のすべてのセクション</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>強調表示されたテキストを次のように要約します。</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>現在のページ</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>ハイライトを要約する</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

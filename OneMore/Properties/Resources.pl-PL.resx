@@ -6713,6 +6713,14 @@ Zakładka Pomoc</value>
     <value>Pokoloruj ponownie obrazy, używając wybranego stylu</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Podsumuj najważniejsze informacje</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Utwórz stronę raportu zawierającą cały wyróżniony tekst na stronie, w sekcji, grupie sekcji, notatniku lub wszystkich notatnikach</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Synchronizuj notesy</value>
     <comment>command</comment>
@@ -7794,6 +7802,58 @@ Odwracać</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Stylizuj obrazy</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Wszystkie notesy</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Pogrupowane według notesu, grupy sekcji i sekcji. Każda nazwa strony zawiera odnośnik do strony; Linki „Przejdź do akapitu” prowadzące do akapitu.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Przejdź do akapitu</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Zmodyfikowano {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>W wybranym zakresie nie znaleziono zaznaczonego tekstu</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Zakres: {0} · {1} wyróżnień w {2} akapitach na {3} stronach</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Ta strona</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Ta sekcja</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Najważniejsze informacje — {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Wszystkie sekcje w bieżącej grupie sekcji</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Podsumuj zaznaczony tekst w:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>Bieżąca strona</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Podsumuj najważniejsze informacje</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
