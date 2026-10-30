@@ -74,6 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			if (Highlighting)
 			{
 				searchDialog.SetPalette(HighlightRotator.GetPalette(currentPage));
+				searchDialog.SetNextIndex(HighlightRotator.GetColor(currentPage, advance: true).Index);
 			}
 
 			searchDialog.FindNextClicked += FindNext;
@@ -267,6 +268,11 @@ namespace River.OneMoreAddIn.Commands
 			highlightChoice = choice;
 			highlightIndex = index;
 			highlightColor = color;
+
+			// "next in rotation" keeps the session color; otherwise it continues after the choice
+			var count = searchDialog.PaletteCount;
+			searchDialog.SetNextIndex(choice < 0 || count == 0 ? index : (index + 1) % count);
+
 			return color;
 		}
 
