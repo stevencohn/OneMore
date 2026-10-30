@@ -968,6 +968,12 @@
       </menu>
       <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">
         <button
+          id="ribSearchAndHighlightButton"
+          imageMso="AppointmentColorDialog"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SearchAndHighlightCmd"/>
+        <button
           id="ribSearchAndReplaceButton"
           imageMso="ReplaceDialog"
           getLabel="GetRibbonLabel"

@@ -30,6 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchAndReplaceDialog));
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.findNextButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.statusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.replaceAllButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.replaceButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.whatLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -40,7 +42,6 @@
 			this.withBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.whatStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.withStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.rawBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scopeBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.scopeLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.SuspendLayout();
@@ -52,54 +53,85 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(513, 341);
+			this.cancelButton.Location = new System.Drawing.Point(513, 316);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 6;
-			this.cancelButton.Text = "Cancel";
+			this.cancelButton.Text = "Close";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.Click += new System.EventHandler(this.CloseDialog);
 			// 
 			// replaceAllButton
 			// 
 			this.replaceAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.replaceAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.replaceAllButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.replaceAllButton.Enabled = false;
 			this.replaceAllButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.replaceAllButton.ImageOver = null;
-			this.replaceAllButton.Location = new System.Drawing.Point(357, 341);
+			this.replaceAllButton.Location = new System.Drawing.Point(373, 316);
 			this.replaceAllButton.Name = "replaceAllButton";
 			this.replaceAllButton.ShowBorder = true;
-			this.replaceAllButton.Size = new System.Drawing.Size(150, 38);
+			this.replaceAllButton.Size = new System.Drawing.Size(130, 38);
 			this.replaceAllButton.StylizeImage = false;
 			this.replaceAllButton.TabIndex = 5;
 			this.replaceAllButton.Text = "Replace All";
 			this.replaceAllButton.ThemedBack = null;
 			this.replaceAllButton.ThemedFore = null;
 			this.replaceAllButton.UseVisualStyleBackColor = true;
+			this.replaceAllButton.Click += new System.EventHandler(this.ReplaceAll);
 			// 
 			// replaceButton
 			// 
 			this.replaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.replaceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.replaceButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.replaceButton.Enabled = false;
 			this.replaceButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.replaceButton.ImageOver = null;
-			this.replaceButton.Location = new System.Drawing.Point(201, 341);
+			this.replaceButton.Location = new System.Drawing.Point(233, 316);
 			this.replaceButton.Name = "replaceButton";
 			this.replaceButton.ShowBorder = true;
-			this.replaceButton.Size = new System.Drawing.Size(150, 38);
+			this.replaceButton.Size = new System.Drawing.Size(130, 38);
 			this.replaceButton.StylizeImage = false;
 			this.replaceButton.TabIndex = 4;
-			this.replaceButton.Text = "Replace Next";
+			this.replaceButton.Text = "Replace";
 			this.replaceButton.ThemedBack = null;
 			this.replaceButton.ThemedFore = null;
 			this.replaceButton.UseVisualStyleBackColor = true;
+			this.replaceButton.Click += new System.EventHandler(this.ReplaceOne);
+			//
+			// findNextButton
+			//
+			this.findNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.findNextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.findNextButton.Enabled = false;
+			this.findNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.findNextButton.ImageOver = null;
+			this.findNextButton.Location = new System.Drawing.Point(93, 316);
+			this.findNextButton.Name = "findNextButton";
+			this.findNextButton.ShowBorder = true;
+			this.findNextButton.Size = new System.Drawing.Size(130, 38);
+			this.findNextButton.StylizeImage = false;
+			this.findNextButton.TabIndex = 3;
+			this.findNextButton.Text = "Find Next";
+			this.findNextButton.ThemedBack = null;
+			this.findNextButton.ThemedFore = null;
+			this.findNextButton.UseVisualStyleBackColor = true;
+			this.findNextButton.Click += new System.EventHandler(this.FindNext);
+			//
+			// statusLabel
+			//
+			this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.statusLabel.Location = new System.Drawing.Point(16, 275);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(597, 24);
+			this.statusLabel.TabIndex = 14;
+			this.statusLabel.ThemedBack = null;
+			this.statusLabel.ThemedFore = "HintText";
 			// 
 			// whatLabel
 			// 
@@ -183,7 +215,7 @@
 			this.withBox.TabIndex = 3;
 			this.withBox.ThemedBack = null;
 			this.withBox.ThemedFore = null;
-			this.withBox.TextChanged += new System.EventHandler(this.CheckXmlFormat);
+			this.withBox.TextChanged += new System.EventHandler(this.CheckPattern);
 			// 
 			// whatStatusLabel
 			// 
@@ -210,23 +242,6 @@
 			this.withStatusLabel.Text = "Valid substitution parameters: $1";
 			this.withStatusLabel.ThemedBack = null;
 			this.withStatusLabel.ThemedFore = "HintText";
-			// 
-			// rawBox
-			// 
-			this.rawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.rawBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.rawBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.rawBox.Location = new System.Drawing.Point(154, 281);
-			this.rawBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
-			this.rawBox.Name = "rawBox";
-			this.rawBox.Size = new System.Drawing.Size(199, 25);
-			this.rawBox.StylizeImage = false;
-			this.rawBox.TabIndex = 11;
-			this.rawBox.Text = "Replace with raw XML";
-			this.rawBox.ThemedBack = null;
-			this.rawBox.ThemedFore = null;
-			this.rawBox.UseVisualStyleBackColor = true;
-			this.rawBox.CheckedChanged += new System.EventHandler(this.ToggleRawXml);
 			// 
 			// scopeBox
 			// 
@@ -259,15 +274,16 @@
 			// 
 			// SearchAndReplaceDialog
 			// 
-			this.AcceptButton = this.replaceButton;
+			this.AcceptButton = this.findNextButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(629, 397);
+			this.ClientSize = new System.Drawing.Size(629, 372);
+			this.Controls.Add(this.statusLabel);
+			this.Controls.Add(this.findNextButton);
 			this.Controls.Add(this.scopeLabel);
 			this.Controls.Add(this.scopeBox);
-			this.Controls.Add(this.rawBox);
 			this.Controls.Add(this.withStatusLabel);
 			this.Controls.Add(this.whatStatusLabel);
 			this.Controls.Add(this.withBox);
@@ -285,7 +301,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SearchAndReplaceDialog";
-			this.ShowInTaskbar = false;
+			this.ShowInTaskbar = true;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Replace";
 			this.Activated += new System.EventHandler(this.FocusOnWhat);
@@ -297,6 +313,8 @@
 		#endregion
 
 		private UI.MoreButton cancelButton;
+		private UI.MoreButton findNextButton;
+		private UI.MoreLabel statusLabel;
 		private UI.MoreButton replaceAllButton;
 		private UI.MoreButton replaceButton;
 		private UI.MoreLabel whatLabel;
@@ -307,7 +325,6 @@
 		private UI.MoreComboBox withBox;
 		private UI.MoreLabel whatStatusLabel;
 		private UI.MoreLabel withStatusLabel;
-		private UI.MoreCheckBox rawBox;
 		private UI.MoreComboBox scopeBox;
 		private UI.MoreLabel scopeLabel;
 	}

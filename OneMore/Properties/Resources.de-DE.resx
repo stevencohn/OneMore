@@ -6477,6 +6477,14 @@ Registerkarte „Hilfe“.</value>
     <value>Planen Sie den Hashtag-Scan</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>Suchen und hervorheben</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>Suchen Sie nach Text und markieren Sie jede Übereinstimmung mit der nächsten Textmarkerfarbe oder einer ausgewählten Farbe</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Suchen und Ersetzen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -6973,6 +6981,30 @@ Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
     <value>Ausgewählte Notizbücher ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>Hervorgehobene {0} Übereinstimmungen auf {1} Seiten</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>Alle markieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>Hervorheben</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>Als Nächstes im Wechsel</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>Suchen und hervorheben</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>Markieren Sie mit</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>Auf dieser Seite wurden keine Übereinstimmungen gefunden.</value>
     <comment>message box</comment>
@@ -6981,13 +7013,21 @@ Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
     <value>{0} Übereinstimmungen auf {1} Seiten ersetzt</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>Weiter finden</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match Case</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>Durch rohes XML ersetzen</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>Übereinstimmung mit {0} von {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>Übereinstimmung mit {0} von {1}, Fortsetzung von oben</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Verwende reguläre Ausdrücke</value>

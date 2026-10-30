@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
+	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Xml.Linq;
 	using River.OneMoreAddIn.Models;
@@ -28,18 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var index = 0;
 
-			var settings = new SettingsProvider().GetCollection(nameof(HighlightsSheet));
-			var extended = settings.Get<bool>("extended");
-
-			var schemeName = settings.Get<string>("theme") switch
-			{
-				"Faded" => "Faded",
-				"Deep" => "Deep",
-				_ => "Bright"
-			};
-
-			var dark = MoreColorPicker.IsDarkPage(page.GetPageColor(out _, out _));
-			var scheme = new HighlightColorSchemes().GetScheme(schemeName).GetSet(dark);
+			var scheme = LoadScheme(page, out var extended, out var dark);
 			var max = extended ? scheme.Colors.Count + scheme.Extended.Count : scheme.Colors.Count;
 
 			var meta = page.GetMetaContent(MetaNames.HighlightIndex);
@@ -52,6 +43,46 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return (index, GetColor(scheme, index, extended, dark));
+		}
+
+
+		/// <summary>
+		/// Gets every color in the configured scheme, in rotation order, so a user can choose
+		/// one explicitly. The list position is the rotation index of that color.
+		/// </summary>
+		/// <param name="page">The page whose background determines the light or dark set</param>
+		/// <returns>
+		/// Display is the color as the user will see it; Stored is the value to write to the page
+		/// </returns>
+		public static List<(string Display, string Stored)> GetPalette(Page page)
+		{
+			var scheme = LoadScheme(page, out var extended, out var dark);
+			var count = extended ? scheme.Colors.Count + scheme.Extended.Count : scheme.Colors.Count;
+
+			var palette = new List<(string Display, string Stored)>(count);
+			for (var index = 0; index < count; index++)
+			{
+				palette.Add((PickColor(scheme, index, extended), GetColor(scheme, index, extended, dark)));
+			}
+
+			return palette;
+		}
+
+
+		private static HighlightColorSet LoadScheme(Page page, out bool extended, out bool dark)
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(HighlightsSheet));
+			extended = settings.Get<bool>("extended");
+
+			var schemeName = settings.Get<string>("theme") switch
+			{
+				"Faded" => "Faded",
+				"Deep" => "Deep",
+				_ => "Bright"
+			};
+
+			dark = MoreColorPicker.IsDarkPage(page.GetPageColor(out _, out _));
+			return new HighlightColorSchemes().GetScheme(schemeName).GetSet(dark);
 		}
 
 
@@ -101,32 +132,54 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (s is XText text)
 				{
-					return new XElement("span", new XAttribute("style", $"background:{color}"), text);
+					return Wrap(text, color);
 				}
 
 				var span = (XElement)s;
-				span.GetAttributeValue("style", out var css, string.Empty);
-
-				if (string.IsNullOrEmpty(css))
-				{
-					span.SetAttributeValue("style", $"background:{color}");
-				}
-				else
-				{
-					// need to parse so we filter out mso-highlight attribute
-					// setDefaults to false so it doesn't default font family and size
-					var style = new Style(css, setDefaults: false)
-					{
-						// enable ApplyColors so it emits background attribute
-						ApplyColors = true,
-						Highlight = color
-					};
-
-					span.SetAttributeValue("style", style.ToCss(false));
-				}
-
+				SetBackground(span, color);
 				return span;
 			});
+		}
+
+
+		/// <summary>
+		/// Wraps the text in a span with the given background color.
+		/// </summary>
+		public static XElement Wrap(XText text, string color)
+		{
+			return new XElement("span", new XAttribute("style", $"background:{color}"), text);
+		}
+
+
+		/// <summary>
+		/// Sets the background color of the span, replacing any existing background and
+		/// preserving all other style attributes such as bold, italic, color, and font.
+		/// </summary>
+		public static void SetBackground(XElement span, string color)
+		{
+			span.GetAttributeValue("style", out var css, string.Empty);
+
+			// edit the declarations directly rather than round-tripping through Style, which
+			// would drop properties it does not emit such as font family and size; also drop
+			// the mso-highlight declaration, which would otherwise override the background
+			var declarations = new List<string>();
+			foreach (var part in css.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+			{
+				var declaration = part.Trim();
+				if (declaration.Length == 0)
+				{
+					continue;
+				}
+
+				var name = declaration.Split(':')[0].Trim().ToLowerInvariant();
+				if (name != "background" && name != "background-color" && name != "mso-highlight")
+				{
+					declarations.Add(declaration);
+				}
+			}
+
+			declarations.Add($"background:{color}");
+			span.SetAttributeValue("style", string.Join(";", declarations));
 		}
 	}
 }

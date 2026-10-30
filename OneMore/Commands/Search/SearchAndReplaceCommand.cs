@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Web;
@@ -15,12 +16,24 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Opens a modeless dialog to find, replace or highlight text. On This Page the dialog
+	/// steps through matches with Find Next and Replace; every scope can Replace All.
+	/// </summary>
 	internal class SearchAndReplaceCommand : Command
 	{
 		private Page currentPage;
 		private OneNote.Scope scope;
-		private bool stepwiseMode;
+		private SearchAndReplaceDialog searchDialog;
+		private SearchAndReplaceSession session;
 		private SearchAndReplaceEditor editor;
+		private string signature;
+		private bool searched;
+
+		// the color of the session is chosen once, so every match gets the same color
+		private int highlightChoice;
+		private int highlightIndex;
+		private string highlightColor;
 
 
 		public SearchAndReplaceCommand()
@@ -28,120 +41,233 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Gets a value indicating whether to highlight matches instead of replacing them.
+		/// </summary>
+		protected virtual bool Highlighting => false;
+
+
 		public override async Task Execute(params object[] args)
 		{
 			using var guard = EnterOnce();
 			if (guard is null) { return; }
 
-			editor = await MakeEditor();
-			if (editor is null)
+			string text;
+			await using (var one = new OneNote(out currentPage, out _))
 			{
-				return;
+				if (currentPage is null)
+				{
+					return;
+				}
+
+				text = new PageEditor(currentPage).GetSelectedText();
 			}
 
-			bool found;
-			if (scope == OneNote.Scope.Self)
+			session = new SearchAndReplaceSession(currentPage.PageId, StampPage);
+			searchDialog = new SearchAndReplaceDialog(Highlighting);
+
+			if (text.Length > 0)
 			{
-				found = stepwiseMode
-					? await SearchPageStepwise()
-					: await SearchPage();
-			}
-			else
-			{
-				found = await SearchHierarchy();
+				searchDialog.WhatText = text;
 			}
 
-			if (found && !stepwiseMode)
+			if (Highlighting)
+			{
+				searchDialog.SetPalette(HighlightRotator.GetPalette(currentPage));
+			}
+
+			searchDialog.FindNextClicked += FindNext;
+			searchDialog.ReplaceClicked += ReplaceOne;
+			searchDialog.ReplaceAllClicked += ReplaceAll;
+
+			searchDialog.RunModeless(Closed);
+		}
+
+
+		// remember the position in the highlighter rotation on every page that is highlighted
+		private void StampPage(Page page)
+		{
+			if (Highlighting)
+			{
+				HighlightRotator.SaveIndex(page, highlightIndex);
+			}
+		}
+
+
+		private async void FindNext(object sender, EventArgs e)
+		{
+			await Step(s => session.FindNext(s));
+		}
+
+
+		private async void ReplaceOne(object sender, EventArgs e)
+		{
+			await Step(s => Highlighting ? session.Highlight(s) : session.Replace(s));
+		}
+
+
+		private async Task Step(Func<SearchAndReplaceEditor, Task<SessionResult>> action)
+		{
+			searchDialog.SetBusy(true);
+			try
+			{
+				editor = await MakeEditor();
+				var result = await action(editor);
+				searched = true;
+
+				searchDialog.SetStatus(Describe(result));
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error stepping through matches", exc);
+				searchDialog.SetStatus(exc.Message);
+			}
+			finally
+			{
+				searchDialog.SetBusy(false);
+			}
+		}
+
+
+		private string Describe(SessionResult result)
+		{
+			if (result.Found)
+			{
+				return string.Format(
+					result.Wrapped
+						? Resx.SearchAndReplaceDialog_matchWrapped
+						: Resx.SearchAndReplaceDialog_matchStatus,
+					result.Ordinal, result.Total);
+			}
+
+			return result.Changed > 0
+				? string.Format(Results, result.Changed, 1)
+				: Resx.SearchAndReplaceCommand_NoMatches;
+		}
+
+
+		private string Results => Highlighting
+			? Resx.SearchAndHighlightCommand_Results
+			: Resx.SearchAndReplaceCommand_Results;
+
+
+		private async void ReplaceAll(object sender, EventArgs e)
+		{
+			searchDialog.SetBusy(true);
+			try
+			{
+				editor = await MakeEditor();
+				scope = searchDialog.Scope;
+
+				if (scope == OneNote.Scope.Self)
+				{
+					var count = await session.ApplyAll(editor);
+					logger.WriteLine($"found {count} matches on {currentPage.Title}");
+
+					searchDialog.SetStatus(count > 0
+						? string.Format(Results, count, 1)
+						: Resx.SearchAndReplaceCommand_NoMatches);
+				}
+				else
+				{
+					// put the current page back the way it was before searching all pages
+					await session.Release();
+					session.Reset();
+
+					await SearchHierarchy();
+					searchDialog.SetStatus(string.Empty);
+				}
+
+				searched = true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error replacing all matches", exc);
+				searchDialog.SetStatus(exc.Message);
+			}
+			finally
+			{
+				searchDialog.SetBusy(false);
+			}
+		}
+
+
+		private async void Closed(object sender, EventArgs e)
+		{
+			try
+			{
+				await session.Release();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error restoring page", exc);
+			}
+
+			if (searched && editor is not null)
 			{
 				SaveSettings();
 			}
 		}
 
 
+		// Build an editor from the current state of the dialog
 		private async Task<SearchAndReplaceEditor> MakeEditor()
 		{
-			await using var one = new OneNote(out currentPage, out _);
-			var text = new PageEditor(currentPage).GetSelectedText();
-
-			using var dialog = new SearchAndReplaceDialog();
-
-			if (text.Length > 0)
+			// searching for something new starts again from the top of the page
+			var current = $"{searchDialog.WhatText}\u0001{searchDialog.UseRegex}\u0001{searchDialog.MatchCase}";
+			if (current != signature)
 			{
-				dialog.WhatText = text;
+				signature = current;
+				session.Reset();
 			}
 
-			var result = dialog.ShowDialog(owner);
-			if (result != DialogResult.OK && result != DialogResult.Yes)
+			if (Highlighting)
 			{
-				return null;
-			}
-
-			scope = dialog.Scope;
-			stepwiseMode = dialog.StepwiseMode;
-
-			if (dialog.RawXml is null)
-			{
-				// let user insert a newline char
-				var withText = dialog.WithText.Replace("\\n", "\n");
-
 				return new SearchAndReplaceEditor(
-					dialog.WhatText,
-					replacement: withText,
-					enableRegex: dialog.UseRegex,
-					caseSensitive: dialog.MatchCase
-					);
+					searchDialog.WhatText,
+					searchDialog.UseRegex,
+					searchDialog.MatchCase,
+					await ResolveColor());
 			}
+
+			// let user insert a newline char
+			var withText = searchDialog.WithText.Replace("\\n", "\n");
 
 			return new SearchAndReplaceEditor(
-				dialog.WhatText,
-				element: dialog.RawXml,
-				enableRegex: dialog.UseRegex,
-				caseSensitive: dialog.MatchCase
-				);
+				searchDialog.WhatText,
+				withText,
+				searchDialog.UseRegex,
+				searchDialog.MatchCase);
 		}
 
 
-		private async Task<bool> SearchPage()
+		// Resolve the color, either the one chosen or the next in the rotating sequence
+		private async Task<string> ResolveColor()
 		{
-			var count = editor.SearchAndReplace(currentPage);
-
-			if (count > 0)
+			var choice = searchDialog.HighlightIndex;
+			if (highlightColor is not null && choice == highlightChoice)
 			{
-				logger.WriteLine($"found {count} matches on {currentPage.Title}");
+				return highlightColor;
 			}
 
-			if (count > 0)
+			var index = choice;
+			string color;
+
+			if (choice < 0)
 			{
-				using var one = new OneNote();
-				await one.Update(currentPage);
-				return true;
+				await using var one = new OneNote();
+				var page = await one.GetPage(currentPage.PageId, OneNote.PageDetail.Basic);
+				(index, color) = HighlightRotator.GetColor(page, advance: true);
+			}
+			else
+			{
+				color = searchDialog.HighlightColor;
 			}
 
-			return false;
-		}
-
-
-		private async Task<bool> SearchPageStepwise()
-		{
-			var matches = editor.FindAllMatches(currentPage);
-			logger.WriteLine($"found {matches.Count} stepwise matches on {currentPage.Title}");
-
-			if (matches.Count == 0)
-			{
-				ShowInfo(Resx.SearchAndReplaceCommand_NoMatches);
-				return false;
-			}
-
-			await using var one = new OneNote();
-			await one.NavigateTo(currentPage.PageId, matches[0].ParagraphObjectId);
-
-			var sessionDialog = new SearchAndReplaceSessionDialog(
-				currentPage, matches, editor, currentPage.PageId);
-
-			sessionDialog.RunModeless();
-
-			SaveSettings();
-			return true;
+			highlightChoice = choice;
+			highlightIndex = index;
+			highlightColor = color;
+			return color;
 		}
 
 
@@ -228,8 +354,15 @@ namespace River.OneMoreAddIn.Commands
 					totalPages = pagerefs.Count;
 				}
 
-				ShowInfo(string.Format(
-					Resx.SearchAndReplaceCommand_Results, totalMatches, totalPages));
+				ShowInfo(string.Format(Results, totalMatches, totalPages));
+			}
+
+			if (Highlighting && totalMatches > 0)
+			{
+				// reload because the current page may have just been updated above
+				var current = await one.GetPage(currentPage.PageId, OneNote.PageDetail.Basic);
+				HighlightRotator.SaveIndex(current, highlightIndex);
+				await one.Update(current);
 			}
 
 			return totalPages > 0;
@@ -263,6 +396,13 @@ namespace River.OneMoreAddIn.Commands
 					new XAttribute("useRegex", editor.EnableRegex.ToString()),
 					HttpUtility.HtmlEncode(editor.SearchPattern)
 					));
+			}
+
+			if (Highlighting)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+				return;
 			}
 
 			// remember WithText...
