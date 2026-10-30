@@ -20044,5 +20044,140 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Summarize Highlights.
+        /// </summary>
+        internal static string ribSummarizeHighlightsButton_Label {
+            get {
+                return ResourceManager.GetString("ribSummarizeHighlightsButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create a report page of all highlighted text on the page, section, section group, notebook, or all notebooks.
+        /// </summary>
+        internal static string ribSummarizeHighlightsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSummarizeHighlightsButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string SummarizeHighlights_AllNotebooks {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_AllNotebooks", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped by notebook, section group and section. Each page name links to the page; "Go to paragraph" links to the paragraph..
+        /// </summary>
+        internal static string SummarizeHighlights_Explain {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_Explain", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Go to paragraph.
+        /// </summary>
+        internal static string SummarizeHighlights_GoTo {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_GoTo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Modified {0}.
+        /// </summary>
+        internal static string SummarizeHighlights_Modified {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_Modified", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No highlighted text was found in the selected scope.
+        /// </summary>
+        internal static string SummarizeHighlights_None {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_None", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Scope: {0} · {1} highlights in {2} paragraphs on {3} pages.
+        /// </summary>
+        internal static string SummarizeHighlights_Summary {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_Summary", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page.
+        /// </summary>
+        internal static string SummarizeHighlights_ThisPage {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_ThisPage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This section.
+        /// </summary>
+        internal static string SummarizeHighlights_ThisSection {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_ThisSection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highlights - {0}.
+        /// </summary>
+        internal static string SummarizeHighlights_Title {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current section group.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_Group {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_Group", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Summarize highlighted text in:.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_Intro {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_Intro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The current page.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_Page {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_Page", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Summarize Highlights.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_Text {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_Text", resourceCulture);
+            }
+        }
     }
 }

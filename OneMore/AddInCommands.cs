@@ -1065,6 +1065,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HashtagScanCommand>();
 
 
+		[Command("ribSummarizeHighlightsButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SummarizeHighlightsCmd(IRibbonControl control)
+			=> await factory.Run<SummarizeHighlightsCommand>();
+
+
 		[Command("ribSearchAndHighlightButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task SearchAndHighlightCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndHighlightCommand>();

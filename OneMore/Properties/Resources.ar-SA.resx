@@ -6724,6 +6724,14 @@ ISO-code then comma then language name</comment>
     <value>إعادة تلوين الصور باستخدام النمط المحدد</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>تلخيص النقاط البارزة</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء صفحة تقرير لجميع النصوص المميزة في الصفحة أو القسم أو مجموعة المقاطع أو دفتر الملاحظات أو كافة دفاتر الملاحظات</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>مزامنة دفاتر الملاحظات</value>
     <comment>command</comment>
@@ -7805,6 +7813,58 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>تبسيط الصور</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>جميع الدفاتر</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>تم تجميعها حسب دفتر الملاحظات ومجموعة الأقسام والقسم. يرتبط كل اسم صفحة بالصفحة؛ روابط "الانتقال إلى الفقرة" إلى الفقرة.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>انتقل إلى الفقرة</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>تم التعديل {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>لم يتم العثور على نص مميز في النطاق المحدد</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>النطاق: {0} · {1} النقاط البارزة في {2} فقرة في {3} صفحة</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>هذه الصفحة</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>هذا القسم</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>النقاط البارزة - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>كافة الأقسام الموجودة في مجموعة المقاطع الحالية</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>تلخيص النص المميز في:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>الصفحة الحالية</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>تلخيص النقاط البارزة</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
