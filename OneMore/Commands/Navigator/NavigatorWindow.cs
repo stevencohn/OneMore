@@ -65,6 +65,13 @@ namespace River.OneMoreAddIn.Commands
 		private Font headingBoldFont;
 		private MoreLinkLabel currentLabel;
 
+		// debounce state for navigation-driven heading loads
+		private const int OutlineDelay = 250;
+		private int outlineRequest;
+
+		// last page/title pair UpdateTitles tried to record; guards against a refresh loop
+		private string lastTitleAttempt;
+
 
 		// disposed
 		private readonly NavigationProvider provider;
@@ -896,12 +903,12 @@ namespace River.OneMoreAddIn.Commands
 		// Page headings...
 
 		#region Page headings
-		private async Task LoadPageHeadings(string pageID, bool highlight)
+		private async Task LoadPageHeadings(string pageID, bool highlight, int request = 0)
 		{
 			if (pageBox.InvokeRequired)
 			{
 				pageBox.BeginInvoke(
-					new Action(async () => await LoadPageHeadings(pageID, highlight)));
+					new Action(async () => await LoadPageHeadings(pageID, highlight, request)));
 				return;
 			}
 
@@ -914,6 +921,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// the page may have been deleted or its ID may be stale
 			if (page is null)
+			{
+				return;
+			}
+
+			// the user moved on while the page was being fetched; don't build stale headings
+			if (request != 0 && (request != outlineRequest || IsDisposed))
 			{
 				return;
 			}
@@ -1129,8 +1142,25 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task UpdateTitles(Page page)
 		{
+			// a Quick Note has no title element to compare against
+			if (page.TitleID is null || page.Title is null)
+			{
+				return;
+			}
+
 			if (TitleChanged(historyBox, page) || TitleChanged(pinnedBox, page))
 			{
+				// RecordHistory rewrites Navigator.json, which reloads this window and lands
+				// back here; if the stored name still differs from the title (e.g. markup or
+				// whitespace), attempt each distinct page/title only once to avoid a loop
+				var attempt = $"{page.PageId}|{page.Title}";
+				if (attempt == lastTitleAttempt)
+				{
+					return;
+				}
+
+				lastTitleAttempt = attempt;
+
 				if (await provider.RecordHistory(page.PageId, depth))
 				{
 					ribbon.SafeInvalidateControl("ribNavigatorButton");
@@ -1166,7 +1196,17 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await LoadPageHeadings(info.PageId, false);
+			// debounce: rapid page changes supersede each other so only the last one pays for
+			// the COM page fetch and the rebuild of every heading control
+			var request = ++outlineRequest;
+			await Task.Delay(OutlineDelay);
+
+			if (request != outlineRequest || IsDisposed)
+			{
+				return;
+			}
+
+			await LoadPageHeadings(info.PageId, false, request);
 		}
 
 
@@ -1424,17 +1464,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// update pinned panel...
 
-				var records = new List<HistoryRecord>();
-				foreach (IMoreHostItem host in historyBox.SelectedItems)
-				{
-					if (host.Tag is HistoryRecord record)
-					{
-						records.Add(record);
-					}
-				}
-
-				// new items not currently displayed; user must have pressed Ctrl+Shift+B
-				if (log.Pinned.Except(records).Any())
+				// new or removed items not currently displayed; user must have pressed Ctrl+Shift+B
+				if (reading && PinnedListChanged(log.Pinned))
 				{
 					ShowPins(log.Pinned);
 				}
@@ -1463,6 +1494,58 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// HierarchyInfo has no value equality and each read yields new instances, so compare
+		// by page and paragraph IDs to avoid tearing down the reading list on every navigation
+		private bool PinnedListChanged(List<HistoryRecord> pinned)
+		{
+			if (pinned.Count != pinnedBox.Items.Count)
+			{
+				return true;
+			}
+
+			for (var i = 0; i < pinned.Count; i++)
+			{
+				if (pinnedBox.Items[i] is not IMoreHostItem host ||
+					host.Tag is not HistoryRecord shown ||
+					shown.PageId != pinned[i].PageId ||
+					shown.ObjectId != pinned[i].ObjectId ||
+					shown.Name != pinned[i].Name ||
+					shown.Path != pinned[i].Path)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+
+		// true if the rows shown already reflect these records, in the same order
+		private bool HistoryListMatches(List<HistoryRecord> history)
+		{
+			if (history.Count != historyBox.Items.Count)
+			{
+				return false;
+			}
+
+			for (var i = 0; i < history.Count; i++)
+			{
+				if (historyBox.Items[i] is not IMoreHostItem host ||
+					host.Tag is not HistoryRecord shown ||
+					shown.PageId != history[i].PageId ||
+					shown.Name != history[i].Name ||
+					shown.Path != history[i].Path ||
+					shown.Color != history[i].Color ||
+					shown.Visited != history[i].Visited)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+
 		private void UpdateHistoryBox(HistoryLog log)
 		{
 			if (historyBox.InvokeRequired)
@@ -1471,7 +1554,14 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var unchanged = !historyFilterBox.Visible && HistoryListMatches(log.History);
 			historyRecords = log.History;
+
+			if (unchanged)
+			{
+				// e.g. the file was rewritten by a pin change; avoid rebuilding every row
+				return;
+			}
 
 			RenderHistoryItems(historyFilterBox.Visible
 				? historyRecords.Where(r => r.Name.ContainsICIC(historyFilterBox.Text.Trim()))

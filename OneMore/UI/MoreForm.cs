@@ -769,27 +769,71 @@ namespace River.OneMoreAddIn.UI
 
 			if (sender is AutomationElement element)
 			{
-				var pid = element.Current.ProcessId;
-				var process = Process.GetProcessById(pid);
-				var name = process.ProcessName;
-
-				// elevates this form notop of ONENOTE when ONENOTE is elevated, but also allows
-				// ONENOTE to be on top of this window when switching immediately from this
-				// window to ONENOTE
-
-				if (name == "ONENOTE" && trackedId != pid && trackedId != processId)
+				try
 				{
-					//logger.WriteLine($"focused tracking elevating");
-					Elevate();
-				}
-				else if (name != "ONENOTE" && pid != processId && TopMost)
-				{
-					// some other application took focus away from ONENOTE; let this
-					// window submerge along with ONENOTE instead of staying stuck on top
-					TopMost = false;
-				}
+					// this fires for every focus change on the desktop, so bail out cheaply
+					// when focus moved within the process already being tracked
+					var pid = element.Current.ProcessId;
+					if (pid == trackedId && !TopMost)
+					{
+						return;
+					}
 
-				trackedId = pid;
+					string name;
+					using (var process = Process.GetProcessById(pid))
+					{
+						name = process.ProcessName;
+					}
+
+					// elevates this form notop of ONENOTE when ONENOTE is elevated, but also allows
+					// ONENOTE to be on top of this window when switching immediately from this
+					// window to ONENOTE
+
+					if (name == "ONENOTE" && trackedId != pid && trackedId != processId)
+					{
+						//logger.WriteLine($"focused tracking elevating");
+						RunOnUIThread(() => Elevate());
+					}
+					else if (name != "ONENOTE" && pid != processId && TopMost)
+					{
+						// some other application took focus away from ONENOTE; let this
+						// window submerge along with ONENOTE instead of staying stuck on top
+						RunOnUIThread(() => TopMost = false);
+					}
+
+					trackedId = pid;
+				}
+				catch (Exception)
+				{
+					// the element or its process went away between the event and the lookup;
+					// an exception escaping this UIA callback must not reach the thread pool
+				}
+			}
+		}
+
+
+		// window changes must happen on the form's own thread, not the UIA callback thread
+		private void RunOnUIThread(Action action)
+		{
+			if (IsDisposed || !IsHandleCreated)
+			{
+				return;
+			}
+
+			try
+			{
+				if (InvokeRequired)
+				{
+					BeginInvoke(action);
+				}
+				else
+				{
+					action();
+				}
+			}
+			catch (Exception exc) when (exc is ObjectDisposedException or InvalidOperationException)
+			{
+				// closed while marshalling
 			}
 		}
 
