@@ -7812,6 +7812,14 @@ Omkeren</value>
     <value>Gegroepeerd op notitieblok, sectiegroep en sectie. Elke paginanaam linkt naar de pagina; 'Ga naar paragraaf' linkt naar de paragraaf.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Gewijzigd na {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Gewijzigd vóór {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Ga naar paragraaf</value>
     <comment>report link</comment>
@@ -7840,6 +7848,14 @@ Omkeren</value>
     <value>Hoogtepunten - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Alle data</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filter op</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>Alle secties in de huidige sectiegroep</value>
     <comment>radio button</comment>
@@ -7847,6 +7863,14 @@ Omkeren</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>Vat de gemarkeerde tekst samen in:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Gewijzigd na</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Eerder gewijzigd</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>De huidige pagina</value>

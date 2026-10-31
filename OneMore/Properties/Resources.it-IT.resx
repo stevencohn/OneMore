@@ -7815,6 +7815,14 @@ Invertire</value>
     <value>Raggruppati per taccuino, gruppo di sezioni e sezione. Ogni nome di pagina si collega alla pagina; "Vai al paragrafo" si collega al paragrafo.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Modificato dopo il {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Modificato prima del {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Vai al paragrafo</value>
     <comment>report link</comment>
@@ -7843,6 +7851,14 @@ Invertire</value>
     <value>In evidenza - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Tutte le date</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filtra per</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>Tutte le sezioni nel gruppo di sezioni corrente</value>
     <comment>radio button</comment>
@@ -7850,6 +7866,14 @@ Invertire</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>Riassumi il testo evidenziato in:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Modificato dopo</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Modificato prima</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>La pagina corrente</value>

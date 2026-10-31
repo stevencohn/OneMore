@@ -20145,6 +20145,60 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Modified after {0}.
+        /// </summary>
+        internal static string SummarizeHighlights_FilterAfter {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_FilterAfter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Modified before {0}.
+        /// </summary>
+        internal static string SummarizeHighlights_FilterBefore {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_FilterBefore", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All dates.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_AllDates {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_AllDates", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Modified After.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_ModifiedAfter {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_ModifiedAfter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Modified Before.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_ModifiedBefore {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_ModifiedBefore", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_FilterBy {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_FilterBy", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to All sections in the current section group.
         /// </summary>
         internal static string SummarizeHighlightsDialog_Group {

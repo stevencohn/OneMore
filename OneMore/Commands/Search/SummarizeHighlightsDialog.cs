@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -19,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly UI.MoreRadioButton groupRadio;
 		private readonly UI.MoreRadioButton notebookRadio;
 		private readonly UI.MoreRadioButton notebooksRadio;
+		private readonly UI.MoreComboBox dateSelector;
+		private readonly UI.MoreDateTimePicker datePicker;
 
 
 		/// <param name="allowPage">
@@ -40,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 			MaximizeBox = false;
 			MinimizeBox = false;
 			ShowInTaskbar = false;
-			ClientSize = new Size(443, 330);
+			ClientSize = new Size(443, 414);
 			Padding = new Padding(20, 20, 10, 10);
 			StartPosition = FormStartPosition.Manual;
 			Text = Resx.SummarizeHighlightsDialog_Text;
@@ -63,10 +66,54 @@ namespace River.OneMoreAddIn.Commands
 			groupRadio.Enabled = allowGroup;
 			sectionRadio.Checked = true;
 
-			var okButton = AddButton("okButton", Resx.word_OK, DialogResult.OK, 184, 6);
-			var cancelButton = AddButton("cancelButton", Resx.word_Cancel, DialogResult.Cancel, 310, 7);
+			var filterLabel = new UI.MoreLabel
+			{
+				AutoSize = true,
+				Location = new Point(23, 244),
+				Name = "filterLabel",
+				Text = Resx.SummarizeHighlightsDialog_FilterBy
+			};
+
+			dateSelector = new UI.MoreComboBox
+			{
+				DropDownStyle = ComboBoxStyle.DropDownList,
+				FormattingEnabled = true,
+				Location = new Point(23, 272),
+				Name = "dateSelector",
+				Size = new Size(190, 28),
+				TabIndex = 6
+			};
+
+			dateSelector.Items.AddRange(new object[]
+			{
+				Resx.SummarizeHighlightsDialog_AllDates,
+				Resx.SummarizeHighlightsDialog_ModifiedAfter,
+				Resx.SummarizeHighlightsDialog_ModifiedBefore
+			});
+
+			dateSelector.SelectedIndex = 0;
+			dateSelector.SelectedIndexChanged += ChangeDateSelector;
+
+			datePicker = new UI.MoreDateTimePicker
+			{
+				Enabled = false,
+				Format = DateTimePickerFormat.Short,
+				Location = new Point(228, 272),
+				MaxDate = DateTime.Today.AddDays(1),
+				MinDate = new DateTime(1990, 1, 1),
+				Name = "datePicker",
+				Size = new Size(190, 26),
+				TabIndex = 7,
+				Value = DateTime.Today
+			};
+
+			var okButton = AddButton("okButton", Resx.word_OK, DialogResult.OK, 184, 8);
+			var cancelButton = AddButton("cancelButton", Resx.word_Cancel, DialogResult.Cancel, 310, 9);
 
 			Controls.Add(introLabel);
+			Controls.Add(filterLabel);
+			Controls.Add(dateSelector);
+			Controls.Add(datePicker);
 			AcceptButton = okButton;
 			CancelButton = cancelButton;
 
@@ -85,6 +132,29 @@ namespace River.OneMoreAddIn.Commands
 				if (notebooksRadio.Checked) return SummarizeHighlightsCommand.HighlightScope.Notebooks;
 				return SummarizeHighlightsCommand.HighlightScope.Section;
 			}
+		}
+
+
+		public SummarizeHighlightsCommand.DateFilter Filter
+		{
+			get
+			{
+				return dateSelector.SelectedIndex switch
+				{
+					1 => SummarizeHighlightsCommand.DateFilter.After,
+					2 => SummarizeHighlightsCommand.DateFilter.Before,
+					_ => SummarizeHighlightsCommand.DateFilter.None
+				};
+			}
+		}
+
+
+		public DateTime FilterDate => datePicker.Value.Date;
+
+
+		private void ChangeDateSelector(object sender, EventArgs e)
+		{
+			datePicker.Enabled = dateSelector.SelectedIndex > 0;
 		}
 
 
@@ -117,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 				BackColor = Color.FromArgb(231, 231, 231),
 				DialogResult = result,
 				ForeColor = Color.Black,
-				Location = new Point(left, 270),
+				Location = new Point(left, 354),
 				Name = name,
 				ShowBorder = true,
 				Size = new Size(120, 38),

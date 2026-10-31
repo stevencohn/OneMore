@@ -7851,6 +7851,14 @@ Invert</value>
     <value>Grouped by notebook, section group and section. Each page name links to the page; "Go to paragraph" links to the paragraph.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Modified after {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Modified before {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Go to paragraph</value>
     <comment>report link</comment>
@@ -7879,6 +7887,14 @@ Invert</value>
     <value>Highlights - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>All dates</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filter by</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>All sections in the current section group</value>
     <comment>radio button</comment>
@@ -7886,6 +7902,14 @@ Invert</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>Summarize highlighted text in:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Modified After</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Modified Before</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>The current page</value>

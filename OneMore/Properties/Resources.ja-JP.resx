@@ -7818,6 +7818,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>ノートブック、セクショングループ、セクションごとにグループ化されています。 各ページ名はページにリンクしています。 「段落へ移動」は段落へリンクします。</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>{0} 以降に変更されました</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>{0} より前に変更されました</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>段落へ進む</value>
     <comment>report link</comment>
@@ -7846,6 +7854,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>ハイライト - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>すべての日付</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>フィルター条件</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>現在のセクショングループ内のすべてのセクション</value>
     <comment>radio button</comment>
@@ -7853,6 +7869,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>強調表示されたテキストを次のように要約します。</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>変更後</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>変更前</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>現在のページ</value>

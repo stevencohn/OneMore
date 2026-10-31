@@ -7812,6 +7812,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>מקובצים לפי מחברת, קבוצת מדור ומדור. כל שם עמוד מקשר לדף; "עבור לפסקה" מקשר לפסקה.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>השתנה לאחר {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>השתנה לפני {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>עבור לפסקה</value>
     <comment>report link</comment>
@@ -7840,6 +7848,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הבהרה - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>כל התאריכים</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>סנן לפי</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>כל הקטעים בקבוצת הקטעים הנוכחית</value>
     <comment>radio button</comment>
@@ -7847,6 +7863,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>סכם טקסט מודגש ב:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>שונה לאחר</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>שונה לפני</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>העמוד הנוכחי</value>

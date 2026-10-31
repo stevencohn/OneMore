@@ -7822,6 +7822,14 @@ Inverser</value>
     <value>Regroupés par cahier, groupe de sections et section. Chaque nom de page renvoie à la page ; "Aller au paragraphe" renvoie au paragraphe.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Modifié après {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Modifié avant {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Aller au paragraphe</value>
     <comment>report link</comment>
@@ -7850,6 +7858,14 @@ Inverser</value>
     <value>Points forts – {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Toutes les dates</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filtrer par</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>Toutes les sections du groupe de sections actuel</value>
     <comment>radio button</comment>
@@ -7857,6 +7873,14 @@ Inverser</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>Résumez le texte surligné dans :</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Modifié après</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Modifié avant</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>La page actuelle</value>

@@ -7830,6 +7830,14 @@ Code——代码块段落
     <value>按笔记本、分区组和分区分组。 每个页面名称链接到该页面； “转到段落”链接到该段落。</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>{0}后修改</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>{0}之前修改过</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>转到段落</value>
     <comment>report link</comment>
@@ -7858,6 +7866,14 @@ Code——代码块段落
     <value>亮点 - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>所有日期</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>过滤依据</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>当前分区组中的所有分区</value>
     <comment>radio button</comment>
@@ -7865,6 +7881,14 @@ Code——代码块段落
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>总结突出显示的文本：</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>修改后</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>修改前</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>当前页面</value>

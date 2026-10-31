@@ -7823,6 +7823,14 @@ ISO-code then comma then language name</comment>
     <value>تم تجميعها حسب دفتر الملاحظات ومجموعة الأقسام والقسم. يرتبط كل اسم صفحة بالصفحة؛ روابط "الانتقال إلى الفقرة" إلى الفقرة.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>تم التعديل بعد {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>تم التعديل قبل {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>انتقل إلى الفقرة</value>
     <comment>report link</comment>
@@ -7851,6 +7859,14 @@ ISO-code then comma then language name</comment>
     <value>النقاط البارزة - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>جميع التواريخ</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>تصفية حسب</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>كافة الأقسام الموجودة في مجموعة المقاطع الحالية</value>
     <comment>radio button</comment>
@@ -7858,6 +7874,14 @@ ISO-code then comma then language name</comment>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>تلخيص النص المميز في:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>تم التعديل بعد</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>تم التعديل من قبل</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>الصفحة الحالية</value>

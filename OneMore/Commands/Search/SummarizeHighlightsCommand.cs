@@ -35,6 +35,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public enum DateFilter
+		{
+			None,
+			After,
+			Before
+		}
+
+
 		private sealed class ParagraphHit
 		{
 			public string Html;
@@ -64,6 +72,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote one;
 		private HighlightScope scope;
+		private DateFilter dateFilter;
+		private DateTime filterDate;
 		private string scopeName;
 		private string currentPageId;
 		private int highlightCount;
@@ -110,6 +120,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					scope = dialog.Scope;
+					dateFilter = dialog.Filter;
+					filterDate = dialog.FilterDate;
 				}
 
 				var pageElements = await GetScopedPages();
@@ -335,16 +347,26 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
+				var modified = ParseTime(oe.Attribute("lastModifiedTime")?.Value);
+				if (modified == DateTime.MinValue)
+				{
+					modified = pageModified;
+				}
+
+				if (!PassesDateFilter(modified))
+				{
+					continue;
+				}
+
 				hit ??= CreatePageHit(scanner, pageElement, pageId, page.Title);
 
 				var objectId = oe.Attribute("objectID")?.Value;
-				var modified = ParseTime(oe.Attribute("lastModifiedTime")?.Value);
 
 				hit.Paragraphs.Add(new ParagraphHit
 				{
 					Html = html,
 					Link = scanner.GetHyperlink(pageId, objectId ?? string.Empty),
-					Modified = modified == DateTime.MinValue ? pageModified : modified
+					Modified = modified
 				});
 
 				highlightCount += count;
@@ -354,6 +376,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				hits.Add(hit);
 			}
+		}
+
+
+		private bool PassesDateFilter(DateTime modified)
+		{
+			if (dateFilter == DateFilter.None)
+			{
+				return true;
+			}
+
+			if (modified.Kind == DateTimeKind.Utc)
+			{
+				modified = modified.ToLocalTime();
+			}
+
+			return dateFilter == DateFilter.After
+				? modified.Date > filterDate
+				: modified.Date < filterDate;
 		}
 
 
@@ -529,8 +569,19 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(string.Format(Resx.SummarizeHighlights_Summary,
 					$"<span style='font-weight:bold'>{Encode(scopeName)}</span>",
 					highlightCount, paragraphCount, hits.Count)),
-				new Paragraph($"<span style='{CiteCss}'>{Encode(Resx.SummarizeHighlights_Explain)}</span>"),
-				new Paragraph(string.Empty));
+				new Paragraph($"<span style='{CiteCss}'>{Encode(Resx.SummarizeHighlights_Explain)}</span>"));
+
+			if (dateFilter != DateFilter.None)
+			{
+				var format = dateFilter == DateFilter.After
+					? Resx.SummarizeHighlights_FilterAfter
+					: Resx.SummarizeHighlights_FilterBefore;
+
+				var filter = string.Format(format, filterDate.ToString("d", AddIn.Locale));
+				container.Add(new Paragraph($"<span style='{CiteCss}'>{Encode(filter)}</span>"));
+			}
+
+			container.Add(new Paragraph(string.Empty));
 
 			string notebook = null;
 			string sectionId = null;

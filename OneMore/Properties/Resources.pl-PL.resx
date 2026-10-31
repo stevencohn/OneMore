@@ -7812,6 +7812,14 @@ Odwracać</value>
     <value>Pogrupowane według notesu, grupy sekcji i sekcji. Każda nazwa strony zawiera odnośnik do strony; Linki „Przejdź do akapitu” prowadzące do akapitu.</value>
     <comment>report intro</comment>
   </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Zmodyfikowano po {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Zmodyfikowano przed {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Przejdź do akapitu</value>
     <comment>report link</comment>
@@ -7840,6 +7848,14 @@ Odwracać</value>
     <value>Najważniejsze informacje — {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Wszystkie daty</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filtruj według</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
     <value>Wszystkie sekcje w bieżącej grupie sekcji</value>
     <comment>radio button</comment>
@@ -7847,6 +7863,14 @@ Odwracać</value>
   <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
     <value>Podsumuj zaznaczony tekst w:</value>
     <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Zmodyfikowano po</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Zmodyfikowany wcześniej</value>
+    <comment>combo box item</comment>
   </data>
   <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
     <value>Bieżąca strona</value>
