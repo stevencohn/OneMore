@@ -558,12 +558,21 @@ namespace River.OneMoreAddIn.Commands
 					$"<span style='font-weight:bold'><a href=\"{hit.Link}\">{Encode(hit.Title)}</a></span>"));
 
 				var bullets = new ContentList(ns);
-				foreach (var paragraph in hit.Paragraphs)
+				for (var i = 0; i < hit.Paragraphs.Count; i++)
 				{
+					var paragraph = hit.Paragraphs[i];
 					var cite = string.Format(Resx.SummarizeHighlights_Modified, FormatTime(paragraph.Modified));
+
 					bullets.Add(new Bullet(ns,
 						$"{paragraph.Html}<br>\n<span style='{CiteCss}'>{Encode(cite)} · " +
 						$"<a href=\"{paragraph.Link}\">{Encode(Resx.SummarizeHighlights_GoTo)}</a></span>"));
+
+					// separate items with an empty paragraph, without a bullet; the last item
+					// is already followed by a blank paragraph
+					if (i < hit.Paragraphs.Count - 1)
+					{
+						bullets.Add(new Paragraph(string.Empty));
+					}
 				}
 
 				container.Add(new Paragraph(bullets), new Paragraph(string.Empty));
