@@ -24,7 +24,11 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="allowPage">
 		/// False to disable the page choice, such as when the current page is a report
 		/// </param>
-		public SummarizeHighlightsDialog(bool allowPage = true)
+		/// <param name="allowGroup">
+		/// False to disable the section group choice, such as when the current section is
+		/// not within a section group
+		/// </param>
+		public SummarizeHighlightsDialog(bool allowPage = true, bool allowGroup = true)
 		{
 			SuspendLayout();
 
@@ -56,6 +60,7 @@ namespace River.OneMoreAddIn.Commands
 				"notebookRadio", Resx.phrase_AllSectionInTheCurrentNotebook, 158, 4);
 			notebooksRadio = AddRadio("notebooksRadio", Resx.phrase_AllNotebooks, 192, 5);
 			pageRadio.Enabled = allowPage;
+			groupRadio.Enabled = allowGroup;
 			sectionRadio.Checked = true;
 
 			var okButton = AddButton("okButton", Resx.word_OK, DialogResult.OK, 184, 6);

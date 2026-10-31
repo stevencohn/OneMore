@@ -99,7 +99,10 @@ namespace River.OneMoreAddIn.Commands
 				var startPage = await one.GetPage(currentPageId, OneNote.PageDetail.Basic);
 				var onReport = startPage?.GetMetaContent(MetaNames.HighlightsReport) is not null;
 
-				using (var dialog = new SummarizeHighlightsDialog(!onReport))
+				// likewise, "section group" needs the current section to be within one
+				var inGroup = !string.IsNullOrEmpty(one.CurrentSectionGroupId);
+
+				using (var dialog = new SummarizeHighlightsDialog(!onReport, inGroup))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
