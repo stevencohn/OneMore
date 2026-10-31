@@ -326,7 +326,7 @@
     <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true" keytip="SE">
       <button
         id="ribSearchAndHighlightButton"
-        imageMso="AppointmentColorDialog"
+        imageMso="ReviewHighlightChanges"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SearchAndHighlightCmd"/>
