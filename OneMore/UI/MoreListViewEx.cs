@@ -630,7 +630,10 @@ namespace River.OneMoreAddIn.UI
 				m.Msg == Native.WM_VSCROLL ||
 				m.Msg == Native.WM_MOUSEWHEEL)
 			{
-				Focus();
+				if (!Focused)
+				{
+					Focus();
+				}
 			}
 
 			base.WndProc(ref m);
