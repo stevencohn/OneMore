@@ -1,0 +1,525 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="&#128276;Design%20History%20%23skipdoc.htm">
+<link rel=File-List href="&#128276;Design%20History%20%23skipdoc_files/filelist.xml">
+</head>
+
+<body lang=en-US style='font-family:Calibri;font-size:11.5pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.9548in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.075in;width:3.5673in'>
+
+<p style='margin-top:0pt;margin-bottom:14pt;font-size:20.0pt;color:#464646'
+lang=yo><span style='font-family:"Segoe UI Emoji"'>&#128276;</span><span
+style='font-family:"Calibri Light"'>Design History #skipdoc</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.075in;width:2.4326in'>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">October 27, 2026</P>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">&nbsp;</P>
+
+</div>
+
+<div style='direction:ltr;margin-top:.3986in;margin-left:0in;width:8.9548in'>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>PROMPT:</span> For each of these architectural areas,
+determine the earliest date when the most relevant code was introduced into
+git, and if possible, a related Github issue number. Also determine the
+earliest release tag in which this feature was introduced to customers in a
+published release of OneMore.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><br />
+For example, the Page Identity feature was invented around Oct 11, 2026 and
+will be introduced in 8.0.0 with issue #2709</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Here are the
+areas, each covered by a published or yet to be published Design doc on
+onemoreaddin.com:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Command Framework</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Command Service</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>COM Layer</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Favorites</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Full Text Search</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Hashtags</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Page Identity</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Pipeline</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Syntax Colorizer</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Telemetry</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>UI Layer</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Window Layouts</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Courier New";font-size:10.0pt;color:#0080FF'
+lang=yo>═══════════════════════════════════════════════════════════════════════════════════════════════════</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Still
+researching: checking COM-layer origins and tracing issue numbers for the
+remaining areas.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Report
+below. I traced each area through git log (first commit that adds the relevant
+files), the branch and PR names for issue numbers, and git tag --contains for
+the first release.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;background-color:#D8D8D8;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+  style='font-weight:bold'>Area</span></p>
+  </td>
+  <td style='border-width:0pt;background-color:#D8D8D8;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+  style='font-weight:bold'>First code in git</span></p>
+  </td>
+  <td style='border-width:0pt;background-color:#D8D8D8;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+  style='font-weight:bold'>Issue</span></p>
+  </td>
+  <td style='border-width:0pt;background-color:#D8D8D8;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+  style='font-weight:bold'>First release</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6659in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Command
+  Framework</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2018-01-21
+  (78892723)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>none</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6125in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>1.5</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Command
+  Service</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2021-09-18
+  (d3367238)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>none (PR
+  #276)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>4.6</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>COM Layer</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2018-01-21
+  (78892723); wrapper rewrite 2020-10-24 (6d931958)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>none</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.7326in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>1.5;
+  wrapper in 3.4</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Favorites</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2020-03-06
+  (27286288)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>none</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>1.8.0</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Full Text
+  Search</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2026-10-11
+  (ff92fe9d)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#2736</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>8.0.0-beta.4</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Hashtags</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2023-09-13
+  (f494a9be)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#463</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>6.1.0</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Page
+  Identity</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2026-10-05
+  (3da5d565)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#2709</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>8.0.0-beta.4</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Pipeline</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2026-10-05
+  (3da5d565)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#2709</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>8.0.0-beta.4</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Syntax
+  Colorizer</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2020-12-11
+  (8ca4ddc9)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#115</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>3.10</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Telemetry</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2026-03-21
+  (d8eb8626)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#1974</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>7.0.0</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>UI Layer</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2018-01-21
+  (78892723, Dialogs/); themed MoreForm 2024-01-26 (5340541b)</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#1285 for
+  the themed layer</p>
+  </td>
+  <td style='border-width:0pt;background-color:white;vertical-align:top;
+  width:1.8in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>1.5;
+  themed layer in 6.2.1</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6569in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Window
+  Layouts</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:3.8173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>2026-06-20
+  (8d81e9b3)</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>#2217</p>
+  </td>
+  <td style='border-width:0pt;background-color:#F2F2F2;vertical-align:top;
+  width:1.6215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>7.2.0</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 id="details-and-caveats" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Details and caveats</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Command Framework.</span> Command.cs and
+CommandFactory.cs arrived in the &quot;Migration from codeplex&quot; commit.
+Pre-GitHub history is flattened, so 2018-01-21 is the floor, not the true
+invention date. Release 1.5 is the earliest tag that contains it.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Command Service.</span> This is the named-pipe
+listener for onemore:// calls from the protocol handler. It was added in
+&quot;Shared content (#276)&quot; and shipped in 4.6 on 2021-09-18. #276 is the
+PR number, and I found no separate issue.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>COM Layer.</span> Interop with
+Microsoft.Office.Interop.OneNote is in the codeplex import. The dedicated
+OneNote.cs wrapper and factory came in &quot;New factory, new wrapper,
+cleanup&quot; and shipped in 3.4 (2020-10-26). Pick the date that matches how
+you define the layer.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Favorites.</span> It began as a &quot;Favorites
+PoC&quot; on 2020-03-06 and shipped in 1.8.0. Issue #40 (2020-09) is the
+earliest favorites issue, so none was filed for the original feature. Later
+work reuses #1632, #1756 and #2294.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Full Text Search.</span> The Services/TextIndex code
+(SQLite index plus a trigram engine) is #2736 and has not had a stable release.
+The older Search dialog from 2020-10-29 (f688d071, shipped in 3.4 or earlier)
+is a different, non-indexed feature.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Hashtags.</span> The first commit is on branch
+463-hashtags. Issue #463 is &quot;Enhance tag management and searching&quot;,
+opened 2022-03-05. Two earlier Tagging PoC commits from 2020-11-22 (5a4827d9,
+3.9) are ancestors but not the Hashtag implementation.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Page Identity and Pipeline.</span> Both landed
+together in &quot;2709 page identity (#2712)&quot; on 2026-10-05. Your note
+says Oct 11, but the PR merged earlier. Oct 11 is when e81acccb moved the files
+into Services/Identity and Services/Pipeline. Neither has a stable release yet.
+The latest tag is 8.0.0-beta.4 (2026-10-23), so 8.0.0 is the first stable one.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Syntax Colorizer.</span> &quot;Colorizer PoC&quot;
+came two days after issue #115, &quot;Apply a Code syntax highlighter&quot;
+(2020-12-09). It shipped in 3.10 on 2020-12-12.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Telemetry.</span> The client came in &quot;1974
+telemetry client (#1977)&quot; on 2026-03-21, with the design docs on
+2026-03-29. It shipped in 7.0.0 (2026-05-21). The 6.8.3 pre-release mentioned
+in a commit message is a bump commit, and the tags show the code first in 7.0.0.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>UI Layer.</span> The WinForms dialogs date from the
+codeplex import. The themed base classes (MoreForm, MoreButton, ThemeManager)
+came with dark mode in &quot;Darkness #1285&quot;.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Window Layouts.</span> &quot;2217 layouts
+(#2233)&quot; and &quot;2217 workspaces (#2234)&quot; both shipped in 7.2.0.
+Issue #90 (2020-11-10) requested the same capability years earlier. #2217 is
+the implementing issue.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>If you cite
+these in the design docs, the &quot;first release&quot; column is the one I'd
+double-check. I used the earliest tag containing the commit, and the older tags
+(1.x to 3.x) have dates that match their commits.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>The full
+report is in my previous message, with a table of all twelve areas and a
+caveats section. I created no files and changed nothing in the repo.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Page
+     Identity date:</span><span style='font-family:Calibri;font-size:11.5pt'>
+     the commit that introduced it is 3da5d565 on 2026-10-05 (issue #2709).
+     Your Oct 11 date is when the files were moved into Services/.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Releases:</span><span
+     style='font-family:Calibri;font-size:11.5pt'> Page Identity, Pipeline and
+     Full Text Search have no stable release yet. The earliest tag containing
+     them is 8.0.0-beta.4, so 8.0.0 will be the first stable one.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Pre-2018
+     history:</span><span style='font-family:Calibri;font-size:11.5pt'> the
+     repo's history starts with the codeplex import on 2018-01-21. Command
+     Framework, COM Layer and UI Layer dates are therefore floors, not true
+     invention dates.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Missing
+     issue numbers:</span><span style='font-family:Calibri;font-size:11.5pt'>
+     Command Service (PR #276 only), Favorites, Command Framework and the base
+     COM Layer have no clear issue. I found only the PR number or none.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>Created with OneNote.</p>
+
+</div>
+
+</body>
+
+</html>

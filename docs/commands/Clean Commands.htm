@@ -142,9 +142,10 @@
 <li><a id="reference-commands" href="Reference Commands.htm">Reference Commands</a></li>
 <li><a id="reminder-commands" href="Reminder Commands.htm">Reminder Commands</a></li>
 <li><a id="search-commands" href="Search Commands.htm">Search Commands</a></li>
+<li><a id="→-search-indexing" href="→ Search Indexing.htm">→ Search Indexing</a></li>
 <li><a id="snippets-commands" href="Snippets Commands.htm">Snippets Commands</a></li>
 <li><a id="table-commands" href="Table Commands.htm">Table Commands</a></li>
-<li><a id="→-tables-and-calculations" href="→ Tables and Calculations.htm">→ Tables and Calculations</a></li>
+<li><a id="→-table-formulas-and-calculations" href="→ Table Formulas and Calculations.htm">→ Table Formulas and Calculations</a></li>
 <li><a id="table-style-commands" href="Table Style Commands.htm">Table Style Commands</a></li>
 <li><a id="extra-commands" href="Extra Commands.htm">Extra Commands</a></li>
 <li><a id="→-compare-hierarchy" href="→ Compare Hierarchy.htm">→ Compare Hierarchy</a></li>
@@ -161,9 +162,23 @@
 <P style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>Clean Commands</P></DIV>
 <DIV style="WIDTH: 2.413in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">February 19, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on September 11, 2026</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on October 10, 2026</P></DIV>
 <DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">These are the commands that are available from the More Clean menu.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<H1 id=adjust-blank-lines style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Adjust Blank Lines</H1>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Tidies up the empty lines on the current page, or in the selected text if you have a selection. Choose how blank lines between paragraphs should be handled:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Remove all blank lines</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> deletes every blank line between paragraphs.</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Keep at most one blank line</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> collapses runs of consecutive blank lines into a single blank line, and leaves paragraphs that have none as they are.</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Ensure exactly one blank line</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> collapses runs the same way and also inserts a blank line between paragraphs that touch. List items, tables and code blocks are left alone so they aren't spread out.</SPAN> </LI></UL>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Put one blank line after each heading</SPAN> is applied separately from the choice above. When checked, every heading is followed by exactly one blank line, whichever option you chose. When unchecked, no blank line is kept after a heading, since the heading's styling is distinction enough.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Empty headings, standard or custom, are always cleaned up. They are removed if you chose to remove all blank lines, and otherwise turned into ordinary blank lines that follow the rules above.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The command also straightens out blank lines that are indented differently from the paragraphs around them, so related paragraphs stay grouped together.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <H1 id=change-sentence-spacing style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Change Sentence Spacing</H1>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Expands or collapses whitespace between sentences, toggling between either one or two spaces between sentences. This affects the entire page.</P>
@@ -183,9 +198,6 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">For a complete description, see the extended <A href="→ Remove Duplicate Pages.htm">→ Remove Duplicate Pages</A> page.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<H1 id=remove-empty-lines style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Remove Empty Lines</H1>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Removes empty headings with no content and "extra" empty lines between paragraphs, e.g., two or more lines get compressed down to one line. It also attempts to align indented and outdented blank lines with the surrounding content so that consecutive paragraphs can be collapsed below a shared heading.</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <H1 id=remove-hyperlinks style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Remove Hyperlinks</H1>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Removes all hyperlinks from the current page or the selected range.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
@@ -196,7 +208,7 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Removes all ink drawings and annotations from the current page.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <H1 id=remove-paragraph-spacing style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Remove Paragraph Spacing</H1>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Resets line spacing to zero between all paragraphs and headings. This relates to the paragraph's "space before" and "space after" setting. It does not affect blank lines between paragraphs; see <SPAN style="FONT-STYLE: italic">Remove Empty Lines</SPAN> for that.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Resets paragraph spacing to zero between all paragraphs and headings. This resets the options applied by OneNote's <SPAN style="FONT-STYLE: italic">Paragraph Spacing Options…</SPAN> command, removing "space before", "space after", and "line spacing". It does not affect blank lines between paragraphs; see <SPAN style="FONT-STYLE: italic">Adjust Blank Lines</SPAN> for that.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/commands/Clean%20Commands_files/image001.png" width=274 height=214></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
