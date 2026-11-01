@@ -653,6 +653,11 @@ namespace River.OneMoreAddIn
 			WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-unhookwinevent
+		[DllImport("user32.dll")]
+		public static extern bool UnhookWinEvent(IntPtr hWinEventHook);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
 		[DllImport("user32.dll")]
 		public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);

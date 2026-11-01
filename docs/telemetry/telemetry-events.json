@@ -19,6 +19,7 @@
     "AdjustImagesOnPage",
     "AlterSize",
     "Analyze",
+    "AnnotateHexColors",
     "ApplyConditionalFormat",
     "ApplyConditionalFormatCLI",
     "ApplyStyle",

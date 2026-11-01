@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn
 		private Commands.NavigationService navigationService;
 		//private readonly Process process;         // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
+		private Process hostProcess;                // the hosting OneNote process, watched for exit
 
 
 		// Lifecycle...
@@ -290,6 +291,10 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
+				// if OneNote was killed and relaunched, this dllhost may still be running the
+				// previous instance's service loops, which would hold the command pipe
+				ServiceLoop.StopAll();
+
 				// each step is isolated so one failure doesn't skip the rest
 
 				// theme colors (JSON load + registry check) - pay this once here
@@ -302,6 +307,9 @@ namespace River.OneMoreAddIn
 					await RegisterHotkeys();
 					RegisterMarkdownEnterHotkey();
 				});
+
+				// stop everything if OneNote is killed, so we don't keep relaunching it
+				StartupStep("host watcher", WatchHost);
 
 				// command listener for Refresh links
 				StartupStep("command service", () => new CommandService(factory).Startup());
@@ -425,17 +433,76 @@ namespace River.OneMoreAddIn
 			var cude = DescribeCustom(custom);
 			logger.WriteLine($"Shutdown: OnBeginShutdown(custom[{cude}])");
 
+			// stop watching; OneNote is exiting by design
+			hostProcess?.Dispose();
+			hostProcess = null;
+
 			try
 			{
-				logger.WriteLine("Shutdown: shutting down UI");
-
-				HotkeyManager.Unregister();
-
-				System.Windows.Forms.Application.Exit();
+				StopServices();
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("Shutdown: error shutting down UI", exc);
+			}
+		}
+
+
+		private void StopServices()
+		{
+			logger.WriteLine("Shutdown: shutting down UI");
+
+			HotkeyManager.Unregister();
+
+			logger.WriteLine("Shutdown: stopping service loops");
+			ServiceLoop.StopAll();
+
+			System.Windows.Forms.Application.Exit();
+		}
+
+
+		// OneNote can be killed or crash without calling OnBeginShutdown, leaving this
+		// dllhost alive; without a watcher its polling services would keep activating
+		// OneNote through COM, relaunching it hidden every few seconds
+		private void WatchHost()
+		{
+			var pid = HotkeyManager.OneNoteProcessId;
+			if (pid == 0)
+			{
+				logger.WriteLine("Startup: host watcher not started, OneNote process unknown");
+				return;
+			}
+
+			try
+			{
+				var process = Process.GetProcessById((int)pid);
+				process.EnableRaisingEvents = true;
+				process.Exited += OnHostExited;
+				hostProcess = process;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Startup: host watcher not started", exc);
+			}
+		}
+
+
+		private void OnHostExited(object sender, EventArgs e)
+		{
+			// null after a normal OnDisconnection
+			if (logger is null)
+			{
+				return;
+			}
+
+			try
+			{
+				logger.WriteLine("OneNote has exited unexpectedly; stopping services");
+				StopServices();
+			}
+			catch (Exception exc)
+			{
+				logger?.WriteLine("error stopping services after OneNote exited", exc);
 			}
 		}
 

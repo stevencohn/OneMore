@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn
 	{
 		private const int MaxBytes = 4096;
 		private const int ReadTimeoutSeconds = 5;
+		private const int PipeBusyRetrySeconds = 5;
+		private const int ErrorPipeBusy = 231;
 		private const string Protocol = "onemore://";
 		private const string CliProtocol = "onemorecli://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
@@ -74,7 +76,21 @@ namespace River.OneMoreAddIn
 
 		private async Task ListenOnce(CancellationToken token)
 		{
-			using var server = CreateSecuredPipe();
+			NamedPipeServerStream server;
+			try
+			{
+				server = CreateSecuredPipe();
+			}
+			catch (IOException exc) when ((exc.HResult & 0xFFFF) == ErrorPipeBusy)
+			{
+				// a previous add-in instance, possibly in a lingering dllhost, still owns the
+				// single pipe instance; retry soon rather than backing off for a minute
+				logger.WriteLine("command pipe is in use by another OneMore instance");
+				await Task.Delay(TimeSpan.FromSeconds(PipeBusyRetrySeconds), token);
+				return;
+			}
+
+			using var _ = server;
 
 			await server.WaitForConnectionAsync(token);
 

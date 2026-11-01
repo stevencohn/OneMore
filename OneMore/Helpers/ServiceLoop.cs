@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -13,11 +14,35 @@ namespace River.OneMoreAddIn
 	/// <summary>
 	/// Runs a background polling loop on a pool thread that survives errors. Consecutive
 	/// failures back off up to a ceiling rather than ending the loop, and the loop stops
-	/// only when the application exits.
+	/// when the application exits or when <see cref="StopAll"/> is called at shutdown.
 	/// </summary>
 	internal static class ServiceLoop
 	{
 		private const int MaxBackoff = 60000;
+
+		private static readonly object gate = new();
+		private static readonly List<CancellationTokenSource> sources = new();
+
+
+		/// <summary>
+		/// Cancels every running loop. ApplicationExit is not reliably raised when the add-in
+		/// is hosted in the dllhost surrogate, so a loop holding a machine-wide resource such
+		/// as the command pipe would otherwise outlive OneNote and block the next instance.
+		/// </summary>
+		public static void StopAll()
+		{
+			CancellationTokenSource[] stopping;
+			lock (gate)
+			{
+				stopping = sources.ToArray();
+				sources.Clear();
+			}
+
+			foreach (var source in stopping)
+			{
+				source.Cancel();
+			}
+		}
 
 
 		/// <summary>
@@ -34,9 +59,19 @@ namespace River.OneMoreAddIn
 		{
 			var cts = new CancellationTokenSource();
 
+			lock (gate)
+			{
+				sources.Add(cts);
+			}
+
 			void OnExit(object sender, EventArgs e)
 			{
 				Application.ApplicationExit -= OnExit;
+				lock (gate)
+				{
+					sources.Remove(cts);
+				}
+
 				cts.Cancel();
 			}
 
