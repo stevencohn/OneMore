@@ -57,6 +57,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the process ID of the OneNote instance hosting this add-in, or zero if
+		/// Initialize has not resolved it.
+		/// </summary>
+		public static uint OneNoteProcessId => oneNotePID;
+
+
+		/// <summary>
 		/// An event handler for consumers
 		/// </summary>
 		public static event EventHandler<HotkeyEventArgs> HotKeyPressed;
@@ -67,6 +74,10 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public static async Task Initialize()
 		{
+			// OneNote may have been killed and relaunched while this dllhost survived, in which
+			// case a previous message window is still alive and these statics are shared with it
+			RetirePreviousWindow();
+
 			await using var one = new OneNote();
 			Native.GetWindowThreadProcessId(one.WindowHandle, out oneNotePID);
 			selfPID = (uint)Process.GetCurrentProcess().Id;
@@ -78,6 +89,48 @@ namespace River.OneMoreAddIn
 			};
 
 			mthread.Start();
+		}
+
+
+		// Stops the message window left by a previous add-in instance in this process and
+		// resets shared state so the new window is the only one arming hotkeys; without this
+		// the old window's reconcile timer registers keys against the new window's handle,
+		// which Windows rejects with ERROR_WINDOW_OF_OTHER_THREAD (1408)
+		private static void RetirePreviousWindow()
+		{
+			var previous = mwindow;
+			if (previous is null)
+			{
+				return;
+			}
+
+			Logger.Current.WriteLine("Startup: retiring hotkey window of previous instance");
+
+			resetEvent.Reset();
+
+			try
+			{
+				if (previous.IsHandleCreated && !previous.IsDisposed)
+				{
+					previous.Invoke(new Action(previous.Retire));
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error retiring previous hotkey window", exc);
+			}
+
+			registeredKeys.Clear();
+			registered = false;
+			suspended = false;
+
+			if (mroot.IsAllocated)
+			{
+				mroot.Free();
+			}
+
+			mwindow = null;
+			mhandle = IntPtr.Zero;
 		}
 
 
@@ -299,7 +352,7 @@ namespace River.OneMoreAddIn
 				mroot = GCHandle.Alloc(evDelegate);
 
 				// set up event hook to monitor switching application
-				Native.SetWinEventHook(
+				eventHook = Native.SetWinEventHook(
 					Native.EVENT_SYSTEM_FOREGROUND,
 					Native.EVENT_SYSTEM_MINIMIZEEND,
 					IntPtr.Zero,
@@ -319,6 +372,27 @@ namespace River.OneMoreAddIn
 
 
 			private readonly System.Windows.Forms.Timer reconcileTimer;
+			private readonly IntPtr eventHook;
+
+
+			// runs on the message thread; releases everything this window owns and closes it,
+			// which ends its Application.Run loop and thread
+			public void Retire()
+			{
+				reconcileTimer.Stop();
+
+				foreach (var k in registeredKeys)
+				{
+					Native.UnregisterHotKey(Handle, k.Id);
+				}
+
+				if (eventHook != IntPtr.Zero)
+				{
+					Native.UnhookWinEvent(eventHook);
+				}
+
+				Close();
+			}
 
 
 			private void Reconcile(object sender, EventArgs e)
