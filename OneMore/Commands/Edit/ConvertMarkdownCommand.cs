@@ -144,6 +144,7 @@ namespace River.OneMoreAddIn.Commands
 					.RewriteCode(touched)
 					.RewriteInlineCode(touched)
 					.RewriteListMarkers(touched)
+					.RewriteMath(touched)
 					.SpaceOutParagraphs(touched, singleSpacing ? 0f : 12f);
 
 				// force a full update: OptimizeForSave's omHash-based "unchanged, skip

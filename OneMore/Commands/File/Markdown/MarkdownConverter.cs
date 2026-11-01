@@ -455,6 +455,98 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Converts LaTeX math delimited by \( \) or \[ \] in all Outlines on the page
+		/// into native OneNote equations
+		/// </summary>
+		public void RewriteMath()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteMath(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
+		/// Converts LaTeX math delimited by \( \) or \[ \] in the given paragraphs into native
+		/// OneNote equations, which are MathML in a conditional comment within the text run.
+		/// Markdig renders $..$ as \(..\) and $$..$$ as \[..\] and OneNote's HTML importer
+		/// keeps those as literal text. Math that cannot be converted is left as text.
+		/// </summary>
+		public MarkdownConverter RewriteMath(IEnumerable<XElement> paragraphs)
+		{
+			foreach (var run in paragraphs.SelectMany(p => p.Elements(ns + "T")).ToList())
+			{
+				var cdata = run.GetCData();
+				if (cdata is null || cdata.Value.IndexOf('\\') < 0)
+				{
+					continue;
+				}
+
+				var raw = cdata.Value;
+				var matches = MathPattern.Matches(raw);
+				if (matches.Count == 0)
+				{
+					continue;
+				}
+
+				// a block equation is one that is the entire visible content of the run
+				var visible = Regex.Replace(raw, @"<[^>]+>", string.Empty).Trim();
+
+				var builder = new System.Text.StringBuilder();
+				var last = 0;
+
+				foreach (Match match in matches)
+				{
+					var inner = match.Groups["i"].Success
+						? match.Groups["i"].Value
+						: match.Groups["b"].Value;
+
+					var latex = System.Net.WebUtility.HtmlDecode(inner);
+					var block = match.Groups["b"].Success && visible == match.Value;
+
+					// a literal < in math is escaped as &lt; so any raw < is markup, e.g. a <br>
+					if (inner.IndexOf('<') >= 0 ||
+						!LatexToMathMl.TryConvert(latex, block, out var mathml))
+					{
+						continue;
+					}
+
+					builder.Append(raw, last, match.Index - last);
+					last = match.Index + match.Length;
+
+					// OneNote wraps run text in a styling span; close it around the equation
+					// and reopen it afterward so the comment is not nested inside the span
+					var before = builder.ToString();
+					var open = before.LastIndexOf("<span", StringComparison.Ordinal);
+					var reopen = string.Empty;
+					if (open > before.LastIndexOf("</span>", StringComparison.Ordinal))
+					{
+						var end = before.IndexOf('>', open);
+						reopen = before.Substring(open, end - open + 1);
+						builder.Append("</span>");
+					}
+
+					builder.Append("<!--[if mathML]>").Append(mathml).Append("<![endif]-->");
+					builder.Append(reopen);
+				}
+
+				if (last > 0)
+				{
+					builder.Append(raw, last, raw.Length - last);
+					cdata.Value = builder.ToString();
+				}
+			}
+
+			return this;
+		}
+
+
+		private static readonly Regex MathPattern = new(
+			@"\\\((?<i>.+?)\\\)|\\\[(?<b>.+?)\\\]", RegexOptions.Singleline | RegexOptions.Compiled);
+
+
+		/// <summary>
 		/// Collapses marker paragraphs inserted by OneMoreDig.RenderPreservingBlankLines
 		/// (OneMoreDig.BlankLineMarker) into genuinely empty OneNote paragraphs, in all
 		/// Outlines on the page

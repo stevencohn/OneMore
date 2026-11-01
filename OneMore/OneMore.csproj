@@ -750,6 +750,8 @@
     </Compile>
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownWriter.cs" />
+    <Compile Include="Commands\File\Markdown\LatexToMathMl.cs" />
+    <Compile Include="Commands\File\Markdown\MathMlToLatex.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
       <SubType>Form</SubType>
     </Compile>

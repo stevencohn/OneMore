@@ -86,6 +86,8 @@
     <Compile Include="Commands\Compare\SimilarityEngineTests.cs" />
     <Compile Include="Commands\Compare\HierarchyLinkReconcilerTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />
+    <Compile Include="Commands\File\LatexToMathMlTests.cs" />
+    <Compile Include="Commands\File\MathMlToLatexTests.cs" />
     <Compile Include="Commands\File\Evernote\EnexReaderTests.cs" />
     <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />
     <Compile Include="Commands\References\EmbedCommandTests.cs" />

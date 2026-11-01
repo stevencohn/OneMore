@@ -232,6 +232,7 @@ namespace River.OneMoreAddIn.Commands
 					.RewriteCode(touched)
 					.RewriteInlineCode(touched)
 					.RewriteListMarkers(touched)
+					.RewriteMath(touched)
 					.SpaceOutParagraphs(touched, singleSpacing ? 0f : 12f);
 
 				// Place the cursor on a new empty line right after the converted

@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -44,6 +45,17 @@ namespace River.OneMoreAddIn.Commands
 		// to substitute indentations (e.g., OEChildren) with the blockquote directive instead.
 		private const string Indent = "    "; //">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
 		private const string Quote = ">";
+
+		// private-use characters delimit equation placeholders while a run is being escaped
+		private const char MathOpen = '';
+		private const char MathClose = '';
+
+		private static readonly Regex MathPattern = new(
+			@"<!--\[if mathML\]>(?<math>.*?)<!\[endif\]-->",
+			RegexOptions.Singleline | RegexOptions.Compiled);
+
+		private static readonly Regex EquationToken = new(
+			$"{MathOpen}(?<n>\\d+){MathClose}", RegexOptions.Compiled);
 
 		private readonly Page page;
 		private readonly XNamespace ns;
@@ -517,6 +529,21 @@ namespace River.OneMoreAddIn.Commands
 				.Replace("<br>", "  ") // usually followed by NL so leave it there
 				.TrimEnd();
 
+			// OneNote equations are MathML in a conditional comment; swap each for a token
+			// so the HTML wrapper and the markdown escaping below never see them, then
+			// substitute the LaTeX at the end
+			var equations = new List<string>();
+			cdata.Value = MathPattern.Replace(cdata.Value, m =>
+			{
+				if (!MathMlToLatex.TryConvert(m.Groups["math"].Value, out var latex, out var block))
+				{
+					return string.Empty;
+				}
+
+				equations.Add(block ? $"$${latex}$$" : $"${latex}$");
+				return $"{MathOpen}{equations.Count - 1}{MathClose}";
+			});
+
 			var wrapper = cdata.GetWrapper();
 
 			// Escape markdown-significant characters in text nodes only, before span and
@@ -573,6 +600,11 @@ namespace River.OneMoreAddIn.Commands
 			// escape remaining directives (| and [ already escaped in text nodes above)
 			var raw = wrapper.GetInnerXml()
 				.Replace("&lt;", "\\<");
+
+			if (equations.Count > 0)
+			{
+				raw = EquationToken.Replace(raw, m => equations[int.Parse(m.Groups["n"].Value)]);
+			}
 
 			if (startOfLine && raw.Length > 0 && raw.StartsWith("#"))
 			{
