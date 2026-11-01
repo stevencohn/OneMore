@@ -115,6 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			Controls.Add(dateSelector);
 			Controls.Add(datePicker);
 			AcceptButton = okButton;
+			ActiveControl = okButton;
 			CancelButton = cancelButton;
 
 			ResumeLayout(false);

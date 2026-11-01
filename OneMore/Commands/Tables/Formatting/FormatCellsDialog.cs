@@ -124,6 +124,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			UpdateState();
+
+			ActiveControl = okButton;
 		}
 
 

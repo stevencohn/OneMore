@@ -66,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 				verticalButton.Checked = true;
 				setWidthCheckBox.Checked = true;
 			}
+
+			ActiveControl = okButton;
 		}
 
 

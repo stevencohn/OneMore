@@ -65,6 +65,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			ActiveControl = okButton;
 		}
 
 

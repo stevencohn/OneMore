@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 			MaximizeBox = false;
 			MinimizeBox = false;
 			ShowInTaskbar = false;
+			ActiveControl = okButton;
 
 			if (NeedsLocalizing())
 			{
