@@ -149,6 +149,10 @@
     <value>Versão {0} com OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Selecione o texto para anotar</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Não é possível adicionar uma legenda a uma imagem de fundo da página. As imagens devem estar em um contêiner de contorno para serem legendadas.</value>
     <comment>error message</comment>
@@ -1306,6 +1310,86 @@ Normal</value>
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>A tabela precisa de pelo menos duas linhas de dados para classificar</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>Coloque o cursor em uma célula da tabela para classificar essa tabela</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>Classificar tabela</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>Adicionar regra</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>Ascendente</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>Detecção automática</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (coluna {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>Coluna</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>Coluna</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>Coluna {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>Data/Hora</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>Descendente</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>As células em branco sempre são classificadas por último.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>Número/Moeda</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>Ordem</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>Ordem de classificação</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>Regras de classificação (o primeiro é o primário)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>Texto</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>Tipo de dados</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>Tipo de dados</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -2041,6 +2125,110 @@ Arquivo OneNote (* .one)</value>
     <value>Ajustar grade ao texto</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>Coloque o cursor em uma célula da tabela ou selecione células para formatar</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>Formatar células</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>Depois</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>Antes</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>Categoria</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>Colunas inteiras (colunas: {0}, células: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>Moeda</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>Data</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>Data e hora</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>Casas decimais</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(Padrão de localidade)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>Detectado: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>O valor é uma fração (0,25 se torna 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>Em geral</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>Números negativos</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>Número</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>Tipo</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>Por cento</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>O valor já é um percentual (25 se torna 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>Visualização</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Inscreva-se em</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>Células selecionadas (células: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>Use separador 1000</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(ignorado)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>Símbolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>Tempo</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>As células selecionadas devem estar na mesma linha ou na mesma coluna</value>
     <comment>warning message</comment>
@@ -2341,6 +2529,10 @@ Fundo Amarelo</value>
     <value>Nenhuma fórmula encontrada nesta página</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>Página escura</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Profundo</value>
     <comment>radio</comment>
@@ -2354,8 +2546,16 @@ Fundo Amarelo</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>O comando do realce percorrerá as cores do tema escolhido. </value>
+    <value>O comando do marcador percorrerá as cores do tema escolhido. As cores dependem do fundo da página; escolha Claro ou Escuro para visualizá-los.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>Página clara</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Mostrar plano de fundo como:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Brilhante</value>
@@ -3226,6 +3426,70 @@ Deseja atualizar a página existente?</value>
   <data name="MarkdownSheet_Title" xml:space="preserve">
     <value>Remarcação</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="MoreColorPicker_automatic" xml:space="preserve">
+    <value>Automática</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_blue" xml:space="preserve">
+    <value>Azul</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_collapse" xml:space="preserve">
+    <value>Mostrar menos opções</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_colorModel" xml:space="preserve">
+    <value>Modelo de cores:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_current" xml:space="preserve">
+    <value>Atual</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Clique duas vezes para redefinir</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_darkPage" xml:space="preserve">
+    <value>Cores mostradas como em uma página escura</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_expand" xml:space="preserve">
+    <value>Mostrar mais opções</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_green" xml:space="preserve">
+    <value>Verde</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hex" xml:space="preserve">
+    <value>Hex:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hue" xml:space="preserve">
+    <value>Matiz</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_luminance" xml:space="preserve">
+    <value>Luminância</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_recentColors" xml:space="preserve">
+    <value>Cores recentes</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_red" xml:space="preserve">
+    <value>Vermelha</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_standardColors" xml:space="preserve">
+    <value>Cores padrão</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_themeColors" xml:space="preserve">
+    <value>Cores do tema</value>
+    <comment>color picker</comment>
   </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Ocultar esta mensagem no futuro</value>
@@ -4512,6 +4776,14 @@ Estilístico, Entidade, Mídia</value>
     <value>Mostrar informações sobre OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Adicionar anotação</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Destaque o texto selecionado e adicione uma anotação correspondente ao lado dele</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Adicionar legenda</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
@@ -4605,7 +4877,7 @@ Estilístico, Entidade, Mídia</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Anotar cores hexadecimais</value>
+    <value>Adicionar amostras de cores hexadecimais</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
@@ -5029,6 +5301,14 @@ Guia Ajuda</value>
     <value>Meus trechos</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>Classificação personalizada</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>Classifique a tabela por múltiplas colunas</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>meus estilos</value>
     <comment>ribbon menu NODUP</comment>
@@ -5231,6 +5511,14 @@ Guia Ajuda</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Redimensione a grade de plano de fundo para corresponder ao tamanho de fonte comum</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>Formatar células</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>Formate células ou colunas selecionadas como números, porcentagens, moeda, datas ou horas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Substituir URLs por imagens</value>
@@ -6189,6 +6477,14 @@ Guia Ajuda</value>
     <value>Agendar verificação de hashtag</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>Pesquisar e destacar</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>Encontre texto e destaque cada correspondência usando a próxima cor de realce ou uma cor escolhida</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Pesquisar e substituir</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -6416,6 +6712,14 @@ Guia Ajuda</value>
   <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
     <value>Recolorir imagens usando o estilo selecionado</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Resumir os destaques</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Crie uma página de relatório com todo o texto destacado na página, seção, grupo de seções, bloco de notas ou todos os blocos de notas</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Sincronizar cadernos</value>
@@ -6684,6 +6988,30 @@ Tem certeza de que deseja executar a verificação agora</value>
     <value>Cadernos selecionados ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>{0} correspondências destacadas em {1} páginas</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>Destacar tudo</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>Destaque</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>Próximo em rotação</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>Pesquisar e destacar</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>Destacar com</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>Nenhuma correspondência encontrada nesta página.</value>
     <comment>message box</comment>
@@ -6692,13 +7020,21 @@ Tem certeza de que deseja executar a verificação agora</value>
     <value>{0} correspondências substituídas em {1} páginas</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>Encontre o próximo</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Caso de compatibilidade</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>Substitua por XML bruto</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>Correspondência {0} de {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>Correspondência {0} de {1}, continuação do início</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Use expressões regulares</value>
@@ -7466,6 +7802,82 @@ Invertido</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Estilizar imagens</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Todos os cadernos</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Agrupados por caderno, grupo de seções e seção. Cada nome de página está vinculado à página; "Ir para o parágrafo" vincula ao parágrafo.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Modificado após {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Modificado antes de {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Ir para o parágrafo</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Modificado {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>Nenhum texto destacado foi encontrado no escopo selecionado</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Escopo: {0} · {1} destaques em {2} parágrafos em {3} páginas</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Esta página</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Esta seção</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Destaques - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Todas as datas</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filtrar por</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Todas as seções do grupo de seções atual</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Resuma o texto destacado em:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Modificado depois</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Modificado antes</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>A página atual</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Resumir os destaques</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

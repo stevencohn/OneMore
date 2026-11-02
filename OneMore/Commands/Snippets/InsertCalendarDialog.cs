@@ -12,9 +12,22 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class InsertCalendarDialog : UI.MoreForm
 	{
-		public InsertCalendarDialog()
+		// the shading is applied to page content so, as in MoreColorPicker, the swatch shows how
+		// OneNote renders it on a dark page while the applied color is kept in its Tag
+		private readonly Color pageColor;
+		private readonly bool darkPage;
+
+
+		/// <param name="pageColor">
+		/// The background color of the current page, which determines dark-mode rendering of the
+		/// shading color; empty means the page follows the Office theme
+		/// </param>
+		public InsertCalendarDialog(Color pageColor = default)
 		{
 			InitializeComponent();
+
+			this.pageColor = pageColor;
+			darkPage = UI.MoreColorPicker.IsDarkPage(pageColor);
 
 			if (NeedsLocalizing())
 			{
@@ -58,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			shadingBox.BackColor = Color.AliceBlue;
+			SetShading(Color.AliceBlue);
 		}
 
 
@@ -71,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 		public DayOfWeek FirstDay => sundayButton.Checked ? DayOfWeek.Sunday : DayOfWeek.Monday;
 
 
-		public string HeaderShading => shadingBox.BackColor.ToRGBHtml();
+		public string HeaderShading => GetShading().ToRGBHtml();
 
 
 		public bool Large => largeRadio.Checked;
@@ -84,16 +97,32 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(shadingBox.Location);
 
-			using var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+			using var picker = new UI.MoreColorPicker(pageColor,
 				location.X + shadingBox.Bounds.Location.X + (shadingBox.Width / 2),
-				location.Y - 50);
-
-			dialog.Color = shadingBox.BackColor;
-
-			if (dialog.ShowDialog(this) == DialogResult.OK)
+				location.Y - 50,
+				Resx.PageColorDialog_Text)
 			{
-				shadingBox.BackColor = dialog.Color;
+				Color = GetShading(),
+				AutomaticVisible = false
+			};
+
+			if (picker.ShowDialog(this) == DialogResult.OK)
+			{
+				SetShading(picker.Color);
 			}
+		}
+
+
+		private void SetShading(Color color)
+		{
+			shadingBox.Tag = color;
+			shadingBox.BackColor = darkPage ? UI.ColorPalette.ToDark(color) : color;
+		}
+
+
+		private Color GetShading()
+		{
+			return shadingBox.Tag is Color color ? color : shadingBox.BackColor;
 		}
 	}
 }

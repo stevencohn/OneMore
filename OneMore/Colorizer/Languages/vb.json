@@ -31,9 +31,46 @@
       ]
     },
     {
-      "pattern": "(?i)\\b(AddHandler|AddressOf|Aggregate|Alias|All|And|AndAlso|Ansi|Any|As|Ascending|(?<!<)Assembly|Auto|Average|Boolean|By|ByRef|Byte|ByVal|Call|Case|Catch|CBool|CByte|CChar|CDate|CDec|CDbl|Char|CInt|Class|CLng|CObj|Const|Continue|Count|CShort|CSng|CStr|CType|Date|Decimal|Declare|Default|DefaultStyleSheet|Delegate|Descending|Dim|DirectCast|Distinct|Do|Double|Each|Else|ElseIf|End|Enum|Equals|Erase|Error|Event|Exit|Explicit|False|Finally|For|Friend|From|Function|Get|GetType|GoSub|GoTo|Group|Group|Handles|If|Implements|Imports|In|Inherits|Integer|Interface|Into|Is|IsNot|Join|Let|Lib|Like|Long|LongCount|Loop|Max|Me|Min|Mod|Module|MustInherit|MustOverride|My|MyBase|MyClass|Namespace|New|Next|Not|Nothing|NotInheritable|NotOverridable|(?<!\\.)Object|Off|On|Option|Optional|Or|Order|OrElse|Overloads|Overridable|Overrides|ParamArray|Partial|Preserve|Private|Property|Protected|Public|RaiseEvent|ReadOnly|ReDim|RemoveHandler|Resume|Return|Select|Set|Shadows|Shared|Short|Single|Skip|Static|Step|Stop|String|Structure|Sub|Sum|SyncLock|Take|Then|Throw|To|True|Try|TypeOf|Unicode|Until|Variant|When|Where|While|With|WithEvents|WriteOnly|Xor|SByte|UInteger|ULong|UShort|Using|CSByte|CUInt|CULng|CUShort|Async|Await)\\b",
+      "pattern": "^\\s*(<[A-Za-z_][^>\\r\\n]*>)",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(Case|Catch|Continue|Do|Each|Else|ElseIf|Exit|Finally|For|GoSub|GoTo|If|Loop|Next|Resume|Return|Select|Then|Throw|Try|While|Wend)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(Boolean|Byte|Char|Date|Decimal|Double|Integer|Long|Short|Single|String|Variant|SByte|UInteger|ULong|UShort)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(Class|Module|Structure|Interface|Enum)[ \\t]+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(AddHandler|AddressOf|Aggregate|Alias|All|And|AndAlso|Ansi|Any|As|Ascending|(?<!<)Assembly|Auto|Average|By|ByRef|ByVal|Call|CBool|CByte|CChar|CDate|CDec|CDbl|CInt|Class|CLng|CObj|Const|Count|CShort|CSng|CStr|CType|Declare|Default|DefaultStyleSheet|Delegate|Descending|Dim|DirectCast|Distinct|End|Enum|Equals|Erase|Error|Event|Explicit|False|Friend|From|Function|Get|GetType|Group|Group|Handles|Implements|Imports|In|Inherits|Interface|Into|Is|IsNot|Join|Let|Lib|Like|LongCount|Max|Me|Min|Mod|Module|MustInherit|MustOverride|My|MyBase|MyClass|Namespace|New|Not|Nothing|NotInheritable|NotOverridable|(?<!\\.)Object|Off|On|Option|Optional|Or|Order|OrElse|Overloads|Overridable|Overrides|ParamArray|Partial|Preserve|Private|Property|Protected|Public|RaiseEvent|ReadOnly|ReDim|RemoveHandler|Set|Shadows|Shared|Skip|Static|Step|Stop|Structure|Sub|Sum|SyncLock|Take|To|True|TypeOf|Unicode|Until|When|Where|With|WithEvents|WriteOnly|Xor|Using|CSByte|CUInt|CULng|CUShort|Async|Await)\\b",
       "captures": [
         "Keyword"
+      ]
+    },
+    {
+      "pattern": "(?i)(&H[0-9A-F]+)\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b([0-9]+(?:\\.[0-9]+)?(?:E[+-]?[0-9]+)?[UILSDFR]{0,2})\\b",
+      "captures": [
+        "Number"
       ]
     }
   ]

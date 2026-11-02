@@ -88,17 +88,25 @@ namespace River.OneMoreAddIn.Commands
 			location.Y -= SystemInformation.MenuHeight * 4;
 			location.X -= 30;
 
-			using var dialog = new UI.MoreColorDialog(
-				"Select New Color", location.X, location.Y);
+			// the page background determines how OneNote renders the color
+			var pageColor = page.GetPageColor(out var pageAutomatic, out var pageBlack);
+			if (pageAutomatic)
+			{
+				pageColor = pageBlack ? UI.BasicColors.BlackSmoke : Color.White;
+			}
 
-			dialog.Color = sampleColor;
-			dialog.FullOpen = true;
+			using var picker = new UI.MoreColorPicker(pageColor,
+				location.X, location.Y, "Select New Color")
+			{
+				Color = sampleColor,
+				AutomaticVisible = false
+			};
 
-			// use the elevator to force ColorDialog to top-most first time used
+			// use the elevator to force the picker to top-most first time used
 			// otherwise, it will be hidden by the OneMore window
-			using var elevator = new UI.WindowElevator(dialog);
+			using var elevator = new UI.WindowElevator(picker);
 			var result = elevator.ShowDialog(owner);
-			return result == DialogResult.OK ? dialog.Color : Color.Empty;
+			return result == DialogResult.OK ? picker.Color : Color.Empty;
 		}
 
 

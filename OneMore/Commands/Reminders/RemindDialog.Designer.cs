@@ -240,6 +240,7 @@ namespace River.OneMoreAddIn.Commands
 			this.percentLabel.Size = new System.Drawing.Size(95, 20);
 			this.percentLabel.TabIndex = 20;
 			this.percentLabel.Text = "% Complete";
+			this.percentLabel.Scrubber = this.percentBox;
 			// 
 			// percentBox
 			// 

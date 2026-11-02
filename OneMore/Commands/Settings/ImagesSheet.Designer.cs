@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.resizeGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
-			this.widthLabel = new System.Windows.Forms.Label();
+			this.widthLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.generalGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.imageViewerLabel = new System.Windows.Forms.Label();
 			this.imageViewerBox = new River.OneMoreAddIn.UI.MoreTextBox();
@@ -120,6 +120,7 @@ namespace River.OneMoreAddIn.Settings
 			this.widthLabel.Size = new System.Drawing.Size(162, 20);
 			this.widthLabel.TabIndex = 0;
 			this.widthLabel.Text = "Preferred resize width";
+			this.widthLabel.Scrubber = this.widthBox;
 			// 
 			// generalGroup
 			// 
@@ -307,7 +308,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreButton imageViewerButton;
 		private UI.MoreGroupBox resizeGroup;
 		private System.Windows.Forms.NumericUpDown widthBox;
-		private System.Windows.Forms.Label widthLabel;
+		private UI.MoreLabel widthLabel;
 		private System.Windows.Forms.ErrorProvider errorProvider;
 		private UI.MoreCheckBox plantRemoveBox;
 		private System.Windows.Forms.Label plantUriLabel;

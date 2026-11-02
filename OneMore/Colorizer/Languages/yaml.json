@@ -5,7 +5,7 @@
   ],
   "rules": [
     {
-      "pattern": "(#.*?)\\r?$",
+      "pattern": "(?<![^\\s])(#.*?)\\r?$",
       "captures": [
         "Comment"
       ]
@@ -23,13 +23,37 @@
       ]
     },
     {
+      "pattern": "^[ \\t]*(?:-[ \\t]+)+(-?(?:0x[0-9a-fA-F]+|[0-9][0-9_]*(?:\\.[0-9_]+)?(?:[eE][+-]?[0-9]+)?))(?=[ \\t]*(?:#.*)?$)",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "^[ \\t]*(?:-[ \\t]+)+((?:true|false|yes|no|on|off|null|~|True|False|Yes|No|Null|TRUE|FALSE|NULL))(?=[ \\t]*(?:#.*)?$)",
+      "captures": [
+        "BuiltinValue"
+      ]
+    },
+    {
       "pattern": "^\\s*([^:]+)$",
       "captures": [
         "PlainText"
       ]
     },
     {
-      "pattern": "(?:[:>])\\s?([^#\\n]+)$",
+      "pattern": ":[ \\t]+(-?(?:0x[0-9a-fA-F]+|[0-9][0-9_]*(?:\\.[0-9_]+)?(?:[eE][+-]?[0-9]+)?))(?=[ \\t]*(?:#.*)?$)",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": ":[ \\t]+((?:true|false|yes|no|on|off|null|~|True|False|Yes|No|Null|TRUE|FALSE|NULL))(?=[ \\t]*(?:#.*)?$)",
+      "captures": [
+        "BuiltinValue"
+      ]
+    },
+    {
+      "pattern": "(?:[:>])\\s?((?:[^#\\n]|(?<=\\S)#)+)$",
       "captures": [
         "PlainText"
       ]

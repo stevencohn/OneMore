@@ -76,6 +76,7 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.Size = new System.Drawing.Size(180, 20);
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
+			this.intervalLabel.Scrubber = this.intervalBox;
 			this.intervalLabel.ThemedBack = null;
 			this.intervalLabel.ThemedFore = null;
 			// 
@@ -232,6 +233,7 @@ namespace River.OneMoreAddIn.Settings
 			this.delayLabel.Size = new System.Drawing.Size(162, 20);
 			this.delayLabel.TabIndex = 12;
 			this.delayLabel.Text = "Delay between pages";
+			this.delayLabel.Scrubber = this.delayBox;
 			this.delayLabel.ThemedBack = null;
 			this.delayLabel.ThemedFore = null;
 			// 

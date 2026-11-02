@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Regex regex;
 		private readonly string replacementString;
 		private readonly XElement replacementElement;
+		private readonly string highlightColor;
 
 
 		/// <summary>
@@ -69,6 +70,30 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Initializes a new editor that highlights matches rather than replacing them,
+		/// invoked by the SearchAndHighlight command
+		/// </summary>
+		/// <param name="pattern">A string or regular expression</param>
+		/// <param name="enableRegex">Determines whether to treat pattern as a regular expression</param>
+		/// <param name="caseSensitive">Determines whether to be case sensitive</param>
+		/// <param name="highlightColor">The background color to apply to each match</param>
+		public SearchAndReplaceEditor(
+			string pattern, bool enableRegex, bool caseSensitive, string highlightColor)
+		{
+			regex = new Regex(
+				enableRegex ? pattern : pattern.EscapeForRegex(),
+				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
+				);
+
+			this.highlightColor = highlightColor;
+
+			CaseSensitive = caseSensitive;
+			EnableRegex = enableRegex;
+			SearchPattern = pattern;
+		}
+
+
 		public bool CaseSensitive { get; private set; }
 
 		public bool EnableRegex { get; private set; }
@@ -92,8 +117,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			int count = 0;
 
-			var range = new SelectionRange(page);
-			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			var runs = GetRuns(page);
 			if (runs.Any())
 			{
 				foreach (var run in runs)
@@ -108,6 +132,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return count;
+		}
+
+
+		// Gets the selected runs, or every run if nothing is selected
+		private static IEnumerable<XElement> GetRuns(Page page)
+		{
+			var range = new SelectionRange(page);
+			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+
+			if (range.Scope == SelectionScope.TextCursor)
+			{
+				// OneNote splits the run at a caret into previous, empty cursor, and next runs,
+				// so the word under the caret is split and would never match; rejoin them
+				range.Deselect();
+				runs = page.Root.Descendants(page.Namespace + "T");
+			}
+
+			return runs;
 		}
 
 
@@ -264,7 +306,16 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
-					if (match.Groups.Count == 1)
+					if (highlightColor != null)
+					{
+						if (groupLength == 0)
+						{
+							continue;
+						}
+
+						Highlight(wrapper, groupIndex, groupLength);
+					}
+					else if (match.Groups.Count == 1)
 					{
 						// regex does not contain any capture or non-capture groups
 						// for example "abc"
@@ -369,6 +420,182 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// Applies the highlight color to the characters in [index, index+length) of the wrapper.
+		// Existing style attributes are preserved; only the background is set or replaced.
+		private void Highlight(XElement wrapper, int index, int length)
+		{
+			var end = index + length;
+			var offset = 0;
+
+			foreach (var node in wrapper.Nodes().ToList())
+			{
+				var nodeLength = node is XText text ? text.Value.Length : ((XElement)node).Value.Length;
+				if (offset >= end)
+				{
+					break;
+				}
+
+				var lo = Math.Max(index - offset, 0);
+				var hi = Math.Min(end - offset, nodeLength);
+				if (lo < hi)
+				{
+					HighlightNode(node, lo, hi);
+				}
+
+				offset += nodeLength;
+			}
+
+			HoistTrailingWhitespace(wrapper);
+		}
+
+
+		// OneNote treats a whitespace-only span as style-neutral and folds it into the run
+		// before it, so a space left standing alone after a highlighted word would come back
+		// highlighted. Move that space to the start of the following text so it keeps its
+		// place without being a run of its own.
+		private void HoistTrailingWhitespace(XElement wrapper)
+		{
+			var nodes = wrapper.Nodes().ToList();
+
+			for (var i = 0; i + 2 < nodes.Count; i++)
+			{
+				if (!IsHighlight(nodes[i]))
+				{
+					continue;
+				}
+
+				var space = nodes[i + 1];
+				if (!IsWhitespaceOnly(space) || IsHighlight(nodes[i + 2]))
+				{
+					continue;
+				}
+
+				var text = nodes[i + 2] switch
+				{
+					XText t => t,
+					XElement e when e.FirstNode is XText first => first,
+					_ => null
+				};
+
+				if (text is null)
+				{
+					continue;
+				}
+
+				text.Value = space is XText whitespace
+					? whitespace.Value + text.Value
+					: ((XElement)space).Value + text.Value;
+
+				space.Remove();
+				i++;
+			}
+		}
+
+
+		private bool IsHighlight(XNode node)
+		{
+			return node is XElement element &&
+				element.Name.LocalName == "span" &&
+				element.Attribute("style")?.Value.IndexOf(
+					$"background:{highlightColor}", StringComparison.OrdinalIgnoreCase) >= 0;
+		}
+
+
+		private static bool IsWhitespaceOnly(XNode node)
+		{
+			return node switch
+			{
+				XText text => text.Value.Length > 0 && string.IsNullOrWhiteSpace(text.Value),
+				XElement element => element.Name.LocalName == "span" &&
+					element.Nodes().All(n => n is XText) &&
+					element.Value.Length > 0 && string.IsNullOrWhiteSpace(element.Value),
+				_ => false
+			};
+		}
+
+
+		// Highlights characters [lo, hi) of the node's text. Text is wrapped in a span; a span
+		// wholly covered has its background set; a partially covered span of plain text is split
+		// into sibling spans; other partially covered elements recurse so that inner text keeps
+		// the formatting it inherits from the enclosing element.
+		private void HighlightNode(XNode node, int lo, int hi)
+		{
+			if (node is XText text)
+			{
+				var value = text.Value;
+				var parts = new List<object>();
+
+				if (lo > 0)
+				{
+					parts.Add(value.Substring(0, lo));
+				}
+
+				parts.Add(HighlightRotator.Wrap(new XText(value.Substring(lo, hi - lo)), highlightColor));
+
+				if (hi < value.Length)
+				{
+					parts.Add(value.Substring(hi));
+				}
+
+				text.ReplaceWith(parts.ToArray());
+				return;
+			}
+
+			var element = (XElement)node;
+
+			if (element.Name.LocalName == "span" && lo == 0 && hi == element.Value.Length)
+			{
+				HighlightRotator.SetBackground(element, highlightColor);
+				return;
+			}
+
+			// split a span of plain text into consecutive sibling spans that each keep the
+			// original style; nesting the highlight inside the span would have OneNote fold
+			// the trailing whitespace into the highlighted text when it normalizes the nesting
+			if (element.Name.LocalName == "span" && element.Nodes().All(n => n is XText))
+			{
+				var value = element.Value;
+				var parts = new List<XElement>();
+
+				if (lo > 0)
+				{
+					parts.Add(new XElement(element.Name, element.Attributes(), value.Substring(0, lo)));
+				}
+
+				var inside = new XElement(element.Name, element.Attributes(), value.Substring(lo, hi - lo));
+				HighlightRotator.SetBackground(inside, highlightColor);
+				parts.Add(inside);
+
+				if (hi < value.Length)
+				{
+					parts.Add(new XElement(element.Name, element.Attributes(), value.Substring(hi)));
+				}
+
+				element.ReplaceWith(parts.Cast<object>().ToArray());
+				return;
+			}
+
+			var offset = 0;
+			foreach (var child in element.Nodes().ToList())
+			{
+				var childLength = child is XText t ? t.Value.Length : ((XElement)child).Value.Length;
+				if (offset >= hi)
+				{
+					break;
+				}
+
+				var clo = Math.Max(lo - offset, 0);
+				var chi = Math.Min(hi - offset, childLength);
+				if (clo < chi)
+				{
+					HighlightNode(child, clo, chi);
+				}
+
+				offset += childLength;
+			}
+		}
+
+
 		// Replace a single match in the given text.
 		// A wrapper consists of both XText nodes and XElement nodes where the elements are
 		// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
@@ -466,8 +693,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var results = new List<MatchInfo>();
 
-			var range = new SelectionRange(page);
-			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			var runs = GetRuns(page);
 			foreach (var run in runs)
 			{
 				CollectMatches(run, results);
@@ -520,16 +746,20 @@ namespace River.OneMoreAddIn.Commands
 		/// Replaces a single match as described by the given MatchInfo, modifying the T element
 		/// in place. Rewrites the CDATA of the T element after replacement.
 		/// </summary>
-		public void ReplaceMatch(MatchInfo match)
+		/// <returns>
+		/// The index within the run's text just after the inserted replacement, or -1 if the
+		/// match could not be replaced
+		/// </returns>
+		public int ReplaceMatch(MatchInfo match)
 		{
 			// never touch mathML equations
 			if (match.TElement.IsMathML())
 			{
-				return;
+				return -1;
 			}
 
 			var cdata = match.TElement.GetCData();
-			if (cdata.Value.Length == 0) return;
+			if (cdata.Value.Length == 0) return -1;
 
 			var wrapper = cdata.GetWrapper();
 			var rawtext = wrapper.Value.Replace(' ', ' ');
@@ -541,32 +771,88 @@ namespace River.OneMoreAddIn.Commands
 				var m = matches[i];
 				if (m.Index != match.StartIndex || m.Length != match.Length) continue;
 
+				var end = m.Index;
+
 				if (m.Groups.Count == 1)
 				{
 					Replace(wrapper, m.Index, m.Length,
 						stringValue: replacementString,
 						elementValue: replacementElement);
+
+					end += replacementString?.Length ?? replacementElement?.Value.Length ?? 0;
 				}
-				else if (m.Groups.Count > 1)
+				else
 				{
+					end = m.Groups[1].Index;
+
 					if (replacementElement != null)
 					{
 						var xml = ExpandSubstitutions(m,
 							replacementElement.ToString(SaveOptions.DisableFormatting));
 
+						var element = XElement.Parse(xml);
 						Replace(wrapper, m.Groups[1].Index, m.Groups[1].Length,
-							elementValue: XElement.Parse(xml));
+							elementValue: element);
+
+						end += element.Value.Length;
 					}
 					else
 					{
+						var text = ExpandSubstitutions(m, replacementString);
 						Replace(wrapper, m.Groups[1].Index, m.Groups[1].Length,
-							stringValue: ExpandSubstitutions(m, replacementString));
+							stringValue: text);
+
+						end += text.Length;
 					}
 				}
 
 				cdata.Value = wrapper.GetInnerXml();
-				break;
+				return end;
 			}
+
+			return -1;
+		}
+
+
+		/// <summary>
+		/// Highlights a single match as described by the given MatchInfo, modifying the T
+		/// element in place. Used by the step-through session of Search and Highlight.
+		/// </summary>
+		/// <returns>
+		/// The index within the run's text just after the highlighted text, or -1 if the
+		/// match could not be highlighted
+		/// </returns>
+		public int HighlightMatch(MatchInfo match)
+		{
+			// never touch mathML equations
+			if (highlightColor is null || match.TElement.IsMathML())
+			{
+				return -1;
+			}
+
+			var cdata = match.TElement.GetCData();
+			if (cdata.Value.Length == 0) return -1;
+
+			var wrapper = cdata.GetWrapper();
+			var rawtext = wrapper.Value.Replace(' ', ' ');
+
+			foreach (Match m in regex.Matches(rawtext))
+			{
+				if (m.Index != match.StartIndex || m.Length != match.Length) continue;
+
+				var index = m.Groups.Count > 1 ? m.Groups[1].Index : m.Index;
+				var length = m.Groups.Count > 1 ? m.Groups[1].Length : m.Length;
+				if (length == 0)
+				{
+					return index;
+				}
+
+				Highlight(wrapper, index, length);
+				cdata.Value = wrapper.GetInnerXml();
+				return index + length;
+			}
+
+			return -1;
 		}
 	}
 }

@@ -258,6 +258,7 @@ namespace River.OneMoreAddIn.Settings
 			this.opacityLabel.Size = new System.Drawing.Size(103, 20);
 			this.opacityLabel.TabIndex = 7;
 			this.opacityLabel.Text = "Dialog opacity";
+			this.opacityLabel.Scrubber = this.opacityBar;
 			this.opacityLabel.ThemedBack = null;
 			this.opacityLabel.ThemedFore = null;
 			// 

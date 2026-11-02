@@ -325,6 +325,12 @@
       keytip="HA"/>
     <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true" keytip="SE">
       <button
+        id="ribSearchAndHighlightButton"
+        imageMso="ReviewHighlightChanges"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SearchAndHighlightCmd"/>
+      <button
         id="ribSearchAndReplaceButton"
         imageMso="ReplaceDialog"
         getLabel="GetRibbonLabel"
@@ -366,6 +372,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="PreviousUnreadPageCmd"/>
+      <button
+        id="ribSummarizeHighlightsButton"
+        imageMso="ReviewHighlightChanges"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SummarizeHighlightsCmd"/>
     </menu>
   </group>
 
@@ -565,6 +577,12 @@
         onAction="TrimLeadingCmd"/>
     </menu>
     <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true" keytip="ED">
+      <button
+        id="ribAddAnnotationButton"
+        imageMso="ReviewNewComment"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddAnnotationCmd"/>
       <button
         id="ribAnnotateHexColorsButton"
         imageMso="AppointmentColor2"
@@ -1143,6 +1161,18 @@
         getScreentip="GetRibbonScreentip"
         onAction="TextToTableCmd"/>
       <button
+        id="ribCustomSortButton"
+        imageMso="SortDialog"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CustomSortCmd"/>
+      <button
+        id="ribFormatCellsButton"
+        imageMso="FormatCellsDialog"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="FormatCellsCmd"/>
+      <button
         id="ribInsertCellsButton"
         imageMso="TableInsertCellsDialog"
         getLabel="GetRibbonLabel"
@@ -1160,6 +1190,13 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SelectTablesCmd"/>
+      <button
+        id="ribSplitTableButton"
+        imageMso="TableSplitTable"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SplitTableCmd"/>
+      <menuSeparator id="sepTableMenu1"/>
       <button
         id="ribCopyAcrossButton"
         imageMso="TableRowSelect"
@@ -1184,12 +1221,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="FillDownCmd"/>
-      <button
-        id="ribSplitTableButton"
-        imageMso="TableSplitTable"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SplitTableCmd"/>
     </menu>
     <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true" keytip="EX">
       <button

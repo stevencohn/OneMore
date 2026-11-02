@@ -1,7 +1,6 @@
 {
   "name": "Wolfram",
-  "aliases": [
-  ],
+  "aliases": [],
   "rules": [
     {
       "pattern": "(\\(\\*(?:[^*]|\\*+[^*)])*\\*+\\))",
@@ -24,21 +23,15 @@
       ]
     },
     {
-      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "pattern": "(?s)(\"(?:\\\\.|[^\"\\\\])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(?s)(\"[^\\n]*?(?<!\u0060)\")",
+      "pattern": "(\\$[A-Za-z][A-Za-z0-9]*)",
       "captures": [
-        "String"
-      ]
-    },
-    {
-      "pattern": "(\\$(?:[\\d\\w\\-]+(?::[\\d\\w\\-]+)?|\\$|\\?|\\^))",
-      "captures": [
-        "PowerShellVariable"
+        "Predefined"
       ]
     },
     {
@@ -48,18 +41,15 @@
       ]
     },
     {
-      "pattern": "(\\+=|-=|\\*=|/=|%=|=|\\+\\+|--|\\+|-|\\*|/|%)",
+      "pattern": "([\\[\\]])",
       "captures": [
-        "PowerShellOperator"
+        "Delimeter"
       ]
     },
     {
-      "pattern": "(\\[)([^\\]]+)(\\])(::)?",
+      "pattern": "\\b([0-9]+(?:\\.[0-9]*)?(?:\\*\\^[+-]?[0-9]+)?)\\b",
       "captures": [
-        "PowerShellOperator",
-        "PowerShellType",
-        "PowerShellOperator",
-        "PowerShellOperator"
+        "Number"
       ]
     }
   ]

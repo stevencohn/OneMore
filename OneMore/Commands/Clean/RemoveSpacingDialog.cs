@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			ActiveControl = okButton;
 		}
 
 

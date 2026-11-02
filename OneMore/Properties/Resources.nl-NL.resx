@@ -149,6 +149,10 @@
     <value>Versie {0} met OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>Selecteer de tekst die u wilt annoteren</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Kan geen bijschrift toevoegen aan een achtergrondafbeelding op de pagina. Afbeeldingen moeten zich in een overzichtscontainer bevinden om van ondertiteling te kunnen voorzien.</value>
     <comment>error message</comment>
@@ -1306,6 +1310,86 @@ Normaal</value>
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>De tabel heeft minimaal twee gegevensrijen nodig om te kunnen sorteren</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>Plaats de cursor in een tabelcel om die tabel te sorteren</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>Sorteer tabel</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>Regel toevoegen</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>Oplopend</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>Automatische detectie</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (kolom {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>Kolom</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>Kolom</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>Kolom {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>Datum/tijd</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>Aflopend</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>Lege cellen worden altijd als laatste gesorteerd.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>Nummer/valuta</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>Volgorde</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>Sorteervolgorde</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>Sorteerregels (eerste is primair)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>Tekst</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>Gegevenstype</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>Gegevenstype</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -2041,6 +2125,110 @@ OneNote-bestand (*.one)</value>
     <value>Raster aanpassen aan tekst</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>Plaats de cursor in een tabelcel of selecteer cellen die u wilt opmaken</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>Cellen opmaken</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>Na</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>Voor</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>Categorie</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>Volledige kolommen (kolommen: {0}, cellen: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>Munteenheid</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>Datum</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>Datum en tijd</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>Decimalen</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(Landinstelling standaard)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>Gedetecteerd: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>Waarde is een breuk (0,25 wordt 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>Algemeen</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>Negatieve cijfers</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>Nummer</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>Type</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>Procent</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>Waarde is al een procent (25 wordt 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>Voorbeeld</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Toepassen op</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>Geselecteerde cellen (cellen: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>Gebruik een scheidingsteken van 1000</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(overgeslagen)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>Symbool</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>Tijd</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Geselecteerde cellen moeten in dezelfde rij of in dezelfde kolom staan</value>
     <comment>warning message</comment>
@@ -2341,6 +2529,10 @@ Gele achtergrond</value>
     <value>Geen formules gevonden op deze pagina</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>Donkere pagina</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Diep</value>
     <comment>radio</comment>
@@ -2354,8 +2546,16 @@ Gele achtergrond</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>De markeerstiftopdracht bladert door de kleuren van het gekozen thema. </value>
+    <value>Het markeerstiftcommando doorloopt de kleuren van het gekozen thema. Kleuren zijn afhankelijk van de pagina-achtergrond; kies Licht of Donker om er een voorbeeld van te bekijken.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>Lichte pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>Achtergrond weergeven als:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>Helder</value>
@@ -3226,6 +3426,70 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="MarkdownSheet_Title" xml:space="preserve">
     <value>Afwaardering</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="MoreColorPicker_automatic" xml:space="preserve">
+    <value>Automatisch</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_blue" xml:space="preserve">
+    <value>Blauw</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_collapse" xml:space="preserve">
+    <value>Toon minder opties</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_colorModel" xml:space="preserve">
+    <value>Kleurmodel:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_current" xml:space="preserve">
+    <value>Huidig</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>Dubbelklik om te resetten</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_darkPage" xml:space="preserve">
+    <value>Kleuren weergegeven zoals op een donkere pagina</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_expand" xml:space="preserve">
+    <value>Toon meer opties</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_green" xml:space="preserve">
+    <value>Groente</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hex" xml:space="preserve">
+    <value>Hexuitdraai:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hue" xml:space="preserve">
+    <value>Tint</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_luminance" xml:space="preserve">
+    <value>Luminantie</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_recentColors" xml:space="preserve">
+    <value>Recente kleuren</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_red" xml:space="preserve">
+    <value>Rood</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_standardColors" xml:space="preserve">
+    <value>Standaard kleuren</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_themeColors" xml:space="preserve">
+    <value>Thema kleuren</value>
+    <comment>color picker</comment>
   </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Verberg dit bericht in de toekomst</value>
@@ -4512,6 +4776,14 @@ Stilistisch, entiteit, media</value>
     <value>Toon informatie over OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>Annotatie toevoegen</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>Markeer de geselecteerde tekst en voeg er een bijpassende annotatie aan toe</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bijschrift toevoegen</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
@@ -4605,7 +4877,7 @@ Stilistisch, entiteit, media</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>Annoteer hexadecimale kleuren</value>
+    <value>Hex-kleurstalen toevoegen</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
@@ -5029,6 +5301,14 @@ Tabblad Help</value>
     <value>Mijn fragmenten</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>Aangepaste sortering</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>Sorteer de tabel op meerdere kolommen</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Mijn stijlen</value>
     <comment>ribbon menu NODUP</comment>
@@ -5231,6 +5511,14 @@ Tabblad Help</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Wijzig het formaat van het achtergrondraster zodat het overeenkomt met de algemene lettergrootte</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>Cellen opmaken</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>Maak geselecteerde cellen of kolommen op als getallen, procenten, valuta, datums of tijden</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Vervang URL's door afbeeldingen</value>
@@ -6189,6 +6477,14 @@ Tabblad Help</value>
     <value>Plan een hashtagscan</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>Zoeken en markeren</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>Zoek tekst en markeer elke match met de volgende markeerstiftkleur of een gekozen kleur</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Zoeken en vervangen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -6416,6 +6712,14 @@ Tabblad Help</value>
   <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
     <value>Kleur afbeeldingen opnieuw met de geselecteerde stijl</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>Samenvatting van hoogtepunten</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>Maak een rapportpagina van alle gemarkeerde tekst op de pagina, sectie, sectiegroep, notitieblok of alle notitieblokken</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>Synchroniseer notitieboekjes</value>
@@ -6684,6 +6988,30 @@ Weet u zeker dat u de scan nu wilt uitvoeren?</value>
     <value>Geselecteerde notebooks ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>Uitgelichte {0} overeenkomsten op {1} pagina's</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>Markeer alles</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>Hoogtepunt</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>Volgende in rotatie</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>Zoeken en markeren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>Markeer met</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>Er zijn geen overeenkomsten gevonden op deze pagina.</value>
     <comment>message box</comment>
@@ -6692,13 +7020,21 @@ Weet u zeker dat u de scan nu wilt uitvoeren?</value>
     <value>{0} overeenkomsten op {1} pagina's vervangen</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>Zoek Volgende</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match case</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>Vervangen door onbewerkte XML</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>Match {0} van {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>Match {0} van {1}, vervolg vanaf boven</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Gebruik reguliere expressies</value>
@@ -7466,6 +7802,82 @@ Omkeren</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>Stileer afbeeldingen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>Alle notitieboekjes</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>Gegroepeerd op notitieblok, sectiegroep en sectie. Elke paginanaam linkt naar de pagina; 'Ga naar paragraaf' linkt naar de paragraaf.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>Gewijzigd na {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>Gewijzigd vóór {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>Ga naar paragraaf</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>Gewijzigd {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>Er is geen gemarkeerde tekst gevonden in het geselecteerde bereik</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>Reikwijdte: {0} · {1} hoogtepunten in {2} paragrafen op {3} pagina's</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>Deze pagina</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>Deze sectie</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>Hoogtepunten - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>Alle data</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>Filter op</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>Alle secties in de huidige sectiegroep</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>Vat de gemarkeerde tekst samen in:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>Gewijzigd na</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>Eerder gewijzigd</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>De huidige pagina</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>Samenvatting van hoogtepunten</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

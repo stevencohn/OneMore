@@ -149,6 +149,10 @@
     <value>גרסה {0} עם OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>בחר את הטקסט להוספת הערות</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>לא ניתן להוסיף כיתוב לתמונת רקע בעמוד. התמונות חייבות להיות במיכל מתאר כדי לקבל כיתוב.</value>
     <comment>error message</comment>
@@ -1306,6 +1310,86 @@
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>הטבלה צריכה לפחות שתי שורות נתונים כדי למיין</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>מקם את הסמן בתא טבלה כדי למיין את הטבלה</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>מיין טבלה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>הוסף כלל</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>עוֹלֶה</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>זיהוי אוטומטי</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (עמודה {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>עַמוּדָה</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>עַמוּדָה</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>עמודה {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>תאריך/שעה</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>יורד</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>תאים ריקים תמיד ממיינים אחרונים.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>מספר/מטבע</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>לְהַזמִין</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>סדר מיון</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>כללי מיון (הראשון הוא ראשי)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>טֶקסט</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>סוג נתונים</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>סוג נתונים</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -2041,6 +2125,110 @@ Total Row Font
     <value>התאם רשת לטקסט</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>מקם את הסמן בתא טבלה או בחר תאים לעיצוב</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>עיצוב תאים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>לְאַחַר</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>לִפנֵי</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>קָטֵגוֹרִיָה</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>עמודות שלמות (עמודות: {0}, תאים: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>מַטְבֵּעַ</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>תַאֲרִיך</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>תאריך ושעה</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>מקומות עשרוניים</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(ברירת מחדל מקומית)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>זוהה: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>הערך הוא שבריר (0.25 הופך ל-25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>כְּלָלִי</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>מספרים שליליים</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>מִספָּר</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>סוּג</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>אָחוּז</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>הערך הוא כבר אחוז (25 הופך ל-25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>תצוגה מקדימה</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>הגשת בקשה ל</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>תאים שנבחרו (תאים: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>השתמש במפריד 1000</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(דילג)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>סֵמֶל</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>זְמַן</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>התאים שנבחרו חייבים להיות באותה שורה או באותה עמודה</value>
     <comment>warning message</comment>
@@ -2341,6 +2529,10 @@ Total Row Font
     <value>לא נמצאו נוסחאות בדף זה</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>עמוד כהה</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>עָמוֹק</value>
     <comment>radio</comment>
@@ -2354,8 +2546,16 @@ Total Row Font
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>פקודת ההדגשה תעבור בין הצבעים של הנושא הנבחר. הצבעים המוצגים כאן מיועדים לדפי רקע בהירים. דפי רקע כהים משתמשים בצבעי הדגשה אוטומטיים</value>
+    <value>פקודת ההדגשה תעבור בין הצבעים של הנושא הנבחר. הצבעים תלויים ברקע העמוד; בחר בהיר או כהה כדי להציג אותם בתצוגה מקדימה.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>דף קליל</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>הצג רקע כ:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>בָּהִיר</value>
@@ -3226,6 +3426,70 @@ Total Row Font
   <data name="MarkdownSheet_Title" xml:space="preserve">
     <value>Markdown</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="MoreColorPicker_automatic" xml:space="preserve">
+    <value>אוֹטוֹמָטִי</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_blue" xml:space="preserve">
+    <value>כְּחוֹל</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_collapse" xml:space="preserve">
+    <value>הצג פחות אפשרויות</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_colorModel" xml:space="preserve">
+    <value>דגם צבע:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_current" xml:space="preserve">
+    <value>נוֹכְחִי</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>לחץ פעמיים כדי לאפס</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_darkPage" xml:space="preserve">
+    <value>צבעים מוצגים כמו על דף כהה</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_expand" xml:space="preserve">
+    <value>הצג אפשרויות נוספות</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_green" xml:space="preserve">
+    <value>יָרוֹק</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hex" xml:space="preserve">
+    <value>משושה:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hue" xml:space="preserve">
+    <value>צֶבַע</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_luminance" xml:space="preserve">
+    <value>בְּהִיקוּת</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_recentColors" xml:space="preserve">
+    <value>צבעים אחרונים</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_red" xml:space="preserve">
+    <value>אָדוֹם</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_standardColors" xml:space="preserve">
+    <value>צבעים סטנדרטיים</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_themeColors" xml:space="preserve">
+    <value>צבעי נושא</value>
+    <comment>color picker</comment>
   </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>הסתר הודעה זו בעתיד</value>
@@ -4512,6 +4776,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הצג מידע על OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>הוסף הערה</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>הדגש את הטקסט שנבחר והוסף הערה תואמת לידו</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>הוסף כיתוב</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
@@ -4605,7 +4877,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>הערה צבעי משושה</value>
+    <value>הוסף דוגמיות Hex Color</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
@@ -5029,6 +5301,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הקטעים שלי</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>מיון מותאם אישית</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>מיין את הטבלה לפי מספר עמודות</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>הסגנונות שלי</value>
     <comment>ribbon menu NODUP</comment>
@@ -5231,6 +5511,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>שינוי גודל רשת רקע כדי להתאים לגודל הגופן הנפוץ</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>עיצוב תאים</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>עיצוב תאים או עמודות שנבחרו כמספרים, אחוזים, מטבע, תאריכים או שעות</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>החלף כתובות אתרים בתמונות</value>
@@ -6189,6 +6477,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>תזמן סריקת Hashtag</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>חפש והדגש</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>מצא טקסט והדגש כל התאמה באמצעות צבע ההדגשה הבא או צבע נבחר</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>חפש והחלף</value>
     <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
@@ -6416,6 +6712,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
     <value>צבע מחדש תמונות באמצעות סגנון נבחר</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>סיכום הדגשים</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>צור דף דוח של כל הטקסט המודגש בדף, בקטע, בקבוצת הקטעים, במחברת או בכל המחברות</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>סנכרון מחברות</value>
@@ -6684,6 +6988,30 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>מחברות נבחרות ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>{0} התאמות מודגשות ב-{1} דפים</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>הדגש הכל</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>שִׂיא</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>הבא בסיבוב</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>חפש והדגש</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>הדגש עם</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>לא נמצאו התאמות בדף זה.</value>
     <comment>message box</comment>
@@ -6692,13 +7020,21 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הוחלפו {0} התאמות ב-{1} דפים</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>מצא את הבא</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>מקרה התאמה</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>החלף ב-XML גולמי</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>התאמה ל-{0} מתוך {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>התאמה {0} מתוך {1}, המשך מלמעלה</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>השתמש בביטויים רגילים</value>
@@ -7466,6 +7802,82 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>סגנון תמונות</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>כל המחברות</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>מקובצים לפי מחברת, קבוצת מדור ומדור. כל שם עמוד מקשר לדף; "עבור לפסקה" מקשר לפסקה.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>השתנה לאחר {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>השתנה לפני {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>עבור לפסקה</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>השתנה {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>לא נמצא טקסט מודגש בטווח שנבחר</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>היקף: {0} · {1} דגשים ב-{2} פסקאות ב-{3} דפים</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>הדף הזה</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>הסעיף הזה</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>הבהרה - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>כל התאריכים</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>סנן לפי</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>כל הקטעים בקבוצת הקטעים הנוכחית</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>סכם טקסט מודגש ב:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>שונה לאחר</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>שונה לפני</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>העמוד הנוכחי</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>סיכום הדגשים</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

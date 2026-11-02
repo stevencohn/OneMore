@@ -48,6 +48,9 @@ namespace River.OneMoreAddIn.Models
 		// page is a section or notebook TOC
 		public static readonly string TableOfContents = "omTableOfContents";
 
+		// OE containing a table; content is the last applied custom sort, e.g. "2-n,0+t"
+		public static readonly string TableSort = "omTableSort";
+
 		// Outline meta to mark visible word bank
 		public static readonly string TaggingBank = "omTaggingBank";
 
@@ -57,6 +60,9 @@ namespace River.OneMoreAddIn.Models
 
 		// page is a hashtag index page
 		public static readonly string TagIndex = "omTagIndex";
+
+		// page is a highlights summary report, content is scope
+		public static readonly string HighlightsReport = "omHighlightsReport";
 
 		// page is a search results index page
 		public static readonly string SearchIndex = "omSearchIndex";

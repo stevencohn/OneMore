@@ -33,7 +33,7 @@
 			this.shiftRightRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.numLabel = new System.Windows.Forms.Label();
+			this.numLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.numCellsBox = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.numCellsBox)).BeginInit();
 			this.SuspendLayout();
@@ -105,6 +105,7 @@
 			this.numLabel.Size = new System.Drawing.Size(183, 20);
 			this.numLabel.TabIndex = 4;
 			this.numLabel.Text = "Number of cells to insert:";
+			this.numLabel.Scrubber = this.numCellsBox;
 			// 
 			// numCellsBox
 			// 
@@ -158,7 +159,7 @@
 		private UI.MoreRadioButton shiftRightRadio;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
-		private System.Windows.Forms.Label numLabel;
+		private UI.MoreLabel numLabel;
 		private System.Windows.Forms.NumericUpDown numCellsBox;
 	}
 }

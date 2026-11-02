@@ -149,6 +149,10 @@
     <value>الإصدار {0} مع OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddAnnotationCommand_NoSelection" xml:space="preserve">
+    <value>حدد النص للتعليق عليه</value>
+    <comment>info message</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>لا يمكن إضافة تسمية توضيحية إلى صورة الخلفية على الصفحة. يجب أن تكون الصور في حاوية مخطط تفصيلي ليتم تعليقها.</value>
     <comment>error message</comment>
@@ -1309,6 +1313,86 @@
     <value>CustomColors.xml</value>
     <comment>FILENAME</comment>
   </data>
+  <data name="CustomSortCommand_NoRows" xml:space="preserve">
+    <value>يحتاج الجدول إلى صفين من البيانات على الأقل لفرزه</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortCommand_NoSelection" xml:space="preserve">
+    <value>ضع المؤشر في خلية جدول لفرز هذا الجدول</value>
+    <comment>info message</comment>
+  </data>
+  <data name="CustomSortDialog.Text" xml:space="preserve">
+    <value>فرز الجدول</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CustomSortDialog_addButton.Text" xml:space="preserve">
+    <value>أضف القاعدة</value>
+    <comment>button</comment>
+  </data>
+  <data name="CustomSortDialog_ascending" xml:space="preserve">
+    <value>تصاعدي</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_auto" xml:space="preserve">
+    <value>الكشف التلقائي</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnDisplay" xml:space="preserve">
+    <value>{0} (العمود {1})</value>
+    <comment>column heading followed by its number</comment>
+  </data>
+  <data name="CustomSortDialog_columnHeader" xml:space="preserve">
+    <value>عمود</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_columnLabel.Text" xml:space="preserve">
+    <value>عمود</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_ColumnName" xml:space="preserve">
+    <value>العمود {0}</value>
+    <comment>default name of a column without a heading</comment>
+  </data>
+  <data name="CustomSortDialog_dateTimeType" xml:space="preserve">
+    <value>التاريخ/الوقت</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_descending" xml:space="preserve">
+    <value>تنازلي</value>
+    <comment>sort order</comment>
+  </data>
+  <data name="CustomSortDialog_noteLabel.Text" xml:space="preserve">
+    <value>يتم فرز الخلايا الفارغة دائمًا في المرتبة الأخيرة.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_numberType" xml:space="preserve">
+    <value>الرقم/العملة</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_orderHeader" xml:space="preserve">
+    <value>طلب</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_orderLabel.Text" xml:space="preserve">
+    <value>ترتيب الترتيب</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_rulesLabel.Text" xml:space="preserve">
+    <value>قواعد الفرز (الأول هو الأساسي)</value>
+    <comment>label</comment>
+  </data>
+  <data name="CustomSortDialog_textType" xml:space="preserve">
+    <value>نص</value>
+    <comment>data type</comment>
+  </data>
+  <data name="CustomSortDialog_typeHeader" xml:space="preserve">
+    <value>نوع البيانات</value>
+    <comment>list header</comment>
+  </data>
+  <data name="CustomSortDialog_typeLabel.Text" xml:space="preserve">
+    <value>نوع البيانات</value>
+    <comment>label</comment>
+  </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
@@ -2044,6 +2128,110 @@
     <value>احتواء الشبكة على النص</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
+    <value>ضع المؤشر في خلية جدول أو حدد الخلايا لتنسيقها</value>
+    <comment>info message</comment>
+  </data>
+  <data name="FormatCellsDialog.Text" xml:space="preserve">
+    <value>تنسيق الخلايا</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormatCellsDialog_afterHeader" xml:space="preserve">
+    <value>بعد</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_beforeHeader" xml:space="preserve">
+    <value>قبل</value>
+    <comment>list header</comment>
+  </data>
+  <data name="FormatCellsDialog_categoryLabel.Text" xml:space="preserve">
+    <value>فئة</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_ColumnsScope" xml:space="preserve">
+    <value>الأعمدة بأكملها (الأعمدة: {0}، الخلايا: {1})</value>
+    <comment>radio button, {0} is a count of columns and {1} a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_Currency" xml:space="preserve">
+    <value>عملة</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_Date" xml:space="preserve">
+    <value>تاريخ</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_DateTime" xml:space="preserve">
+    <value>التاريخ والوقت</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_decimalsLabel.Text" xml:space="preserve">
+    <value>المنازل العشرية</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_DefaultSymbol" xml:space="preserve">
+    <value>(اللغة الافتراضية)</value>
+    <comment>currency symbol choice</comment>
+  </data>
+  <data name="FormatCellsDialog_Detected" xml:space="preserve">
+    <value>تم الكشف: {0}</value>
+    <comment>label, {0} is the name of a format category</comment>
+  </data>
+  <data name="FormatCellsDialog_fractionRadio.Text" xml:space="preserve">
+    <value>القيمة عبارة عن كسر (0.25 يصبح 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_General" xml:space="preserve">
+    <value>عام</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_negativeLabel.Text" xml:space="preserve">
+    <value>أرقام سلبية</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Number" xml:space="preserve">
+    <value>رقم</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_patternLabel.Text" xml:space="preserve">
+    <value>يكتب</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Percent" xml:space="preserve">
+    <value>نسبة مئوية</value>
+    <comment>format category</comment>
+  </data>
+  <data name="FormatCellsDialog_percentRadio.Text" xml:space="preserve">
+    <value>القيمة هي بالفعل نسبة مئوية (25 تصبح 25%)</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormatCellsDialog_previewLabel.Text" xml:space="preserve">
+    <value>معاينة</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_scopeGroup.Text" xml:space="preserve">
+    <value>تنطبق على</value>
+    <comment>group box</comment>
+  </data>
+  <data name="FormatCellsDialog_SelectedScope" xml:space="preserve">
+    <value>الخلايا المحددة (الخلايا: {0})</value>
+    <comment>radio button, {0} is a count of cells</comment>
+  </data>
+  <data name="FormatCellsDialog_separatorBox.Text" xml:space="preserve">
+    <value>استخدم 1000 فاصل</value>
+    <comment>check box</comment>
+  </data>
+  <data name="FormatCellsDialog_Skipped" xml:space="preserve">
+    <value>(تخطي)</value>
+    <comment>preview of a cell that cannot be formatted</comment>
+  </data>
+  <data name="FormatCellsDialog_symbolLabel.Text" xml:space="preserve">
+    <value>رمز</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormatCellsDialog_Time" xml:space="preserve">
+    <value>وقت</value>
+    <comment>format category</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>يجب أن تكون الخلايا المحددة في نفس الصف أو في نفس العمود</value>
     <comment>warning message</comment>
@@ -2344,6 +2532,10 @@
     <value>لا توجد صيغ في هذه الصفحة</value>
     <comment>highlight command message</comment>
   </data>
+  <data name="HighlightsSheet_darkRadio.Text" xml:space="preserve">
+    <value>صفحة مظلمة</value>
+    <comment>radio</comment>
+  </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>عميق</value>
     <comment>radio</comment>
@@ -2357,8 +2549,16 @@
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>سوف يتنقل أمر أداة التمييز بين ألوان السمة المختارة. </value>
+    <value>سيتنقل أمر التمييز بين ألوان السمة المختارة. تعتمد الألوان على خلفية الصفحة؛ اختر Light أو Dark لمعاينتها.</value>
     <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_lightRadio.Text" xml:space="preserve">
+    <value>صفحة خفيفة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_modeLabel.Text" xml:space="preserve">
+    <value>إظهار الخلفية كـ:</value>
+    <comment>label</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
     <value>ساطع</value>
@@ -3229,6 +3429,70 @@
   <data name="MarkdownSheet_Title" xml:space="preserve">
     <value>تخفيض السعر</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="MoreColorPicker_automatic" xml:space="preserve">
+    <value>تلقائي</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_blue" xml:space="preserve">
+    <value>أزرق</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_collapse" xml:space="preserve">
+    <value>عرض خيارات أقل</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_colorModel" xml:space="preserve">
+    <value>نموذج اللون:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_current" xml:space="preserve">
+    <value>حاضِر</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_currentTip" xml:space="preserve">
+    <value>انقر نقرًا مزدوجًا لإعادة التعيين</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_darkPage" xml:space="preserve">
+    <value>تظهر الألوان كما في صفحة داكنة</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_expand" xml:space="preserve">
+    <value>عرض المزيد من الخيارات</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_green" xml:space="preserve">
+    <value>أخضر</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hex" xml:space="preserve">
+    <value>عرافة:</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_hue" xml:space="preserve">
+    <value>هوى</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_luminance" xml:space="preserve">
+    <value>النصوع</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_recentColors" xml:space="preserve">
+    <value>الألوان الأخيرة</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_red" xml:space="preserve">
+    <value>أحمر</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_standardColors" xml:space="preserve">
+    <value>الألوان القياسية</value>
+    <comment>color picker</comment>
+  </data>
+  <data name="MoreColorPicker_themeColors" xml:space="preserve">
+    <value>ألوان الموضوع</value>
+    <comment>color picker</comment>
   </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>إخفاء هذه الرسالة في المستقبل</value>
@@ -4523,6 +4787,14 @@ ISO-code then comma then language name</comment>
     <value>عرض معلومات حول OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribAddAnnotationButton_Label" xml:space="preserve">
+    <value>إضافة تعليق توضيحي</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
+    <value>قم بتمييز النص المحدد وأضف تعليقًا توضيحيًا مطابقًا بجانبه</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>إضافة تعليق</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
@@ -4616,7 +4888,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Label" xml:space="preserve">
-    <value>علق على الألوان السداسية</value>
+    <value>أضف عينات الألوان السداسية</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribAnnotateHexColorsButton_Screentip" xml:space="preserve">
@@ -5040,6 +5312,14 @@ ISO-code then comma then language name</comment>
     <value>مقتطفاتي</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribCustomSortButton_Label" xml:space="preserve">
+    <value>فرز مخصص</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribCustomSortButton_Screentip" xml:space="preserve">
+    <value>فرز الجدول حسب أعمدة متعددة</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>الأنماط الخاصة بي</value>
     <comment>ribbon menu NODUP</comment>
@@ -5242,6 +5522,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>تغيير حجم شبكة الخلفية لتتناسب مع حجم الخط المشترك</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFormatCellsButton_Label" xml:space="preserve">
+    <value>تنسيق الخلايا</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFormatCellsButton_Screentip" xml:space="preserve">
+    <value>قم بتنسيق الخلايا أو الأعمدة المحددة كأرقام أو نسب مئوية أو عملة أو تواريخ أو أوقات</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>استبدل عناوين URL بالصور</value>
@@ -6200,6 +6488,14 @@ ISO-code then comma then language name</comment>
     <value>جدولة مسح الهاشتاج</value>
     <comment>palette command</comment>
   </data>
+  <data name="ribSearchAndHighlightButton_Label" xml:space="preserve">
+    <value>بحث وتسليط الضوء</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSearchAndHighlightButton_Screentip" xml:space="preserve">
+    <value>ابحث عن النص وقم بتمييز كل تطابق باستخدام لون التمييز التالي أو اللون المختار</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>البحث والاستبدال</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -6427,6 +6723,14 @@ ISO-code then comma then language name</comment>
   <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
     <value>إعادة تلوين الصور باستخدام النمط المحدد</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Label" xml:space="preserve">
+    <value>تلخيص النقاط البارزة</value>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribSummarizeHighlightsButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء صفحة تقرير لجميع النصوص المميزة في الصفحة أو القسم أو مجموعة المقاطع أو دفتر الملاحظات أو كافة دفاتر الملاحظات</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
     <value>مزامنة دفاتر الملاحظات</value>
@@ -6695,6 +6999,30 @@ ISO-code then comma then language name</comment>
     <value>دفاتر محددة ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndHighlightCommand_Results" xml:space="preserve">
+    <value>تم تمييز {0} من التطابقات في صفحات {1}.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightButton.Text" xml:space="preserve">
+    <value>تسليط الضوء على الكل</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_highlightOneButton.Text" xml:space="preserve">
+    <value>تسليط الضوء</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_next" xml:space="preserve">
+    <value>التالي في التناوب</value>
+    <comment>highlighter color choice</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_Text" xml:space="preserve">
+    <value>بحث وتسليط الضوء</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndHighlightDialog_withLabel.Text" xml:space="preserve">
+    <value>تسليط الضوء مع</value>
+    <comment>label</comment>
+  </data>
   <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
     <value>لم يتم العثور على أي تطابقات في هذه الصفحة.</value>
     <comment>message box</comment>
@@ -6703,13 +7031,21 @@ ISO-code then comma then language name</comment>
     <value>تم استبدال {0} من التطابقات في {1} صفحة</value>
     <comment>message box</comment>
   </data>
+  <data name="SearchAndReplaceDialog_findNextButton.Text" xml:space="preserve">
+    <value>ابحث عن التالي</value>
+    <comment>button</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>حالة مباراة</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
-    <value>استبدله بـ XML الخام</value>
-    <comment>checkbox</comment>
+  <data name="SearchAndReplaceDialog_matchStatus" xml:space="preserve">
+    <value>مطابقة {0} من {1}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchWrapped" xml:space="preserve">
+    <value>التطابق {0} من {1}، تابع من الأعلى</value>
+    <comment>status label</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>استخدم التعبيرات العادية</value>
@@ -7477,6 +7813,82 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="StylizeImagesDialog_Text" xml:space="preserve">
     <value>تبسيط الصور</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SummarizeHighlights_AllNotebooks" xml:space="preserve">
+    <value>جميع الدفاتر</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Explain" xml:space="preserve">
+    <value>تم تجميعها حسب دفتر الملاحظات ومجموعة الأقسام والقسم. يرتبط كل اسم صفحة بالصفحة؛ روابط "الانتقال إلى الفقرة" إلى الفقرة.</value>
+    <comment>report intro</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterAfter" xml:space="preserve">
+    <value>تم التعديل بعد {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_FilterBefore" xml:space="preserve">
+    <value>تم التعديل قبل {0}</value>
+    <comment>report date filter; {0} is a date</comment>
+  </data>
+  <data name="SummarizeHighlights_GoTo" xml:space="preserve">
+    <value>انتقل إلى الفقرة</value>
+    <comment>report link</comment>
+  </data>
+  <data name="SummarizeHighlights_Modified" xml:space="preserve">
+    <value>تم التعديل {0}</value>
+    <comment>report citation</comment>
+  </data>
+  <data name="SummarizeHighlights_None" xml:space="preserve">
+    <value>لم يتم العثور على نص مميز في النطاق المحدد</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SummarizeHighlights_Summary" xml:space="preserve">
+    <value>النطاق: {0} · {1} النقاط البارزة في {2} فقرة في {3} صفحة</value>
+    <comment>report intro; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisPage" xml:space="preserve">
+    <value>هذه الصفحة</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_ThisSection" xml:space="preserve">
+    <value>هذا القسم</value>
+    <comment>report scope name</comment>
+  </data>
+  <data name="SummarizeHighlights_Title" xml:space="preserve">
+    <value>النقاط البارزة - {0}</value>
+    <comment>report page title; {0} is the scope name</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
+    <value>جميع التواريخ</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
+    <value>تصفية حسب</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Group" xml:space="preserve">
+    <value>كافة الأقسام الموجودة في مجموعة المقاطع الحالية</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Intro" xml:space="preserve">
+    <value>تلخيص النص المميز في:</value>
+    <comment>dialog label</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedAfter" xml:space="preserve">
+    <value>تم التعديل بعد</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_ModifiedBefore" xml:space="preserve">
+    <value>تم التعديل من قبل</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Page" xml:space="preserve">
+    <value>الصفحة الحالية</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Text" xml:space="preserve">
+    <value>تلخيص النقاط البارزة</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">

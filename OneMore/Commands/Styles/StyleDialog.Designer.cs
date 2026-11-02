@@ -129,6 +129,7 @@
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
 			this.beforeLabel.Text = "Space Before:";
+			this.beforeLabel.Scrubber = this.spaceBeforeSpinner;
 			this.beforeLabel.ThemedBack = null;
 			this.beforeLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.beforeLabel, "Spacing before a paragraph");
@@ -141,6 +142,7 @@
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
 			this.afterLabel.Text = "Space After:";
+			this.afterLabel.Scrubber = this.spaceAfterSpinner;
 			this.afterLabel.ThemedBack = null;
 			this.afterLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.afterLabel, "Spacing after a paragraph");
@@ -593,6 +595,7 @@
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
 			this.spacingLabel.Text = "Spacing:";
+			this.spacingLabel.Scrubber = this.spacingSpinner;
 			this.spacingLabel.ThemedBack = null;
 			this.spacingLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.spacingLabel, "Spacing between lines in a paragraph");

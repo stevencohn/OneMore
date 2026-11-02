@@ -502,53 +502,52 @@ namespace River.OneMoreAddIn.Models
 				// reverse, extracting text and stopping when matching word delimiter
 				for (var i = nodes.Count - 1; i >= 0; i--)
 				{
+					// a line break always ends a word
+					if (nodes[i] is XElement br && br.Name.LocalName == "br")
+						break;
+
 					if (nodes[i] is XText text)
 					{
+						if (text.Value.Length == 0)
+							continue;
+
 						// ends with delimiter so can't be part of current word
 						if (text.Value.EndsWithWhitespace())
 							break;
 
-						// extract last word and pump through the editor
+						// extract last word and pump through the editor; no word means the
+						// cursor is not touching one, e.g. it follows punctuation
 						var pair = text.Value.SplitAtLastWord();
 						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// last word of this XText
-							text.Value = pair.Item2;
-							text.AddAfterSelf(edit(new XText(pair.Item1)));
-						}
+							break;
 
-						// remaining text has a word delimiter
-						if (text.Value.StartsWithWhitespace())
+						text.Value = pair.Item2;
+						text.AddAfterSelf(edit(new XText(pair.Item1)));
+
+						// something precedes the word in this node so the word starts here
+						if (text.Value.Length > 0)
 							break;
 					}
 					else if (nodes[i] is XElement span)
 					{
+						if (span.Value.Length == 0)
+							continue;
+
 						// ends with delimiter so can't be part of current word
 						if (span.Value.EndsWithWhitespace())
 							break;
 
 						// extract last word and pump through editor
 						var word = span.ExtractLastWord();
-						if (word == null)
-						{
-							// edit entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// last word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddAfterSelf(spawn);
-						}
+						if (string.IsNullOrEmpty(word))
+							break;
 
-						// remaining text has a word delimiter
-						if (span.Value.StartsWithWhitespace())
+						var spawn = new XElement(span.Name, span.Attributes(), word);
+						edit(spawn);
+						span.AddAfterSelf(spawn);
+
+						// something precedes the word in this node so the word starts here
+						if (span.Value.Length > 0)
 							break;
 					}
 				}
@@ -571,53 +570,52 @@ namespace River.OneMoreAddIn.Models
 				// extract text and stop when matching word delimiter
 				for (var i = 0; i < nodes.Count; i++)
 				{
+					// a line break always ends a word
+					if (nodes[i] is XElement br && br.Name.LocalName == "br")
+						break;
+
 					if (nodes[i] is XText text)
 					{
+						if (text.Value.Length == 0)
+							continue;
+
 						// starts with delimiter so can't be part of current word
 						if (text.Value.StartsWithWhitespace())
 							break;
 
-						// extract first word and pump through editor
+						// extract first word and pump through editor; no word means the
+						// cursor is not touching one, e.g. it precedes punctuation
 						var pair = text.Value.SplitAtFirstWord();
 						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// first word of this XText
-							text.Value = pair.Item2;
-							text.AddBeforeSelf(edit(new XText(pair.Item1)));
-						}
+							break;
 
-						// remaining text has a word delimiter
-						if (text.Value.EndsWithWhitespace())
+						text.Value = pair.Item2;
+						text.AddBeforeSelf(edit(new XText(pair.Item1)));
+
+						// something follows the word in this node so the word ends here
+						if (text.Value.Length > 0)
 							break;
 					}
 					else if (nodes[i] is XElement span)
 					{
-						// ends with delimiter so can't be part of current word
+						if (span.Value.Length == 0)
+							continue;
+
+						// starts with delimiter so can't be part of current word
 						if (span.Value.StartsWithWhitespace())
 							break;
 
 						// extract first word and pump through editor
 						var word = span.ExtractFirstWord();
-						if (word == null)
-						{
-							// eidt entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// first word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddBeforeSelf(spawn);
-						}
+						if (string.IsNullOrEmpty(word))
+							break;
 
-						// remaining text has a word delimiter
-						if (span.Value.EndsWithWhitespace())
+						var spawn = new XElement(span.Name, span.Attributes(), word);
+						edit(spawn);
+						span.AddBeforeSelf(spawn);
+
+						// something follows the word in this node so the word ends here
+						if (span.Value.Length > 0)
 							break;
 					}
 				}

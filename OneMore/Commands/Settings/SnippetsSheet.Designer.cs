@@ -224,6 +224,7 @@ namespace River.OneMoreAddIn.Settings
 			this.boxWidthLabel.Size = new System.Drawing.Size(70, 20);
 			this.boxWidthLabel.TabIndex = 1;
 			this.boxWidthLabel.Text = "Box width:";
+			this.boxWidthLabel.Scrubber = this.boxWidthBox;
 			this.boxWidthLabel.ThemedBack = null;
 			this.boxWidthLabel.ThemedFore = null;
 			//

@@ -89,6 +89,7 @@ namespace River.OneMoreAddIn.Commands
 			this.yearLabel.Size = new System.Drawing.Size(43, 20);
 			this.yearLabel.TabIndex = 2;
 			this.yearLabel.Text = "Year";
+			this.yearLabel.Scrubber = this.yearBox;
 			this.yearLabel.ThemedBack = null;
 			this.yearLabel.ThemedFore = null;
 			// 

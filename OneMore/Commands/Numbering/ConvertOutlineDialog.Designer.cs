@@ -83,6 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			this.depthLabel.Size = new System.Drawing.Size(120, 20);
 			this.depthLabel.TabIndex = 0;
 			this.depthLabel.Text = "Heading depth";
+			this.depthLabel.Scrubber = this.depthBox;
 			this.depthLabel.ThemedBack = null;
 			this.depthLabel.ThemedFore = null;
 			//

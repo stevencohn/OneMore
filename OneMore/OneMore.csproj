@@ -750,6 +750,8 @@
     </Compile>
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownWriter.cs" />
+    <Compile Include="Commands\File\Markdown\LatexToMathMl.cs" />
+    <Compile Include="Commands\File\Markdown\MathMlToLatex.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -765,7 +767,9 @@
       <DependentUpon>CreatePagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
+    <Compile Include="Commands\Edit\AddAnnotationCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
+    <Compile Include="Commands\Edit\HighlightRotator.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Images\SelectImagesCommand.cs" />
@@ -1175,6 +1179,12 @@
     <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Page\WordCountCommand.cs" />
+    <Compile Include="Commands\Tables\Formatting\CellFormat.cs" />
+    <Compile Include="Commands\Tables\Formatting\CellFormatter.cs" />
+    <Compile Include="Commands\Tables\CustomSortCommand.cs" />
+    <Compile Include="Commands\Tables\Formatting\FormatCellsCommand.cs" />
+    <Compile Include="Commands\Tables\SortRule.cs" />
+    <Compile Include="Commands\Tables\TableSorter.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
@@ -1335,6 +1345,18 @@
     <Compile Include="UI\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\CustomSortDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\CustomSortDialog.Designer.cs">
+      <DependentUpon>CustomSortDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tables\Formatting\FormatCellsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\Formatting\FormatCellsDialog.Designer.cs">
+      <DependentUpon>FormatCellsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tables\TextToTableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1390,6 +1412,11 @@
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\Search\MatchInfo.cs" />
+    <Compile Include="Commands\Search\SearchAndHighlightCommand.cs" />
+    <Compile Include="Commands\Search\SummarizeHighlightsCommand.cs" />
+    <Compile Include="Commands\Search\SummarizeHighlightsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Commands\Search\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\Search\Atoms\AtomicFactory.cs" />
     <Compile Include="Commands\Search\Atoms\ElementAtom.cs" />
@@ -1430,12 +1457,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\SearchAndReplaceSessionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Commands\Search\SearchAndReplaceSessionDialog.Designer.cs">
-      <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\Search\SearchAndReplaceSession.cs" />
     <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1443,6 +1465,18 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BasicColors.cs" />
+    <Compile Include="UI\ColorPicker\ColorMapControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\ColorMath.cs" />
+    <Compile Include="UI\ColorPicker\ColorPalette.cs" />
+    <Compile Include="UI\ColorPicker\ColorSwatchPane.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\MoreColorPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ColorPicker\RecentColors.cs" />
     <Compile Include="Helpers\Extensions\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
@@ -1511,9 +1545,6 @@
     </Compile>
     <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\MoreColorDialog.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Snippets\Emoji\EmojiDialog.cs">
       <SubType>Form</SubType>
@@ -1610,6 +1641,9 @@
     <Content Include="Colorizer\Languages\bash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\batch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\cpp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1653,6 +1687,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\r.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\regex.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\registry.png">
@@ -1734,9 +1771,6 @@
     <EmbeddedResource Include="Commands\References\EmbedDialog.resx">
       <DependentUpon>EmbedDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\SearchAndReplaceSessionDialog.resx">
-      <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\TableThemesSheet.resx">
       <DependentUpon>TableThemesSheet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1777,6 +1811,9 @@
     <None Include="Colorizer\Languages\bash.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Colorizer\Languages\batch.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Languages\json.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1793,6 +1830,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\r.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Colorizer\Languages\regex.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\registry.json">
@@ -2267,6 +2307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\CustomSortDialog.resx">
+      <DependentUpon>CustomSortDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\Formatting\FormatCellsDialog.resx">
+      <DependentUpon>FormatCellsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>

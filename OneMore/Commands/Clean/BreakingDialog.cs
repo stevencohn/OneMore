@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3003  // Type is not CLS-compliant
@@ -29,6 +29,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			ActiveControl = okButton;
 		}
 
 

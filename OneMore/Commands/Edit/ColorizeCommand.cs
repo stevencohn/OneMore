@@ -110,69 +110,130 @@ namespace River.OneMoreAddIn.Commands
 
 			var updated = false;
 
+			// neighboring runs are colorized together as one batch so constructs that span
+			// paragraphs can be recognized; batches never cross cells, outlines or equations
+			var batch = new List<RunInfo>();
+			var lines = new List<string>();
+			XElement batchKey = null;
+
 			foreach (var run in runs.ToList())
 			{
 				// never touch mathML equations
 				if (run.IsMathML())
 				{
+					updated |= ColorizeBatch(colorizer, batch, lines);
 					continue;
 				}
+
+				var container = run.Ancestors(ns + "Cell").FirstOrDefault()
+					?? run.Ancestors(ns + "Outline").FirstOrDefault();
+
+				if (batch.Count > 0 && container != batchKey)
+				{
+					updated |= ColorizeBatch(colorizer, batch, lines);
+				}
+
+				batchKey = container;
 
 				run.SetAttributeValue("lang", "yo");
 				run.Parent.Attributes("spaceAfter").Remove();
 				run.Parent.Attributes("spaceBefore").Remove();
-				var runoffs = new List<XElement>();
 
-				var cdata = run.GetCData();
+				var info = new RunInfo
+				{
+					Run = run,
+					Cdata = run.GetCData(),
+					First = lines.Count
+				};
 
-				if (cdata.Value.Contains("<br>"))
+				if (info.Cdata.Value.Contains("<br>"))
 				{
 					// special handling to expand soft line breaks (Shift + Enter) into
 					// hard breaks, splitting the line into multiple ines.
 					// presume that br is always followed by newline...
 
 					// need to move children to last runoff to maintain positioning
-					var children = run.Parent.Elements(ns + "OEChildren").ToList();
-					if (children.Any())
-					{
-						children.ForEach(c => c.Remove());
-					}
+					info.Children = run.Parent.Elements(ns + "OEChildren").ToList();
+					info.Children.ForEach(c => c.Remove());
 
-					var text = cdata.GetWrapper().Value;
+					var text = info.Cdata.GetWrapper().Value;
 					text = Regex.Replace(text, @"\r\n", "\n");
 
-					var lines = text.Split(new string[] { "\n" }, StringSplitOptions.None);
-
-					// update current cdata with first line
-					cdata.Value = colorizer.ColorizeOne(lines[0]);
-
-					// collect subsequent lines from soft-breaks
-					for (int i = 1; i < lines.Length; i++)
-					{
-						var colorized = colorizer.ColorizeOne(lines[i]);
-
-						runoffs.Add(new XElement(ns + "OE",
-							run.Parent.Attributes(),
-							new XElement(ns + "T", new XCData(colorized)
-							)));
-					}
-
-					run.Parent.AddAfterSelf(runoffs);
-
-					// restore children, appending to last runoff
-					if (children.Any())
-					{
-						runoffs[runoffs.Count - 1].Add(children);
-					}
-
-					updated = true;
+					lines.AddRange(text.Split(new string[] { "\n" }, StringSplitOptions.None));
 				}
 				else
 				{
-					cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
-					updated = true;
+					lines.Add(info.Cdata.GetWrapper().Value);
 				}
 
+				info.Count = lines.Count - info.First;
+				batch.Add(info);
+			}
+
+			updated |= ColorizeBatch(colorizer, batch, lines);
+
+			return updated;
+		}
+
+
+		private sealed class RunInfo
+		{
+			public XElement Run;
+			public XCData Cdata;
+			public List<XElement> Children;
+			public int First;
+			public int Count;
+		}
+
+
+		private bool ColorizeBatch(Colorizer colorizer, List<RunInfo> batch, List<string> lines)
+		{
+			if (batch.Count == 0)
+			{
+				return false;
+			}
+
+			var colorized = colorizer.ColorizeMany(lines);
+			if (colorized.Count != lines.Count)
+			{
+				// a run contained a raw newline; fall back to colorizing each line alone
+				colorized = lines.Select(colorizer.ColorizeOne).ToList();
+			}
+
+			foreach (var info in batch)
+			{
+				var run = info.Run;
+				var runoffs = new List<XElement>();
+
+				// update current cdata with first line
+				info.Cdata.Value = colorized[info.First];
+
+				// collect subsequent lines from soft-breaks
+				for (var i = 1; i < info.Count; i++)
+				{
+					runoffs.Add(new XElement(ns + "OE",
+						run.Parent.Attributes(),
+						new XElement(ns + "T", new XCData(colorized[info.First + i])
+						)));
+				}
+
+				if (runoffs.Count > 0)
+				{
+					run.Parent.AddAfterSelf(runoffs);
+				}
+
+				// restore children, appending to last runoff
+				if (info.Children is not null && info.Children.Count > 0)
+				{
+					if (runoffs.Count > 0)
+					{
+						runoffs[runoffs.Count - 1].Add(info.Children);
+					}
+					else
+					{
+						run.Parent.Add(info.Children);
+					}
+				}
 
 				if (run.GetAttributeValue(DepthAttributeName, out int depth, 1) && depth == 0)
 				{
@@ -193,7 +254,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return updated;
+			batch.Clear();
+			lines.Clear();
+			return true;
 		}
 
 

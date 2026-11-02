@@ -1,5 +1,5 @@
 //************************************************************************************************
-// Copyright © 2026 Steven M Cohn.  All rights reserved.
+// Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001  // Type is not CLS-compliant

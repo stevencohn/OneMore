@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn.Commands
 		private int selectedFontRoleIndex = -1;
 		private bool reorganizing;
 		private bool listChanged;
+		private Color pageColor;
+		private bool darkPage;
+		private Color pagePaint;
 
 
 		public EditTableThemesDialog()
@@ -101,9 +104,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public EditTableThemesDialog(List<TableTheme> systemThemes, List<TableTheme> userThemes)
+		public EditTableThemesDialog(
+			List<TableTheme> systemThemes, List<TableTheme> userThemes, Color pageColor = default)
 			: this()
 		{
+			// the page background determines how OneNote renders colors, see MoreColorPicker
+			this.pageColor = pageColor;
+
+			// in dark mode, draw the preview and rows against the page and render colors as OneNote does
+			darkPage = MoreColorPicker.IsDarkPage(pageColor);
+			if (darkPage)
+			{
+				pagePaint = pageColor.IsEmpty || pageColor.A == 0 ? BasicColors.BlackSmoke : pageColor;
+				painter.SetPage(pagePaint, true);
+			}
+
+			foreach (var row in colorRows)
+			{
+				row.PageColor = pageColor;
+			}
+
 			this.systemThemes = systemThemes;
 			this.userThemes = userThemes;
 
@@ -132,6 +152,13 @@ namespace River.OneMoreAddIn.Commands
 			sampleBorderPanel.BackColor = manager.GetColor("Window");
 
 			base.OnLoad(e);
+
+			if (darkPage)
+			{
+				// theming resets these, so apply after the walk
+				sampleBorderPanel.BackColor = pagePaint;
+				sampleLabel.BackColor = pagePaint;
+			}
 
 			// MoreForm's one-time ILoadControl walk (just run, inside base.OnLoad) reset
 			// every hex box's ForeColor to the plain "WindowText" default (MoreTextBox.OnLoad
@@ -495,9 +522,18 @@ namespace River.OneMoreAddIn.Commands
 			sampleFont = font;
 			previous?.Dispose();
 
-			sampleLabel.ForeColor = colorfont.Foreground.IsEmpty
-				? ThemeManager.Instance.GetColor("ControlText")
-				: colorfont.Foreground;
+			if (darkPage)
+			{
+				// OneNote renders text colors with inverted lightness on a dark page
+				sampleLabel.ForeColor = ColorPalette.ToDark(
+					colorfont.Foreground.IsEmpty ? Color.Black : colorfont.Foreground);
+			}
+			else
+			{
+				sampleLabel.ForeColor = colorfont.Foreground.IsEmpty
+					? ThemeManager.Instance.GetColor("ControlText")
+					: colorfont.Foreground;
+			}
 		}
 
 
@@ -520,16 +556,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(fontToolstrip.Location);
 
-			using var dialog = new MoreColorDialog("Text Color",
+			using var picker = new MoreColorPicker(pageColor,
 				location.X + colorButton.Bounds.Location.X,
-				location.Y + colorButton.Bounds.Height + 4)
+				location.Y + colorButton.Bounds.Bottom + 4,
+				"Text Color")
 			{
-				Color = colorfont.Foreground
+				Color = colorfont.Foreground,
+				AutomaticVisible = false
 			};
 
-			if (dialog.ShowDialog(this) == DialogResult.OK)
+			if (picker.ShowDialog(this) == DialogResult.OK)
 			{
-				colorfont.Foreground = dialog.Color;
+				colorfont.Foreground = picker.Color;
 				UpdateSample();
 			}
 		}

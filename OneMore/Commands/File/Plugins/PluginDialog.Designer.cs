@@ -336,6 +336,7 @@
 			this.timeoutLabel.Size = new System.Drawing.Size(66, 20);
 			this.timeoutLabel.TabIndex = 21;
 			this.timeoutLabel.Text = "Timeout";
+			this.timeoutLabel.Scrubber = this.timeoutBox;
 			// 
 			// targetBox
 			// 

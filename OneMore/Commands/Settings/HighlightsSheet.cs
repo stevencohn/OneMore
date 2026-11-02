@@ -4,14 +4,20 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
 
 	internal partial class HighlightsSheet : SheetBase
 	{
+		// box metrics are in design pixels, authored at 150% (144 DPI) where the pictures
+		// are DesignWidth wide; they are scaled by the ratio of the actual picture width
+		private const int DesignWidth = 436;
 		private const int BoxSpacing = 6;
 		private const int BoxSize = 37;
 		private const int BoxTop = 2;
@@ -35,7 +41,10 @@ namespace River.OneMoreAddIn.Settings
 					"extendBox",
 					"normalRadio",
 					"fadedRadio",
-					"deepRadio"
+					"deepRadio",
+					"modeLabel",
+					"lightRadio",
+					"darkRadio"
 				});
 			}
 
@@ -52,11 +61,20 @@ namespace River.OneMoreAddIn.Settings
 
 			schemes = new HighlightColorSchemes();
 
+			backdrop.Paint += PaintBackdropBorder;
 			normalPicture.Paint += PaintScheme;
 			fadedPicture.Paint += PaintScheme;
 			deepPicture.Paint += PaintScheme;
 
 			extendBox.Checked = settings.Get<bool>("extended");
+
+			// preview defaults to the Office theme; not persisted
+			if (Office.IsBlackThemeEnabled())
+			{
+				darkRadio.Checked = true;
+			}
+
+			ApplyBackdrop();
 		}
 
 
@@ -101,6 +119,36 @@ namespace River.OneMoreAddIn.Settings
 			}
 		}
 
+		private bool Dark => darkRadio.Checked;
+
+
+		private void ChangeMode(object sender, System.EventArgs e)
+		{
+			ApplyBackdrop();
+		}
+
+
+		// one backdrop behind all rows emulates a page of the selected color
+		private void ApplyBackdrop()
+		{
+			var color = Dark ? ColorPalette.Theme(true)[0] : Color.White;
+			backdrop.BackColor = color;
+			normalPicture.BackColor = color;
+			fadedPicture.BackColor = color;
+			deepPicture.BackColor = color;
+			DrawSchemes(null, null);
+		}
+
+
+		private void PaintBackdropBorder(object sender, PaintEventArgs e)
+		{
+			using (var pen = new Pen(ThemeManager.Instance.GetColor("ButtonBorder")))
+			{
+				e.Graphics.DrawRectangle(pen, 0, 0, backdrop.Width - 1, backdrop.Height - 1);
+			}
+		}
+
+
 		private void DrawSchemes(object sender, System.EventArgs e)
 		{
 			normalPicture.Invalidate();
@@ -121,42 +169,53 @@ namespace River.OneMoreAddIn.Settings
 			};
 
 
-			DrawScheme(e.Graphics, picture.BackColor, scheme, extendBox.Checked);
+			DrawScheme(e.Graphics, picture.Width, picture.BackColor, scheme.GetSet(Dark), extendBox.Checked, Dark);
 		}
 
 
-		private static void DrawScheme(
-			Graphics g, Color backColor, HighlightColorScheme scheme, bool extended)
+		private void DrawScheme(
+			Graphics g, int width, Color backColor, HighlightColorSet scheme, bool extended, bool dark)
 		{
-			// LightGrayBorder = #E2E4E7
-
 			g.Clear(backColor);
 
-			int x = 0;
+			var scale = (float)width / DesignWidth;
+			var size = (int)Math.Round(BoxSize * scale);
+			var spacing = (int)Math.Round(BoxSpacing * scale);
+			var top = (int)Math.Round(BoxTop * scale);
+
+			var border = dark ? Pens.DimGray : Pens.LightGray;
+			var fore = dark ? Color.White : Color.Black;
+
+			var x = 0;
 			foreach (var color in scheme.Colors)
 			{
-				using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
-				{
-					g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-					g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
-				}
-
-				x += BoxSize + BoxSpacing;
+				DrawBox(g, x, top, size, color, border, fore);
+				x += size + spacing;
 			}
 
 			if (extended)
 			{
 				foreach (var color in scheme.Extended)
 				{
-					using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
-					{
-						g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
-						g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
-					}
-
-					x += BoxSize + BoxSpacing;
+					DrawBox(g, x, top, size, color, border, fore);
+					x += size + spacing;
 				}
 			}
+		}
+
+
+		private void DrawBox(
+			Graphics g, int x, int top, int size, string color, Pen border, Color fore)
+		{
+			using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
+			{
+				g.FillRectangle(brush, x, top, size, size);
+				g.DrawRectangle(border, x, top, size - 1, size - 1);
+			}
+
+			TextRenderer.DrawText(g, "Aa", Font, new Rectangle(x, top, size, size), fore,
+				TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
+				TextFormatFlags.NoPadding);
 		}
 	}
 }

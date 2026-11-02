@@ -239,6 +239,7 @@ namespace River.OneMoreAddIn.Settings
 			this.lengthLabel.Size = new System.Drawing.Size(63, 20);
 			this.lengthLabel.TabIndex = 2;
 			this.lengthLabel.Text = "Length:";
+			this.lengthLabel.Scrubber = this.lengthBox;
 			this.lengthLabel.ThemedBack = null;
 			this.lengthLabel.ThemedFore = null;
 			// 

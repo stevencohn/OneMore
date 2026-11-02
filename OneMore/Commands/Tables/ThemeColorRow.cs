@@ -32,6 +32,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly MoreLinkLabel resetLink;
 
 		private Color color = Color.Empty;
+		private Color? pageColor;
 		private bool suppressEvents;
 		private bool showingPlaceholder;
 
@@ -165,22 +166,35 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Sets the page background the color will be rendered against so the picker can show
+		/// dark-mode colors; if never set, the picker does not apply dark-mode rendering.
+		/// </summary>
+		public Color? PageColor
+		{
+			get => pageColor;
+			set => pageColor = value;
+		}
+
+
 		private void OpenColorDialog()
 		{
 			var location = PointToScreen(Point.Empty);
 
-			using var dialog = new MoreColorDialog(label.Text, location.X + 75, location.Y + 60)
-			{
-				Color = color.IsEmpty ? Color.White : color
-			};
+			using var picker = pageColor.HasValue
+				? new MoreColorPicker(pageColor.Value, location.X + 75, location.Y + 60, label.Text)
+				: new MoreColorPicker(location.X + 75, location.Y + 60, label.Text);
 
-			if (dialog.ShowDialog(FindForm()) != DialogResult.OK)
+			picker.Color = color.IsEmpty ? Color.White : color;
+			picker.AutomaticVisible = false;
+
+			if (picker.ShowDialog(FindForm()) != DialogResult.OK)
 			{
 				return;
 			}
 
-			SetColor(dialog.Color);
-			ColorChanged?.Invoke(this, dialog.Color);
+			SetColor(picker.Color);
+			ColorChanged?.Invoke(this, picker.Color);
 		}
 
 

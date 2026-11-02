@@ -26,7 +26,7 @@
       ]
     },
     {
-      "pattern": "(///)(?:\\s*?(<[/a-zA-Z0-9\\s\"=]+>))*([^\\r\\n]*)",
+      "pattern": "(///)(?:\\s*?(<[/a-zA-Z0-9\\s\\\"=]+>))*([^\\r\\n]*)",
       "captures": [
         "XmlDocTag",
         "XmlDocTag",
@@ -40,15 +40,27 @@
       ]
     },
     {
-      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "pattern": "(?s)(\\$*\"\"\"(?:.|\\n)*?\"\"\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(?s)(@\"(?:\"\"|.)*?\"(?!\"))",
+      "pattern": "('(?:\\\\.[^\\n']*|[^\\n'\\\\])')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)((?:\\$@|@\\$|@)\"(?:\"\"|.)*?\"(?!\"))",
       "captures": [
         "StringCSharpVerbatim"
+      ]
+    },
+    {
+      "pattern": "(\\$\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
       ]
     },
     {
@@ -58,26 +70,51 @@
       ]
     },
     {
-      "pattern": "\\[(assembly|module|type|return|param|method|field|property|event):[^\\]\"]*(\"[^\\n]*?(?<!\\\\)\")?[^\\]]*\\]",
+      "pattern": "\\[(assembly|module|type|return|param|method|field|property|event):[^\\]\\\"]*(\\\"[^\\n]*?(?<!\\\\)\\\")?[^\\]]*\\]",
       "captures": [
         "Keyword",
         "String"
       ]
     },
     {
-      "pattern": "^\\s*(\\#define|\\#elif|\\#else|\\#endif|\\#endregion|\\#error|\\#if|\\#line|\\#pragma|\\#region|\\#undef|\\#warning).*?$",
+      "pattern": "^\\s*(\\#define|\\#elif|\\#else|\\#endif|\\#endregion|\\#error|\\#if|\\#line|\\#nullable|\\#pragma|\\#region|\\#undef|\\#warning).*?$",
       "captures": [
         "PreprocessorKeyword"
       ]
     },
     {
-      "pattern": "\\b(abstract|as|ascending|async|await|base|bool|break|by|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|descending|do|double|dynamic|else|enum|equals|event|explicit|extern|false|file|finally|fixed|float|for|foreach|from|get|goto|group|if|implicit|in|init|int|into|interface|internal|is|join|let|lock|long|managed|namespace|new|nint|notnull|nuint|null|object|on|operator|orderby|out|override|params|partial|private|protected|public|readonly|record|ref|required|return|sbyte|scoped|sealed|select|set|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unmanaged|unsafe|ushort|using|var|virtual|void|volatile|where|while|with|yield)\\b",
+      "pattern": "^\\s*(\\[[A-Za-z_][^\\]\\r\\n]*\\])",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b(break|case|catch|continue|default|do|else|finally|for|foreach|goto|if|return|switch|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(bool|byte|char|decimal|double|dynamic|float|int|long|nint|nuint|object|sbyte|short|string|uint|ulong|ushort|void)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class|struct|interface|enum|record(?:\\s+(?:class|struct))?)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|add|alias|and|as|ascending|async|await|base|by|checked|class|const|delegate|descending|enum|equals|event|explicit|extern|false|file|fixed|from|get|global|group|implicit|in|init|interface|internal|into|is|join|let|lock|managed|nameof|namespace|new|not|notnull|null|on|operator|or|orderby|out|override|params|partial|private|protected|public|readonly|record|ref|remove|required|scoped|sealed|select|set|sizeof|stackalloc|static|struct|this|true|typeof|unchecked|unmanaged|unsafe|using|var|virtual|volatile|when|where|with)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|[0-9][0-9_]*(?:\\.[0-9][0-9_]*)?(?:[eE][+-]?[0-9]+)?)(?:[uU]?[lL]?|[fFdDmM])?)\\b",
       "captures": [
         "Number"
       ]

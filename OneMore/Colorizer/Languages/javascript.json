@@ -1,8 +1,7 @@
 {
   "name": "JavaScript",
   "aliases": [
-    "js",
-    "json"
+    "js"
   ],
   "rules": [
     {
@@ -32,27 +31,64 @@
       ]
     },
     {
-      "pattern": "('[^\\n]*?')",
+      "pattern": "('(?:\\\\.|[^'\\\\\\n])*')",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(\"[^\\n]*?\")",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\n])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "(`[^\\r\\n]*?(?<!\\\\)`)",
+      "pattern": "(?s)(`(?:\\\\.|[^`\\\\])*`)",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "\\b(abstract|async|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|of|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b",
+      "pattern": "(?<=[=\\(:,!&|?{};]\\s*)(/(?![/*])(?:\\\\.|\\[(?:\\\\.|[^\\]\\r\\n\\\\])*\\]|[^/\\\\\\r\\n\\[])+/[dgimsuvy]*)",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(@[A-Za-z_$][\\w$.]*)",
+      "captures": [
+        "Attribute"
+      ]
+    },
+    {
+      "pattern": "\\b(break|case|catch|continue|default|do|else|finally|for|goto|if|return|switch|throw|try|while|yield)\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(Array|BigInt|Boolean|Date|Error|JSON|Map|Math|Number|Object|Promise|RegExp|Set|String|Symbol|WeakMap|WeakSet)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(class)\\s+([A-Za-z_]\\w*)",
+      "captures": [
+        "Keyword",
+        "ClassName"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|async|await|class|const|debugger|delete|enum|export|extends|false|function|implements|import|in|Infinity|instanceof|interface|let|NaN|new|null|of|private|protected|public|static|super|this|true|typeof|undefined|var|void|with)\\b",
       "captures": [
         "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b((?:0[xX][0-9a-fA-F_]+|0[bBoO][01_0-7]+|[0-9][0-9_]*(?:\\.[0-9][0-9_]*)?(?:[eE][+-]?[0-9]+)?)(?:n)?)\\b",
+      "captures": [
+        "Number"
       ]
     }
   ]

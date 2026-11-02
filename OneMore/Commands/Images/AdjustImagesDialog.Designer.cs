@@ -241,6 +241,7 @@ namespace River.OneMoreAddIn.Commands
 			this.widthLabel.Size = new System.Drawing.Size(50, 20);
 			this.widthLabel.TabIndex = 9;
 			this.widthLabel.Text = "Width";
+			this.widthLabel.Scrubber = this.widthBox;
 			// 
 			// heightLabel
 			// 
@@ -250,6 +251,7 @@ namespace River.OneMoreAddIn.Commands
 			this.heightLabel.Size = new System.Drawing.Size(56, 20);
 			this.heightLabel.TabIndex = 10;
 			this.heightLabel.Text = "Height";
+			this.heightLabel.Scrubber = this.heightBox;
 			// 
 			// viewSizeLabel
 			// 
@@ -303,6 +305,7 @@ namespace River.OneMoreAddIn.Commands
 			this.presetLabel.Size = new System.Drawing.Size(50, 20);
 			this.presetLabel.TabIndex = 15;
 			this.presetLabel.Text = "Width";
+			this.presetLabel.Scrubber = this.presetBox;
 			// 
 			// imageSizeLabel
 			// 
@@ -387,7 +390,7 @@ namespace River.OneMoreAddIn.Commands
 			this.qualityLabel.Size = new System.Drawing.Size(57, 20);
 			this.qualityLabel.TabIndex = 1;
 			this.qualityLabel.Text = "Quality";
-			this.qualityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.qualityLabel.Scrubber = this.qualBox;
 			// 
 			// qualBar
 			// 
@@ -434,7 +437,7 @@ namespace River.OneMoreAddIn.Commands
 			this.opacityLabel.Size = new System.Drawing.Size(62, 20);
 			this.opacityLabel.TabIndex = 24;
 			this.opacityLabel.Text = "Opacity";
-			this.opacityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.opacityLabel.Scrubber = this.opacityBox;
 			// 
 			// previewGroup
 			// 
@@ -474,7 +477,7 @@ namespace River.OneMoreAddIn.Commands
 			this.brightnessLabel.Size = new System.Drawing.Size(85, 20);
 			this.brightnessLabel.TabIndex = 28;
 			this.brightnessLabel.Text = "Brightness";
-			this.brightnessLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.brightnessLabel.Scrubber = this.brightnessBox;
 			// 
 			// brightnessBox
 			// 
@@ -501,7 +504,7 @@ namespace River.OneMoreAddIn.Commands
 			this.contrastLabel.Size = new System.Drawing.Size(70, 20);
 			this.contrastLabel.TabIndex = 31;
 			this.contrastLabel.Text = "Contrast";
-			this.contrastLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.contrastLabel.Scrubber = this.contrastBox;
 			// 
 			// contrastBox
 			// 
@@ -666,7 +669,7 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationLabel.Size = new System.Drawing.Size(83, 20);
 			this.saturationLabel.TabIndex = 47;
 			this.saturationLabel.Text = "Saturation";
-			this.saturationLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.saturationLabel.Scrubber = this.saturationBox;
 			// 
 			// saturationBox
 			// 

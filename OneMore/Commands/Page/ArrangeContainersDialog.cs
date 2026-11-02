@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -66,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 				verticalButton.Checked = true;
 				setWidthCheckBox.Checked = true;
 			}
+
+			ActiveControl = okButton;
 		}
 
 

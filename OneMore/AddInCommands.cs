@@ -471,6 +471,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HighlightCommand>(1);
 
 
+		[Command("ribAddAnnotationButton_Label", Keys.None, "ribEditMenu")]
+		public async Task AddAnnotationCmd(IRibbonControl control)
+			=> await factory.Run<AddAnnotationCommand>();
+
+
 		[Command("ribHighlightLastButton_Label", Keys.Control | Keys.Shift | Keys.J, "ribEditMenu")]
 		public async Task HighlightLastCmd(IRibbonControl control)
 			=> await factory.Run<HighlightCommand>(0);
@@ -1060,6 +1065,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HashtagScanCommand>();
 
 
+		[Command("ribSummarizeHighlightsButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SummarizeHighlightsCmd(IRibbonControl control)
+			=> await factory.Run<SummarizeHighlightsCommand>();
+
+
+		[Command("ribSearchAndHighlightButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SearchAndHighlightCmd(IRibbonControl control)
+			=> await factory.Run<SearchAndHighlightCommand>();
+
+
 		[Command("ribSearchAndReplaceButton_Label", Keys.Control | Keys.H, "ribSearchMenu")]
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
@@ -1217,6 +1232,16 @@ namespace River.OneMoreAddIn
 		[Command("ribTextToTableButton_Label", Keys.None, "ribTableMenu")]
 		public async Task TextToTableCmd(IRibbonControl control)
 			=> await factory.Run<TextToTableCommand>();
+
+
+		[Command("ribCustomSortButton_Label", Keys.None, "ribTableMenu")]
+		public async Task CustomSortCmd(IRibbonControl control)
+			=> await factory.Run<CustomSortCommand>();
+
+
+		[Command("ribFormatCellsButton_Label", Keys.None, "ribTableMenu")]
+		public async Task FormatCellsCmd(IRibbonControl control)
+			=> await factory.Run<FormatCellsCommand>();
 
 
 		[Command("ribLowercaseButton_Label", Keys.Control | Keys.Shift | Keys.U, "ribEditMenu")]

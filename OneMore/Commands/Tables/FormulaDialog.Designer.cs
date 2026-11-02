@@ -242,6 +242,7 @@
 			this.decLabel.Size = new System.Drawing.Size(116, 20);
 			this.decLabel.TabIndex = 18;
 			this.decLabel.Text = "Decimal places";
+			this.decLabel.Scrubber = this.decimalBox;
 			// 
 			// decimalBox
 			// 

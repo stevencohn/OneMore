@@ -5,17 +5,12 @@
   ],
   "rules": [
     {
-      // single line of a multi-line comment
-      // /* foo
-      // /* foo */
-      // foo */
       "pattern": "^\\s*(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)\\s*$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // single line comment without closure
       "pattern": "^\\s*(/\\*[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
@@ -23,7 +18,6 @@
       ]
     },
     {
-      // sinle line comment without opening
       "pattern": "^((?:(?!/\\*)[^\\r\\n])*\\*/)\\s*$",
       "scope": "",
       "captures": [
@@ -31,74 +25,64 @@
       ]
     },
     {
-      // single line comment starting with //
       "pattern": "^\\s*(//.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // "key" : 123
-      "pattern": "(\"[^\"]*\")\\s*:\\s*(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")\\s*:\\s*(-?[0-9]{1,}(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)",
       "captures": [
         "JsonKey",
         "Number"
       ]
     },
     {
-      // "key" : "value"
-      "pattern": "(\"[^\"]*\")\\s*:\\s*(\"[^\"]*\")",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")\\s*:\\s*(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")",
       "captures": [
         "JsonKey",
         "String"
       ]
     },
     {
-      // "key" : [
-      "pattern": "(\"[^\"]*\")\\s*:\\s*(\\[)",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")\\s*:\\s*(\\[)",
       "captures": [
         "JsonKey",
         "Keyword"
       ]
     },
     {
-      // "key" : true | false | null
-      "pattern": "(\"[^\"]*\")\\s*:\\s*(true|false|null)\\b",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")\\s*:\\s*(true|false|null)\\b",
       "captures": [
         "JsonKey",
         "Keyword"
       ]
     },
     {
-      // "key" : { (key whose value is an object — no value captured on same line)
-      "pattern": "(\"[^\"]*\")\\s*:",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")\\s*:",
       "captures": [
         "JsonKey"
       ]
     },
     {
-      // "string"
-      "pattern": "(\"[^\"]*\")",
+      "pattern": "(\"(?:\\\\.|[^\"\\\\\\r\\n])*\")",
       "captures": [
         "String"
       ]
     },
     {
-      // true, false, null (as array elements or bare values)
       "pattern": "\\b(true|false|null)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      // 123
-      "pattern": "(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
+      "pattern": "(-?[0-9]{1,}(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)",
       "captures": [
         "Number"
       ]
     },
     {
-      // array brackets []
       "pattern": "(\\[|\\])",
       "captures": [
         "Keyword"

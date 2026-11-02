@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Settings
 			this.quickIntroLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.ppGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
-			this.widthLabel = new System.Windows.Forms.Label();
+			this.widthLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel.SuspendLayout();
 			this.quickGroup.SuspendLayout();
 			this.ppGroup.SuspendLayout();
@@ -220,6 +220,7 @@ namespace River.OneMoreAddIn.Settings
 			this.widthLabel.Size = new System.Drawing.Size(211, 20);
 			this.widthLabel.TabIndex = 0;
 			this.widthLabel.Text = "Preferred import image width";
+			this.widthLabel.Scrubber = this.widthBox;
 			// 
 			// FileImportSheet
 			// 
@@ -248,7 +249,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreGroupBox ppGroup;
 		private System.Windows.Forms.NumericUpDown widthBox;
-		private System.Windows.Forms.Label widthLabel;
+		private UI.MoreLabel widthLabel;
 		private UI.MoreGroupBox quickGroup;
 		private UI.MoreMultilineLabel quickIntroLabel;
 		private System.Windows.Forms.Label folderLabel;

@@ -2,17 +2,18 @@
   "name": "Pascal",
   "rules": [
     {
-      // single line of a multi-line comment
-      // { foo
-      // { foo }
-      // foo }
+      "pattern": "(\\{\\$[^}\\r\\n]*\\})",
+      "captures": [
+        "PreprocessorKeyword"
+      ]
+    },
+    {
       "pattern": "({(?:[^}]|[\\r\\n]|(?:{+(?:[^}]|[\\r\\n])))*})",
       "captures": [
         "Comment"
       ]
     },
     {
-      // single line comment without closure
       "pattern": "({[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
@@ -20,7 +21,6 @@
       ]
     },
     {
-      // sinle line comment without opening
       "pattern": "^([^{\\r\\n]*})\\s*$",
       "scope": "",
       "captures": [
@@ -28,36 +28,75 @@
       ]
     },
     {
-      // single line comment starting with //
+      "pattern": "(\\(\\*(?:[^*]|\\*+[^*)])*\\*+\\))",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(\\(\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*\\))",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
       "pattern": "(//.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // single-quoted string
-      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "pattern": "('(?:''|[^'\\n])*')",
       "captures": [
         "String"
       ]
     },
     {
-      // reserved keyword, delimited by word break, case-insensitive
-      "pattern": "\\b((?i:absolute|and|array|asm|begin|case|const|constructor|destructor|div|do|downto|else|end|file|for|function|goto|if|implementation|in|inherited|inline|interface|label|mod|nil|not|object|of|operator|or|packed|procedure|program|record|reintroduce|repeat|self|set|shl|shr|string|then|to|type|unit|until|uses|var|while|with|xor))\\b",
+      "pattern": "(\\#[0-9]+|\\#\\$[0-9a-fA-F]+)",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "\\b((?i:break|case|continue|do|downto|else|except|exit|finally|for|goto|if|raise|repeat|then|to|try|until|while))\\b",
+      "captures": [
+        "ControlKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b((?i:array|boolean|byte|cardinal|char|double|extended|int64|integer|longint|pointer|real|shortint|single|string|word))\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b((?i:absolute|and|asm|begin|class|const|constructor|destructor|div|end|false|file|function|implementation|in|inherited|inline|interface|label|mod|nil|not|object|of|on|operator|or|overload|override|packed|private|procedure|program|protected|public|published|record|reintroduce|self|set|shl|shr|true|type|unit|uses|var|virtual|with|xor))\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      // function with simple identifier followed by (
-      "pattern": "\\b(\\w+\\()",
+      "pattern": "\\b([A-Za-z_]\\w*)(?=\\s*\\()",
       "captures": [
-        "Predefined"
+        "BuiltinFunction"
       ]
     },
     {
-      // integer or float
-      "pattern": "\\b([0-9]{1,}(?:\\.[0-9]{1,})?)\\b",
+      "pattern": "(\\$[0-9a-fA-F]+)\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]+(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)\\b",
       "captures": [
         "Number"
       ]
