@@ -4845,6 +4845,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS form_list (listID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, sortOrder INTEGER NOT NULL DEFAULT 0, UNIQUE(name COLLATE NOCASE));.
+        /// </summary>
+        internal static string FormControlsDB {
+            get {
+                return ResourceManager.GetString("FormControlsDB", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Place the cursor in a table cell or select cells to format.
         /// </summary>
         internal static string FormatCellsCommand_NoSelection {
@@ -20251,5 +20260,239 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SummarizeHighlightsDialog_Text", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Choose date….
+        /// </summary>
+        internal static string FormControl_ChooseDate {
+            get {
+                return ResourceManager.GetString("FormControl_ChooseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose {0}….
+        /// </summary>
+        internal static string FormControl_ChooseList {
+            get {
+                return ResourceManager.GetString("FormControl_ChooseList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No lists are defined. Add a list in Settings &gt; Form Controls..
+        /// </summary>
+        internal static string FormControl_NoLists {
+            get {
+                return ResourceManager.GetString("FormControl_NoLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form Controls.
+        /// </summary>
+        internal static string FormControlsSheet_Title {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define the date format and the lists used by form controls inserted from the Snippets menu.
+        /// </summary>
+        internal static string FormControlsSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date format.
+        /// </summary>
+        internal static string FormControlsSheet_dateFormatLabel_Text {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_dateFormatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lists.
+        /// </summary>
+        internal static string FormControlsSheet_listsLabel_Text {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_listsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        internal static string FormControlsSheet_itemsLabel_Text {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_itemsLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Items.
+        /// </summary>
+        internal static string FormControlsSheet_listItemsLabel_Text {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_listItemsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New List.
+        /// </summary>
+        internal static string FormControlsSheet_addList {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_addList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename List.
+        /// </summary>
+        internal static string FormControlsSheet_renameList {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_renameList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Item.
+        /// </summary>
+        internal static string FormControlsSheet_addItem {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_addItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Item.
+        /// </summary>
+        internal static string FormControlsSheet_editItem {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_editItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item.
+        /// </summary>
+        internal static string FormControlsSheet_itemLabel {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_itemLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the list {0} and all of its items?.
+        /// </summary>
+        internal static string FormControlsSheet_deleteList {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_deleteList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form Controls.
+        /// </summary>
+        internal static string ribFormControlsMenu_Label {
+            get {
+                return ResourceManager.GetString("ribFormControlsMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar Control.
+        /// </summary>
+        internal static string ribInsertDateControlButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertDateControlButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a link that lets you choose a date from a calendar.
+        /// </summary>
+        internal static string ribInsertDateControlButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertDateControlButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Control.
+        /// </summary>
+        internal static string ribInsertListControlButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertListControlButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a link that lets you choose an item from a list defined in Settings.
+        /// </summary>
+        internal static string ribInsertListControlButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertListControlButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string FormControlsSheet_addTip {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_addTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Up.
+        /// </summary>
+        internal static string FormControlsSheet_moveUp {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_moveUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Down.
+        /// </summary>
+        internal static string FormControlsSheet_moveDown {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_moveDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the item {0}?.
+        /// </summary>
+        internal static string FormControlsSheet_deleteItem {
+            get {
+                return ResourceManager.GetString("FormControlsSheet_deleteItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Controls.
+        /// </summary>
+        internal static string ribManageFormControlsButton_Label {
+            get {
+                return ResourceManager.GetString("ribManageFormControlsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage form control lists and the date format in Settings.
+        /// </summary>
+        internal static string ribManageFormControlsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribManageFormControlsButton_Screentip", resourceCulture);
+            }
+        }
+        
     }
 }

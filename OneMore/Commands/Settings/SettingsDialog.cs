@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Settings
 			Context,
 			Favorites,
 			FileImport,
+			FormControls,
 			Hashtags,
 			Highlight,
 			Images,
@@ -69,6 +70,7 @@ namespace River.OneMoreAddIn.Settings
 				contextLink.Text = Resx.ContextMenuSheet_Title;
 				favoritesLink.Text = Resx.word_Favorites;
 				fileImportLink.Text = Resx.FileImportSheet_Title;
+				formControlsLink.Text = Resx.FormControlsSheet_Title;
 				hashtagsLink.Text = Resx.word_Hashtags;
 				highlightLink.Text = Resx.HighlightsSheet_Title;
 				imagesLink.Text = Resx.word_Images;
@@ -94,7 +96,7 @@ namespace River.OneMoreAddIn.Settings
 			navLinks = new[]
 			{
 				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
-				favoritesLink, fileImportLink, hashtagsLink, highlightLink, imagesLink,
+				favoritesLink, fileImportLink, formControlsLink, hashtagsLink, highlightLink, imagesLink,
 				keyboardLink, markdownLink, navigatorLink, pageLink, pluginsLink, quickNotesLink,
 				ribbonLink, searchLink, searchIndexLink, snippetsLink, tableThemesLink, variablesLink
 			};
@@ -278,20 +280,21 @@ namespace River.OneMoreAddIn.Settings
 					4 => new ContextMenuSheet(provider),
 					5 => new FavoritesSheet(provider, ribbon),
 					6 => new FileImportSheet(provider),
-					7 => new HashtagSheet(provider),
-					8 => new HighlightsSheet(provider),
-					9 => new ImagesSheet(provider),
-					10 => new KeyboardSheet(provider, ribbon),
-					11 => new MarkdownSheet(provider),
-					12 => new NavigatorSheet(provider, ribbon),
-					13 => new PageSheet(provider),
-					14 => await PluginsSheet.Create(provider, ribbon),
-					15 => new QuickNotesSheet(provider),
-					16 => new RibbonBarSheet(provider),
-					17 => new SearchEngineSheet(provider),
-					18 => new IndexSheet(provider),
-					19 => new SnippetsSheet(provider, ribbon),
-					20 => new TableThemesSheet(provider, ribbon),
+					7 => new FormControlsSheet(provider),
+					8 => new HashtagSheet(provider),
+					9 => new HighlightsSheet(provider),
+					10 => new ImagesSheet(provider),
+					11 => new KeyboardSheet(provider, ribbon),
+					12 => new MarkdownSheet(provider),
+					13 => new NavigatorSheet(provider, ribbon),
+					14 => new PageSheet(provider),
+					15 => await PluginsSheet.Create(provider, ribbon),
+					16 => new QuickNotesSheet(provider),
+					17 => new RibbonBarSheet(provider),
+					18 => new SearchEngineSheet(provider),
+					19 => new IndexSheet(provider),
+					20 => new SnippetsSheet(provider, ribbon),
+					21 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 
