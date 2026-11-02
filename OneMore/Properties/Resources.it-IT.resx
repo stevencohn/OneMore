@@ -7106,6 +7106,10 @@ Modificato dopo
 Modificato prima</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Cerca gli emoji digitati o incollati nella casella di ricerca</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Inoltrare</value>
     <comment>button tooltip</comment>
@@ -7127,6 +7131,10 @@ Modificato prima</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} pagine dall'indice di ricerca, {1:N0} lette da OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Digita o incolla uno o più emoji; qualsiasi altro testo viene ignorato. Le pagine vengono lette direttamente anziché dall'indice, pertanto gli ambiti di grandi dimensioni potrebbero richiedere più tempo. Aggiungi \\ per questo taccuino o \name per un altro.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Inserisci le parole in qualsiasi ordine o "frasi esatte", combinate con AND, OR, NOT e parentesi. Aggiungi \\ per questo taccuino o \name per un altro.</value>

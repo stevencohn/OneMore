@@ -7114,6 +7114,10 @@ ISO-code then comma then language name</comment>
 تم التعديل من قبل</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>ابحث عن الرموز التعبيرية المكتوبة أو الملصقة في مربع البحث</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>إلى الأمام</value>
     <comment>button tooltip</comment>
@@ -7135,6 +7139,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} صفحة من فهرس البحث، {1:N0} قراءة من OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>اكتب أو الصق واحدًا أو أكثر من الرموز التعبيرية؛ يتم تجاهل أي نص آخر. تتم قراءة الصفحات مباشرة وليس من الفهرس، لذلك قد تستغرق النطاقات الكبيرة وقتًا أطول. أضف \\ لدفتر الملاحظات هذا أو \name لدفتر ملاحظات آخر.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>أدخل الكلمات بأي ترتيب أو "العبارات الدقيقة"، جنبًا إلى جنب مع "و" و"أو" و"ليس" والأقواس. أضف \\ لدفتر الملاحظات هذا أو \name لدفتر ملاحظات آخر.</value>

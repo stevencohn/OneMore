@@ -7103,6 +7103,10 @@ Zmodyfikowano po
 Zmodyfikowany wcześniej</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Wyszukaj wpisane lub wklejone emotikony w polu wyszukiwania</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Do przodu</value>
     <comment>button tooltip</comment>
@@ -7124,6 +7128,10 @@ Zmodyfikowany wcześniej</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} stron z indeksu wyszukiwania, {1:N0} odczytane z OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Wpisz lub wklej jeden lub więcej emoji; każdy inny tekst jest ignorowany. Strony są odczytywane bezpośrednio, a nie z indeksu, dlatego w przypadku dużych zakresów może to zająć więcej czasu. Dodaj \\ dla tego notatnika lub \name dla innego.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Wpisz słowa w dowolnej kolejności lub „dokładne frazy” w połączeniu z AND, OR, NOT i nawiasami. Dodaj \\ dla tego notatnika lub \name dla innego.</value>

@@ -7117,6 +7117,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
 之前修改过</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>搜索在搜索框中输入或粘贴的表情符号</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>向前</value>
     <comment>button tooltip</comment>
@@ -7138,6 +7142,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} 个页面来自搜索索引，{1:N0} 个页面来自 OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>输入或粘贴一个或多个表情符号；任何其他文本都将被忽略。页面是直接读取的，而不是从索引中读取，因此大范围可能需要更长的时间。为此笔记本添加 \\，或者为另一个笔记本添加 \name。</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>以任意顺序输入单词或“精确短语”，并结合 AND、OR、NOT 和括号。为此笔记本添加 \\，或为另一个笔记本添加 \name。</value>

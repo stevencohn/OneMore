@@ -7104,6 +7104,10 @@ Nachträglich geändert
 Vorher geändert</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Suchen Sie nach Emojis, die Sie in das Suchfeld eingegeben oder eingefügt haben</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Nach vorne</value>
     <comment>button tooltip</comment>
@@ -7125,6 +7129,10 @@ Vorher geändert</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} Seiten aus dem Suchindex, {1:N0} aus OneNote gelesen</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Geben oder fügen Sie ein oder mehrere Emojis ein; Jeder andere Text wird ignoriert. Seiten werden direkt und nicht aus dem Index gelesen, daher kann es bei großen Bereichen länger dauern. Fügen Sie \\ für dieses Notizbuch oder \name für ein anderes hinzu.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Gib Wörter in beliebiger Reihenfolge oder „exakte Phrasen" in Anführungszeichen ein. Kombiniere sie mit AND, OR, NOT und Klammern. Füge \ für dieses Notizbuch oder \Name für ein anderes hinzu.</value>

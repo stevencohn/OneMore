@@ -53,6 +53,7 @@
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.includeTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.ocrBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.emojiBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sortBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.dateSelector = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.dateTimePicker = new River.OneMoreAddIn.UI.MoreDateTimePicker();
@@ -390,6 +391,7 @@
 			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.BottomBorderSize = 0;
 			this.optionsPanel.Controls.Add(this.sortBox);
+			this.optionsPanel.Controls.Add(this.emojiBox);
 			this.optionsPanel.Controls.Add(this.ocrBox);
 			this.optionsPanel.Controls.Add(this.includeTocBox);
 			this.optionsPanel.Controls.Add(this.dateSelector);
@@ -419,12 +421,12 @@
 			this.sortBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sortBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sortBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.sortBox.Location = new System.Drawing.Point(214, 44);
+			this.sortBox.Location = new System.Drawing.Point(250, 44);
 			this.sortBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.sortBox.Name = "sortBox";
 			this.sortBox.Size = new System.Drawing.Size(32, 32);
 			this.sortBox.StylizeImage = false;
-			this.sortBox.TabIndex = 8;
+			this.sortBox.TabIndex = 9;
 			this.sortBox.Text = "\U0001F551";
 			this.sortBox.ThemedBack = null;
 			this.sortBox.ThemedFore = null;
@@ -467,6 +469,25 @@
 			this.ocrBox.ThemedFore = null;
 			this.ocrBox.UseVisualStyleBackColor = false;
 			//
+			// emojiBox
+			//
+			this.emojiBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.emojiBox.Appearance = System.Windows.Forms.Appearance.Button;
+			this.emojiBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.emojiBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.emojiBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.emojiBox.Location = new System.Drawing.Point(202, 44);
+			this.emojiBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
+			this.emojiBox.Name = "emojiBox";
+			this.emojiBox.Size = new System.Drawing.Size(32, 32);
+			this.emojiBox.StylizeImage = false;
+			this.emojiBox.TabIndex = 8;
+			this.emojiBox.Text = "\U0001F642";
+			this.emojiBox.ThemedBack = null;
+			this.emojiBox.ThemedFore = null;
+			this.emojiBox.UseVisualStyleBackColor = false;
+			this.emojiBox.CheckedChanged += new System.EventHandler(this.ToggleEmojiBox);
+			//
 			// dateSelector
 			// 
 			this.dateSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -482,7 +503,7 @@
 			this.dateSelector.Location = new System.Drawing.Point(585, 44);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 27);
-			this.dateSelector.TabIndex = 9;
+			this.dateSelector.TabIndex = 10;
 			this.dateSelector.ThemedBack = null;
 			this.dateSelector.ThemedFore = null;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
@@ -497,7 +518,7 @@
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
 			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker.TabIndex = 10;
+			this.dateTimePicker.TabIndex = 11;
 			// 
 			// regBox
 			// 
@@ -693,6 +714,7 @@
 		private River.OneMoreAddIn.UI.MoreDateTimePicker dateTimePicker;
 		private UI.MoreCheckBox includeTocBox;
 		private UI.MoreCheckBox ocrBox;
+		private UI.MoreCheckBox emojiBox;
 		private UI.MoreCheckBox sortBox;
 		private System.Windows.Forms.ToolTip tooltip;
 	}

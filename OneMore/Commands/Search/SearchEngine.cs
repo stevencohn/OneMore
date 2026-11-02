@@ -44,6 +44,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>Gets or sets whether to search the text OneNote recognized in images.</summary>
 		public bool IncludeOcr { get; set; }
 
+		/// <summary>Gets or sets whether the finder looks for emojis, which OneNote may store
+		/// as numeric character references.</summary>
+		public bool Emojis { get; set; }
+
 		public DateFilterMode DateFilter { get; set; }
 		public DateTime DateValue { get; set; }
 	}
@@ -376,7 +380,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var hits = new List<ParagraphText>();
 				foreach (var paragraph in PageTextExtractor.Extract(
-					page, options.IncludeToc, options.IncludeOcr))
+					page, options.IncludeToc, options.IncludeOcr, options.Emojis))
 				{
 					if (cancellationToken.IsCancellationRequested) break;
 
