@@ -83,11 +83,32 @@
 
     <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel"
           image="Snippets" showImage="true" size="large" keytip="SS">
-      <dynamicMenu
-        id="ribCustomSnippetsMenu"
+      <menu
+        id="ribFormControlsMenu"
         getLabel="GetRibbonLabel"
-        imageMso="StarUnratedFull"
-        getContent="GetMySnippetsContent"/>
+        imageMso="ControlSubFormReport"
+        showImage="true"
+        keytip="FC">
+        <button
+          id="ribManageFormControlsButton"
+          imageMso="FormFieldProperties"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="ManageFormControlsCmd"/>
+        <menuSeparator id="ribFormControlsSeparator"/>
+        <button
+          id="ribInsertDateControlButton"
+          imageMso="ContentControlDate"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertDateControlCmd"/>
+        <button
+          id="ribInsertListControlButton"
+          imageMso="ContentControlDropDownList"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertListControlCmd"/>
+      </menu>
       <menu id="ribStatusMenu" getLabel="GetRibbonLabel" imageMso="AppointmentColorDialog" showImage ="true">
         <button
           id="ribInsertGrayStatusButton"
@@ -120,6 +141,11 @@
           getScreentip="GetRibbonScreentip"
           onAction="InsertBlueStatusCmd"/>
       </menu>
+      <dynamicMenu
+        id="ribCustomSnippetsMenu"
+        getLabel="GetRibbonLabel"
+        imageMso="StarUnratedFull"
+        getContent="GetMySnippetsContent"/>
       <button
         id="ribInsertBreadcrumbButton"
         imageMso="ShapeRightArrow"

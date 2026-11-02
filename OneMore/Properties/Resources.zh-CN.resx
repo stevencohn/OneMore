@@ -2233,6 +2233,78 @@ OneNote 文件 (*.one)</value>
     <value>时间</value>
     <comment>format category</comment>
   </data>
+  <data name="FormControl_ChooseDate" xml:space="preserve">
+    <value>选择日期...</value>
+    <comment>form control prompt</comment>
+  </data>
+  <data name="FormControl_ChooseList" xml:space="preserve">
+    <value>选择{0}...</value>
+    <comment>form control prompt; {0} is a list name</comment>
+  </data>
+  <data name="FormControl_NoLists" xml:space="preserve">
+    <value>没有定义列表。在“设置”&gt;“表单控件”中添加列表。</value>
+    <comment>form control message</comment>
+  </data>
+  <data name="FormControlsSheet_addItem" xml:space="preserve">
+    <value>新商品</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addList" xml:space="preserve">
+    <value>新名单</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addTip" xml:space="preserve">
+    <value>添加</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_dateFormatLabel.Text" xml:space="preserve">
+    <value>日期格式</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_deleteItem" xml:space="preserve">
+    <value>删除项目{0}？</value>
+    <comment>settings sheet confirmation; {0} is an item</comment>
+  </data>
+  <data name="FormControlsSheet_deleteList" xml:space="preserve">
+    <value>删除列表 {0} 及其所有项目？</value>
+    <comment>settings sheet confirmation; {0} is a list name</comment>
+  </data>
+  <data name="FormControlsSheet_editItem" xml:space="preserve">
+    <value>编辑项目</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_introBox.Text" xml:space="preserve">
+    <value>定义从“代码片段”菜单插入的表单控件所使用的日期格式和列表</value>
+    <comment>settings sheet intro</comment>
+  </data>
+  <data name="FormControlsSheet_itemLabel" xml:space="preserve">
+    <value>物品</value>
+    <comment>settings sheet dialog label</comment>
+  </data>
+  <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
+    <value>项目</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
+    <value>列表</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_moveDown" xml:space="preserve">
+    <value>下移</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_moveUp" xml:space="preserve">
+    <value>向上移动</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_renameList" xml:space="preserve">
+    <value>重命名列表</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_Title" xml:space="preserve">
+    <value>表单控件</value>
+    <comment>settings sheet title</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>所选单元格必须在同一行或同一列中</value>
     <comment>warning message</comment>
@@ -5534,6 +5606,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>将选定单元格或列的格式设置为数字、百分比、货币、日期或时间</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribFormControlsMenu_Label" xml:space="preserve">
+    <value>表单控件</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>用图像替换 URL</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -5702,6 +5778,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>插入当前日期：年-月-日格式（Ctrl + Shift + D）</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertDateControlButton_Label" xml:space="preserve">
+    <value>日历控制</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertDateControlButton_Screentip" xml:space="preserve">
+    <value>插入一个链接，让您从日历中选择日期</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>当前时间+日期（可排序）</value>
     <comment>ribbon item</comment>
@@ -5752,6 +5836,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
     <value>插入信息框</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Label" xml:space="preserve">
+    <value>列表控制</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Screentip" xml:space="preserve">
+    <value>插入一个链接，让您可以从“设置”中定义的列表中选择一个项目</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
@@ -5893,6 +5985,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
     <value>管理收藏夹</value>
     <comment>favorites menu command</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Label" xml:space="preserve">
+    <value>管理控制</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Screentip" xml:space="preserve">
+    <value>在“设置”中管理表单控制列表和日期格式</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribManageLayoutsButton_Label" xml:space="preserve">
     <value>管理窗口布局</value>

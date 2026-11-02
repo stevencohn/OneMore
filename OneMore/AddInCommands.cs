@@ -551,6 +551,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertBreadcrumbCommand>();
 
 
+		[Command("ribInsertDateControlButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task InsertDateControlCmd(IRibbonControl control)
+			=> await factory.Run<InsertFormControlCommand>(FormControlCommand.DateKind);
+
+
+		[Command("ribInsertListControlButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task InsertListControlCmd(IRibbonControl control)
+			=> await factory.Run<InsertFormControlCommand>(FormControlCommand.ListKind);
+
+
 		[Command("ribInsertCalendarButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertCalendarCmd(IRibbonControl control)
 			=> await factory.Run<InsertCalendarCommand>();
@@ -711,6 +721,9 @@ namespace River.OneMoreAddIn
 
 		public async Task ManagePluginsCmd(IRibbonControl control)
 			=> await factory.Run<ManagePluginsCommand>(ribbon);
+
+		public async Task ManageFormControlsCmd(IRibbonControl control)
+			=> await factory.Run<ManageFormControlsCommand>(ribbon);
 
 		public async Task ManageSnippetsCmd(IRibbonControl control)
 			=> await factory.Run<ManageSnippetsCommand>(ribbon);

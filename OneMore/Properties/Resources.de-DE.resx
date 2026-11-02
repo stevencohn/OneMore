@@ -2224,6 +2224,78 @@ OneNote-Datei (*.one)</value>
     <value>Zeit</value>
     <comment>format category</comment>
   </data>
+  <data name="FormControl_ChooseDate" xml:space="preserve">
+    <value>Datum wählen…</value>
+    <comment>form control prompt</comment>
+  </data>
+  <data name="FormControl_ChooseList" xml:space="preserve">
+    <value>Wählen Sie {0}…</value>
+    <comment>form control prompt; {0} is a list name</comment>
+  </data>
+  <data name="FormControl_NoLists" xml:space="preserve">
+    <value>Es sind keine Listen definiert. Fügen Sie unter Einstellungen &gt; Formularsteuerelemente eine Liste hinzu.</value>
+    <comment>form control message</comment>
+  </data>
+  <data name="FormControlsSheet_addItem" xml:space="preserve">
+    <value>Neuer Artikel</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addList" xml:space="preserve">
+    <value>Neue Liste</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addTip" xml:space="preserve">
+    <value>Hinzufügen</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_dateFormatLabel.Text" xml:space="preserve">
+    <value>Datumsformat</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_deleteItem" xml:space="preserve">
+    <value>Element {0} löschen?</value>
+    <comment>settings sheet confirmation; {0} is an item</comment>
+  </data>
+  <data name="FormControlsSheet_deleteList" xml:space="preserve">
+    <value>Die Liste {0} und alle ihre Elemente löschen?</value>
+    <comment>settings sheet confirmation; {0} is a list name</comment>
+  </data>
+  <data name="FormControlsSheet_editItem" xml:space="preserve">
+    <value>Element bearbeiten</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_introBox.Text" xml:space="preserve">
+    <value>Definieren Sie das Datumsformat und die Listen, die von Formularsteuerelementen verwendet werden, die aus dem Menü „Snippets“ eingefügt werden</value>
+    <comment>settings sheet intro</comment>
+  </data>
+  <data name="FormControlsSheet_itemLabel" xml:space="preserve">
+    <value>Artikel</value>
+    <comment>settings sheet dialog label</comment>
+  </data>
+  <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
+    <value>Artikel</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
+    <value>Listen</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_moveDown" xml:space="preserve">
+    <value>Nach unten bewegen</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_moveUp" xml:space="preserve">
+    <value>Nach oben bewegen</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_renameList" xml:space="preserve">
+    <value>Liste umbenennen</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_Title" xml:space="preserve">
+    <value>Formularsteuerelemente</value>
+    <comment>settings sheet title</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Ausgewählte Zellen müssen sich in derselben Zeile oder in derselben Spalte befinden</value>
     <comment>warning message</comment>
@@ -5519,6 +5591,10 @@ Registerkarte „Hilfe“.</value>
     <value>Formatieren Sie ausgewählte Zellen oder Spalten als Zahlen, Prozente, Währungen, Datumsangaben oder Uhrzeiten</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribFormControlsMenu_Label" xml:space="preserve">
+    <value>Formularsteuerelemente</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>URLs durch Bilder ersetzen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -5687,6 +5763,14 @@ Registerkarte „Hilfe“.</value>
     <value>Fügt das aktuelle Datum ein (Strg + Umschalt + D)</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertDateControlButton_Label" xml:space="preserve">
+    <value>Kalendersteuerung</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertDateControlButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie einen Link ein, über den Sie ein Datum aus einem Kalender auswählen können</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Sortierbares Datum mit der Uhrzeit</value>
     <comment>ribbon item</comment>
@@ -5737,6 +5821,14 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
     <value>Fügt einen Informationsblock ein</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Label" xml:space="preserve">
+    <value>Listenkontrolle</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie einen Link ein, über den Sie ein Element aus einer in den Einstellungen definierten Liste auswählen können</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
@@ -5878,6 +5970,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
     <value>Favoriten verwalten</value>
     <comment>favorites menu command</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Label" xml:space="preserve">
+    <value>Steuerelemente verwalten</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Screentip" xml:space="preserve">
+    <value>Verwalten Sie Formularkontrolllisten und das Datumsformat in den Einstellungen</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribManageLayoutsButton_Label" xml:space="preserve">
     <value>Fensterlayouts verwalten</value>

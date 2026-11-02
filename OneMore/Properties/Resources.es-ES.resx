@@ -2224,6 +2224,78 @@ Archivo de OneNote (* .one)</value>
     <value>Tiempo</value>
     <comment>format category</comment>
   </data>
+  <data name="FormControl_ChooseDate" xml:space="preserve">
+    <value>Elige fecha…</value>
+    <comment>form control prompt</comment>
+  </data>
+  <data name="FormControl_ChooseList" xml:space="preserve">
+    <value>Elija {0}…</value>
+    <comment>form control prompt; {0} is a list name</comment>
+  </data>
+  <data name="FormControl_NoLists" xml:space="preserve">
+    <value>No se definen listas. Agregue una lista en Configuración &gt; Controles de formulario.</value>
+    <comment>form control message</comment>
+  </data>
+  <data name="FormControlsSheet_addItem" xml:space="preserve">
+    <value>Nuevo artículo</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addList" xml:space="preserve">
+    <value>Nueva lista</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_addTip" xml:space="preserve">
+    <value>Agregar</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_dateFormatLabel.Text" xml:space="preserve">
+    <value>Formato de fecha</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_deleteItem" xml:space="preserve">
+    <value>¿Eliminar el elemento {0}?</value>
+    <comment>settings sheet confirmation; {0} is an item</comment>
+  </data>
+  <data name="FormControlsSheet_deleteList" xml:space="preserve">
+    <value>¿Eliminar la lista {0} y todos sus elementos?</value>
+    <comment>settings sheet confirmation; {0} is a list name</comment>
+  </data>
+  <data name="FormControlsSheet_editItem" xml:space="preserve">
+    <value>Editar artículo</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_introBox.Text" xml:space="preserve">
+    <value>Defina el formato de fecha y las listas utilizadas por los controles de formulario insertados desde el menú Fragmentos</value>
+    <comment>settings sheet intro</comment>
+  </data>
+  <data name="FormControlsSheet_itemLabel" xml:space="preserve">
+    <value>Artículo</value>
+    <comment>settings sheet dialog label</comment>
+  </data>
+  <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
+    <value>Elementos</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
+    <value>Liza</value>
+    <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_moveDown" xml:space="preserve">
+    <value>Mover hacia abajo</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_moveUp" xml:space="preserve">
+    <value>Subir</value>
+    <comment>settings sheet tooltip</comment>
+  </data>
+  <data name="FormControlsSheet_renameList" xml:space="preserve">
+    <value>Cambiar nombre de lista</value>
+    <comment>settings sheet dialog title</comment>
+  </data>
+  <data name="FormControlsSheet_Title" xml:space="preserve">
+    <value>Controles de formulario</value>
+    <comment>settings sheet title</comment>
+  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Las celdas seleccionadas deben estar en la misma fila o en la misma columna</value>
     <comment>warning message</comment>
@@ -5519,6 +5591,10 @@ Pestaña Ayuda</value>
     <value>Formatee las celdas o columnas seleccionadas como números, porcentajes, moneda, fechas u horas</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribFormControlsMenu_Label" xml:space="preserve">
+    <value>Controles de formulario</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Reemplazar URL con imágenes</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -5687,6 +5763,14 @@ Pestaña Ayuda</value>
     <value>Insertar la fecha actual</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertDateControlButton_Label" xml:space="preserve">
+    <value>Control de calendario</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertDateControlButton_Screentip" xml:space="preserve">
+    <value>Inserta un enlace que te permita elegir una fecha de un calendario.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Fecha ordenable con la hora</value>
     <comment>ribbon item</comment>
@@ -5737,6 +5821,14 @@ Pestaña Ayuda</value>
   </data>
   <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
     <value>Insertar un cuadro informativo</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Label" xml:space="preserve">
+    <value>Control de lista</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertListControlButton_Screentip" xml:space="preserve">
+    <value>Inserte un enlace que le permita elegir un elemento de una lista definida en Configuración</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
@@ -5878,6 +5970,14 @@ Pestaña Ayuda</value>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
     <value>Administrar favoritos</value>
     <comment>favorites menu command</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Label" xml:space="preserve">
+    <value>Administrar controles</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageFormControlsButton_Screentip" xml:space="preserve">
+    <value>Administre las listas de control de formularios y el formato de fecha en Configuración</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribManageLayoutsButton_Label" xml:space="preserve">
     <value>Administrar diseños de ventanas</value>

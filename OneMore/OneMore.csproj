@@ -905,6 +905,9 @@
     <Compile Include="Commands\Settings\GeneralSheet.Designer.cs">
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Settings\FormControlsSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Commands\Settings\KeyboardSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1049,6 +1052,24 @@
     </Compile>
     <Compile Include="Commands\Settings\PluginsSheet.Designer.cs">
       <DependentUpon>PluginsSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Snippets\FormControls\CalendarPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\FormControls\FormControlCommand.cs" />
+    <Compile Include="Commands\Snippets\FormControls\FormControlPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\FormControls\FormControlsDemoCommand.cs" />
+    <Compile Include="Commands\Snippets\FormControls\ChooseFormListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\FormControls\FormControlsProvider.cs" />
+    <Compile Include="Commands\Snippets\FormControls\FormList.cs" />
+    <Compile Include="Commands\Snippets\FormControls\InsertFormControlCommand.cs" />
+    <Compile Include="Commands\Snippets\FormControls\ManageFormControlsCommand.cs" />
+    <Compile Include="Commands\Snippets\FormControls\ListPopup.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Workspaces\ManageWorkspaceCommand.cs" />
@@ -1732,6 +1753,7 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
+    <Content Include="Commands\Snippets\FormControls\FormControlsDB.sql" />
     <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
     <Content Include="Commands\Tagging\HashtagScheduleDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
