@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		// subpages and is not a subpage; omitting an item shifts the indices of the items
 		// after it down by one
 		private const int allScopeIndex = 0;
+		private int introChrome;
 		private int notebookScopeIndex;
 		private int sectionGroupScopeIndex;
 		private int sectionScopeIndex;
@@ -52,6 +53,10 @@ namespace River.OneMoreAddIn.Commands
 		public SearchDialog(bool hasPageGroup)
 		{
 			InitializeComponent();
+
+			// the space the intro panel needs around the label, so it can grow as the label wraps
+			introChrome = morePanel2.Height - introLabel.Height;
+			morePanel2.Resize += (s, e) => FitIntroLabel();
 
 			if (NeedsLocalizing())
 			{
@@ -87,6 +92,7 @@ namespace River.OneMoreAddIn.Commands
 				(regBox, Resx.SearchDialog_regBox_Text),
 				(includeTocBox, Resx.SearchDialog_includeTocBox_Text),
 				(ocrBox, Resx.SearchDialog_ocrBox_Text),
+				(emojiBox, Resx.SearchDialog_emojiBox_Text),
 				(sortBox, Resx.SearchDialog_sortBox_Text),
 				(nextButton, Resx.SearchDialog_nextButton_Text),
 				(prevButton, Resx.SearchDialog_prevButton_Text),
@@ -99,10 +105,13 @@ namespace River.OneMoreAddIn.Commands
 				box.AccessibleName = name;
 			}
 
+			FitIntroLabel();
+
 			tooltip.SetToolTip(matchBox, $"{Resx.SearchDialog_matchBox_Text} (Ctrl+S)");
 			tooltip.SetToolTip(regBox, $"{Resx.SearchDialog_regBox_Text} (Ctrl+R)");
 			tooltip.SetToolTip(includeTocBox, $"{Resx.SearchDialog_includeTocBox_Text} (Ctrl+T)");
 			tooltip.SetToolTip(ocrBox, $"{Resx.SearchDialog_ocrBox_Text} (Ctrl+I)");
+			tooltip.SetToolTip(emojiBox, $"{Resx.SearchDialog_emojiBox_Text} (Ctrl+E)");
 			tooltip.SetToolTip(sortBox, $"{Resx.SearchDialog_sortBox_Text} (Ctrl+M)");
 
 			bool hasSectionGroup;
@@ -275,6 +284,15 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			if (emojiBox.Checked)
+			{
+				// only emojis are searched; other text is ignored
+				var hasEmoji = TextMatchBuilder.BuildEmojiRegex(text) is not null;
+				searchButton.Enabled = hasEmoji;
+				searchButton.NotifyDefault(hasEmoji);
+				return;
+			}
+
 			if (regBox.Checked)
 			{
 				try
@@ -312,6 +330,7 @@ namespace River.OneMoreAddIn.Commands
 				case Keys.Control | Keys.R: box = regBox; break;
 				case Keys.Control | Keys.T: box = includeTocBox; break;
 				case Keys.Control | Keys.I: box = ocrBox; break;
+				case Keys.Control | Keys.E: box = emojiBox; break;
 				case Keys.Control | Keys.M: box = sortBox; break;
 			}
 
@@ -357,6 +376,50 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ToggleEmojiBox(object sender, EventArgs e)
+		{
+			// emoji mode is a live scan of emojis only, so the text options do not apply
+			var enabled = !emojiBox.Checked;
+			matchBox.Enabled = enabled;
+			regBox.Enabled = enabled;
+			includeTocBox.Enabled = enabled;
+			ocrBox.Enabled = enabled;
+
+			introLabel.Text = enabled
+				? Resx.SearchDialog_introLabel_Text
+				: Resx.SearchDialog_introEmoji_Text;
+
+			FitIntroLabel();
+			ChangedText(sender, e);
+		}
+
+
+		// wraps the intro label to the width of its panel and grows the panel to fit
+		private void FitIntroLabel()
+		{
+			var width = morePanel2.ClientSize.Width
+				- morePanel2.Padding.Right - introLabel.Left - introLabel.Margin.Right;
+
+			if (width <= 0)
+			{
+				return;
+			}
+
+			introLabel.MaximumSize = new Size(width, 0);
+
+			var height = introLabel.GetPreferredSize(new Size(width, 0)).Height + introChrome;
+			if (morePanel2.Height != height)
+			{
+				morePanel2.Height = height;
+
+				// the panels below shift down or up; repaint them and their toggle buttons
+				// so no stale pixels are left where they used to be
+				morePanel2.Invalidate(true);
+				optionsPanel.Invalidate(true);
+			}
+		}
+
+
 		private void TogglerRegBox(object sender, EventArgs e)
 		{
 			searchButton.Enabled = !regBox.Checked;
@@ -394,8 +457,11 @@ namespace River.OneMoreAddIn.Commands
 
 			// Build the regex once for the entire search; all scope methods share it
 			var notebookFilter = GetNotebookNotation(out var queryText);
+			var emojis = emojiBox.Checked;
 			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
-			var finder = builder.BuildRegex(queryText);
+			var finder = emojis
+				? TextMatchBuilder.BuildEmojiRegex(queryText)
+				: builder.BuildRegex(queryText);
 
 			if (finder is null)
 			{
@@ -416,8 +482,9 @@ namespace River.OneMoreAddIn.Commands
 
 				var options = new SearchOptions
 				{
-					IncludeToc = includeTocBox.Checked,
-					IncludeOcr = ocrBox.Checked,
+					IncludeToc = includeTocBox.Checked && !emojis,
+					IncludeOcr = ocrBox.Checked && !emojis,
+					Emojis = emojis,
 					DateFilter = (DateFilterMode)dateSelector.SelectedIndex,
 					DateValue = dateTimePicker.Value.Date
 				};
@@ -433,7 +500,8 @@ namespace River.OneMoreAddIn.Commands
 				// The text index answers for the pages it has current; the rest are read as before.
 				// It does not hold the paragraphs of a generated table of contents, and a single
 				// page is always read.
-				if (!options.IncludeToc &&
+				// Emoji searches never use the index; every page is read and scanned.
+				if (!emojis && !options.IncludeToc &&
 					(notebookFilter is not null || scopeBox.SelectedIndex != pageScopeIndex))
 				{
 					pageLabel.Text = Resx.SearchDialog_indexChecking;

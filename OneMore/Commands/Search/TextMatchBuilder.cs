@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
@@ -118,6 +119,74 @@ namespace River.OneMoreAddIn.Commands
 			var ast = Parse(tokens);
 			var pattern = $"^{ToRegex(ast)}.*$";
 			return new Regex(pattern, options);
+		}
+
+
+		/// <summary>
+		/// Builds a regular expression that matches any of the emojis found in the given text;
+		/// all other text is ignored.
+		/// </summary>
+		/// <param name="text">Text containing one or more emojis</param>
+		/// <returns>The expression, or null if the text contains no emojis</returns>
+		public static Regex BuildEmojiRegex(string text)
+		{
+			if (string.IsNullOrEmpty(text))
+			{
+				return null;
+			}
+
+			var alternatives = new List<string>();
+
+			// text elements keep surrogate pairs, skin tones, flags and ZWJ sequences whole
+			var elements = StringInfo.GetTextElementEnumerator(text);
+			while (elements.MoveNext())
+			{
+				var element = (string)elements.Current;
+				if (!IsEmoji(element))
+				{
+					continue;
+				}
+
+				// ignore the variation selector so text and emoji forms of a symbol both match
+				var bare = element.Replace("️", string.Empty);
+				var pattern = Regex.Escape(bare) + "️?";
+				if (!alternatives.Contains(pattern))
+				{
+					alternatives.Add(pattern);
+				}
+			}
+
+			return alternatives.Count == 0
+				? null
+				: new Regex(string.Join("|", alternatives), RegexOptions.Compiled);
+		}
+
+
+		private static bool IsEmoji(string element)
+		{
+			for (var i = 0; i < element.Length; i++)
+			{
+				var c = element[i];
+				if (char.IsHighSurrogate(c) && i + 1 < element.Length)
+				{
+					var cp = char.ConvertToUtf32(c, element[i + 1]);
+					if (cp >= 0x1F000 && cp <= 0x1FAFF)
+					{
+						return true;
+					}
+
+					i++;
+				}
+				else if ((c >= 0x2190 && c <= 0x2BFF) ||
+					c == 0x20E3 || c == 0x3030 || c == 0x303D || c == 0x3297 || c == 0x3299 ||
+					c == 0x00A9 || c == 0x00AE || c == 0x203C || c == 0x2049 ||
+					c == 0x2122 || c == 0x2139)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 

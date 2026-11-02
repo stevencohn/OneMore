@@ -7103,6 +7103,10 @@ Gewijzigd na
 Eerder aangepast</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Zoek naar emoji's die in het zoekvak zijn getypt of geplakt</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Vooruit</value>
     <comment>button tooltip</comment>
@@ -7124,6 +7128,10 @@ Eerder aangepast</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} pagina's uit de zoekindex, {1:N0} gelezen uit OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Typ of plak een of meer emoji's; elke andere tekst wordt genegeerd. Pagina's worden rechtstreeks gelezen in plaats van uit de index, dus bij grote bereiken kan het langer duren. Voeg \\ toe voor dit notitieblok of \naam voor een ander notitieblok.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Voer woorden in willekeurige volgorde in of "exacte woordgroepen", gecombineerd met AND, OR, NOT en haakjes. Voeg \\ toe voor dit notitieblok of \naam voor een ander notitieblok.</value>

@@ -7114,6 +7114,10 @@ Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Rechercher des emojis saisis ou collés dans le champ de recherche</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Avant</value>
     <comment>button tooltip</comment>
@@ -7135,6 +7139,10 @@ Modifié avant</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} pages de l'index de recherche, {1:N0} lues depuis OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Tapez ou collez un ou plusieurs emojis ; tout autre texte est ignoré. Les pages sont lues directement plutôt qu'à partir de l'index, de sorte que les grandes étendues peuvent prendre plus de temps. Ajoutez \\ pour ce bloc-notes ou \name pour un autre.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Saisissez les mots dans n'importe quel ordre ou « phrases exactes », combinés avec AND, OR, NOT et des parenthèses. Ajoutez \\ pour ce bloc-notes ou \name pour un autre.</value>

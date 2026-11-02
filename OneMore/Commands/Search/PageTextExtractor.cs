@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -57,6 +58,15 @@ namespace River.OneMoreAddIn.Commands
 			@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
 			RegexOptions.Compiled);
 
+		// the same as cleaner but leaves numeric character references, which hold emojis
+		private static readonly Regex tagCleaner = new Regex(
+			@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)",
+			RegexOptions.Compiled);
+
+		private static readonly Regex charReference = new Regex(
+			@"&#(?:(?<dec>\d+)|[xX](?<hex>[0-9a-fA-F]+));",
+			RegexOptions.Compiled);
+
 		private static readonly Regex whitespace = new Regex(@"\s+", RegexOptions.Compiled);
 
 
@@ -94,12 +104,19 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets the text of a paragraph without its markup, or for a paragraph that is only an
 		/// inserted file, the name and path of the file.
 		/// </summary>
-		public static string GetRawText(XElement paragraph, XNamespace ns)
+		/// <param name="paragraph">The paragraph element</param>
+		/// <param name="ns">The page namespace</param>
+		/// <param name="decodeReferences">True to convert numeric character references such as
+		/// &amp;#128512; to their characters instead of removing them, as needed to find emojis</param>
+		public static string GetRawText(
+			XElement paragraph, XNamespace ns, bool decodeReferences = false)
 		{
 			var text = string.Empty;
 			foreach (var e in paragraph.Elements(ns + "T"))
 			{
-				var line = cleaner.Replace(e.Value, string.Empty).Trim();
+				var line = decodeReferences
+					? DecodeReferences(tagCleaner.Replace(e.Value, string.Empty)).Trim()
+					: cleaner.Replace(e.Value, string.Empty).Trim();
 				if (line.Length > 0)
 				{
 					text = $"{text}{line} ";
@@ -123,6 +140,26 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return text.Trim();
+		}
+
+
+		private static string DecodeReferences(string text)
+		{
+			return charReference.Replace(text, m =>
+			{
+				var number = m.Groups["dec"].Success
+					? int.Parse(m.Groups["dec"].Value, CultureInfo.InvariantCulture)
+					: int.Parse(m.Groups["hex"].Value, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+
+				// surrogate halves can be written as separate references; leave them to the
+				// string to rejoin
+				if (number <= 0xFFFF)
+				{
+					return ((char)number).ToString();
+				}
+
+				return number <= 0x10FFFF ? char.ConvertFromUtf32(number) : string.Empty;
+			});
 		}
 
 
@@ -184,14 +221,27 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="includeToc">True to include paragraphs of a generated table of contents</param>
 		/// <param name="includeOcr">True to include the text OneNote recognized in images, each image
 		/// being one item of kind <see cref="ParagraphKind.Image"/></param>
+		/// <param name="decodeReferences">True to keep numeric character references as characters,
+		/// see <see cref="GetRawText"/>. This is for emoji searches, which also include the
+		/// paragraphs of the page title.</param>
 		public static List<ParagraphText> Extract(
-			Page page, bool includeToc = false, bool includeOcr = false)
+			Page page, bool includeToc = false, bool includeOcr = false,
+			bool decodeReferences = false)
 		{
 			var ns = page.Namespace;
 
 			var items = SelectParagraphs(page, includeToc)
 				.Select(e => (Element: e, Kind: ParagraphKind.Text))
 				.ToList();
+
+			if (decodeReferences)
+			{
+				// emoji searches also look in the page title, which is not part of the body
+				items.InsertRange(0, page.Root.Elements(ns + "Title")
+					.Descendants(ns + "OE")
+					.Where(e => e.Elements(ns + "T").Any())
+					.Select(e => (Element: e, Kind: ParagraphKind.Text)));
+			}
 
 			if (includeOcr)
 			{
@@ -210,7 +260,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var text = kind == ParagraphKind.Image
 					? GetImageText(element, ns)
-					: GetRawText(element, ns);
+					: GetRawText(element, ns, decodeReferences);
 
 				var objectID = element.Attribute("objectID")?.Value;
 

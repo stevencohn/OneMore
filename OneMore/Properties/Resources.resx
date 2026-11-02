@@ -7138,6 +7138,10 @@ Modified after
 Modified before</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_emojiBox.Text" xml:space="preserve">
+    <value>Search for emojis typed or pasted in the search box</value>
+    <comment>checkbox tooltip</comment>
+  </data>
   <data name="SearchDialog_forwardButton.Text" xml:space="preserve">
     <value>Forward</value>
     <comment>button tooltip</comment>
@@ -7159,6 +7163,10 @@ Modified before</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
     <value>{0:N0} pages from the search index, {1:N0} read from OneNote</value>
+  </data>
+  <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
+    <value>Type or paste one or more emojis; any other text is ignored. Pages are read directly rather than from the index, so large scopes may take longer. Add \\ for this notebook or \name for another.</value>
+    <comment>label shown instead of the intro when emoji search is on</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Enter words in any order or "exact phrases", combined with AND, OR, NOT and parentheses. Add \\ for this notebook or \name for another.</value>

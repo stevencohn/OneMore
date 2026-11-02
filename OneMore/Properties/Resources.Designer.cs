@@ -16725,6 +16725,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type or paste one or more emojis; any other text is ignored. Pages are read directly rather than from the index, so large scopes may take longer. Add \\ for this notebook or \name for another..
+        /// </summary>
+        internal static string SearchDialog_introEmoji_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_introEmoji.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Enter words in any order or &quot;exact phrases&quot;, combined with AND, OR, NOT and parentheses. Add \\ for this notebook or \name for another..
         /// </summary>
         internal static string SearchDialog_introLabel_Text {
@@ -16769,6 +16778,15 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Search for emojis typed or pasted in the search box.
+        /// </summary>
+        internal static string SearchDialog_emojiBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_emojiBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Search text in images.
         /// </summary>
