@@ -246,6 +246,22 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+
+			// The date controls are anchored to the right edge, so narrowing the dialog slides
+			// them left over the toggle buttons. Keep the dialog wide enough that they never touch.
+			var gap = sortBox.Margin.Right + dateSelector.Margin.Left;
+			var panelWidth = sortBox.Right + gap + (optionsPanel.ClientSize.Width - dateSelector.Left);
+			var minimumWidth = panelWidth + Width - optionsPanel.ClientSize.Width;
+			if (minimumWidth > MinimumSize.Width)
+			{
+				MinimumSize = new Size(minimumWidth, MinimumSize.Height);
+			}
+
+			if (Width < MinimumSize.Width)
+			{
+				Width = MinimumSize.Width;
+			}
+
 			findBox.Focus();
 		}
 
