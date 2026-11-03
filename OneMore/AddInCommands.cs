@@ -900,6 +900,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RecalculateFormulaCommand>();
 
 
+		[Command("ribFixFormulasButton_Label", Keys.None, "ribTableMenu")]
+		public async Task FixFormulasCmd(IRibbonControl control)
+			=> await factory.Run<FixFormulasCommand>();
+
+
 		[Command("ribRecolorInkButton_Label", Keys.None, "ribEditMenu")]
 		public async Task RecolorInkCmd(IRibbonControl control)
 			=> await factory.Run<RecolorInkCommand>();

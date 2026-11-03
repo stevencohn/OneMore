@@ -2128,6 +2128,10 @@ Fichier OneNote (*.one)</value>
     <value>Ajuster la grille au texte</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>Correction de {0} formules ; {1} devra peut-être être révisé</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>Placez le curseur dans une cellule du tableau ou sélectionnez les cellules à formater</value>
     <comment>info message</comment>
@@ -2283,6 +2287,10 @@ Fichier OneNote (*.one)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>Articles</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} Articles</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>Listes</value>
@@ -5594,6 +5602,14 @@ Onglet Aide</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Redimensionner la grille d'arrière-plan pour correspondre à la taille de police courante</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>Corriger les formules</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>Corriger les références de cellules de formule après l'ajout ou la suppression de lignes ou de colonnes dans le tableau actuel</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>Formater les cellules</value>

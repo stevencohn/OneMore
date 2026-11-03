@@ -1091,6 +1091,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="RecalculateFormulaCmd"/>
+        <button
+          id="ribFixFormulasButton"
+          imageMso="ReviewAcceptChange"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="FixFormulasCmd"/>
         <menuSeparator id="sepTableMenu"/>
         <button
           id="ribTextToTableButton"

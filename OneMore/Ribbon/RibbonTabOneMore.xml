@@ -1179,6 +1179,15 @@
         showImage="true"
         showLabel="false"
         keytip="RF"/>
+      <button
+        id="ribFixFormulasButton"
+        imageMso="ReviewAcceptChange"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="FixFormulasCmd"
+        showImage="true"
+        showLabel="false"
+        keytip="FX"/>
       <menuSeparator id="sepTableMenu"/>
       <button
         id="ribTextToTableButton"

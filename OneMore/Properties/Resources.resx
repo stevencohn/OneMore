@@ -2130,6 +2130,10 @@ OneNote File (*.one)</value>
     <value>Fit Grid to Text</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>Fixed {0} formulas; {1} may need review</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>Place the cursor in a table cell or select cells to format</value>
     <comment>info message</comment>
@@ -5615,6 +5619,14 @@ Help Tab</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Resize background grid to match common font size</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>Fix Formulas</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>Correct formula cell references after rows or columns were added or removed in the current table</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>Format Cells</value>

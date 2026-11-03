@@ -2128,6 +2128,10 @@ OneNoteファイル (*.one)</value>
     <value>グリッドをテキストに合わせる</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>{0} の式を修正しました。 {1} は審査が必要な可能性があります</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>表のセルにカーソルを置くか、書式設定するセルを選択します</value>
     <comment>info message</comment>
@@ -2283,6 +2287,10 @@ OneNoteファイル (*.one)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>アイテム</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} 個のアイテム</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>リスト</value>
@@ -5586,6 +5594,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>背景グリッドを共通のフォントサイズに合わせてサイズ変更する</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>数式を修正する</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>現在のテーブルで行または列が追加または削除された後、数式セル参照を修正する</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>セルの書式設定</value>

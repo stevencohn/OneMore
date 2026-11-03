@@ -2128,6 +2128,10 @@
     <value>احتواء الشبكة على النص</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>صيغ {0} ثابتة؛ {1} قد يحتاج إلى مراجعة</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>ضع المؤشر في خلية جدول أو حدد الخلايا لتنسيقها</value>
     <comment>info message</comment>
@@ -2283,6 +2287,10 @@
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>أغراض</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} العناصر</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>القوائم</value>
@@ -5594,6 +5602,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>تغيير حجم شبكة الخلفية لتتناسب مع حجم الخط المشترك</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>إصلاح الصيغ</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>تصحيح مراجع خلايا الصيغة بعد إضافة الصفوف أو الأعمدة أو إزالتها في الجدول الحالي</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>تنسيق الخلايا</value>

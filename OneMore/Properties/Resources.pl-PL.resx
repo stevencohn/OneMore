@@ -2125,6 +2125,10 @@ Plik OneNote (* .o)</value>
     <value>Dopasuj siatkę do tekstu</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>Naprawiono formuły {0}; {1} może wymagać sprawdzenia</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>Umieść kursor w komórce tabeli lub wybierz komórki do sformatowania</value>
     <comment>info message</comment>
@@ -2280,6 +2284,10 @@ Plik OneNote (* .o)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>Rzeczy</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} Przedmioty</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>Listy</value>
@@ -5583,6 +5591,14 @@ Zakładka Pomoc</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Zmień rozmiar siatki tła, aby pasował do typowego rozmiaru czcionki</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>Napraw formuły</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>Popraw odniesienia do komórek z formułami po dodaniu lub usunięciu wierszy lub kolumn w bieżącej tabeli</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>Formatuj komórki</value>
