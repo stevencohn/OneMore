@@ -545,6 +545,38 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				target = target.Elements().First();
 			}
 
+			// an emoji splits the text into separate runs, e.g. a "Segoe UI Emoji" span beside
+			// the text span; keep the span holding the real text since it carries the formatting
+			if (target.Elements().Count() > 1 &&
+				target.Nodes().OfType<XText>().All(t => string.IsNullOrWhiteSpace(t.Value)))
+			{
+				var dominant = target.Elements("span")
+					.OrderByDescending(s => s.Value.Count(char.IsLetterOrDigit))
+					.FirstOrDefault();
+
+				if (dominant is not null)
+				{
+					if (dominant.Attribute("style") is XAttribute sa)
+					{
+						var style = Regex.Replace(sa.Value,
+							@"font-family:\s*['""]?Segoe UI Emoji['""]?\s*;?", string.Empty,
+							RegexOptions.IgnoreCase).Trim();
+
+						if (style.Length == 0)
+						{
+							sa.Remove();
+						}
+						else
+						{
+							sa.Value = style;
+						}
+					}
+
+					target.ReplaceNodes(dominant);
+					target = dominant;
+				}
+			}
+
 			// CleanHeadingText returns its own "cdata" wrapper element; keep only its content
 			var content = new XCData(clean).GetWrapper();
 			if (content.Elements().Count() == 1 && content.Elements().First().Name == "cdata")
