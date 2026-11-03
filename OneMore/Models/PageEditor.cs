@@ -231,6 +231,197 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Inserts paragraphs after the given anchor, as provided by Anchor, or as its first
+		/// children if the anchor is a container, and then places the cursor after them.
+		/// </summary>
+		internal static void InsertAtAnchor(
+			Page page, XElement anchor, List<XElement> items, bool trailingParagraph = false)
+		{
+			if (anchor.Name.LocalName.In("OE", "HTMLBlock"))
+			{
+				anchor.AddAfterSelf(items);
+			}
+			else
+			{
+				anchor.AddFirst(items);
+			}
+
+			PlaceCursor(page, items, trailingParagraph);
+		}
+
+
+		/// <summary>
+		/// Inserts paragraphs at the current cursor of the page, like pasting would. A selection
+		/// within one paragraph is replaced, a selection spanning paragraphs is removed, a
+		/// cursor within a paragraph splits it, and a blank line is replaced.
+		/// </summary>
+		/// <param name="items">
+		/// The OE paragraphs to insert, detached from any parent
+		/// </param>
+		/// <param name="inline">
+		/// If true and there is a single paragraph of only text runs then merge those runs
+		/// into the existing text instead of inserting a paragraph
+		/// </param>
+		/// <param name="trailingParagraph">
+		/// If true then leave the cursor in a new empty paragraph following the items instead
+		/// of at the end of the last item
+		/// </param>
+		public void InsertAtCursor(
+			List<XElement> items, bool inline = false, bool trailingParagraph = false)
+		{
+			if (items.Count == 0)
+			{
+				return;
+			}
+
+			var schema = new PageSchema();
+
+			var range = new SelectionRange(page);
+			range.GetSelection(true);
+
+			if (range.Scope == SelectionScope.Range && !range.SingleParagraph)
+			{
+				// selection spans paragraphs; remove it and insert where it was
+				var editor = new PageEditor(page);
+				editor.ExtractSelectedContent(breakParagraph: true);
+				if (editor.Anchor is not null)
+				{
+					InsertAtAnchor(page, editor.Anchor, items, trailingParagraph);
+					return;
+				}
+			}
+
+			var cursor = page.Root.Elements(ns + "Outline").Descendants()
+				.LastOrDefault(e => e.Attribute("selected")?.Value == "all" &&
+					e.Parent?.Name.LocalName == "OE");
+
+			if (cursor is null)
+			{
+				page.EnsureContentContainer().Add(items);
+				PlaceCursor(page, items, trailingParagraph);
+				return;
+			}
+
+			var current = cursor.Parent;
+
+			// a non-empty selection within one paragraph is replaced; reduce it to an empty
+			// run so it behaves just like the text cursor
+			var replace = range.Scope is SelectionScope.Run or SelectionScope.Range;
+			if (replace)
+			{
+				var selection = current.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
+
+				for (var i = 1; i < selection.Count; i++)
+				{
+					selection[i].Remove();
+				}
+
+				cursor = selection[0];
+				cursor.GetCData().Value = string.Empty;
+			}
+
+			// selected state moves to the end of the inserted content
+			Deselect();
+
+			var runs = items.Count == 1 ? items[0].Elements(ns + "T").ToList() : null;
+
+			// content before and after the insert point, ignoring headers and nested children
+			var before = cursor.ElementsBeforeSelf().ToList();
+			if (!replace && !(cursor.Name.LocalName == "T" && cursor.GetCData().Value.Length == 0))
+			{
+				// zero-length selection of a link or a selected image; insert after it
+				before.Add(cursor);
+			}
+
+			var after = cursor.ElementsAfterSelf().ToList();
+
+			var beforeBlank = before.All(e => IsBlank(e, schema));
+			var afterBlank = after.All(e => IsBlank(e, schema) || e.Name.LocalName == "OEChildren");
+			var hasChildren = after.Any(e => e.Name.LocalName == "OEChildren");
+
+			var blank = beforeBlank && afterBlank && !hasChildren;
+
+			// merge runs inline only into existing text; on a blank line insert the whole
+			// paragraph so its quick style, color, font and alignment are preserved
+			if (inline && !(beforeBlank && afterBlank) &&
+				cursor.Name.LocalName == "T" && runs?.Count > 0)
+			{
+				var copies = runs.Select(r => new XElement(r)).ToList();
+				cursor.AddAfterSelf(copies);
+				copies[copies.Count - 1].AddAfterSelf(new XElement(ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)));
+
+				return;
+			}
+
+			if (beforeBlank && !afterBlank)
+			{
+				// cursor at the start of a paragraph so insert ahead of it
+				current.AddBeforeSelf(items);
+			}
+			else if (!beforeBlank && !afterBlank)
+			{
+				// cursor within a paragraph so split it, moving the trailing content,
+				// including nested children, into a new paragraph following the items
+				var tail = new XElement(ns + "OE",
+					current.Attributes().Where(a => !a.Name.LocalName.In("objectID", "selected")));
+
+				foreach (var node in after)
+				{
+					node.Remove();
+					tail.Add(node);
+				}
+
+				current.AddAfterSelf(items);
+				items[items.Count - 1].AddAfterSelf(tail);
+			}
+			else
+			{
+				current.AddAfterSelf(items);
+				if (blank)
+				{
+					// paste over an empty line rather than leaving a gap
+					current.Remove();
+				}
+			}
+
+			PlaceCursor(page, items, trailingParagraph);
+		}
+
+
+		private static bool IsBlank(XElement element, PageSchema schema)
+		{
+			return element.Name.LocalName.In(schema.OeHeaders) ||
+				(element.Name.LocalName == "T" && string.IsNullOrWhiteSpace(element.GetCData().Value));
+		}
+
+
+		private static void PlaceCursor(Page page, List<XElement> items, bool trailingParagraph)
+		{
+			var ns = page.Namespace;
+			var last = items[items.Count - 1];
+
+			var runs = last.Elements().Where(e => !e.Name.LocalName.In(new PageSchema().OeHeaders)).ToList();
+			if (!trailingParagraph && runs.Count > 0 && runs.All(e => e.Name.LocalName == "T"))
+			{
+				// text paragraph, place cursor at its end
+				runs[runs.Count - 1].SetAttributeValue("selected", "all");
+			}
+			else
+			{
+				// table, image, etc. so add a paragraph to continue typing
+				last.AddAfterSelf(new XElement(ns + "OE",
+					new XElement(ns + "T",
+						new XAttribute("selected", "all"),
+						new XCData(string.Empty))));
+			}
+		}
+
+
+		/// <summary>
 		/// Adds the given content immediately before or after the selected insertion point;
 		/// this will not replace selected regions.
 		/// </summary>
@@ -701,8 +892,10 @@ namespace River.OneMoreAddIn.Models
 					return content;
 				}
 			}
-			else if (breakParagraph && runs.Count == 1)
+			else if (breakParagraph)
 			{
+				// split off text preceding the first selected run so it stays ahead of the
+				// anchor, even when the selection continues into following paragraphs
 				if (runs[0].PreviousNode is XElement prev &&
 					prev.Name.LocalName.In(schema.OeContent))
 				{

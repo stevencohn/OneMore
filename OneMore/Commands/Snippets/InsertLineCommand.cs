@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -65,22 +66,18 @@ namespace River.OneMoreAddIn.Commands
 				length = (int)settings.Get<decimal>("lineLength", length);
 			}
 
-			var current =
-				(from e in page.Root.Descendants(ns + "OE")
-				 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
-				 select e).First();
-
 			string line = string.Empty.PadRight(length, c);
 
 			page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
 
-			current.AddAfterSelf(
-				new XElement(ns + "OE",
-					new XElement(ns + "T",
-						new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
-						new XCData(line + "<br/>")
-					)
+			var paragraph = new XElement(ns + "OE",
+				new XElement(ns + "T",
+					new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
+					new XCData(line + "<br/>")
 				));
+
+			new PageEditor(page).InsertAtCursor(
+				new List<XElement> { paragraph }, trailingParagraph: true);
 
 			await one.Update(page);
 		}

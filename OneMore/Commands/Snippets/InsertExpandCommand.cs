@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -37,7 +38,37 @@ namespace River.OneMoreAddIn.Commands
 			var row = table.AddRow();
 
 			var cell = row.Cells.First();
-			cell.SetContent("Your content here");
+
+			// a selection is moved into the content box in place of the starter text
+			XElement anchor = null;
+			var range = new SelectionRange(page);
+			range.GetSelection(true);
+			if (range.Scope != SelectionScope.TextCursor)
+			{
+				var selector = new PageEditor(page)
+				{
+					// the extracted content will be selected=all, keep it that way
+					KeepSelected = true
+				};
+
+				var selected = selector.ExtractSelectedContent(breakParagraph: true);
+				if (selected.HasElements && selector.Anchor is not null)
+				{
+					selector.Deselect();
+					selector.FollowWithCurosr(selected);
+					cell.SetContent(selected);
+					anchor = selector.Anchor;
+				}
+				else
+				{
+					logger.WriteLine("error reading page content!");
+				}
+			}
+
+			if (anchor is null)
+			{
+				cell.SetContent("Your content here");
+			}
 
 			var expand = new XElement(ns + "OE",
 				new XAttribute("explicitExpandCollapseEnabled", "true"),
@@ -58,14 +89,29 @@ namespace River.OneMoreAddIn.Commands
 			if (quickdef != null)
 			{
 				expand.Add(new XAttribute("quickStyleIndex", quickdef));
-				foreach (var oe in expand.Descendants(ns + "OE"))
+				foreach (var oe in expand.Descendants(ns + "OE")
+					.Where(e => e.Attribute("quickStyleIndex") is null))
 				{
 					oe.Add(new XAttribute("quickStyleIndex", quickdef));
 				}
 			}
 
-			var editor = new PageEditor(page);
-			editor.AddNextParagraph(expand);
+			if (anchor is not null)
+			{
+				// the moved content already carries the cursor
+				if (anchor.Name.LocalName.In("OE", "HTMLBlock"))
+				{
+					anchor.AddAfterSelf(expand);
+				}
+				else
+				{
+					anchor.AddFirst(expand);
+				}
+			}
+			else
+			{
+				new PageEditor(page).InsertAtCursor(new List<XElement> { expand });
+			}
 
 			await one.Update(page);
 		}
