@@ -2129,6 +2129,10 @@ OneNote 文件 (*.one)</value>
     <value>调整单元格以适应文本</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>修复了 {0} 公式； {1}可能需要审核</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>将光标置于表格单元格中或选择要设置格式的单元格</value>
     <comment>info message</comment>
@@ -2284,6 +2288,10 @@ OneNote 文件 (*.one)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>项目</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} 项</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>列表</value>
@@ -5597,6 +5605,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>调整背景网格大小以匹配常用字体大小</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>修复公式</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>在当前表中添加或删除行或列后正确的公式单元格引用</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>设置单元格格式</value>

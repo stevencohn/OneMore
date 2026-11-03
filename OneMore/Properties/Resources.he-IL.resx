@@ -2125,6 +2125,10 @@ Total Row Font
     <value>התאם רשת לטקסט</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>נוסחאות {0} מתוקנות; {1} עשוי להזדקק לבדיקה</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>מקם את הסמן בתא טבלה או בחר תאים לעיצוב</value>
     <comment>info message</comment>
@@ -2280,6 +2284,10 @@ Total Row Font
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>פריטים</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} פריטים</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>רשימות</value>
@@ -5583,6 +5591,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>שינוי גודל רשת רקע כדי להתאים לגודל הגופן הנפוץ</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>תקן נוסחאות</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>תקן הפניות לתאי נוסחה לאחר הוספת שורות או עמודות בטבלה הנוכחית</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>עיצוב תאים</value>

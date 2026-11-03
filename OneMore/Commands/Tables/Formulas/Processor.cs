@@ -83,7 +83,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return;
 			}
 
-			var text = cell.GetText().Trim();
+			// OneNote can leave an empty leading T (e.g. a selection marker) ahead of the
+			// real content, so use the first run that has text rather than the first run
+			var text = cell.GetTextLines()
+				.FirstOrDefault(l => !string.IsNullOrWhiteSpace(l))?.Trim()
+				?? string.Empty;
 
 			// common case is double
 			if (TryParseNumber(text, out var dvalue))

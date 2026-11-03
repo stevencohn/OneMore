@@ -2125,6 +2125,10 @@ OneNote-bestand (*.one)</value>
     <value>Raster aanpassen aan tekst</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>Vaste {0} formules; {1} moet mogelijk worden beoordeeld</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>Plaats de cursor in een tabelcel of selecteer cellen die u wilt opmaken</value>
     <comment>info message</comment>
@@ -2280,6 +2284,10 @@ OneNote-bestand (*.one)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>Artikelen</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} Artikelen</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>Lijsten</value>
@@ -5583,6 +5591,14 @@ Tabblad Help</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Wijzig het formaat van het achtergrondraster zodat het overeenkomt met de algemene lettergrootte</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>Formules repareren</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>Correcte formulecelverwijzingen nadat rijen of kolommen in de huidige tabel zijn toegevoegd of verwijderd</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>Cellen opmaken</value>

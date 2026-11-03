@@ -106,6 +106,12 @@ namespace River.OneMoreAddIn.Commands
 			var ns = page.Namespace;
 			var table = new Table(tableElement);
 
+			var fixes = FormulaFixer.Fix(table, out var review);
+			if (fixes > 0 || review > 0)
+			{
+				Logger.Current.WriteLine($"fixed {fixes} formulas, {review} need review");
+			}
+
 			var cells = (
 				from r in table.Rows
 				from c in r.Cells

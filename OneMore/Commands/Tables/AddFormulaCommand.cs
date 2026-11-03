@@ -83,6 +83,15 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					table = new Table(anchor.FirstAncestor(ns + "Table"));
+
+					// correct formulas displaced by row/column edits before editing; the
+					// changes are saved along with the page update below
+					var fixes = FormulaFixer.Fix(table, out var review);
+					if (fixes > 0 || review > 0)
+					{
+						logger.WriteLine($"fixed {fixes} formulas, {review} need review");
+					}
+
 					cells = table.GetSelectedCells(out var range).ToList();
 
 					if (range == TableSelectionRange.Rectangular)
@@ -130,6 +139,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
+						// return focus to the page
+						Native.SetForegroundWindow(one.WindowHandle);
 						return;
 					}
 
@@ -209,7 +220,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var cell = cells.First();
 
-				cell.SetMeta("omfx", new Formula(format, dplaces, expression).ToString());
+				cell.SetMeta("omfx",
+					new Formula(format, dplaces, expression, cell.Coordinates).ToString());
 				if (!string.IsNullOrEmpty(tagIndex))
 				{
 					cell.SetTag(tagIndex);
@@ -253,7 +265,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				cell.SetMeta("omfx", new Formula(format, dplaces, builder.ToString()).ToString());
+				cell.SetMeta("omfx",
+					new Formula(format, dplaces, builder.ToString(), cell.Coordinates).ToString());
 
 				if (!string.IsNullOrEmpty(tagIndex))
 				{

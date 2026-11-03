@@ -1032,6 +1032,7 @@
     <Compile Include="Commands\Workspaces\Favorites\ShowKeyMapsPageCommand.cs" />
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Tables\Formulas\Formula.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaFixer.cs" />
     <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -1222,6 +1223,7 @@
     <Compile Include="Commands\Tables\DeleteFormulaCommand.cs" />
     <Compile Include="Commands\Tables\Formulas\FormulaEnums.cs" />
     <Compile Include="Commands\Tables\HighlightFormulaCommand.cs" />
+    <Compile Include="Commands\Tables\FixFormulasCommand.cs" />
     <Compile Include="Commands\Tables\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\Images\CropImageCommand.cs" />
     <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />

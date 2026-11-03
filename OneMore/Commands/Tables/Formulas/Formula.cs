@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	internal class Formula
 	{
 
-		private const int CurrentVersion = 2;
+		private const int CurrentVersion = 3;
 
 
 		/// <summary>
@@ -48,6 +48,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		public string Expression { get; set; }
 
 
+		/// <summary>
+		/// Gets or sets the A1-style coordinates of the cell that hosts this formula at the
+		/// time the expression was written or last fixed. Null for versions before 3.
+		/// </summary>
+		public string Anchor { get; set; }
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
@@ -56,12 +63,14 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <param name="format"></param>
 		/// <param name="dplaces"></param>
 		/// <param name="expression"></param>
-		public Formula(FormulaFormat format, int dplaces, string expression)
+		/// <param name="anchor">The coordinates of the cell hosting the formula</param>
+		public Formula(FormulaFormat format, int dplaces, string expression, string anchor = null)
 		{
 			Version = CurrentVersion;
 			Format = format;
 			DecimalPlaces = dplaces;
 			Expression = expression;
+			Anchor = anchor;
 			Valid = true;
 		}
 
@@ -113,6 +122,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					ParseFormat(parts[1]);
 					ParseDecimalPlaces(parts[2]);
 					Expression = parts[3];
+					break;
+
+				case 3:
+					// version 3;format;dplaces;anchor;expression
+					// the expression is last so it may safely contain semicolons
+					ParseFormat(parts[1]);
+					ParseDecimalPlaces(parts[2]);
+					Anchor = parts[3];
+					Expression = string.Join(";", parts, 4, parts.Length - 4);
 					break;
 			}
 
@@ -192,7 +210,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return $"{CurrentVersion};{Format};{DecimalPlaces};{Expression}";
+			return $"{CurrentVersion};{Format};{DecimalPlaces};{Anchor};{Expression}";
 		}
 	}
 }

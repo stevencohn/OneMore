@@ -331,6 +331,7 @@ namespace River.OneMoreAddIn
 					AddUsingTemplate(group, "ribAddFormulaButton", showLabel);
 					AddUsingTemplate(group, "ribHighlightFormulaButton", showLabel);
 					AddUsingTemplate(group, "ribRecalculateFormulaButton", showLabel);
+					AddUsingTemplate(group, "ribFixFormulasButton", showLabel);
 				}
 			}
 		}

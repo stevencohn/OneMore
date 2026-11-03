@@ -10282,6 +10282,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fixed {0} formulas; {1} may need review.
+        /// </summary>
+        internal static string FixFormulasCommand_Result {
+            get {
+                return ResourceManager.GetString("FixFormulasCommand_Result", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to No formula found in the selected table.
         /// </summary>
         internal static string RecalculateFormulaCommand_NoFormula {
@@ -14642,6 +14651,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Fix Calculations.
+        /// </summary>
+        internal static string ribFixFormulasButton_Label {
+            get {
+                return ResourceManager.GetString("ribFixFormulasButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Correct formula cell references after rows or columns were added or removed in the current table.
+        /// </summary>
+        internal static string ribFixFormulasButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFixFormulasButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Recalculate Formula.
         /// </summary>

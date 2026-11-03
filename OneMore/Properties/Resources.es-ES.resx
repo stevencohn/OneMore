@@ -2120,6 +2120,10 @@ Archivo de OneNote (* .one)</value>
     <value>Ajustar cuadrícula al texto</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FixFormulasCommand_Result" xml:space="preserve">
+    <value>Se corrigieron {0} fórmulas; {1} puede necesitar revisión</value>
+    <comment>fix formulas command message; {0} and {1} are counts</comment>
+  </data>
   <data name="FormatCellsCommand_NoSelection" xml:space="preserve">
     <value>Coloque el cursor en una celda de la tabla o seleccione celdas para formatear</value>
     <comment>info message</comment>
@@ -2275,6 +2279,10 @@ Archivo de OneNote (* .one)</value>
   <data name="FormControlsSheet_itemsLabel.Text" xml:space="preserve">
     <value>Elementos</value>
     <comment>settings sheet label</comment>
+  </data>
+  <data name="FormControlsSheet_listItemsLabel.Text" xml:space="preserve">
+    <value>{0} artículos</value>
+    <comment>settings sheet label; {0} is the name of the selected list</comment>
   </data>
   <data name="FormControlsSheet_listsLabel.Text" xml:space="preserve">
     <value>Liza</value>
@@ -5582,6 +5590,14 @@ Pestaña Ayuda</value>
   <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
     <value>Cambiar el tamaño de la cuadrícula de fondo para que coincida con el tamaño de fuente común</value>
     <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFixFormulasButton_Label" xml:space="preserve">
+    <value>Arreglar fórmulas</value>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFixFormulasButton_Screentip" xml:space="preserve">
+    <value>Corregir las referencias de celdas de fórmula después de agregar o eliminar filas o columnas en la tabla actual</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFormatCellsButton_Label" xml:space="preserve">
     <value>Formatear celdas</value>
