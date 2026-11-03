@@ -5905,7 +5905,7 @@ Scheda Aiuto</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Linea orizzontale</value>
+    <value>Singola linea orizzontale</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">

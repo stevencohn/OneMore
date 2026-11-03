@@ -5905,8 +5905,8 @@ Zakładka Pomoc</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Linia pozioma</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Pojedyncza linia pozioma</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Włóż pojedynczą linię poziomą (Shift + Alt + minus)</value>

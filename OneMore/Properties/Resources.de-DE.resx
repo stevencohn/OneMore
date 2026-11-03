@@ -5904,8 +5904,8 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Horizontale Linie</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Einzelne horizontale Linie</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</value>

@@ -5916,8 +5916,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>خط أفقي</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>خط أفقي واحد</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>إدراج خط أفقي واحد (Shift + Alt + علامة ناقص)</value>
