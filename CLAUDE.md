@@ -29,6 +29,7 @@ to reuse existing binaries and just build the installer.
 | `-Kit` | Reuse existing binaries; build the installer only. |
 | `-Main` | Build only the main OneMore add-in project. |
 | `-Events` | Regenerate `docs/telemetry/telemetry-events.json` (telemetry event-name allowlist) from the already-built `River.OneMoreAddIn.dll`; run after building in Visual Studio. Additive only. Builds also do this automatically; commit the result. |
+| `-NoEvents` | Skip the automatic telemetry-events.json update after a build. |
 | `-VLog` | Verbose MSBuild logging. |
 
 CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-2025-vs2026`.

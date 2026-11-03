@@ -68,6 +68,11 @@ the installer kit for the specified architecture.
 When building with -Fast, only build the main OneMore add-in project, skipping the tray, 
 calendar, protocol handler, and setup actions projects. This is a debugging option.
 
+.PARAMETER NoEvents
+Skips the automatic generation of docs\telemetry\telemetry-events.json that normally follows
+a successful full or fast build. Useful when building on a machine where the events file
+does not need to be updated.
+
 .PARAMETER Stepped
 When building All architectures, pause between each architecture build to allow examination
 of output and configuration of vdproj. This is a debugging option.
@@ -98,6 +103,7 @@ param (
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Main,
+	[switch] $NoEvents,
 	[switch] $Stepped,
 	[switch] $Test,
 	[switch] $DetailedLog,
@@ -411,6 +417,12 @@ foreach ($type in $types)
 
 	function GenerateEvents
 	{
+		if ($NoEvents)
+		{
+			Write-Host "`n... skipping telemetry events (-NoEvents)" -ForegroundColor DarkGray
+			return $true
+		}
+
 		$dll = Join-Path $PSScriptRoot 'OneMore\bin\Debug\River.OneMoreAddIn.dll'
 		$json = Join-Path $PSScriptRoot 'docs\telemetry\telemetry-events.json'
 
