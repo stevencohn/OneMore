@@ -78,12 +78,15 @@ namespace River.OneMoreAddIn.Commands
 						root)
 					));
 
-				editor.AddNextParagraph(header);
+				editor.InsertAtCursor(new List<XElement> { header });
 			}
 			else
 			{
-				editor.AddNextParagraph(root);
-				editor.AddNextParagraph(header);
+				editor.InsertAtCursor(new List<XElement>
+				{
+					header,
+					new XElement(ns + "OE", root)
+				});
 			}
 
 			await one.Update(page);
