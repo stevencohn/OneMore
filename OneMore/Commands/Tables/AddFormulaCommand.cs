@@ -185,6 +185,12 @@ namespace River.OneMoreAddIn.Commands
 				{
 					ShowInfo("Error adding formula. Please check the OneMore.log file");
 				}
+
+				// return focus to the page
+				await using (var one = new OneNote())
+				{
+					Native.SetForegroundWindow(one.WindowHandle);
+				}
 			}
 			catch (Exception exc)
 			{
