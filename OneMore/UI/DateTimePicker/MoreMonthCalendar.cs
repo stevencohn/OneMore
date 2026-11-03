@@ -71,6 +71,12 @@ namespace River.OneMoreAddIn.UI
 		private Hit pressedHit;
 		private string todayText;
 
+		// press-and-hold auto-repeat of the previous/next buttons
+		private const int RepeatDelay = 500;
+		private const int RepeatInterval = 150;
+		private readonly Timer repeatTimer = new Timer();
+		private bool repeated;
+
 
 		public MoreMonthCalendar()
 		{
@@ -87,8 +93,21 @@ namespace River.OneMoreAddIn.UI
 			selectionStart = selectionEnd = focusDate = anchor = today;
 			displayMonth = new DateTime(today.Year, today.Month, 1);
 
+			repeatTimer.Tick += RepeatPage;
+
 			TabStop = true;
 			ClientSize = GetPreferredSize(Size.Empty);
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				repeatTimer.Dispose();
+			}
+
+			base.Dispose(disposing);
 		}
 
 
@@ -795,7 +814,31 @@ namespace River.OneMoreAddIn.UI
 				Focus();
 				pressedHit = HitTest(e.Location, out _, out _);
 				Invalidate();
+
+				repeated = false;
+				if (pressedHit == Hit.Previous || pressedHit == Hit.Next)
+				{
+					repeatTimer.Interval = RepeatDelay;
+					repeatTimer.Start();
+				}
 			}
+		}
+
+
+		private void RepeatPage(object sender, EventArgs e)
+		{
+			repeatTimer.Interval = RepeatInterval;
+
+			// only keep cycling while the pointer remains over the pressed button
+			var point = PointToClient(MousePosition);
+			if (HitTest(point, out _, out _) != pressedHit ||
+				(pressedHit != Hit.Previous && pressedHit != Hit.Next))
+			{
+				return;
+			}
+
+			repeated = true;
+			Page(pressedHit == Hit.Previous ? -1 : 1);
 		}
 
 
@@ -803,9 +846,18 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnMouseUp(e);
 
+			repeatTimer.Stop();
+
 			var pressed = pressedHit;
 			pressedHit = Hit.None;
 			Invalidate();
+
+			if (repeated)
+			{
+				// the hold already paged; don't page again on release
+				repeated = false;
+				return;
+			}
 
 			if (!Enabled || e.Button != MouseButtons.Left)
 			{
