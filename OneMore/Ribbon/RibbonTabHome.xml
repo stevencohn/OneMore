@@ -1080,6 +1080,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="DeleteFormulaCmd"/>
         <button
+          id="ribFixFormulasButton"
+          imageMso="ReviewAcceptChange"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="FixFormulasCmd"/>
+        <button
           id="ribHighlightFormulaButton"
           imageMso="PivotTableListFormulas"
           getLabel="GetRibbonLabel"
@@ -1091,12 +1097,6 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="RecalculateFormulaCmd"/>
-        <button
-          id="ribFixFormulasButton"
-          imageMso="ReviewAcceptChange"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="FixFormulasCmd"/>
         <menuSeparator id="sepTableMenu"/>
         <button
           id="ribTextToTableButton"
