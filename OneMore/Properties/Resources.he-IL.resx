@@ -5905,8 +5905,8 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>קו אופקי</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>קו אופקי יחיד</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>הוסף קו אופקי בודד (Shift + Alt + מינוס)</value>

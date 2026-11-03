@@ -5908,7 +5908,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>横線</value>
+    <value>単一の水平線</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">

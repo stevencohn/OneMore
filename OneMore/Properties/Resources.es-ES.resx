@@ -5904,8 +5904,8 @@ Pestaña Ayuda</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Linea horizontal</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Línea horizontal única</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Insertar una sola línea horizontal (Mayús + Alt + Menos)</value>

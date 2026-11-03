@@ -5916,8 +5916,8 @@ Onglet Aide</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Ligne horizontale</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Ligne horizontale unique</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Insérer une seule ligne horizontale (Maj + Alt + Moins)</value>

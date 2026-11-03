@@ -5905,8 +5905,8 @@ Tabblad Help</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Horizontale lijn</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Enkele horizontale lijn</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Enkele horizontale lijn invoegen (Shift + Alt + Minus)</value>
