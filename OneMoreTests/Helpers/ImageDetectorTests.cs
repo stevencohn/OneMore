@@ -77,13 +77,16 @@ namespace River.OneMoreAddIn.Tests.Helpers
 				"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\">" +
 				"<rect width=\"12\" height=\"8\" fill=\"green\"/></svg>";
 
-			using var stream = StreamOf(Encoding.UTF8.GetBytes(svg));
-			stream.Position = 0;
+			using (var stream = StreamOf(Encoding.UTF8.GetBytes(svg)))
+			{
+				stream.Position = 0;
 
-			using var bitmap = SvgDocument.Open<SvgDocument>(stream).Draw();
-
-			Assert.IsTrue(bitmap.Width > 0);
-			Assert.IsTrue(bitmap.Height > 0);
+				using (var bitmap = SvgDocument.Open<SvgDocument>(stream).Draw())
+				{
+					Assert.IsTrue(bitmap.Width > 0);
+					Assert.IsTrue(bitmap.Height > 0);
+				}
+			}
 		}
 	}
 }

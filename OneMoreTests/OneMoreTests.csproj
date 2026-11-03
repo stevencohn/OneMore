@@ -108,6 +108,7 @@
     <Compile Include="Commands\Tagging\HashtagScheduleTests.cs" />
     <Compile Include="Commands\Tagging\HashtagStageTests.cs" />
     <Compile Include="Commands\Search\PageTextExtractorTests.cs" />
+    <Compile Include="Commands\Search\SearchAndReplaceEditorTests.cs" />
     <Compile Include="Commands\Search\TextMatchBuilderTests.cs" />
     <Compile Include="TextIndex\IndexConsumerTests.cs" />
     <Compile Include="TextIndex\IndexProviderTests.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Commands\Workspaces\PageCheckerTests.cs" />
     <Compile Include="Helpers\Extensions\StringExtensionsTests.cs" />
     <Compile Include="Helpers\DatabaseProviderTests.cs" />
+    <Compile Include="Helpers\ImageDetectorTests.cs" />
     <Compile Include="Helpers\PathHelperTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="OneNoteTests.cs" />

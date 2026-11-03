@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -66,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				new TextAtom(first).Replace(index, length, replacement);
 			}
-			else
+			else if (!TryReplaceWithinTextNode(index, length, replacement))
 			{
 
 				// given:   <a> aaa <i>some</i><b>text</b> zzz </a>
@@ -76,6 +77,38 @@ namespace River.OneMoreAddIn.Commands
 				element.ReplaceNodes(new XText(element.Value));
 				new TextAtom(element.FirstNode).Replace(index, length, replacement);
 			}
+		}
+
+
+		// When the match lies entirely within one descendant text node, replace it in place so
+		// the surrounding structure, including replacements already made by earlier matches
+		// in this run, is preserved rather than flattened away.
+		private bool TryReplaceWithinTextNode(int index, int length, XElement replacement)
+		{
+			if (length <= 0)
+			{
+				return false;
+			}
+
+			var offset = 0;
+			foreach (var text in element.DescendantNodes().OfType<XText>())
+			{
+				var start = offset;
+				offset += text.Value.Length;
+
+				if (index >= start && index + length <= offset)
+				{
+					new TextAtom(text).Replace(index - start, length, replacement);
+					return true;
+				}
+
+				if (offset > index)
+				{
+					break;
+				}
+			}
+
+			return false;
 		}
 	}
 }

@@ -301,7 +301,9 @@ namespace River.OneMoreAddIn.Commands
 
 					// when replacing with a hyperlink element, never overwrite or nest inside
 					// text that is already a hyperlink
-					if (replacementElement != null && OverlapsExistingLink(wrapper, groupIndex, groupLength))
+					if (replacementElement is not null &&
+						replacementElement.Name.LocalName == "a" &&
+						OverlapsExistingLink(wrapper, groupIndex, groupLength))
 					{
 						continue;
 					}
