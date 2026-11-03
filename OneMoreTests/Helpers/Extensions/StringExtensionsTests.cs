@@ -23,6 +23,36 @@ namespace River.OneMoreAddIn.Tests.Helpers.Extensions
 
 
 		[TestMethod]
+		public void StripInvalidXmlChars_PreservesSurrogatePairEmoji()
+		{
+			// U+1F7E2 and U+1F534 are supplementary-plane chars held as surrogate pairs
+			var input = "\U0001F7E2 Heading \U0001F534 ⭕";
+			var result = input.StripInvalidXmlChars();
+
+			Assert.AreEqual(input, result);
+		}
+
+
+		[TestMethod]
+		public void StripInvalidXmlChars_RemovesLoneSurrogates()
+		{
+			var input = "a\uD83Db\uDE00c\U0001F7E2d";
+			var result = input.StripInvalidXmlChars();
+
+			Assert.AreEqual("abc\U0001F7E2d", result);
+		}
+
+
+		[TestMethod]
+		public void ToXmlWrapper_PreservesSurrogatePairEmoji()
+		{
+			var element = "\U0001F7E2 Heading".ToXmlWrapper();
+
+			Assert.AreEqual("\U0001F7E2 Heading", element.Value);
+		}
+
+
+		[TestMethod]
 		public void StripInvalidXmlChars_PreservesLegalWhitespace()
 		{
 			var input = "line1\tline2\r\nline3";
