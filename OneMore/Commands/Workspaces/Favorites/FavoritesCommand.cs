@@ -220,14 +220,6 @@ namespace River.OneMoreAddIn.Commands
 					target = WorkspaceResolver.NavigationTarget(resolution, favorite.Kind, Link);
 				}
 
-				if (resolution is not null)
-				{
-					logger.Verbose(
-						$"favorite {favorite.ID} {favorite.Location} found by {resolution.Method}, " +
-						$"confident={resolution.IsConfident}, stored page {favorite.PageID}, " +
-						$"current page {resolution.PageID}");
-				}
-
 				var matcher = OpenFavoriteWindows.MatcherFor(favorite, resolution);
 				if (matcher is null || string.IsNullOrEmpty(target))
 				{

@@ -109,10 +109,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					if (window is not null)
 					{
 						refined[favorite.ID] = ParseHandle(window.WindowHandle);
-
-						Logger.Current.Verbose(
-							$"favorite {favorite.ID} {favorite.Location} is open in {window.WindowHandle} " +
-							$"by {resolution.Method}");
 					}
 				}
 
@@ -144,9 +140,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			var map = new Dictionary<int, IntPtr>();
 			var open = windows.ToList();
 
-			Logger.Current.Verbose(
-				$"open windows: {string.Join(", ", open.Select(w => $"{w.WindowHandle}=page {w.CurrentPageId}"))}");
-
 			foreach (var favorite in favorites)
 			{
 				var matcher = MatcherFor(favorite, null);
@@ -159,13 +152,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				if (window is not null && !string.IsNullOrEmpty(window.WindowHandle))
 				{
 					map[favorite.ID] = ParseHandle(window.WindowHandle);
-					Logger.Current.Verbose(
-						$"favorite {favorite.ID} {favorite.Location} is open in {window.WindowHandle}");
-				}
-				else
-				{
-					Logger.Current.Verbose(
-						$"favorite {favorite.ID} {favorite.Location} not open, page {favorite.PageID}");
 				}
 			}
 
