@@ -1998,6 +1998,14 @@ OneNote File (*.one)</value>
     <value>This favorite no longer exists. It may have been deleted or renamed. Remove it and add it again.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>These favorites could not be opened:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>A notebook or section group cannot be opened in a new window</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.</value>
     <comment>error message</comment>
@@ -2014,9 +2022,17 @@ OneNote File (*.one)</value>
     <value>Check Favorites</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>Close existing windows</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Manage Favorites</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>Open in new windows</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

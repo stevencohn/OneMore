@@ -1996,6 +1996,14 @@ OneNoteファイル (*.one)</value>
     <value>このお気に入りはもう存在しません。削除されたか名前が変更された可能性があります。削除して再度追加してください。</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>これらのお気に入りを開けませんでした:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>ノートブックまたはセクション グループを新しいウィンドウで開くことができません</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>このお気に入りは、開いていないか読み込み中のノートブック、またはロックされたセクションにあります。ノートブックを開いたばかりの場合は、しばらくしてからもう一度試してください。</value>
     <comment>error message !EDIT</comment>
@@ -2012,9 +2020,17 @@ OneNoteファイル (*.one)</value>
     <value>お気に入りを確認</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>既存のウィンドウを閉じます</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>お気に入りを管理</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>新しいウィンドウで開く</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

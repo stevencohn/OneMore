@@ -1997,6 +1997,14 @@ OneNote 文件 (*.one)</value>
     <value>这个最爱已经不存在了。它可能已被删除或重命名。将其删除并再次添加。</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>无法打开这些收藏夹：{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>无法在新窗口中打开笔记本或分区组</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>此收藏夹位于未打开或仍在加载的笔记本中，或者位于锁定的部分中。如果您刚刚打开笔记本，请稍后重试。</value>
     <comment>error message !EDIT</comment>
@@ -2013,9 +2021,17 @@ OneNote 文件 (*.one)</value>
     <value>检查收藏夹</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>关闭现有窗口</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>管理收藏夹</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>在新窗口中打开</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

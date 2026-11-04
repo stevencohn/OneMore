@@ -1326,7 +1326,9 @@ namespace River.OneMoreAddIn
 		/// visible notebook, section, page, and the screen bounds of the window.
 		/// </summary>
 		/// <returns></returns>
-		public async Task<List<WindowInfo>> GetWindows()
+		/// <param name="detailed">False to skip the page name, bounds and thread lookups, which
+		/// cost a call into OneNote and Windows per window, when only the IDs and handle are needed</param>
+		public async Task<List<WindowInfo>> GetWindows(bool detailed = true)
 		{
 			var windows = new List<WindowInfo>();
 
@@ -1385,14 +1387,23 @@ namespace River.OneMoreAddIn
 						// process's ambient DPI awareness, which isn't always reliably
 						// per-monitor-aware; scoped tightly since this can't span an await
 						// without risking a thread hop invalidating the per-thread context
-						using (new Native.ThreadDpiAwarenessScope(
-							Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
+						if (detailed)
 						{
-							threadId = Native.GetWindowThreadProcessId(topHandle, out processId);
-							Native.GetWindowRect(topHandle, ref bounds);
+							using (new Native.ThreadDpiAwarenessScope(
+								Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
+							{
+								threadId = Native.GetWindowThreadProcessId(topHandle, out processId);
+								Native.GetWindowRect(topHandle, ref bounds);
+							}
 						}
+						else
+						{
+							threadId = 0;
+							processId = 0;
+						}
+
 						var isCurrent = window.WindowHandle == currentHandle;
-						var page = await GetPageInfo(window.CurrentPageId);
+						var page = detailed ? await GetPageInfo(window.CurrentPageId) : null;
 
 						var info = new WindowInfo
 						{

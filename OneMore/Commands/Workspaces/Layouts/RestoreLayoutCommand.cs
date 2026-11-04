@@ -24,13 +24,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RestoreLayoutCommand : Command, ICliInteractiveCommand
 	{
-		private const int MaxNewWindowWaitAttempts = 10;
-		private const int NewWindowPollMilliseconds = 300;
-		private const int OpenAttempts = 3;
-		private const int WindowSettleMilliseconds = 1500;
-		private const int RetryDelayMilliseconds = 1500;
-
-
 		public RestoreLayoutCommand()
 		{
 			IsCancelled = true;
@@ -125,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				var handle = await FindWindowHandle(one, item.PageID);
+				var handle = await NewWindowOpener.FindWindowHandle(one, item.PageID);
 				var justOpened = false;
 
 				if (handle != IntPtr.Zero)
@@ -167,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 				// refused link still leaves a stray window behind, showing the page of the first
 				if (justOpened)
 				{
-					await Task.Delay(WindowSettleMilliseconds);
+					await Task.Delay(NewWindowOpener.WindowSettleMilliseconds);
 				}
 			}
 
@@ -206,33 +199,12 @@ namespace River.OneMoreAddIn.Commands
 		// Opens a new window for the page, trying again if OneNote refuses the link. Right after a
 		// notebook has been reopened OneNote can refuse a link to a page that it opens a moment later,
 		// typically the second new window in quick succession, so one refusal is not the end of it.
-		private async Task<IntPtr> OpenWindow(OneNote one, RestoreItem item)
+		private Task<IntPtr> OpenWindow(OneNote one, RestoreItem item)
 		{
-			for (var attempt = 1; attempt <= OpenAttempts; attempt++)
-			{
-				// non-destructive: never close/reuse other windows, only add new ones. A refused
-				// link opens nothing, so there is no window to wait for
-				if (await one.NavigateTo(item.Uri, newWindow: true))
-				{
-					var handle = await WaitForWindowHandle(one, item.PageID);
-					if (handle != IntPtr.Zero)
-					{
-						return handle;
-					}
-				}
-
-				if (attempt < OpenAttempts)
-				{
-					logger.WriteLine(
-						$"layout window {item.Window.Location} did not open, trying again");
-
-					await LogWindows(one, "after a failed attempt");
-
-					await Task.Delay(attempt * RetryDelayMilliseconds);
-				}
-			}
-
-			return IntPtr.Zero;
+			return NewWindowOpener.OpenWindow(
+				one, item.Uri, w => w.CurrentPageId == item.PageID,
+				$"layout {item.Window.Location}",
+				() => LogWindows(one, "after a failed attempt"));
 		}
 
 		// says which page each open OneNote window is showing, so that a surprising restore can be
@@ -352,34 +324,5 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static async Task<IntPtr> FindWindowHandle(OneNote one, string pageID)
-		{
-			var open = await one.GetWindows();
-			var match = open.FirstOrDefault(w => w.CurrentPageId == pageID);
-			return match is null ? IntPtr.Zero : ParseHandle(match.WindowHandle);
-		}
-
-
-		private static async Task<IntPtr> WaitForWindowHandle(OneNote one, string pageID)
-		{
-			for (var attempt = 0; attempt < MaxNewWindowWaitAttempts; attempt++)
-			{
-				await Task.Delay(NewWindowPollMilliseconds);
-
-				var handle = await FindWindowHandle(one, pageID);
-				if (handle != IntPtr.Zero)
-				{
-					return handle;
-				}
-			}
-
-			return IntPtr.Zero;
-		}
-
-
-		private static IntPtr ParseHandle(string hex)
-		{
-			return (IntPtr)Convert.ToInt64(hex, 16);
-		}
 	}
 }

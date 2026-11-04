@@ -4518,6 +4518,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to These favorites could not be opened:{0}.
+        /// </summary>
+        internal static string FavoritesCommand_incomplete {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_incomplete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A notebook or section group cannot be opened in a new window.
+        /// </summary>
+        internal static string FavoritesCommand_noNewWindow {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_noNewWindow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Close existing windows.
+        /// </summary>
+        internal static string FavoritesDialog_closeExisting {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_closeExisting", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in new windows.
+        /// </summary>
+        internal static string FavoritesDialog_openInNewWindows {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_openInNewWindows", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment..
         /// </summary>
         internal static string FavoritesCommand_offline {

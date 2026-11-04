@@ -6,8 +6,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 {
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Microsoft.Office.Core;
 	using Resx = Properties.Resources;
@@ -31,6 +33,18 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private FavoritesCollection collection;
 		private string _programmaticText = string.Empty;
 
+		// favorite ID -> handle of the OneNote window that is already showing it
+		private Dictionary<int, IntPtr> openWindows = new();
+
+		// the row where a Shift+arrow range starts and the row it currently reaches
+		private int anchorIndex = -1;
+		private int caretIndex = -1;
+
+		private bool adjustingSelection;
+		private bool goIsWide;
+		private int goNormalWidth;
+		private int goGap;
+
 
 		public FavoritesDialog()
 		{
@@ -48,7 +62,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					"deleteButton=word_Delete",
 					"searchLabel=word_Search",
 					"goButton=word_Go",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Cancel",
+					"goItem=word_Go",
+					"newWindowItem=NavigatorWindow_menuOpenInNew",
+					"closeBox=FavoritesDialog_closeExisting"
 				});
 
 				nameColumn.Text = Resx.word_Name;
@@ -70,7 +87,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private async void BindOnLoad(object sender, EventArgs e)
+		private void BindOnLoad(object sender, EventArgs e)
 		{
 			using var provider = new FavoritesProvider();
 			collection = provider.ReadFavorites();
@@ -83,6 +100,31 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				listView.Items[index].Selected = true;
 				listView.Items[index].EnsureVisible();
 			}
+		}
+
+
+		protected override async void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			// highlight what is already open; done after the dialog is on screen, because asking
+			// OneNote about its windows takes longer the more windows are open
+			await Task.Delay(50);
+
+			if (IsDisposed || collection is null)
+			{
+				return;
+			}
+
+			var favorites = collection.Folders.SelectMany(f => f.Items).Concat(collection.Items);
+			await OpenFavoriteWindows.Find(favorites, found =>
+			{
+				if (!IsDisposed)
+				{
+					openWindows = found;
+					listView.Invalidate();
+				}
+			});
 		}
 
 
@@ -104,12 +146,50 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public Favorite Selected { get; private set; }
 
 
-		private static MoreListView.CellStyle GetCellStyle(ListViewItem item, int columnIndex)
+		/// <summary>
+		/// Gets whether the favorites in <see cref="Targets"/> are to be opened in new windows
+		/// rather than navigating the current window to <see cref="Selected"/>.
+		/// </summary>
+		public bool NewWindows { get; private set; }
+
+
+		/// <summary>
+		/// Gets the favorites to open in new windows: the selected favorites or, if only a folder
+		/// was selected, the favorites in the folder.
+		/// </summary>
+		public IReadOnlyList<Favorite> Targets { get; private set; }
+
+
+		/// <summary>
+		/// Gets whether a single favorite chosen from the menu is to get a new window even if
+		/// another window already shows it.
+		/// </summary>
+		public bool AllowDuplicate { get; private set; }
+
+
+		/// <summary>
+		/// Gets whether to close the OneNote windows that do not show a target.
+		/// </summary>
+		public bool CloseExisting { get; private set; }
+
+
+		/// <summary>
+		/// Gets the window that already shows <see cref="Selected"/>, to be raised instead of
+		/// navigating, or IntPtr.Zero if there is none.
+		/// </summary>
+		public IntPtr RaiseHandle { get; private set; }
+
+
+		private MoreListView.CellStyle GetCellStyle(ListViewItem item, int columnIndex)
 		{
 			if (item.Tag is Favorite favorite)
 			{
 				var indent = columnIndex == 0 && favorite.FolderID != 0 ? FavoriteIndent : 0;
-				return new MoreListView.CellStyle(indent, false);
+
+				// a favorite that is already open in a window is drawn in the link color
+				return openWindows.ContainsKey(favorite.ID)
+					? new MoreListView.CellStyle(indent, false, "LinkColor")
+					: new MoreListView.CellStyle(indent, false);
 			}
 
 			return MoreListView.CellStyle.Default;
@@ -201,11 +281,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				switch (e.KeyCode)
 				{
 					case Keys.Down:
-						e.Handled = SelectNextRow();
+						e.Handled = e.Shift ? ExtendSelection(1) : SelectNextRow();
 						break;
 
 					case Keys.Up:
-						e.Handled = SelectPreviousRow();
+						e.Handled = e.Shift ? ExtendSelection(-1) : SelectPreviousRow();
 						break;
 
 					case Keys.PageDown:
@@ -346,14 +426,161 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void SelectRow(int index)
 		{
+			// the list allows many rows to be selected, so selecting one does not unselect the rest
+			adjustingSelection = true;
+			listView.SelectedItems.Clear();
 			listView.Items[index].Selected = true;
+			adjustingSelection = false;
+
+			anchorIndex = caretIndex = index;
+
 			listView.Items[index].EnsureVisible();
+			OnSelectionChanged(null, null);
 			ShowText();
+		}
+
+
+		/// <summary>
+		/// Shift+Down and Shift+Up: moves the end of the selection one favorite and selects every
+		/// favorite between there and the row where the range started.
+		/// </summary>
+		private bool ExtendSelection(int direction)
+		{
+			if (listView.SelectedItems.Count == 0)
+			{
+				return MoveTop();
+			}
+
+			if (anchorIndex < 0 || anchorIndex >= listView.Items.Count ||
+				caretIndex < 0 || caretIndex >= listView.Items.Count)
+			{
+				anchorIndex = caretIndex = listView.SelectedItems[0].Index;
+			}
+
+			var next = AdjacentFavoriteIndex(caretIndex, direction);
+			if (next < 0)
+			{
+				return true;
+			}
+
+			caretIndex = next;
+
+			var first = Math.Min(anchorIndex, caretIndex);
+			var last = Math.Max(anchorIndex, caretIndex);
+
+			adjustingSelection = true;
+			listView.BeginUpdate();
+
+			for (var i = 0; i < listView.Items.Count; i++)
+			{
+				var item = listView.Items[i];
+				var selected = i >= first && i <= last && item.Tag is Favorite;
+				if (item.Selected != selected)
+				{
+					item.Selected = selected;
+				}
+			}
+
+			listView.EndUpdate();
+			adjustingSelection = false;
+
+			listView.Items[caretIndex].EnsureVisible();
+			OnSelectionChanged(null, null);
+			return true;
+		}
+
+
+		private int CountSelectedFavorites()
+		{
+			var count = 0;
+			foreach (ListViewItem item in listView.SelectedItems)
+			{
+				if (item.Tag is Favorite)
+				{
+					count++;
+				}
+			}
+
+			return count;
+		}
+
+
+		// gets the folder if it is the only thing selected
+		private FolderRow SelectedFolder()
+		{
+			return listView.SelectedItems.Count == 1 &&
+				listView.SelectedItems[0].Tag is FolderRow folder
+					? folder
+					: null;
+		}
+
+
+		// gets whether choosing the selection opens favorites in new windows
+		private bool IsOpeningMany()
+		{
+			return SelectedFolder() is not null || CountSelectedFavorites() > 1;
+		}
+
+
+		private void OnSelectionChanged(object sender, EventArgs e)
+		{
+			if (adjustingSelection)
+			{
+				return;
+			}
+
+			// a folder can be chosen only by itself
+			if (listView.SelectedItems.Count > 1)
+			{
+				var folders = new List<ListViewItem>();
+				foreach (ListViewItem item in listView.SelectedItems)
+				{
+					if (item.Tag is FolderRow)
+					{
+						folders.Add(item);
+					}
+				}
+
+				if (folders.Count > 0)
+				{
+					adjustingSelection = true;
+					foreach (var item in folders)
+					{
+						item.Selected = false;
+					}
+					adjustingSelection = false;
+				}
+			}
+
+			var many = IsOpeningMany();
+
+			goButton.Text = many ? Resx.FavoritesDialog_openInNewWindows : Resx.word_Go;
+			closeBox.Visible = many;
+
+			if (many != goIsWide)
+			{
+				if (many)
+				{
+					goNormalWidth = goButton.Width;
+					goGap = cancelButton.Left - goButton.Right;
+				}
+
+				var width = many ? goNormalWidth * 8 / 5 : goNormalWidth;
+				goButton.SetBounds(
+					cancelButton.Left - goGap - width, goButton.Top, width, goButton.Height);
+
+				goIsWide = many;
+			}
 		}
 
 
 		private void ShowText()
 		{
+			if (listView.SelectedItems.Count != 1)
+			{
+				return;
+			}
+
 			_programmaticText = listView.SelectedItems[0].Text;
 			searchBox.Text = _programmaticText;
 			searchBox.Select(searchBox.Text.Length, 0);
@@ -522,37 +749,104 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void ClickShowText(object sender, EventArgs e)
 		{
-			if (listView.SelectedItems.Count > 0 && listView.SelectedItems[0].Tag is Favorite)
+			if (listView.SelectedItems.Count == 1 && listView.SelectedItems[0].Tag is Favorite)
 			{
+				anchorIndex = caretIndex = listView.SelectedItems[0].Index;
 				ShowText();
 			}
 		}
 
 
+		// the Go button: navigates the current window to a single favorite, or opens many
 		private void ChooseByClick(object sender, EventArgs e)
 		{
-			if (listView.SelectedItems.Count == 0 ||
-				listView.SelectedItems[0].Tag is not Favorite favorite)
+			Choose(false);
+		}
+
+
+		/// <summary>
+		/// Records what the user chose in the result properties.
+		/// </summary>
+		/// <param name="newWindow">True to open a single favorite in a new window; many favorites
+		/// and a folder always open in new windows</param>
+		/// <returns>True if there is something to open</returns>
+		private bool Choose(bool newWindow)
+		{
+			Selected = null;
+			Uri = null;
+			Targets = null;
+			NewWindows = false;
+			CloseExisting = false;
+			AllowDuplicate = false;
+			RaiseHandle = IntPtr.Zero;
+
+			List<Favorite> favorites;
+
+			var folder = SelectedFolder();
+			if (folder is not null)
 			{
-				return;
+				favorites = new List<Favorite>();
+				foreach (ListViewItem item in listView.Items)
+				{
+					if (item.Tag is Favorite f && f.FolderID == folder.FolderID)
+					{
+						favorites.Add(f);
+					}
+				}
+
+				newWindow = true;
+			}
+			else
+			{
+				favorites = new List<Favorite>();
+				foreach (ListViewItem item in listView.SelectedItems)
+				{
+					if (item.Tag is Favorite f)
+					{
+						favorites.Add(f);
+					}
+				}
 			}
 
-			Selected = favorite;
-			Uri = favorite.GetNavigationTarget();
+			if (favorites.Count == 0)
+			{
+				return false;
+			}
+
+			if (newWindow || favorites.Count > 1)
+			{
+				AllowDuplicate = newWindow && folder is null && favorites.Count == 1;
+				Targets = favorites;
+				NewWindows = true;
+				CloseExisting = closeBox.Visible && closeBox.Checked;
+				return true;
+			}
+
+			Selected = favorites[0];
+			Uri = Selected.GetNavigationTarget();
+
+			if (openWindows.TryGetValue(Selected.ID, out var handle))
+			{
+				RaiseHandle = handle;
+			}
+
+			return true;
 		}
 
 
 		private void ChooseByDoubleClick(object sender, EventArgs e)
 		{
-			if (listView.SelectedItems.Count == 0 ||
+			if (listView.SelectedItems.Count != 1 ||
 				listView.SelectedItems[0].Tag is not Favorite)
 			{
 				return;
 			}
 
-			ChooseByClick(null, null);
-			DialogResult = DialogResult.OK;
-			Close();
+			if (Choose(false))
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
 		}
 
 
@@ -563,21 +857,79 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			if (listView.SelectedItems.Count == 0 ||
-				listView.SelectedItems[0].Tag is not Favorite)
+			if (Choose(false))
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
+
+		private void ShowRowMenu(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Right)
 			{
 				return;
 			}
 
-			ChooseByClick(null, null);
-			DialogResult = DialogResult.OK;
-			Close();
+			// right-clicking a row that is not selected selects just that row; right-clicking one
+			// that is selected keeps a multiple selection
+			var hit = listView.GetItemAt(e.X, e.Y);
+			if (hit is null)
+			{
+				return;
+			}
+
+			if (!hit.Selected)
+			{
+				if (hit.Tag is Favorite)
+				{
+					SelectRow(hit.Index);
+				}
+				else
+				{
+					listView.SelectedItems.Clear();
+					hit.Selected = true;
+				}
+			}
+
+			var many = IsOpeningMany();
+			var single = !many && CountSelectedFavorites() == 1;
+			if (!many && !single)
+			{
+				return;
+			}
+
+			goItem.Visible = single;
+			newWindowItem.Visible = true;
+			rowMenu.Show(listView, e.Location);
 		}
+
+
+		private void GoFromMenu(object sender, EventArgs e)
+		{
+			if (Choose(false))
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
+
+		private void OpenInNewWindowFromMenu(object sender, EventArgs e)
+		{
+			if (Choose(true))
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
 
 		private void ShowMenu(object sender, EventArgs e)
 		{
 			deleteButton.Enabled =
-				listView.SelectedItems.Count > 0 &&
+				listView.SelectedItems.Count == 1 &&
 				listView.SelectedItems[0].Tag is Favorite;
 
 			contextMenu.Show(menuButton, new Point(
@@ -596,13 +948,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void DeleteFavorite(object sender, EventArgs e)
 		{
-			if (listView.SelectedItems.Count == 0 ||
+			if (listView.SelectedItems.Count != 1 ||
 				listView.SelectedItems[0].Tag is not Favorite favorite)
 			{
 				return;
 			}
 
-			var message = string.Format(
+			var message =string.Format(
 				Resx.ManageFavorites_DeleteMessage, favorite.Alias ?? favorite.Name);
 
 			if (MoreMessageBox.Show(this, message, MessageBoxButtons.YesNo, MessageBoxIcon.Question)

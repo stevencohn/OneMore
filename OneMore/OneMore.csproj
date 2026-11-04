@@ -592,6 +592,8 @@
     <Compile Include="Commands\Workspaces\Layouts\LayoutsProvider.cs" />
     <Compile Include="Commands\Workspaces\Layouts\LayoutsExchange.cs" />
     <Compile Include="Commands\Workspaces\Layouts\LayoutModels.cs" />
+    <Compile Include="Commands\Workspaces\NewWindowOpener.cs" />
+    <Compile Include="Commands\Workspaces\Favorites\OpenFavoriteWindows.cs" />
     <Compile Include="Commands\Workspaces\Layouts\LayoutRestorePlan.cs" />
     <Compile Include="Commands\Workspaces\Layouts\SaveLayoutCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\RestoreLayoutCommand.cs" />
