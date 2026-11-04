@@ -37,7 +37,9 @@ namespace River.OneMoreAddIn.Tests.Commands.Tables
 		[TestMethod]
 		public void RowDeleted_ShiftsUp()
 		{
-			Assert.AreEqual("B2*2", Shift("B3*2", -1, 0, out _));
+			// B2 shares the anchor's row (2), so it moves up with the formula cell
+			Assert.AreEqual("B1*2", Shift("B2*2", -1, 0, out var review));
+			Assert.IsFalse(review);
 		}
 
 
