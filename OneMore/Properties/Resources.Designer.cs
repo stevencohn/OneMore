@@ -20253,6 +20253,33 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Highlight color {0}.
+        /// </summary>
+        internal static string SummarizeHighlights_FilterColor {
+            get {
+                return ResourceManager.GetString("SummarizeHighlights_FilterColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All colors.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_AllColors {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_AllColors", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight color.
+        /// </summary>
+        internal static string SummarizeHighlightsDialog_Color {
+            get {
+                return ResourceManager.GetString("SummarizeHighlightsDialog_Color", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to All dates.
         /// </summary>
         internal static string SummarizeHighlightsDialog_AllDates {
