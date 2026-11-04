@@ -421,7 +421,7 @@
 			this.sortBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sortBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sortBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.sortBox.Location = new System.Drawing.Point(250, 44);
+			this.sortBox.Location = new System.Drawing.Point(262, 44);
 			this.sortBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.sortBox.Name = "sortBox";
 			this.sortBox.Size = new System.Drawing.Size(32, 32);
@@ -476,7 +476,7 @@
 			this.emojiBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.emojiBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.emojiBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.emojiBox.Location = new System.Drawing.Point(202, 44);
+			this.emojiBox.Location = new System.Drawing.Point(214, 44);
 			this.emojiBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.emojiBox.Name = "emojiBox";
 			this.emojiBox.Size = new System.Drawing.Size(32, 32);

@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.TextIndex;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
@@ -144,6 +145,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// with full text indexing the wider scope is cheap, so default to this notebooks
 			scopeBox.SelectedIndex = IndexConsumer.IsEnabled() ? notebookScopeIndex : pageScopeIndex;
+			LoadState();
+
 			dateSelector.SelectedIndex = 0;
 			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
@@ -154,6 +157,65 @@ namespace River.OneMoreAddIn.Commands
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.HitActivated += OnHitActivated;
 			resultsView.CheckedChanged += OnCheckedChanged;
+		}
+
+
+		private const string StateName = "SearchDialog";
+
+
+		private void LoadState()
+		{
+			var settings = new SettingsProvider().GetCollection(StateName);
+
+			matchBox.Checked = settings.Get("matchCase", false);
+			regBox.Checked = settings.Get("regex", false);
+			includeTocBox.Checked = settings.Get("toc", false);
+			ocrBox.Checked = settings.Get("ocr", false);
+
+			var scope = settings.Get("scope", string.Empty);
+			var index = scope switch
+			{
+				"all" => allScopeIndex,
+				"notebook" => notebookScopeIndex,
+				"sectionGroup" => sectionGroupScopeIndex,
+				"section" => sectionScopeIndex,
+				"pageGroup" => pageGroupScopeIndex,
+				"page" => pageScopeIndex,
+				_ => -1
+			};
+
+			if (index >= 0 && index < scopeBox.Items.Count)
+			{
+				scopeBox.SelectedIndex = index;
+			}
+		}
+
+
+		private void SaveState()
+		{
+			var index = scopeBox.SelectedIndex;
+			string scope = null;
+			if (index == allScopeIndex) { scope = "all"; }
+			else if (index == notebookScopeIndex) { scope = "notebook"; }
+			else if (index == sectionGroupScopeIndex) { scope = "sectionGroup"; }
+			else if (index == sectionScopeIndex) { scope = "section"; }
+			else if (index == pageGroupScopeIndex) { scope = "pageGroup"; }
+			else if (index == pageScopeIndex) { scope = "page"; }
+
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(StateName);
+
+			settings.Add("matchCase", matchBox.Checked);
+			settings.Add("regex", regBox.Checked);
+			settings.Add("toc", includeTocBox.Checked);
+			settings.Add("ocr", ocrBox.Checked);
+			if (scope is not null)
+			{
+				settings.Add("scope", scope);
+			}
+
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 
 
@@ -485,6 +547,9 @@ namespace River.OneMoreAddIn.Commands
 				RestoreControls();
 				return;
 			}
+
+			// the options are now known to be valid and used for a search
+			SaveState();
 
 			lastFinder = finder;
 
