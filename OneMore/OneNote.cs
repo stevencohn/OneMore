@@ -1257,6 +1257,75 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the IDs of all pages in the open notebooks that are deleted, i.e. the page or
+		/// any of its ancestors is flagged as being in a recycle bin. Reads the whole page
+		/// hierarchy with a single call, which is the scope that carries those flags reliably.
+		/// </summary>
+		/// <returns>A set of page IDs; empty if the hierarchy can't be read</returns>
+		public HashSet<string> GetRecycledPageIds()
+		{
+			return GetRecycledPageIds(null, out _);
+		}
+
+
+		/// <summary>
+		/// Gets the IDs of all deleted pages and, for deleted pages whose name is one of the
+		/// given names, the page GUID of their hyperlink. A page that is deleted is moved to
+		/// the recycle bin and may get a new hierarchy ID, so a remembered ID no longer finds
+		/// it, but the GUID of its hyperlink survives the move.
+		/// </summary>
+		/// <param name="names">Names of the pages whose GUIDs are wanted, or null for none</param>
+		/// <param name="guids">The upper-case page GUIDs, with braces, of the named pages</param>
+		public HashSet<string> GetRecycledPageIds(ISet<string> names, out HashSet<string> guids)
+		{
+			var ids = new HashSet<string>();
+			guids = new HashSet<string>();
+
+			try
+			{
+				onenote.GetHierarchy(null, HierarchyScope.hsPages, out var xml, XMLSchema.xs2013);
+				var root = XElement.Parse(xml);
+
+				foreach (var page in root.Descendants().Where(e => e.Name.LocalName == "Page"))
+				{
+					var recycled = page.AncestorsAndSelf().Any(e =>
+						string.Equals(e.Attribute("isRecycleBin")?.Value, "true",
+							StringComparison.OrdinalIgnoreCase) ||
+						string.Equals(e.Attribute("isInRecycleBin")?.Value, "true",
+							StringComparison.OrdinalIgnoreCase));
+
+					if (recycled)
+					{
+						var id = page.Attribute("ID")?.Value;
+						if (!string.IsNullOrEmpty(id))
+						{
+							ids.Add(id);
+
+							var name = page.Attribute("name")?.Value;
+							if (names is not null && name is not null && names.Contains(name))
+							{
+								var guid = River.OneMoreAddIn.Identity.LinkGuids.PageGuid(
+									GetHyperlink(id, string.Empty));
+
+								if (guid is not null)
+								{
+									guids.Add(guid);
+								}
+							}
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading recycled page IDs", exc);
+			}
+
+			return ids;
+		}
+
+
+		/// <summary>
 		/// Gets the ID of the parent hierachy object that owns the specified object; used when
 		/// copying/moving pages from section to section
 		/// </summary>

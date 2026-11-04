@@ -6176,6 +6176,10 @@ Zakładka Pomoc</value>
     <value>Szukaj</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFavoritesButton_Label" xml:space="preserve">
+    <value>Otwórz Ulubione</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribOpenFolderButton_Label" xml:space="preserve">
     <value>Otwórz folder jako notatnik</value>
     <comment>ribbon file</comment>
@@ -7960,6 +7964,10 @@ Odwracać</value>
     <value>Zmodyfikowano przed {0}</value>
     <comment>report date filter; {0} is a date</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>Zaznacz kolor {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Przejdź do akapitu</value>
     <comment>report link</comment>
@@ -7988,9 +7996,17 @@ Odwracać</value>
     <value>Najważniejsze informacje — {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>Wszystkie kolory</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>Wszystkie daty</value>
     <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>Zaznacz kolor</value>
+    <comment>dialog label</comment>
   </data>
   <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
     <value>Filtruj według</value>

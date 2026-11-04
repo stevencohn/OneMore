@@ -6176,6 +6176,10 @@ Scheda Aiuto</value>
     <value>Ricerca</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFavoritesButton_Label" xml:space="preserve">
+    <value>Apri Preferiti</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribOpenFolderButton_Label" xml:space="preserve">
     <value>Apri la cartella come taccuino</value>
     <comment>ribbon file</comment>
@@ -7963,6 +7967,10 @@ Invertire</value>
     <value>Modificato prima del {0}</value>
     <comment>report date filter; {0} is a date</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>Evidenzia colore {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Vai al paragrafo</value>
     <comment>report link</comment>
@@ -7991,9 +7999,17 @@ Invertire</value>
     <value>In evidenza - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>Tutti i colori</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>Tutte le date</value>
     <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>Evidenzia il colore</value>
+    <comment>dialog label</comment>
   </data>
   <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
     <value>Filtra per</value>

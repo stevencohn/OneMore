@@ -22,8 +22,8 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 		{
 			var root = FavoritesMenu.BuildMenu(new FavoritesCollection(), showShortcuts: false);
 
-			// add button, manage button, full paths toggle, separator - nothing else
-			Assert.AreEqual(4, root.Elements().Count());
+			// add button, open button, manage button, full paths toggle, separator - nothing else
+			Assert.AreEqual(5, root.Elements().Count());
 		}
 
 

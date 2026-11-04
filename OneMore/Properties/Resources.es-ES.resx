@@ -6175,6 +6175,10 @@ Pestaña Ayuda</value>
     <value>Buscar</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFavoritesButton_Label" xml:space="preserve">
+    <value>Abrir favoritos</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribOpenFolderButton_Label" xml:space="preserve">
     <value>Abra la carpeta como portátil</value>
     <comment>ribbon file</comment>
@@ -7959,6 +7963,10 @@ Invertir</value>
     <value>Modificado antes de {0}</value>
     <comment>report date filter; {0} is a date</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>Color de resaltado {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Ir al párrafo</value>
     <comment>report link</comment>
@@ -7987,9 +7995,17 @@ Invertir</value>
     <value>Aspectos destacados: {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>Todos los colores</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>Todas las fechas</value>
     <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>Color de resaltado</value>
+    <comment>dialog label</comment>
   </data>
   <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
     <value>Filtrar por</value>

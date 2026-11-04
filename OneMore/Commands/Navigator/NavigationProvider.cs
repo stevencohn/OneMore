@@ -5,8 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
-	using River.OneMoreAddIn.Identity;
-	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Identity;	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -219,18 +218,70 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task<HistoryLog> ReadHistoryLog()
 		{
+			HistoryLog log;
+
 			try
 			{
 				await semalock.WaitAsync();
 
-				var log = await Read();
+				log = await Read();
 				log.Pinned = await LoadPinned(log);
-				return log;
 			}
 			finally
 			{
 				semalock.Release();
 			}
+
+			// deleted pages are never shown; check outside semalock since OneNote's COM
+			// interface can block (see RecordHistory), and purge them from the stored log
+			var deleted = await FindDeleted(log.History);
+			if (deleted.Count > 0)
+			{
+				log.History.RemoveAll(r => deleted.Contains(r));
+				await DeleteHistory(deleted);
+			}
+
+			return log;
+		}
+
+
+		private async Task<List<HistoryRecord>> FindDeleted(List<HistoryRecord> records)
+		{
+			var deleted = new List<HistoryRecord>();
+			if (records.Count == 0)
+			{
+				return deleted;
+			}
+
+			try
+			{
+				await using var one = new OneNote { FallThrough = true };
+				var names = new HashSet<string>(
+					records.Where(r => r.Name is not null).Select(r => r.Name));
+
+				var recycled = one.GetRecycledPageIds(names, out var guids);
+
+				foreach (var record in records)
+				{
+					if (recycled.Contains(record.PageId))
+					{
+						deleted.Add(record);
+					}
+					else if (guids.Count > 0 && guids.Contains(LinkGuids.PageGuid(record.Link) ?? string.Empty)
+						&& !one.PageExists(record.PageId))
+					{
+						// the stored ID is gone because the page moved to the recycle bin; a copy
+						// of a page can share its GUID, so only a record whose own ID is gone counts
+						deleted.Add(record);
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("navigator can't check for deleted pages", exc);
+			}
+
+			return deleted;
 		}
 
 
@@ -255,6 +306,12 @@ namespace River.OneMoreAddIn.Commands
 			// that call would stall every other reader/writer of Navigator.json,
 			// including HistoryMenu.LoadMenu's synchronous block on the ribbon thread
 			var resolved = await Resolve(pageID);
+
+			// never record pages that are in the recycle bin
+			if (resolved != null && await IsDeleted(pageID))
+			{
+				return false;
+			}
 
 			await semalock.WaitAsync();
 
@@ -330,6 +387,21 @@ namespace River.OneMoreAddIn.Commands
 			finally
 			{
 				semalock.Release();
+			}
+		}
+
+
+		private async Task<bool> IsDeleted(string pageID)
+		{
+			try
+			{
+				await using var one = new OneNote { FallThrough = true };
+				return one.GetRecycledPageIds().Contains(pageID);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"navigator can't check page {pageID} for deletion", exc);
+				return false;
 			}
 		}
 

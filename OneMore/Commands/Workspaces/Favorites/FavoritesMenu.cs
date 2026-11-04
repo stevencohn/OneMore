@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string FullPathsButtonId = "omFavoritesFullPathsToggle";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
+		private static readonly string OpenButtonId = "omOpenFavoritesButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		private static readonly string KbdShortcutsId = "omShowKeyMapsPageButton";
 
@@ -105,6 +106,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("onAction", AddAction)
 				);
 
+			var openButton = new XElement(ns + "button",
+					new XAttribute("id", OpenButtonId),
+					new XAttribute("label", Resx.ribOpenFavoritesButton_Label),
+					new XAttribute("imageMso", "Grammar"),
+					new XAttribute("onAction", "FavoritesCmd")
+					);
+
 			var manageButton = new XElement(ns + "button",
 				new XAttribute("id", ManageButtonId),
 				new XAttribute("label", Resx.ribManageFavoritesButton_Label),
@@ -114,6 +122,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			var root = new XElement(ns + "menu",
 				addButton,
+				openButton,
 				manageButton,
 				MakeFullPathsToggle(),
 				new XElement(ns + "menuSeparator",

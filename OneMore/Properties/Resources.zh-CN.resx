@@ -6190,6 +6190,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>搜索</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFavoritesButton_Label" xml:space="preserve">
+    <value>打开收藏夹</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribOpenFolderButton_Label" xml:space="preserve">
     <value>打开文件夹作为笔记本</value>
     <comment>ribbon file</comment>
@@ -7978,6 +7982,10 @@ Code——代码块段落
     <value>{0}之前修改过</value>
     <comment>report date filter; {0} is a date</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>突出显示颜色 {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>转到段落</value>
     <comment>report link</comment>
@@ -8006,9 +8014,17 @@ Code——代码块段落
     <value>亮点 - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>所有颜色</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>所有日期</value>
     <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>突出显示颜色</value>
+    <comment>dialog label</comment>
   </data>
   <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
     <value>过滤依据</value>

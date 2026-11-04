@@ -6175,6 +6175,10 @@ Registerkarte „Hilfe“.</value>
     <value>Suchen</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFavoritesButton_Label" xml:space="preserve">
+    <value>Favoriten öffnen</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribOpenFolderButton_Label" xml:space="preserve">
     <value>Öffnen Sie den Ordner als Notizbuch</value>
     <comment>ribbon file</comment>
@@ -7960,6 +7964,10 @@ Umkehren</value>
     <value>Geändert vor {0}</value>
     <comment>report date filter; {0} is a date</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>Hervorhebungsfarbe {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
   <data name="SummarizeHighlights_GoTo" xml:space="preserve">
     <value>Gehe zum Absatz</value>
     <comment>report link</comment>
@@ -7988,9 +7996,17 @@ Umkehren</value>
     <value>Highlights - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>Alle Farben</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>Alle Termine</value>
     <comment>combo box item</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>Farbe hervorheben</value>
+    <comment>dialog label</comment>
   </data>
   <data name="SummarizeHighlightsDialog_FilterBy" xml:space="preserve">
     <value>Filtern nach</value>

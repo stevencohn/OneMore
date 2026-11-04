@@ -14346,6 +14346,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Favorites.
+        /// </summary>
+        internal static string ribOpenFavoritesButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenFavoritesButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Open Folder as Notebook.
         /// </summary>
         internal static string ribOpenFolderButton_Label {
