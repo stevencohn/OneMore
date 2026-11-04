@@ -1996,6 +1996,14 @@ Fichier OneNote (*.one)</value>
     <value>Ce favori n'existe plus. Il a peut-être été supprimé ou renommé. Supprimez-le et ajoutez-le à nouveau.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>Impossible d'ouvrir ces favoris :{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>Un bloc-notes ou un groupe de sections ne peut pas être ouvert dans une nouvelle fenêtre</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>Ce favori se trouve dans un carnet qui n'est pas ouvert ou en cours de chargement, ou dans une section verrouillée. Si vous venez d'ouvrir le bloc-notes, réessayez dans un instant.</value>
     <comment>error message !EDIT</comment>
@@ -2012,9 +2020,17 @@ Fichier OneNote (*.one)</value>
     <value>Vérifier les favoris</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>Fermer les fenêtres existantes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Gérer les favoris</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>Ouvrir dans une nouvelle fenêtre</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

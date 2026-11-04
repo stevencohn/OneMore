@@ -117,6 +117,7 @@ namespace River.OneMoreAddIn
 		public const int IDC_SIZENS = 32645;
 
 		public const int SW_RESTORE = 9;
+		public const uint WM_CLOSE = 0x0010;
 		public const uint SWP_NOSIZE = 0x0001;
 		public const uint SWP_NOMOVE = 0x0002;
 		public const uint SWP_NOZORDER = 0x0004;
@@ -525,6 +526,12 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
 		[DllImport("user32", SetLastError = true)]
 		public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-postmessagew
+		[DllImport("user32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool PostMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow

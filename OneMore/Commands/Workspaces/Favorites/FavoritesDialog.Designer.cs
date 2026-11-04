@@ -45,10 +45,16 @@
 			this.manageButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.deleteSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.closeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.rowMenu = new River.OneMoreAddIn.UI.MoreContextMenuStrip();
+			this.goItem = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.newWindowItem = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.components.Add(this.contextMenu);
+			this.components.Add(this.rowMenu);
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
+			this.rowMenu.SuspendLayout();
 			this.SuspendLayout();
 			//
 			// listView
@@ -58,10 +64,12 @@
             this.locationColumn});
 			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView.Location = new System.Drawing.Point(0, 74);
-			this.listView.MultiSelect = false;
+			this.listView.MultiSelect = true;
 			this.listView.Name = "listView";
 			this.listView.Size = new System.Drawing.Size(778, 410);
 			this.listView.TabIndex = 0;
+			this.listView.SelectedIndexChanged += new System.EventHandler(this.OnSelectionChanged);
+			this.listView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowRowMenu);
 			this.listView.Click += new System.EventHandler(this.ClickShowText);
 			this.listView.DoubleClick += new System.EventHandler(this.ChooseByDoubleClick);
 			this.listView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
@@ -80,6 +88,7 @@
 			// buttonPanel
 			// 
 			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.buttonPanel.Controls.Add(this.closeBox);
 			this.buttonPanel.Controls.Add(this.goButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -89,9 +98,21 @@
 			this.buttonPanel.Padding = new System.Windows.Forms.Padding(8);
 			this.buttonPanel.Size = new System.Drawing.Size(778, 60);
 			this.buttonPanel.TabIndex = 4;
-			// 
+			//
+			// closeBox
+			//
+			this.closeBox.AutoSize = true;
+			this.closeBox.Location = new System.Drawing.Point(15, 17);
+			this.closeBox.Name = "closeBox";
+			this.closeBox.Size = new System.Drawing.Size(180, 24);
+			this.closeBox.TabIndex = 2;
+			this.closeBox.TabStop = false;
+			this.closeBox.Text = "Close existing windows";
+			this.closeBox.UseVisualStyleBackColor = true;
+			this.closeBox.Visible = false;
+			//
 			// goButton
-			// 
+			//
 			this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.goButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.goButton.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -225,8 +246,31 @@
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteFavorite);
 			//
+			// rowMenu
+			//
+			this.rowMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.rowMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.goItem,
+            this.newWindowItem});
+			this.rowMenu.Name = "rowMenu";
+			this.rowMenu.Size = new System.Drawing.Size(249, 68);
+			//
+			// goItem
+			//
+			this.goItem.Name = "goItem";
+			this.goItem.Size = new System.Drawing.Size(248, 32);
+			this.goItem.Text = "Go";
+			this.goItem.Click += new System.EventHandler(this.GoFromMenu);
+			//
+			// newWindowItem
+			//
+			this.newWindowItem.Name = "newWindowItem";
+			this.newWindowItem.Size = new System.Drawing.Size(248, 32);
+			this.newWindowItem.Text = "Open in New Window";
+			this.newWindowItem.Click += new System.EventHandler(this.OpenInNewWindowFromMenu);
+			//
 			// FavoritesDialog
-			// 
+			//
 			this.AcceptButton = this.goButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -250,6 +294,7 @@
 			this.searchPanel.ResumeLayout(false);
 			this.searchPanel.PerformLayout();
 			this.contextMenu.ResumeLayout(false);
+			this.rowMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -270,5 +315,9 @@
 		private UI.MoreMenuItem addButton;
 		private System.Windows.Forms.ToolStripSeparator deleteSeparator;
 		private UI.MoreMenuItem deleteButton;
+		private UI.MoreCheckBox closeBox;
+		private UI.MoreContextMenuStrip rowMenu;
+		private UI.MoreMenuItem goItem;
+		private UI.MoreMenuItem newWindowItem;
 	}
 }

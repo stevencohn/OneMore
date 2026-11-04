@@ -1993,6 +1993,14 @@ Plik OneNote (* .o)</value>
     <value>Ten ulubiony już nie istnieje. Być może został usunięty lub zmieniono jego nazwę. Usuń go i dodaj ponownie.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>Nie można otworzyć tych ulubionych:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>Nie można otworzyć notatnika ani grupy sekcji w nowym oknie</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>Ten ulubiony znajduje się w notatniku, który nie jest otwarty lub wciąż się ładuje, albo w zablokowanej sekcji. Jeśli właśnie otworzyłeś notatnik, spróbuj ponownie za chwilę.</value>
     <comment>error message !EDIT</comment>
@@ -2009,9 +2017,17 @@ Plik OneNote (* .o)</value>
     <value>Sprawdź Ulubione</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>Zamknij istniejące okna</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Zarządzaj ulubionymi</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>Otwórz w nowych oknach</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

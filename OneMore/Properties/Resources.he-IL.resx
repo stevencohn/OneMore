@@ -1993,6 +1993,14 @@ Total Row Font
     <value>המועדף הזה כבר לא קיים. ייתכן שהוא נמחק או שונה שם. הסר אותו והוסף אותו שוב.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>לא ניתן היה לפתוח את המועדפים הבאים:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>לא ניתן לפתוח מחברת או קבוצת מדור בחלון חדש</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>המועדף הזה נמצא במחברת שאינה פתוחה או עדיין בטעינה, או בחלק נעול. אם זה עתה פתחת את המחברת, נסה שוב בעוד רגע.</value>
     <comment>error message !EDIT</comment>
@@ -2009,9 +2017,17 @@ Total Row Font
     <value>סמן מועדפים</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>סגור חלונות קיימים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>נהל מועדפים</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>פתח בחלונות חדשים</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

@@ -1993,6 +1993,14 @@ OneNote-bestand (*.one)</value>
     <value>Deze favoriet bestaat niet meer. Het is mogelijk verwijderd of hernoemd. Verwijder het en voeg het opnieuw toe.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>Deze favorieten kunnen niet worden geopend:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>Een notitieblok of sectiegroep kan niet in een nieuw venster worden geopend</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>Deze favoriet bevindt zich in een notitieboekje dat niet geopend is of nog aan het laden is, of in een afgesloten gedeelte. Als je het notitieboekje net hebt geopend, probeer het dan even opnieuw.</value>
     <comment>error message !EDIT</comment>
@@ -2009,9 +2017,17 @@ OneNote-bestand (*.one)</value>
     <value>Controleer Favorieten</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>Sluit bestaande vensters</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Beheer favorieten</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>Openen in nieuwe vensters</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

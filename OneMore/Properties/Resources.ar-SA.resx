@@ -1996,6 +1996,14 @@
     <value>هذه المفضلة لم تعد موجودة. ربما تم حذفه أو إعادة تسميته. قم بإزالته وأضفه مرة أخرى.</value>
     <comment>error message</comment>
   </data>
+  <data name="FavoritesCommand_incomplete" xml:space="preserve">
+    <value>لا يمكن فتح هذه المفضلة:{0}</value>
+    <comment>error message; {0} is a list of favorite names and reasons</comment>
+  </data>
+  <data name="FavoritesCommand_noNewWindow" xml:space="preserve">
+    <value>لا يمكن فتح دفتر ملاحظات أو مجموعة مقاطع في نافذة جديدة</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
     <value>هذه المفضلة موجودة في دفتر ملاحظات غير مفتوح أو لا يزال قيد التحميل، أو في قسم مقفل. إذا قمت بفتح دفتر الملاحظات للتو، فحاول مرة أخرى بعد قليل.</value>
     <comment>error message !EDIT</comment>
@@ -2012,9 +2020,17 @@
     <value>تحقق من المفضلة</value>
     <comment>context menu item</comment>
   </data>
+  <data name="FavoritesDialog_closeExisting" xml:space="preserve">
+    <value>إغلاق النوافذ الموجودة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>إدارة المفضلة</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
+    <value>فتح في نوافذ جديدة</value>
+    <comment>button</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>

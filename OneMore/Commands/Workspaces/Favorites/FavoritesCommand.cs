@@ -7,7 +7,9 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Commands.Favorites;
 	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
+	using System.Collections.Generic;
 	using System.Globalization;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -68,20 +70,49 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(tag))
 			{
-				using var dialog = new FavoritesDialog(ribbon);
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				IReadOnlyList<Favorite> targets = null;
+				var closeExisting = false;
+				var allowDuplicate = false;
+				var raise = IntPtr.Zero;
+
+				using (var dialog = new FavoritesDialog(ribbon))
 				{
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					if (dialog.Manage)
+					{
+						await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
+						return;
+					}
+
+					if (dialog.NewWindows)
+					{
+						targets = dialog.Targets;
+						closeExisting = dialog.CloseExisting;
+						allowDuplicate = dialog.AllowDuplicate;
+					}
+
+					raise = dialog.RaiseHandle;
+					favorite = dialog.Selected;
+					uri = dialog.Uri;
+				}
+
+				// only safe once the dialog (and its modal hold on OneNote's window) is gone
+				if (targets is not null)
+				{
+					await OpenInNewWindows(targets, closeExisting, allowDuplicate);
 					return;
 				}
 
-				if (dialog.Manage)
+				if (raise != IntPtr.Zero)
 				{
-					await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
+					// already open in a window, so show that one instead of navigating this one
+					NewWindowOpener.Raise(raise);
 					return;
 				}
-
-				favorite = dialog.Selected;
-				uri = dialog.Uri;
 			}
 			else if (ParseFavoriteID(tag) is int id)
 			{
@@ -124,6 +155,152 @@ namespace River.OneMoreAddIn.Commands
 			if (!success)
 			{
 				ShowError(failure ?? "Could not navigate at this time. Try again in a few seconds");
+			}
+		}
+
+
+		// Opens each favorite in its own window. A favorite that is already showing in a window just
+		// has that window raised. Windows that show none of the favorites are left alone unless the
+		// user asked to close them, which is done last so that OneNote is never left without a window.
+		private async Task OpenInNewWindows(
+			IReadOnlyList<Favorite> favorites, bool closeExisting, bool allowDuplicate)
+		{
+			await using var one = new OneNote();
+
+			// OneNote regenerates every page ID when a notebook is reopened, so a favorite's remembered
+			// ID may not exist any more; find each as it is now, and use that to look for its window
+			TargetResolver resolver = null;
+			try
+			{
+				resolver = await WorkspaceResolver.ReadResolver();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not read the notebooks to open favorites", exc);
+			}
+
+			string Link(string id) => one.GetHyperlink(id, string.Empty);
+
+			var handles = new List<IntPtr>();
+			var failed = new List<string>();
+			var healed = false;
+
+			foreach (var favorite in favorites)
+			{
+				var name = favorite.Alias ?? favorite.Name;
+
+				// a link to a notebook or a section group cannot be opened in a new window; they
+				// are opened by ID, which always navigates the current window
+				if (favorite.PageID is null &&
+					(favorite.Kind == Favorite.KindNotebook || favorite.Kind == Favorite.KindSectionGroup))
+				{
+					failed.Add($"{name}: {Resx.FavoritesCommand_noNewWindow}");
+					continue;
+				}
+
+				TargetResolution resolution = null;
+				string target;
+
+				if (resolver is null)
+				{
+					target = favorite.GetNavigationTarget();
+				}
+				else
+				{
+					resolution = resolver.Resolve(TargetQuery.From(favorite));
+					if (!resolution.IsResolved)
+					{
+						logger.WriteLine(
+							$"favorite {favorite.ID} {favorite.Location} is {resolution.Outcome}: {resolution.Reason}");
+
+						failed.Add($"{name}: {MessageFor(resolution.Outcome)}");
+						continue;
+					}
+
+					target = WorkspaceResolver.NavigationTarget(resolution, favorite.Kind, Link);
+				}
+
+				if (resolution is not null)
+				{
+					logger.Verbose(
+						$"favorite {favorite.ID} {favorite.Location} found by {resolution.Method}, " +
+						$"confident={resolution.IsConfident}, stored page {favorite.PageID}, " +
+						$"current page {resolution.PageID}");
+				}
+
+				var matcher = OpenFavoriteWindows.MatcherFor(favorite, resolution);
+				if (matcher is null || string.IsNullOrEmpty(target))
+				{
+					failed.Add($"{name}: {Resx.RestoreLayoutCommand_failed}");
+					continue;
+				}
+
+				var handle = allowDuplicate
+					? IntPtr.Zero
+					: await NewWindowOpener.FindWindowHandle(one, matcher);
+
+				var justOpened = false;
+
+				if (handle == IntPtr.Zero)
+				{
+					// to open a duplicate, the new window is the one that was not there before
+					var before = allowDuplicate ? await NewWindowOpener.GetHandles(one) : null;
+
+					handle = await NewWindowOpener.OpenWindow(
+						one, target, matcher, favorite.Location, existing: before);
+
+					justOpened = handle != IntPtr.Zero;
+				}
+
+				if (handle == IntPtr.Zero)
+				{
+					logger.WriteLine($"favorite {favorite.ID} {favorite.Location} did not open");
+					failed.Add($"{name}: {Resx.RestoreLayoutCommand_failed}");
+					continue;
+				}
+
+				if (!handles.Contains(handle))
+				{
+					handles.Add(handle);
+				}
+
+				// remember what was found, so the next click opens it directly
+				if (resolution is not null && resolution.IsConfident &&
+					WorkspaceResolver.Apply(favorite, resolution, Link))
+				{
+					using var provider = new FavoritesProvider();
+					healed |= provider.UpdateTarget(favorite);
+				}
+
+				if (justOpened)
+				{
+					await Task.Delay(NewWindowOpener.WindowSettleMilliseconds);
+				}
+			}
+
+			if (healed)
+			{
+				ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
+			}
+
+			if (closeExisting)
+			{
+				await NewWindowOpener.CloseOthers(one, handles);
+			}
+
+			if (handles.Count > 0)
+			{
+				NewWindowOpener.Raise(handles[handles.Count - 1]);
+			}
+
+			logger.WriteLine(
+				$"favorites: {handles.Count} windows shown, {failed.Count} not opened, " +
+				$"of {favorites.Count}");
+
+			if (failed.Count > 0)
+			{
+				var list = string.Concat(failed.Select(f => $"{Environment.NewLine}- {f}"));
+				ShowError(string.Format(Resx.FavoritesCommand_incomplete, list));
 			}
 		}
 
