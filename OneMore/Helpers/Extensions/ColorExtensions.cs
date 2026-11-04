@@ -113,6 +113,66 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// OneMore Extension >> Determines whether two colors look alike, using the perceptual
+		/// distance (CIE76 delta-E) rather than per-channel RGB differences. Alpha is ignored.
+		/// </summary>
+		/// <param name="color">The Color value</param>
+		/// <param name="other">A color to compare</param>
+		/// <param name="threshold">
+		/// The largest delta-E still considered the same; about 2.3 is barely noticeable and
+		/// about 10 is the same color family
+		/// </param>
+		public static bool IsSimilar(this Color color, Color other, double threshold = 10)
+		{
+			return color.DeltaE(other) <= threshold;
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Gets the perceptual distance between two colors as the
+		/// Euclidean distance in CIE L*a*b* space: 0 is identical, black to white is about 100.
+		/// </summary>
+		public static double DeltaE(this Color color, Color other)
+		{
+			var (l1, a1, b1) = ToLab(color);
+			var (l2, a2, b2) = ToLab(other);
+
+			return Math.Sqrt(
+				((l1 - l2) * (l1 - l2)) + ((a1 - a2) * (a1 - a2)) + ((b1 - b2) * (b1 - b2)));
+		}
+
+
+		// sRGB -> linear RGB -> XYZ (D65) -> Lab
+		private static (double L, double A, double B) ToLab(Color color)
+		{
+			static double Linear(byte channel)
+			{
+				var c = channel / 255.0;
+				return c <= 0.04045 ? c / 12.92 : Math.Pow((c + 0.055) / 1.055, 2.4);
+			}
+
+			static double Pivot(double t)
+			{
+				return t > 0.008856 ? Math.Pow(t, 1.0 / 3.0) : (7.787 * t) + (16.0 / 116.0);
+			}
+
+			var r = Linear(color.R);
+			var g = Linear(color.G);
+			var b = Linear(color.B);
+
+			var x = ((r * 0.4124564) + (g * 0.3575761) + (b * 0.1804375)) / 0.95047;
+			var y = (r * 0.2126729) + (g * 0.7151522) + (b * 0.0721750);
+			var z = ((r * 0.0193339) + (g * 0.1191920) + (b * 0.9503041)) / 1.08883;
+
+			var fx = Pivot(x);
+			var fy = Pivot(y);
+			var fz = Pivot(z);
+
+			return ((116.0 * fy) - 16.0, 500.0 * (fx - fy), 200.0 * (fy - fz));
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Formats an HTML RGB seven character (without AA) to appease
 		/// OneNote and with all uppercase letters to avoid case-sensitive comparison problems
 		/// </summary>

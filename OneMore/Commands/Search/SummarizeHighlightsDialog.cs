@@ -22,7 +22,9 @@ namespace River.OneMoreAddIn.Commands
 		private readonly UI.MoreRadioButton notebooksRadio;
 		private readonly UI.MoreComboBox dateSelector;
 		private readonly UI.MoreDateTimePicker datePicker;
-
+		private readonly UI.MorePictureBox colorBox;
+		private readonly UI.MoreButton clearButton;
+		private Color highlightColor = Color.Empty;
 
 		/// <param name="allowPage">
 		/// False to disable the page choice, such as when the current page is a report
@@ -43,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 			MaximizeBox = false;
 			MinimizeBox = false;
 			ShowInTaskbar = false;
-			ClientSize = new Size(443, 414);
+			ClientSize = new Size(443, 454);
 			Padding = new Padding(20, 20, 10, 10);
 			StartPosition = FormStartPosition.Manual;
 			Text = Resx.SummarizeHighlightsDialog_Text;
@@ -107,13 +109,53 @@ namespace River.OneMoreAddIn.Commands
 				Value = DateTime.Today
 			};
 
-			var okButton = AddButton("okButton", Resx.word_OK, DialogResult.OK, 184, 8);
-			var cancelButton = AddButton("cancelButton", Resx.word_Cancel, DialogResult.Cancel, 310, 9);
+			var colorLabel = new UI.MoreLabel
+			{
+				AutoSize = true,
+				Location = new Point(23, 324),
+				Name = "colorLabel",
+				Text = Resx.SummarizeHighlightsDialog_Color
+			};
+
+			colorBox = new UI.MorePictureBox
+			{
+				BorderStyle = BorderStyle.FixedSingle,
+				Location = new Point(228, 320),
+				Name = "colorBox",
+				Size = new Size(160, 28),
+				TabIndex = 8,
+				TabStop = false
+			};
+
+			colorBox.Click += ChooseColor;
+			colorBox.Paint += PaintColorBox;
+
+			clearButton = new UI.MoreButton
+			{
+				BackColor = Color.FromArgb(231, 231, 231),
+				ForeColor = Color.Black,
+				Location = new Point(394, 320),
+				Name = "clearButton",
+				ShowBorder = true,
+				Size = new Size(28, 28),
+				TabIndex = 9,
+				Text = "×",
+				UseVisualStyleBackColor = true,
+				Enabled = false
+			};
+
+			clearButton.Click += ClearColor;
+
+			var okButton = AddButton("okButton", Resx.word_OK, DialogResult.OK, 184, 10);
+			var cancelButton = AddButton("cancelButton", Resx.word_Cancel, DialogResult.Cancel, 310, 11);
 
 			Controls.Add(introLabel);
 			Controls.Add(filterLabel);
 			Controls.Add(dateSelector);
 			Controls.Add(datePicker);
+			Controls.Add(colorLabel);
+			Controls.Add(colorBox);
+			Controls.Add(clearButton);
 			AcceptButton = okButton;
 			ActiveControl = okButton;
 			CancelButton = cancelButton;
@@ -153,9 +195,61 @@ namespace River.OneMoreAddIn.Commands
 		public DateTime FilterDate => datePicker.Value.Date;
 
 
+		/// <summary>
+		/// Gets the chosen highlight color, or Color.Empty to include all colors.
+		/// </summary>
+		public Color HighlightColor => highlightColor;
+
+
 		private void ChangeDateSelector(object sender, EventArgs e)
 		{
 			datePicker.Enabled = dateSelector.SelectedIndex > 0;
+		}
+
+
+		private void ChooseColor(object sender, EventArgs e)
+		{
+			var location = colorBox.PointToScreen(new Point(0, colorBox.Height));
+
+			using var picker = new UI.MoreColorPicker(Color.Empty,
+				location.X, location.Y, Resx.SummarizeHighlightsDialog_Color)
+			{
+				Color = highlightColor.IsEmpty ? Color.Yellow : highlightColor,
+				AutomaticVisible = false
+			};
+
+			if (picker.ShowDialog(this) == DialogResult.OK)
+			{
+				highlightColor = picker.Color;
+				clearButton.Enabled = true;
+				colorBox.BackColor = UI.MoreColorPicker.IsDarkPage(Color.Empty)
+					? UI.ColorPalette.ToDark(highlightColor)
+					: highlightColor;
+
+				colorBox.Refresh();
+			}
+		}
+
+
+		private void ClearColor(object sender, EventArgs e)
+		{
+			highlightColor = Color.Empty;
+			clearButton.Enabled = false;
+			colorBox.ResetBackColor();
+			colorBox.Refresh();
+		}
+
+
+		// with no color chosen, the box reads "All colors"
+		private void PaintColorBox(object sender, PaintEventArgs e)
+		{
+			if (highlightColor.IsEmpty)
+			{
+				TextRenderer.DrawText(e.Graphics, Resx.SummarizeHighlightsDialog_AllColors,
+					colorBox.Font, colorBox.ClientRectangle, ForeColor,
+					TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
+					TextFormatFlags.SingleLine | TextFormatFlags.EndEllipsis);
+			}
 		}
 
 
@@ -188,7 +282,7 @@ namespace River.OneMoreAddIn.Commands
 				BackColor = Color.FromArgb(231, 231, 231),
 				DialogResult = result,
 				ForeColor = Color.Black,
-				Location = new Point(left, 354),
+				Location = new Point(left, 394),
 				Name = name,
 				ShowBorder = true,
 				Size = new Size(120, 38),

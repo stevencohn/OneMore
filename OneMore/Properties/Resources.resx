@@ -8027,6 +8027,18 @@ Invert</value>
     <value>Highlights - {0}</value>
     <comment>report page title; {0} is the scope name</comment>
   </data>
+  <data name="SummarizeHighlights_FilterColor" xml:space="preserve">
+    <value>Highlight color {0}</value>
+    <comment>report color filter; {0} is an HTML color such as #FFFF00</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_AllColors" xml:space="preserve">
+    <value>All colors</value>
+    <comment>color box text meaning no color filter</comment>
+  </data>
+  <data name="SummarizeHighlightsDialog_Color" xml:space="preserve">
+    <value>Highlight color</value>
+    <comment>dialog label</comment>
+  </data>
   <data name="SummarizeHighlightsDialog_AllDates" xml:space="preserve">
     <value>All dates</value>
     <comment>combo box item</comment>

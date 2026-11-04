@@ -70,10 +70,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string CiteCss = "font-size:8.0pt;color:#595959";
 
+		// largest perceptual distance (CIE76 delta-E) at which a highlight still counts as
+		// the chosen color; about 10 is the same color family
+		private const double ColorTolerance = 10;
+
 		private OneNote one;
 		private HighlightScope scope;
 		private DateFilter dateFilter;
 		private DateTime filterDate;
+		private Color targetColor = Color.Empty;
 		private string scopeName;
 		private string currentPageId;
 		private int highlightCount;
@@ -122,6 +127,7 @@ namespace River.OneMoreAddIn.Commands
 					scope = dialog.Scope;
 					dateFilter = dialog.Filter;
 					filterDate = dialog.FilterDate;
+					targetColor = dialog.HighlightColor;
 				}
 
 				var pageElements = await GetScopedPages();
@@ -340,7 +346,8 @@ namespace River.OneMoreAddIn.Commands
 
 				var html = string.Concat(runs.Select(r => r.GetCData()?.Value ?? string.Empty));
 				var count = HighlightPattern.Matches(html).Cast<Match>()
-					.Count(m => IsHighlight(m.Groups[1].Value, pageColor));
+					.Count(m => IsHighlight(m.Groups[1].Value, pageColor) &&
+						IsTargetColor(m.Groups[1].Value));
 
 				if (count == 0)
 				{
@@ -458,6 +465,28 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return !HasNoContrast(color, pageColor);
+		}
+
+
+		/// <summary>
+		/// Determines whether the CSS background value is the color chosen in the dialog;
+		/// always true when all colors were chosen.
+		/// </summary>
+		private bool IsTargetColor(string value)
+		{
+			if (targetColor.IsEmpty)
+			{
+				return true;
+			}
+
+			try
+			{
+				return targetColor.IsSimilar(ColorHelper.FromHtml(value.Trim()), ColorTolerance);
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 
 
@@ -579,6 +608,14 @@ namespace River.OneMoreAddIn.Commands
 
 				var filter = string.Format(format, filterDate.ToString("d", AddIn.Locale));
 				container.Add(new Paragraph($"<span style='{CiteCss}'>{Encode(filter)}</span>"));
+			}
+
+			if (!targetColor.IsEmpty)
+			{
+				var colorFilter = string.Format(
+					Resx.SummarizeHighlights_FilterColor, targetColor.ToRGBHtml());
+
+				container.Add(new Paragraph($"<span style='{CiteCss}'>{Encode(colorFilter)}</span>"));
 			}
 
 			container.Add(new Paragraph(string.Empty));

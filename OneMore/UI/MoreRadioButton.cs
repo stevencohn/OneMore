@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
-	using System.Linq;
 	using System.Windows.Forms;
 
 	internal class MoreRadioButton : RadioButton
@@ -17,6 +16,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
 		private readonly IntPtr hcursor;
+		private bool fitting;
 
 
 		/// <summary>
@@ -141,12 +141,8 @@ namespace River.OneMoreAddIn.UI
 					pevent.ClipRectangle.Width - (BoxSize + Spacing),
 					Size.Height);
 
-			g.DrawString(Text, Font, brush, bounds,
-				new StringFormat
-				{
-					Trimming = StringTrimming.None,
-					FormatFlags = StringFormatFlags.NoWrap
-				});
+			using var format = CreateFormat();
+			g.DrawString(Text, Font, brush, bounds, format);
 
 			if (Focused)
 			{
@@ -176,30 +172,108 @@ namespace River.OneMoreAddIn.UI
 					return;
 				}
 
-				// add fudge factor
-				var text = $"{Text}.";
-				if (Text.Contains(Environment.NewLine))
-				{
-					var parts = Text.Split(
-						new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-					var max = parts.Max(p => p.Length);
-					text = $"{parts.First(p => p.Length == max)}.";
-				}
-
-				using var g = CreateGraphics();
-				size = g.MeasureString(text, Font).ToSize();
-				var w = BoxSize + Spacing + size.Width;
-				var h = Math.Max(size.Height, MenuCheckSize.Height);
-				if (Width < w || Height < h)
-				{
-					AutoSize = false;
-					Width = w;
-					Height = h;
-				}
+				EnsureFit();
 			}
 
 			base.OnTextChanged(e);
+		}
+
+
+		// the font is often inherited from the parent after Text is set, so re-fit then
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
+			EnsureFit();
+		}
+
+
+		protected override void OnParentChanged(EventArgs e)
+		{
+			base.OnParentChanged(e);
+			EnsureFit();
+		}
+
+
+		protected override void OnHandleCreated(EventArgs e)
+		{
+			base.OnHandleCreated(e);
+			EnsureFit();
+		}
+
+
+		protected override void OnDpiChangedAfterParent(EventArgs e)
+		{
+			base.OnDpiChangedAfterParent(e);
+			EnsureFit();
+		}
+
+
+		/// <summary>
+		/// Grows the control, if needed, so the owner-drawn text is not clipped.
+		/// </summary>
+		private void EnsureFit()
+		{
+			if (Appearance != Appearance.Normal || string.IsNullOrWhiteSpace(Text))
+			{
+				return;
+			}
+
+			var fit = MeasureFit();
+			fitting = true;
+
+			if (Width != fit.Width || Height != fit.Height)
+			{
+				AutoSize = false;
+				Width = fit.Width;
+				Height = fit.Height;
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the smallest size that shows the whole text.
+		/// </summary>
+		private Size MeasureFit()
+		{
+			// measure exactly as PaintNormal draws: same graphics type, font and format
+			using var g = CreateGraphics();
+			using var format = CreateFormat();
+			var size = g.MeasureString(Text, Font, PointF.Empty, format);
+
+			// +4 width for the trailing glyph overhang; +4 height because the text is
+			// drawn 2px below the top and needs the same below
+			return new Size(
+				BoxSize + Spacing + (int)Math.Ceiling(size.Width) + 4,
+				Math.Max((int)Math.Ceiling(size.Height) + 4, MenuCheckSize.Height));
+		}
+
+
+		/// <summary>
+		/// Prevents the form's auto-scaling (which can run after the font has changed and
+		/// resizes by rounded ratios) from shrinking the control below what the text needs.
+		/// </summary>
+		protected override void SetBoundsCore(
+			int x, int y, int width, int height, BoundsSpecified specified)
+		{
+			if (fitting && !AutoSize && Appearance == Appearance.Normal &&
+				!string.IsNullOrWhiteSpace(Text) && IsHandleCreated)
+			{
+				var fit = MeasureFit();
+				width = Math.Max(width, fit.Width);
+				height = Math.Max(height, fit.Height);
+			}
+
+			base.SetBoundsCore(x, y, width, height, specified);
+		}
+
+
+		private static StringFormat CreateFormat()
+		{
+			return new StringFormat
+			{
+				Trimming = StringTrimming.None,
+				FormatFlags = StringFormatFlags.NoWrap
+			};
 		}
 
 
