@@ -6686,6 +6686,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>ページ上のすべてのインクを選択</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>言語の選択</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>類似テキストの選択</value>
     <comment>ribbon edit</comment>

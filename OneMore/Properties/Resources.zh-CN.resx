@@ -6695,6 +6695,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>选中此页面上的所有墨迹</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>选择语言</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>选中相似格式文本</value>
     <comment>ribbon edit</comment>

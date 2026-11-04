@@ -355,7 +355,14 @@
       <menu
         id="ribColorizeMenu"
         imageMso="SmartArtChangeColorsGallery"
-        getLabel="GetRibbonLabel" showImage="true"/>
+        getLabel="GetRibbonLabel" showImage="true">
+        <button
+          id="ribSelectLanguageButton"
+          imageMso="TextHighlightColorPicker"
+          getLabel="GetRibbonLabel"
+          onAction="ChooseColorizerCmd"/>
+        <menuSeparator id="ribSelectLanguageSep"/>
+      </menu>
 
       <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
         <button

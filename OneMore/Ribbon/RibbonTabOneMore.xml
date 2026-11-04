@@ -123,7 +123,14 @@
       getLabel="GetRibbonLabel"
       showImage="true"
       size="large"
-      keytip="C"/>
+      keytip="C">
+      <button
+        id="ribSelectLanguageButton"
+        imageMso="TextHighlightColorPicker"
+        getLabel="GetRibbonLabel"
+        onAction="ChooseColorizerCmd"/>
+      <menuSeparator id="ribSelectLanguageSep"/>
+    </menu>
   </group>
 
   <group id="ribOneMoreSnippetsGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">

@@ -6680,6 +6680,10 @@ Pestaña Ayuda</value>
     <value>Seleccionar toda la tinta en la página.</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Seleccionar idioma</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Seleccionar texto similar</value>
     <comment>ribbon edit</comment>

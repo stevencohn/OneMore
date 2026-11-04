@@ -6681,6 +6681,10 @@ Tabblad Help</value>
     <value>Selecteer alle inkt op de pagina</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Selecteer Taal</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Selecteer Vergelijkbare tekst</value>
     <comment>ribbon edit</comment>

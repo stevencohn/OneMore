@@ -6681,6 +6681,10 @@ Guia Ajuda</value>
     <value>Selecione toda a tinta na página</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Selecione o idioma</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Selecione Texto Semelhante</value>
     <comment>ribbon edit</comment>

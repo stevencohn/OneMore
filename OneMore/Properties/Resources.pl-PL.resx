@@ -6681,6 +6681,10 @@ Zakładka Pomoc</value>
     <value>Zaznacz cały atrament na stronie</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Wybierz Język</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Wybierz podobny tekst</value>
     <comment>ribbon edit</comment>

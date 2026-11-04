@@ -6711,6 +6711,10 @@ Help Tab</value>
     <value>Select all ink on the page</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Select Language</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Select Similar Text</value>
     <comment>ribbon edit</comment>

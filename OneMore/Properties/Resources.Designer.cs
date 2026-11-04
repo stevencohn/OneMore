@@ -15481,6 +15481,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Language.
+        /// </summary>
+        internal static string ribSelectLanguageButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectLanguageButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Select All Images.
         /// </summary>
         internal static string ribSelectImagesButton_Label {

@@ -6692,6 +6692,10 @@ ISO-code then comma then language name</comment>
     <value>حدد كل الحبر الموجود على الصفحة</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>اختر اللغة</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>حدد نص مشابه</value>
     <comment>ribbon edit</comment>

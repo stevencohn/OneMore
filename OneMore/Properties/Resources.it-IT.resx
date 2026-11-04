@@ -6683,6 +6683,10 @@ Scheda Aiuto</value>
     <value>Seleziona tutto l'inchiostro sulla pagina</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Seleziona lingua</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Seleziona Testo simile</value>
     <comment>ribbon edit</comment>

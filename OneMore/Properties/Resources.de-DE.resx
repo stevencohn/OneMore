@@ -6681,6 +6681,10 @@ Registerkarte „Hilfe“.</value>
     <value>Wählen Sie die gesamte Tinte auf der Seite aus</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Wählen Sie Sprache aus</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Wählen Sie „Ähnlicher Text“.</value>
     <comment>ribbon edit</comment>

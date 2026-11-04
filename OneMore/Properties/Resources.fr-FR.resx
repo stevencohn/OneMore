@@ -6692,6 +6692,10 @@ Onglet Aide</value>
     <value>Sélectionner toute l'encre de la page</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSelectLanguageButton_Label" xml:space="preserve">
+    <value>Sélectionnez la langue</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Sélectionner un texte similaire</value>
     <comment>ribbon edit</comment>
