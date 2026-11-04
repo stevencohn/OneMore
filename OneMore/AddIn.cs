@@ -457,7 +457,16 @@ namespace River.OneMoreAddIn
 			logger.WriteLine("Shutdown: stopping service loops");
 			ServiceLoop.StopAll();
 
-			System.Windows.Forms.Application.Exit();
+			try
+			{
+				System.Windows.Forms.Application.Exit();
+			}
+			catch (IndexOutOfRangeException)
+			{
+				// WinForms races with other UI threads (hotkeys, modeless forms) exiting
+				// concurrently while it enumerates its thread contexts; benign
+				logger.WriteLine("Shutdown: Application.Exit raced with thread exit; ignored");
+			}
 		}
 
 
