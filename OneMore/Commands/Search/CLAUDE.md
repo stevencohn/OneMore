@@ -13,6 +13,7 @@ This directory implements all search-related commands for the OneMore OneNote ad
 | `SearchCommand` | `Execute()` | Modeless dialog to search pages across sections/notebooks, then move or copy the selected pages to a target section |
 | `SearchAndReplaceCommand` | `Execute()` | Find-and-replace across a page, section, or all notebooks; supports regex and capture group substitution |
 | `SearchAndHighlightCommand` | `Execute()` | Subclass of `SearchAndReplaceCommand` (overrides `Highlighting`); opens the same `SearchAndReplaceDialog` in highlight mode, where "Replace with" becomes a highlighter color chooser (next in sequence, or a specific color from the configured scheme). Matches get a `background` color; existing span styles are preserved and an existing background is replaced. The rotation index is saved on the page via `HighlightRotator.SaveIndex` |
+| `SearchAndSelectCommand` | `Execute()` | Modal `SearchAndSelectDialog` (pattern, match case, regex); on OK deselects the page, then `FirstMatchSelector` selects the first match in each paragraph (OneNote allows one contiguous selection per paragraph) by splitting its run with `RunSplitter` and marking the match `selected="all"`. Current page only; the user then applies OneNote formatting |
 | `SearchWebCommand` | `Execute(uri)` | Grabs selected text from the current page and opens a formatted web search URL in the default browser |
 
 ## Architecture
@@ -46,7 +47,7 @@ The core replace engine used by both `SearchAndReplaceCommand` and `LinkReferenc
 
 `SearchAndReplaceDialog` is modeless and, like Visual Studio, has Find Next, Replace (Highlight in highlight mode) and Replace All (Highlight All). Find Next and Replace only apply to scope This Page; other scopes enable Replace All only. The command wires the dialog's `FindNextClicked`/`ReplaceClicked`/`ReplaceAllClicked` events to a `SearchAndReplaceSession`, which re-reads the page (`PageDetail.Basic`) on every step so edits made between clicks are respected.
 
-To show a match, `Select` splits its `T` run into before / match (`selected="all"`) / after runs so exactly the matched characters are selected. The original run and the CDATA of the pieces are remembered in `Pending`; `Restore` puts the original run back at the start of the next step, in `ApplyAll`, and on `Release` (dialog closed). If the pieces no longer match (OneNote recombined them or the user edited) nothing is touched. Position between steps is a `(run index, char index)` cursor; `Reset` is called when the search criteria change. Because the session reads Basic pages it searches the whole page, not just a selection.
+To show a match, `Select` (via the shared `RunSplitter.Split`, also used by Search and Select) splits its `T` run into before / match (`selected="all"`) / after runs so exactly the matched characters are selected. The original run and the CDATA of the pieces are remembered in `Pending`; `Restore` puts the original run back at the start of the next step, in `ApplyAll`, and on `Release` (dialog closed). If the pieces no longer match (OneNote recombined them or the user edited) nothing is touched. Position between steps is a `(run index, char index)` cursor; `Reset` is called when the search criteria change. Because the session reads Basic pages it searches the whole page, not just a selection.
 
 ### `TextMatchBuilder`
 

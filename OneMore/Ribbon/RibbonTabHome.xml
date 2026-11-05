@@ -1013,6 +1013,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="SearchAndReplaceCmd"/>
         <button
+          id="ribSearchAndSelectButton"
+          imageMso="SelectAll"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SearchAndSelectCmd"/>
+        <button
           id="ribSearchButton"
           imageMso="FileFind"
           getLabel="GetRibbonLabel"

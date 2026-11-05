@@ -94,6 +94,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Initializes a new editor that only finds matches, invoked by the SearchAndSelect
+		/// command through <see cref="FindAllMatches"/>
+		/// </summary>
+		/// <param name="pattern">A string or regular expression</param>
+		/// <param name="enableRegex">Determines whether to treat pattern as a regular expression</param>
+		/// <param name="caseSensitive">Determines whether to be case sensitive</param>
+		public SearchAndReplaceEditor(string pattern, bool enableRegex, bool caseSensitive)
+			: this(pattern, enableRegex, caseSensitive, null)
+		{
+		}
+
+
 		public bool CaseSensitive { get; private set; }
 
 		public bool EnableRegex { get; private set; }

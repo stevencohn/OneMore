@@ -6746,6 +6746,14 @@ Help Tab</value>
     <value>Search and replace (Ctrl + H)</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>Search and Select</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>Select the first match of the text on this page in each paragraph</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Search</value>
     <comment>ribbon search</comment>
@@ -7332,6 +7340,10 @@ All notebooks</value>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>Replace with:</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Search and Select</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
     <value>Replace All</value>
