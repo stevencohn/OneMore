@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// separator) than the one active during this recalculation - e.g. after
 		/// a Language change.
 		/// </summary>
-		private static bool TryParseNumber(string text, out double value)
+		internal static bool TryParseNumber(string text, out double value)
 		{
 			// strip currency/percent symbols regardless of which culture produced
 			// them - a referenced cell's formula result may have been formatted

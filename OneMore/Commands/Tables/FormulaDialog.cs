@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Globalization;
 	using System.Linq;
 	using Resx = Properties.Resources;
 
@@ -52,6 +53,10 @@ namespace River.OneMoreAddIn.Commands
 
 			calculator = new Calculator();
 			calculator.GetCellValue += GetCellValue;
+
+			// refresh the preview when format or decimal places change
+			formatBox.SelectedIndexChanged += ChangedFormula;
+			decimalBox.ValueChanged += ChangedFormula;
 		}
 
 
@@ -127,9 +132,7 @@ namespace River.OneMoreAddIn.Commands
 					var result = calculator.Compute(formula);
 					validStatusLabel.ForeColor = manager.GetColor("ControlText");
 
-					var text = Format == FormulaFormat.Time
-						? TimeSpan.FromMilliseconds(result).ToString()
-						: $"{result}";
+					var text = FormatResult(result);
 
 					validStatusLabel.Text = $"{Resx.word_OK} ({text})";
 					tooltip.SetToolTip(validStatusLabel, string.Empty);
@@ -156,6 +159,30 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private string FormatResult(double result)
+		{
+			var dplaces = DecimalPlaces;
+
+			switch (Format)
+			{
+				case FormulaFormat.Currency:
+					return result.ToString($"C{dplaces}", AddIn.Locale);
+
+				case FormulaFormat.Number:
+					return result.ToString($"N{dplaces}", AddIn.Locale);
+
+				case FormulaFormat.Percentage:
+					return (result / 100).ToString($"P{dplaces}", AddIn.Locale);
+
+				case FormulaFormat.Time:
+					return TimeSpan.FromMilliseconds(result).ToString();
+
+				default:
+					return $"{result}";
+			}
+		}
+
+
 		private void GetCellValue(object sender, GetCellValueEventArgs e)
 		{
 			var cell = table.GetCell(e.Name.ToUpper());
@@ -165,13 +192,21 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			e.Value = cell.GetText().Trim()
-				.Replace(AddIn.Locale.NumberFormat.CurrencySymbol, string.Empty)
-				.Replace(AddIn.Locale.NumberFormat.PercentSymbol, string.Empty);
+			var text = cell.GetTextLines()
+				.FirstOrDefault(l => !string.IsNullOrWhiteSpace(l))?.Trim()
+				?? string.Empty;
 
-			if (TimeSpan.TryParse(e.Value, AddIn.Locale, out var tvalue))
+			if (Processor.TryParseNumber(text, out var dvalue))
 			{
-				e.Value = tvalue.TotalMilliseconds.ToString();
+				e.Value = dvalue.ToString(CultureInfo.InvariantCulture);
+			}
+			else if (TimeSpan.TryParse(text, AddIn.Locale, out var tvalue))
+			{
+				e.Value = tvalue.TotalMilliseconds.ToString(CultureInfo.InvariantCulture);
+			}
+			else
+			{
+				e.Value = text;
 			}
 
 			logger.Verbose($"FormulaDialog.GetCellValue({e.Name}) = [{e.Value}]");

@@ -488,6 +488,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				// expand...
 
 				var values = new List<string>();
+				var countif = IsCountifRange(tokens, index);
+				string firstSkipped = null;
+
 				if (col1 == col2)
 				{
 					var r1 = int.Parse(row1);
@@ -508,6 +511,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						// ignore empty cells
 						if (value.Length > 0)
 						{
+							// ignore non-numeric cells, except for countif which matches them
+							if (!countif && !IsNumeric(value))
+							{
+								firstSkipped ??= value;
+								continue;
+							}
+
 							if (values.Count > 0)
 							{
 								values.Add(",");
@@ -537,6 +547,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						// ignore empty cells
 						if (value.Length > 0)
 						{
+							// ignore non-numeric cells, except for countif which matches them
+							if (!countif && !IsNumeric(value))
+							{
+								firstSkipped ??= value;
+								continue;
+							}
+
 							if (values.Count > 0)
 							{
 								values.Add(",");
@@ -552,6 +569,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						Resx.Calculator_ErrInvalidRange, $"{tokens[index - 1]}:{tokens[index + 1]}"));
 				}
 
+				// every non-empty cell was non-numeric so report it as invalid
+				if (values.Count == 0 && firstSkipped is not null)
+				{
+					throw new CalculatorException(
+						string.Format(Resx.Calculator_ErrUndefinedVariable, firstSkipped));
+				}
+
 				// replace token range with values
 
 				if (values.Count > 0)
@@ -563,6 +587,38 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				index = index < tokens.Count - 1 ? tokens.IndexOf(":", index + 1) : -1;
 			}
+		}
+
+
+		private bool IsNumeric(string value)
+		{
+			return double.TryParse(value, NumberStyles.Number, cultureInfo, out _);
+		}
+
+
+		// determines if the range whose ":" is at colonIndex is inside a countif() call
+		private static bool IsCountifRange(List<string> tokens, int colonIndex)
+		{
+			var depth = 0;
+			for (var i = colonIndex - 1; i >= 0; i--)
+			{
+				if (tokens[i] == ")")
+				{
+					depth++;
+				}
+				else if (tokens[i] == "(")
+				{
+					if (depth == 0)
+					{
+						return i > 0 && tokens[i - 1]
+							.Equals(CountifFnName, StringComparison.CurrentCultureIgnoreCase);
+					}
+
+					depth--;
+				}
+			}
+
+			return false;
 		}
 
 
