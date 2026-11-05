@@ -147,6 +147,14 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = IndexConsumer.IsEnabled() ? notebookScopeIndex : pageScopeIndex;
 			LoadState();
 
+			// after toggling any option, return focus to the search phrase box
+			matchBox.CheckedChanged += FocusFindBox;
+			regBox.CheckedChanged += FocusFindBox;
+			includeTocBox.CheckedChanged += FocusFindBox;
+			ocrBox.CheckedChanged += FocusFindBox;
+			emojiBox.CheckedChanged += FocusFindBox;
+			sortBox.CheckedChanged += FocusFindBox;
+
 			dateSelector.SelectedIndex = 0;
 			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
@@ -161,6 +169,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private const string StateName = "SearchDialog";
+
+
+		private void FocusFindBox(object sender, EventArgs e)
+		{
+			findBox.Focus();
+		}
 
 
 		private void LoadState()
