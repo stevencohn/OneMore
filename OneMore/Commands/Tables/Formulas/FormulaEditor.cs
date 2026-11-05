@@ -159,9 +159,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				? manager.GetColor("ErrorText")
 				: Focused ? manager.GetColor("HotTrack") : manager.GetColor("ActiveBorder");
 
-			using var pen = new Pen(color, 2);
+			using var pen = new Pen(color, 1);
 			var r = Bounds;
-			r.Inflate(2, 2);
+			r.Inflate(1, 1);
 			e.Graphics.DrawRectangle(pen, r);
 		}
 

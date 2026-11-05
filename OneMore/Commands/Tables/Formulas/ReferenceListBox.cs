@@ -70,6 +70,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			base.OnHandleCreated(e);
 			BackColor = manager.GetColor("Window");
+
+			// the native window can be recreated after the form applied its theme, for example
+			// when the parent tab control changes its style, so dark scrollbars must be
+			// re-applied every time the handle is created
+			manager.InitializeTheme(this);
 			UpdateMetrics();
 		}
 
