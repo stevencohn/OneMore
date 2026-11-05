@@ -2348,9 +2348,17 @@ OneNoteファイル (*.one)</value>
     <value>数式</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormulaDialog_cellsLabel" xml:space="preserve">
+    <value>追加される数式</value>
+    <comment>label above the per-cell formula list</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>小数点以下の桁数:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_emptyResult" xml:space="preserve">
+    <value>数式を入力してください</value>
+    <comment>shown in the result area when the formula is empty</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>番号
@@ -2362,6 +2370,10 @@ OneNoteファイル (*.one)</value>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>フォーマット:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_formulaFirst" xml:space="preserve">
+    <value>最初のセル ({0}) に書かれた数式</value>
+    <comment>label when multiple cells are selected</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
     <value>数式:</value>
@@ -2379,6 +2391,34 @@ OneNoteファイル (*.one)</value>
 相対範囲：A1：セル（0、-1）</value>
     <comment>!EDIT</comment>
   </data>
+  <data name="FormulaDialog_hint" xml:space="preserve">
+    <value>入力時に構文チェックが行われる</value>
+    <comment>footer hint</comment>
+  </data>
+  <data name="FormulaDialog_insert" xml:space="preserve">
+    <value>カーソル位置に挿入</value>
+    <comment>button</comment>
+  </data>
+  <data name="FormulaDialog_okMany" xml:space="preserve">
+    <value>OK · {0} 個のセルに入力します</value>
+    <comment>button; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_openBuilder" xml:space="preserve">
+    <value>ビルダーを開く ›</value>
+    <comment>button shown for entries that open a further detail view</comment>
+  </data>
+  <data name="FormulaDialog_resultIn" xml:space="preserve">
+    <value>結果は {0}</value>
+    <comment>result caption; {0} is a cell name</comment>
+  </data>
+  <data name="FormulaDialog_resultInMany" xml:space="preserve">
+    <value>結果は {0} 個、さらに {1} 個のセルが OK になります</value>
+    <comment>result caption for multiple cells; {0} first cell, {1} remaining count</comment>
+  </data>
+  <data name="FormulaDialog_search" xml:space="preserve">
+    <value>検索</value>
+    <comment>label above the reference search box</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>選択されたセル:</value>
     <comment>label</comment>
@@ -2394,6 +2434,37 @@ OneNoteファイル (*.one)</value>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>状態:</value>
     <comment>status label</comment>
+  </data>
+  <data name="FormulaDialog_tabs" xml:space="preserve">
+    <value>機能
+オペレーター
+変数
+細胞</value>
+    <comment>reference tab names, one per line</comment>
+  </data>
+  <data name="FormulaDialog_tagBox.Text" xml:space="preserve">
+    <value>数式セルにタグを付ける</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="FormulaDialog_tagHint" xml:space="preserve">
+    <value>このセルに稲妻のマークを付けて、数式を見つけやすくします。</value>
+    <comment>hint under checkbox, single cell</comment>
+  </data>
+  <data name="FormulaDialog_tagHintMany" xml:space="preserve">
+    <value>これらの {0} セルに稲妻のマークを付けて、数式を見つけやすくします。</value>
+    <comment>hint under checkbox, multiple cells; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_target_many" xml:space="preserve">
+    <value>ターゲット: {0}:{1} ({2} 個のセル)</value>
+    <comment>header chip, multiple cells; {0} first cell, {1} last cell, {2} count</comment>
+  </data>
+  <data name="FormulaDialog_target_one" xml:space="preserve">
+    <value>ターゲット: {0} (1 セル)</value>
+    <comment>header chip, single cell; {0} is a cell name such as A9</comment>
+  </data>
+  <data name="FormulaDialog_timeHint" xml:space="preserve">
+    <value>所要時間 hh:mm</value>
+    <comment>hint shown when the Time format is selected</comment>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>OneNote起動時にOneMoreの新しいバージョンをチェック</value>

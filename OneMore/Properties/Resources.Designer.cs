@@ -5241,7 +5241,112 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaDialog_status_Invalid", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tag formula cells.
+        /// </summary>
+        internal static string FormulaDialog_tagBox_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_tagBox.Text", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_target_one {
+            get {
+                return ResourceManager.GetString("FormulaDialog_target_one", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_target_many {
+            get {
+                return ResourceManager.GetString("FormulaDialog_target_many", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_resultIn {
+            get {
+                return ResourceManager.GetString("FormulaDialog_resultIn", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_resultInMany {
+            get {
+                return ResourceManager.GetString("FormulaDialog_resultInMany", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_formulaFirst {
+            get {
+                return ResourceManager.GetString("FormulaDialog_formulaFirst", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_cellsLabel {
+            get {
+                return ResourceManager.GetString("FormulaDialog_cellsLabel", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_hint {
+            get {
+                return ResourceManager.GetString("FormulaDialog_hint", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_tagHint {
+            get {
+                return ResourceManager.GetString("FormulaDialog_tagHint", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_tagHintMany {
+            get {
+                return ResourceManager.GetString("FormulaDialog_tagHintMany", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_timeHint {
+            get {
+                return ResourceManager.GetString("FormulaDialog_timeHint", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_search {
+            get {
+                return ResourceManager.GetString("FormulaDialog_search", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_tabs {
+            get {
+                return ResourceManager.GetString("FormulaDialog_tabs", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_insert {
+            get {
+                return ResourceManager.GetString("FormulaDialog_insert", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_openBuilder {
+            get {
+                return ResourceManager.GetString("FormulaDialog_openBuilder", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_okMany {
+            get {
+                return ResourceManager.GetString("FormulaDialog_okMany", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_emptyResult {
+            get {
+                return ResourceManager.GetString("FormulaDialog_emptyResult", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Status:.
         /// </summary>

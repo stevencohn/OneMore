@@ -1035,6 +1035,21 @@
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Tables\Formulas\Formula.cs" />
     <Compile Include="Commands\Tables\Formulas\FormulaFixer.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaShifter.cs" />
+    <Compile Include="Commands\Tables\Formulas\ReferenceListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\Formulas\PillLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\Formulas\FormulaReference.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaTokenizer.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\Formulas\CountifBuilderPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">

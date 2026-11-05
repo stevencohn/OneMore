@@ -9,8 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -102,16 +100,8 @@ namespace River.OneMoreAddIn.Commands
 
 					using var dialog = new FormulaDialog(table);
 
-					// display selected cell names
-					if (cells.Count == 1)
-					{
-						dialog.SetCellNames(cells[0].Coordinates);
-					}
-					else
-					{
-						dialog.SetCellNames(
-							$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
-					}
+					// display selected cell names and the per-cell formula preview
+					dialog.SetTargetCells(cells.Select(c => c.Coordinates).ToList(), range);
 
 					var cell = cells[0];
 
@@ -230,43 +220,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var regex = new Regex(@"\b(?<c>[a-zA-Z]{1,3})(?<r>\d{1,3})\b");
-
 			int offset = 0;
 			foreach (var cell in cells)
 			{
-				var builder = new StringBuilder(expression);
-				if (offset > 0)
-				{
-					var matches = regex.Matches(expression);
-					foreach (Match match in matches)
-					{
-						string col;
-						string row;
-
-						if (rangeType == TableSelectionRange.Columns)
-						{
-							col = TableCell.IndexToLetters(
-								TableCell.LettersToIndex(match.Groups["c"].Value) + offset);
-
-							row = match.Groups["r"].Value;
-						}
-						else
-						{
-							col = match.Groups["c"].Value;
-
-							var r = int.Parse(match.Groups["r"].Value);
-							row = match.Groups["o"].Success
-								? $"-{(table.RowCount - r + offset)}"
-								: (r + offset).ToString();
-						}
-
-						builder.Replace(match.Value, $"{col}{row}", match.Index, match.Length);
-					}
-				}
+				var shifted = FormulaShifter.Shift(expression, offset, rangeType);
 
 				cell.SetMeta("omfx",
-					new Formula(format, dplaces, builder.ToString(), cell.Coordinates).ToString());
+					new Formula(format, dplaces, shifted, cell.Coordinates).ToString());
 
 				if (!string.IsNullOrEmpty(tagIndex))
 				{

@@ -143,6 +143,7 @@
     <Compile Include="Commands\Tables\ApplyTableThemeCommandTests.cs" />
     <Compile Include="Commands\Tables\CellFormatterTests.cs" />
     <Compile Include="Commands\Tables\FormulaFixerTests.cs" />
+    <Compile Include="Commands\Tables\FormulaShifterTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceHealerTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceHealerWindowTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceResolverTests.cs" />
