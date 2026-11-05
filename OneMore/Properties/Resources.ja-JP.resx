@@ -638,6 +638,14 @@
     <value>{0} のトークンに一致する右かっこが見つかりませんでした</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrNotANumber" xml:space="preserve">
+    <value>結果は数値ではありません</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOutOfRange" xml:space="preserve">
+    <value>結果が範囲外です</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
     <value>未定義のセル参照「{0}」</value>
     <comment>error</comment>

@@ -141,6 +141,7 @@
     <Compile Include="Commands\FormControls\FormControlsProviderTests.cs" />
     <Compile Include="Commands\Workspaces\TargetResolverTests.cs" />
     <Compile Include="Commands\Tables\ApplyTableThemeCommandTests.cs" />
+    <Compile Include="Commands\Tables\CalculatorTests.cs" />
     <Compile Include="Commands\Tables\CellFormatterTests.cs" />
     <Compile Include="Commands\Tables\FormulaFixerTests.cs" />
     <Compile Include="Commands\Tables\FormulaShifterTests.cs" />

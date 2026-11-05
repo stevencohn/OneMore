@@ -37,6 +37,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		private const char LeqSign = (char)8804;
 		private const char NeqSign = (char)8800;
 
+		// allows exponent notation, e.g. 3.09485009821345E+26, which double.ToString() emits
+		// for large/small values and which must round-trip through the token list
+		private const NumberStyles NumStyle = NumberStyles.Float | NumberStyles.AllowThousands;
+
 		private readonly FunctionFactory factory;
 
 		private readonly Dictionary<string, Func<double, double, double>> operators;
@@ -192,7 +196,23 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			ReplaceVariables(tokens);
 			PreprocessTableFunctions(tokens);
 			GetCellContents(tokens);
-			return Evaluate(tokens);
+			return CheckRange(Evaluate(tokens));
+		}
+
+
+		private static double CheckRange(double value)
+		{
+			if (double.IsNaN(value))
+			{
+				throw new CalculatorException(Resx.Calculator_ErrNotANumber);
+			}
+
+			if (double.IsInfinity(value))
+			{
+				throw new CalculatorException(Resx.Calculator_ErrOutOfRange);
+			}
+
+			return value;
 		}
 
 
@@ -592,7 +612,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		private bool IsNumeric(string value)
 		{
-			return double.TryParse(value, NumberStyles.Number, cultureInfo, out _);
+			return double.TryParse(value, NumStyle, cultureInfo, out _);
 		}
 
 
@@ -722,7 +742,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						// the last parameter can be true/false/string
 						if (name == CountifFnName &&
 							expr.Count == 1 &&
-							!double.TryParse(expr[0], NumberStyles.Number, cultureInfo, out _))
+							!double.TryParse(expr[0], NumStyle, cultureInfo, out _))
 						{
 							// countif match paramter
 							vargs.Add(new Variant(expr[0]));
@@ -740,7 +760,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				}
 
 				// when all calcs are done, replace opening bracket with result and remove rest
-				tokens[open] = result.ToString(cultureInfo);
+				tokens[open] = CheckRange(result).ToString(cultureInfo);
 				tokens.RemoveRange(open + 1, close - open);
 
 				if (func is not null)
@@ -769,7 +789,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			switch (tokens.Count)
 			{
 				case 1:
-					if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
+					if (!double.TryParse(tokens[0], NumStyle, cultureInfo, out token0))
 					{
 						throw new CalculatorException(
 							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[0]));
@@ -786,7 +806,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 							? string.Empty
 							: tokens[1].Substring(0, 1) == "-" ? string.Empty : "-";
 
-						if (!double.TryParse(first + tokens[1], NumberStyles.Number, cultureInfo, out token1))
+						if (!double.TryParse(first + tokens[1], NumStyle, cultureInfo, out token1))
 						{
 							throw new CalculatorException(
 								string.Format(Resx.Calculator_ErrUndefinedVariable, first + tokens[1]));
@@ -801,13 +821,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 							string.Format(Resx.Calculator_ErrUndefinedOperator, op));
 					}
 
-					if (!double.TryParse(tokens[1], NumberStyles.Number, cultureInfo, out token1))
+					if (!double.TryParse(tokens[1], NumStyle, cultureInfo, out token1))
 					{
 						throw new CalculatorException(
 							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[1]));
 					}
 
-					return operators[op](0, token1);
+					return CheckRange(operators[op](0, token1));
 
 				case 0:
 					return 0;
@@ -819,7 +839,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				while ((opPlace = tokens.IndexOf(op.Key)) != -1)
 				{
-					if (!double.TryParse(tokens[opPlace + 1], NumberStyles.Number, cultureInfo, out var rhs))
+					if (!double.TryParse(tokens[opPlace + 1], NumStyle, cultureInfo, out var rhs))
 					{
 						throw new CalculatorException(
 							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[opPlace + 1]));
@@ -827,26 +847,26 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 					if (op.Key == "-" && opPlace == 0)
 					{
-						var result = op.Value(0.0, rhs);
+						var result = CheckRange(op.Value(0.0, rhs));
 						tokens[0] = result.ToString(cultureInfo);
 						tokens.RemoveRange(opPlace + 1, 1);
 					}
 					else
 					{
-						if (!double.TryParse(tokens[opPlace - 1], NumberStyles.Number, cultureInfo, out var lhs))
+						if (!double.TryParse(tokens[opPlace - 1], NumStyle, cultureInfo, out var lhs))
 						{
 							throw new CalculatorException(
 								string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[opPlace - 1]));
 						}
 
-						var result = op.Value(lhs, rhs);
+						var result = CheckRange(op.Value(lhs, rhs));
 						tokens[opPlace - 1] = result.ToString(cultureInfo);
 						tokens.RemoveRange(opPlace, 2);
 					}
 				}
 			}
 
-			if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
+			if (!double.TryParse(tokens[0], NumStyle, cultureInfo, out token0))
 			{
 				throw new CalculatorException(
 					string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[0]));
