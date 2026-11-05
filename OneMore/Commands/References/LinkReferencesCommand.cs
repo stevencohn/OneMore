@@ -7,12 +7,14 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.TextIndex;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Web;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -49,6 +51,8 @@ namespace River.OneMoreAddIn.Commands
 		private bool refreshReferences;
 		private bool showSynopsis;
 		private SearchAndReplaceEditor editor;
+		private Regex titleRegex;
+		private IndexedHits indexed;
 		private List<Referral> referrals;
 
 
@@ -85,6 +89,8 @@ namespace River.OneMoreAddIn.Commands
 			// initialize search-and-replace editor...
 
 			var whatText = $@"(?:^|\b|\s)({anchorTitle.EscapeForRegex()})(?:$|\b|\s)";
+
+			titleRegex = new Regex(whatText, RegexOptions.IgnoreCase);
 
 			var withElement = new XElement("a",
 				new XAttribute("href", pageLink),
@@ -169,6 +175,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await using (one = new OneNote())
 				{
+					indexed = await LoadIndex(token);
+
 					if (scope == OneNote.Scope.Notebooks)
 					{
 						var notebooks = await one.GetNotebooks(OneNote.Scope.Pages);
@@ -227,15 +235,18 @@ namespace River.OneMoreAddIn.Commands
 			UI.ProgressDialog progress, CancellationToken token, XElement hierarchy)
 		{
 			var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
-			var pageIDs = hierarchy.Descendants(ns + "Page")
-				.Select(e => e.Attribute("ID").Value);
+			var pages = hierarchy.Descendants(ns + "Page")
+				.Where(e => e.Attribute("ID").Value != anchorPage.PageId)
+				.ToList();
 
-			var total = pageIDs.Count();
+			var total = pages.Count;
 			progress.SetMaximum(total);
 
 			var count = 0;
+			var indexedCount = 0;
+			var readCount = 0;
 
-			foreach (var pageID in pageIDs.Where(e => e != anchorPage.PageId))
+			foreach (var element in pages)
 			{
 				if (token.IsCancellationRequested)
 				{
@@ -246,61 +257,171 @@ namespace River.OneMoreAddIn.Commands
 				count++;
 				progress.Increment();
 
-				var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
-				progress.SetMessage(page.Title);
+				var pageID = element.Attribute("ID").Value;
+				var name = element.Attribute("name")?.Value ?? string.Empty;
 
-				var title = CleanTitle(page.Title);
-				logger.Verbose($"searching for references on {title}");
-
-				// search and replace...
-
-				var replacements = 0;
-				string objectId = null;
-
-				// exclude the omLinkedReferences block
-				var block = page.Root.Descendants(ns + "Meta")
-					.FirstOrDefault(e => e.Attribute("name").Value == LinkRefsMeta);
-
-				if (block is null)
+				// A page whose index entry is current and had no candidate paragraph cannot
+				// contain the title, so skip reading it from OneNote
+				if (indexed is not null &&
+					indexed.TryGet(pageID, element.Attribute("lastModifiedTime")?.Value, out var found) &&
+					found.Count == 0)
 				{
-					// no omLinkedReferences so just scan the whole page
-					objectId = page.Root.Elements(ns + "Outline")
-						.Select(o => editor.FindFirstMatchObjectId(o))
-						.FirstOrDefault(id => id is not null);
-
-					replacements = editor.SearchAndReplace(page);
-				}
-				else
-				{
-					// skip the omLinkedReferences block and its child OEs
-					var blocked = new List<XElement> { block.Parent };
-					var children = block.Parent.Descendants(ns + "OE");
-					if (children.Any()) blocked.AddRange(children);
-
-					// scan the remaining content of the page
-					foreach (var oe in page.Root.Descendants(ns + "OE").Except(blocked))
-					{
-						objectId ??= editor.FindFirstMatchObjectId(oe);
-						replacements += editor.SearchAndReplace(oe);
-					}
+					progress.SetMessage(name);
+					indexedCount++;
+					continue;
 				}
 
-				//var replacements = editor.SearchAndReplace(page);
-				if (replacements > 0 && !token.IsCancellationRequested)
-				{
-					// update the referring page with links back to the anchor page
-					logger.Debug($"saving {title}");
-					await one.Update(page);
+				readCount++;
 
-					referrals.Add(new Referral
-					{
-						PageID = pageID,
-						ObjectId = objectId,
-						Title = title,
-						Synopsis = showSynopsis ? GetSynopsis(page) : string.Empty
-					});
+				try
+				{
+					// log before reading so that a hang identifies the page
+					logger.Verbose($"reading {name}");
+
+					var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
+					progress.SetMessage(page.Title);
+
+					var title = CleanTitle(page.Title);
+					logger.Verbose($"searching for references on {title}");
+
+					await ScanPage(page, pageID, title, token);
+				}
+				catch (OperationCanceledException)
+				{
+					throw;
+				}
+				catch (Exception exc)
+				{
+					// one bad page must not abort the whole scan
+					logger.WriteLine($"error scanning page {name}", exc);
 				}
 			}
+
+			logger.WriteLine(
+				$"{nameof(LinkReferencesCommand)} answered {indexedCount} pages from the index, " +
+				$"read {readCount} of {total} pages");
+		}
+
+
+		private async Task ScanPage(Page page, string pageID, string title, CancellationToken token)
+		{
+			var ns = page.Namespace;
+
+			// search and replace...
+
+			var replacements = 0;
+			string objectId = null;
+
+			// exclude the omLinkedReferences block
+			var block = page.Root.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == LinkRefsMeta);
+
+			if (block is null)
+			{
+				// no omLinkedReferences so just scan the whole page
+				objectId = page.Root.Elements(ns + "Outline")
+					.Select(o => editor.FindFirstMatchObjectId(o))
+					.FirstOrDefault(id => id is not null);
+
+				replacements = editor.SearchAndReplace(page);
+			}
+			else
+			{
+				// skip the omLinkedReferences block and its child OEs
+				var blocked = new List<XElement> { block.Parent };
+				var children = block.Parent.Descendants(ns + "OE");
+				if (children.Any()) blocked.AddRange(children);
+
+				// scan the remaining content of the page
+				foreach (var oe in page.Root.Descendants(ns + "OE").Except(blocked))
+				{
+					objectId ??= editor.FindFirstMatchObjectId(oe);
+					replacements += editor.SearchAndReplace(oe);
+				}
+			}
+
+			if (replacements > 0 && !token.IsCancellationRequested)
+			{
+				// update the referring page with links back to the anchor page
+				logger.Debug($"saving {title}");
+				await one.Update(page);
+
+				referrals.Add(new Referral
+				{
+					PageID = pageID,
+					ObjectId = objectId,
+					Title = title,
+					Synopsis = showSynopsis ? GetSynopsis(page) : string.Empty
+				});
+			}
+		}
+
+
+		/// <summary>
+		/// Builds an FTS5 expression that finds a superset of the paragraphs containing the title.
+		/// </summary>
+		/// <remarks>
+		/// The index holds raw paragraph text, where a space may be stored as an entity such as
+		/// &amp;nbsp;, so the title is looked up by its individual words rather than as a phrase.
+		/// Each word is tested again, decoded, by <see cref="IndexTest"/>.
+		/// </remarks>
+		/// <returns>The expression, or null if the title cannot be looked up reliably and every
+		/// page must be read</returns>
+		internal static string BuildIndexMatch(string title)
+		{
+			if (string.IsNullOrWhiteSpace(title))
+			{
+				return null;
+			}
+
+			// anything that could be stored differently than it is displayed, e.g. &amp;
+			foreach (var c in title)
+			{
+				if (!char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c) && "-_.,'".IndexOf(c) < 0)
+				{
+					return null;
+				}
+			}
+
+			var words = new List<string>();
+			foreach (var word in title.Split((char[])null, StringSplitOptions.RemoveEmptyEntries))
+			{
+				// the trigram tokenizer cannot look up fewer than three characters
+				if (word.Length >= IndexProvider.MinTermLength)
+				{
+					words.Add($"\"{word}\"");
+				}
+			}
+
+			return words.Count == 0 ? null : string.Join(" AND ", words);
+		}
+
+
+		/// <summary>
+		/// Tests the raw text of an indexed paragraph the way the editor would test the live text.
+		/// </summary>
+		internal static bool IndexTest(Regex regex, string rawText)
+		{
+			return regex.IsMatch(HttpUtility.HtmlDecode(rawText).Replace(' ', ' '));
+		}
+
+
+		private async Task<IndexedHits> LoadIndex(CancellationToken token)
+		{
+			var match = BuildIndexMatch(anchorTitle);
+			if (match is null)
+			{
+				logger.Verbose($"text index not used for \"{anchorTitle}\"; reading every page");
+				return null;
+			}
+
+			var result = await IndexedHits.Load(match, text => IndexTest(titleRegex, text), token);
+			if (result is null)
+			{
+				logger.Verbose("text index unavailable; reading every page");
+			}
+
+			return result;
 		}
 
 

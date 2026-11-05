@@ -102,6 +102,52 @@ namespace River.OneMoreAddIn.TextIndex
 			IndexProvider provider, string match, Regex finder, CancellationToken token,
 			bool includeOcr = false)
 		{
+			return Load(provider, match, finder.IsMatch, token, includeOcr);
+		}
+
+
+		/// <summary>
+		/// Asks the index for a prefilter built by the caller from an FTS5 expression, if indexing
+		/// is turned on and there is an index. Unlike the query-text overload, nothing is parsed
+		/// so the caller can look up a literal phrase or word list.
+		/// </summary>
+		/// <param name="match">An FTS5 expression that finds a superset of the paragraphs that
+		/// match</param>
+		/// <param name="test">Tests the raw text of each paragraph the index returns</param>
+		/// <param name="token">Cancels the search</param>
+		/// <returns>The answer, or null if the index cannot be used and every page must be read</returns>
+		public static Task<IndexedHits> Load(
+			string match, Func<string, bool> test, CancellationToken token)
+		{
+			return Task.Run(() =>
+			{
+				try
+				{
+					if (match is null || !IndexConsumer.IsEnabled() || !IndexProvider.CatalogExists())
+					{
+						return null;
+					}
+
+					using var provider = new IndexProvider();
+					return Load(provider, match, test, token);
+				}
+				catch (OperationCanceledException)
+				{
+					throw;
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error using the text index, reading pages instead", exc);
+					return null;
+				}
+			}, token);
+		}
+
+
+		internal static IndexedHits Load(
+			IndexProvider provider, string match, Func<string, bool> test, CancellationToken token,
+			bool includeOcr = false)
+		{
 			var result = new IndexedHits();
 
 			var keys = new Dictionary<long, string>();
@@ -115,7 +161,7 @@ namespace River.OneMoreAddIn.TextIndex
 			{
 				token.ThrowIfCancellationRequested();
 
-				if (!finder.IsMatch(paragraph.Text))
+				if (!test(paragraph.Text))
 				{
 					continue;
 				}
