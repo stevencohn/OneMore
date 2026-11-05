@@ -73,12 +73,17 @@ namespace River.OneMoreAddIn.Commands
 
 			if (start > 0)
 			{
-				var before = Slice(wrapper, 0, start, false);
+				var before = KeepBreak(Slice(wrapper, 0, start, false), wrapper, start);
 				pieces.Add(before);
 				runs.Add(MakeRun(run, before, false));
 			}
 
 			var inside = Slice(wrapper, start, end, end == total);
+			if (end < total)
+			{
+				inside = KeepBreak(inside, wrapper, end);
+			}
+
 			pieces.Add(inside);
 			runs.Add(MakeRun(run, inside, true));
 
@@ -92,6 +97,17 @@ namespace River.OneMoreAddIn.Commands
 			run.ReplaceWith(runs.Cast<object>().ToArray());
 
 			return new RunSplit { ObjectId = objectId, Original = original, Pieces = pieces };
+		}
+
+
+		// OneNote drops a line break that ends a run, so when the text just before the split
+		// point is a line break (<br> followed by a newline), add a trailing nbsp to preserve
+		// it, as OneNote itself does and as SearchAndReplaceEditor.PatchEndingBreaks does
+		private static string KeepBreak(string piece, XElement wrapper, int end)
+		{
+			return end > 0 && wrapper.Value[end - 1] == '\n'
+				? $"{piece}&nbsp;"
+				: piece;
 		}
 
 
