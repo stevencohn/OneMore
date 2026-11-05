@@ -1498,6 +1498,15 @@
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchAndReplaceSession.cs" />
+    <Compile Include="Commands\Search\FirstMatchSelector.cs" />
+    <Compile Include="Commands\Search\RunSplitter.cs" />
+    <Compile Include="Commands\Search\SearchAndSelectCommand.cs" />
+    <Compile Include="Commands\Search\SearchAndSelectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchAndSelectDialog.Designer.cs">
+      <DependentUpon>SearchAndSelectDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>

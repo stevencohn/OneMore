@@ -15523,6 +15523,24 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSearchAndReplaceButton_Screentip", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Select.
+        /// </summary>
+        internal static string ribSearchAndSelectButton_Label {
+            get {
+                return ResourceManager.GetString("ribSearchAndSelectButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the first match of the text on this page in each paragraph.
+        /// </summary>
+        internal static string ribSearchAndSelectButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSearchAndSelectButton_Screentip", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Search.
@@ -16825,6 +16843,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchAndReplaceDialog_withLabel_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_withLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Select.
+        /// </summary>
+        internal static string SearchAndSelectDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchAndSelectDialog_Text", resourceCulture);
             }
         }
         

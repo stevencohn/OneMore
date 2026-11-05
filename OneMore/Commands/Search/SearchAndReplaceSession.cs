@@ -260,79 +260,20 @@ namespace River.OneMoreAddIn.Commands
 		// Splits the run so exactly the matched characters are a selected run
 		private bool Select(MatchInfo match)
 		{
-			if (match.Length == 0)
+			var split = RunSplitter.Split(match);
+			if (split is null)
 			{
 				return false;
 			}
 
-			var run = match.TElement;
-			var cdata = run.GetCData();
-			if (cdata is null)
+			pending = new Pending
 			{
-				return false;
-			}
+				ObjectId = split.ObjectId,
+				Original = split.Original,
+				Pieces = split.Pieces
+			};
 
-			var wrapper = cdata.GetWrapper();
-			var total = wrapper.Value.Length;
-			var start = match.StartIndex;
-			var end = Math.Min(start + match.Length, total);
-
-			var oe = run.Parent;
-			while (oe is not null && oe.Name.LocalName != "OE")
-			{
-				oe = oe.Parent;
-			}
-
-			var objectId = oe?.Attribute("objectID")?.Value;
-			if (objectId is null)
-			{
-				return false;
-			}
-
-			var original = new XElement(run);
-			var pieces = new List<string>();
-			var runs = new List<XElement>();
-
-			if (start > 0)
-			{
-				var before = Slice(wrapper, 0, start, false);
-				pieces.Add(before);
-				runs.Add(MakeRun(run, before, false));
-			}
-
-			var inside = Slice(wrapper, start, end, end == total);
-			pieces.Add(inside);
-			runs.Add(MakeRun(run, inside, true));
-
-			if (end < total)
-			{
-				var after = Slice(wrapper, end, total, true);
-				pieces.Add(after);
-				runs.Add(MakeRun(run, after, false));
-			}
-
-			pending = new Pending { ObjectId = objectId, Original = original, Pieces = pieces };
-			run.ReplaceWith(runs.Cast<object>().ToArray());
 			return true;
-		}
-
-
-		private static XElement MakeRun(XElement template, string cdata, bool selected)
-		{
-			var run = new XElement(template.Name);
-
-			foreach (var attribute in template.Attributes().Where(a => a.Name.LocalName != "selected"))
-			{
-				run.Add(new XAttribute(attribute.Name, attribute.Value));
-			}
-
-			if (selected)
-			{
-				run.Add(new XAttribute("selected", "all"));
-			}
-
-			run.Add(new XCData(cdata));
-			return run;
 		}
 
 
@@ -380,81 +321,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return false;
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Slicing the inner XML of a run by character range, keeping span styles on each part
-
-		private static string Slice(XElement wrapper, int from, int to, bool last)
-		{
-			var slice = new XElement("cdata");
-			var offset = 0;
-
-			foreach (var node in wrapper.Nodes())
-			{
-				var piece = Trim(node, offset, from, to, last);
-				if (piece is not null)
-				{
-					slice.Add(piece);
-				}
-
-				offset += TextLength(node);
-			}
-
-			return slice.GetInnerXml();
-		}
-
-
-		private static int TextLength(XNode node)
-		{
-			return node is XText text ? text.Value.Length : ((XElement)node).Value.Length;
-		}
-
-
-		// Copies the part of the node within [from, to), where offset is where the node starts
-		private static XNode Trim(XNode node, int offset, int from, int to, bool last)
-		{
-			if (node is XText text)
-			{
-				var lo = Math.Max(from - offset, 0);
-				var hi = Math.Min(to - offset, text.Value.Length);
-				return lo < hi ? new XText(text.Value.Substring(lo, hi - lo)) : null;
-			}
-
-			var element = (XElement)node;
-			var length = element.Value.Length;
-
-			if (length == 0)
-			{
-				// a line break has no text, so it belongs to whichever part it falls in
-				return offset >= from && (offset < to || (last && offset <= to))
-					? new XElement(element)
-					: null;
-			}
-
-			var elo = Math.Max(from - offset, 0);
-			var ehi = Math.Min(to - offset, length);
-			if (elo >= ehi)
-			{
-				return null;
-			}
-
-			var copy = new XElement(element.Name, element.Attributes());
-			var childOffset = 0;
-
-			foreach (var child in element.Nodes())
-			{
-				var piece = Trim(child, childOffset, elo, ehi, last && ehi == length);
-				if (piece is not null)
-				{
-					copy.Add(piece);
-				}
-
-				childOffset += TextLength(child);
-			}
-
-			return copy;
 		}
 	}
 }

@@ -107,6 +107,7 @@
     <Compile Include="Commands\Tagging\HashtagProviderTests.cs" />
     <Compile Include="Commands\Tagging\HashtagScheduleTests.cs" />
     <Compile Include="Commands\Tagging\HashtagStageTests.cs" />
+    <Compile Include="Commands\Search\FirstMatchSelectorTests.cs" />
     <Compile Include="Commands\Search\PageTextExtractorTests.cs" />
     <Compile Include="Commands\Search\SearchAndReplaceEditorTests.cs" />
     <Compile Include="Commands\Search\TextMatchBuilderTests.cs" />
