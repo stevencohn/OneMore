@@ -270,6 +270,92 @@ namespace River.OneMoreAddIn.Tests.TextIndex
 		}
 
 
+		// = = = LinkReferences prefilter = = =
+
+		private IndexedHits LoadTitle(string title)
+		{
+			var regex = new System.Text.RegularExpressions.Regex(
+				$@"(?:^|\b|\s)({title.EscapeForRegex()})(?:$|\b|\s)",
+				System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+			return IndexedHits.Load(
+				provider, LinkReferencesCommand.BuildIndexMatch(title),
+				text => LinkReferencesCommand.IndexTest(regex, text),
+				CancellationToken.None);
+		}
+
+
+		[TestMethod]
+		public void Title_CurrentPageWithAndWithoutTitle()
+		{
+			provider.ReplacePage(1, "id1", Modified, Paras("see Project Plan here"));
+			provider.ReplacePage(2, "id2", Modified, Paras("nothing relevant"));
+
+			var result = LoadTitle("Project Plan");
+
+			Assert.IsTrue(result.TryGet("id1", Modified, out var hits1));
+			Assert.AreEqual(1, hits1.Count);
+			Assert.IsTrue(result.TryGet("id2", Modified, out var hits2));
+			Assert.AreEqual(0, hits2.Count);
+			Assert.IsFalse(result.TryGet("id1", "2026-03-01T00:00:00.000Z", out _));
+		}
+
+
+		[TestMethod]
+		public void Title_FoundAcrossNonBreakingSpaceEntity()
+		{
+			provider.ReplacePage(1, "id1", Modified, Paras("see Project&nbsp;Plan here"));
+
+			var result = LoadTitle("Project Plan");
+
+			Assert.IsTrue(result.TryGet("id1", Modified, out var hits));
+			Assert.AreEqual(1, hits.Count);
+		}
+
+
+		[TestMethod]
+		public void Title_NonAsciiCaseInsensitive()
+		{
+			provider.ReplacePage(1, "id1", Modified, Paras("das ist über alles"));
+
+			var result = LoadTitle("Über");
+
+			Assert.IsTrue(result.TryGet("id1", Modified, out var hits));
+			Assert.AreEqual(1, hits.Count);
+		}
+
+
+		[TestMethod]
+		public void Title_WithOperatorWordsIsLiteral()
+		{
+			provider.ReplacePage(1, "id1", Modified, Paras("this AND that or NOT other"));
+			provider.ReplacePage(2, "id2", Modified, Paras("this only"));
+
+			var result = LoadTitle("this AND that");
+
+			Assert.IsTrue(result.TryGet("id1", Modified, out var hits1));
+			Assert.AreEqual(1, hits1.Count);
+			Assert.IsTrue(result.TryGet("id2", Modified, out var hits2));
+			Assert.AreEqual(0, hits2.Count);
+		}
+
+
+		[TestMethod]
+		public void Title_BuildIndexMatch()
+		{
+			Assert.AreEqual("\"Project\" AND \"Plan\"", LinkReferencesCommand.BuildIndexMatch("Project Plan"));
+			Assert.AreEqual("\"Plan\"", LinkReferencesCommand.BuildIndexMatch("A Plan"));
+
+			// cannot be looked up reliably; every page is read
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch("AI"));
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch("a b"));
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch("Tom & Jerry"));
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch("say \"hi\""));
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch("a<b"));
+			Assert.IsNull(LinkReferencesCommand.BuildIndexMatch(string.Empty));
+		}
+
+
 		[TestMethod]
 		public void Load_RegularExpression_ScansTheText()
 		{
