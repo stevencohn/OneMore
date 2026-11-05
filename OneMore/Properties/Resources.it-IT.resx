@@ -2350,6 +2350,14 @@ File OneNote (*.one)</value>
     <value>Formule che verranno aggiunte</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>Conta le celle nell'intervallo che corrispondono ai criteri. Ignora le celle vuote.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>Operatori: valore semplice = uguale a · &lt; minore di · &gt; maggiore di · ! non uguale. Il testo non ha bisogno di virgolette.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Posti decimali:</value>
     <comment>label</comment>

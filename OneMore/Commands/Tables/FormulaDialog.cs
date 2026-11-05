@@ -193,6 +193,31 @@ namespace River.OneMoreAddIn.Commands
 				control.Width = right - control.Left;
 			}
 
+			// the tab strip does not scale with the form: its header height and padding are
+			// fixed pixels, so size them from the actual font and divide the strip evenly
+			// across the tab control so that scroll buttons never appear
+			var tabHeight = Math.Max(tabs.TabHeight, (int)(Font.Height * 2.2));
+			tabs.TabHeight = tabHeight;
+			tabs.Padding = new System.Drawing.Point(0, 0);
+			tabs.SizeMode = TabSizeMode.Fixed;
+
+			// Multiline wraps rows rather than scrolling, so arrows can never appear
+			tabs.Multiline = true;
+			tabs.ItemSize = new System.Drawing.Size(
+				((tabs.ClientSize.Width - 4) / Math.Max(1, tabs.TabCount)) - 1, tabHeight);
+
+			// diagnostics: remove once the 125% tab layout is confirmed
+			logger.WriteLine(
+				$"FormulaDialog tabs: width={tabs.Width} client={tabs.ClientSize.Width} " +
+				$"item={tabs.ItemSize} font={Font.Height} dpi={DeviceDpi} " +
+				$"rects={string.Join(";", Enumerable.Range(0, tabs.TabCount).Select(i => tabs.GetTabRect(i).ToString()))}");
+
+			// tab control and countif panel run from below the search box down to just above
+			// the insert button, measured in actual pixels
+			var bottom = insertButton.Top - (Font.Height / 2);
+			tabs.Height = bottom - tabs.Top;
+			countifPanel.Height = okButton.Top - (Font.Height / 2) - countifPanel.Top;
+
 			var gap = cancelButton.Left - okButton.Right;
 			insertButton.Left = right - insertButton.Width;
 			cancelButton.Left = right - cancelButton.Width;
@@ -316,8 +341,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			countifPanel.Visible = show;
 			tabs.Visible = !show;
-			searchBox.Visible = !show;
-			searchLabel.Visible = !show;
+
+			// the search box stays in place, but only applies to the reference tabs
+			searchBox.Enabled = !show;
+			searchLabel.Enabled = !show;
 			insertButton.Visible = !show;
 		}
 		#endregion Reference panel

@@ -2352,6 +2352,14 @@
     <value>الصيغ التي سيتم إضافتها</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>حساب الخلايا في النطاق الذي يطابق المعايير. يتجاهل الخلايا الفارغة.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>عوامل التشغيل: القيمة البسيطة = تساوي · &lt; أقل من · &gt; أكبر من · ! لا يساوي. النص لا يحتاج إلى علامات الاقتباس.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>منازل عشرية:</value>
     <comment>label</comment>

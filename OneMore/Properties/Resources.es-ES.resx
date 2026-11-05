@@ -2344,6 +2344,14 @@ Archivo de OneNote (* .one)</value>
     <value>Fórmulas que se agregarán</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>Cuenta las celdas del rango que coinciden con los criterios. Ignora las celdas vacías.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>Operadores: valor simple = igual · &lt; menor que · &gt; mayor que · ! no igual. El texto no necesita comillas.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Lugares decimales:</value>
     <comment>label</comment>

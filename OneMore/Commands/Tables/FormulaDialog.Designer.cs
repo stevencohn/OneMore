@@ -249,7 +249,7 @@
 			this.tabs.Location = new System.Drawing.Point(639, 80);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(421, 550);
+			this.tabs.Size = new System.Drawing.Size(421, 586);
 			this.tabs.TabIndex = 5;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangedTab);
 			//
@@ -257,7 +257,7 @@
 			//
 			this.insertButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.insertButton.ImageOver = null;
-			this.insertButton.Location = new System.Drawing.Point(880, 648);
+			this.insertButton.Location = new System.Drawing.Point(880, 684);
 			this.insertButton.Name = "insertButton";
 			this.insertButton.ShowBorder = true;
 			this.insertButton.Size = new System.Drawing.Size(180, 36);
@@ -281,7 +281,7 @@
 			//
 			this.hintLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.hintLabel.AutoSize = true;
-			this.hintLabel.Location = new System.Drawing.Point(20, 712);
+			this.hintLabel.Location = new System.Drawing.Point(20, 748);
 			this.hintLabel.Name = "hintLabel";
 			this.hintLabel.Size = new System.Drawing.Size(180, 20);
 			this.hintLabel.TabIndex = 13;
@@ -292,7 +292,7 @@
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(960, 704);
+			this.cancelButton.Location = new System.Drawing.Point(960, 740);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
@@ -309,7 +309,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(770, 704);
+			this.okButton.Location = new System.Drawing.Point(770, 740);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(180, 38);
@@ -327,7 +327,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1100, 762);
+			this.ClientSize = new System.Drawing.Size(1100, 798);
 			this.Controls.Add(this.countifPanel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);

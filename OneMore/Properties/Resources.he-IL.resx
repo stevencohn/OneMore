@@ -2349,6 +2349,14 @@ Total Row Font
     <value>נוסחאות שיתווספו</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>סופר תאים בטווח התואמים את הקריטריונים. מתעלם מתאים ריקים.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>אופרטורים: ערך רגיל = שווה · &lt; פחות מ · &gt; גדול מ · ! לא שווה. טקסט לא צריך מרכאות.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>מקומות עשרוניים:</value>
     <comment>label</comment>
