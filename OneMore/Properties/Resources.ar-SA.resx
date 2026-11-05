@@ -2348,9 +2348,17 @@
     <value>معادلة</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormulaDialog_cellsLabel" xml:space="preserve">
+    <value>الصيغ التي سيتم إضافتها</value>
+    <comment>label above the per-cell formula list</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>منازل عشرية:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_emptyResult" xml:space="preserve">
+    <value>أدخل صيغة</value>
+    <comment>shown in the result area when the formula is empty</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>رقم
@@ -2362,6 +2370,10 @@
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>شكل:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_formulaFirst" xml:space="preserve">
+    <value>الصيغة المكتوبة للخلية الأولى ({0})</value>
+    <comment>label when multiple cells are selected</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
     <value>معادلة:</value>
@@ -2379,6 +2391,34 @@
 النطاقات النسبية: A1: Cell (0 ، -1)</value>
     <comment>!EDIT</comment>
   </data>
+  <data name="FormulaDialog_hint" xml:space="preserve">
+    <value>تم التحقق من بناء الجملة أثناء الكتابة</value>
+    <comment>footer hint</comment>
+  </data>
+  <data name="FormulaDialog_insert" xml:space="preserve">
+    <value>إدراج في المؤشر</value>
+    <comment>button</comment>
+  </data>
+  <data name="FormulaDialog_okMany" xml:space="preserve">
+    <value>حسنًا · املأ {0} خلية</value>
+    <comment>button; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_openBuilder" xml:space="preserve">
+    <value>افتح المنشئ ›</value>
+    <comment>button shown for entries that open a further detail view</comment>
+  </data>
+  <data name="FormulaDialog_resultIn" xml:space="preserve">
+    <value>النتيجة في {0}</value>
+    <comment>result caption; {0} is a cell name</comment>
+  </data>
+  <data name="FormulaDialog_resultInMany" xml:space="preserve">
+    <value>النتيجة هي {0}، و{1} من الخلايا الإضافية عند موافق</value>
+    <comment>result caption for multiple cells; {0} first cell, {1} remaining count</comment>
+  </data>
+  <data name="FormulaDialog_search" xml:space="preserve">
+    <value>يبحث</value>
+    <comment>label above the reference search box</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>
     <comment>label</comment>
@@ -2394,6 +2434,37 @@
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>الحالة:</value>
     <comment>status label</comment>
+  </data>
+  <data name="FormulaDialog_tabs" xml:space="preserve">
+    <value>وظائف
+مشغلي
+المتغيرات
+الخلايا</value>
+    <comment>reference tab names, one per line</comment>
+  </data>
+  <data name="FormulaDialog_tagBox.Text" xml:space="preserve">
+    <value>علامة خلايا الصيغة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="FormulaDialog_tagHint" xml:space="preserve">
+    <value>قم بوضع علامة على هذه الخلية بصاعقة بحيث يسهل العثور على صيغتها.</value>
+    <comment>hint under checkbox, single cell</comment>
+  </data>
+  <data name="FormulaDialog_tagHintMany" xml:space="preserve">
+    <value>قم بوضع علامة على هذه الخلايا {0} بعلامة صاعقة حتى يسهل العثور على صيغها.</value>
+    <comment>hint under checkbox, multiple cells; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_target_many" xml:space="preserve">
+    <value>الهدف: {0}:{1} ({2} خلية)</value>
+    <comment>header chip, multiple cells; {0} first cell, {1} last cell, {2} count</comment>
+  </data>
+  <data name="FormulaDialog_target_one" xml:space="preserve">
+    <value>الهدف: {0} (خلية واحدة)</value>
+    <comment>header chip, single cell; {0} is a cell name such as A9</comment>
+  </data>
+  <data name="FormulaDialog_timeHint" xml:space="preserve">
+    <value>يحتاج الوقت إلى س: مم</value>
+    <comment>hint shown when the Time format is selected</comment>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>تحقق من وجود إصدارات جديدة من OneMore عند بدء OneNote</value>

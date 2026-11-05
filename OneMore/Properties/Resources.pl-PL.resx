@@ -2345,9 +2345,17 @@ Plik OneNote (* .o)</value>
     <value>Formuła</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormulaDialog_cellsLabel" xml:space="preserve">
+    <value>Formuły, które zostaną dodane</value>
+    <comment>label above the per-cell formula list</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Miejsca dziesiętne:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_emptyResult" xml:space="preserve">
+    <value>Wprowadź formułę</value>
+    <comment>shown in the result area when the formula is empty</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>Numer
@@ -2359,6 +2367,10 @@ Czas</value>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_formulaFirst" xml:space="preserve">
+    <value>Formuła zapisana dla pierwszej komórki ({0})</value>
+    <comment>label when multiple cells are selected</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
     <value>Formuła:</value>
@@ -2376,6 +2388,34 @@ Zakres komórek: A1: A22
 Zakresy względne: A1: komórka (0, -1)</value>
     <comment>!EDIT</comment>
   </data>
+  <data name="FormulaDialog_hint" xml:space="preserve">
+    <value>Składnia sprawdzana podczas pisania</value>
+    <comment>footer hint</comment>
+  </data>
+  <data name="FormulaDialog_insert" xml:space="preserve">
+    <value>Wstaw przy kursorze</value>
+    <comment>button</comment>
+  </data>
+  <data name="FormulaDialog_okMany" xml:space="preserve">
+    <value>OK · wypełnij {0} komórek</value>
+    <comment>button; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_openBuilder" xml:space="preserve">
+    <value>Otwórz kreator ›</value>
+    <comment>button shown for entries that open a further detail view</comment>
+  </data>
+  <data name="FormulaDialog_resultIn" xml:space="preserve">
+    <value>Wynik w {0}</value>
+    <comment>result caption; {0} is a cell name</comment>
+  </data>
+  <data name="FormulaDialog_resultInMany" xml:space="preserve">
+    <value>Wynik w {0} i {1} więcej komórek na OK</value>
+    <comment>result caption for multiple cells; {0} first cell, {1} remaining count</comment>
+  </data>
+  <data name="FormulaDialog_search" xml:space="preserve">
+    <value>Szukaj</value>
+    <comment>label above the reference search box</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Wybrane komórki:</value>
     <comment>label</comment>
@@ -2391,6 +2431,37 @@ Zakresy względne: A1: komórka (0, -1)</value>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Status:</value>
     <comment>status label</comment>
+  </data>
+  <data name="FormulaDialog_tabs" xml:space="preserve">
+    <value>Funkcje
+Operatorzy
+Zmienne
+Komórki</value>
+    <comment>reference tab names, one per line</comment>
+  </data>
+  <data name="FormulaDialog_tagBox.Text" xml:space="preserve">
+    <value>Oznacz komórki z formułą</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="FormulaDialog_tagHint" xml:space="preserve">
+    <value>Zaznacza tę komórkę błyskawicą, aby łatwo było znaleźć jej formułę.</value>
+    <comment>hint under checkbox, single cell</comment>
+  </data>
+  <data name="FormulaDialog_tagHintMany" xml:space="preserve">
+    <value>Zaznacza te komórki {0} błyskawicą, aby łatwo było znaleźć ich formuły.</value>
+    <comment>hint under checkbox, multiple cells; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_target_many" xml:space="preserve">
+    <value>Cel: {0}:{1} ({2} komórek)</value>
+    <comment>header chip, multiple cells; {0} first cell, {1} last cell, {2} count</comment>
+  </data>
+  <data name="FormulaDialog_target_one" xml:space="preserve">
+    <value>Cel: {0} (1 komórka)</value>
+    <comment>header chip, single cell; {0} is a cell name such as A9</comment>
+  </data>
+  <data name="FormulaDialog_timeHint" xml:space="preserve">
+    <value>Potrzebny jest czas gg:mm</value>
+    <comment>hint shown when the Time format is selected</comment>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>Sprawdź nowe wersje OneMore, gdy zaczyna się OneNote</value>

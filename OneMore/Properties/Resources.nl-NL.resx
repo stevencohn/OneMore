@@ -2345,9 +2345,17 @@ OneNote-bestand (*.one)</value>
     <value>Formule</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FormulaDialog_cellsLabel" xml:space="preserve">
+    <value>Formules die zullen worden toegevoegd</value>
+    <comment>label above the per-cell formula list</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Decimalen:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_emptyResult" xml:space="preserve">
+    <value>Voer een formule in</value>
+    <comment>shown in the result area when the formula is empty</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>Nummer
@@ -2359,6 +2367,10 @@ Tijd</value>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>Formaat:</value>
     <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_formulaFirst" xml:space="preserve">
+    <value>Formule, geschreven voor de eerste cel ({0})</value>
+    <comment>label when multiple cells are selected</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
     <value>Formule:</value>
@@ -2376,6 +2388,34 @@ Celbereik: A1: A22
 Relatieve bereiken: A1: Cell (0, -1)</value>
     <comment>!EDIT</comment>
   </data>
+  <data name="FormulaDialog_hint" xml:space="preserve">
+    <value>Syntaxis gecontroleerd terwijl u typt</value>
+    <comment>footer hint</comment>
+  </data>
+  <data name="FormulaDialog_insert" xml:space="preserve">
+    <value>Invoegen bij cursor</value>
+    <comment>button</comment>
+  </data>
+  <data name="FormulaDialog_okMany" xml:space="preserve">
+    <value>OK · vul {0} cellen in</value>
+    <comment>button; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_openBuilder" xml:space="preserve">
+    <value>Open bouwer ›</value>
+    <comment>button shown for entries that open a further detail view</comment>
+  </data>
+  <data name="FormulaDialog_resultIn" xml:space="preserve">
+    <value>Resultaat over {0}</value>
+    <comment>result caption; {0} is a cell name</comment>
+  </data>
+  <data name="FormulaDialog_resultInMany" xml:space="preserve">
+    <value>Resultaat: {0} en nog {1} cellen op OK</value>
+    <comment>result caption for multiple cells; {0} first cell, {1} remaining count</comment>
+  </data>
+  <data name="FormulaDialog_search" xml:space="preserve">
+    <value>Zoekopdracht</value>
+    <comment>label above the reference search box</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>
     <comment>label</comment>
@@ -2391,6 +2431,37 @@ Relatieve bereiken: A1: Cell (0, -1)</value>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Toestand:</value>
     <comment>status label</comment>
+  </data>
+  <data name="FormulaDialog_tabs" xml:space="preserve">
+    <value>Functies
+Exploitanten
+Variabelen
+Cellen</value>
+    <comment>reference tab names, one per line</comment>
+  </data>
+  <data name="FormulaDialog_tagBox.Text" xml:space="preserve">
+    <value>Formulecellen labelen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="FormulaDialog_tagHint" xml:space="preserve">
+    <value>Markeert deze cel met een bliksemschicht, zodat de formule gemakkelijk te vinden is.</value>
+    <comment>hint under checkbox, single cell</comment>
+  </data>
+  <data name="FormulaDialog_tagHintMany" xml:space="preserve">
+    <value>Markeert deze {0} cellen met een bliksemschicht, zodat hun formules gemakkelijk te vinden zijn.</value>
+    <comment>hint under checkbox, multiple cells; {0} is a count</comment>
+  </data>
+  <data name="FormulaDialog_target_many" xml:space="preserve">
+    <value>Doel: {0}:{1} ({2} cellen)</value>
+    <comment>header chip, multiple cells; {0} first cell, {1} last cell, {2} count</comment>
+  </data>
+  <data name="FormulaDialog_target_one" xml:space="preserve">
+    <value>Doel: {0} (1 cel)</value>
+    <comment>header chip, single cell; {0} is a cell name such as A9</comment>
+  </data>
+  <data name="FormulaDialog_timeHint" xml:space="preserve">
+    <value>De tijd heeft hh:mm nodig</value>
+    <comment>hint shown when the Time format is selected</comment>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>Controleren op nieuwe versies van OneMore wanneer OneNote wordt gestart</value>
