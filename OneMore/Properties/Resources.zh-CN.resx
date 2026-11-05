@@ -2353,6 +2353,14 @@ OneNote 文件 (*.one)</value>
     <value>将添加的公式</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>对范围内符合条件的单元格进行计数。忽略空单元格。</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>运算符：普通值=等于·&lt;小于·&gt;大于·！不相等。文本不需要引号。</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>小数位数：</value>
     <comment>label</comment>

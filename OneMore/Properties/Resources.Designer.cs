@@ -5329,6 +5329,18 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
 
+        internal static string FormulaDialog_countifHelp {
+            get {
+                return ResourceManager.GetString("FormulaDialog_countifHelp", resourceCulture);
+            }
+        }
+
+        internal static string FormulaDialog_countifOperators {
+            get {
+                return ResourceManager.GetString("FormulaDialog_countifOperators", resourceCulture);
+            }
+        }
+
         internal static string FormulaDialog_openBuilder {
             get {
                 return ResourceManager.GetString("FormulaDialog_openBuilder", resourceCulture);

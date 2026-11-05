@@ -2349,6 +2349,14 @@ OneNote-bestand (*.one)</value>
     <value>Formules die zullen worden toegevoegd</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>Telt cellen binnen het bereik die voldoen aan de criteria. Negeert lege cellen.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>Operatoren: gewone waarde = gelijk aan · &lt; kleiner dan · &gt; groter dan · ! niet gelijk. Tekst heeft geen aanhalingstekens nodig.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Decimalen:</value>
     <comment>label</comment>

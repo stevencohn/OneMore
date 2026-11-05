@@ -2352,6 +2352,14 @@ Fichier OneNote (*.one)</value>
     <value>Formules qui seront ajoutées</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>Compte les cellules dans la plage qui correspondent aux critères. Ignore les cellules vides.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>Opérateurs : valeur simple = égal à · &lt; inférieur à · &gt; supérieur à · ! pas égal. Le texte n'a pas besoin de guillemets.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Décimales:</value>
     <comment>label</comment>

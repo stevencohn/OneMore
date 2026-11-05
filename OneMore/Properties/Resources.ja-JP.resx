@@ -2352,6 +2352,14 @@ OneNoteファイル (*.one)</value>
     <value>追加される数式</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>条件に一致する範囲内のセルをカウントします。空のセルを無視します。</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>演算子: 単純な値 = 等しい · &lt; より小さい · &gt; より大きい · !等しくありません。テキストには引用符は必要ありません。</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>小数点以下の桁数:</value>
     <comment>label</comment>

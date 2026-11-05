@@ -2349,6 +2349,14 @@ Plik OneNote (* .o)</value>
     <value>Formuły, które zostaną dodane</value>
     <comment>label above the per-cell formula list</comment>
   </data>
+  <data name="FormulaDialog_countifHelp" xml:space="preserve">
+    <value>Zlicza komórki w zakresie spełniające kryteria. Ignoruje puste komórki.</value>
+    <comment>countif builder description</comment>
+  </data>
+  <data name="FormulaDialog_countifOperators" xml:space="preserve">
+    <value>Operatory: zwykła wartość = równa · &lt; mniejsza niż · &gt; większa niż · ! nie równe. Tekst nie wymaga cudzysłowów.</value>
+    <comment>countif builder help; keep the operator symbols</comment>
+  </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>Miejsca dziesiętne:</value>
     <comment>label</comment>
