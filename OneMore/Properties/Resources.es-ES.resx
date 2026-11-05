@@ -640,6 +640,14 @@ Invertir</value>
     <value>No se encontró ningún paréntesis de cierre que coincida con el token en {0}</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrNotANumber" xml:space="preserve">
+    <value>El resultado no es un número.</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOutOfRange" xml:space="preserve">
+    <value>El resultado está fuera de rango</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
     <value>Referencia de celda no definida "{0}"</value>
     <comment>error</comment>

@@ -1250,6 +1250,24 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Calculator_ErrNoClosingParenthesis", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Result is not a number.
+        /// </summary>
+        internal static string Calculator_ErrNotANumber {
+            get {
+                return ResourceManager.GetString("Calculator_ErrNotANumber", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Result is out of range.
+        /// </summary>
+        internal static string Calculator_ErrOutOfRange {
+            get {
+                return ResourceManager.GetString("Calculator_ErrOutOfRange", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Undefined cell reference &quot;{0}&quot;.
