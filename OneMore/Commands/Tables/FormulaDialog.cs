@@ -26,6 +26,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly ReferenceListBox[] lists = new ReferenceListBox[4];
 
 		private IReadOnlyList<string> targetNames = new[] { "A1" };
+		private int seededStart;
+		private int seededLength;
 		private TableSelectionRange targetRange = TableSelectionRange.Single;
 		private List<Variable> customVariables = new();
 		private PictureBox boltBox;
@@ -71,6 +73,13 @@ namespace River.OneMoreAddIn.Commands
 			countifPanel.BackClicked += (s, e) => ShowCountif(false);
 			countifPanel.Inserted += (s, expression) =>
 			{
+				if (seededLength > 0 && seededStart + seededLength <= formulaBox.TextLength)
+				{
+					// replace the existing countif call that seeded the builder
+					formulaBox.Select(seededStart, seededLength);
+				}
+
+				seededLength = 0;
 				formulaBox.InsertAtCursor(expression);
 				ShowCountif(false);
 			};
@@ -329,6 +338,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (entry.Drill)
 			{
+				// seed the builder from an existing countif at the caret, if any
+				if (!countifPanel.Seed(
+					formulaBox.Text, formulaBox.SelectionStart, out seededStart, out seededLength))
+				{
+					seededLength = 0;
+				}
+
 				ShowCountif(true);
 				return;
 			}
@@ -428,17 +444,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private static System.Drawing.Bitmap CreateBoltImage()
 		{
+			// soft, rounded bolt: translucent pale-orange fill with a thicker orange outline
 			var bitmap = new System.Drawing.Bitmap(64, 64);
 			using var g = System.Drawing.Graphics.FromImage(bitmap);
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
 			var points = new System.Drawing.PointF[]
 			{
-				new(38, 2), new(10, 36), new(28, 36), new(22, 62), new(54, 24), new(34, 24), new(46, 2)
+				new(30, 5), new(45, 5), new(37, 22), new(52, 22), new(21, 59), new(28, 37), new(13, 37)
 			};
 
-			using var fill = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 204, 0));
-			using var pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(184, 134, 0), 2F);
+			using var fill = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(249, 206, 131));
+			using var pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(248, 176, 64), 3F)
+			{
+				LineJoin = System.Drawing.Drawing2D.LineJoin.Round
+			};
+
 			g.FillPolygon(fill, points);
 			g.DrawPolygon(pen, points);
 			return bitmap;
