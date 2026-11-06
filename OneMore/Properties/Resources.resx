@@ -1280,7 +1280,7 @@ Normal</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</value>
+    <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Ctrl+wheel to zoom; hold Space and drag to pan. Click OK to finish.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

@@ -1278,7 +1278,7 @@ Normal</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Use el mouse para seleccionar un área para recortar. </value>
+    <value>Utilice el mouse para seleccionar un área para recortar. Ctrl+D para anular la selección. Utilice el control deslizante para rotar la imagen. Ctrl+rueda para hacer zoom; Mantenga presionada la barra espaciadora y arrastre para desplazarse. Haga clic en Aceptar para finalizar.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

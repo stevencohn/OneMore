@@ -1276,7 +1276,7 @@ Normale</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Utilizzare il mouse per selezionare un'area da ritagliare. Ctrl+D per deselezionare. Utilizza il cursore per ruotare l'immagine. Fare clic su OK per terminare.</value>
+    <value>Utilizzare il mouse per selezionare un'area da ritagliare. Ctrl+D per deselezionare. Utilizza il cursore per ruotare l'immagine. Ctrl+rotella per ingrandire; tieni premuto Spazio e trascina per eseguire la panoramica. Fare clic su OK per terminare.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
