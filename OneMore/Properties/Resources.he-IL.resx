@@ -5036,7 +5036,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>ערוך תמונות</value>
+    <value>תמונות</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -6716,6 +6716,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>חפש והחלף (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>חפש ובחר</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>בחר את ההתאמה הראשונה של הטקסט בעמוד זה בכל פסקה</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>לְחַפֵּשׂ</value>
     <comment>ribbon search</comment>
@@ -7308,6 +7316,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>חפש והחלף</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>חפש ובחר</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

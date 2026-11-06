@@ -76,9 +76,9 @@ namespace River.OneMoreAddIn.Commands
 		private void MorphToHighlight()
 		{
 			Text = Resx.SearchAndHighlightDialog_Text;
-			withLabel.Text = Resx.SearchAndHighlightDialog_withLabel;
-			replaceButton.Text = Resx.SearchAndHighlightDialog_highlightOneButton;
-			replaceAllButton.Text = Resx.SearchAndHighlightDialog_highlightButton;
+			withLabel.Text = Resx.SearchAndHighlightDialog_withLabel_Text;
+			replaceButton.Text = Resx.SearchAndHighlightDialog_highlightOneButton_Text;
+			replaceAllButton.Text = Resx.SearchAndHighlightDialog_highlightButton_Text;
 
 			withBox.Visible = false;
 			withStatusLabel.Visible = false;

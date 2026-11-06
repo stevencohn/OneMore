@@ -6730,6 +6730,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>搜索和替换主题标签内容 (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>搜索并选择</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>选择本页每个段落中文本的第一个匹配项</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>搜索</value>
     <comment>ribbon search</comment>
@@ -7322,6 +7330,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>搜索和替换</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>搜索并选择</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

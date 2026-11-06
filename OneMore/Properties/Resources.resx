@@ -5064,7 +5064,7 @@ Stylistic, Entity, Media</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Edit Images</value>
+    <value>Images</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -7341,10 +7341,6 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
-    <value>Search and Select</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
     <value>Replace All</value>
     <comment>button</comment>
@@ -7355,6 +7351,10 @@ All notebooks</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>Search and Replace</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Search and Select</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

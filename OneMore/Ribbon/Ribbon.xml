@@ -214,7 +214,7 @@
         onAction="OpenImageWithCmd"
         insertBeforeMso="Cut"/>
       <button
-        id="ctxAdjustImagesButton"
+        id="ctxAdjustImagesMenuButton"
         imageMso="GroupPictureCompress"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"

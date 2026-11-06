@@ -5047,7 +5047,7 @@ Stylistique, Entité, Média</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Modifier les images</value>
+    <value>Images</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -6727,6 +6727,14 @@ Onglet Aide</value>
     <value>Rechercher et remplacer (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>Rechercher et sélectionner</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>Sélectionnez la première correspondance du texte de cette page dans chaque paragraphe</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Recherche</value>
     <comment>ribbon search</comment>
@@ -7319,6 +7327,10 @@ Tous les notebooks</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>Rechercher et remplacer</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Rechercher et sélectionner</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

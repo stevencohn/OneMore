@@ -5035,7 +5035,7 @@ Estilístico, Entidad, Medios</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Editar imágenes</value>
+    <value>Imágenes</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -6715,6 +6715,14 @@ Pestaña Ayuda</value>
     <value>Buscar y reemplazar (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>Buscar y seleccionar</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>Seleccione la primera coincidencia del texto de esta página en cada párrafo</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Buscar</value>
     <comment>ribbon search</comment>
@@ -7307,6 +7315,10 @@ Todos los cuadernos</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>Buscar y reemplazar</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Buscar y seleccionar</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

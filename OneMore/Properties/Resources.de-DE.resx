@@ -5035,7 +5035,7 @@ Stilistisch, Entität, Medien</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Bilder bearbeiten</value>
+    <value>Bilder</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -6716,6 +6716,14 @@ Registerkarte „Hilfe“.</value>
     <value>Suchen und ersetzen (Strg + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>Suchen und auswählen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>Wählen Sie in jedem Absatz die erste Übereinstimmung des Textes auf dieser Seite aus</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Suchen</value>
     <comment>ribbon search</comment>
@@ -7309,6 +7317,10 @@ Alle Notizbücher</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>Suchen und Ersetzen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Suchen und auswählen</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">

@@ -5036,7 +5036,7 @@ Stylistyka, podmiot, media</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Edytuj obrazy</value>
+    <value>Obrazy</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
@@ -6716,6 +6716,14 @@ Zakładka Pomoc</value>
     <value>Wyszukaj i zamień (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
+  <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
+    <value>Wyszukaj i wybierz</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchAndSelectButton_Screentip" xml:space="preserve">
+    <value>Wybierz pierwsze dopasowanie tekstu na tej stronie w każdym akapicie</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Szukaj</value>
     <comment>ribbon search</comment>
@@ -7308,6 +7316,10 @@ Wszystkie notesy</value>
   </data>
   <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
     <value>Wyszukaj i zamień</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndSelectDialog_Text" xml:space="preserve">
+    <value>Wyszukaj i wybierz</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
