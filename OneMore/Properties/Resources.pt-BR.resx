@@ -5740,11 +5740,11 @@ Guia Ajuda</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Destacar Fórmula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Selecione Fórmulas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Selecione células com fórmula na tabela atual</value>
+    <value>Selecione células com uma fórmula na tabela atual</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6419,12 +6419,12 @@ Guia Ajuda</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Recalcular a fórmula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Recalcular Fórmulas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalcular todas as fórmulas na tabela atual (Shift + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Recalcular todas as fórmulas da tabela atual (Shift + F5)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>Recolorir tinta</value>

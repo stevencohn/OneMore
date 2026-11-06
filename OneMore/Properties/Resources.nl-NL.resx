@@ -5740,11 +5740,11 @@ Tabblad Help</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Markeer formule</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Selecteer Formules</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Selecteer cellen met formule in de huidige tabel</value>
+    <value>Selecteer cellen met een formule in de huidige tabel</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6419,12 +6419,12 @@ Tabblad Help</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Bereken de formule opnieuw</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Formules opnieuw berekenen</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Bereken alle formules in de huidige tabel opnieuw (Shift + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Herbereken alle formules in de huidige tabel (Shift + F5)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>Inkt opnieuw kleuren</value>

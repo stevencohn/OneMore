@@ -5751,11 +5751,11 @@ Onglet Aide</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Mettre en évidence la formule</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Sélectionnez des formules</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Sélectionnez les cellules avec la formule dans le tableau actuel</value>
+    <value>Sélectionnez les cellules avec une formule dans le tableau actuel</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6430,12 +6430,12 @@ Onglet Aide</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Recalculer la formule</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Recalculer les formules</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalculer toutes les formules du tableau actuel (Maj + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>Recolorer l'encre</value>

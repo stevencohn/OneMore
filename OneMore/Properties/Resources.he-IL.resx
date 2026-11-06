@@ -5740,8 +5740,8 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>הדגש את הנוסחה</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>בחר נוסחאות</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>בחר תאים עם נוסחה בטבלה הנוכחית</value>
@@ -6419,12 +6419,12 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>חישוב מחדש של נוסחה</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>חישוב מחדש של נוסחאות</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>חישוב מחדש של כל הנוסחה בטבלה הנוכחית (Shift + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>חישוב מחדש של כל הנוסחאות בטבלה הנוכחית (Shift + F5)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>צבע מחדש דיו</value>

@@ -5743,7 +5743,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Wählen Sie Zellen mit Formel in der aktuellen Tabelle aus</value>
+    <value>Wählen Sie Zellen mit einer Formel in der aktuellen Tabelle aus</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6418,8 +6418,8 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Formel neu berechnen</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Formeln neu berechnen</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</value>

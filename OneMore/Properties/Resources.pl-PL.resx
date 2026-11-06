@@ -5740,11 +5740,11 @@ Zakładka Pomoc</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Podświetl formułę</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Wybierz Formuły</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Wybierz komórki z formułą w bieżącej tabeli</value>
+    <value>Wybierz komórki zawierające formułę w bieżącej tabeli</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6419,12 +6419,12 @@ Zakładka Pomoc</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Ponownie obliczyć formułę</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Przelicz formuły</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Przelicz wszystkie formułę w bieżącej tabeli (Shift + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Przelicz ponownie wszystkie formuły w bieżącej tabeli (Shift + F5)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>Pokoloruj ponownie atrament</value>

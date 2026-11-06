@@ -5740,11 +5740,11 @@ Scheda Aiuto</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Evidenzia formula</value>
+    <value>Seleziona Formule</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Seleziona le celle con la formula nella tabella corrente</value>
+    <value>Seleziona le celle con una formula nella tabella corrente</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6420,11 +6420,11 @@ Scheda Aiuto</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Ricalcola la formula</value>
+    <value>Ricalcolare le formule</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Ricalcola tutta la formula nella tabella corrente (Maiusc + F5)</value>
+    <value>Ricalcola tutte le formule nella tabella corrente (Maiusc + F5)</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">

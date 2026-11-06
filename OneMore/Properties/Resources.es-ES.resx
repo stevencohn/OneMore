@@ -5739,11 +5739,11 @@ Pestaña Ayuda</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Fórmula de resaltado</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Seleccionar fórmulas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Seleccionar celdas con fórmula en la tabla actual</value>
+    <value>Seleccionar celdas con una fórmula en la tabla actual</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6418,12 +6418,12 @@ Pestaña Ayuda</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Recalcular fórmula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Recalcular fórmulas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Volver a calcular todas las fórmulas de la tabla actual (Mayús + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Recalcular todas las fórmulas en la tabla actual (Shift + F5)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>Recolorear tinta</value>

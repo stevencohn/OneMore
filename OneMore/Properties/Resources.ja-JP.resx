@@ -5743,7 +5743,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>数式のハイライト</value>
+    <value>数式の選択</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
@@ -6423,11 +6423,11 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>数式の再計算</value>
+    <value>数式を再計算する</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>現在の表内のすべての数式を再計算 (Shift + F5)</value>
+    <value>現在のテーブル内のすべての数式を再計算します (Shift + F5)</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">

@@ -5755,10 +5755,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>选中公式单元格</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>选择当前表格中包含公式的单元格</value>
+    <value>选择当前表格中带有公式的单元格</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6434,11 +6434,11 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>重算所有公式</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>重新计算当前表中的所有公式（Shift + F5）</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
     <value>重新着色墨水</value>

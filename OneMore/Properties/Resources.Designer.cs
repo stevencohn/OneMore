@@ -13584,7 +13584,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Highlight Formula.
+        ///   Looks up a localized string similar to Select Formulas.
         /// </summary>
         internal static string ribHighlightFormulaButton_Label {
             get {
@@ -13593,7 +13593,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select cells with formula in current table.
+        ///   Looks up a localized string similar to Select cells with a formula in current table.
         /// </summary>
         internal static string ribHighlightFormulaButton_Screentip {
             get {
@@ -15144,7 +15144,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recalculate Formula.
+        ///   Looks up a localized string similar to Recalculate Formulas.
         /// </summary>
         internal static string ribRecalculateFormulaButton_Label {
             get {
@@ -15153,7 +15153,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recalculate all formula in the current table (Shift + F5).
+        ///   Looks up a localized string similar to Recalculate all formulas in the current table (Shift + F5).
         /// </summary>
         internal static string ribRecalculateFormulaButton_Screentip {
             get {

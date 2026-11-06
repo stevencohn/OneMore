@@ -5768,11 +5768,11 @@ Help Tab</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Highlight Formula</value>
+    <value>Select Formulas</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Select cells with formula in current table</value>
+    <value>Select cells with a formula in current table</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
@@ -6448,11 +6448,11 @@ Help Tab</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Recalculate Formula</value>
+    <value>Recalculate Formulas</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalculate all formula in the current table (Shift + F5)</value>
+    <value>Recalculate all formulas in the current table (Shift + F5)</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
