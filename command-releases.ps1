@@ -333,13 +333,40 @@ begin
 		$sb = [System.Text.StringBuilder]::new()
 		[void]$sb.AppendLine('# OneMore command inventory by release')
 		[void]$sb.AppendLine()
-		[void]$sb.AppendLine("Generated $(Get-Date -Format 'yyyy-MM-dd') by command-releases.ps1. Release = earliest non-beta tag containing the commit that first added the command class. Empty Location = no direct ribbon/context-menu entry. Origin follows renames that are 90% or more similar; the last column shows the release/date git's default --follow would give when it differs (those rows deserve a manual look).")
-		[void]$sb.AppendLine()
-		[void]$sb.AppendLine('| Release | Date | Command | Location | git --follow disagrees |')
-		[void]$sb.AppendLine('|---|---|---|---|---|')
-		foreach ($r in $sorted)
+		[void]$sb.AppendLine("Generated $(Get-Date -Format 'yyyy-MM-dd') by command-releases.ps1. Release = earliest non-beta tag containing the commit that first added the command class. Commands without a location have no direct ribbon/context-menu entry. Origin follows renames that are 90% or more similar; a trailing note shows the release/date git's default --follow would give when it differs (those commands deserve a manual look).")
+
+		# one section per release, in tag order; the date is the release tag's commit date
+		# Group-Object order is not guaranteed, so order the groups explicitly: tags oldest first,
+		# then the local unreleased version last
+		$groups = @($sorted | Group-Object Release) |
+			Sort-Object @{ Expression = { if ($_.Name -eq '(unreleased)') { [int]::MaxValue } else { Get-ReleaseRank @{ Release = $_.Name } $tagOrder } } }
+		foreach ($g in $groups)
 		{
-			[void]$sb.AppendLine("| $($r.Release) | $($r.Date) | $($r.Command) | $($r.Location) | $($r.Alt) |")
+			$title = $g.Name
+			$date = 'unreleased'
+			if ($g.Name -ne '(unreleased)')
+			{
+				$d = Invoke-Git log -1 '--format=%ad' --date=short $g.Name
+				if ($d.Count -gt 0) { $date = $d[0] }
+			}
+			else
+			{
+				# unreleased commands are listed last, headed by the local version in AssemblyInfo.cs
+				$info = Get-Content 'OneMore\Properties\AssemblyInfo.cs' -Raw
+				if ($info -match 'Version\s*=\s*"([^"]+)"') { $title = $Matches[1] }
+			}
+
+			[void]$sb.AppendLine()
+			[void]$sb.AppendLine("## $title")
+			[void]$sb.AppendLine("*$date*")
+			[void]$sb.AppendLine()
+			foreach ($r in $g.Group)
+			{
+				$line = "- $($r.Command)"
+				if ($r.Location) { $line += " ($($r.Location))" }
+				if ($r.Alt) { $line += " - git --follow: $($r.Alt)" }
+				[void]$sb.AppendLine($line)
+			}
 		}
 		return $sb.ToString()
 	}
