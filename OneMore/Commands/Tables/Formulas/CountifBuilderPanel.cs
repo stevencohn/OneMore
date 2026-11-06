@@ -153,6 +153,139 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
+		/// <summary>
+		/// Finds the countif call in the given formula that contains the caret, or the only
+		/// countif call if the caret is not within one, and seeds the builder fields from its
+		/// parameters.
+		/// </summary>
+		/// <param name="formula">The formula text</param>
+		/// <param name="caret">The caret position within the formula</param>
+		/// <param name="start">The start index of the call within the formula</param>
+		/// <param name="length">The length of the call, including parentheses</param>
+		/// <returns>True if a countif call was found and the fields were seeded</returns>
+		public bool Seed(string formula, int caret, out int start, out int length)
+		{
+			start = 0;
+			length = 0;
+
+			if (string.IsNullOrEmpty(formula))
+			{
+				return false;
+			}
+
+			const string Name = "countif(";
+			var found = 0;
+			var index = 0;
+			var bestStart = -1;
+			var bestEnd = -1;
+			var onlyStart = -1;
+			var onlyEnd = -1;
+
+			while ((index = formula.IndexOf(Name, index, StringComparison.OrdinalIgnoreCase)) >= 0)
+			{
+				var end = FindClose(formula, index + Name.Length - 1);
+				found++;
+				onlyStart = index;
+				onlyEnd = end;
+
+				if (caret >= index && caret <= end + 1 && bestStart < 0)
+				{
+					bestStart = index;
+					bestEnd = end;
+				}
+
+				index += Name.Length;
+			}
+
+			if (bestStart < 0)
+			{
+				if (found != 1)
+				{
+					return false;
+				}
+
+				bestStart = onlyStart;
+				bestEnd = onlyEnd;
+			}
+
+			var open = bestStart + Name.Length - 1;
+			var innerEnd = formula[bestEnd] == ')' ? bestEnd : bestEnd + 1;
+			var inner = formula.Substring(open + 1, innerEnd - open - 1);
+			var comma = FindTopLevelComma(inner);
+
+			var range = (comma < 0 ? inner : inner.Substring(0, comma)).Trim();
+			var criteria = comma < 0 ? string.Empty : inner.Substring(comma + 1).Trim();
+
+			var opIndex = 0;
+			if (criteria.Length > 0)
+			{
+				var c = criteria[0];
+				if (c == '<' || c == '>' || c == '!')
+				{
+					opIndex = c == '<' ? 1 : c == '>' ? 2 : 3;
+					criteria = criteria.Substring(1).Trim();
+				}
+			}
+
+			rangeBox.Text = range;
+			opBox.SelectedIndex = opIndex;
+			valueBox.Text = criteria;
+
+			typeBox.SelectedIndex = double.TryParse(criteria, out _) ? 0 : 1;
+
+			start = bestStart;
+			length = bestEnd - bestStart + 1;
+			return true;
+		}
+
+
+		// returns the index of the matching close paren, or the last index if unbalanced
+		private static int FindClose(string text, int open)
+		{
+			var depth = 0;
+			for (var i = open; i < text.Length; i++)
+			{
+				if (text[i] == '(')
+				{
+					depth++;
+				}
+				else if (text[i] == ')')
+				{
+					depth--;
+					if (depth == 0)
+					{
+						return i;
+					}
+				}
+			}
+
+			return text.Length - 1;
+		}
+
+
+		// returns the index of the first comma not nested within parentheses, or -1
+		private static int FindTopLevelComma(string text)
+		{
+			var depth = 0;
+			for (var i = 0; i < text.Length; i++)
+			{
+				switch (text[i])
+				{
+					case '(':
+						depth++;
+						break;
+					case ')':
+						depth--;
+						break;
+					case ',' when depth == 0:
+						return i;
+				}
+			}
+
+			return -1;
+		}
+
+
 		protected override void OnLayout(LayoutEventArgs e)
 		{
 			base.OnLayout(e);
