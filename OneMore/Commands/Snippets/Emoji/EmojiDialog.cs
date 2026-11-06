@@ -75,6 +75,10 @@ namespace River.OneMoreAddIn.Commands
 
 			emojis = new Emojis();
 
+			// MoreForm focuses this in OnLoad/OnShown so arrow keys and type-ahead work
+			// on the Quick Pick list as soon as the dialog opens
+			DefaultControl = emojiBox;
+
 			// the D3D11/Direct2D device must be created on this (UI) thread; touching the
 			// singleton here, before the background scan below ever calls into the shared
 			// IDWriteFactory from another thread, guarantees that's where it happens
@@ -263,6 +267,7 @@ namespace River.OneMoreAddIn.Commands
 				var centerX = Left + Width / 2;
 				Width = quickWidth;
 				Left = centerX - Width / 2;
+				emojiBox.Focus();
 				return;
 			}
 
