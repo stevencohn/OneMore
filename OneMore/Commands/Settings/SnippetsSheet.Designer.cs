@@ -89,11 +89,11 @@ namespace River.OneMoreAddIn.Settings
 			// modifiedColumn
 			//
 			this.modifiedColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
 			dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
 			this.modifiedColumn.DefaultCellStyle = dataGridViewCellStyle2;
-			this.modifiedColumn.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.modifiedColumn.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.modifiedColumn.HeaderCell.Style.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
 			this.modifiedColumn.HeaderText = "Last Modified";
 			this.modifiedColumn.MinimumWidth = 100;
