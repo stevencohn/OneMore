@@ -1275,7 +1275,7 @@ Normaal</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Gebruik de muis om een ​​gebied te selecteren dat u wilt bijsnijden. </value>
+    <value>Gebruik de muis om een ​​gebied te selecteren dat u wilt bijsnijden. Ctrl+D om de selectie ongedaan te maken. Gebruik de schuifregelaar om de afbeelding te draaien. Ctrl+wiel om te zoomen; houd de spatiebalk ingedrukt en sleep om te pannen. Klik op OK om te voltooien.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

@@ -1278,7 +1278,7 @@
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>استخدم الماوس لتحديد منطقة لاقتصاصها. </value>
+    <value>استخدم الماوس لتحديد منطقة لاقتصاصها. Ctrl+D لإلغاء التحديد. استخدم شريط التمرير لتدوير الصورة. Ctrl + عجلة للتكبير؛ اضغط على مسافة واسحب إلى المقلاة. انقر فوق "موافق" للإنهاء.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

@@ -32,7 +32,8 @@ namespace River.OneMoreAddIn.Commands
 			None,
 			Selecting,
 			Moving,
-			Sizing
+			Sizing,
+			Panning
 		}
 
 
@@ -59,6 +60,25 @@ namespace River.OneMoreAddIn.Commands
 		// diameter of selection handles
 		private const int HandleSize = 8;
 
+		// zoom is the display scale, 1.0 being 100% where one image pixel is one screen pixel
+		private const double MinZoom = 0.1;
+		private const double MaxZoom = 16.0;
+		private const double ZoomStep = 10.0; // percent
+		private double zoom = 1.0;
+
+		// the image ratio from the last layout, used to rescale the selection when it changes
+		private double lastRatio;
+
+		// panning with Space+drag when the zoomed image is larger than the viewport
+		private bool hotkeysSuspended;
+		private bool spaceDown;
+		private Point panPoint;
+
+		// size of the zoomed image plus margins, and the offset of the view within it
+		private Size content;
+		private Point scroll;
+		private bool updatingBars;
+
 		// the selection
 		private Point startPoint;
 		private Point endPoint;
@@ -68,7 +88,6 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Image original;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
-		private readonly UI.Scaling scaling;
 
 		// the original image
 		private Rectangle imageBounds;
@@ -97,6 +116,10 @@ namespace River.OneMoreAddIn.Commands
 			handles = new List<SelectionHandle>();
 			moveState = MoveState.None;
 
+			RememberSize = true;
+			pictureBox.MouseWheel += Picture_MouseWheel;
+			introPanel.SizeChanged += (s, e) => FitIntroText();
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.CropImageDialog_Text;
@@ -121,9 +144,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Image = original = image;
 
-			scaling = new UI.Scaling(image.HorizontalResolution, image.VerticalResolution);
-
-			SizeWindow();
+			UpdateLayout(false);
 
 			brightness = image.GetBrightness();
 
@@ -146,36 +167,35 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SizeWindow()
+		protected override void OnLoad(EventArgs e)
 		{
-			// height
-			var border =
-				SystemInformation.CaptionHeight +               // title bar
-				SystemInformation.FrameBorderSize.Height * 2 +  // horizontal borders, top/bottom
-				introPanel.Height +                             // intro text panel
-				statusStrip.Height +                            // status bar
-				buttonPanel.Height;
+			base.OnLoad(e);
 
-			var desired = Math.Max(
-				MinimumSize.Height,                             // defined min size of dialog
-				Image.Height + border + ImageMargin * 2);       // image + borders + margins
+			if (!DesignMode && Image is not null)
+			{
+				// the default size, DPI scaling or centering may have pushed the dialog past the screen
+				var area = Screen.FromControl(this).WorkingArea;
+				Size = new Size(Math.Min(Width, area.Width), Math.Min(Height, area.Height));
+				Location = new Point(
+					Math.Max(area.Left, Math.Min(Left, area.Right - Width)),
+					Math.Max(area.Top, Math.Min(Top, area.Bottom - Height)));
 
-			Height = Math.Min(desired, Screen.FromControl(this).WorkingArea.Height);
-
-			// width
-			border =
-				SystemInformation.FrameBorderSize.Width * 2;    // vertical borders, left/right
-
-			desired = Math.Max(
-				MinimumSize.Width,                              // defined min size of dialog
-				Image.Width + border + ImageMargin * 2);        // image + borders + margins
-
-			Width = Math.Min(desired, Screen.FromControl(this).WorkingArea.Width);
+				// OneMore's global command hotkeys, e.g. Ctrl+D Fill Down, would otherwise
+				// intercept keys before this dialog sees them
+				HotkeyManager.Suspend();
+				hotkeysSuspended = true;
+			}
 		}
 
 
 		private void CropImageDialog_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			if (hotkeysSuspended)
+			{
+				hotkeysSuspended = false;
+				HotkeyManager.Resume();
+			}
+
 			if (original != Image)
 			{
 				original.Dispose();
@@ -205,6 +225,425 @@ namespace River.OneMoreAddIn.Commands
 			antOffset--;
 			antOffset %= 6;
 			pictureBox.Refresh();
+		}
+
+
+		// ---------------------------------------------------------------------------------------
+		// Zoom and layout
+
+		// image pixels per screen pixel
+		private double GetRatio()
+		{
+			return 1.0 / zoom;
+		}
+
+
+		private void ComputeImageBounds(double ratio)
+		{
+			imageBounds = new Rectangle(
+				ImageMargin, ImageMargin,
+				(int)Math.Round(Image.Width / ratio), (int)Math.Round(Image.Height / ratio));
+		}
+
+
+		// wrap the intro text to the dialog width, growing the panel to show all of it
+		private void FitIntroText()
+		{
+			var width = introText.Width;
+			if (width <= 0 || string.IsNullOrEmpty(introText.Text))
+			{
+				return;
+			}
+
+			var size = TextRenderer.MeasureText(
+				introText.Text, introText.Font,
+				new Size(width, int.MaxValue),
+				TextFormatFlags.WordBreak | TextFormatFlags.NoPadding);
+
+			var panelHeight = Math.Max(66, size.Height + introPanel.Padding.Vertical + 4);
+			if (introPanel.Height != panelHeight)
+			{
+				introPanel.Height = panelHeight;
+			}
+
+			var labelHeight = panelHeight - introPanel.Padding.Vertical;
+			if (introText.Height != labelHeight)
+			{
+				introText.Height = labelHeight;
+			}
+		}
+
+
+		private void ViewPanel_SizeChanged(object sender, EventArgs e)
+		{
+			UpdateLayout(true);
+			InvalidateButtons();
+		}
+
+
+		// owner-drawn buttons, especially when disabled, can be left with stale pixels after
+		// the dialog is resized, so force them to repaint
+		private void InvalidateButtons()
+		{
+			buttonPanel.Invalidate(true);
+			selectButton.Invalidate();
+			cropButton.Invalidate();
+			cancelButton.Invalidate();
+		}
+
+
+		protected override void OnResizeEnd(EventArgs e)
+		{
+			base.OnResizeEnd(e);
+			InvalidateButtons();
+		}
+
+
+		/// <summary>
+		/// Recomputes the image bounds for the current zoom and viewport, sizing the picture box
+		/// so the view panel can scroll when the image is larger than the viewport.
+		/// </summary>
+		/// <param name="rescale">
+		/// True to move/scale the current selection to stay over the same image area
+		/// </param>
+		private void UpdateLayout(bool rescale)
+		{
+			if (Image is null)
+			{
+				return;
+			}
+
+			var ratio = GetRatio();
+
+			if (rescale && lastRatio > 0 && Math.Abs(lastRatio - ratio) > 0.00001)
+			{
+				ComputeImageBounds(ratio);
+				RescaleSelection(lastRatio / ratio);
+			}
+
+			lastRatio = ratio;
+			ComputeImageBounds(ratio);
+
+			content = new Size(
+				imageBounds.Width + ImageMargin * 2,
+				imageBounds.Height + ImageMargin * 2);
+
+			ConfigureScrollBars();
+
+			zoomLabel.Text = $"{Math.Round(100.0 * zoom)}%";
+			pictureBox.Invalidate();
+		}
+
+
+		// The picture box always fills the view and the image is drawn offset by scroll;
+		// scroll bars are shown only when the zoomed image is larger than the view.
+		private void ConfigureScrollBars()
+		{
+			var avail = viewPanel.ClientSize;
+			var needH = false;
+			var needV = false;
+
+			{
+				for (var i = 0; i < 2; i++)
+				{
+					needH = content.Width > avail.Width - (needV ? vBar.Width : 0);
+					needV = content.Height > avail.Height - (needH ? hBar.Height : 0);
+				}
+			}
+
+			updatingBars = true;
+			try
+			{
+				hBar.Visible = needH;
+				vBar.Visible = needV;
+				viewPanel.PerformLayout();
+
+				var view = pictureBox.ClientSize;
+				var x = needH ? Math.Max(0, Math.Min(scroll.X, content.Width - view.Width)) : 0;
+				var y = needV ? Math.Max(0, Math.Min(scroll.Y, content.Height - view.Height)) : 0;
+				scroll = new Point(x, y);
+
+				if (needH)
+				{
+					hBar.Minimum = 0;
+					hBar.Maximum = Math.Max(0, content.Width - 1);
+					hBar.LargeChange = Math.Max(1, view.Width);
+					hBar.SmallChange = Math.Max(1, view.Width / 10);
+					hBar.Value = Math.Min(x, hBar.Maximum);
+				}
+
+				if (needV)
+				{
+					vBar.Minimum = 0;
+					vBar.Maximum = Math.Max(0, content.Height - 1);
+					vBar.LargeChange = Math.Max(1, view.Height);
+					vBar.SmallChange = Math.Max(1, view.Height / 10);
+					vBar.Value = Math.Min(y, vBar.Maximum);
+				}
+			}
+			finally
+			{
+				updatingBars = false;
+			}
+		}
+
+
+		private void SetScroll(int x, int y)
+		{
+			if (!CanPan())
+			{
+				return;
+			}
+
+			var view = pictureBox.ClientSize;
+			scroll = new Point(
+				hBar.Visible ? Math.Max(0, Math.Min(x, content.Width - view.Width)) : 0,
+				vBar.Visible ? Math.Max(0, Math.Min(y, content.Height - view.Height)) : 0);
+
+			updatingBars = true;
+			try
+			{
+				if (hBar.Visible)
+				{
+					hBar.Value = Math.Min(scroll.X, hBar.Maximum);
+				}
+
+				if (vBar.Visible)
+				{
+					vBar.Value = Math.Min(scroll.Y, vBar.Maximum);
+				}
+			}
+			finally
+			{
+				updatingBars = false;
+			}
+
+			pictureBox.Invalidate();
+		}
+
+
+		private void ScrollBar_ValueChanged(object sender, EventArgs e)
+		{
+			if (!updatingBars)
+			{
+				scroll = new Point(
+					hBar.Visible ? hBar.Value : 0,
+					vBar.Visible ? vBar.Value : 0);
+
+				pictureBox.Invalidate();
+			}
+		}
+
+
+		// translate a mouse event from picture box coordinates to image content coordinates
+		private MouseEventArgs ToContent(MouseEventArgs e)
+		{
+			return new MouseEventArgs(
+				e.Button, e.Clicks, e.X + scroll.X, e.Y + scroll.Y, e.Delta);
+		}
+
+
+		private void View_MouseDown(object sender, MouseEventArgs e)
+		{
+			Picture_MouseDown(sender, ToContent(e));
+		}
+
+
+		private void View_MouseMove(object sender, MouseEventArgs e)
+		{
+			Picture_MouseMove(sender, ToContent(e));
+		}
+
+
+		private void View_MouseUp(object sender, MouseEventArgs e)
+		{
+			Picture_MouseUp(sender, ToContent(e));
+		}
+
+
+		private void RescaleSelection(double factor)
+		{
+			if (selectionBounds.Width == 0 && selectionBounds.Height == 0)
+			{
+				return;
+			}
+
+			startPoint = ScalePoint(startPoint, factor);
+			endPoint = ScalePoint(endPoint, factor);
+			movePoint = ScalePoint(movePoint, factor);
+
+			selectionBounds = new Rectangle(
+				Math.Min(startPoint.X, endPoint.X),
+				Math.Min(startPoint.Y, endPoint.Y),
+				Math.Abs(startPoint.X - endPoint.X),
+				Math.Abs(startPoint.Y - endPoint.Y)
+				);
+
+			SetSelection(selectionBounds);
+		}
+
+
+		private Point ScalePoint(Point point, double factor)
+		{
+			var x = (int)Math.Round((point.X - ImageMargin) * factor) + ImageMargin;
+			var y = (int)Math.Round((point.Y - ImageMargin) * factor) + ImageMargin;
+
+			// rounding may push a point off the edge of the image
+			return new Point(
+				Math.Max(imageBounds.Left, Math.Min(imageBounds.Right, x)),
+				Math.Max(imageBounds.Top, Math.Min(imageBounds.Bottom, y)));
+		}
+
+
+		/// <summary>
+		/// Sets the zoom, keeping the image point under the anchor stationary.
+		/// </summary>
+		/// <param name="value">The new zoom, 1.0 being 100%</param>
+		/// <param name="anchor">
+		/// A point relative to the view panel, default is the center of the view
+		/// </param>
+		private void SetZoom(double value, Point? anchor = null)
+		{
+			value = Math.Max(MinZoom, Math.Min(MaxZoom, value));
+
+			if (Image is null || Math.Abs(value - zoom) < 0.0001)
+			{
+				return;
+			}
+
+			var view = viewPanel.ClientSize;
+			var a = anchor ?? new Point(view.Width / 2, view.Height / 2);
+
+			// fraction of the image currently under the anchor
+			var fx = (a.X + scroll.X - ImageMargin) / (double)Math.Max(1, imageBounds.Width);
+			var fy = (a.Y + scroll.Y - ImageMargin) / (double)Math.Max(1, imageBounds.Height);
+
+			zoom = value;
+			UpdateLayout(true);
+
+			SetScroll(
+				ImageMargin + (int)Math.Round(fx * imageBounds.Width) - a.X,
+				ImageMargin + (int)Math.Round(fy * imageBounds.Height) - a.Y);
+
+			pictureBox.Refresh();
+		}
+
+
+		private void ZoomInButton_Click(object sender, EventArgs e)
+		{
+			SetZoom(StepZoom(true));
+		}
+
+
+		private void ZoomOutButton_Click(object sender, EventArgs e)
+		{
+			SetZoom(StepZoom(false));
+		}
+
+
+		// step the displayed zoom percentage up or down by 10, snapping to multiples of 10
+		private double StepZoom(bool zoomIn)
+		{
+			if (Image is null)
+			{
+				return zoom;
+			}
+
+			var percent = zoom * 100.0;
+			var target = zoomIn
+				? (Math.Floor(percent / ZoomStep + 0.001) + 1) * ZoomStep
+				: (Math.Ceiling(percent / ZoomStep - 0.001) - 1) * ZoomStep;
+
+			return Math.Max(ZoomStep, target) / 100.0;
+		}
+
+
+		private void ZoomLabel_Click(object sender, EventArgs e)
+		{
+			var current = (int)Math.Round(100.0 * zoom);
+
+			// Show() is non-blocking so the menu must outlive this method; dispose it on close
+			var menu = new UI.MoreContextMenuStrip();
+			menu.Closed += (s, a) => BeginInvoke(new Action(menu.Dispose));
+			foreach (var percent in new[] { 100, 125, 150, 200, 400, 800, 1200 })
+			{
+				var value = percent;
+				var item = new ToolStripMenuItem($"{value}%") { Checked = value == current };
+				item.Click += (s, a) => SetZoomPercent(value);
+				menu.Items.Add(item);
+			}
+
+			// open upward from the label since it lives at the bottom of the dialog
+			menu.ApplyScale(statusStrip);
+			menu.Show(statusStrip, new Point(zoomLabel.Bounds.Left, 0),
+				ToolStripDropDownDirection.AboveRight);
+		}
+
+
+		// sets zoom so the displayed percentage equals the given value
+		private void SetZoomPercent(int percent)
+		{
+			SetZoom(percent / 100.0);
+		}
+
+
+		private void Picture_MouseWheel(object sender, MouseEventArgs e)
+		{
+			if (e is HandledMouseEventArgs handled)
+			{
+				handled.Handled = true;
+			}
+
+			HandleWheel(e.Delta);
+		}
+
+
+		protected override void OnMouseWheel(MouseEventArgs e)
+		{
+			// wheel is routed here when another control, such as a button, has focus
+			if (!HandleWheel(e.Delta))
+			{
+				base.OnMouseWheel(e);
+			}
+		}
+
+
+		// Ctrl+wheel zooms at the cursor; wheel scrolls the zoomed image, Shift+wheel horizontally
+		private bool HandleWheel(int delta)
+		{
+			var point = viewPanel.PointToClient(Cursor.Position);
+			if (!viewPanel.ClientRectangle.Contains(point))
+			{
+				return false;
+			}
+
+			if ((ModifierKeys & Keys.Control) == Keys.Control)
+			{
+				SetZoom(StepZoom(delta > 0), point);
+			}
+			else if (CanPan())
+			{
+				var shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
+				SetScroll(
+					scroll.X - (shift ? delta : 0),
+					scroll.Y - (shift ? 0 : delta));
+			}
+
+			return true;
+		}
+
+
+		// the zoomed image is larger than the viewport
+		private bool CanPan()
+		{
+			return hBar.Visible || vBar.Visible;
+		}
+
+
+		private bool IsOverView()
+		{
+			return viewPanel.ClientRectangle.Contains(viewPanel.PointToClient(Cursor.Position));
 		}
 
 
@@ -261,6 +700,9 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// image and selection are in content coordinates; offset by the scroll position
+			e.Graphics.TranslateTransform(-scroll.X, -scroll.Y);
+
 			PaintImage(e.Graphics);
 
 			if (selectionRegion.IsEmpty(e.Graphics))
@@ -277,14 +719,19 @@ namespace River.OneMoreAddIn.Commands
 		private void PaintImage(Graphics g)
 		{
 			// zoom image into viewable area
-			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
-
-			imageBounds = new Rectangle(
-				ImageMargin, ImageMargin,
-				(int)Math.Round(Image.Width / ratio), (int)Math.Round(Image.Height / ratio));
+			var ratio = GetRatio();
+			ComputeImageBounds(ratio);
 
 			// draw outline for images with transparency (png)
 			g.DrawRectangle(Pens.Gray, imageBounds);
+
+			if (ratio <= 0.5)
+			{
+				// magnified, show true pixels to aid precise selection
+				g.InterpolationMode = InterpolationMode.NearestNeighbor;
+				g.PixelOffsetMode = PixelOffsetMode.Half;
+			}
+
 			// draw image
 			g.DrawImage(Image, imageBounds);
 		}
@@ -304,11 +751,16 @@ namespace River.OneMoreAddIn.Commands
 			pen.DashPattern = new float[2] { 3, 3 };
 			pen.DashOffset = antOffset;
 
+			// only render the ants for the visible part of the (possibly zoomed) picture box
+			var visible = new Rectangle(scroll, pictureBox.ClientSize);
+
 			// set up pen for the ants
-			using (var ant = new Bitmap(pictureBox.Width, pictureBox.Height))
+			using (var ant = new Bitmap(visible.Width, visible.Height))
 			{
 				using (var gi = Graphics.FromImage(ant))
 				{
+					gi.TranslateTransform(-visible.X, -visible.Y);
+
 					// region is magenta but we'll use that as our transparent color
 					gi.Clear(Color.Magenta);
 
@@ -325,11 +777,12 @@ namespace River.OneMoreAddIn.Commands
 				ant.MakeTransparent(Color.Magenta);
 
 				// draw the ants on the image
-				g.DrawImageUnscaled(ant, 0, 0);
+				g.DrawImageUnscaled(ant, visible.X, visible.Y);
 			}
 
 			// draw resize handles
-			var bounds = selectionRegion.GetBounds(g);
+			// path bounds are in content coordinates, unaffected by the graphics transform
+			var bounds = selectionPath.GetBounds();
 
 			AddHandle(SizingHandle.TopLeft, bounds.Left, bounds.Top, g);
 			AddHandle(SizingHandle.TopRight, bounds.Right, bounds.Top, g);
@@ -345,7 +798,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void UpdateStatus()
 		{
-			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
+			var ratio = GetRatio();
 
 			var r = new Rectangle(
 				(int)((selectionBounds.X - ImageMargin) * ratio),
@@ -409,6 +862,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (Image == null)
 			{
+				return;
+			}
+
+			// Space+drag pans a zoomed image larger than the viewport
+			if (spaceDown && CanPan())
+			{
+				panPoint = Cursor.Position;
+				moveState = MoveState.Panning;
+				pictureBox.Cursor = Cursors.SizeAll;
 				return;
 			}
 
@@ -498,7 +960,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Picture_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (moveState == MoveState.Selecting)
+			if (moveState == MoveState.Panning)
+			{
+				// use screen coordinates; client coordinates shift as the view scrolls
+				var current = Cursor.Position;
+
+				SetScroll(
+					scroll.X - (current.X - panPoint.X),
+					scroll.Y - (current.Y - panPoint.Y));
+
+				panPoint = current;
+			}
+			else if (moveState == MoveState.Selecting)
 			{
 				SelectRegion(e.Location);
 			}
@@ -509,6 +982,10 @@ namespace River.OneMoreAddIn.Commands
 			else if (moveState == MoveState.Moving)
 			{
 				MoveRegion(e.Location);
+			}
+			else if (spaceDown && CanPan())
+			{
+				pictureBox.Cursor = Cursors.SizeAll;
 			}
 			else
 			{
@@ -734,6 +1211,11 @@ namespace River.OneMoreAddIn.Commands
 				SetButtonEnabled();
 			}
 
+			if (moveState == MoveState.Panning)
+			{
+				pictureBox.Cursor = spaceDown ? Cursors.SizeAll : Cursors.Cross;
+			}
+
 			moveState = MoveState.None;
 		}
 
@@ -753,6 +1235,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			Image = Rotate((Bitmap)original, (float)rotationBox.Value);
+			UpdateLayout(false);
 			pictureBox.Refresh();
 
 			sizeStatusLabel.Text = string.Format(
@@ -864,7 +1347,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// translate absolute selection bounds relative to zoomed image bounds
-			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
+			var ratio = GetRatio();
 
 			var bounds = new Rectangle(
 				(int)Math.Round((selectionBounds.X - ImageMargin) * ratio),
@@ -899,18 +1382,85 @@ namespace River.OneMoreAddIn.Commands
 			handles.Clear();
 			marchingTimer.Stop();
 
+			UpdateLayout(false);
+
 			pictureBox.Refresh();
+		}
+
+
+		// capture Ctrl+D regardless of which control has focus
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == (Keys.Control | Keys.D))
+			{
+				Deselect();
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+
+		private void Deselect()
+		{
+			if (selectionBounds.Width == 0 && selectionBounds.Height == 0 &&
+				selectionRegion.IsEmpty(pictureBox.CreateGraphics()))
+			{
+				return;
+			}
+
+			moveState = MoveState.None;
+			startPoint = endPoint = movePoint = new Point(-1, -1);
+			selectionBounds = Rectangle.Empty;
+			SetSelection(Rectangle.Empty);
+			handles.Clear();
+			marchingTimer.Stop();
+			SetButtonEnabled();
+			pictureBox.Refresh();
+		}
+
+
+		private void CropImageDialog_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Space && spaceDown)
+			{
+				spaceDown = false;
+				if (moveState != MoveState.Panning)
+				{
+					pictureBox.Cursor = Cursors.Cross;
+				}
+
+				e.Handled = true;
+			}
 		}
 
 
 		private void CropImageDialog_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Control && e.KeyCode == Keys.D &&
-				selectionBounds.Width > 0 && selectionBounds.Height > 0)
+			if (e.KeyCode == Keys.Space && IsOverView())
 			{
-				selectionBounds = Rectangle.Empty;
-				SetSelection(Rectangle.Empty);
-				SetButtonEnabled();
+				// hold Space to pan; keep it from clicking the focused button
+				spaceDown = true;
+				if (CanPan() && moveState != MoveState.Panning)
+				{
+					pictureBox.Cursor = Cursors.SizeAll;
+				}
+
+				e.Handled = e.SuppressKeyPress = true;
+			}
+			else if (e.Control && (e.KeyCode == Keys.Oemplus || e.KeyCode == Keys.Add))
+			{
+				SetZoom(StepZoom(true));
+				e.Handled = true;
+			}
+			else if (e.Control && (e.KeyCode == Keys.OemMinus || e.KeyCode == Keys.Subtract))
+			{
+				SetZoom(StepZoom(false));
+				e.Handled = true;
+			}
+			else if (e.Control && (e.KeyCode == Keys.D0 || e.KeyCode == Keys.NumPad0))
+			{
+				SetZoom(1.0);
 				e.Handled = true;
 			}
 			else if (e.Control && e.KeyCode == Keys.A)

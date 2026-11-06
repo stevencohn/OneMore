@@ -1278,7 +1278,7 @@
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>マウスを使用してトリミングする領域を選択してください。Ctrl+D で選択を解除します。スライダーを使用して画像を回転させます。終了するには OK をクリックしてください。</value>
+    <value>マウスを使用して、トリミングする領域を選択します。 Ctrl+D を押して選択を解除します。スライダーを使用して画像を回転します。 Ctrl+ホイールを押してズームします。スペースを押したままドラッグしてパンします。 「OK」をクリックして終了します。</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

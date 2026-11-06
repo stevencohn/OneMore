@@ -1275,7 +1275,7 @@ Normalna</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Użyj myszy, aby wybrać obszar do uprawy. Ctrl + D, aby odznaczyć. Użyj suwaka, aby obrócić obraz. Kliknij OK, aby zakończyć.</value>
+    <value>Użyj myszki, aby wybrać obszar do przycięcia. Ctrl+D, aby odznaczyć. Użyj suwaka, aby obrócić obraz. Ctrl+kółko, aby powiększyć; przytrzymaj spację i przeciągnij, aby przesuwać. Kliknij OK, aby zakończyć.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

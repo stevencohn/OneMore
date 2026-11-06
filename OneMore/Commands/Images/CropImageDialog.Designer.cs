@@ -35,6 +35,9 @@
 			this.pictureBox = new System.Windows.Forms.PictureBox();
 			this.marchingTimer = new System.Windows.Forms.Timer(this.components);
 			this.picturePanel = new System.Windows.Forms.Panel();
+			this.viewPanel = new System.Windows.Forms.Panel();
+			this.hBar = new System.Windows.Forms.HScrollBar();
+			this.vBar = new System.Windows.Forms.VScrollBar();
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.introText = new System.Windows.Forms.Label();
 			this.buttonPanel = new System.Windows.Forms.Panel();
@@ -46,8 +49,12 @@
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.sizeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.zoomOutButton = new System.Windows.Forms.ToolStripStatusLabel();
+			this.zoomLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.zoomInButton = new System.Windows.Forms.ToolStripStatusLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
 			this.picturePanel.SuspendLayout();
+			this.viewPanel.SuspendLayout();
 			this.introPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.rotationBox)).BeginInit();
@@ -60,17 +67,17 @@
 			this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.pictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
 			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox.Location = new System.Drawing.Point(0, 66);
+			this.pictureBox.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox.Name = "pictureBox";
 			this.pictureBox.Size = new System.Drawing.Size(1489, 704);
 			this.pictureBox.TabIndex = 1;
 			this.pictureBox.TabStop = false;
 			this.pictureBox.SizeChanged += new System.EventHandler(this.PictureBox_SizeChanged);
 			this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Picture_Paint);
-			this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_MouseDown);
+			this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.View_MouseDown);
 			this.pictureBox.MouseHover += new System.EventHandler(this.Picture_Hover);
-			this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Picture_MouseMove);
-			this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_MouseUp);
+			this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.View_MouseMove);
+			this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.View_MouseUp);
 			// 
 			// marchingTimer
 			// 
@@ -79,19 +86,48 @@
 			// 
 			// picturePanel
 			// 
-			this.picturePanel.AutoScroll = true;
-			this.picturePanel.AutoScrollMinSize = new System.Drawing.Size(300, 300);
 			this.picturePanel.AutoSize = true;
-			this.picturePanel.Controls.Add(this.pictureBox);
+			this.picturePanel.Controls.Add(this.viewPanel);
 			this.picturePanel.Controls.Add(this.introPanel);
 			this.picturePanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.picturePanel.Location = new System.Drawing.Point(0, 0);
 			this.picturePanel.Name = "picturePanel";
 			this.picturePanel.Size = new System.Drawing.Size(1489, 770);
 			this.picturePanel.TabIndex = 5;
+			//
+			// viewPanel
+			//
+			this.viewPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.viewPanel.Controls.Add(this.pictureBox);
+			this.viewPanel.Controls.Add(this.hBar);
+			this.viewPanel.Controls.Add(this.vBar);
+			this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.viewPanel.Location = new System.Drawing.Point(0, 66);
+			this.viewPanel.Name = "viewPanel";
+			this.viewPanel.Size = new System.Drawing.Size(1489, 704);
+			this.viewPanel.TabIndex = 1;
+			this.viewPanel.SizeChanged += new System.EventHandler(this.ViewPanel_SizeChanged);
 			// 
+			// hBar
+			// 
+			this.hBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hBar.Name = "hBar";
+			this.hBar.TabIndex = 3;
+			this.hBar.TabStop = false;
+			this.hBar.Visible = false;
+			this.hBar.ValueChanged += new System.EventHandler(this.ScrollBar_ValueChanged);
+			// 
+			// vBar
+			// 
+			this.vBar.Dock = System.Windows.Forms.DockStyle.Right;
+			this.vBar.Name = "vBar";
+			this.vBar.TabIndex = 2;
+			this.vBar.TabStop = false;
+			this.vBar.Visible = false;
+			this.vBar.ValueChanged += new System.EventHandler(this.ScrollBar_ValueChanged);
+			//
 			// introPanel
-			// 
+			//
 			this.introPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.introPanel.Controls.Add(this.introText);
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -111,7 +147,8 @@
 			this.introText.Size = new System.Drawing.Size(1463, 26);
 			this.introText.TabIndex = 0;
 			this.introText.Text = "Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to ro" +
-    "tate the image. Click OK to finish.";
+    "tate the image. Ctrl+wheel to zoom; hold Space and drag to pan. Click OK to fini" +
+    "sh.";
 			// 
 			// buttonPanel
 			// 
@@ -213,7 +250,10 @@
 			this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sizeStatusLabel,
-            this.statusLabel});
+            this.statusLabel,
+            this.zoomOutButton,
+            this.zoomLabel,
+            this.zoomInButton});
 			this.statusStrip.Location = new System.Drawing.Point(0, 835);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 14, 0);
@@ -234,9 +274,39 @@
 			this.statusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.statusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.Size = new System.Drawing.Size(543, 29);
+			this.statusLabel.Size = new System.Drawing.Size(1000, 29);
+			this.statusLabel.Spring = true;
 			this.statusLabel.Text = "Selection top left: {x}, {y}. Bounding rectangle size: {width} x {height}.";
 			this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			//
+			// zoomOutButton
+			//
+			this.zoomOutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.zoomOutButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.zoomOutButton.Name = "zoomOutButton";
+			this.zoomOutButton.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
+			this.zoomOutButton.Size = new System.Drawing.Size(34, 29);
+			this.zoomOutButton.Text = "-";
+			this.zoomOutButton.Click += new System.EventHandler(this.ZoomOutButton_Click);
+			//
+			// zoomLabel
+			//
+			this.zoomLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.zoomLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.zoomLabel.Name = "zoomLabel";
+			this.zoomLabel.Size = new System.Drawing.Size(52, 29);
+			this.zoomLabel.Text = "100%";
+			this.zoomLabel.Click += new System.EventHandler(this.ZoomLabel_Click);
+			//
+			// zoomInButton
+			//
+			this.zoomInButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.zoomInButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.zoomInButton.Name = "zoomInButton";
+			this.zoomInButton.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
+			this.zoomInButton.Size = new System.Drawing.Size(37, 29);
+			this.zoomInButton.Text = "+";
+			this.zoomInButton.Click += new System.EventHandler(this.ZoomInButton_Click);
 			// 
 			// CropImageDialog
 			// 
@@ -244,7 +314,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1489, 871);
+			this.ClientSize = new System.Drawing.Size(1200, 800);
 			this.Controls.Add(this.picturePanel);
 			this.Controls.Add(this.buttonPanel);
 			this.Controls.Add(this.statusStrip);
@@ -260,7 +330,9 @@
 			this.Text = "Crop and Rotate";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CropImageDialog_FormClosed);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CropImageDialog_KeyDown);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CropImageDialog_KeyUp);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+			this.viewPanel.ResumeLayout(false);
 			this.picturePanel.ResumeLayout(false);
 			this.introPanel.ResumeLayout(false);
 			this.buttonPanel.ResumeLayout(false);
@@ -279,6 +351,12 @@
 		private System.Windows.Forms.PictureBox pictureBox;
 		private System.Windows.Forms.Timer marchingTimer;
 		private System.Windows.Forms.Panel picturePanel;
+		private System.Windows.Forms.Panel viewPanel;
+		private System.Windows.Forms.HScrollBar hBar;
+		private System.Windows.Forms.VScrollBar vBar;
+		private System.Windows.Forms.ToolStripStatusLabel zoomOutButton;
+		private System.Windows.Forms.ToolStripStatusLabel zoomLabel;
+		private System.Windows.Forms.ToolStripStatusLabel zoomInButton;
 		private System.Windows.Forms.Panel buttonPanel;
 		private UI.MoreButton cropButton;
 		private System.Windows.Forms.StatusStrip statusStrip;

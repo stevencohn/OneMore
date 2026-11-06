@@ -1278,7 +1278,7 @@ Normale</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Utilisez la souris pour sélectionner une zone à recadrer. </value>
+    <value>Utilisez la souris pour sélectionner une zone à recadrer. Ctrl+D pour désélectionner. Utilisez le curseur pour faire pivoter l'image. Ctrl+molette pour zoomer ; maintenez Espace et faites glisser pour effectuer un panoramique. Cliquez sur OK pour terminer.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

@@ -1275,7 +1275,7 @@
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>השתמש בעכבר כדי לבחור אזור לחתוך. Ctrl+D כדי לבטל את הבחירה. השתמש במחוון כדי לסובב את התמונה. לחץ על אישור כדי לסיים.</value>
+    <value>השתמש בעכבר כדי לבחור אזור לחתוך. Ctrl+D כדי לבטל את הבחירה. השתמש במחוון כדי לסובב את התמונה. Ctrl+גלגל כדי להתקרב; החזק את הרווח וגרור כדי להזיז. לחץ על אישור כדי לסיים.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

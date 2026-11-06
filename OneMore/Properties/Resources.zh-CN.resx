@@ -1279,7 +1279,7 @@
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>使用鼠标选择要裁剪的区域。 </value>
+    <value>使用鼠标选择要裁剪的区域。 Ctrl+D 取消选择。使用滑块旋转图像。 Ctrl+滚轮进行缩放；按住空格键并拖动进行平移。单击“确定”完成。</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">

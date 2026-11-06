@@ -2656,7 +2656,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish..
+        ///   Looks up a localized string similar to Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Ctrl+wheel to zoom; hold Space and drag to pan. Click OK to finish..
         /// </summary>
         internal static string CropImageDialog_introText_Text {
             get {
