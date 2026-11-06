@@ -345,6 +345,7 @@ namespace River.OneMoreAddIn.Commands
 					seededLength = 0;
 				}
 
+				countifPanel.Updating = seededLength > 0;
 				ShowCountif(true);
 				return;
 			}

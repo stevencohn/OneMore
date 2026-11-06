@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		Plain,
 		Function,
 		Cell,
+		Variable,
 		Number,
 		Criteria,
 		Punctuation
@@ -72,7 +73,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					var next = match.Index + match.Length;
 					kind = CellRegex.IsMatch(match.Value) ? FormulaTokenKind.Cell
 						: next < text.Length && text[next] == '(' ? FormulaTokenKind.Function
-						: FormulaTokenKind.Plain;
+						: string.Equals(match.Value, "let", System.StringComparison.OrdinalIgnoreCase)
+							? FormulaTokenKind.Plain
+							: FormulaTokenKind.Variable;
 				}
 				else if (match.Groups["num"].Success)
 				{

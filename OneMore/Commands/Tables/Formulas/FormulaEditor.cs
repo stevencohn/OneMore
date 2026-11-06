@@ -11,8 +11,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 
 	/// <summary>
-	/// A single-line formula editor that colors functions, cell references, numbers,
-	/// countif criteria and punctuation using theme colors, and draws a red border when invalid.
+	/// A single-line formula editor that colors functions, cell references, variables, numbers,
+	/// countif criteria and punctuation using Colorizer theme colors, and draws a red border when invalid.
 	/// </summary>
 	internal class FormulaEditor : MoreRichTextBox
 	{
@@ -129,15 +129,19 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
+		// Colorizer theme colors (OnetasticFunction, OnetasticVariable, Type/Teal for variables,
+		// Number, String, Delimeter)
 		private Color GetColor(FormulaTokenKind kind, Color plain)
 		{
+			var dark = manager.DarkMode;
 			return kind switch
 			{
-				FormulaTokenKind.Function => manager.GetColor("HotTrack"),
-				FormulaTokenKind.Cell => manager.GetColor("MenuHighlight"),
-				FormulaTokenKind.Number => manager.GetColor("ActiveCaption"),
-				FormulaTokenKind.Criteria => manager.GetColor("InfoText"),
-				FormulaTokenKind.Punctuation => manager.GetColor("GrayText"),
+				FormulaTokenKind.Function => ColorTranslator.FromHtml(dark ? "#569CD6" : "#2E75B5"),
+				FormulaTokenKind.Cell => ColorTranslator.FromHtml(dark ? "#FF8A3D" : "#FF5800"),
+				FormulaTokenKind.Variable => ColorTranslator.FromHtml(dark ? "#4EC9B0" : "#008080"),
+				FormulaTokenKind.Number => ColorTranslator.FromHtml(dark ? "#B39DDB" : "#8064A2"),
+				FormulaTokenKind.Criteria => ColorTranslator.FromHtml(dark ? "#CE9178" : "#B22222"),
+				FormulaTokenKind.Punctuation => ColorTranslator.FromHtml("#808080"),
 				_ => plain
 			};
 		}

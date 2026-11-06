@@ -119,6 +119,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 
 		/// <summary>
+		/// Sets whether the builder is editing a countif already in the formula, in which
+		/// case the button reads "Update formula" instead of "Insert into formula".
+		/// </summary>
+		public bool Updating
+		{
+			set => insertButton.Text = value ? "Update formula" : "Insert into formula";
+		}
+
+
+		/// <summary>
 		/// Gets the countif expression as currently built.
 		/// </summary>
 		public string Expression
