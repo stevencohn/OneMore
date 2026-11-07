@@ -232,7 +232,17 @@ namespace River.OneMoreAddIn.Commands
 				switch (n)
 				{
 					case "OEChildren":
-						Write(element, $"{Indent}{prefix}", depth + 1, contained);
+						{
+							// only indent beneath a list item; children of plain paragraphs
+							// start at the same level so top-level lists are not treated as
+							// code blocks
+							var indent = container.Name.LocalName == "OE"
+								&& !container.Elements(ns + "List").Any()
+									? string.Empty
+									: Indent;
+
+							Write(element, $"{indent}{prefix}", depth + 1, contained);
+						}
 						break;
 
 					case "OE":
