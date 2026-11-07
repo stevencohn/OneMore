@@ -26,12 +26,12 @@ namespace River.OneMoreAddIn.Commands
 	/// attachments on each page. Also fixes the hyperlinks between pages within the context of
 	/// the archive so the archive can stand on its own as a working directory of HTML files with
 	/// live hyperlinks. Sections, section groups, and pages whose names contain the token
-	/// ~skip are omitted when they are descendants of the archive root.
+	/// -skip are omitted when they are descendants of the archive root.
 	/// </summary>
 	internal class ArchiveCommand : Command, ICliInteractiveCommand
 	{
 		private const string OrderFile = "__File_Order.txt";
-		private const string SkipToken = "~skip";
+		private const string SkipToken = "-skip";
 
 		private OneNote one;
 		private Archivist archivist;
@@ -473,7 +473,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Determines if the page, section, or section group has the ~skip token in its name.
+		/// Determines if the page, section, or section group has the -skip token in its name.
 		/// Only applied to children of the archive root; the root itself is always archived.
 		/// </summary>
 		private static bool IsSkipped(XElement element)
