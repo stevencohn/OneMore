@@ -25,11 +25,13 @@ namespace River.OneMoreAddIn.Commands
 	/// all pages in the section or notebook, exported to HTML, including all images and file
 	/// attachments on each page. Also fixes the hyperlinks between pages within the context of
 	/// the archive so the archive can stand on its own as a working directory of HTML files with
-	/// live hyperlinks.
+	/// live hyperlinks. Sections, section groups, and pages whose names contain the token
+	/// ~skip are omitted when they are descendants of the archive root.
 	/// </summary>
 	internal class ArchiveCommand : Command, ICliInteractiveCommand
 	{
 		private const string OrderFile = "__File_Order.txt";
+		private const string SkipToken = "~skip";
 
 		private OneNote one;
 		private Archivist archivist;
@@ -120,9 +122,7 @@ namespace River.OneMoreAddIn.Commands
 					hierarchy = await one.GetSection(sectionId);
 				}
 
-				var ns = one.GetNamespace(hierarchy);
-
-				totalCount = hierarchy.Descendants(ns + "Page").Count();
+				totalCount = CountPages(hierarchy);
 				if (totalCount == 0)
 				{
 					ShowError(Resx.ArchiveCommand_noPages);
@@ -240,8 +240,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var hns = one.GetNamespace(hierarchy);
-				totalCount = hierarchy.Descendants(hns + "Page").Count();
+				totalCount = CountPages(hierarchy);
 				if (totalCount == 0)
 				{
 					CliOutput = "No pages found";
@@ -425,6 +424,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (element.Name.LocalName == "Page")
 				{
+					if (IsSkipped(element))
+					{
+						continue;
+					}
+
 					var page = await one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
@@ -449,6 +453,11 @@ namespace River.OneMoreAddIn.Commands
 					element.GetAttributeValue("isRecycleBin", out bool recycle, false);
 					if (recycle) continue;
 
+					if (IsSkipped(element))
+					{
+						continue;
+					}
+
 					// append name of Section/Group to path to build zip folder path
 					var name = element.Attribute("name").Value.Trim();
 
@@ -460,6 +469,48 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await ArchiveOrder(order, path);
 			}
+		}
+
+
+		/// <summary>
+		/// Determines if the page, section, or section group has the ~skip token in its name.
+		/// Only applied to children of the archive root; the root itself is always archived.
+		/// </summary>
+		private static bool IsSkipped(XElement element)
+		{
+			var name = element.Attribute("name")?.Value;
+			return name is not null &&
+				name.IndexOf(SkipToken, StringComparison.OrdinalIgnoreCase) >= 0;
+		}
+
+
+		/// <summary>
+		/// Counts the pages that will be archived, applying the same skip rules as Archive.
+		/// </summary>
+		private static int CountPages(XElement root)
+		{
+			var count = 0;
+			foreach (var element in root.Elements())
+			{
+				if (element.Name.LocalName == "Page")
+				{
+					if (!IsSkipped(element))
+					{
+						count++;
+					}
+				}
+				else
+				{
+					element.GetAttributeValue("locked", out bool locked, false);
+					element.GetAttributeValue("isRecycleBin", out bool recycle, false);
+					if (!locked && !recycle && !IsSkipped(element))
+					{
+						count += CountPages(element);
+					}
+				}
+			}
+
+			return count;
 		}
 
 
