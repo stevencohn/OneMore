@@ -1,0 +1,71 @@
+{
+  "name": "Dockerfile",
+  "aliases": [
+    "docker"
+  ],
+  "rules": [
+    {
+      // Comment: a line whose first non-blank character is #
+      "pattern": "^[ \\t]*(#[^\\r\\n]*)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // String: single-quoted, no embedded newlines
+      "pattern": "('[^'\\r\\n]*')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // String: double-quoted, allowing backslash-escaped quotes
+      "pattern": "(\"[^\"\\r\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // Variable: braced form such as ${VERSION}
+      "pattern": "(\\$\\{[^}\\r\\n]+\\})",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+      // Variable: simple form such as $VERSION
+      "pattern": "(\\$[\\p{L}_][\\p{L}\\p{N}_]*)",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+      // Instruction: Dockerfile commands at the start of a line, case-insensitive
+      "pattern": "(?i)^[ \\t]*(ADD|ARG|CMD|COPY|ENTRYPOINT|ENV|EXPOSE|FROM|HEALTHCHECK|LABEL|MAINTAINER|ONBUILD|RUN|SHELL|STOPSIGNAL|USER|VOLUME|WORKDIR)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // Keyword: AS in a multi-stage "FROM image AS stage" line
+      "pattern": "(?i)\\b(AS)\\b(?=[ \\t]+[\\w.-]+[ \\t]*$)",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // Operator: instruction flags such as --from=, --chown=, --platform=
+      "pattern": "(--[a-z][a-z-]*)(?==)",
+      "captures": [
+        "Operator"
+      ]
+    },
+    {
+      // Number: standalone integers such as port numbers
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
