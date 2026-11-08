@@ -2337,6 +2337,10 @@ Total Row Font
     <value>התאים שנבחרו חייבים להיות באותה שורה או באותה עמודה</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>התאים שנבחרו מכילים נוסחאות של צורות שונות. המשך יחליף את כולם בנוסחה שתזין. לְהַמשִׁיך?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>מחשב את {0}</value>
     <comment>formula progress message</comment>

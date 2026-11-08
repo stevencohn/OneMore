@@ -2340,6 +2340,10 @@
     <value>يجب أن تكون الخلايا المحددة في نفس الصف أو في نفس العمود</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>تحتوي الخلايا المحددة على صيغ بأشكال مختلفة. سيؤدي الاستمرار إلى استبدالها جميعًا بالصيغة التي تدخلها. يكمل؟</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>جارٍ الحساب {0}</value>
     <comment>formula progress message</comment>

@@ -2337,6 +2337,10 @@ OneNote-bestand (*.one)</value>
     <value>Geselecteerde cellen moeten in dezelfde rij of in dezelfde kolom staan</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>De geselecteerde cellen bevatten formules met verschillende vormen. Als u doorgaat, worden ze allemaal vervangen door de formule die u invoert. Doorgaan?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>Berekenen van {0}</value>
     <comment>formula progress message</comment>

@@ -2337,6 +2337,10 @@ Plik OneNote (* .o)</value>
     <value>Wybrane komórki muszą znajdować się w tym samym wierszu lub w tej samej kolumnie</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>Wybrane komórki zawierają formuły o różnych kształtach. Kontynuacja spowoduje zastąpienie ich wszystkich wprowadzoną formułą. Kontynuować?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>Obliczanie {0}</value>
     <comment>formula progress message</comment>

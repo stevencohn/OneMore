@@ -2341,6 +2341,10 @@ OneNote 文件 (*.one)</value>
     <value>所选单元格必须在同一行或同一列中</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>选定的单元格包含不同形状的公式。继续会将它们全部替换为您输入的公式。继续？</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>正在计算{0}</value>
     <comment>formula progress message</comment>

@@ -2338,6 +2338,10 @@ File OneNote (*.one)</value>
     <value>Le celle selezionate devono trovarsi nella stessa riga o nella stessa colonna</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>Le celle selezionate contengono formule di forme diverse. Continuando li sostituirai tutti con la formula inserita. Continuare?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>Calcolo del {0}</value>
     <comment>formula progress message</comment>
