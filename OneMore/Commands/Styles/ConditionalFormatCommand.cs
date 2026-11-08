@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	/// a custom OneMore style, and applies that style to every match found on the
 	/// current page.
 	/// </summary>
-	internal class ApplyConditionalFormatCommand : Command, ICliPageCommand
+	internal class ConditionalFormatCommand : Command, ICliPageCommand
 	{
 		#region ICliCommand
 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				ShowInfo(Resx.ApplyConditionalFormatCommand_NoMatches);
+				ShowInfo(Resx.ConditionalFormatCommand_NoMatches);
 			}
 		}
 

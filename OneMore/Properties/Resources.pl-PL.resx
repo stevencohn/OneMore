@@ -437,10 +437,6 @@ Odwracać</value>
     <value>Raport może zająć kilka minut</value>
     <comment>label</comment>
   </data>
-  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
-    <value>Na tej stronie nie znaleziono żadnych dopasowań.</value>
-    <comment>message box</comment>
-  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Przesuń kursor tekstowy do komórki tabeli</value>
     <comment>message</comment>
@@ -1011,6 +1007,10 @@ Anuluj = nie kontynuuj</value>
   <data name="CompareDialog_title" xml:space="preserve">
     <value>Porównaj hierarchię</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono żadnych dopasowań.</value>
+    <comment>message box</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Wbudowany styl OneNote</value>
@@ -7482,10 +7482,6 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Ostatnia modyfikacja: {0}</value>
     <comment>hover text</comment>
   </data>
-  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
-    <value>Wyniki wyszukiwania tytułu</value>
-    <comment>page title</comment>
-  </data>
   <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
     <value>Wyczyść wybór</value>
     <comment>link</comment>
@@ -7513,6 +7509,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
   <data name="SearchTitleDialog_Text" xml:space="preserve">
     <value>Wyszukaj tytuły</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchTitlesCommand_indexTitle" xml:space="preserve">
+    <value>Wyniki wyszukiwania tytułu</value>
+    <comment>page title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Kolor sekcji</value>

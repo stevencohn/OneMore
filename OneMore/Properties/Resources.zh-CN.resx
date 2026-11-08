@@ -441,10 +441,6 @@
     <value>报告生成可能需要几分钟</value>
     <comment>label</comment>
   </data>
-  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
-    <value>在此页面上找不到匹配项。</value>
-    <comment>message box</comment>
-  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>请对要设置的表格的单元格激活文本光标</value>
     <comment>message</comment>
@@ -1015,6 +1011,10 @@
   <data name="CompareDialog_title" xml:space="preserve">
     <value>比较层次结构</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>在此页面上找不到匹配项。</value>
+    <comment>message box</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>内置OneNote风格</value>
@@ -7496,10 +7496,6 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>最后修改时间：{0}</value>
     <comment>hover text</comment>
   </data>
-  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
-    <value>标题搜索结果</value>
-    <comment>page title</comment>
-  </data>
   <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
     <value>清除选择</value>
     <comment>link</comment>
@@ -7527,6 +7523,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="SearchTitleDialog_Text" xml:space="preserve">
     <value>搜索标题</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchTitlesCommand_indexTitle" xml:space="preserve">
+    <value>标题搜索结果</value>
+    <comment>page title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>截面颜色</value>

@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Matches page titles directly off an already-fetched notebook hierarchy
 	/// (OneNote.Scope.Pages), with no additional COM calls per page or section, so it can run
 	/// synchronously against a cached document for both a one-shot search and live type-ahead
-	/// re-filtering. Shared by SearchTitleDialog and SearchTitleCommand's CLI path so GUI and
+	/// re-filtering. Shared by SearchTitleDialog and SearchTitlesCommand's CLI path so GUI and
 	/// CLI results are always consistent.
 	/// </summary>
 	internal static class SearchTitleEngine
@@ -248,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Resolves the sets of page IDs to include and exclude based on the given hashtag
 		/// criteria, restricted to the given notebooks. Shared by SearchTitleDialog and
-		/// SearchTitleCommand's CLI path so GUI and CLI results are always consistent.
+		/// SearchTitlesCommand's CLI path so GUI and CLI results are always consistent.
 		/// </summary>
 		/// <param name="includeHashtags">
 		/// Hashtags a page must carry every one of (implicit AND); Included is null if empty

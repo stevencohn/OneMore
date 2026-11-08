@@ -17,14 +17,14 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal class SearchTitleCommand : Command, ICliCommand
+	internal class SearchTitlesCommand : Command, ICliCommand
 	{
 		private IEnumerable<CardModel> selectedCards;
 		private string query;
 		private static SearchTitleDialog dialog;
 
 
-		public SearchTitleCommand()
+		public SearchTitlesCommand()
 		{
 		}
 
@@ -163,7 +163,7 @@ namespace River.OneMoreAddIn.Commands
 				var ns = parent.Namespace;
 				PageNamespace.Set(ns);
 
-				parent.Title = Resx.SearchTitleCommand_indexTitle;
+				parent.Title = Resx.SearchTitlesCommand_indexTitle;
 				parent.SetMeta(MetaNames.SearchIndex, "true");
 
 				var container = parent.EnsureContentContainer();

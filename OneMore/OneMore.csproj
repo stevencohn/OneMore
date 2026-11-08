@@ -375,7 +375,7 @@
     <Compile Include="Commands\Search\PageTextExtractor.cs" />
     <Compile Include="Commands\Search\SearchEngine.cs" />
     <Compile Include="Commands\Search\SearchTitleEngine.cs" />
-    <Compile Include="Commands\Search\SearchTitleCommand.cs" />
+    <Compile Include="Commands\Search\SearchTitlesCommand.cs" />
     <Compile Include="Commands\Search\TitleHitLevel.cs" />
     <Compile Include="Commands\Search\TitleQueryParser.cs" />
     <Compile Include="Commands\Search\SearchGroupControl.cs">
@@ -393,8 +393,8 @@
     <Compile Include="Commands\Settings\TableThemesSheet.Designer.cs">
       <DependentUpon>TableThemesSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\AddHashtagCommand.cs" />
-    <Compile Include="Commands\Tagging\RemoveHashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\AddHashtagsCommand.cs" />
+    <Compile Include="Commands\Tagging\RemoveHashtagsCommand.cs" />
     <Compile Include="Commands\Tagging\SearchHashtagsCommand.cs" />
     <Compile Include="Commands\Tools\ShowContainersCommand.cs" />
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />
@@ -1487,7 +1487,7 @@
       <DependentUpon>ConditionalFormatDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Styles\ConditionalFormatEditor.cs" />
-    <Compile Include="Commands\Styles\ApplyConditionalFormatCommand.cs" />
+    <Compile Include="Commands\Styles\ConditionalFormatCommand.cs" />
     <Compile Include="UI\MoreToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
