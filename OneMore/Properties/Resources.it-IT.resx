@@ -438,10 +438,6 @@ Invertire</value>
     <value>Il rapporto potrebbe richiedere alcuni minuti</value>
     <comment>label</comment>
   </data>
-  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
-    <value>Nessuna corrispondenza trovata in questa pagina.</value>
-    <comment>message box</comment>
-  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Sposta il cursore del testo in una cella della tabella</value>
     <comment>message</comment>
@@ -1012,6 +1008,10 @@ Annulla = non procedere</value>
   <data name="CompareDialog_title" xml:space="preserve">
     <value>Confronta la gerarchia</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Nessuna corrispondenza trovata in questa pagina.</value>
+    <comment>message box</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Stile OneNote integrato</value>
@@ -7485,10 +7485,6 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <value>Ultima modifica: {0}</value>
     <comment>hover text</comment>
   </data>
-  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
-    <value>Risultati della ricerca del titolo</value>
-    <comment>page title</comment>
-  </data>
   <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
     <value>Cancella selezione</value>
     <comment>link</comment>
@@ -7516,6 +7512,10 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
   <data name="SearchTitleDialog_Text" xml:space="preserve">
     <value>Cerca titoli</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchTitlesCommand_indexTitle" xml:space="preserve">
+    <value>Risultati della ricerca del titolo</value>
+    <comment>page title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Colore sezione</value>

@@ -70,7 +70,7 @@
         imageMso="FontConditionalFormatting"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="ApplyConditionalFormatCmd"/>
+        onAction="ConditionalFormatCmd"/>
       <button
         id="ribEditStylesButton"
         getLabel="GetRibbonLabel"
@@ -380,7 +380,7 @@
         imageMso="ControlTitle"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="SearchTitleCmd"/>
+        onAction="SearchTitlesCmd"/>
       <button
         id="ribCompleteHashtagButton"
         imageMso="AutoCorrect"

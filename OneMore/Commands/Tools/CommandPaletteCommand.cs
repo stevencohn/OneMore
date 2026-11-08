@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			// the palette dialog itself is closed at this point; release the
 			// re-entry guard before invoking the chosen command, which may not
 			// return until ITS OWN dialog closes (e.g. SearchCommand/
-			// SearchTitleCommand when invoked with no message loop already
+			// SearchTitlesCommand when invoked with no message loop already
 			// running) - otherwise the palette can't be reopened until that
 			// command's dialog closes
 			guard.Dispose();
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// reset focus to OneNote window - but only if the invoked command didn't
 			// leave its own popup open and focused (CompleteHashtagCommand/
-			// SearchCommand/SearchTitleCommand can return before their modeless
+			// SearchCommand/SearchTitlesCommand can return before their modeless
 			// dialog closes, see Command.EnterOnce remarks); otherwise this would
 			// steal focus right back from a freshly shown, still-open dialog
 			var foreground = Native.GetForegroundWindow();

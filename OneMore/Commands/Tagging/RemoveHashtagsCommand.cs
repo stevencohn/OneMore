@@ -17,15 +17,15 @@ namespace River.OneMoreAddIn.Commands
 	/// CLI-only command that removes hashtags from the tag bank on one or more pages.
 	/// If the bank is empty after removal it is deleted from the page.
 	/// </summary>
-	internal class RemoveHashtagCommand : Command, ICliPageCommand
+	internal class RemoveHashtagsCommand : Command, ICliPageCommand
 	{
-		public RemoveHashtagCommand()
+		public RemoveHashtagsCommand()
 		{
 			IsCancelled = true;
 		}
 
 
-		public string CommandName => "RemoveHashtag";
+		public string CommandName => "RemoveHashtags";
 
 		public string Description => "Remove hashtags from the tag bank on one or more pages";
 
@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			cliParams.TryGet("tags", out string tags);
 			if (string.IsNullOrWhiteSpace(tags))
 			{
-				logger.WriteLine("RemoveHashtagCommand: no tags specified");
+				logger.WriteLine("RemoveHashtagsCommand: no tags specified");
 				return;
 			}
 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await one.Update(page);
 
-				logger.Verbose($"RemoveHashtagCommand: updated page: {page.Title}");
+				logger.Verbose($"RemoveHashtagsCommand: updated page: {page.Title}");
 			}
 		}
 

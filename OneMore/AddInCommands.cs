@@ -79,11 +79,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AnnotateHexColorsCommand>();
 
 
-		[Command("ribApplyConditionalFormatButton_Label", Keys.None)]
-		public async Task ApplyConditionalFormatCmd(IRibbonControl control)
-			=> await factory.Run<ApplyConditionalFormatCommand>();
-
-
 		[Command("ribApplyStyle0Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D1)]
 		public async Task ApplyStyle0Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(0);
@@ -214,6 +209,11 @@ namespace River.OneMoreAddIn
 		[Command("ribCollapseContentButton_Label", Keys.None, "ribPageMenu")]
 		public async Task CollapseContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Collapse);
+
+
+		[Command("ribApplyConditionalFormatButton_Label", Keys.None)]
+		public async Task ConditionalFormatCmd(IRibbonControl control)
+			=> await factory.Run<ConditionalFormatCommand>();
 
 
 		[Command("ribChooseColorizerButton_Label", Keys.Alt | Keys.C)]
@@ -1114,8 +1114,8 @@ namespace River.OneMoreAddIn
 
 
 		[Command("ribSearchTitleButton_Label", Keys.Shift | Keys.Alt | Keys.OemPeriod, "ribSearchMenu")]
-		public async Task SearchTitleCmd(IRibbonControl control)
-			=> await factory.Run<SearchTitleCommand>();
+		public async Task SearchTitlesCmd(IRibbonControl control)
+			=> await factory.Run<SearchTitlesCommand>();
 
 
 		// added to page context menu via Search Engine settings

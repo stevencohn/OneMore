@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			SelectedTag = AddHashtagCommand.NormalizeTags(text, doubled);
+			SelectedTag = AddHashtagsCommand.NormalizeTags(text, doubled);
 
 			DialogResult = DialogResult.OK;
 			Close();

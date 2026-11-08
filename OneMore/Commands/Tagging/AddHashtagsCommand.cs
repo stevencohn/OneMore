@@ -15,15 +15,15 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// CLI-only command that adds hashtags to the tag bank at the top of one or more pages.
 	/// </summary>
-	internal class AddHashtagCommand : Command, ICliPageCommand
+	internal class AddHashtagsCommand : Command, ICliPageCommand
 	{
-		public AddHashtagCommand()
+		public AddHashtagsCommand()
 		{
 			IsCancelled = true;
 		}
 
 
-		public string CommandName => "AddHashtag";
+		public string CommandName => "AddHashtags";
 
 		public string Description => "Add hashtags to the tag bank on one or more pages";
 
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 			cliParams.TryGet("tags", out string tags);
 			if (string.IsNullOrWhiteSpace(tags))
 			{
-				logger.WriteLine("AddHashtagCommand: no tags specified");
+				logger.WriteLine("AddHashtagsCommand: no tags specified");
 				return;
 			}
 
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await one.Update(page);
 
-				logger.Verbose($"AddHashtagCommand: added tags to page: {page.Title}");
+				logger.Verbose($"AddHashtagsCommand: added tags to page: {page.Title}");
 			}
 		}
 

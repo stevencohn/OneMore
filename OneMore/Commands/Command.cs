@@ -281,7 +281,7 @@ namespace River.OneMoreAddIn
 		/// soon as this command's own UI is no longer pending, which is not necessarily
 		/// when Execute() itself returns: RunModeless leaves Execute() suspended for as
 		/// long as its dialog stays open when called from a thread with no message loop
-		/// of its own (see SearchCommand/SearchTitleCommand/CompleteHashtagCommand).
+		/// of its own (see SearchCommand/SearchTitlesCommand/CompleteHashtagCommand).
 		/// </summary>
 		protected IDisposable EnterOnce()
 		{

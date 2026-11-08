@@ -437,10 +437,6 @@ Omkeren</value>
     <value>Rapportage kan minuten duren</value>
     <comment>label</comment>
   </data>
-  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
-    <value>Er zijn geen overeenkomsten gevonden op deze pagina.</value>
-    <comment>message box</comment>
-  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Verplaats de tekstcursor naar een tabelcel</value>
     <comment>message</comment>
@@ -1011,6 +1007,10 @@ Annuleren = niet doorgaan</value>
   <data name="CompareDialog_title" xml:space="preserve">
     <value>Vergelijk Hiërarchie</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Er zijn geen overeenkomsten gevonden op deze pagina.</value>
+    <comment>message box</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Ingebouwde OneNote-stijl</value>
@@ -7482,10 +7482,6 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Laatst gewijzigd: {0}</value>
     <comment>hover text</comment>
   </data>
-  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
-    <value>Titelzoekresultaten</value>
-    <comment>page title</comment>
-  </data>
   <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
     <value>Duidelijke selectie</value>
     <comment>link</comment>
@@ -7513,6 +7509,10 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
   <data name="SearchTitleDialog_Text" xml:space="preserve">
     <value>Titels zoeken</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchTitlesCommand_indexTitle" xml:space="preserve">
+    <value>Titelzoekresultaten</value>
+    <comment>page title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Sectiekleur</value>

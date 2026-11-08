@@ -442,10 +442,6 @@ Invert</value>
     <value>Report may take minutes</value>
     <comment>label</comment>
   </data>
-  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
-    <value>No matches found on this page.</value>
-    <comment>message box</comment>
-  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Move the text cursor into a table cell</value>
     <comment>message</comment>
@@ -1016,6 +1012,10 @@ Cancel = don't proceed</value>
   <data name="CompareDialog_title" xml:space="preserve">
     <value>Compare Hierarchy</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>No matches found on this page.</value>
+    <comment>message box</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
@@ -7517,10 +7517,6 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Last modified: {0}</value>
     <comment>hover text</comment>
   </data>
-  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
-    <value>Title Search Results</value>
-    <comment>page title</comment>
-  </data>
   <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
     <value>Clear selection</value>
     <comment>link</comment>
@@ -7548,6 +7544,10 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SearchTitleDialog_Text" xml:space="preserve">
     <value>Search Titles</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchTitlesCommand_indexTitle" xml:space="preserve">
+    <value>Title Search Results</value>
+    <comment>page title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Section Color</value>

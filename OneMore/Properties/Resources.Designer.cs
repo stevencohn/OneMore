@@ -802,15 +802,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No matches found on this page..
-        /// </summary>
-        internal static string ApplyConditionalFormatCommand_NoMatches {
-            get {
-                return ResourceManager.GetString("ApplyConditionalFormatCommand_NoMatches", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Move the text cursor into a table cell.
         /// </summary>
         internal static string ApplyTableTheme_SelectTable {
@@ -2084,6 +2075,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CompareDialog_title {
             get {
                 return ResourceManager.GetString("CompareDialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No matches found on this page..
+        /// </summary>
+        internal static string ConditionalFormatCommand_NoMatches {
+            get {
+                return ResourceManager.GetString("ConditionalFormatCommand_NoMatches", resourceCulture);
             }
         }
         
@@ -17547,15 +17547,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title Search Results.
-        /// </summary>
-        internal static string SearchTitleCommand_indexTitle {
-            get {
-                return ResourceManager.GetString("SearchTitleCommand_indexTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Clear selection.
         /// </summary>
         internal static string SearchTitleDialog_clearAllLink_Text {
@@ -17615,6 +17606,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchTitleDialog_Text {
             get {
                 return ResourceManager.GetString("SearchTitleDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title Search Results.
+        /// </summary>
+        internal static string SearchTitlesCommand_indexTitle {
+            get {
+                return ResourceManager.GetString("SearchTitlesCommand_indexTitle", resourceCulture);
             }
         }
         

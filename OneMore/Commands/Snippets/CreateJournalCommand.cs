@@ -171,8 +171,8 @@ namespace River.OneMoreAddIn.Commands
 
 							if (!string.IsNullOrWhiteSpace(hashtags))
 							{
-								var tags = AddHashtagCommand.NormalizeTags(hashtags);
-								AddHashtagCommand.AddTagsToBank(newpage, tags);
+								var tags = AddHashtagsCommand.NormalizeTags(hashtags);
+								AddHashtagsCommand.AddTagsToBank(newpage, tags);
 							}
 
 							await one.Update(newpage);
@@ -414,7 +414,7 @@ namespace River.OneMoreAddIn.Commands
 			if (!string.IsNullOrWhiteSpace(tags))
 			{
 				var tokens = tags.Split(',').Select(t => t.Trim()).Where(t => t.Length > 0);
-				normalizedTags = AddHashtagCommand.NormalizeTags(string.Join(" ", tokens));
+				normalizedTags = AddHashtagsCommand.NormalizeTags(string.Join(" ", tokens));
 			}
 
 			logger.WriteLine(
@@ -445,7 +445,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (!string.IsNullOrEmpty(normalizedTags))
 					{
-						AddHashtagCommand.AddTagsToBank(newpage, normalizedTags);
+						AddHashtagsCommand.AddTagsToBank(newpage, normalizedTags);
 					}
 
 					await one.Update(newpage);
