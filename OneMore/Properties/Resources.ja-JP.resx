@@ -2340,6 +2340,10 @@ OneNoteファイル (*.one)</value>
     <value>選択されたセルは同じ行または同じ列にある必要があります</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>選択したセルには、さまざまな形状の数式が含まれています。続行すると、すべてが入力した数式に置き換えられます。続く？</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>{0} を計算しています</value>
     <comment>formula progress message</comment>

@@ -98,6 +98,15 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
+					if (cells.Count > 1 && HasMixedShapes(cells) &&
+						UI.MoreMessageBox.ShowQuestion(owner, Resx.FormulaCommand_MixedShapes)
+							!= DialogResult.Yes)
+					{
+						// return focus to the page
+						Native.SetForegroundWindow(one.WindowHandle);
+						return;
+					}
+
 					using var dialog = new FormulaDialog(table);
 
 					// display selected cell names and the per-cell formula preview
@@ -198,6 +207,37 @@ namespace River.OneMoreAddIn.Commands
 				logger?.WriteLine("error showing formula progress", exc);
 				ShowInfo("Error adding formula. Please check the OneMore.log file");
 			}
+		}
+
+
+		/// <summary>
+		/// Determines whether the selected cells contain formulas of differing shapes, e.g.
+		/// sum(a1:a9) and average(b1:b9). Cells without formulas are ignored.
+		/// </summary>
+		private static bool HasMixedShapes(List<TableCell> cells)
+		{
+			string first = null;
+
+			foreach (var cell in cells)
+			{
+				var formula = new Formula(cell);
+				if (!formula.Valid)
+				{
+					continue;
+				}
+
+				var shape = FormulaShifter.Normalize(formula.Expression, cell.Coordinates);
+				if (first is null)
+				{
+					first = shape;
+				}
+				else if (shape != first)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 

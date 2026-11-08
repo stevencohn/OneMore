@@ -5334,6 +5334,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected cells contain formulas of different shapes. Continuing will replace them all with the formula you enter. Continue?.
+        /// </summary>
+        internal static string FormulaCommand_MixedShapes {
+            get {
+                return ResourceManager.GetString("FormulaCommand_MixedShapes", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Calculating {0}.
         /// </summary>
         internal static string FormulaCommand_Progress {

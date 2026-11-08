@@ -19,6 +19,38 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 
 		/// <summary>
+		/// Reduces an expression to its shape by rewriting every cell reference as an offset
+		/// relative to the hosting cell, ignoring case and whitespace. Formulas that are
+		/// equivalent after shifting have equal normalized forms.
+		/// </summary>
+		public static string Normalize(string expression, string hostCoordinates)
+		{
+			if (string.IsNullOrEmpty(expression))
+			{
+				return string.Empty;
+			}
+
+			var hostCol = 0;
+			var hostRow = 0;
+			var host = CellRegex.Match(hostCoordinates ?? string.Empty);
+			if (host.Success)
+			{
+				hostCol = TableCell.LettersToIndex(host.Groups["c"].Value);
+				hostRow = int.Parse(host.Groups["r"].Value);
+			}
+
+			var normalized = CellRegex.Replace(expression, match =>
+			{
+				var col = TableCell.LettersToIndex(match.Groups["c"].Value) - hostCol;
+				var row = int.Parse(match.Groups["r"].Value) - hostRow;
+				return $"@{col},{row}";
+			});
+
+			return Regex.Replace(normalized, @"\s+", string.Empty).ToLowerInvariant();
+		}
+
+
+		/// <summary>
 		/// Returns the expression with every cell reference moved by the given offset.
 		/// Column selections shift the column letters; row selections shift the row numbers.
 		/// </summary>

@@ -2337,6 +2337,10 @@ Arquivo OneNote (* .one)</value>
     <value>As células selecionadas devem estar na mesma linha ou na mesma coluna</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_MixedShapes" xml:space="preserve">
+    <value>As células selecionadas contêm fórmulas de diferentes formatos. Continuar substituirá todos eles pela fórmula inserida. Continuar?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="FormulaCommand_Progress" xml:space="preserve">
     <value>Calculando {0}</value>
     <comment>formula progress message</comment>
