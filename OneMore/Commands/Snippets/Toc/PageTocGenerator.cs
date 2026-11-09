@@ -537,6 +537,15 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 			top.NodesAfterSelf().ToList().ForEach(n => n.Remove());
 
+			// leading whitespace before the link is stale, e.g. spaces that were once part
+			// of the heading text; the link text is rebuilt below from the current heading
+			top.NodesBeforeSelf()
+				.Where(n => n is XText t
+					? string.IsNullOrWhiteSpace(t.Value)
+					: n is XElement e && string.IsNullOrWhiteSpace(e.Value))
+				.ToList()
+				.ForEach(n => n.Remove());
+
 			// descend to the innermost element wrapping the text, which holds the formatting
 			var target = anchor;
 			while (target.Elements().Count() == 1 &&
