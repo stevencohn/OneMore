@@ -342,7 +342,10 @@ namespace River.OneMoreAddIn
 						new Commands.Workspaces.HealingStage(
 							() => ribbon?.SafeInvalidateControl(Commands.Favorites.FavoritesMenu.MenuID)),
 
-						contentStage
+						contentStage,
+
+						// last so that a backup never delays the stages above
+						new Backups.BackupStage()
 					}).Startup();
 				});
 

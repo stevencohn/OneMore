@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Settings
 		public enum Sheets
 		{
 			General,
+			Backup,
 			Aliases,
 			Colorizer,
 			Colors,
@@ -86,6 +87,7 @@ namespace River.OneMoreAddIn.Settings
 				snippetsLink.Text = Resx.word_Snippets;
 				tableThemesLink.Text = Resx.TableThemesSheet_Title;
 				variablesLink.Text = Resx.VariablesSheet_Title;
+				backupLink.Text = Resx.BackupSheet_Title;
 			}
 
 			this.ribbon = ribbon;
@@ -95,7 +97,7 @@ namespace River.OneMoreAddIn.Settings
 
 			navLinks = new[]
 			{
-				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
+				generalLink, backupLink, colorizerLink, colorsLink, aliasLink, contextLink,
 				favoritesLink, fileImportLink, formControlsLink, hashtagsLink, highlightLink, imagesLink,
 				keyboardLink, markdownLink, navigatorLink, pageLink, pluginsLink, quickNotesLink,
 				ribbonLink, searchLink, searchIndexLink, snippetsLink, tableThemesLink, variablesLink
@@ -274,27 +276,28 @@ namespace River.OneMoreAddIn.Settings
 				sheet = index switch
 				{
 					0 => new GeneralSheet(provider),
-					1 => new ColorizerSheet(provider),
-					2 => new ColorsSheet(provider),
-					3 => new AliasSheet(provider),
-					4 => new ContextMenuSheet(provider),
-					5 => new FavoritesSheet(provider, ribbon),
-					6 => new FileImportSheet(provider),
-					7 => new FormControlsSheet(provider),
-					8 => new HashtagSheet(provider),
-					9 => new HighlightsSheet(provider),
-					10 => new ImagesSheet(provider),
-					11 => new KeyboardSheet(provider, ribbon),
-					12 => new MarkdownSheet(provider),
-					13 => new NavigatorSheet(provider, ribbon),
-					14 => new PageSheet(provider),
-					15 => await PluginsSheet.Create(provider, ribbon),
-					16 => new QuickNotesSheet(provider),
-					17 => new RibbonBarSheet(provider),
-					18 => new SearchEngineSheet(provider),
-					19 => new IndexSheet(provider),
-					20 => new SnippetsSheet(provider, ribbon),
-					21 => new TableThemesSheet(provider, ribbon),
+					1 => new BackupSheet(provider),
+					2 => new ColorizerSheet(provider),
+					3 => new ColorsSheet(provider),
+					4 => new AliasSheet(provider),
+					5 => new ContextMenuSheet(provider),
+					6 => new FavoritesSheet(provider, ribbon),
+					7 => new FileImportSheet(provider),
+					8 => new FormControlsSheet(provider),
+					9 => new HashtagSheet(provider),
+					10 => new HighlightsSheet(provider),
+					11 => new ImagesSheet(provider),
+					12 => new KeyboardSheet(provider, ribbon),
+					13 => new MarkdownSheet(provider),
+					14 => new NavigatorSheet(provider, ribbon),
+					15 => new PageSheet(provider),
+					16 => await PluginsSheet.Create(provider, ribbon),
+					17 => new QuickNotesSheet(provider),
+					18 => new RibbonBarSheet(provider),
+					19 => new SearchEngineSheet(provider),
+					20 => new IndexSheet(provider),
+					21 => new SnippetsSheet(provider, ribbon),
+					22 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 

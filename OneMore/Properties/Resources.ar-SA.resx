@@ -500,6 +500,86 @@
     <value>مستخدم حديثا</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>قم بالنسخ الاحتياطي الآن</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>استخدم مجلدًا مخصصًا</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>مرة واحدة في اليوم</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>قم بعمل نسخة احتياطية من قاعدة بيانات OneMore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>تعذر عمل نسخة احتياطية لقاعدة بيانات OneMore. راجع السجل للحصول على التفاصيل.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>النسخ الاحتياطي الفاصل الزمني</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>قم بإجراء نسخ احتياطي دوريًا لقاعدة بيانات OneMore (OneMore.db)، التي تحتوي على علامات التصنيف والمفضلات والتخطيطات وفهرس البحث.</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>عدد النسخ الاحتياطية المطلوب الاحتفاظ بها</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>آخر نسخة احتياطية: {0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>لا يمكن الوصول إلى موقع النسخ الاحتياطي. الرجاء تأكيد موقع النسخ الاحتياطي في إعدادات OneMore، في ورقة النسخ الاحتياطي.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>مرة واحدة في الشهر</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>لم يتم عمل نسخة احتياطية حتى الآن</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>تم تسجيل نسخة احتياطية مسبقًا، ولكن لم يتم العثور على ملفات نسخ احتياطي في مجلد النسخ الاحتياطي. ربما تم نقلها أو حذفها.</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>حدد مجلد النسخ الاحتياطي الموجود</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>استخدم مجلد النسخ الاحتياطي OneNote</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>(غير متاح)</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>جارٍ النسخ الاحتياطي لقاعدة بيانات OneMore...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>حدد المجلد الذي تريد تخزين النسخ الاحتياطية لقاعدة البيانات فيه</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>النسخ الاحتياطي</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>مرة واحدة في الأسبوع</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>تعذر إنشاء رابط ثنائي الاتجاه. {0}</value>
     <comment>message box</comment>

@@ -500,6 +500,86 @@ Inverser</value>
     <value>utilisé récemment</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>Sauvegarder maintenant</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>Utiliser un dossier personnalisé</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>Une fois par jour</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>Sauvegarder la base de données OneMore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>La base de données OneMore n'a pas pu être sauvegardée. Voir le journal pour plus de détails.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Intervalle de sauvegarde</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>Sauvegardez périodiquement la base de données OneMore (OneMore.db), qui contient vos hashtags, favoris, mises en page et index de recherche.</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>Nombre de copies de sauvegarde à conserver</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>Dernière sauvegarde : {0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>L'emplacement de sauvegarde n'est pas accessible. Veuillez confirmer l'emplacement de sauvegarde dans les paramètres OneMore, sur la feuille de sauvegarde.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>Une fois par mois</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>Aucune sauvegarde n'a encore été effectuée</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>Une sauvegarde a été enregistrée précédemment, mais aucun fichier de sauvegarde n'a été trouvé dans le dossier de sauvegarde. Ils ont peut-être été déplacés ou supprimés.</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>Spécifiez un dossier de sauvegarde qui existe</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>Utiliser le dossier de sauvegarde OneNote</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>(indisponible)</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>Sauvegarde de la base de données OneMore...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>Sélectionnez le dossier dans lequel stocker les sauvegardes de la base de données</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>Sauvegarde</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>Une fois par semaine</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Impossible de créer un lien bidirectionnel. {0}</value>
     <comment>message box</comment>

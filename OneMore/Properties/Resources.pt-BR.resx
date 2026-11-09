@@ -497,6 +497,86 @@ Invertido</value>
     <value>usado recentemente</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>Faça backup agora</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>Use uma pasta personalizada</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>Uma vez por dia</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>Faça backup do banco de dados OneMore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>Não foi possível fazer backup do banco de dados OneMore. Consulte o registro para obter detalhes.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Intervalo de backup</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>Faça backup periodicamente do banco de dados OneMore (OneMore.db), que contém suas hashtags, favoritos, layouts e índice de pesquisa.</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>Número de cópias de backup a serem mantidas</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>Último backup: {0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>O local do backup não está acessível. Por favor, confirme o local do backup nas configurações do OneMore, na planilha Backup.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>Uma vez por mês</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>Nenhum backup foi feito ainda</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>Um backup foi gravado anteriormente, mas nenhum arquivo de backup foi encontrado na pasta de backup. Eles podem ter sido movidos ou excluídos.</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>Especifique uma pasta de backup que exista</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>Use a pasta de backup do OneNote</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>(indisponível)</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>Fazendo backup do banco de dados OneMore...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>Selecione a pasta na qual armazenar os backups do banco de dados</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>Backup</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>Uma vez por semana</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Não foi possível criar um link bidirecional. {0}</value>
     <comment>message box</comment>

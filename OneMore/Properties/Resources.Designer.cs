@@ -937,6 +937,186 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back up now.
+        /// </summary>
+        internal static string BackupSheet_backupNowButton_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_backupNowButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a custom folder.
+        /// </summary>
+        internal static string BackupSheet_customRadio_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_customRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a day.
+        /// </summary>
+        internal static string BackupSheet_Daily {
+            get {
+                return ResourceManager.GetString("BackupSheet_Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back up the OneMore database.
+        /// </summary>
+        internal static string BackupSheet_enableBox_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_enableBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The OneMore database could not be backed up. See the log for details..
+        /// </summary>
+        internal static string BackupSheet_Failed {
+            get {
+                return ResourceManager.GetString("BackupSheet_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back up interval.
+        /// </summary>
+        internal static string BackupSheet_intervalLabel_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_intervalLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Periodically back up the OneMore database (OneMore.db), which holds your hashtags, favorites, layouts and search index..
+        /// </summary>
+        internal static string BackupSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of backup copies to keep.
+        /// </summary>
+        internal static string BackupSheet_keepLabel_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_keepLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last backup: {0}.
+        /// </summary>
+        internal static string BackupSheet_LastBackup {
+            get {
+                return ResourceManager.GetString("BackupSheet_LastBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The backup location is not accessible. Please confirm the backup location in OneMore Settings, on the Backup sheet..
+        /// </summary>
+        internal static string BackupSheet_LocationWarning {
+            get {
+                return ResourceManager.GetString("BackupSheet_LocationWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a month.
+        /// </summary>
+        internal static string BackupSheet_Monthly {
+            get {
+                return ResourceManager.GetString("BackupSheet_Monthly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No backup has been made yet.
+        /// </summary>
+        internal static string BackupSheet_NeverBackedUp {
+            get {
+                return ResourceManager.GetString("BackupSheet_NeverBackedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A backup was recorded earlier, but no backup files were found in the backup folder. They may have been moved or deleted.
+        /// </summary>
+        internal static string BackupSheet_NoBackupFiles {
+            get {
+                return ResourceManager.GetString("BackupSheet_NoBackupFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify a backup folder that exists.
+        /// </summary>
+        internal static string BackupSheet_NoFolder {
+            get {
+                return ResourceManager.GetString("BackupSheet_NoFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the OneNote backup folder.
+        /// </summary>
+        internal static string BackupSheet_oneNoteRadio_Text {
+            get {
+                return ResourceManager.GetString("BackupSheet_oneNoteRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (unavailable).
+        /// </summary>
+        internal static string BackupSheet_OneNoteUnavailable {
+            get {
+                return ResourceManager.GetString("BackupSheet_OneNoteUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backing up the OneMore database....
+        /// </summary>
+        internal static string BackupSheet_Progress {
+            get {
+                return ResourceManager.GetString("BackupSheet_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the folder in which to store database backups.
+        /// </summary>
+        internal static string BackupSheet_SelectFolderText {
+            get {
+                return ResourceManager.GetString("BackupSheet_SelectFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        internal static string BackupSheet_Title {
+            get {
+                return ResourceManager.GetString("BackupSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a week.
+        /// </summary>
+        internal static string BackupSheet_Weekly {
+            get {
+                return ResourceManager.GetString("BackupSheet_Weekly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create a two-way link. {0}.
         /// </summary>
         internal static string BiLinkCommand_BadTarget {
