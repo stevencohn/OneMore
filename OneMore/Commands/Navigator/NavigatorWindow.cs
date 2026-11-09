@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		private Rectangle corral;
 		private Point location;
 		private bool minimized;
+		private bool shownOnce;
 		private readonly int depth;
 		private readonly bool reading;
 		private readonly bool corralled;
@@ -767,6 +768,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// Navigator must never fight for foreground; e.g. the Win+. emoji panel inserts into
+		// whichever window was foreground when it opened
+		protected override bool ElevateOnActivate => false;
+
+
 		private void TopOnShownOnActivate(object sender, EventArgs e)
 		{
 			if (minimized)
@@ -775,7 +781,13 @@ namespace River.OneMoreAddIn.Commands
 				minimized = false;
 			}
 
-			Elevate(false);
+			// only force foreground on first show; Activated means we already are
+			if (!shownOnce)
+			{
+				shownOnce = true;
+				Elevate(false);
+			}
+
 			PanelFocusOnClick(historyHeadPanel, e);
 		}
 
