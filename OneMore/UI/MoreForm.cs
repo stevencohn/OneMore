@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Diagnostics;
 	using System.Drawing;
@@ -391,13 +392,20 @@ namespace River.OneMoreAddIn.UI
 		//
 		//======================================================================================*/
 
+		/// <summary>
+		/// Gets whether a modeless form calls Elevate(false) every time it is activated.
+		/// Forms that must never fight for foreground (e.g. Navigator) override this.
+		/// </summary>
+		protected virtual bool ElevateOnActivate => true;
+
+
 		protected override void OnActivated(EventArgs e)
 		{
 			//logger.WriteLine($"MoreForm.OnActivated [{Text}]");
 
 			base.OnActivated(e);
 
-			if (modeless)
+			if (modeless && ElevateOnActivate)
 			{
 				// will get called twice, but it's needed to ensure RunModeless dialogs like
 				// FindHashtagDialog is elevated properly
@@ -785,6 +793,14 @@ namespace River.OneMoreAddIn.UI
 						name = process.ProcessName;
 					}
 
+					// transient system UI such as the Win+. emoji panel; ignore it entirely so
+					// we neither submerge nor treat the return to ONENOTE as a new activation,
+					// and never disturb the foreground window the panel will insert into
+					if (TransientHosts.Contains(name))
+					{
+						return;
+					}
+
 					// elevates this form notop of ONENOTE when ONENOTE is elevated, but also allows
 					// ONENOTE to be on top of this window when switching immediately from this
 					// window to ONENOTE
@@ -792,13 +808,15 @@ namespace River.OneMoreAddIn.UI
 					if (name == "ONENOTE" && trackedId != pid && trackedId != processId)
 					{
 						//logger.WriteLine($"focused tracking elevating");
-						RunOnUIThread(() => Elevate());
+						// z-order only; must not take foreground from ONENOTE
+						RunOnUIThread(() => SetZOrderWithoutActivating(true));
 					}
 					else if (name != "ONENOTE" && pid != processId && TopMost)
 					{
 						// some other application took focus away from ONENOTE; let this
-						// window submerge along with ONENOTE instead of staying stuck on top
-						RunOnUIThread(() => TopMost = false);
+						// window submerge along with ONENOTE instead of staying stuck on top.
+						// The TopMost setter would activate this window, stealing foreground.
+						RunOnUIThread(() => SetZOrderWithoutActivating(false));
 					}
 
 					trackedId = pid;
@@ -809,6 +827,30 @@ namespace River.OneMoreAddIn.UI
 					// an exception escaping this UIA callback must not reach the thread pool
 				}
 			}
+		}
+
+
+		private static readonly HashSet<string> TransientHosts = new(StringComparer.OrdinalIgnoreCase)
+		{
+			"TextInputHost", "ApplicationFrameHost", "ShellExperienceHost"
+		};
+
+
+		/// <summary>
+		/// Changes topmost state via SetWindowPos with SWP_NOACTIVATE. Unlike the TopMost
+		/// property setter, this never activates the window or changes the foreground window.
+		/// </summary>
+		private void SetZOrderWithoutActivating(bool topmost)
+		{
+			if (IsDisposed || !IsHandleCreated)
+			{
+				return;
+			}
+
+			Native.SetWindowPos(Handle,
+				topmost ? Native.HWND_TOPMOST : Native.HWND_NOTOPMOST,
+				0, 0, 0, 0,
+				Native.SWP_NOMOVE | Native.SWP_NOSIZE | Native.SWP_NOACTIVATE);
 		}
 
 
