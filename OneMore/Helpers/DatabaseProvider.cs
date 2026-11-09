@@ -27,6 +27,11 @@ namespace River.OneMoreAddIn
 		protected static readonly string path = ResolveDatabasePath();
 
 		/// <summary>
+		/// Gets the full path of OneMore.db.
+		/// </summary>
+		internal static string DatabasePath => path;
+
+		/// <summary>
 		/// Matches a single-line CREATE statement in a schema DDL, capturing the entity type
 		/// (TABLE, INDEX, VIEW, TRIGGER) and its name. A VIRTUAL TABLE, such as an FTS5 index,
 		/// is reported as type TABLE so it is dropped along with its shadow tables.

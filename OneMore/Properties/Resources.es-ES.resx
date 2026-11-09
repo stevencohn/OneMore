@@ -500,6 +500,86 @@ Invertir</value>
     <value>recientemente usado</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>Haz una copia de seguridad ahora</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>Usar una carpeta personalizada</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>Una vez al dia</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>Haga una copia de seguridad de la base de datos de OneMore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>No se pudo realizar una copia de seguridad de la base de datos OneMore. Consulte el registro para obtener más detalles.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Intervalo de respaldo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>Haga una copia de seguridad periódica de la base de datos OneMore (OneMore.db), que contiene sus hashtags, favoritos, diseños e índice de búsqueda.</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>Número de copias de seguridad a conservar</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>Última copia de seguridad: {0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>No se puede acceder a la ubicación de la copia de seguridad. Confirme la ubicación de la copia de seguridad en Configuración de OneMore, en la hoja Copia de seguridad.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>Una vez al mes</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>Aún no se ha realizado ninguna copia de seguridad</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>Se grabó una copia de seguridad anteriormente, pero no se encontraron archivos de copia de seguridad en la carpeta de copia de seguridad. Es posible que hayan sido movidos o eliminados.</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>Especifique una carpeta de respaldo que exista</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>Utilice la carpeta de copia de seguridad de OneNote</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>(indisponible)</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>Realizando una copia de seguridad de la base de datos de OneMore...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>Seleccione la carpeta en la que almacenar las copias de seguridad de la base de datos.</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>Respaldo</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>Una vez a la semana</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>No se pudo crear un enlace bidireccional. {0}</value>
     <comment>message box</comment>

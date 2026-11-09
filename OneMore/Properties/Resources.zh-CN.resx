@@ -501,6 +501,86 @@
     <value>最近使用</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>立即备份</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>使用自定义文件夹</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>每天一次</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>备份 OneMore 数据库</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>无法备份 OneMore 数据库。详细信息请参阅日志。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>备份间隔</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>定期备份 OneMore 数据库 (OneMore.db)，其中包含您的主题标签、收藏夹、布局和搜索索引。</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>要保留的备份副本数量</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>上次备份：{0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>备份位置不可访问。请在备份表的 OneMore 设置中确认备份位置。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>每月一次</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>尚未进行备份</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>之前已录制过备份，但在备份文件夹中未找到备份文件。它们可能已被移动或删除。</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>指定存在的备份文件夹</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>使用 OneNote 备份文件夹</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>（不可用）</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>正在备份 OneMore 数据库...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>选择存储数据库备份的文件夹</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>备份</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>每周一次</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>无法创建双向链接。 {0}</value>
     <comment>message box</comment>

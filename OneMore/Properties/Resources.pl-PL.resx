@@ -497,6 +497,86 @@ Odwracać</value>
     <value>ostatnio używane</value>
     <comment>listview annotation</comment>
   </data>
+  <data name="BackupSheet_backupNowButton.Text" xml:space="preserve">
+    <value>Cofnij się teraz</value>
+    <comment>button</comment>
+  </data>
+  <data name="BackupSheet_customRadio.Text" xml:space="preserve">
+    <value>Użyj folderu niestandardowego</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_Daily" xml:space="preserve">
+    <value>Raz dziennie</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_enableBox.Text" xml:space="preserve">
+    <value>Utwórz kopię zapasową bazy danych OneMore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="BackupSheet_Failed" xml:space="preserve">
+    <value>Nie można utworzyć kopii zapasowej bazy danych OneMore. Szczegóły znajdziesz w logu.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Interwał tworzenia kopii zapasowych</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_introBox.Text" xml:space="preserve">
+    <value>Okresowo twórz kopię zapasową bazy danych OneMore (OneMore.db), która zawiera Twoje hashtagi, ulubione, układy i indeks wyszukiwania.</value>
+    <comment>intro text</comment>
+  </data>
+  <data name="BackupSheet_keepLabel.Text" xml:space="preserve">
+    <value>Liczba kopii zapasowych, które należy zachować</value>
+    <comment>label</comment>
+  </data>
+  <data name="BackupSheet_LastBackup" xml:space="preserve">
+    <value>Ostatnia kopia zapasowa: {0}</value>
+    <comment>status text; {0} is a date and time</comment>
+  </data>
+  <data name="BackupSheet_LocationWarning" xml:space="preserve">
+    <value>Lokalizacja kopii zapasowej jest niedostępna. Potwierdź lokalizację kopii zapasowej w Ustawieniach OneMore na arkuszu Kopia zapasowa.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BackupSheet_Monthly" xml:space="preserve">
+    <value>Raz w miesiącu</value>
+    <comment>combo item</comment>
+  </data>
+  <data name="BackupSheet_NeverBackedUp" xml:space="preserve">
+    <value>Nie utworzono jeszcze żadnej kopii zapasowej</value>
+    <comment>status text</comment>
+  </data>
+  <data name="BackupSheet_NoBackupFiles" xml:space="preserve">
+    <value>Kopia zapasowa została zarejestrowana wcześniej, ale w folderze kopii zapasowej nie znaleziono żadnych plików kopii zapasowej. Mogły zostać przeniesione lub usunięte.</value>
+    <comment>note below the last backup time</comment>
+  </data>
+  <data name="BackupSheet_NoFolder" xml:space="preserve">
+    <value>Określ istniejący folder kopii zapasowej</value>
+    <comment>validation message</comment>
+  </data>
+  <data name="BackupSheet_oneNoteRadio.Text" xml:space="preserve">
+    <value>Użyj folderu kopii zapasowej programu OneNote</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="BackupSheet_OneNoteUnavailable" xml:space="preserve">
+    <value>(nie płynny)</value>
+    <comment>OneNote backup folder could not be determined</comment>
+  </data>
+  <data name="BackupSheet_Progress" xml:space="preserve">
+    <value>Tworzenie kopii zapasowej bazy danych OneMore...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="BackupSheet_SelectFolderText" xml:space="preserve">
+    <value>Wybierz folder, w którym będą przechowywane kopie zapasowe bazy danych</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="BackupSheet_Title" xml:space="preserve">
+    <value>Kopia zapasowa</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="BackupSheet_Weekly" xml:space="preserve">
+    <value>Raz w tygodniu</value>
+    <comment>combo item</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Nie można utworzyć łącza dwukierunkowego. {0}</value>
     <comment>message box</comment>
