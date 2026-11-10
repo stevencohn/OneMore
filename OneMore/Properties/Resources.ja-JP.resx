@@ -5412,7 +5412,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>オートコンプリート リストから選択したハッシュタグに現在の単語を補完します (Alt+G)</value>
+    <value>オートコンプリート リストから選択したハッシュタグに現在の単語を補完します</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5983,7 +5983,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>二重の横線を挿入する (Shift + Alt + Equals)</value>
+    <value>二重の横線を挿入する</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6095,7 +6095,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>単一の横線を挿入する (Shift + Alt + Minus)</value>
+    <value>単一の横線を挿入する</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6167,7 +6167,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>テキストを小文字に変換 (Ctrl + Shift + U)</value>
+    <value>テキストを小文字に変換</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6275,7 +6275,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>ページ全体のスペルチェックを無効にする (F4)</value>
+    <value>ページ全体のスペルチェックを無効にする</value>
     <comment>OBSOLETE?</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6427,7 +6427,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>リッチテキストを貼り付け (Ctrl + Alt + V)</value>
+    <value>リッチテキストを貼り付け</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6435,7 +6435,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>テキスト情報のみを貼り付け (Ctrl + Shift + V)</value>
+    <value>テキスト情報のみを貼り付け</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6507,7 +6507,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>現在のテーブル内のすべての数式を再計算します (Shift + F5)</value>
+    <value>現在のテーブル内のすべての数式を再計算します</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6582,7 +6582,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>脚注を削除 (Ctrl + Shift + F)</value>
+    <value>脚注を削除</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6662,7 +6662,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>最後のコマンドを再実行 (Alt + Shift + R)</value>
+    <value>最後のコマンドを再実行</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6798,7 +6798,7 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>ribbon search NODUP</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>検索と置換 (Ctrl + H)</value>
+    <value>検索と置換</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

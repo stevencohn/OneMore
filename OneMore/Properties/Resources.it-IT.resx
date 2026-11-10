@@ -5409,7 +5409,7 @@ Scheda Aiuto</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>Completa la parola corrente in un hashtag scelto da un elenco di completamento automatico (Alt+G)</value>
+    <value>Completa la parola corrente in un hashtag scelto da un elenco di completamento automatico</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5980,7 +5980,7 @@ Scheda Aiuto</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Inserisci doppia linea orizzontale (Maiusc + Alt + Uguale)</value>
+    <value>Inserisci doppia linea orizzontale</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6092,7 +6092,7 @@ Scheda Aiuto</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Inserisci una singola linea orizzontale (Maiusc + Alt + Meno)</value>
+    <value>Inserisci una singola linea orizzontale</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6164,7 +6164,7 @@ Scheda Aiuto</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Converti il ​​testo in minuscolo (Ctrl + Maiusc + U)</value>
+    <value>Converti il ​​testo in minuscolo</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6272,7 +6272,7 @@ Scheda Aiuto</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Disabilita il controllo ortografico per l'intera pagina (F4)</value>
+    <value>Disabilita il controllo ortografico per l'intera pagina</value>
     <comment>OBSOLETE?</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6424,7 +6424,7 @@ Scheda Aiuto</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Incolla testo arricchito (Ctrl + Alt + V)</value>
+    <value>Incolla testo arricchito</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6432,7 +6432,7 @@ Scheda Aiuto</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Incolla e mantieni solo testo (Ctrl + Maiusc + V)</value>
+    <value>Incolla e mantieni solo testo</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6504,7 +6504,7 @@ Scheda Aiuto</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Ricalcola tutte le formule nella tabella corrente (Maiusc + F5)</value>
+    <value>Ricalcola tutte le formule nella tabella corrente</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6579,7 +6579,7 @@ Scheda Aiuto</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>Rimuovi nota a piè di pagina (Ctrl + Maiusc + F)</value>
+    <value>Rimuovi nota a piè di pagina</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6659,7 +6659,7 @@ Scheda Aiuto</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Riproduci l'ultimo comando (Alt + Maiusc + R)</value>
+    <value>Riproduci l'ultimo comando</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6795,7 +6795,7 @@ Scheda Aiuto</value>
     <comment>ribbon search NODUP</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>Cerca e sostituisci (Ctrl + H)</value>
+    <value>Cerca e sostituisci</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

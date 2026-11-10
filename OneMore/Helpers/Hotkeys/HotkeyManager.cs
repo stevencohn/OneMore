@@ -163,16 +163,52 @@ namespace River.OneMoreAddIn
 
 			var modifiers = hotkey.HotModifiers | (uint)HotModifier.NoRepeat;
 
-			mwindow.Invoke(
-				new RegisterHotkeyDelegate(Register),
-				mhandle, hotkey.Id, modifiers, hotkey.Key);
+			// while suspended (e.g. Settings dialog is open) only record the key; Resume
+			// will arm it with the OS
+			if (!suspended)
+			{
+				mwindow.Invoke(
+					new RegisterHotkeyDelegate(Register),
+					mhandle, hotkey.Id, modifiers, hotkey.Key);
+			}
 
 			hotkey.Action = action;
 			hotkey.HotModifiers = modifiers;
 
 			registeredKeys.Add(hotkey);
 
-			registered = true;
+			registered = !suspended;
+		}
+
+
+		/// <summary>
+		/// Gets or sets the callback used by Reload to register the current set of hotkeys,
+		/// supplied by the add-in
+		/// </summary>
+		public static Action Rebuild { get; set; }
+
+
+		/// <summary>
+		/// Discards all registered hotkeys and registers them again by invoking Rebuild,
+		/// picking up changed bindings without restarting OneNote. Intended to be called
+		/// while suspended; the new keys are armed by Resume.
+		/// </summary>
+		public static void Reload()
+		{
+			resetEvent.WaitOne();
+
+			mwindow.Invoke(new Action(() =>
+			{
+				if (registered && registeredKeys.Count > 0)
+				{
+					DisarmHotkeys("reload");
+				}
+
+				registeredKeys.Clear();
+				registered = false;
+			}));
+
+			Rebuild?.Invoke();
 		}
 
 

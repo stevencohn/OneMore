@@ -5408,7 +5408,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>Vervollständigen Sie das aktuelle Wort zu einem Hashtag, der aus einer Autovervollständigungsliste ausgewählt wird (Alt+G).</value>
+    <value>Vervollständigen Sie das aktuelle Wort zu einem Hashtag, der aus einer Autovervollständigungsliste ausgewählt wird.</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5979,7 +5979,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Doppelte horizontale Linie einfügen (Umschalt + Alt + Gleich)</value>
+    <value>Doppelte horizontale Linie einfügen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6091,7 +6091,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</value>
+    <value>Fügt eine einzelne horizontale Linie ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6163,7 +6163,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Text in Kleinbuchstaben konvertieren (Strg + Umschalt + U)</value>
+    <value>Text in Kleinbuchstaben konvertieren</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6271,7 +6271,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Rechtschreibprüfung für ganze Seite deaktivieren (F4)</value>
+    <value>Rechtschreibprüfung für ganze Seite deaktivieren</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6422,7 +6422,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Fügt Rich Text ein (Strg + Alt + V)</value>
+    <value>Fügt Rich Text ein</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6430,7 +6430,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Einfügen und den Text nur einfügen (Strg + Shift + V)</value>
+    <value>Einfügen und den Text nur einfügen</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6502,7 +6502,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</value>
+    <value>Berechnet alle Formeln in der aktuellen Tabelle neu.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6577,7 +6577,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>Fußnote entfernen (Strg + Umschalt + F)</value>
+    <value>Fußnote entfernen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6657,7 +6657,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Letzten Befehl wiederholen (Alt + Umschalt + R)</value>
+    <value>Letzten Befehl wiederholen</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6793,7 +6793,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>Suchen und ersetzen (Strg + H)</value>
+    <value>Suchen und ersetzen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
