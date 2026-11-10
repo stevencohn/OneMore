@@ -41,6 +41,10 @@ namespace River.OneMoreAddIn.Settings
 			shortcuts = provider.GetCollection(Name).Get<bool>("kbdshorts");
 			shortcutsBox.Checked = shortcuts;
 
+			// advanced options are only shown if experimental features are enabled
+			optionsBox.Visible = provider.GetCollection(nameof(GeneralSheet))
+				.Get("experimental", false);
+
 			this.ribbon = ribbon;
 		}
 
