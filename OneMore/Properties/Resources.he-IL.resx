@@ -2524,10 +2524,6 @@ Total Row Font
     <value>&lt;ריק&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>לא חוקי</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>סטָטוּס:</value>
     <comment>status label</comment>

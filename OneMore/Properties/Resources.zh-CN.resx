@@ -2530,10 +2530,6 @@ OneNote 文件 (*.one)</value>
     <value>&lt;空&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>无效</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>状态：</value>
     <comment>status label</comment>

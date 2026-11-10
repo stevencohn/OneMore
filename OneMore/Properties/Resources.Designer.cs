@@ -5732,15 +5732,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid.
-        /// </summary>
-        internal static string FormulaDialog_status_Invalid {
-            get {
-                return ResourceManager.GetString("FormulaDialog_status_Invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Status:.
         /// </summary>
         internal static string FormulaDialog_statusLabel_Text {
