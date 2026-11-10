@@ -2528,10 +2528,6 @@ Relative ranges: A1:cell(0,-1)</value>
     <value>&lt;empty&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Invalid</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Status:</value>
     <comment>status label</comment>

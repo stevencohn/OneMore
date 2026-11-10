@@ -2524,10 +2524,6 @@ Relatieve bereiken: A1: Cell (0, -1)</value>
     <value>&lt;leeg&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Ongeldig</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Toestand:</value>
     <comment>status label</comment>

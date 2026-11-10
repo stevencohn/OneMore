@@ -385,7 +385,6 @@ namespace River.OneMoreAddIn.Commands
 					resultValue.ForeColor = manager.GetColor("ControlText");
 					resultValue.Text = text;
 					ShowBolt(tagBox.Checked);
-					resultDetail.Text = $"{formatBox.Text} · {DecimalPlaces} {decLabel.Text.TrimEnd(':')}";
 
 					okButton.Enabled = true;
 				}
@@ -395,7 +394,6 @@ namespace River.OneMoreAddIn.Commands
 					resultValue.ForeColor = manager.GetColor("ErrorText");
 					resultValue.Text = exc.Message;
 					ShowBolt(false);
-					resultDetail.Text = Resx.FormulaDialog_status_Invalid;
 
 					okButton.Enabled = false;
 				}
@@ -406,7 +404,6 @@ namespace River.OneMoreAddIn.Commands
 				resultValue.ForeColor = manager.GetColor("GrayText");
 				resultValue.Text = Resx.FormulaDialog_emptyResult;
 				ShowBolt(false);
-				resultDetail.Text = string.Empty;
 				okButton.Enabled = false;
 			}
 

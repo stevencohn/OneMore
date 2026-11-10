@@ -2527,10 +2527,6 @@
     <value>&amp;lt;فارغ&amp;gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>غير صالحة</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>الحالة:</value>
     <comment>status label</comment>

@@ -34,7 +34,6 @@
 			this.formulaLabel = new UI.MoreLabel();
 			this.formulaBox = new River.OneMoreAddIn.Commands.Tables.Formulas.FormulaEditor();
 			this.resultPanel = new System.Windows.Forms.Panel();
-			this.resultDetail = new UI.MoreLabel();
 			this.resultValue = new UI.MoreLabel();
 			this.resultCaption = new UI.MoreLabel();
 			this.cellsLabel = new UI.MoreLabel();
@@ -91,12 +90,11 @@
 			// resultPanel
 			//
 			this.resultPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.resultPanel.Controls.Add(this.resultDetail);
 			this.resultPanel.Controls.Add(this.resultValue);
 			this.resultPanel.Controls.Add(this.resultCaption);
 			this.resultPanel.Location = new System.Drawing.Point(20, 152);
 			this.resultPanel.Name = "resultPanel";
-			this.resultPanel.Size = new System.Drawing.Size(589, 130);
+			this.resultPanel.Size = new System.Drawing.Size(589, 92);
 			this.resultPanel.TabIndex = 2;
 			//
 			// resultCaption
@@ -118,18 +116,10 @@
 			this.resultValue.TabIndex = 1;
 			this.resultValue.Text = "";
 			//
-			// resultDetail
-			//
-			this.resultDetail.AutoSize = false;
-			this.resultDetail.Location = new System.Drawing.Point(14, 82);
-			this.resultDetail.Name = "resultDetail";
-			this.resultDetail.Size = new System.Drawing.Size(561, 40);
-			this.resultDetail.TabIndex = 2;
-			//
 			// cellsLabel
 			//
 			this.cellsLabel.AutoSize = true;
-			this.cellsLabel.Location = new System.Drawing.Point(20, 298);
+			this.cellsLabel.Location = new System.Drawing.Point(20, 276);
 			this.cellsLabel.Name = "cellsLabel";
 			this.cellsLabel.Size = new System.Drawing.Size(180, 20);
 			this.cellsLabel.TabIndex = 3;
@@ -140,7 +130,7 @@
 			//
 			this.cellsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cellsBox.Font = new System.Drawing.Font("Consolas", 10F);
-			this.cellsBox.Location = new System.Drawing.Point(20, 324);
+			this.cellsBox.Location = new System.Drawing.Point(20, 302);
 			this.cellsBox.Multiline = true;
 			this.cellsBox.Name = "cellsBox";
 			this.cellsBox.ReadOnly = true;
@@ -153,7 +143,7 @@
 			// formatLabel
 			//
 			this.formatLabel.AutoSize = true;
-			this.formatLabel.Location = new System.Drawing.Point(20, 472);
+			this.formatLabel.Location = new System.Drawing.Point(20, 450);
 			this.formatLabel.Name = "formatLabel";
 			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 5;
@@ -168,7 +158,7 @@
             "Currency",
             "Percentage",
             "Time"});
-			this.formatBox.Location = new System.Drawing.Point(20, 500);
+			this.formatBox.Location = new System.Drawing.Point(20, 478);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(330, 28);
 			this.formatBox.TabIndex = 1;
@@ -176,7 +166,7 @@
 			// decLabel
 			//
 			this.decLabel.AutoSize = true;
-			this.decLabel.Location = new System.Drawing.Point(379, 472);
+			this.decLabel.Location = new System.Drawing.Point(379, 450);
 			this.decLabel.Name = "decLabel";
 			this.decLabel.Size = new System.Drawing.Size(116, 20);
 			this.decLabel.TabIndex = 6;
@@ -185,7 +175,7 @@
 			//
 			// decimalBox
 			//
-			this.decimalBox.Location = new System.Drawing.Point(379, 500);
+			this.decimalBox.Location = new System.Drawing.Point(379, 478);
 			this.decimalBox.Maximum = new decimal(new int[] {
             15,
             0,
@@ -198,7 +188,7 @@
 			// formatHint
 			//
 			this.formatHint.AutoSize = true;
-			this.formatHint.Location = new System.Drawing.Point(20, 536);
+			this.formatHint.Location = new System.Drawing.Point(20, 514);
 			this.formatHint.Name = "formatHint";
 			this.formatHint.Size = new System.Drawing.Size(0, 20);
 			this.formatHint.TabIndex = 7;
@@ -206,7 +196,7 @@
 			// tagBox
 			//
 			this.tagBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.tagBox.Location = new System.Drawing.Point(20, 572);
+			this.tagBox.Location = new System.Drawing.Point(20, 550);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(300, 25);
 			this.tagBox.StylizeImage = false;
@@ -219,7 +209,7 @@
 			// tagHint
 			//
 			this.tagHint.AutoSize = false;
-			this.tagHint.Location = new System.Drawing.Point(42, 600);
+			this.tagHint.Location = new System.Drawing.Point(42, 578);
 			this.tagHint.Name = "tagHint";
 			this.tagHint.Size = new System.Drawing.Size(567, 44);
 			this.tagHint.TabIndex = 8;
@@ -374,7 +364,6 @@
 		private System.Windows.Forms.Panel resultPanel;
 		private UI.MoreLabel resultCaption;
 		private UI.MoreLabel resultValue;
-		private UI.MoreLabel resultDetail;
 		private UI.MoreLabel cellsLabel;
 		private UI.MoreTextBox cellsBox;
 		private UI.MoreLabel formatLabel;

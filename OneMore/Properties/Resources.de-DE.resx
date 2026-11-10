@@ -2519,10 +2519,6 @@ Verwandte Bereiche: A1: Zelle (0, -1)</value>
     <value>&lt;leer&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Ungültig</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Status:</value>
     <comment>status label</comment>

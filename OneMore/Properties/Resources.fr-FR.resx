@@ -2527,10 +2527,6 @@ Plages relatives : a1: cellule (0, -1)</value>
     <value>&lt;vide&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Invalide</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Statut :</value>
     <comment>status label</comment>

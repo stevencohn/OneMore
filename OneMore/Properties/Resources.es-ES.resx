@@ -2519,10 +2519,6 @@ Rangos relativos: A1: Cell (0, -1)</value>
     <value>&amp;lt;vacío&amp;gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Inválido</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
     <value>Estado:</value>
     <comment>status label</comment>
