@@ -144,7 +144,16 @@
     $('#~sectionID~-section').addClass('active');
     let pageID = '#' + decodeURIComponent(window.location.pathname.match(/.*\/(.*).htm$/)[1]);
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
-    if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+    if ( $(pageID).length > 0) {
+      $(pageID).addClass('active');
+      // keep the current page visible by centering it in the scrollable sidebar
+      const sb = document.getElementById('sidebar');
+      const el = $(pageID)[0];
+      if (sb && el) {
+        const top = el.getBoundingClientRect().top - sb.getBoundingClientRect().top + sb.scrollTop;
+        sb.scrollTop = top - (sb.clientHeight - el.offsetHeight) / 2;
+      }
+    }
   </script>
   <script src="/pagefind/pagefind-ui.js"></script>
   <script>
