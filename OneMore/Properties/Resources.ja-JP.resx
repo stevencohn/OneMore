@@ -7460,8 +7460,8 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>検索インデックスを確認しています...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>検索インデックスから {0:N0} ページ、OneNote から読み取られた {1:N0} ページ</value>
-  </data>
+    <value>{2:N0} ページが返されました: {0:N0} は検索インデックスから、{1:N0} は OneNote から読み取られました</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>1 つ以上の絵文字を入力または貼り付けます。他のテキストは無視されます。ページはインデックスからではなく直接読み取られるため、スコープが大きい場合は時間がかかる場合があります。このノートブックには \\ を追加するか、別のノートブックには \name を追加します。</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

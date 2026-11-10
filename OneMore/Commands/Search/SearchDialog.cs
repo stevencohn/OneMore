@@ -586,9 +586,13 @@ namespace River.OneMoreAddIn.Commands
 
 				void OnTotal(int count) => SetupProgressBar(count);
 				void OnPage(string name) { progressBar.Increment(1); pageLabel.Text = name; }
+				var returned = 0;
 				void OnFound(string pageId, string groupTitle, string color,
 					DateTime modified, IList<SearchHit> hits)
-					=> AddPageResults(pageId, groupTitle, color, modified, hits);
+				{
+					returned++;
+					AddPageResults(pageId, groupTitle, color, modified, hits);
+				}
 
 				var engine = new SearchEngine(options, source.Token, OnTotal, OnPage, OnFound);
 
@@ -667,7 +671,8 @@ namespace River.OneMoreAddIn.Commands
 				if (engine.Indexed is not null)
 				{
 					summary = string.Format(
-						Resx.SearchDialog_indexSummary, engine.IndexedPageCount, engine.ReadPageCount);
+						Resx.SearchDialog_indexSummary,
+						engine.IndexedPageCount, engine.ReadPageCount, returned);
 
 					logger.WriteLine(summary);
 				}

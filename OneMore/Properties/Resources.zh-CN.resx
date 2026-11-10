@@ -5930,7 +5930,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>放大页面字体大小 (Ctrl + Alt + Plus)</value>
+    <value>放大页面字体大小</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribIndexModifiedButton_Label" xml:space="preserve">
@@ -5974,7 +5974,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>插入代码块（F6），包裹选中的内容</value>
+    <value>插入代码块，包裹选中的内容</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -5982,7 +5982,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>插入当前日期：年-月-日格式（Ctrl + Shift + D）</value>
+    <value>插入当前日期：年-月-日格式</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateControlButton_Label" xml:space="preserve">
@@ -6445,7 +6445,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>粘贴并保留文本格式 (Ctrl + Alt + V)</value>
+    <value>粘贴并保留文本格式</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6453,7 +6453,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>粘贴为纯文本 (Ctrl + Shift + V)</value>
+    <value>粘贴为纯文本</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6679,7 +6679,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>重做上一个命令 (Alt + Shift + R)</value>
+    <value>重做上一个命令</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6815,7 +6815,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>搜索和替换主题标签内容 (Ctrl + H)</value>
+    <value>搜索和替换主题标签内容</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">
@@ -7468,8 +7468,8 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>正在检查搜索索引...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} 个页面来自搜索索引，{1:N0} 个页面来自 OneNote</value>
-  </data>
+    <value>返回 {2:N0} 页：{0:N0} 来自搜索索引，{1:N0} 从 OneNote 读取</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>输入或粘贴一个或多个表情符号；任何其他文本都将被忽略。页面是直接读取的，而不是从索引中读取，因此大范围可能需要更长的时间。为此笔记本添加 \\，或者为另一个笔记本添加 \name。</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

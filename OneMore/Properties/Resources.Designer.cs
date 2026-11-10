@@ -17487,7 +17487,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:N0} pages from the search index, {1:N0} read from OneNote.
+        ///   Looks up a localized string similar to {2:N0} pages returned: {0:N0} from the search index, {1:N0} read from OneNote.
         /// </summary>
         internal static string SearchDialog_indexSummary {
             get {

@@ -7457,8 +7457,8 @@ Modificato prima</value>
     <value>Controllo dell'indice di ricerca...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} pagine dall'indice di ricerca, {1:N0} lette da OneNote</value>
-  </data>
+    <value>{2:N0} pagine restituite: {0:N0} dall'indice di ricerca, {1:N0} lette da OneNote</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>Digita o incolla uno o più emoji; qualsiasi altro testo viene ignorato. Le pagine vengono lette direttamente anziché dall'indice, pertanto gli ambiti di grandi dimensioni potrebbero richiedere più tempo. Aggiungi \\ per questo taccuino o \name per un altro.</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

@@ -7489,7 +7489,8 @@ Modified before</value>
     <value>Checking the search index...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} pages from the search index, {1:N0} read from OneNote</value>
+    <value>{2:N0} pages returned: {0:N0} from the search index, {1:N0} read from OneNote</value>
+    <comment> !EDIT</comment>
   </data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>Type or paste one or more emojis; any other text is ignored. Pages are read directly rather than from the index, so large scopes may take longer. Add \\ for this notebook or \name for another.</value>

@@ -7453,8 +7453,8 @@ Modificado antes</value>
     <value>Comprobando el índice de búsqueda...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} páginas del índice de búsqueda, {1:N0} leídas de OneNote</value>
-  </data>
+    <value>{2:N0} páginas devueltas: {0:N0} del índice de búsqueda, {1:N0} leídas de OneNote</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>Escribe o pega uno o más emojis; cualquier otro texto se ignora. Las páginas se leen directamente en lugar de hacerlo desde el índice, por lo que los ámbitos grandes pueden tardar más. Agregue \\ para este cuaderno o \name para otro.</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

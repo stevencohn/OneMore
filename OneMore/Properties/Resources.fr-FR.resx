@@ -5608,7 +5608,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Diminuer la taille de la police de la page (Ctrl + Alt + Maj)</value>
+    <value>Diminuer la taille de la police de la page</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
@@ -5999,7 +5999,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une double ligne horizontale (Maj + Alt + Equals)</value>
+    <value>Insérer une double ligne horizontale</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6111,7 +6111,7 @@ Onglet Aide</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une seule ligne horizontale (Maj + Alt + Moins)</value>
+    <value>Insérer une seule ligne horizontale</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6183,7 +6183,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir le texte en minuscules (Ctrl + Maj + U)</value>
+    <value>Convertir le texte en minuscules</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6676,7 +6676,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Rejouer la dernière commande (Alt + Maj + R)</value>
+    <value>Rejouer la dernière commande</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -7465,8 +7465,8 @@ Modifié avant</value>
     <value>Vérification de l'index de recherche...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} pages de l'index de recherche, {1:N0} lues depuis OneNote</value>
-  </data>
+    <value>{2:N0} pages renvoyées : {0:N0} à partir de l'index de recherche, {1:N0} lues à partir de OneNote</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>Tapez ou collez un ou plusieurs emojis ; tout autre texte est ignoré. Les pages sont lues directement plutôt qu'à partir de l'index, de sorte que les grandes étendues peuvent prendre plus de temps. Ajoutez \\ pour ce bloc-notes ou \name pour un autre.</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

@@ -5596,7 +5596,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Verringert die Schriftgröße der Seite (Strg + Alt + Minus)</value>
+    <value>Verringert die Schriftgröße der Seite</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
@@ -5915,7 +5915,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Erhöht die Schriftgröße der Seite (Strg + Alt + Plus).</value>
+    <value>Erhöht die Schriftgröße der Seite</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribIndexModifiedButton_Label" xml:space="preserve">
@@ -5967,7 +5967,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>Fügt das aktuelle Datum ein (Strg + Umschalt + D)</value>
+    <value>Fügt das aktuelle Datum ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateControlButton_Label" xml:space="preserve">
@@ -6099,7 +6099,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</value>
+    <value>Fügt eine einzelne horizontale Linie ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6430,7 +6430,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Fügt Rich Text ein (Strg + Alt + V)</value>
+    <value>Fügt Rich Text ein</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6510,7 +6510,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</value>
+    <value>Berechnet alle Formeln in der aktuellen Tabelle neu.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6817,7 +6817,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</value>
+    <value>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt.</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
@@ -7141,7 +7141,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>Konvertiert Text in Großbuchstaben (Strg + Umschalt + Alt + U)</value>
+    <value>Konvertiert Text in Großbuchstaben</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
@@ -7455,8 +7455,8 @@ Vorher geändert</value>
     <value>Suchindex wird überprüft...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} Seiten aus dem Suchindex, {1:N0} aus OneNote gelesen</value>
-  </data>
+    <value>{2:N0} zurückgegebene Seiten: {0:N0} aus dem Suchindex, {1:N0} aus OneNote gelesen</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>Geben oder fügen Sie ein oder mehrere Emojis ein; Jeder andere Text wird ignoriert. Seiten werden direkt und nicht aus dem Index gelesen, daher kann es bei großen Bereichen länger dauern. Fügen Sie \\ für dieses Notizbuch oder \name für ein anderes hinzu.</value>
     <comment>label shown instead of the intro when emoji search is on</comment>

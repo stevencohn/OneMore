@@ -7454,8 +7454,8 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>בודק את אינדקס החיפוש...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{0:N0} דפים מאינדקס החיפוש, {1:N0} נקראו מ-OneNote</value>
-  </data>
+    <value>{2:N0} דפים שהוחזרו: {0:N0} מאינדקס החיפוש, {1:N0} נקראו מ-OneNote</value>
+  <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>הקלד או הדבק אמוג'י אחד או יותר; מתעלמים מכל טקסט אחר. דפים נקראים ישירות במקום מהאינדקס, כך שהיקפים גדולים עשויים להימשך זמן רב יותר. הוסף \\ עבור מחברת זו או \name עבור מחברת אחרת.</value>
     <comment>label shown instead of the intro when emoji search is on</comment>
