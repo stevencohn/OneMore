@@ -543,6 +543,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="ClearBackgroundCmd"/>
       <button
+        id="ribClearFormattingButton"
+        imageMso="ClearFormatting"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ClearFormattingCmd"/>
+      <button
         id="ribRemoveAuthorsButton"
         imageMso="BuildingBlocksCreateTableOfAuthorities"
         getLabel="GetRibbonLabel"

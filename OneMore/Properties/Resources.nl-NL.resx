@@ -5348,6 +5348,14 @@ Tabblad Help</value>
     <value>Reset de achtergrondkleur van de pagina</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Opmaak wissen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Duidelijke tekstopmaak en -stijlen, maar behoud opsommingstekens en cijfers</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Logbestand wissen</value>
     <comment>not a menu, hotkey only</comment>

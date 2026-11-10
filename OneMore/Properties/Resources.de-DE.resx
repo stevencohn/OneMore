@@ -5347,6 +5347,14 @@ Registerkarte „Hilfe“.</value>
     <value>Hintergrundfarbe der Seite zurücksetzen</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Formatierung löschen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Klare Textformatierung und -stile, aber behalten Sie Aufzählungszeichen und Zahlen bei</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Protokolldatei löschen</value>
     <comment>not a menu, hotkey only</comment>
@@ -6091,7 +6099,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Fügt eine einzelne horizontale Linie ein</value>
+    <value>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6422,7 +6430,7 @@ Registerkarte „Hilfe“.</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Fügt Rich Text ein</value>
+    <value>Fügt Rich Text ein (Strg + Alt + V)</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6502,7 +6510,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Berechnet alle Formeln in der aktuellen Tabelle neu.</value>
+    <value>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">

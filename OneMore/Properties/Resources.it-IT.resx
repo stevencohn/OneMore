@@ -5348,6 +5348,14 @@ Scheda Aiuto</value>
     <value>Reimposta il colore di sfondo della pagina</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Cancella formattazione</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Cancella la formattazione e gli stili del testo, ma mantieni i punti elenco e i numeri</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Cancella file di registro</value>
     <comment>hotkey</comment>

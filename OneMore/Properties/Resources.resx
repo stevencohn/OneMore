@@ -5376,6 +5376,14 @@ Help Tab</value>
     <value>Reset the background color of the page</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Clear Formatting</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Clear text formatting and styles but keep bullets and numbers</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Clear Log File</value>
     <comment>hotkey</comment>

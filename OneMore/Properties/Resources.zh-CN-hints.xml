@@ -1349,7 +1349,7 @@
         <preferred>向下填充序列</preferred>
     </hint>
     <hint name="ribFillDownButton_Screentip">
-        <source>Fill sequence down selected columns (Ctrl + D)</source>
+        <source>Fill sequence down selected columns</source>
         <preferred>对所选的表格区域，每一列向下填充数字序列</preferred>
     </hint>
     <hint name="ribHashtaggerButton_Screentip">
@@ -1381,8 +1381,8 @@
         <preferred>加大字号</preferred>
     </hint>
     <hint name="ribIncreaseFontSizeButton_Screentip">
-        <source>Increase page font size (Ctrl + Alt + Plus)</source>
-        <preferred>放大页面字体大小 (Ctrl + Alt + Plus)</preferred>
+        <source>Increase page font size</source>
+        <preferred>放大页面字体大小</preferred>
     </hint>
     <hint name="ribInsertBlueStatusButton_Label">
         <source>Blue Status</source>
@@ -1401,16 +1401,16 @@
         <preferred>代码块</preferred>
     </hint>
     <hint name="ribInsertCodeBoxButton_Screentip">
-        <source>Insert a code box (F6), wrapping selected content</source>
-        <preferred>插入代码块（F6），包裹选中的内容</preferred>
+        <source>Insert a code box, wrapping selected content</source>
+        <preferred>插入代码块，包裹选中的内容</preferred>
     </hint>
     <hint name="ribInsertDateButton_Label">
         <source>Sortable Date</source>
         <preferred>当前日期（可排序）</preferred>
     </hint>
     <hint name="ribInsertDateButton_Screentip">
-        <source>Insert the current date (Ctrl + Shift + D)</source>
-        <preferred>插入当前日期：年-月-日格式（Ctrl + Shift + D）</preferred>
+        <source>Insert the current date</source>
+        <preferred>插入当前日期：年-月-日格式</preferred>
     </hint>
     <hint name="ribInsertDateTimeButton_Label">
         <source>Sortable Date with Time</source>
@@ -1533,16 +1533,16 @@
         <preferred>调整并粘贴剪贴板图像</preferred>
     </hint>
     <hint name="ribPasteRtfButton_Screentip">
-        <source>Paste rich text (Ctrl + Alt + V)</source>
-        <preferred>粘贴并保留文本格式 (Ctrl + Alt + V)</preferred>
+        <source>Paste rich text</source>
+        <preferred>粘贴并保留文本格式</preferred>
     </hint>
     <hint name="ribPasteTextButton_Label">
         <source>Paste and Keep Text Only</source>
         <preferred>粘贴为纯文本</preferred>
     </hint>
     <hint name="ribPasteTextButton_Screentip">
-        <source>Paste and Keep Text Only (Ctrl + Shift + V)</source>
-        <preferred>粘贴为纯文本 (Ctrl + Shift + V)</preferred>
+        <source>Paste and Keep Text Only</source>
+        <preferred>粘贴为纯文本</preferred>
     </hint>
     <hint name="ribPlantUmlButton_Label">
         <source>Draw PlantUML</source>
@@ -1597,8 +1597,8 @@
         <preferred>重做上一个命令</preferred>
     </hint>
     <hint name="ribReplayButton_Screentip">
-        <source>Replay last command (Alt + Shift + R)</source>
-        <preferred>重做上一个命令 (Alt + Shift + R)</preferred>
+        <source>Replay last command</source>
+        <preferred>重做上一个命令</preferred>
     </hint>
     <hint name="ribRestartTimerButton_Label">
         <source>Restart Timer</source>
@@ -1625,8 +1625,8 @@
         <preferred>添加标签扫描计划</preferred>
     </hint>
     <hint name="ribSearchAndReplaceButton_Screentip">
-        <source>Search and replace (Ctrl + H)</source>
-        <preferred>搜索和替换主题标签内容 (Ctrl + H)</preferred>
+        <source>Search and replace</source>
+        <preferred>搜索和替换主题标签内容</preferred>
     </hint>
     <hint name="ribSearchMenu_Label">
         <source>Search and Tag</source>
