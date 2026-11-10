@@ -5359,6 +5359,14 @@ Onglet Aide</value>
     <value>Réinitialiser la couleur de fond de la page</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Effacer le formatage</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Effacer la mise en forme et les styles du texte, mais conserver les puces et les chiffres</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Effacer le fichier journal</value>
     <comment>not a menu, hotkey only</comment>
@@ -5991,7 +5999,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une double ligne horizontale</value>
+    <value>Insérer une double ligne horizontale (Maj + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6103,7 +6111,7 @@ Onglet Aide</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une seule ligne horizontale</value>
+    <value>Insérer une seule ligne horizontale (Maj + Alt + Moins)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6175,7 +6183,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir le texte en minuscules</value>
+    <value>Convertir le texte en minuscules (Ctrl + Maj + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6668,7 +6676,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Rejouer la dernière commande</value>
+    <value>Rejouer la dernière commande (Alt + Maj + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">

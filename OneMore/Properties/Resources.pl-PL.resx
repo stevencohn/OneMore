@@ -5348,6 +5348,14 @@ Zakładka Pomoc</value>
     <value>Zresetuj kolor tła strony</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Wyczyść formatowanie</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Wyczyść formatowanie i style tekstu, ale zachowaj punktory i liczby</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Wyczyść plik dziennika</value>
     <comment>not a menu, hotkey only</comment>

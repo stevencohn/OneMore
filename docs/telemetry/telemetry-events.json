@@ -40,6 +40,7 @@
     "CleanReminders",
     "ClearBackground",
     "ClearBackgroundCLI",
+    "ClearFormatting",
     "ClearLog",
     "ClearLogCLI",
     "CollapsePages",

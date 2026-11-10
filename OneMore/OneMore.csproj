@@ -686,6 +686,7 @@
       <DependentUpon>BreakingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Clean\ClearBackgroundCommand.cs" />
+    <Compile Include="Commands\Clean\ClearFormattingCommand.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />

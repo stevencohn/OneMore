@@ -64,6 +64,7 @@
     <Compile Include="Builders\PageBuilder.cs" />
     <Compile Include="Commands\Clean\BreakingCommandTests.cs" />
     <Compile Include="Commands\Clean\ClearBackgroundCommandTests.cs" />
+    <Compile Include="Commands\Clean\ClearFormattingCommandTests.cs" />
     <Compile Include="Commands\Images\DiagramCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommandTests.cs" />

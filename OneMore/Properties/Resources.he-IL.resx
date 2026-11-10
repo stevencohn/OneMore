@@ -5348,6 +5348,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>אפס את צבע הרקע של הדף</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>נקה עיצוב</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>נקה עיצוב טקסט וסגנונות אך שמור על תבליטים ומספרים</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>נקה קובץ יומן</value>
     <comment>not a menu, hotkey only</comment>

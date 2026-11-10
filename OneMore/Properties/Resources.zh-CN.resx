@@ -5362,6 +5362,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>重置页面背景颜色</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>清除格式</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>清除文本格式和样式，但保留项目符号和数字</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>清除日志文件</value>
     <comment>not a menu, hotkey only</comment>
@@ -6437,7 +6445,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>粘贴并保留文本格式</value>
+    <value>粘贴并保留文本格式 (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6445,7 +6453,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>粘贴为纯文本</value>
+    <value>粘贴为纯文本 (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6671,7 +6679,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>重做上一个命令</value>
+    <value>重做上一个命令 (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6807,7 +6815,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>搜索和替换主题标签内容</value>
+    <value>搜索和替换主题标签内容 (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

@@ -5351,6 +5351,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>ページの背景色をリセット</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>書式設定のクリア</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>テキストの書式設定とスタイルをクリアしますが、箇条書きと数字は残します</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>ログファイルのクリア</value>
     <comment>hotkey</comment>

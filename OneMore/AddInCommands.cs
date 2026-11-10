@@ -191,6 +191,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ClearBackgroundCommand>();
 
 
+		[Command("ribClearFormattingButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task ClearFormattingCmd(IRibbonControl control)
+			=> await factory.Run<ClearFormattingCommand>();
+
+
 		[Command("ribClearLogButton_Label", Keys.Control | Keys.F8)]
 		public async Task ClearLogCmd(IRibbonControl control)
 			=> await factory.Run<ClearLogCommand>();

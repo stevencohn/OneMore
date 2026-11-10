@@ -297,8 +297,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Erstellt neue Seiten mit Listenelementen als Titel</preferred>
   </hint>
   <hint name="ribDecreaseFontSizeButton_Screentip">
-    <source>Decrease page font size (Ctrl + Alt + Minus)</source>
-    <preferred>Verringert die Schriftgröße der Seite (Strg + Alt + Minus)</preferred>
+    <source>Decrease page font size</source>
+    <preferred>Verringert die Schriftgröße der Seite</preferred>
   </hint>
   <hint name="ribDisableSpellCheckButton_Screentip">
     <source>Disable spell checking within selected content</source>
@@ -353,8 +353,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Importiere Aufgaben aus Outlook</preferred>
   </hint>
   <hint name="ribIncreaseFontSizeButton_Screentip">
-    <source>Increase page font size (Ctrl + Alt + Plus)</source>
-    <preferred>Erhöht die Schriftgröße der Seite (Strg + Alt + Plus).</preferred>
+    <source>Increase page font size</source>
+    <preferred>Erhöht die Schriftgröße der Seite</preferred>
   </hint>
   <hint name="ribInsertBlueStatusButton_Screentip">
     <source>Insert a blue status label</source>
@@ -365,8 +365,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Fügt einen Monatskalender ein</preferred>
   </hint>
   <hint name="ribInsertDateButton_Screentip">
-    <source>Insert the current date (Ctrl + Shift + D)</source>
-    <preferred>Fügt das aktuelle Datum ein (Strg + Umschalt + D)</preferred>
+    <source>Insert the current date</source>
+    <preferred>Fügt das aktuelle Datum ein</preferred>
   </hint>
   <hint name="ribInsertExpandButton_Screentip">
     <source>Insert a collapsible control</source>
@@ -393,8 +393,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Fügt ein rotes Statuslabel ein</preferred>
   </hint>
   <hint name="ribInsertSingleLineButton_Screentip">
-    <source>Insert single horizontal line (Shift + Alt + Minus)</source>
-    <preferred>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</preferred>
+    <source>Insert single horizontal line</source>
+    <preferred>Fügt eine einzelne horizontale Linie ein</preferred>
   </hint>
   <hint name="ribInsertTimerButton_Screentip">
     <source>Insert the current timer value</source>
@@ -453,8 +453,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Ändert den Hintergrund dieser Seite in eine benutzerdefinierte Farbe</preferred>
   </hint>
   <hint name="ribPasteRtfButton_Screentip">
-    <source>Paste rich text (Ctrl + Alt + V)</source>
-    <preferred>Fügt Rich Text ein (Strg + Alt + V)</preferred>
+    <source>Paste rich text</source>
+    <preferred>Fügt Rich Text ein</preferred>
   </hint>
   <hint name="ribPasteTextButton_Label">
     <source>
@@ -465,8 +465,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     </preferred>
   </hint>
   <hint name="ribRecalculateFormulaButton_Screentip">
-    <source>Recalculate all formula in the current table (Shift + F5)</source>
-    <preferred>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</preferred>
+    <source>Recalculate all formula in the current table</source>
+    <preferred>Berechnet alle Formeln in der aktuellen Tabelle neu.</preferred>
   </hint>
   <hint name="ribRefreshFootnotesButton_Screentip">
     <source>Refresh footnote reference numbers sequentially</source>
@@ -529,8 +529,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</preferred>
   </hint>
   <hint name="ribSearchButton_Screentip">
-    <source>Search pages for keywords and copy/move to another section (Alt + F)</source>
-    <preferred>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</preferred>
+    <source>Search pages for keywords and copy/move to another section</source>
+    <preferred>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt.</preferred>
   </hint>
   <hint name="ribSelectImagesButton_Screentip">
     <source>Select all images on the page</source>
@@ -573,8 +573,8 @@ Vergrößere kleinere Bilder nicht</preferred>
     <preferred>Entfernt führende Leerzeichen aus ausgewähltem Text</preferred>
   </hint>
   <hint name="ribUppercaseButton_Screentip">
-    <source>Convert text to uppercase (Ctrl + Shift + Alt + U)</source>
-    <preferred>Konvertiert Text in Großbuchstaben (Strg + Umschalt + Alt + U)</preferred>
+    <source>Convert text to uppercase</source>
+    <preferred>Konvertiert Text in Großbuchstaben</preferred>
   </hint>
   <hint name="ribWordCountButton_Screentip">
     <source>Report the number of words on this page</source>

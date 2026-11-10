@@ -12702,6 +12702,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Formatting.
+        /// </summary>
+        internal static string ribClearFormattingButton_Label {
+            get {
+                return ResourceManager.GetString("ribClearFormattingButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear text formatting and styles but keep bullets and numbers.
+        /// </summary>
+        internal static string ribClearFormattingButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribClearFormattingButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Clear Log File.
         /// </summary>
         internal static string ribClearLogButton_Label {

@@ -5347,6 +5347,14 @@ Pestaña Ayuda</value>
     <value>Restablecer el color de fondo de la página</value>
     <comment>ribbon clean</comment>
   </data>
+  <data name="ribClearFormattingButton_Label" xml:space="preserve">
+    <value>Borrar formato</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribClearFormattingButton_Screentip" xml:space="preserve">
+    <value>Borre el formato y los estilos del texto, pero mantenga las viñetas y los números.</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Borrar archivo de registro</value>
     <comment>not a menu, hotkey only</comment>

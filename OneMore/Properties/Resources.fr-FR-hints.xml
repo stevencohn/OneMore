@@ -44,10 +44,6 @@
     <source>To UPPERCASE</source>
     <preferred>En MAJUSCULES</preferred>
   </hint>
-  <hint name="CustomStyle_Screentip">
-    <source>{0} (Ctrl+Alt+Shift + {1})</source>
-    <preferred>{0} (Ctrl + Alt + Maj + {1})</preferred>
-  </hint>
   <hint name="EditTableThemesDialog_deleteStyle">
     <source>Delete this style?</source>
     <preferred>Supprimer ce style ?</preferred>
@@ -395,8 +391,8 @@ Après le dernier groupe</preferred>
     <preferred>Convertir la page ou le markdown sélectionné au format OneNote</preferred>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip">
-    <source>Decrease page font size (Ctrl + Alt + Minus)</source>
-    <preferred>Diminuer la taille de la police de la page (Ctrl + Alt + Maj)</preferred>
+    <source>Decrease page font size</source>
+    <preferred>Diminuer la taille de la police de la page</preferred>
   </data>
   <data name="ribFileMenu_Label">
     <source>File</source>
@@ -411,8 +407,8 @@ Après le dernier groupe</preferred>
     <preferred>Organiser les notes rapides dans un notebook ou une section</preferred>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip">
-    <source>Insert double horizontal line (Shift + Alt + Equals)</source>
-    <preferred>Insérer une double ligne horizontale (Maj + Alt + Equals)</preferred>
+    <source>Insert double horizontal line</source>
+    <preferred>Insérer une double ligne horizontale</preferred>
   </data>
   <data name="ribInsertEmojiButton_Label">
     <source>Emoji</source>
@@ -423,12 +419,12 @@ Après le dernier groupe</preferred>
     <preferred>Insérer le QR code</preferred>
   </data>
   <data name="ribInsertSingleLineButton_Screentip">
-    <source>Insert single horizontal line (Shift + Alt + Minus)</source>
-    <preferred>Insérer une seule ligne horizontale (Maj + Alt + Moins)</preferred>
+    <source>Insert single horizontal line</source>
+    <preferred>Insérer une seule ligne horizontale</preferred>
   </data>
   <data name="ribLowercaseButton_Screentip">
-    <source>Convert text to lowercase (Ctrl + Shift + U)</source>
-    <preferred>Convertir le texte en minuscules (Ctrl + Maj + U)</preferred>
+    <source>Convert text to lowercase</source>
+    <preferred>Convertir le texte en minuscules</preferred>
   </data>
   <data name="ribNotebookWordCountButton_Label">
     <source>Total Words in Notebook</source>
@@ -455,8 +451,8 @@ Après le dernier groupe</preferred>
     <preferred>Supprimer les numéros de toutes les sections de ce notebook</preferred>
   </data>
   <data name="ribReplayButton_Screentip">
-    <source>Replay last command (Alt + Shift + R)</source>
-    <preferred>Rejouer la dernière commande (Alt + Maj + R)</preferred>
+    <source>Replay last command</source>
+    <preferred>Rejouer la dernière commande</preferred>
   </data>
   <data name="ribSortButton_Screentip">
     <source>Sort pages, section, or notebooks</source>
