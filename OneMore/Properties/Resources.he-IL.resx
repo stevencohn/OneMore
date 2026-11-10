@@ -5409,7 +5409,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>השלם את המילה הנוכחית לתוך האשטאג שנבחר מרשימת השלמה אוטומטית (Alt+G)</value>
+    <value>השלם את המילה הנוכחית לתוך האשטאג שנבחר מרשימת השלמה אוטומטית</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5980,7 +5980,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>הוסף קו אופקי כפול (Shift + Alt + שווה)</value>
+    <value>הוסף קו אופקי כפול</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6092,7 +6092,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>הוסף קו אופקי בודד (Shift + Alt + מינוס)</value>
+    <value>הוסף קו אופקי בודד</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6164,7 +6164,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>המרת טקסט לאותיות קטנות (Ctrl + Shift + U)</value>
+    <value>המרת טקסט לאותיות קטנות</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6272,7 +6272,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>השבת את בדיקת האיות עבור כל העמוד (F4)</value>
+    <value>השבת את בדיקת האיות עבור כל העמוד</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6423,7 +6423,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item, paste rich text NODUP</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>הדבק טקסט עשיר (Ctrl + Alt + V)</value>
+    <value>הדבק טקסט עשיר</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6431,7 +6431,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>הדבק ושמור טקסט בלבד (Ctrl + Shift + V)</value>
+    <value>הדבק ושמור טקסט בלבד</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6503,7 +6503,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>חישוב מחדש של כל הנוסחאות בטבלה הנוכחית (Shift + F5)</value>
+    <value>חישוב מחדש של כל הנוסחאות בטבלה הנוכחית</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6578,7 +6578,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>הסר הערת שוליים (Ctrl + Shift + F)</value>
+    <value>הסר הערת שוליים</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6657,7 +6657,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>הפעל מחדש את הפקודה האחרונה (Alt + Shift + R)</value>
+    <value>הפעל מחדש את הפקודה האחרונה</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6793,7 +6793,7 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>חפש והחלף (Ctrl + H)</value>
+    <value>חפש והחלף</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

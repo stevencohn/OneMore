@@ -5423,7 +5423,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>将当前单词补充到从自动完成列表中选择的主题标签中 (Alt+G)</value>
+    <value>将当前单词补充到从自动完成列表中选择的主题标签中</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5994,7 +5994,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>插入双水平线 (Shift + Alt + Equals)</value>
+    <value>插入双水平线</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6106,7 +6106,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>插入水平线 (Shift + Alt + Minus)</value>
+    <value>插入水平线</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6178,7 +6178,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>将文本转换为小写 (Ctrl + Shift + U)</value>
+    <value>将文本转换为小写</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6286,7 +6286,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>禁用整个页面的拼写检查 (F4)</value>
+    <value>禁用整个页面的拼写检查</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6437,7 +6437,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>粘贴并保留文本格式 (Ctrl + Alt + V)</value>
+    <value>粘贴并保留文本格式</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6445,7 +6445,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>粘贴为纯文本 (Ctrl + Shift + V)</value>
+    <value>粘贴为纯文本</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6517,7 +6517,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>重新计算当前表中的所有公式（Shift + F5）</value>
+    <value>重新计算当前表中的所有公式</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6592,7 +6592,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>删除脚注（Ctrl + Shift + F）</value>
+    <value>删除脚注</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6671,7 +6671,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>重做上一个命令 (Alt + Shift + R)</value>
+    <value>重做上一个命令</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6807,7 +6807,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>搜索和替换主题标签内容 (Ctrl + H)</value>
+    <value>搜索和替换主题标签内容</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

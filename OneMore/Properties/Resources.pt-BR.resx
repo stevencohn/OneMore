@@ -5409,7 +5409,7 @@ Guia Ajuda</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>Complete a palavra atual em uma hashtag escolhida em uma lista de preenchimento automático (Alt+G)</value>
+    <value>Complete a palavra atual em uma hashtag escolhida em uma lista de preenchimento automático</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -5980,7 +5980,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Inserir linha horizontal dupla (Shift + Alt + igual)</value>
+    <value>Inserir linha horizontal dupla</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6092,7 +6092,7 @@ Guia Ajuda</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Inserir linha horizontal única (Shift + Alt + Menos)</value>
+    <value>Inserir linha horizontal única</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6164,7 +6164,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Converter texto em minúsculas (Ctrl + Shift + U)</value>
+    <value>Converter texto em minúsculas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6272,7 +6272,7 @@ Guia Ajuda</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Desativar verificação ortográfica para a página inteira (F4)</value>
+    <value>Desativar verificação ortográfica para a página inteira</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6423,7 +6423,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Colar rich text (Ctrl + Alt + V)</value>
+    <value>Colar rich text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6431,7 +6431,7 @@ Guia Ajuda</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
+    <value>Cole e mantenha apenas o texto</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6503,7 +6503,7 @@ Guia Ajuda</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalcular todas as fórmulas da tabela atual (Shift + F5)</value>
+    <value>Recalcular todas as fórmulas da tabela atual</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6578,7 +6578,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>Remover nota de rodapé (Ctrl + Shift + F)</value>
+    <value>Remover nota de rodapé</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6657,7 +6657,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Repete o último comando (Alt + Shift + R)</value>
+    <value>Repete o último comando</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6793,7 +6793,7 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>Pesquisar e substituir (Ctrl + H)</value>
+    <value>Pesquisar e substituir</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

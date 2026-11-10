@@ -1045,7 +1045,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A backup was recorded earlier, but no backup files were found in the backup folder. They may have been moved or deleted.
+        ///   Looks up a localized string similar to A backup was recorded earlier, but no backup files were found in the backup folder. They may have been moved or deleted..
         /// </summary>
         internal static string BackupSheet_NoBackupFiles {
             get {
@@ -5521,7 +5521,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaCommand_MixedShapes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Calculating {0}.
         /// </summary>
@@ -12837,7 +12837,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complete the current word into a hashtag chosen from an autocomplete list (Alt+G).
+        ///   Looks up a localized string similar to Complete the current word into a hashtag chosen from an autocomplete list.
         /// </summary>
         internal static string ribCompleteHashtagButton_Screentip {
             get {
@@ -14124,7 +14124,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert double horizontal line (Shift + Alt + Equals).
+        ///   Looks up a localized string similar to Insert double horizontal line.
         /// </summary>
         internal static string ribInsertDoubleLineButton_Screentip {
             get {
@@ -14386,7 +14386,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert single horizontal line (Shift + Alt + Minus).
+        ///   Looks up a localized string similar to Insert single horizontal line.
         /// </summary>
         internal static string ribInsertSingleLineButton_Screentip {
             get {
@@ -14558,7 +14558,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Convert text to lowercase (Ctrl + Shift + U).
+        ///   Looks up a localized string similar to Convert text to lowercase.
         /// </summary>
         internal static string ribLowercaseButton_Screentip {
             get {
@@ -14811,7 +14811,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable spell check for entire page (F4).
+        ///   Looks up a localized string similar to Disable spell check for entire page.
         /// </summary>
         internal static string ribNoSpellCheckButton_Screentip {
             get {
@@ -15153,7 +15153,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste rich text (Ctrl + Alt + V).
+        ///   Looks up a localized string similar to Paste rich text.
         /// </summary>
         internal static string ribPasteRtfButton_Screentip {
             get {
@@ -15171,7 +15171,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste and Keep Text Only (Ctrl + Shift + V).
+        ///   Looks up a localized string similar to Paste and Keep Text Only.
         /// </summary>
         internal static string ribPasteTextButton_Screentip {
             get {
@@ -15333,7 +15333,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recalculate all formulas in the current table (Shift + F5).
+        ///   Looks up a localized string similar to Recalculate all formulas in the current table.
         /// </summary>
         internal static string ribRecalculateFormulaButton_Screentip {
             get {
@@ -15504,7 +15504,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove footnote (Ctrl + Shift + F).
+        ///   Looks up a localized string similar to Remove footnote.
         /// </summary>
         internal static string ribRemoveFootnoteButton_Screentip {
             get {
@@ -15684,7 +15684,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replay last command (Alt + Shift + R).
+        ///   Looks up a localized string similar to Replay last command.
         /// </summary>
         internal static string ribReplayButton_Screentip {
             get {
@@ -15990,7 +15990,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search and replace (Ctrl + H).
+        ///   Looks up a localized string similar to Search and replace.
         /// </summary>
         internal static string ribSearchAndReplaceButton_Screentip {
             get {

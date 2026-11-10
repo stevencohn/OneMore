@@ -926,6 +926,20 @@ namespace River.OneMoreAddIn
 				tip = GetRibbonLabel(control);
 			}
 
+			// append the key binding, but not on context menu items which are built once
+			// at startup and cannot be refreshed when the binding changes
+			var prefix = control.Id.Substring(0, 3);
+			if (!string.IsNullOrEmpty(tip) &&
+				prefix != "pcm" && prefix != "pcs" && prefix != "ctx" && prefix != "cts" &&
+				prefix != "ctg" && prefix != "ct2")
+			{
+				var binding = KeyBindings.GetText(id);
+				if (binding is not null)
+				{
+					tip = $"{tip} ({binding})";
+				}
+			}
+
 			DebugRibbon($"GetRibbonScreentip({id}_Screentip) => [{tip}]");
 			return tip;
 		}

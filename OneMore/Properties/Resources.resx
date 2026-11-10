@@ -5437,7 +5437,7 @@ Help Tab</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
-    <value>Complete the current word into a hashtag chosen from an autocomplete list (Alt+G)</value>
+    <value>Complete the current word into a hashtag chosen from an autocomplete list</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
@@ -6008,7 +6008,7 @@ Help Tab</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Insert double horizontal line (Shift + Alt + Equals)</value>
+    <value>Insert double horizontal line</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
@@ -6120,7 +6120,7 @@ Help Tab</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insert single horizontal line (Shift + Alt + Minus)</value>
+    <value>Insert single horizontal line</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -6192,7 +6192,7 @@ Help Tab</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convert text to lowercase (Ctrl + Shift + U)</value>
+    <value>Convert text to lowercase</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -6300,7 +6300,7 @@ Help Tab</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Disable spell check for entire page (F4)</value>
+    <value>Disable spell check for entire page</value>
     <comment>OBSOLETE?</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
@@ -6452,7 +6452,7 @@ Help Tab</value>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Paste rich text (Ctrl + Alt + V)</value>
+    <value>Paste rich text</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
@@ -6460,7 +6460,7 @@ Help Tab</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
+    <value>Paste and Keep Text Only</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -6532,7 +6532,7 @@ Help Tab</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalculate all formulas in the current table (Shift + F5)</value>
+    <value>Recalculate all formulas in the current table</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribRecolorInkButton_Label" xml:space="preserve">
@@ -6607,7 +6607,7 @@ Help Tab</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
-    <value>Remove footnote (Ctrl + Shift + F)</value>
+    <value>Remove footnote</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
@@ -6687,7 +6687,7 @@ Help Tab</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Replay last command (Alt + Shift + R)</value>
+    <value>Replay last command</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -6823,7 +6823,7 @@ Help Tab</value>
     <comment>ribbon search NODUP</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
-    <value>Search and replace (Ctrl + H)</value>
+    <value>Search and replace</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchAndSelectButton_Label" xml:space="preserve">

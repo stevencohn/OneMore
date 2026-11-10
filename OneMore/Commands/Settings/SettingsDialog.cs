@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Settings
 	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -326,6 +327,17 @@ namespace River.OneMoreAddIn.Settings
 			provider.Save();
 
 			logger.WriteLine($"user settings saved, restart:{restart}");
+
+			// must follow Save so hotkey registration and ribbon screentips read the new
+			// bindings from disk; hotkeys are suspended while this dialog is open and
+			// Resume arms the new set when it closes
+			if (sheets.Values.OfType<KeyboardSheet>().Any(s => s.BindingsChanged))
+			{
+				HotkeyManager.Reload();
+				KeyBindings.Reset();
+				ribbon.SafeInvalidate();
+				logger.WriteLine("key bindings reloaded");
+			}
 		}
 	}
 }

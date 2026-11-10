@@ -606,6 +606,7 @@
     <Compile Include="Commands\Workspaces\Layouts\ExportLayoutsCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\ImportLayoutsCommand.cs" />
     <Compile Include="Helpers\CaretLocator.cs" />
+    <Compile Include="Helpers\Hotkeys\KeyBindings.cs" />
     <Compile Include="Helpers\NavPaneScroller.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\DatabaseProvider.cs" />

@@ -46,6 +46,11 @@ namespace River.OneMoreAddIn.Settings
 		public const string CollectionName = "KeyboardSheet";
 		public const string SettingsName = "commands";
 
+		/// <summary>
+		/// Gets whether CollectSettings recorded changed key bindings
+		/// </summary>
+		public bool BindingsChanged { get; private set; }
+
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<KeyMap> map;
 		private List<KeyMap> defaultMap;
@@ -343,7 +348,7 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			var updated = false;
+			var commandsUpdated = false;
 
 			// compare against saved settings
 			var collection = provider.GetCollection(Name);
@@ -354,7 +359,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					if (settings.Elements().Count() != element.Elements().Count())
 					{
-						updated = true;
+						commandsUpdated = true;
 					}
 					else
 					{
@@ -367,7 +372,7 @@ namespace River.OneMoreAddIn.Settings
 							if (setting == null ||
 								setting.Attribute("keys").Value != candidate.Attribute("keys").Value)
 							{
-								updated = true;
+								commandsUpdated = true;
 								break;
 							}
 						}
@@ -375,26 +380,28 @@ namespace River.OneMoreAddIn.Settings
 				}
 				else
 				{
-					updated = element.HasElements;
+					commandsUpdated = element.HasElements;
+				}
+
+				if (commandsUpdated)
+				{
+					if (element.HasElements)
+					{
+						collection.Add(SettingsName, element);
+						provider.SetCollection(collection);
+					}
+					else
+					{
+						provider.RemoveCollection(Name);
+					}
+
+					// SettingsDialog re-registers hotkeys after the provider has saved to disk
+					// changes apply live so no OneNote restart is needed
+					BindingsChanged = true;
 				}
 			}
 
-			if (updated)
-			{
-				if (element.HasElements)
-				{
-					collection.Add(SettingsName, element);
-					provider.SetCollection(collection);
-				}
-				else
-				{
-					provider.RemoveCollection(Name);
-				}
-
-				ribbon.SafeInvalidateControl("ribOneMoreMenu");
-			}
-
-			return updated;
+			return false;
 		}
 	}
 }
