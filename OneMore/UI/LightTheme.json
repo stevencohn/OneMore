@@ -12,6 +12,8 @@
     "ButtonHotBack": "#F0DAEE",
     "ButtonHotBorder": "#9E5499",
     "ButtonPressBorder": "#9E5499",
+    "TitleBar": "#F4E8F3",
+    "TitleBarText": "#000000",
 
     "ActiveBorder": "#B4B4B4",
     "ActiveCaption": "#C980EE",

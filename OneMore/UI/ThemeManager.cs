@@ -109,8 +109,14 @@ namespace River.OneMoreAddIn.UI
 		#region Native
 		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
 		private const int DWMWA_MICA_EFFECT = 1029;
+		private const int DWMWA_CAPTION_COLOR = 35;
+		private const int DWMWA_TEXT_COLOR = 36;
 
 		private static bool appModePreferred;
+
+		[DllImport("dwmapi.dll", PreserveSig = true)]
+		private static extern int DwmSetWindowAttribute(
+			IntPtr hwnd, int attr, ref int attrValue, int attrSize);
 
 		[DllImport("dwmapi.dll", PreserveSig = true)]
 		private static extern int DwmSetWindowAttribute(
@@ -194,7 +200,62 @@ namespace River.OneMoreAddIn.UI
 				}
 			}
 
+			if (!DarkMode && !IsDesignTime && container is MoreForm titleForm)
+			{
+				ApplyTitleBar(titleForm);
+			}
+
 			Colorize(container);
+		}
+
+
+		/// <summary>
+		/// In light mode DWM would draw its default pale title bar, so apply the theme's own
+		/// TitleBar/TitleBarText colors (Windows 11 build 22000+; ignored on earlier builds).
+		/// Themes without a TitleBar entry are left alone.
+		/// </summary>
+		private void ApplyTitleBar(Form form)
+		{
+			if (Colors is null || !Colors.ContainsKey("TitleBar"))
+			{
+				return;
+			}
+
+			if (form.IsHandleCreated)
+			{
+				SetTitleBarColors(form.Handle);
+			}
+			else
+			{
+				form.HandleCreated += (s, e) => SetTitleBarColors(((Form)s).Handle);
+			}
+		}
+
+
+		private void SetTitleBarColors(IntPtr hwnd)
+		{
+			try
+			{
+				var caption = ToColorRef(Colors["TitleBar"]);
+				DwmSetWindowAttribute(hwnd, DWMWA_CAPTION_COLOR, ref caption, sizeof(int));
+
+				if (Colors.ContainsKey("TitleBarText"))
+				{
+					var text = ToColorRef(Colors["TitleBarText"]);
+					DwmSetWindowAttribute(hwnd, DWMWA_TEXT_COLOR, ref text, sizeof(int));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error applying title bar colors", exc);
+			}
+		}
+
+
+		// COLORREF is 0x00BBGGRR
+		private static int ToColorRef(Color color)
+		{
+			return color.R | (color.G << 8) | (color.B << 16);
 		}
 
 
