@@ -280,6 +280,20 @@ namespace River.OneMoreAddIn.Commands
 
 				SetQuickStyle(page, element, style);
 
+				// OneNote ignores inline font-style:normal and re-imposes the QuickStyleDef's
+				// italic (e.g. built-in h4), so a non-italic style must clear it on the
+				// QuickStyleDef itself
+				if (!style.IsItalic)
+				{
+					var italicDef = page.Root.Elements(ns + "QuickStyleDef")
+						.FirstOrDefault(q =>
+							q.Attribute("index")?.Value == element.Attribute(QuickStyleAttribute)?.Value &&
+							q.Attribute("italic")?.Value == "true");
+
+					// only touch QuickStyleDefs that are actually italic
+					italicDef?.SetAttributeValue("italic", "false");
+				}
+
 				// style may still exist if apply colors if false and there are colors
 				var attr = element.Attribute("style");
 				if (attr is null)
