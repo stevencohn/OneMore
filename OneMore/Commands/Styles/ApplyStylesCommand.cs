@@ -982,7 +982,7 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(ns + "QuickStyleDef")
 				.ToDictionary(
 					q => q.Attribute("index").Value,
-					q => q.Attribute("name").Value);
+					q => q);
 
 			// selected OEs = parents of selected T elements, deduplicated
 			var selectedOEs = page.Root
@@ -1019,9 +1019,9 @@ namespace River.OneMoreAddIn.Commands
 				var qsiAttr = oe.Attribute("quickStyleIndex");
 				var quickName = "p";
 				if (qsiAttr is not null &&
-					quickDefs.TryGetValue(qsiAttr.Value, out var resolvedName))
+					quickDefs.TryGetValue(qsiAttr.Value, out var resolvedDef))
 				{
-					quickName = resolvedName;
+					quickName = resolvedDef.Attribute("name").Value;
 				}
 
 				var style = FindStyle(styles, quickName);
@@ -1075,6 +1075,15 @@ namespace River.OneMoreAddIn.Commands
 							: Stylizer.Clearing.All;
 
 				stylizer.Clear(oe, clearing, deep: false);
+
+				// OneNote ignores inline font-style:normal, so clear italic on the QuickStyleDef
+				var currentIndex = oe.Attribute("quickStyleIndex")?.Value;
+				if (!style.IsItalic && currentIndex is not null &&
+					quickDefs.TryGetValue(currentIndex, out var currentDef) &&
+					currentDef.Attribute("italic")?.Value == "true")
+				{
+					currentDef.SetAttributeValue("italic", "false");
+				}
 
 				// apply theme style CSS inline to the OE
 				var css = style.ToCss();
