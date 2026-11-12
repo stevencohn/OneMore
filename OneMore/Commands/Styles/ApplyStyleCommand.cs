@@ -272,6 +272,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var element in elements)
 			{
+				if (style.IsFontOnly)
+				{
+					StylizeNormalFontOnly(element);
+					continue;
+				}
+
 				// clear any existing style on or within the paragraph
 				// deep:false so we don't affect indented paragraphs and lists
 				stylizer.Clear(element,
@@ -322,6 +328,36 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return true;
+		}
+
+
+		/// <summary>
+		/// Applies a Normal style marked FontOnly: changes only font family, font size and
+		/// spacing, retaining bold, italic, underline, strikethrough, super/subscript, colors
+		/// and inline code.
+		/// </summary>
+		private void StylizeNormalFontOnly(XElement element)
+		{
+			SetQuickStyle(page, element, style);
+
+			Stylizer.ApplyFont(element, style);
+
+			ApplySpacing(element, "spaceBefore", style.SpaceBefore);
+			ApplySpacing(element, "spaceAfter", style.SpaceAfter);
+			ApplySpacing(element, "spaceBetween", style.Spacing);
+
+			var item = element.Elements(ns + "List").Elements()
+				.FirstOrDefault(e => e.Name.LocalName == "Bullet" || e.Name.LocalName == "Number");
+
+			if (item is not null)
+			{
+				item.SetAttributeValue("fontSize", style.FontSize);
+
+				if (item.Name.LocalName == "Number")
+				{
+					item.SetAttributeValue("font", style.FontFamily);
+				}
+			}
 		}
 
 

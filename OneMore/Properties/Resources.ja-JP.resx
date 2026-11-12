@@ -8030,6 +8030,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>フォント:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>フォントのみ</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>スペルチェックを無効にする</value>
     <comment>checkbox</comment>

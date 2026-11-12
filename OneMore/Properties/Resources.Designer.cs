@@ -18822,6 +18822,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font only.
+        /// </summary>
+        internal static string StyleDialog_fontOnlyBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_fontOnlyBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Source code paragraph.
         /// </summary>
         internal static string StyleDialog_isCodeBox_Text {

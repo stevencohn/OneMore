@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Styles
 {
 	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -31,6 +32,12 @@ namespace River.OneMoreAddIn.Styles
 			All,        // remove all color styling
 			Gray        // only gray color styling
 		}
+
+		private static readonly Regex FontRegex = new Regex(
+			@"font-(?:family|size)\s*:[^;]*;?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+		private static readonly Regex FontFamilyRegex = new Regex(
+			@"font-family\s*:([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		private readonly Style style;
 		private readonly string css;
@@ -296,6 +303,150 @@ namespace River.OneMoreAddIn.Styles
 			}
 
 			return cleared;
+		}
+
+
+		/// <summary>
+		/// Removes only font-family and font-size declarations from the given OE, its child
+		/// T elements, and their CDATA spans, retaining bold, italic, underline, strikethrough,
+		/// super/subscript, and colors. Elements and spans that use a monospace font (inline
+		/// code) are left untouched. Does not descend into child OEs.
+		/// </summary>
+		/// <param name="oe">An OE element</param>
+		/// <returns>True if anything was changed</returns>
+		public static bool ClearFont(XElement oe)
+		{
+			if (IsMonospaceStyle(oe.Attribute("style")?.Value))
+			{
+				// code paragraph
+				return false;
+			}
+
+			var cleared = StripFont(oe);
+
+			foreach (var run in oe.Elements().Where(e => e.Name.LocalName == "T"))
+			{
+				if (IsMonospaceStyle(run.Attribute("style")?.Value))
+				{
+					continue;
+				}
+
+				cleared |= StripFont(run);
+
+				foreach (var cdata in run.Nodes().OfType<XCData>()
+					.Where(c => c.Value.Contains("span")).ToList())
+				{
+					var wrapper = TryGetWrapper(cdata);
+					if (wrapper is null)
+					{
+						continue;
+					}
+
+					var changed = false;
+					foreach (var span in wrapper.Descendants("span").ToList())
+					{
+						if (span.Attribute("omcode") is not null ||
+							IsMonospaceStyle(span.Attribute("style")?.Value))
+						{
+							continue;
+						}
+
+						changed |= StripFont(span);
+					}
+
+					if (changed)
+					{
+						cdata.Value = wrapper.GetInnerXml();
+						cleared = true;
+					}
+				}
+			}
+
+			return cleared;
+		}
+
+
+		/// <summary>
+		/// Sets only the font family and size of the given style onto the OE, first removing
+		/// existing font declarations from the OE, Ts, and spans so the new font is inherited
+		/// everywhere except inline code. All other formatting is preserved.
+		/// </summary>
+		/// <param name="oe">An OE element</param>
+		/// <param name="style">The style supplying FontFamily and FontSize</param>
+		public static void ApplyFont(XElement oe, StyleBase style)
+		{
+			if (IsMonospaceStyle(oe.Attribute("style")?.Value))
+			{
+				// code paragraph
+				return;
+			}
+
+			ClearFont(oe);
+
+			var font = string.Empty;
+			if (!string.IsNullOrEmpty(style.FontFamily))
+			{
+				font = $"font-family:'{style.FontFamily}';";
+			}
+
+			if (!string.IsNullOrEmpty(style.FontSize))
+			{
+				font += $"font-size:{style.FontSize}pt;";
+			}
+
+			if (font.Length == 0)
+			{
+				return;
+			}
+
+			var attr = oe.Attribute("style");
+			if (attr is null)
+			{
+				oe.Add(new XAttribute("style", font));
+			}
+			else
+			{
+				attr.Value = font + attr.Value;
+			}
+		}
+
+
+		private static bool IsMonospaceStyle(string css)
+		{
+			if (string.IsNullOrEmpty(css))
+			{
+				return false;
+			}
+
+			var match = FontFamilyRegex.Match(css);
+			return match.Success && StyleBase.IsMonospaceFont(match.Groups[1].Value);
+		}
+
+
+		private static bool StripFont(XElement element)
+		{
+			var attr = element.Attribute("style");
+			if (attr is null)
+			{
+				return false;
+			}
+
+			var css = FontRegex.Replace(attr.Value, string.Empty);
+			if (css == attr.Value)
+			{
+				return false;
+			}
+
+			if (string.IsNullOrWhiteSpace(css))
+			{
+				attr.Remove();
+			}
+			else
+			{
+				attr.Value = css;
+			}
+
+			return true;
 		}
 
 

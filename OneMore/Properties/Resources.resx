@@ -8064,6 +8064,10 @@ Notebooks</value>
     <value>Font:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Font only</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Disable spell check</value>
     <comment>checkbox</comment>

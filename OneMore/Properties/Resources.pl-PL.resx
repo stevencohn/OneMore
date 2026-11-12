@@ -8024,6 +8024,10 @@ Notatniki</value>
     <value>Czcionka:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Tylko czcionka</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Wyłącz sprawdzanie pisowni</value>
     <comment>checkbox</comment>

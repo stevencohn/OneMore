@@ -122,6 +122,7 @@ namespace River.OneMoreAddIn.Styles
 
 			ApplyColors = other.ApplyColors;
 			IsCode = other.IsCode;
+			FontOnly = other.FontOnly;
 		}
 
 
@@ -313,6 +314,27 @@ namespace River.OneMoreAddIn.Styles
 		/// Stored by StyleRecord and used by Style but ignored by QuickStyleDef
 		/// </remarks>
 		public bool IsCode { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets a Boolean indicating that, for a Paragraph style, applying the style
+		/// changes only the font family, font size, and spacing while retaining existing
+		/// bold, italic, underline, strikethrough, super/subscript, colors, and inline code.
+		/// </summary>
+		/// <remarks>
+		/// Stored by StyleRecord and used by Style but ignored by QuickStyleDef
+		/// </remarks>
+		public bool FontOnly { get; set; }
+
+
+		/// <summary>
+		/// Gets a Boolean indicating whether this is a Paragraph style, regardless of its
+		/// name, that has the FontOnly option enabled.
+		/// </summary>
+		public bool IsFontOnly =>
+			FontOnly &&
+			!IsCode &&
+			StyleType == StyleType.Paragraph;
 
 
 		/// <summary>

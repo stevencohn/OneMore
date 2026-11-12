@@ -72,6 +72,11 @@ namespace River.OneMoreAddIn.Styles
 				IsCode = lower == "code" || lower == "source code";
 			}
 
+			if (element.GetAttributeValue("fontOnly", out bool fontOnly, false))
+			{
+				FontOnly = fontOnly;
+			}
+
 			if (element.GetAttributeValue("bold", out bool bold, false))
 				IsBold = bold;
 
@@ -124,6 +129,11 @@ namespace River.OneMoreAddIn.Styles
 			if (IsCode)
 			{
 				writer.WriteAttributeString("isCode", "true");
+			}
+
+			if (FontOnly)
+			{
+				writer.WriteAttributeString("fontOnly", "true");
 			}
 		}
 	}

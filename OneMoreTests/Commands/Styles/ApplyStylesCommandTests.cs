@@ -31,6 +31,17 @@ namespace River.OneMoreAddIn.Tests.Commands.Styles
 	public class ApplyStylesCommandTests : TestBase
 	{
 		private const string PageId = "page-1";
+
+		private static readonly Theme FontOnlyTheme = new Theme(
+			XElement.Parse(
+				"<Theme key=\"Test\" name=\"Test\" color=\"\"" +
+				" setColor=\"False\" dark=\"False\">" +
+				"  <Style index=\"0\" name=\"Normal\" font=\"TestBodyFont\"" +
+				"   fontColor=\"Black\" fontSize=\"12.0\" spaceBefore=\"4.0\"" +
+				"   spaceAfter=\"4.0\" applyColors=\"true\" styleType=\"Paragraph\"" +
+				"   fontOnly=\"true\" />" +
+				"</Theme>"),
+			"Test");
 		private static readonly XNamespace Ns =
 			"http://schemas.microsoft.com/office/onenote/2013/onenote";
 
@@ -200,6 +211,93 @@ namespace River.OneMoreAddIn.Tests.Commands.Styles
 				?.Attribute("style");
 			Assert.IsNull(unselectedStyle,
 				"Unselected normal paragraph should not have an inline style applied");
+		}
+
+
+		[TestMethod]
+		public void StyleRecord_FontOnly_RoundTrips()
+		{
+			var record = new StyleRecord(XElement.Parse(
+				"<Style name=\"Normal\" font=\"A\" fontSize=\"10\" styleType=\"Paragraph\"" +
+				" fontOnly=\"true\" />"));
+
+			Assert.IsTrue(record.FontOnly);
+			Assert.IsTrue(record.IsFontOnly);
+			Assert.AreEqual("true", record.ToXElement().Attribute("fontOnly")?.Value);
+		}
+
+
+		[TestMethod]
+		public async Task ApplyStyles_FontOnlyNormal_RetainsEmphasisAndColor()
+		{
+			var page = BuildPageWithQuickStyleDefs();
+
+			var pOE = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "0"),
+				new XAttribute("style", "font-family:'OldFont';font-size:10.0pt;font-weight:bold;color:#112233;"),
+				new XElement(Ns + "T", new XCData(
+					"plain <span style='font-family:Arial;font-style:italic;color:#445566'>ital</span>")));
+
+			page.Add(new XElement(Ns + "Outline", new XElement(Ns + "OEChildren", pOE,
+				new XElement(Ns + "OE", new XElement(Ns + "T",
+					new XAttribute("selected", "all"), new XCData(""))))));
+
+			SetupPage(PageId, page.ToString(SaveOptions.OmitDuplicateNamespaces));
+
+			await new ApplyStylesCommand(FontOnlyTheme).Execute();
+
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated);
+
+			var qsd = updated.Elements(Ns + "QuickStyleDef")
+				.First(q => (string)q.Attribute("name") == "p");
+			Assert.AreEqual("TestBodyFont", (string)qsd.Attribute("font"));
+			Assert.AreEqual("12.0", (string)qsd.Attribute("fontSize"));
+			Assert.IsNull(qsd.Attribute("bold"), "QuickStyleDef emphasis must be untouched");
+
+			var oe = updated.Descendants(Ns + "OE")
+				.First(e => (string)e.Attribute("style") != null);
+			var style = (string)oe.Attribute("style");
+			StringAssert.Contains(style, "font-weight:bold");
+			StringAssert.Contains(style, "#112233");
+			Assert.IsFalse(style.Contains("OldFont"));
+
+			var cdata = oe.Element(Ns + "T").DescendantNodes().OfType<XCData>().First().Value;
+			StringAssert.Contains(cdata, "font-style:italic");
+			StringAssert.Contains(cdata, "#445566");
+			Assert.IsFalse(cdata.Contains("Arial"));
+		}
+
+
+		[TestMethod]
+		public async Task ApplyStyles_FontOnlyNormalSelection_LeavesInlineCodeUntouched()
+		{
+			var page = BuildPageWithQuickStyleDefs();
+
+			var pOE = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "0"),
+				new XAttribute("style", "font-family:'OldFont';font-size:10.0pt;font-style:italic;"),
+				new XElement(Ns + "T", new XAttribute("selected", "all"), new XCData(
+					"text <span style='font-family:Consolas;font-size:9.0pt'>code</span>")));
+
+			page.Add(new XElement(Ns + "Outline", new XElement(Ns + "OEChildren", pOE)));
+
+			SetupPage(PageId, page.ToString(SaveOptions.OmitDuplicateNamespaces));
+
+			await new ApplyStylesCommand(FontOnlyTheme).Execute();
+
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated);
+
+			var oe = updated.Descendants(Ns + "OE")
+				.First(e => (string)e.Attribute("quickStyleIndex") == "0");
+			var style = (string)oe.Attribute("style");
+			StringAssert.Contains(style, "TestBodyFont");
+			StringAssert.Contains(style, "font-style:italic");
+			Assert.IsFalse(style.Contains("OldFont"));
+
+			var cdata = oe.Element(Ns + "T").DescendantNodes().OfType<XCData>().First().Value;
+			StringAssert.Contains(cdata, "Consolas");
 		}
 
 

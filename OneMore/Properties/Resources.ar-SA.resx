@@ -8035,6 +8035,10 @@ ISO-code then comma then language name</comment>
     <value>الخط:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>الخط فقط</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>تعطيل التدقيق الإملائي</value>
     <comment>checkbox</comment>

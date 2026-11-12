@@ -8024,6 +8024,10 @@ cadernos</value>
     <value>Fonte:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Somente fonte</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Desativar verificação ortográfica</value>
     <comment>checkbox</comment>
