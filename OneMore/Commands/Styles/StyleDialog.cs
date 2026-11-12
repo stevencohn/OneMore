@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			spaceBeforeSpinner.Value = 0;
 			spacingSpinner.Value = 0;
 
-			statusLabel.Text = string.Empty;
+			SetStatus(string.Empty, string.Empty);
 		}
 
 
@@ -475,14 +475,28 @@ namespace River.OneMoreAddIn.Commands
 			// check contrast
 			if (pageColor.IsDark() == sampleColor.IsDark())
 			{
-				statusLabel.Text = Resx.PageColorDialog_contrastWarning;
-				tooltip.SetToolTip(statusLabel, Resx.PageColorDialog_contrastTooltip);
+				SetStatus(Resx.PageColorDialog_contrastWarning, Resx.PageColorDialog_contrastTooltip);
 			}
 			else
 			{
-				statusLabel.Text = string.Empty;
-				tooltip.SetToolTip(statusLabel, string.Empty);
+				SetStatus(string.Empty, string.Empty);
 			}
+		}
+
+
+		private void SetStatus(string text, string tip)
+		{
+			if (statusLabel.Text == text)
+			{
+				return;
+			}
+
+			statusLabel.Text = text;
+			tooltip.SetToolTip(statusLabel, tip);
+
+			// hide when empty so nothing stale is left behind inside the group box
+			statusLabel.Visible = !string.IsNullOrEmpty(text);
+			optionsGroup.Invalidate(true);
 		}
 
 
