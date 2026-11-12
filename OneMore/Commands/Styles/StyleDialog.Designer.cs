@@ -116,7 +116,7 @@
 			this.sizeBox.Location = new System.Drawing.Point(539, 123);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 32);
-			this.sizeBox.TabIndex = 3;
+			this.sizeBox.TabIndex = 5;
 			this.sizeBox.ThemedBack = null;
 			this.sizeBox.ThemedFore = null;
 			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontSize);
@@ -128,7 +128,7 @@
 			this.beforeLabel.Location = new System.Drawing.Point(18, 320);
 			this.beforeLabel.Name = "beforeLabel";
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
-			this.beforeLabel.TabIndex = 6;
+			this.beforeLabel.TabIndex = 18;
 			this.beforeLabel.Text = "Space Before:";
 			this.beforeLabel.Scrubber = this.spaceBeforeSpinner;
 			this.beforeLabel.ThemedBack = null;
@@ -141,7 +141,7 @@
 			this.afterLabel.Location = new System.Drawing.Point(18, 357);
 			this.afterLabel.Name = "afterLabel";
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
-			this.afterLabel.TabIndex = 7;
+			this.afterLabel.TabIndex = 19;
 			this.afterLabel.Text = "Space After:";
 			this.afterLabel.Scrubber = this.spaceAfterSpinner;
 			this.afterLabel.ThemedBack = null;
@@ -154,7 +154,7 @@
 			this.nameLabel.Location = new System.Drawing.Point(18, 38);
 			this.nameLabel.Name = "nameLabel";
 			this.nameLabel.Size = new System.Drawing.Size(94, 20);
-			this.nameLabel.TabIndex = 8;
+			this.nameLabel.TabIndex = 17;
 			this.nameLabel.Text = "Style Name:";
 			this.nameLabel.ThemedBack = null;
 			this.nameLabel.ThemedFore = null;
@@ -170,7 +170,7 @@
 			this.nameBox.Name = "nameBox";
 			this.nameBox.ProcessEnterKey = false;
 			this.nameBox.Size = new System.Drawing.Size(356, 31);
-			this.nameBox.TabIndex = 0;
+			this.nameBox.TabIndex = 1;
 			this.nameBox.ThemedBack = null;
 			this.nameBox.ThemedFore = null;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
@@ -182,7 +182,7 @@
 			this.fontLabel.Location = new System.Drawing.Point(18, 130);
 			this.fontLabel.Name = "fontLabel";
 			this.fontLabel.Size = new System.Drawing.Size(46, 20);
-			this.fontLabel.TabIndex = 10;
+			this.fontLabel.TabIndex = 20;
 			this.fontLabel.Text = "Font:";
 			this.fontLabel.ThemedBack = null;
 			this.fontLabel.ThemedFore = null;
@@ -193,7 +193,7 @@
 			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 314);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
-			this.spaceBeforeSpinner.TabIndex = 7;
+			this.spaceBeforeSpinner.TabIndex = 11;
 			this.spaceBeforeSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceBefore);
 			this.spaceBeforeSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -203,7 +203,7 @@
 			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 350);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
-			this.spaceAfterSpinner.TabIndex = 8;
+			this.spaceAfterSpinner.TabIndex = 12;
 			this.spaceAfterSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceAfter);
 			this.spaceAfterSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -216,7 +216,7 @@
 			this.previewBox.Location = new System.Drawing.Point(296, 314);
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(347, 107);
-			this.previewBox.TabIndex = 18;
+			this.previewBox.TabIndex = 23;
 			this.previewBox.TabStop = false;
 			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.RepaintSample);
 			// 
@@ -232,7 +232,7 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 12;
+			this.cancelButton.TabIndex = 16;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -250,7 +250,7 @@
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 11;
+			this.okButton.TabIndex = 15;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -266,7 +266,7 @@
 			this.namesBox.Location = new System.Drawing.Point(18, 633);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 32);
-			this.namesBox.TabIndex = 10;
+			this.namesBox.TabIndex = 0;
 			this.namesBox.ThemedBack = null;
 			this.namesBox.ThemedFore = null;
 			this.namesBox.Visible = false;
@@ -322,7 +322,7 @@
 			this.styleTools.Location = new System.Drawing.Point(541, 29);
 			this.styleTools.Name = "styleTools";
 			this.styleTools.Size = new System.Drawing.Size(89, 31);
-			this.styleTools.TabIndex = 31;
+			this.styleTools.TabIndex = 2;
 			this.styleTools.Text = "moreToolStrip1";
 			// 
 			// renameButton
@@ -374,7 +374,7 @@
 			this.fontTools.Padding = new System.Windows.Forms.Padding(0);
 			this.fontTools.Size = new System.Drawing.Size(350, 31);
 			this.fontTools.Stretch = true;
-			this.fontTools.TabIndex = 4;
+			this.fontTools.TabIndex = 6;
 			// 
 			// boldButton
 			// 
@@ -499,7 +499,7 @@
 			this.ignoredBox.Name = "ignoredBox";
 			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
 			this.ignoredBox.StylizeImage = false;
-			this.ignoredBox.TabIndex = 6;
+			this.ignoredBox.TabIndex = 10;
 			this.ignoredBox.Text = "Disable spell check";
 			this.ignoredBox.ThemedBack = null;
 			this.ignoredBox.ThemedFore = null;
@@ -519,7 +519,7 @@
 			this.optionsGroup.Name = "optionsGroup";
 			this.optionsGroup.ShowOnlyTopEdge = true;
 			this.optionsGroup.Size = new System.Drawing.Size(620, 156);
-			this.optionsGroup.TabIndex = 30;
+			this.optionsGroup.TabIndex = 14;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Options";
 			this.optionsGroup.ThemedBorder = null;
@@ -595,7 +595,7 @@
 			this.spacingLabel.Location = new System.Drawing.Point(18, 393);
 			this.spacingLabel.Name = "spacingLabel";
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
-			this.spacingLabel.TabIndex = 29;
+			this.spacingLabel.TabIndex = 21;
 			this.spacingLabel.Text = "Spacing:";
 			this.spacingLabel.Scrubber = this.spacingSpinner;
 			this.spacingLabel.ThemedBack = null;
@@ -608,7 +608,7 @@
 			this.spacingSpinner.Location = new System.Drawing.Point(169, 387);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
-			this.spacingSpinner.TabIndex = 9;
+			this.spacingSpinner.TabIndex = 13;
 			this.spacingSpinner.ValueChanged += new System.EventHandler(this.ChangeSpacing);
 			this.spacingSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -618,7 +618,7 @@
 			this.styleTypeLabel.Location = new System.Drawing.Point(18, 80);
 			this.styleTypeLabel.Name = "styleTypeLabel";
 			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
-			this.styleTypeLabel.TabIndex = 27;
+			this.styleTypeLabel.TabIndex = 22;
 			this.styleTypeLabel.Text = "Style Type:";
 			this.styleTypeLabel.ThemedBack = null;
 			this.styleTypeLabel.ThemedFore = null;
@@ -642,7 +642,7 @@
 			this.styleTypeBox.Location = new System.Drawing.Point(169, 77);
 			this.styleTypeBox.Name = "styleTypeBox";
 			this.styleTypeBox.Size = new System.Drawing.Size(473, 32);
-			this.styleTypeBox.TabIndex = 1;
+			this.styleTypeBox.TabIndex = 3;
 			this.styleTypeBox.ThemedBack = null;
 			this.styleTypeBox.ThemedFore = null;
 			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
@@ -658,7 +658,7 @@
 			this.applyColorsBox.Name = "applyColorsBox";
 			this.applyColorsBox.Size = new System.Drawing.Size(125, 25);
 			this.applyColorsBox.StylizeImage = false;
-			this.applyColorsBox.TabIndex = 5;
+			this.applyColorsBox.TabIndex = 7;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.ThemedBack = null;
 			this.applyColorsBox.ThemedFore = null;
@@ -674,7 +674,7 @@
 			this.isCodeBox.Name = "isCodeBox";
 			this.isCodeBox.Size = new System.Drawing.Size(207, 25);
 			this.isCodeBox.StylizeImage = false;
-			this.isCodeBox.TabIndex = 7;
+			this.isCodeBox.TabIndex = 8;
 			this.isCodeBox.Text = "Source code paragraph";
 			this.isCodeBox.ThemedBack = null;
 			this.isCodeBox.ThemedFore = null;
@@ -691,7 +691,7 @@
 			this.fontOnlyBox.Name = "fontOnlyBox";
 			this.fontOnlyBox.Size = new System.Drawing.Size(240, 25);
 			this.fontOnlyBox.StylizeImage = false;
-			this.fontOnlyBox.TabIndex = 8;
+			this.fontOnlyBox.TabIndex = 9;
 			this.fontOnlyBox.Text = "Font only";
 			this.fontOnlyBox.ThemedBack = null;
 			this.fontOnlyBox.ThemedFore = null;
@@ -711,7 +711,7 @@
 			this.familyBox.Location = new System.Drawing.Point(169, 123);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(356, 32);
-			this.familyBox.TabIndex = 2;
+			this.familyBox.TabIndex = 4;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
 			this.familyBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 

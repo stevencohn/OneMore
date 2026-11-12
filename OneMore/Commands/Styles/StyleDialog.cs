@@ -253,7 +253,16 @@ namespace River.OneMoreAddIn.Commands
 				ShowSelection();
 			}
 
-			nameBox.Focus();
+			// theme editing shows the namesBox drop-down; a single new style shows nameBox
+			if (namesBox.Visible)
+			{
+				namesBox.Focus();
+			}
+			else
+			{
+				nameBox.Focus();
+			}
+
 			VerifyFontFamilies();
 		}
 
@@ -1079,9 +1088,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				theme = new Theme(MakeStyles(), key, key,
-					theme.Color, theme.SetColor, theme.Dark, theme.IsPredefined);
+					theme.Color, theme.SetColor, theme.Dark, false);
 
 				ThemeProvider.Save(theme, dialog.FileName);
+
+				// a newly named set is user-defined, so it cannot be reset
+				resetButton.Enabled = false;
 
 				Text = string.Format(
 					Resx.StyleDialog_ThemeText,
