@@ -85,7 +85,14 @@ namespace River.OneMoreAddIn.Commands
 
 			var range = new SelectionRange(page);
 			_ = range.GetSelections();
-			var hasSelection = range.Scope != SelectionScope.TextCursor;
+
+			// the page title is excluded from GetSelections, so a cursor in the title yields
+			// Scope.None; treat None and cursor-only scopes as "no selection" and apply to
+			// the whole page
+			var hasSelection =
+				range.Scope != SelectionScope.None &&
+				range.Scope != SelectionScope.TextCursor &&
+				range.Scope != SelectionScope.SpecialCursor;
 
 			// selection mode: apply theme styles only to selected paragraphs inline;
 			// do not change the page background color
@@ -160,6 +167,13 @@ namespace River.OneMoreAddIn.Commands
 			// reassigned QuickStyleDef is picked up by the main styling pass below
 			var promoted = PromoteHeadingLikeNormalParagraphs(styles);
 
+			// blank lines after headings must be Normal, not inherit the heading style;
+			// do this before ApplyStyles so they pick up the theme's Normal style
+			if (NormalizeBlankLinesAfterHeadings())
+			{
+				promoted = true;
+			}
+
 			// collect monospace Normal paragraphs while their OE-level font is still intact,
 			// before ApplyStyles/ClearInlineStyles strips it
 			var monoTargets = CollectMonospaceNormalOEs();
@@ -204,6 +218,81 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return changed;
+		}
+
+
+		/// <summary>
+		/// Finds blank paragraphs that immediately follow a heading (h1..h6) and resets them
+		/// to the Normal ("p") quick style so ApplyStyles will style them with the theme's
+		/// Normal style, or OneNote's default Normal style if the theme has none.
+		/// </summary>
+		private bool NormalizeBlankLinesAfterHeadings()
+		{
+			var quickDefs = page.Root.Elements(ns + "QuickStyleDef").ToList();
+
+			var headingIndices = quickDefs
+				.Where(q => Regex.IsMatch(q.Attribute("name")?.Value ?? string.Empty, @"^h[1-6]$"))
+				.Select(q => q.Attribute("index")?.Value)
+				.Where(v => v is not null)
+				.ToHashSet();
+
+			if (headingIndices.Count == 0)
+			{
+				return false;
+			}
+
+			var headings = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
+				.Where(oe => headingIndices.Contains(oe.Attribute("quickStyleIndex")?.Value))
+				.ToList();
+
+			string normalIndex = null;
+			var changed = false;
+
+			foreach (var heading in headings)
+			{
+				foreach (var sibling in heading.ElementsAfterSelf(ns + "OE"))
+				{
+					if (!IsBlankParagraph(sibling))
+					{
+						break;
+					}
+
+					normalIndex ??= page.GetQuickStyle(StandardStyles.Normal).Index.ToString();
+
+					sibling.SetAttributeValue("quickStyleIndex", normalIndex);
+					stylizer.Clear(sibling, Stylizer.Clearing.All);
+					sibling.Attribute("style")?.Remove();
+					changed = true;
+				}
+			}
+
+			return changed;
+		}
+
+
+		private bool IsBlankParagraph(XElement oe)
+		{
+			// anything other than text runs (images, tables, lists, meta, children) is content
+			if (oe.Elements().Any(e => e.Name != ns + "T"))
+			{
+				return false;
+			}
+
+			foreach (var run in oe.Elements(ns + "T"))
+			{
+				var text = Regex.Replace(run.Value, "<[^>]+>", string.Empty)
+					.Replace("&nbsp;", string.Empty)
+					.Replace(" ", string.Empty);
+
+				if (!string.IsNullOrWhiteSpace(text))
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 
