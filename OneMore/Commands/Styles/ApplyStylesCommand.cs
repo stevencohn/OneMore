@@ -678,6 +678,9 @@ namespace River.OneMoreAddIn.Commands
 						if (attr != null && HasMonospaceFont(attr))
 						{
 							span.SetAttributeValue("omcode", "1");
+
+							// stash original style so highlight/color survive ClearInlineStyles
+							span.SetAttributeValue("omcss", attr);
 							marked = true;
 						}
 					}
@@ -703,6 +706,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var css = inlineStyle?.ToCss()
 				?? $"font-family:'{StyleBase.DefaultCodeFamily}';font-size:9.0pt";
+
+			// theme code style's font, used when merging with a span's original style
+			var themeFont = new Style(css, setDefaults: false);
 			var updated = false;
 
 			foreach (var cdata in page.Root.DescendantNodes()
@@ -715,8 +721,48 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var span in wrapper.Descendants("span")
 					.Where(s => s.Attribute("omcode")?.Value == "1").ToList())
 				{
+					var original = span.Attribute("omcss")?.Value;
 					span.Attribute("omcode").Remove();
-					span.SetAttributeValue("style", css);
+					span.Attribute("omcss")?.Remove();
+
+					if (string.IsNullOrWhiteSpace(original))
+					{
+						span.SetAttributeValue("style", css);
+					}
+					else
+					{
+						// apply the theme's font but keep the span's own highlight, color
+						// and emphasis
+						var merged = new Style(original, setDefaults: false)
+						{
+							FontFamily = themeFont.FontFamily,
+							ApplyColors = true
+						};
+
+						if (!string.IsNullOrEmpty(themeFont.FontSize))
+						{
+							merged.FontSize = themeFont.FontSize;
+						}
+
+						if (inlineStyle is not null && inlineStyle.ApplyColors)
+						{
+							// theme colors fill in only what the span doesn't already have
+							if (string.IsNullOrEmpty(merged.Color) ||
+								merged.Color == StyleBase.Automatic)
+							{
+								merged.Color = inlineStyle.Color;
+							}
+
+							if (string.IsNullOrEmpty(merged.Highlight) ||
+								merged.Highlight == StyleBase.Automatic)
+							{
+								merged.Highlight = inlineStyle.Highlight;
+							}
+						}
+
+						span.SetAttributeValue("style", merged.ToCss());
+					}
+
 					spanUpdated = true;
 				}
 

@@ -302,6 +302,43 @@ namespace River.OneMoreAddIn.Tests.Commands.Styles
 
 
 		[TestMethod]
+		public async Task ApplyStyles_FullSet_KeepsInlineCodeHighlight()
+		{
+			var page = BuildPageWithQuickStyleDefs();
+
+			var pOE = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "0"),
+				new XElement(Ns + "T", new XCData(
+					"text <span style='font-family:Consolas;font-size:11.0pt;background:#FFFF00'>code</span>")));
+
+			var h1OE = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T", new XCData(
+					"head <span style='font-family:Consolas;background:#FFFF00'>code</span>")));
+
+			page.Add(new XElement(Ns + "Outline", new XElement(Ns + "OEChildren", pOE, h1OE,
+				new XElement(Ns + "OE", new XElement(Ns + "T",
+					new XAttribute("selected", "all"), new XCData(""))))));
+
+			SetupPage(PageId, page.ToString(SaveOptions.OmitDuplicateNamespaces));
+
+			await new ApplyStylesCommand(FontOnlyTheme).Execute();
+
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated);
+
+			foreach (var index in new[] { "0", "1" })
+			{
+				var oe = updated.Descendants(Ns + "OE")
+					.First(e => (string)e.Attribute("quickStyleIndex") == index);
+				var cdata = oe.Element(Ns + "T").DescendantNodes().OfType<XCData>().First().Value;
+				StringAssert.Contains(cdata, "#FFFF00", $"highlight lost for index {index}");
+				Assert.IsFalse(cdata.Contains("omcode") || cdata.Contains("omcss"));
+			}
+		}
+
+
+		[TestMethod]
 		public async Task ApplyStyles_WithDuplicateHeadingNames_DoesNotThrow()
 		{
 			// Arrange: a theme with two Heading-type styles whose names both resolve to
