@@ -8024,6 +8024,10 @@ Notitieboekjes</value>
     <value>Lettertype:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Alleen lettertype</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Schakel de spellingcontrole uit</value>
     <comment>checkbox</comment>

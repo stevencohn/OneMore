@@ -156,6 +156,7 @@ namespace River.OneMoreAddIn.Commands
 					"styleTypeLabel",
 					"applyColorsBox",
 					"isCodeBox",
+					"fontOnlyBox",
 					// options
 					"optionsGroup=word_Options",
 					"darkBox",
@@ -339,6 +340,8 @@ namespace River.OneMoreAddIn.Commands
 
 			applyColorsBox.Checked = selection.ApplyColors;
 			isCodeBox.Checked = selection.IsCode;
+			fontOnlyBox.Checked = selection.FontOnly;
+			UpdateFontOnlyEnabled();
 			ignoredBox.Checked = selection.Ignored;
 
 			if (double.TryParse(selection.SpaceAfter, NumberStyles.Any, CultureInfo.InvariantCulture, out var sa))
@@ -538,6 +541,7 @@ namespace River.OneMoreAddIn.Commands
 				if (eventing)
 				{
 					selection.StyleType = styleTypeOrder[styleTypeBox.SelectedIndex];
+					UpdateFontOnlyEnabled();
 				}
 
 				switch (selection.StyleType)
@@ -733,6 +737,19 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeIsCodeOption(object sender, EventArgs e)
 		{
 			selection.IsCode = isCodeBox.Checked;
+		}
+
+
+		private void ChangeFontOnlyOption(object sender, EventArgs e)
+		{
+			selection.FontOnly = fontOnlyBox.Checked;
+		}
+
+
+		// the option applies only to Paragraph styles, whatever their name
+		private void UpdateFontOnlyEnabled()
+		{
+			fontOnlyBox.Enabled = selection.StyleType == StyleType.Paragraph;
 		}
 
 

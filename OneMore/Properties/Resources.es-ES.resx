@@ -8023,6 +8023,10 @@ Cuadernos</value>
     <value>Fuente:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Solo fuente</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Desactivar el corrector ortográfico</value>
     <comment>checkbox</comment>

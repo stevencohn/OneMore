@@ -312,6 +312,8 @@ namespace River.OneMoreAddIn.Commands
 					// could use QuickStyleDef class here but this is faster
 					// than replacing the element...
 
+					var fontOnly = name == "p" && style.IsFontOnly;
+
 					quick.Attribute("font").Value = style.FontFamily;
 
 					quick.Attribute("spaceBefore").Value = style.SpaceBefore;
@@ -327,15 +329,19 @@ namespace River.OneMoreAddIn.Commands
 					// user's syntax-highlighting (or any custom fontColor on the
 					// QuickStyleDef) is preserved; other styles honor their own
 					// ApplyColors setting
-					if (style.ApplyColors && !(style.IsCode || style.StyleType == StyleType.Code))
+					// a FontOnly Normal style retains the existing colors and emphasis
+					if (!fontOnly)
 					{
-						quick.SetAttributeValue("fontColor", style.Color);
-						quick.SetAttributeValue("highlightColor", style.Highlight);
-					}
+						if (style.ApplyColors && !(style.IsCode || style.StyleType == StyleType.Code))
+						{
+							quick.SetAttributeValue("fontColor", style.Color);
+							quick.SetAttributeValue("highlightColor", style.Highlight);
+						}
 
-					quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
-					quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
-					quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
+						quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
+						quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
+						quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
+					}
 
 					quick.Attribute("fontSize").Value = style.FontSize;
 
@@ -357,6 +363,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var index = quick.Attribute("index").Value;
+
+				if (style is not null && name == "p" && style.IsFontOnly)
+				{
+					// strip only inline font family/size; keep everything else
+					ClearInlineFonts(index);
+					continue;
+				}
 
 				// preserve inline colors for code paragraphs (syntax highlighting)
 				// and for any style that opted out of ApplyColors; otherwise keep
@@ -573,7 +586,33 @@ namespace River.OneMoreAddIn.Commands
 		// element type like headings, et al.
 		private void ClearInlineStyles(string index, Stylizer.Clearing clearing)
 		{
-			var elements = page.Root.Descendants()
+			var elements = GetClearableElements(index);
+
+			if (elements.Any())
+			{
+				foreach (var element in elements)
+				{
+					stylizer.Clear(element, clearing);
+				}
+			}
+		}
+
+
+		// FontOnly Normal: remove only font family/size so bold, italic, underline, colors,
+		// and inline code spans are retained
+		private void ClearInlineFonts(string index)
+		{
+			foreach (var element in GetClearableElements(index)
+				.Where(e => e.Name.LocalName == "OE"))
+			{
+				Stylizer.ClearFont(element);
+			}
+		}
+
+
+		private List<XElement> GetClearableElements(string index)
+		{
+			return page.Root.Descendants()
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index)
 				.Select(e => new
 				{
@@ -587,15 +626,8 @@ namespace River.OneMoreAddIn.Commands
 					// filter out omStyleHint=skip paragraphs; use in InfoBox symbol cells
 					(o.Meta.Attribute("name").Value == Style.HintMeta &&
 					 o.Meta.Attribute("content").Value == "skip")))
-				.Select(o => o.Element);
-
-			if (elements.Any())
-			{
-				foreach (var element in elements)
-				{
-					stylizer.Clear(element, clearing);
-				}
-			}
+				.Select(o => o.Element)
+				.ToList();
 		}
 
 
@@ -1064,6 +1096,35 @@ namespace River.OneMoreAddIn.Commands
 						applied = true;
 						continue;
 					}
+				}
+
+				// FontOnly Normal: change only font family/size and spacing, retaining
+				// emphasis, colors, and inline code
+				if (quickName == "p" && style.IsFontOnly)
+				{
+					Stylizer.ApplyFont(oe, style);
+					oe.SetAttributeValue("spaceBefore", style.SpaceBefore);
+					oe.SetAttributeValue("spaceAfter", style.SpaceAfter);
+					if (normalSpacing is not null)
+					{
+						oe.SetAttributeValue("spaceBetween", normalSpacing);
+					}
+
+					var listItem = oe.Elements(ns + "List").Elements()
+						.FirstOrDefault(e =>
+							e.Name.LocalName == "Bullet" || e.Name.LocalName == "Number");
+
+					if (listItem is not null)
+					{
+						listItem.SetAttributeValue("fontSize", style.FontSize);
+						if (listItem.Name.LocalName == "Number")
+						{
+							listItem.SetAttributeValue("font", style.FontFamily);
+						}
+					}
+
+					applied = true;
+					continue;
 				}
 
 				// clearing mode mirrors ApplyStyles()

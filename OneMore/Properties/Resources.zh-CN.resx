@@ -8042,6 +8042,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>字体：</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>仅字体</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>禁用拼写检查</value>
     <comment>checkbox</comment>

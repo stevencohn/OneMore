@@ -8034,6 +8034,10 @@ Des notebooks</value>
     <value>Police de caractère :</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>Police uniquement</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>Désactiver la vérification orthographique</value>
     <comment>checkbox</comment>

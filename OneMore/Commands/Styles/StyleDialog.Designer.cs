@@ -70,6 +70,7 @@
 			this.styleTypeBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.applyColorsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.isCodeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.fontOnlyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.mainTools = new River.OneMoreAddIn.UI.MoreMenuStrip();
 			this.loadButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -286,6 +287,7 @@
 			this.bodyPanel.Controls.Add(this.styleTypeLabel);
 			this.bodyPanel.Controls.Add(this.styleTypeBox);
 			this.bodyPanel.Controls.Add(this.applyColorsBox);
+			this.bodyPanel.Controls.Add(this.fontOnlyBox);
 			this.bodyPanel.Controls.Add(this.isCodeBox);
 			this.bodyPanel.Controls.Add(this.nameLabel);
 			this.bodyPanel.Controls.Add(this.familyBox);
@@ -679,6 +681,23 @@
 			this.tooltip.SetToolTip(this.isCodeBox, "Mark this as the code style used by Apply Styles to Page");
 			this.isCodeBox.UseVisualStyleBackColor = true;
 			this.isCodeBox.CheckedChanged += new System.EventHandler(this.ChangeIsCodeOption);
+			//
+			// fontOnlyBox
+			//
+			this.fontOnlyBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.fontOnlyBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.fontOnlyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.fontOnlyBox.Location = new System.Drawing.Point(400, 244);
+			this.fontOnlyBox.Name = "fontOnlyBox";
+			this.fontOnlyBox.Size = new System.Drawing.Size(240, 25);
+			this.fontOnlyBox.StylizeImage = false;
+			this.fontOnlyBox.TabIndex = 8;
+			this.fontOnlyBox.Text = "Font only";
+			this.fontOnlyBox.ThemedBack = null;
+			this.fontOnlyBox.ThemedFore = null;
+			this.tooltip.SetToolTip(this.fontOnlyBox, "Normal style only: change just the font family, size and spacing, keeping bold, italic, underline, colors and inline code");
+			this.fontOnlyBox.UseVisualStyleBackColor = true;
+			this.fontOnlyBox.CheckedChanged += new System.EventHandler(this.ChangeFontOnlyOption);
 			// 
 			// familyBox
 			// 
@@ -844,6 +863,7 @@
 		private System.Windows.Forms.Panel bodyPanel;
 		private UI.MoreCheckBox applyColorsBox;
 		private UI.MoreCheckBox isCodeBox;
+		private UI.MoreCheckBox fontOnlyBox;
 		private UI.MoreLabel styleTypeLabel;
 		private UI.MoreComboBox styleTypeBox;
 		private UI.MoreMenuItem loadButton;

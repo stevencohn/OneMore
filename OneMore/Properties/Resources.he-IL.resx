@@ -8024,6 +8024,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>גוֹפָן:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_fontOnlyBox.Text" xml:space="preserve">
+    <value>גופן בלבד</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
     <value>השבת את בדיקת האיות</value>
     <comment>checkbox</comment>
