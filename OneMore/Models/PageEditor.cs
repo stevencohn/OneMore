@@ -68,6 +68,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets extra characters, beyond letters and digits, that are treated as part of a word when
+		/// scanning around the cursor; for example "-" to handle partial hyphenated hashtags.
+		/// </summary>
+		public string WordChars { get; set; }
+
+
+		/// <summary>
 		/// Adds the given content after the selected insertion point; this will not
 		/// replace selected regions.
 		/// </summary>
@@ -708,7 +715,7 @@ namespace River.OneMoreAddIn.Models
 
 						// extract last word and pump through the editor; no word means the
 						// cursor is not touching one, e.g. it follows punctuation
-						var pair = text.Value.SplitAtLastWord();
+						var pair = text.Value.SplitAtLastWord(WordChars);
 						if (pair.Item1 == null)
 							break;
 
@@ -729,7 +736,7 @@ namespace River.OneMoreAddIn.Models
 							break;
 
 						// extract last word and pump through editor
-						var word = span.ExtractLastWord();
+						var word = span.ExtractLastWord(false, WordChars);
 						if (string.IsNullOrEmpty(word))
 							break;
 
@@ -776,7 +783,7 @@ namespace River.OneMoreAddIn.Models
 
 						// extract first word and pump through editor; no word means the
 						// cursor is not touching one, e.g. it precedes punctuation
-						var pair = text.Value.SplitAtFirstWord();
+						var pair = text.Value.SplitAtFirstWord(WordChars);
 						if (pair.Item1 == null)
 							break;
 
@@ -797,7 +804,7 @@ namespace River.OneMoreAddIn.Models
 							break;
 
 						// extract first word and pump through editor
-						var word = span.ExtractFirstWord();
+						var word = span.ExtractFirstWord(false, WordChars);
 						if (string.IsNullOrEmpty(word))
 							break;
 

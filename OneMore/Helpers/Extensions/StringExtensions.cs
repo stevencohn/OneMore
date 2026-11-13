@@ -310,12 +310,12 @@ namespace River.OneMoreAddIn
 		/// A two-part ValueTuple with the first word and the remaining string. If the given
 		/// string does not contain a word boundary then this returns (null,s)
 		/// </returns>
-		public static (string, string) SplitAtFirstWord(this string s)
+		public static (string, string) SplitAtFirstWord(this string s, string wordChars = null)
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
 				// capture first word preceding whitespace char or esc sequence
-				var match = Regex.Match(s, @"^(?<word>\w+)\b?"); // (?:[\W\s\n]|&#160;|&nbsp;)?", RegexOptions.Singleline);
+				var match = Regex.Match(s, $@"^(?<word>[\w{EscapeWordChars(wordChars)}]+)\b?");
 				if (match.Success)
 				{
 					var capture = match.Groups["word"];
@@ -331,6 +331,31 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Escapes extra word characters for use inside a regex character class.
+		/// </summary>
+		internal static string EscapeWordChars(string wordChars)
+		{
+			if (string.IsNullOrEmpty(wordChars))
+			{
+				return string.Empty;
+			}
+
+			var builder = new System.Text.StringBuilder();
+			foreach (var c in wordChars)
+			{
+				if (c is '\\' or ']' or '[' or '^' or '-')
+				{
+					builder.Append('\\');
+				}
+
+				builder.Append(c);
+			}
+
+			return builder.ToString();
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Splits a string into its last word and the remaining characters
 		/// as delimited by the last non-word boundary.
 		/// </summary>
@@ -339,12 +364,12 @@ namespace River.OneMoreAddIn
 		/// A two-part ValueTuple with the last word and the remaining string. If the given
 		/// string does not contain a word boundary then this returns (null,s)
 		/// </returns>
-		public static (string, string) SplitAtLastWord(this string s)
+		public static (string, string) SplitAtLastWord(this string s, string wordChars = null)
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
 				// use greedy match, skip text and last whitespace to capture last word
-				var match = Regex.Match(s, @"\b?(?<word>\w+)$"); // @"(?:[\W\s\n]|&#160;|&nbsp;)?(?<word>\w+)$", RegexOptions.Singleline);
+				var match = Regex.Match(s, $@"\b?(?<word>[\w{EscapeWordChars(wordChars)}]+)$");
 				if (match.Success)
 				{
 					var capture = match.Groups["word"];

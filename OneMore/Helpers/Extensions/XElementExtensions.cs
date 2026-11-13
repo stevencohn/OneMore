@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn
 		/// <param name="element">The element to modify</param>
 		/// <param name="styled">Return the word preserving its styled span parent</param>
 		/// <returns>A string that can be appended to a CData's raw content</returns>
-		public static string ExtractFirstWord(this XElement element, bool styled = false)
+		public static string ExtractFirstWord(this XElement element, bool styled = false, string wordChars = null)
 		{
 			// should not happen!
 			if (element.FirstNode is null)
@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn
 			// element is CDATA and first segment is Text, so this is quick and easy
 			if (element.FirstNode.NodeType == XmlNodeType.Text)
 			{
-				var pair = element.Value.SplitAtFirstWord();
+				var pair = element.Value.SplitAtFirstWord(wordChars);
 				element.Value = pair.Item2;
 				return pair.Item1;
 			}
@@ -239,7 +239,7 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
-			var wordPattern = new Regex(@"\w");
+			var wordPattern = new Regex($@"[\w{Extensions.EscapeWordChars(wordChars)}]");
 			var node = wrapper.Nodes().FirstOrDefault(n =>
 				// text nodes that have at least one word character
 				(n.NodeType == XmlNodeType.Text && wordPattern.IsMatch((n as XText).Value)) ||
@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn
 			if (node is XText text)
 			{
 				// extract first word from raw text in CData
-				var pair = text.Value.SplitAtFirstWord();
+				var pair = text.Value.SplitAtFirstWord(wordChars);
 				word = pair.Item1;
 				text.Value = pair.Item2;
 			}
@@ -268,7 +268,7 @@ namespace River.OneMoreAddIn
 					// clone the <span> retaining its style= attribute
 					var clone = span.Clone();
 					// edit the span, removing its first word
-					var result = span.ExtractFirstWord();
+					var result = span.ExtractFirstWord(false, wordChars);
 
 					// reset our clone to just the first word
 					clone.Value = result;
@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					// extract first word from text in span
-					word = span.ExtractFirstWord();
+					word = span.ExtractFirstWord(false, wordChars);
 
 					if (span.Value.Length == 0)
 					{
@@ -311,7 +311,7 @@ namespace River.OneMoreAddIn
 		/// <param name="element">The element to modify</param>
 		/// <param name="styled">Return the word preserving its styled span parent</param>
 		/// <returns>A string that can be appended to a CData's raw content</returns>
-		public static string ExtractLastWord(this XElement element, bool styled = false)
+		public static string ExtractLastWord(this XElement element, bool styled = false, string wordChars = null)
 		{
 			// should not happen!
 			if (element.FirstNode is null)
@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn
 			// element is CDATA and last segment is Text, so this is quick and easy
 			if (element.LastNode.NodeType == XmlNodeType.Text)
 			{
-				var pair = element.Value.SplitAtLastWord();
+				var pair = element.Value.SplitAtLastWord(wordChars);
 				element.Value = pair.Item2;
 				return pair.Item1;
 			}
@@ -345,7 +345,7 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
-			var wordPattern = new Regex(@"\w");
+			var wordPattern = new Regex($@"[\w{Extensions.EscapeWordChars(wordChars)}]");
 			var node = wrapper.Nodes().LastOrDefault(n =>
 				// text nodes that have at least one word character
 				(n.NodeType == XmlNodeType.Text && wordPattern.IsMatch((n as XText).Value)) ||
@@ -363,7 +363,7 @@ namespace River.OneMoreAddIn
 			if (node is XText text)
 			{
 				// extract last word from raw text in CData
-				var pair = text.Value.SplitAtLastWord();
+				var pair = text.Value.SplitAtLastWord(wordChars);
 				word = pair.Item1;
 				text.Value = pair.Item2;
 			}
@@ -374,7 +374,7 @@ namespace River.OneMoreAddIn
 					// clone the <span> retaining its style= attribute
 					var clone = span.Clone();
 					// edit the span, removing its last word
-					var result = span.ExtractLastWord();
+					var result = span.ExtractLastWord(false, wordChars);
 
 					// reset our clone to just the last word
 					clone.Value = result;
@@ -389,7 +389,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					// extract last word from text in span
-					word = span.ExtractLastWord();
+					word = span.ExtractLastWord(false, wordChars);
 
 					if (span.Value.Length == 0)
 					{
