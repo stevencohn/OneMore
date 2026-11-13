@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.UI
 				var x = bounds.Width - size.Width - 5 - rindent;
 				graphics.DrawString(text, item.Font, high, x, bounds.Y);
 
-				rindent -= size.Width;
+				rindent += size.Width + 5;
 			}
 
 
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.UI
 
 				graphics.DrawString(keys, item.Font, cap, x, bounds.Y);
 
-				rindent -= size.Width;
+				rindent += size.Width + 5;
 			}
 
 
