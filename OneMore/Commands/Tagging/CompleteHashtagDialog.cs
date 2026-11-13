@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			palette = new MoreAutoCompleteList
 			{
 				FreeText = true,
-				WordChars = new[] { '#' },
+				WordChars = new[] { '#', '-' },
 				ShowPopupOnStartup = true
 			};
 

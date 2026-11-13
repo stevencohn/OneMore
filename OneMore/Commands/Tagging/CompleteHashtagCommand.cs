@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 
 				await using (var one = new OneNote(out var page, out _))
 				{
-					word = new PageEditor(page).GetSelectedText().Trim().TrimStart('#');
+					word = new PageEditor(page) { WordChars = "-" }.GetSelectedText().Trim().TrimStart('#');
 					windowHandle = one.WindowHandle;
 				}
 
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (prev is not null)
 			{
-				word.Append(prev.ExtractLastWord());
+				word.Append(prev.ExtractLastWord(false, "-"));
 
 				// '#' isn't a \w character so ExtractLastWord leaves a leading '#' behind
 				// uneaten; consume it too or the replacement ends up doubled, e.g.
@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (next is not null)
 			{
-				word.Append(next.ExtractFirstWord());
+				word.Append(next.ExtractFirstWord(false, "-"));
 
 				var cdata = next.GetCData();
 				var trimmed = cdata.Value.TrimStart('#');
