@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string moreID;
 		private readonly MoreAutoCompleteList palette;
 		private readonly bool experimental;
+		private bool autoSearch;
 		private readonly List<HashtagContext> selections;
 
 
@@ -107,15 +108,34 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public HashtagDialog(string moreID)
+		public HashtagDialog(string moreID, string seed = null)
 			: this()
 		{
 			this.moreID = moreID;
+
+			if (!string.IsNullOrWhiteSpace(seed))
+			{
+				tagBox.Text = seed;
+				tagBox.SelectionStart = tagBox.TextLength;
+				autoSearch = true;
+			}
 
 			if (string.IsNullOrEmpty(moreID))
 			{
 				// if not moreID then page has not been scanned or does not have tags
 				scopeBox.Items.RemoveAt(3);
+			}
+		}
+
+
+		protected override async void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			if (autoSearch)
+			{
+				autoSearch = false;
+				await SearchTags(this, EventArgs.Empty);
 			}
 		}
 

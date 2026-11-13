@@ -74,6 +74,23 @@ namespace River.OneMoreAddIn.Commands
 				// page's current ID, so no marker is needed in the page; the page is null when
 				// there is no current page, in which case the page scope is simply unavailable
 				string moreID = null;
+					string seed = null;
+					if (page is not null)
+					{
+						// only seed when text is actually selected; a bare cursor has zero length
+						var range = new Models.SelectionRange(page);
+						range.GetSelections();
+						if (range.Scope is SelectionScope.Range or SelectionScope.Run)
+						{
+							var raw = new PageEditor(page) { WordChars = "-" }.GetSelectedText();
+							var word = raw?.Trim().TrimStart('#');
+							if (!string.IsNullOrWhiteSpace(word))
+							{
+								seed = $"#{word}";
+							}
+						}
+					}
+
 				if (page is not null && PageIdentityProvider.CatalogExists())
 				{
 					using var identity = new PageIdentityProvider();
@@ -86,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// dialog...
 
-				dialog = new HashtagDialog(moreID);
+				dialog = new HashtagDialog(moreID, seed);
 				dialog.FormClosed += Dialog_FormClosed;
 
 				// signal the background scanner to use a longer inter-page delay while this
