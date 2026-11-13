@@ -878,8 +878,8 @@ Do you want to continue?</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>Unrecognized command</value>
-    <comment>error</comment>
+    <value>No exact match found</value>
+    <comment>error !EDIT</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
     <value>Clear recent commands</value>

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Drawing;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -18,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		private string[] commands;
 		private string[] recentNames;
 		private bool escaping;
+		private IntPtr warningHandle = IntPtr.Zero;
 
 
 		public CommandPaletteDialog()
@@ -75,7 +77,44 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnLoad(e);
 			//Native.SwitchToThisWindow(Handle, false);
+
+			// ErrorProvider draws its icon at native size (32px) without DPI scaling, so
+			// build a warning icon sized for the window's DPI and no taller than the textbox
+			var dpi = Scaling.GetDpi(this);
+			var size = Math.Max(14, Math.Min((16 * dpi / 96) + 2, cmdBox.Height - 6));
+
+			// nudge the icon right, away from the textbox
+			errorProvider.SetIconPadding(cmdBox, Math.Max(2, 2 * dpi / 96));
+
+			// new Icon(icon, size) is ignored for single-image system icons, so redraw it
+			using var bitmap = new Bitmap(size, size);
+			using (var g = Graphics.FromImage(bitmap))
+			{
+				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+				g.DrawIcon(SystemIcons.Warning, new Rectangle(0, 0, size, size));
+			}
+
+			// the icon wraps this handle without owning it; destroyed in OnFormClosed
+			warningHandle = bitmap.GetHicon();
+			errorProvider.Icon = Icon.FromHandle(warningHandle);
 		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+
+			if (warningHandle != IntPtr.Zero)
+			{
+				errorProvider.Icon = SystemIcons.Error;
+				DestroyIcon(warningHandle);
+				warningHandle = IntPtr.Zero;
+			}
+		}
+
+
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool DestroyIcon(IntPtr handle);
 
 
 		public void PopulateCommands(string[] commands, string[] recentNames)
