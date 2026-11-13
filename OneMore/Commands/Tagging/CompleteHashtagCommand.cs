@@ -72,8 +72,14 @@ namespace River.OneMoreAddIn.Commands
 
 				await using (var one = new OneNote(out var page, out _))
 				{
-					word = new PageEditor(page) { WordChars = "-" }.GetSelectedText().Trim().TrimStart('#');
+					var raw = new PageEditor(page) { WordChars = "-" }.GetSelectedText();
+					word = raw.Trim().TrimStart('#');
 					windowHandle = one.WindowHandle;
+					logger.WriteLine($"CompleteHashtagCommand.Execute: raw='{raw}' word='{word}'");
+					var sel = page.Root.Descendants(page.Namespace + "T")
+						.FirstOrDefault(e => e.Attributes("selected").Any());
+					logger.WriteLine("CompleteHashtagCommand.Execute: cursor OE = " +
+						(sel?.Parent?.ToString(System.Xml.Linq.SaveOptions.DisableFormatting) ?? "none"));
 				}
 
 				// signal the background HashtagScanner to back off (longer inter-page
@@ -90,7 +96,11 @@ namespace River.OneMoreAddIn.Commands
 				logger.Debug($"CompleteHashtagCommand.Execute: read {names.Length} tag names, " +
 					$"{recent.Length} recent, in {watch.ElapsedMilliseconds}ms");
 
-				dialog = new CompleteHashtagDialog(word, names, recent);
+				logger.WriteLine($"CompleteHashtagCommand.Execute: " +
+						$"{names.Count(n => n.IndexOf(word, System.StringComparison.OrdinalIgnoreCase) >= 0)} " +
+						$"of {names.Length} names contain '{word}'");
+
+					dialog = new CompleteHashtagDialog(word, names, recent);
 				dialog.FormClosed += Dialog_FormClosed;
 
 				var anchor = CaretLocator.Locate(windowHandle);

@@ -64,8 +64,15 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static bool EndsWithWhitespace(this string value)
+		public static bool EndsWithWhitespace(this string value, string wordChars = null)
 		{
+			if (!string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(wordChars) &&
+				wordChars.IndexOf(value[value.Length - 1]) >= 0)
+			{
+				// the extra word character is part of the word, not a delimiter
+				return false;
+			}
+
 			// intentionally \W (word-boundary), not \s -- callers use this to
 			// detect whether text is still part of the "current word" (e.g. for
 			// style/hashtag extension), where punctuation is also a delimiter
@@ -79,8 +86,15 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static bool StartsWithWhitespace(this string value)
+		public static bool StartsWithWhitespace(this string value, string wordChars = null)
 		{
+			if (!string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(wordChars) &&
+				wordChars.IndexOf(value[0]) >= 0)
+			{
+				// the extra word character is part of the word, not a delimiter
+				return false;
+			}
+
 			// intentionally \W (word-boundary), not \s -- callers use this to
 			// detect whether text is still part of the "current word" (e.g. for
 			// style/hashtag extension), where punctuation is also a delimiter

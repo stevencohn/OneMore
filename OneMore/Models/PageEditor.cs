@@ -710,7 +710,7 @@ namespace River.OneMoreAddIn.Models
 							continue;
 
 						// ends with delimiter so can't be part of current word
-						if (text.Value.EndsWithWhitespace())
+						if (text.Value.EndsWithWhitespace(WordChars))
 							break;
 
 						// extract last word and pump through the editor; no word means the
@@ -732,7 +732,7 @@ namespace River.OneMoreAddIn.Models
 							continue;
 
 						// ends with delimiter so can't be part of current word
-						if (span.Value.EndsWithWhitespace())
+						if (span.Value.EndsWithWhitespace(WordChars))
 							break;
 
 						// extract last word and pump through editor
@@ -778,7 +778,7 @@ namespace River.OneMoreAddIn.Models
 							continue;
 
 						// starts with delimiter so can't be part of current word
-						if (text.Value.StartsWithWhitespace())
+						if (text.Value.StartsWithWhitespace(WordChars))
 							break;
 
 						// extract first word and pump through editor; no word means the
@@ -800,7 +800,7 @@ namespace River.OneMoreAddIn.Models
 							continue;
 
 						// starts with delimiter so can't be part of current word
-						if (span.Value.StartsWithWhitespace())
+						if (span.Value.StartsWithWhitespace(WordChars))
 							break;
 
 						// extract first word and pump through editor
