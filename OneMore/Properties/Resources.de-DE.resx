@@ -876,7 +876,7 @@ Möchten Sie fortfahren?</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>Unbekannter Befehl</value>
+    <value>Keine genaue Übereinstimmung gefunden</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">

@@ -874,7 +874,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>認識されないコマンドです。</value>
+    <value>完全に一致するものが見つかりませんでした</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">

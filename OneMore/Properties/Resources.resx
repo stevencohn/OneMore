@@ -879,7 +879,7 @@ Do you want to continue?</value>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
     <value>No exact match found</value>
-    <comment>error !EDIT</comment>
+    <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
     <value>Clear recent commands</value>

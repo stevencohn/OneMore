@@ -873,7 +873,7 @@ Wil je doorgaan?</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>onherkenbaar commando</value>
+    <value>Geen exacte match gevonden</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">

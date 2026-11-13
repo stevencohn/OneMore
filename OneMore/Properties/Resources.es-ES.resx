@@ -876,7 +876,7 @@ Invertir</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>Comando no reconocido</value>
+    <value>No se encontró ninguna coincidencia exacta</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
