@@ -873,7 +873,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>פקודה לא מזוהה</value>
+    <value>לא נמצאה התאמה מדויקת</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">

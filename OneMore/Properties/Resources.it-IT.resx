@@ -874,7 +874,7 @@ Vuoi continuare?</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>Comando non riconosciuto</value>
+    <value>Nessuna corrispondenza esatta trovata</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">

@@ -110,8 +110,7 @@
 			// errorProvider
 			// 
 			this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-			this.errorProvider.ContainerControl = this;
-			// 
+			this.errorProvider.ContainerControl = this;			// 
 			// CommandPaletteDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);

@@ -1778,7 +1778,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unrecognized command.
+        ///   Looks up a localized string similar to No exact match found.
         /// </summary>
         internal static string CommandPalette_unrecognized {
             get {

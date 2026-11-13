@@ -876,7 +876,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>أمر غير معرف</value>
+    <value>لم يتم العثور على تطابق تام</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
@@ -7465,7 +7465,7 @@ ISO-code then comma then language name</comment>
     <value>التحقق من فهرس البحث...</value>
   </data>
   <data name="SearchDialog_indexSummary" xml:space="preserve">
-    <value>{2:N0} الصفحات التي تم إرجاعها: {0:N0} من فهرس البحث، {1:N0} للقراءة من OneNote</value>
+    <value>الصفحات {2:N0} التي تم إرجاعها: {0:N0} من فهرس البحث، {1:N0} للقراءة من OneNote</value>
   <comment> !EDIT</comment></data>
   <data name="SearchDialog_introEmoji.Text" xml:space="preserve">
     <value>اكتب أو الصق واحدًا أو أكثر من الرموز التعبيرية؛ يتم تجاهل أي نص آخر. تتم قراءة الصفحات مباشرة وليس من الفهرس، لذلك قد تستغرق النطاقات الكبيرة وقتًا أطول. أضف \\ لدفتر الملاحظات هذا أو \name لدفتر ملاحظات آخر.</value>

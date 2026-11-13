@@ -877,7 +877,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>无法识别的命令</value>
+    <value>未找到精确匹配</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
