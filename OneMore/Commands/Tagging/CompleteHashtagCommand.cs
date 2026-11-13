@@ -180,10 +180,47 @@ namespace River.OneMoreAddIn.Commands
 				new PageEditor(page).InsertOrReplace(tag);
 			}
 
+			PlaceCaretAfterTag(page, ns, tag);
+
 			using var indent = logger.Indent();
 			logger.WriteLine($"applied hashtag '{tag}'");
 
 			await one.Update(page);
+
+			// reset focus to the OneNote window, as CommandPaletteCommand does, otherwise
+			// the page update leaves the text cursor hidden
+			Native.SwitchToThisWindow(one.WindowHandle, false);
+		}
+
+
+		// Leaves the completed tag unselected with the text cursor immediately after it,
+		// represented in OneNote as an empty selected T run
+		private static void PlaceCaretAfterTag(Page page, XNamespace ns, string tag)
+		{
+			var selected = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+				.ToList();
+
+			if (selected.Count == 0)
+			{
+				return;
+			}
+
+			var last = selected[selected.Count - 1];
+			if (last.GetCData()?.Value != tag)
+			{
+				// not the run we inserted; leave the selection as OneNote has it
+				return;
+			}
+
+			foreach (var run in selected)
+			{
+				run.SetAttributeValue("selected", null);
+			}
+
+			last.AddAfterSelf(new XElement(ns + "T",
+				new XAttribute("selected", "all"),
+				new XCData(string.Empty)));
 		}
 
 
