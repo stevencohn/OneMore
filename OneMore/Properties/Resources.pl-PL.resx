@@ -3497,6 +3497,10 @@ Brązowy Kwadrat</value>
     <value>Na górze strony</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>Spis treści wydaje się aktualny, a odświeżanie tej dużej strony może być powolne. Czy mimo to chcesz go odświeżyć?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Dla tego notesu dostępna jest strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
 
@@ -4209,6 +4213,18 @@ Zastosuj do tego notatnika</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>Strona</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>Spis treści</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>Minimalny rozmiar strony (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>Przy odświeżeniu pokaż ostrzeżenie, gdy spis treści będzie aktualny</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Brak treści do pasty; skopiuj jedną lub więcej komórek tabeli do pasty</value>

@@ -21,8 +21,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		public const string RefreshNotebookCmd = "refreshn";
 
 
-		public NotebookTocGenerator(TocParameters parameters)
-			: base(parameters)
+		public NotebookTocGenerator(
+			TocParameters parameters,
+			string pageId = null, string sectionId = null, string notebookId = null)
+			: base(parameters, pageId, sectionId, notebookId)
 		{
 		}
 
@@ -82,10 +84,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 			PageNamespace.Set(ns);
 
 			var scope = withPages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
-			var notebook = await one.GetNotebook(scope);
+			var notebook = targetNotebookId is null
+				? await one.GetNotebook(scope)
+				: await one.GetNotebook(targetNotebookId, scope);
+
 			if (notebook is null)
 			{
-				logger.WriteLine($"no current notebook (id:[{one.CurrentNotebookId}])");
+				logger.WriteLine($"no current notebook (id:[{targetNotebookId ?? one.CurrentNotebookId}])");
 				return;
 			}
 
@@ -198,8 +203,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 						indent = new XElement(ns + "OEChildren");
 						_ = await BuildSection(one, indent, pages.ToArray(), 0, 1);
 
-						// BuildSection skips the TOC's own page, so if this section contains
-						// only that page, indent ends up empty; OneNote's schema rejects an
+						// BuildSection skips the TOC's own page and all section/notebook TOC
+						// pages, so if this section contains only those, indent ends up empty;
+						// OneNote's schema rejects an
 						// empty OEChildren, so fall back to the plain paragraph form below
 						if (!indent.HasElements)
 						{

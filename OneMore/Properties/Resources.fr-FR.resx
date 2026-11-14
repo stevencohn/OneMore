@@ -3500,6 +3500,10 @@ Carré Marron</value>
     <value>Haut de page</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>La table des matières semble être à jour et l'actualisation de cette grande page peut être lente. Voulez-vous quand même le rafraîchir ?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Il existe une page de table des matières pour ce notebook. Vous pouvez actualiser cette page ou créer une nouvelle page.
 
@@ -4220,6 +4224,18 @@ Appliquer à ce notebook</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>Page</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>Table des matières</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>Taille minimale de la page (Ko) :</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>Lors de l'actualisation, afficher un avertissement lorsque la table des matières est à jour</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Aucun contenu à coller ; </value>

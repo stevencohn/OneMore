@@ -33,9 +33,34 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		protected UI.ProgressDialog progress;
 
 
-		protected HierarchyTocGenerator(TocParameters parameters)
+		// optional explicit targets used to refresh a TOC page other than the current page
+		protected readonly string targetPageId;
+		protected readonly string targetSectionId;
+		protected readonly string targetNotebookId;
+
+
+		/// <summary>
+		/// Initialize a new generator.
+		/// </summary>
+		/// <param name="parameters">TOC parameters</param>
+		/// <param name="pageId">
+		/// ID of the TOC page to refresh; if null, the current page is used
+		/// </param>
+		/// <param name="sectionId">
+		/// ID of the section containing the TOC page; if null, the current section is used
+		/// </param>
+		/// <param name="notebookId">
+		/// ID of the notebook containing the TOC page; if null, the current notebook is used
+		/// </param>
+		protected HierarchyTocGenerator(
+			TocParameters parameters,
+			string pageId = null, string sectionId = null, string notebookId = null)
 			: base(parameters)
 		{
+			targetPageId = pageId;
+			targetSectionId = sectionId;
+			targetNotebookId = notebookId;
+
 			withPages = parameters.Contains("pages");
 			withPreviews = parameters.Contains("preview");
 
@@ -145,8 +170,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				else if (pageLevel == level)
 				{
 					// never list the TOC page itself, e.g. when refreshing an existing
-					// TOC whose own page is now part of the section/notebook hierarchy
-					if (pageID == ownerPageId)
+					// TOC whose own page is now part of the section/notebook hierarchy,
+					// nor any other section or notebook TOC page
+					if (pageID == ownerPageId || IsHierarchyTocPage(element))
 					{
 						if (progress is not null)
 						{
@@ -200,6 +226,19 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 			}
 
 			return index;
+		}
+
+
+		/// <summary>
+		/// Determines whether the hierarchy page element is a section or notebook TOC page,
+		/// as marked by its table of contents meta.
+		/// </summary>
+		private static bool IsHierarchyTocPage(XElement page)
+		{
+			return page.Elements().Any(e =>
+				e.Name.LocalName == "Meta" &&
+				e.Attribute("name")?.Value == MetaNames.TableOfContents &&
+				e.Attribute("content")?.Value is "section" or "notebook");
 		}
 
 
@@ -326,7 +365,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 			try
 			{
-				var page = await one.GetPage();
+				var page = targetPageId is null
+					? await one.GetPage()
+					: await one.GetPage(targetPageId);
+
 				var ns = page.Namespace;
 
 				var container = FindContainer(page.Root, ns);
@@ -342,7 +384,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 				// rebuild...
 
-				var section = await one.GetSection();
+				var section = targetSectionId is null
+					? await one.GetSection()
+					: await one.GetSection(targetSectionId);
+
 				logger.WriteLine($"refresh hierarchy toc in section {section.Attribute("name").Value}");
 
 				await BuildContents(page, container, section);

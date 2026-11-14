@@ -4,11 +4,17 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using Resx = Properties.Resources;
 
 
 	internal partial class PageSheet : SheetBase
 	{
+		/// <summary>
+		/// Default minimum page size, in KB, for the TOC up-to-date warning
+		/// </summary>
+		public const int DefaultTocWarnSize = 250;
+
 
 		public PageSheet(SettingsProvider provider) : base(provider)
 		{
@@ -25,7 +31,10 @@ namespace River.OneMoreAddIn.Settings
 					"duplicateGroup",
 					"insertNoteBox",
 					"insertBacklinksBox",
-					"refreshTocBox"
+					"refreshTocBox",
+					"tocGroup",
+					"tocWarnBox",
+					"tocSizeLabel"
 				});
 			}
 
@@ -33,6 +42,14 @@ namespace River.OneMoreAddIn.Settings
 			insertNoteBox.Checked = settings.Get<bool>("insertNote");
 			insertBacklinksBox.Checked = settings.Get<bool>("insertBacklinks");
 			refreshTocBox.Checked = settings.Get<bool>("refreshToc");
+
+			tocWarnBox.Checked = settings.Get<bool>("tocWarnUpToDate");
+			tocSizeBox.Value = Math.Max(tocSizeBox.Minimum, Math.Min(tocSizeBox.Maximum,
+				settings.Get("tocWarnSize", DefaultTocWarnSize)));
+
+			tocSizeLabel.Enabled = tocSizeBox.Enabled = tocWarnBox.Checked;
+			tocWarnBox.CheckedChanged += (s, e) =>
+				tocSizeLabel.Enabled = tocSizeBox.Enabled = tocWarnBox.Checked;
 		}
 
 
@@ -52,6 +69,15 @@ namespace River.OneMoreAddIn.Settings
 			updated = refreshTocBox.Checked
 				? settings.Add("refreshToc", true) || updated
 				: settings.Remove("refreshToc") || updated;
+
+			updated = tocWarnBox.Checked
+				? settings.Add("tocWarnUpToDate", true) || updated
+				: settings.Remove("tocWarnUpToDate") || updated;
+
+			var size = (int)tocSizeBox.Value;
+			updated = size != DefaultTocWarnSize
+				? settings.Add("tocWarnSize", size) || updated
+				: settings.Remove("tocWarnSize") || updated;
 
 			if (updated)
 			{

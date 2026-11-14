@@ -3500,6 +3500,10 @@ OneNoteファイル (*.one)</value>
     <value>ページの上部</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>目次は最新であるように見えますが、この大きなページの更新には時間がかかる場合があります。とにかくリフレッシュしてみませんか？</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>このノートブックに目次ページがあります。既存のページを更新するか、新しいページを作成できます。
 
@@ -4212,6 +4216,18 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
   <data name="PageSheet_Title" xml:space="preserve">
     <value>ページ</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>目次</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>最小ページ サイズ (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>更新時に、目次が最新の場合に警告を表示します</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>ペーストするコンテンツがありません。1つ以上のセルをコピーしてペーストする必要があります</value>
