@@ -159,8 +159,11 @@ namespace River.OneMoreAddIn
 			// working correctly, although it worked fine from the command palette and Replay...
 			// TODO: not sure why this fixes it! needs more research
 
+			PaletteTrace.Mark("RunCore queued to threadpool");
+
 			await Task.Run(async () =>
 			{
+				PaletteTrace.Mark("threadpool started");
 				await Run("Running", command, args);
 
 				// CLI commands have no command-palette/replay UI surface, and may pass a
@@ -194,6 +197,12 @@ namespace River.OneMoreAddIn
 
 			using var indent = logger.Indent(msg);
 
+			// TEMPORARY diagnostics for #2926
+			if (command is Commands.CommandPaletteCommand)
+			{
+				PaletteTrace.Arm();
+			}
+
 			// CLI commands never show UI, so there's no owner window to discover; skip the
 			// throwaway OneNote() activation that exists solely to read OwnerWindow. This
 			// avoids unnecessary COM churn during batched CLI page operations.
@@ -203,8 +212,11 @@ namespace River.OneMoreAddIn
 				// need to rediscover active OneNote window for each command instantiation
 				// otherwise closing the primary or last-used active window will leave owner
 				// set to an invalid window handle
+				PaletteTrace.Mark("before new OneNote()");
 				await using var one = new OneNote();
+				PaletteTrace.Mark("OneNote() created");
 				owner = one.OwnerWindow;
+				PaletteTrace.Mark("OwnerWindow resolved");
 			}
 
 			StringBuilder cliBuffer = null;
@@ -238,6 +250,7 @@ namespace River.OneMoreAddIn
 					? TelemetryClient.LogEvent(eventName, string.Empty)
 					: null;
 
+				PaletteTrace.Mark("before command.Execute");
 				await command.Execute(args);
 
 				// In the add-in path the process is long-lived so fire-and-forget is fine.

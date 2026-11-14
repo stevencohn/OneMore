@@ -405,6 +405,10 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetForegroundWindow();
 
+		// TEMPORARY diagnostics for #2926: tick count (ms) when the last message was posted
+		[DllImport("user32.dll")]
+		public static extern int GetMessageTime();
+
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getparent
 		[DllImport("user32.dll")]
