@@ -34,7 +34,13 @@ namespace River.OneMoreAddIn.Settings
 			this.insertNoteBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.insertBacklinksBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.refreshTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.tocGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.tocWarnBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.tocSizeLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.tocSizeBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.duplicateGroup.SuspendLayout();
+			this.tocGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tocSizeBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -115,19 +121,91 @@ namespace River.OneMoreAddIn.Settings
 			this.refreshTocBox.ThemedBack = null;
 			this.refreshTocBox.ThemedFore = null;
 			this.refreshTocBox.UseVisualStyleBackColor = true;
-			// 
+			//
+			// tocGroup
+			//
+			this.tocGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tocGroup.BorderThickness = 3;
+			this.tocGroup.Controls.Add(this.tocWarnBox);
+			this.tocGroup.Controls.Add(this.tocSizeLabel);
+			this.tocGroup.Controls.Add(this.tocSizeBox);
+			this.tocGroup.Location = new System.Drawing.Point(13, 259);
+			this.tocGroup.Name = "tocGroup";
+			this.tocGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
+			this.tocGroup.ShowOnlyTopEdge = true;
+			this.tocGroup.Size = new System.Drawing.Size(772, 120);
+			this.tocGroup.TabIndex = 2;
+			this.tocGroup.TabStop = false;
+			this.tocGroup.Text = "Table of Contents";
+			this.tocGroup.ThemedBorder = null;
+			this.tocGroup.ThemedFore = null;
+			//
+			// tocWarnBox
+			//
+			this.tocWarnBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.tocWarnBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.tocWarnBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.tocWarnBox.Location = new System.Drawing.Point(18, 39);
+			this.tocWarnBox.Name = "tocWarnBox";
+			this.tocWarnBox.Size = new System.Drawing.Size(720, 25);
+			this.tocWarnBox.StylizeImage = false;
+			this.tocWarnBox.TabIndex = 0;
+			this.tocWarnBox.Text = "On Refresh, show warning when table of contents is up to date";
+			this.tocWarnBox.ThemedBack = null;
+			this.tocWarnBox.ThemedFore = null;
+			this.tocWarnBox.UseVisualStyleBackColor = true;
+			//
+			// tocSizeLabel
+			//
+			this.tocSizeLabel.AutoSize = true;
+			this.tocSizeLabel.Location = new System.Drawing.Point(40, 77);
+			this.tocSizeLabel.Name = "tocSizeLabel";
+			this.tocSizeLabel.Size = new System.Drawing.Size(180, 20);
+			this.tocSizeLabel.TabIndex = 1;
+			this.tocSizeLabel.Text = "Minimum page size (KB):";
+			this.tocSizeLabel.Scrubber = this.tocSizeBox;
+			this.tocSizeLabel.ThemedBack = null;
+			this.tocSizeLabel.ThemedFore = null;
+			//
+			// tocSizeBox
+			//
+			this.tocSizeBox.Location = new System.Drawing.Point(230, 74);
+			this.tocSizeBox.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+			this.tocSizeBox.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			this.tocSizeBox.Name = "tocSizeBox";
+			this.tocSizeBox.Size = new System.Drawing.Size(100, 26);
+			this.tocSizeBox.TabIndex = 2;
+			this.tocSizeBox.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+			//
 			// PageSheet
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.Controls.Add(this.tocGroup);
 			this.Controls.Add(this.duplicateGroup);
 			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "PageSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
-			this.Size = new System.Drawing.Size(800, 300);
+			this.Size = new System.Drawing.Size(800, 400);
 			this.duplicateGroup.ResumeLayout(false);
+			this.tocGroup.ResumeLayout(false);
+			this.tocGroup.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tocSizeBox)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -139,5 +217,9 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox insertNoteBox;
 		private UI.MoreCheckBox insertBacklinksBox;
 		private UI.MoreCheckBox refreshTocBox;
+		private UI.MoreGroupBox tocGroup;
+		private UI.MoreCheckBox tocWarnBox;
+		private UI.MoreLabel tocSizeLabel;
+		private UI.MoreNumericUpDown tocSizeBox;
 	}
 }

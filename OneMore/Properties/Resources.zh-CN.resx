@@ -3503,6 +3503,10 @@ OneNote 文件 (*.one)</value>
     <value>页面顶部</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>目录似乎是最新的，刷新这个大页面可能会很慢。您还想刷新吗？</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>此笔记本有一个目录页。您可以刷新该页面或创建新目录页。
 
@@ -4223,6 +4227,18 @@ OneNote 文件 (*.one)</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>页</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>目录</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>最小页面大小 (KB)：</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>刷新时，目录为最新时显示警告</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>没有要粘贴的内容；</value>

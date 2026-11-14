@@ -20,8 +20,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 		public const string RefreshSectionCmd = "refreshs";
 
 
-		public SectionTocGenerator(TocParameters parameters)
-			: base(parameters)
+		public SectionTocGenerator(
+			TocParameters parameters,
+			string pageId = null, string sectionId = null)
+			: base(parameters, pageId, sectionId)
 		{
 		}
 

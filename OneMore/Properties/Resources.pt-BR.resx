@@ -3497,6 +3497,10 @@ Quadrado Marrom</value>
     <value>Topo da página</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>O índice parece estar atualizado e a atualização desta página grande pode ser lenta. Você quer atualizá-lo mesmo assim?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Há uma página de índice para este caderno. Você pode atualizar essa página ou criar uma nova página.
 
@@ -4209,6 +4213,18 @@ Aplicar a este caderno</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>Página</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>Índice</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>Tamanho mínimo da página (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>Em Atualizar, mostrar aviso quando o índice estiver atualizado</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Nenhum conteúdo para colar; </value>

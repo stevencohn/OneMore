@@ -81,11 +81,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 			}
 
 			var level = parameters.FirstOrDefault(p => p.StartsWith("level"));
-			if (level is not null)
-			{
-				var levels = int.Parse(level.Substring(5));
-				headings = headings.Where(h => h.Level <= levels).ToList();
-			}
+			headings = FilterByLevel(headings);
 
 			var todo = parameters.FirstOrDefault(p => p.StartsWith("todo"));
 			if (todo is not null)
@@ -671,6 +667,95 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 				heading.IsRightAligned = heading.HasTopLink = false;
 			}
+		}
+
+
+		private List<Heading> FilterByLevel(List<Heading> headings)
+		{
+			var level = parameters.FirstOrDefault(p => p.StartsWith("level"));
+			if (level is not null)
+			{
+				var levels = int.Parse(level.Substring(5));
+				return headings.Where(h => h.Level <= levels).ToList();
+			}
+
+			return headings;
+		}
+
+
+		/// <summary>
+		/// Determines whether the existing TOC shows no obvious changes to the page, by comparing
+		/// the lastModifiedTime of the TOC's paragraph with that of every heading paragraph within
+		/// the TOC's level range, and the number of headings with the number of TOC entries.
+		/// This only reads the page so it is fast compared to writing it back.
+		/// </summary>
+		/// <returns>
+		/// upToDate is true if no changes are apparent; sizeKb is the approximate size of the
+		/// page XML in KB
+		/// </returns>
+		public async Task<(bool upToDate, int sizeKb)> CheckUpToDate()
+		{
+			await using var one = new OneNote();
+
+			page = pageId is null
+				? await one.GetPage(OneNote.PageDetail.Basic)
+				: await one.GetPage(pageId, OneNote.PageDetail.Basic);
+
+			if (page is null)
+			{
+				return (false, 0);
+			}
+
+			ns = page.Namespace;
+
+			var sizeKb = page.Root.ToString(SaveOptions.DisableFormatting).Length / 1024;
+
+			var meta = FindMetaElement();
+			if (meta?.Parent is null || !TryGetModifiedTime(meta.Parent, out var tocTime))
+			{
+				return (false, sizeKb);
+			}
+
+			var secondary = parameters.Any(p => p.Equals("secondary"));
+
+			var headings = page.GetHeadings(one, linked: false, secondary: secondary);
+			headings = FilterByLevel(headings);
+			if (headings.Count == 0)
+			{
+				return (false, sizeKb);
+			}
+
+			// a deleted heading does not touch the timestamp of any remaining paragraph
+			if (headings.Count != CaptureEntries().Count)
+			{
+				return (false, sizeKb);
+			}
+
+			// headings are stamped in the same save as the TOC, so allow a little slack
+			var threshold = tocTime.AddSeconds(5);
+			foreach (var heading in headings)
+			{
+				if (!TryGetModifiedTime(heading.Root, out var time) || time > threshold)
+				{
+					return (false, sizeKb);
+				}
+			}
+
+			return (true, sizeKb);
+		}
+
+
+		private static bool TryGetModifiedTime(XElement element, out DateTime time)
+		{
+			var value = element.Attribute("lastModifiedTime")?.Value;
+			if (value is not null && DateTime.TryParse(value, CultureInfo.InvariantCulture,
+				DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out time))
+			{
+				return true;
+			}
+
+			time = DateTime.MinValue;
+			return false;
 		}
 
 

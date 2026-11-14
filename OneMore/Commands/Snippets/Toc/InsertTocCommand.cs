@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using Snippets.Toc;
 	using System;
@@ -12,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	[CommandService]
@@ -37,8 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			new CliParameterDefinition()
 			.AddString("notebook", "Name of notebook to process", required: true)
 			.AddString("section", "Path of section to process", required: true)
-			.AddString("page", "Name of page to process", required: true)
-			.AddBoolean("refresh", "Refresh section TOC instead of building");
+			.AddString("page", "Name of page to process", required: true);
 
 		#endregion CLI Implementation
 
@@ -54,7 +55,6 @@ namespace River.OneMoreAddIn.Commands
 			if (runningFromCli)
 			{
 				var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
-				var doRefresh = cliParams?.Get<bool>("refresh") ?? false;
 				pageId = cliParams?.Get<string>("pageId");
 
 				var tocParams = await CollectParameterDefaults(pageId);
@@ -63,15 +63,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				if (doRefresh)
-				{
-					await Refresh(tocParams);
-				}
-				else
-				{
-					await Build(tocParams);
-				}
-
+				await Build(tocParams);
 				return;
 			}
 
@@ -118,6 +110,13 @@ namespace River.OneMoreAddIn.Commands
 				generator = new PageTocGenerator(parameters, pageId);
 			}
 
+			// the up-to-date warning applies only to the interactive Refresh link on a page TOC
+			if (!runningFromCli && generator is PageTocGenerator pageGenerator &&
+				!await ConfirmRefresh(pageGenerator))
+			{
+				return;
+			}
+
 			if (!await generator.Refresh() && !runningFromCli)
 			{
 				ShowInfo("Could not refresh the table of contents. Please check the OneMore.log file");
@@ -125,7 +124,39 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static async Task<TocParameters> CollectParameterDefaults(string pageId = null)
+		/// <summary>
+		/// If enabled in Settings > Page, warns the user when the TOC appears to be up to date
+		/// and the page is large enough that refreshing it would be slow.
+		/// </summary>
+		/// <returns>True to continue with the refresh</returns>
+		private async Task<bool> ConfirmRefresh(PageTocGenerator generator)
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(PageSheet));
+			if (!settings.Get<bool>("tocWarnUpToDate"))
+			{
+				return true;
+			}
+
+			var minKb = settings.Get("tocWarnSize", PageSheet.DefaultTocWarnSize);
+
+			var (upToDate, sizeKb) = await generator.CheckUpToDate();
+			if (!upToDate || sizeKb < minKb)
+			{
+				return true;
+			}
+
+			var result = MoreMessageBox.ShowQuestion(owner, Resx.InsertTocCommand_UpToDate);
+			if (result == DialogResult.Yes)
+			{
+				return true;
+			}
+
+			logger.WriteLine("table of contents is up to date; refresh cancelled by user");
+			return false;
+		}
+
+
+		internal static async Task<TocParameters> CollectParameterDefaults(string pageId = null)
 		{
 			var parameters = new TocParameters();
 

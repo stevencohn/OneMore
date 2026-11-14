@@ -8021,6 +8021,15 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertTocCommand_Top", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The table of contents appears to be up to date and refreshing this large page can be slow. Do you want to refresh it anyway?.
+        /// </summary>
+        internal static string InsertTocCommand_UpToDate {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_UpToDate", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to There is a table of contents page for this notebook. You can refresh that page or create a new page.
@@ -10104,6 +10113,33 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string PageSheet_tocGroup_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_tocGroup.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum page size (KB):.
+        /// </summary>
+        internal static string PageSheet_tocSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_tocSizeLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to On Refresh, show warning when table of contents is up to date.
+        /// </summary>
+        internal static string PageSheet_tocWarnBox_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_tocWarnBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>

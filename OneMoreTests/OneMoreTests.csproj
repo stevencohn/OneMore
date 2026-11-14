@@ -82,6 +82,7 @@
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\AnnotateHexColorsCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
+    <Compile Include="Commands\Snippets\PageTocUpToDateTests.cs" />
     <Compile Include="Models\HierarchyDiffTests.cs" />
     <Compile Include="Models\PageHeadingsTests.cs" />
     <Compile Include="Commands\Compare\SimilarityEngineTests.cs" />

@@ -3492,6 +3492,10 @@ Braunes Quadrat</value>
     <value>Seitenanfang</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>Das Inhaltsverzeichnis scheint auf dem neuesten Stand zu sein und die Aktualisierung dieser großen Seite kann langsam sein. Möchten Sie es trotzdem aktualisieren?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Für dieses Notizbuch gibt es eine Seite mit einem Inhaltsverzeichnis. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
 
@@ -4208,6 +4212,18 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>Seite</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>Inhaltsverzeichnis</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>Mindestseitengröße (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>Beim Aktualisieren wird eine Warnung angezeigt, wenn das Inhaltsverzeichnis auf dem neuesten Stand ist</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Kein Inhalt zum Einfügen; </value>

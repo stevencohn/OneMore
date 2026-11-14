@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.ComponentModel;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -97,6 +98,8 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
+			Scrubber.Focus();
+
 			if (Scrubber is NumericUpDown box)
 			{
 				var value = Math.Max(box.Minimum, Math.Min(box.Maximum, originalValue));
@@ -130,6 +133,58 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			if (Enabled)
+			{
+				base.OnPaint(e);
+				return;
+			}
+
+			// a disabled Label ignores ForeColor and draws its own derived disabled color,
+			// which is nearly black in dark mode, so draw the text with the themed GrayText
+			// color (the ForeColor set for the disabled state) instead
+			var flags = TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl;
+			if (!UseMnemonic)
+			{
+				flags |= TextFormatFlags.NoPrefix;
+			}
+
+			if (RightToLeft == RightToLeft.Yes)
+			{
+				flags |= TextFormatFlags.RightToLeft;
+			}
+
+			flags |= TextAlign switch
+			{
+				ContentAlignment.TopCenter => TextFormatFlags.Top | TextFormatFlags.HorizontalCenter,
+				ContentAlignment.TopRight => TextFormatFlags.Top | TextFormatFlags.Right,
+				ContentAlignment.MiddleLeft => TextFormatFlags.VerticalCenter | TextFormatFlags.Left,
+				ContentAlignment.MiddleCenter => TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter,
+				ContentAlignment.MiddleRight => TextFormatFlags.VerticalCenter | TextFormatFlags.Right,
+				ContentAlignment.BottomLeft => TextFormatFlags.Bottom | TextFormatFlags.Left,
+				ContentAlignment.BottomCenter => TextFormatFlags.Bottom | TextFormatFlags.HorizontalCenter,
+				ContentAlignment.BottomRight => TextFormatFlags.Bottom | TextFormatFlags.Right,
+				_ => TextFormatFlags.Top | TextFormatFlags.Left
+			};
+
+			var bounds = Rectangle.Inflate(ClientRectangle, -Padding.Horizontal / 2, -Padding.Vertical / 2);
+			TextRenderer.DrawText(e.Graphics, Text, Font, bounds, ForeColor, flags);
+		}
+
+
+		protected override void OnEnabledChanged(EventArgs e)
+		{
+			base.OnEnabledChanged(e);
+
+			// OnLoad picks the color once; keep it in sync when enabled state changes later
+			var manager = ThemeManager.Instance;
+			ForeColor = Enabled
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
+		}
+
+
 		private bool CanScrub =>
 			Scrubber is NumericUpDown or TrackBar && Scrubber.Enabled && Enabled;
 
@@ -147,6 +202,9 @@ namespace River.OneMoreAddIn.UI
 
 			if (e.Button == MouseButtons.Left && CanScrub)
 			{
+				// move focus to the scrubbed control so it doesn't remain on an unrelated one
+				Scrubber.Focus();
+
 				dragging = true;
 				scrubbing = false;
 				startX = e.X;

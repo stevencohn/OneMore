@@ -3497,6 +3497,10 @@ Total Row Font
     <value>ראש העמוד</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>נראה שתוכן העניינים מעודכן ורענון הדף הגדול הזה עשוי להיות איטי. האם אתה רוצה לרענן אותו בכל זאת?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>למחברת זו יש דף תוכן עניינים. אתה יכול לרענן את הדף או ליצור דף חדש.
 
@@ -4209,6 +4213,18 @@ Total Row Font
   <data name="PageSheet_Title" xml:space="preserve">
     <value>עַמוּד</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>תוֹכֶן הָעִניָנִים</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>גודל עמוד מינימלי (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>ברענון, הצג אזהרה כאשר תוכן העניינים מעודכן</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>אין תוכן להדביק; העתק תא טבלה אחד או יותר להדבקה</value>

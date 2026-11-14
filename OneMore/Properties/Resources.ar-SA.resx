@@ -3500,6 +3500,10 @@
     <value>أعلى الصفحة</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>يبدو أن جدول المحتويات محدث وقد يكون تحديث هذه الصفحة الكبيرة بطيئًا. هل تريد تحديثه على أي حال؟</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>هناك صفحة جدول المحتويات لهذا دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
 
@@ -4220,6 +4224,18 @@
   <data name="PageSheet_Title" xml:space="preserve">
     <value>صفحة</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>الحد الأدنى لحجم الصفحة (كيلو بايت):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>في التحديث، قم بإظهار التحذير عندما يكون جدول المحتويات محدثًا</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>لا يوجد محتوى للصقه ؛ </value>

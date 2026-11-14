@@ -3501,6 +3501,10 @@ Brown Square</value>
     <value>Top of page</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocCommand_UpToDate" xml:space="preserve">
+    <value>The table of contents appears to be up to date and refreshing this large page can be slow. Do you want to refresh it anyway?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>There is a table of contents page for this notebook. You can refresh that page or create a new page.
 
@@ -4233,6 +4237,18 @@ Apply to this notebook</value>
   <data name="PageSheet_Title" xml:space="preserve">
     <value>Page</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_tocGroup.Text" xml:space="preserve">
+    <value>Table of Contents</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_tocSizeLabel.Text" xml:space="preserve">
+    <value>Minimum page size (KB):</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageSheet_tocWarnBox.Text" xml:space="preserve">
+    <value>On Refresh, show warning when table of contents is up to date</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
