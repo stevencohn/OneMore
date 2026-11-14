@@ -363,6 +363,7 @@ namespace River.OneMoreAddIn
 			{
 				if (key.Action != null)
 				{
+					PaletteTrace.Mark("hotkey action invoked");
 					key.Action();
 				}
 				else
@@ -536,6 +537,11 @@ namespace River.OneMoreAddIn
 			{
 				if (m.Msg == Native.WM_HOTKEY)
 				{
+					// TEMPORARY diagnostics for #2926: how long did the chord sit in this
+					// thread's message queue before we got to it?
+					var queued = unchecked(Environment.TickCount - Native.GetMessageTime());
+					PaletteTrace.Begin(queued);
+
 					// accept the keypress if the foreground window belongs to OneNote or to
 					// this add-in's own dllhost.exe process; mirrors the same pid check in
 					// WinEventProc above, which keeps hotkeys registered while one of OneMore's
@@ -562,6 +568,97 @@ namespace River.OneMoreAddIn
 			{
 				// ensure the window never becomes visible
 				base.SetVisibleCore(false);
+			}
+		}
+	}
+
+
+	/// <summary>
+	/// TEMPORARY diagnostics for #2926. Records a timeline from the moment a hotkey chord is
+	/// received until the command palette owns the keyboard, to find where the gap is in which
+	/// keystrokes can land on the OneNote page instead of the dialog. Marks made before the
+	/// palette is known to be the target are held until <see cref="Arm"/> flushes them.
+	/// </summary>
+	internal static class PaletteTrace
+	{
+		private static readonly object sync = new();
+		private static readonly List<string> pending = new();
+		private static Stopwatch watch;
+		private static bool armed;
+
+
+		/// <summary>
+		/// Gets the milliseconds since the chord was received, or -1 if not tracing.
+		/// </summary>
+		public static long ElapsedMs => watch?.ElapsedMilliseconds ?? -1;
+
+
+		public static void Begin(int queuedMs)
+		{
+			lock (sync)
+			{
+				pending.Clear();
+				armed = false;
+				watch = Stopwatch.StartNew();
+				pending.Add($"+0ms WM_HOTKEY received (message queued {queuedMs}ms)");
+			}
+		}
+
+
+		public static void Mark(string label)
+		{
+			lock (sync)
+			{
+				if (watch is null)
+				{
+					return;
+				}
+
+				var line = $"+{watch.ElapsedMilliseconds}ms {label}";
+				if (armed)
+				{
+					Logger.Current.WriteLine($"palette timing: {line}");
+				}
+				else
+				{
+					pending.Add(line);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Called once the command is known to be the palette; flushes earlier marks
+		/// </summary>
+		public static void Arm()
+		{
+			lock (sync)
+			{
+				if (watch is null)
+				{
+					// started from the ribbon rather than a hotkey
+					watch = Stopwatch.StartNew();
+					pending.Add("+0ms started without hotkey");
+				}
+
+				foreach (var line in pending)
+				{
+					Logger.Current.WriteLine($"palette timing: {line}");
+				}
+
+				pending.Clear();
+				armed = true;
+			}
+		}
+
+
+		public static void End()
+		{
+			lock (sync)
+			{
+				armed = false;
+				pending.Clear();
+				watch = null;
 			}
 		}
 	}

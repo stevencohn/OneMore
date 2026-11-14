@@ -45,6 +45,18 @@ namespace River.OneMoreAddIn.Commands
 
 			palette.SetAutoCompleteList(cmdBox);
 
+			// TEMPORARY diagnostics for #2926: when does this dialog really own the keyboard?
+			cmdBox.GotFocus += (s, e) => MarkTrace("cmdBox GotFocus");
+			Activated += (s, e) => MarkTrace("dialog Activated");
+			cmdBox.TextChanged += (s, e) =>
+			{
+				if (!firstTextLogged && cmdBox.Text.Length > 0)
+				{
+					firstTextLogged = true;
+					MarkTrace($"first text in cmdBox ({cmdBox.Text.Length} chars)");
+				}
+			};
+
 			Text = title;
 			introLabel.Text = intro;
 
@@ -73,9 +85,22 @@ namespace River.OneMoreAddIn.Commands
 		public bool Recent { get; private set; }
 
 
+		// TEMPORARY diagnostics for #2926
+		private bool firstTextLogged;
+
+
+		private void MarkTrace(string what)
+		{
+			var foreground = IsHandleCreated && Native.GetForegroundWindow() == Handle;
+			PaletteTrace.Mark($"{what} (dialog is foreground: {foreground})");
+		}
+
+
 		protected override void OnLoad(EventArgs e)
 		{
+			MarkTrace("OnLoad begin");
 			base.OnLoad(e);
+			MarkTrace("OnLoad base done");
 			//Native.SwitchToThisWindow(Handle, false);
 
 			// ErrorProvider draws its icon at native size (32px) without DPI scaling, so

@@ -33,11 +33,16 @@ namespace River.OneMoreAddIn.Commands
 			using var guard = EnterOnce();
 			if (guard is null) { return; }
 
+			PaletteTrace.Mark("Execute begin");
 			using var dialog = new CommandPaletteDialog();
+			PaletteTrace.Mark("dialog constructed");
 			dialog.RequestData += PopulateCommands;
 			PopulateCommands(dialog, null);
+			PaletteTrace.Mark("commands populated");
 
+			PaletteTrace.Mark("calling ShowDialog");
 			var result = dialog.ShowDialog(owner);
+			PaletteTrace.End();
 			var index = dialog.Index;
 			var isRecent = dialog.Recent;
 

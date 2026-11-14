@@ -308,6 +308,15 @@ namespace River.OneMoreAddIn
 					RegisterMarkdownEnterHotkey();
 				});
 
+				// the first OneNote COM connection costs ~300ms cold (#2926); pay it here so the
+				// first command to run, e.g. the command palette, doesn't leave keystrokes
+				// landing on the page while it waits. Disposed like any other OneNote use.
+				await StartupStep("onenote warmup", async () =>
+				{
+					await using var one = new OneNote();
+					_ = one.OwnerWindow;
+				});
+
 				// stop everything if OneNote is killed, so we don't keep relaunching it
 				StartupStep("host watcher", WatchHost);
 
