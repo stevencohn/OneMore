@@ -118,6 +118,20 @@
         onAction="MergeCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
+        id="ctxCopyFollowButton"
+        imageMso="CopyToFolder"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CopyFollowCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxMoveFollowButton"
+        imageMso="MoveToFolder"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="MoveFollowCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
         id="ctxMovePageTopButton"
         imageMso="UpArrow2"
         getLabel="GetRibbonLabel"

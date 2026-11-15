@@ -5512,6 +5512,14 @@ Zakładka Pomoc</value>
     <value>Kopiuj grupę sekcji.</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Kopiuj i śledź</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Skopiuj wybrane strony do innej sekcji i przejdź do pierwszej skopiowanej strony</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Skopiuj łącze ścieżki do strony</value>
     <comment>ribbon references</comment>
@@ -6238,6 +6246,14 @@ Zakładka Pomoc</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Renderuj obraz syreny z zaznaczonego tekstu</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Poruszaj się i podążaj</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Przenieś wybrane strony do innej sekcji i przejdź do pierwszej przeniesionej strony</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Przejdź na dół</value>

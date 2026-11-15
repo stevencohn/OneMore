@@ -5512,6 +5512,14 @@ Tabblad Help</value>
     <value>Sectiegroep kopiëren</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Kopieer en volg</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Kopieer geselecteerde pagina's naar een andere sectie en ga naar de eerste gekopieerde pagina</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Kopieer padlink naar pagina</value>
     <comment>ribbon references</comment>
@@ -6238,6 +6246,14 @@ Tabblad Help</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Render zeemeerminafbeelding uit geselecteerde tekst</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Beweeg en volg</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Verplaats geselecteerde pagina's naar een andere sectie en ga naar de eerste verplaatste pagina</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Verplaats naar beneden</value>

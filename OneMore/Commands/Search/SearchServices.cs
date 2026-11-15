@@ -23,8 +23,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task CopyPages(IEnumerable<string> pageIds)
+		/// <summary>
+		/// Copies the given pages into the target section.
+		/// </summary>
+		/// <param name="pageIds">The IDs of the pages to copy</param>
+		/// <param name="followFirst">
+		/// True to navigate to the first copied page, otherwise navigate to the last
+		/// </param>
+		public async Task CopyPages(IEnumerable<string> pageIds, bool followFirst = false)
 		{
+			string firstId = null;
 			string lastId = null;
 
 			using (var progress = new UI.ProgressDialog())
@@ -52,6 +60,7 @@ namespace River.OneMoreAddIn.Commands
 					page.Root.Descendants().Attributes("objectID").Remove();
 					await one.Update(page);
 
+					firstId ??= newPageId;
 					lastId = newPageId;
 
 					progress.Increment();
@@ -59,15 +68,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// navigate after progress dialog is closed otherwise it will hang!
-			if (lastId != null)
+			var targetId = followFirst ? firstId : lastId;
+			if (targetId is not null)
 			{
-				await one.NavigateTo(lastId);
+				await one.NavigateTo(targetId);
 			}
 		}
 
 
-		public async Task MovePages(IEnumerable<string> pageIds)
+		/// <summary>
+		/// Moves the given pages into the target section.
+		/// </summary>
+		/// <param name="pageIds">The IDs of the pages to move</param>
+		/// <param name="followFirst">
+		/// True to navigate to the first moved page, otherwise navigate to the section
+		/// </param>
+		public async Task MovePages(IEnumerable<string> pageIds, bool followFirst = false)
 		{
+			string firstId = null;
+			string firstName = null;
 			var sections = new Dictionary<string, XElement>();
 			var section = await one.GetSection(sectionId);
 			var ns = one.GetNamespace(section);
@@ -108,6 +127,12 @@ namespace River.OneMoreAddIn.Commands
 					{
 						progress.SetMessage(element.Attribute("name").Value);
 
+						if (firstId is null)
+						{
+							firstId = pageId;
+							firstName = element.Attribute("name").Value;
+						}
+
 						// remove page from current owner
 						element.Remove();
 
@@ -141,8 +166,30 @@ namespace River.OneMoreAddIn.Commands
 				one.UpdateHierarchy(section);
 
 				// navigate after progress dialog is closed otherwise it will hang!
-				await one.NavigateTo(sectionId);
+				if (followFirst && firstId is not null)
+				{
+					await one.NavigateTo(await FindMovedPageId(firstId, firstName));
+				}
+				else
+				{
+					await one.NavigateTo(sectionId);
+				}
 			}
+		}
+
+
+		// OneNote may reassign the ID of a moved page; find it by ID, then by name,
+		// and finally fall back to the target section itself
+		private async Task<string> FindMovedPageId(string pageId, string pageName)
+		{
+			var target = await one.GetSection(sectionId);
+			var ns = one.GetNamespace(target);
+			var pages = target.Elements(ns + "Page").ToList();
+
+			var found = pages.FirstOrDefault(e => e.Attribute("ID").Value == pageId)
+				?? pages.LastOrDefault(e => e.Attribute("name")?.Value == pageName);
+
+			return found?.Attribute("ID").Value ?? sectionId;
 		}
 	}
 }

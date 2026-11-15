@@ -5512,6 +5512,14 @@ Guia Ajuda</value>
     <value>Copiar Grupo de Seção</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Copie e siga</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Copie as páginas selecionadas para outra seção e vá para a primeira página copiada</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Copiar link do caminho para a página</value>
     <comment>ribbon references</comment>
@@ -6238,6 +6246,14 @@ Guia Ajuda</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Renderizar imagem da sereia a partir do texto selecionado</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Mover e seguir</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Mova as páginas selecionadas para outra seção e vá para a primeira página movida</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Mover para baixo</value>

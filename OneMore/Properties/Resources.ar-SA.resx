@@ -5523,6 +5523,14 @@ ISO-code then comma then language name</comment>
     <value>مجموعة قسم النسخ</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>نسخ ومتابعة</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>انسخ الصفحات المحددة إلى قسم آخر وانتقل إلى الصفحة المنسوخة الأولى</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>انسخ رابط المسار إلى الصفحة</value>
     <comment>ribbon references</comment>
@@ -6249,6 +6257,14 @@ ISO-code then comma then language name</comment>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>تقديم صورة حورية البحر من النص المحدد</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>التحرك والمتابعة</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>انقل الصفحات المحددة إلى قسم آخر وانتقل إلى الصفحة المنقولة الأولى</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>الانتقال إلى الأسفل</value>

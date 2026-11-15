@@ -5512,6 +5512,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>העתק קבוצת מדור</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>העתק ועקוב</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>העתק דפים נבחרים למדור אחר ועבור לעמוד הראשון שהועתק</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>העתק את הנתיב קישור לדף</value>
     <comment>ribbon references</comment>
@@ -6238,6 +6246,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>עיבוד תמונת בת הים מטקסט שנבחר</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>הזז ועקוב</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>העבר עמודים נבחרים למדור אחר ועבור לעמוד הראשון שהועבר</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>העבר לתחתית</value>

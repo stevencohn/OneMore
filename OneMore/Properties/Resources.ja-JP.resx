@@ -5515,6 +5515,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>セクショングループのコピー</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>コピーしてフォローしてください</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>選択したページを別のセクションにコピーし、最初にコピーしたページに移動します</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>ページへのパスリンクをコピー</value>
     <comment>ribbon references</comment>
@@ -6241,6 +6249,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>選択したテキストから人魚の画像をレンダリングします</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>移動してフォローする</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>選択したページを別のセクションに移動し、最初に移動したページに移動します</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>一番下に移動</value>

@@ -21,13 +21,36 @@ deserve a manual look.
 .PARAMETER Output
 Path of the markdown file to write. Defaults to Downloads\onemore-commands-by-release.md.
 
+.PARAMETER FromTag
+Only report commands first released in this tag or later (inclusive), including
+"(unreleased)" ones. Only the history since the previous release tag is read, which is
+much faster than a full run. Mutually exclusive with -FromDate.
+
+.PARAMETER FromDate
+Only report commands whose first commit is on or after this date. Only recent history
+is read, which is much faster than a full run. Mutually exclusive with -FromTag.
+
+.PARAMETER RowsOnly
+Write just the per-release sections, with no title or intro paragraph, so the output can
+be pasted onto the end of an existing report.
+
 .EXAMPLE
 .\command-releases.ps1
 .\command-releases.ps1 -Output C:\temp\report.md
+.\command-releases.ps1 -FromTag 8.0.0 -RowsOnly
+.\command-releases.ps1 -FromDate 2026-10-01
 #>
-[CmdletBinding()]
+[CmdletBinding(DefaultParameterSetName = 'All')]
 param(
-	[string] $Output = (Join-Path ([Environment]::GetFolderPath('UserProfile')) 'Downloads\onemore-commands-by-release.md')
+	[string] $Output = (Join-Path ([Environment]::GetFolderPath('UserProfile')) 'Downloads\onemore-commands-by-release.md'),
+
+	[Parameter(ParameterSetName = 'Tag')]
+	[string] $FromTag,
+
+	[Parameter(ParameterSetName = 'Date')]
+	[datetime] $FromDate,
+
+	[switch] $RowsOnly
 )
 
 begin
@@ -47,6 +70,7 @@ begin
 	$tagCache = @{}       # sha -> first release tag
 	$originSha = @{}      # path -> sha of the commit that first added it
 	$originDate = @{}     # path -> date of that commit
+	$scopeByDate = $PSCmdlet.ParameterSetName -eq 'Date'
 
 	# ----------------------------------------------------------------------------------
 	# git helpers
@@ -80,11 +104,15 @@ begin
 	#   - "git log --follow" at its default 50% threshold chains new files with similar
 	#     boilerplate (for example TelemetryCommand.cs) back to unrelated old files
 	#   - a plain per-path log treats every folder move as a brand new file
-	function Initialize-OriginMap
+	#
+	# $window limits the replay to recent history (a revision range or --since). A path with
+	# no origin afterwards was created before the window, which callers treat as out of scope.
+	function Initialize-OriginMap([string[]] $window)
 	{
 		$curSha = $null
 		$curDate = $null
-		foreach ($line in (& git -c core.quotepath=false log --reverse --no-merges -M90% --name-status '--format=#%H|%ad' --date=short -- '*.cs' 2>$null))
+		$windowed = $window.Count -gt 0
+		foreach ($line in (& git -c core.quotepath=false log --reverse --no-merges -M90% --name-status '--format=#%H|%ad' --date=short @window -- '*.cs' 2>$null))
 		{
 			if ($line.StartsWith('#'))
 			{
@@ -110,10 +138,11 @@ begin
 					$originSha[$new] = $originSha[$old]; $originDate[$new] = $originDate[$old]
 					$originSha.Remove($old); $originDate.Remove($old)
 				}
-				else
+				elseif (-not $windowed)
 				{
 					$originSha[$new] = $curSha; $originDate[$new] = $curDate
 				}
+				# else: renamed from a file that predates the window, so it is not new
 			}
 		}
 	}
@@ -267,8 +296,24 @@ begin
 		return @{ Items = $items; Missed = $missed }
 	}
 
+	# true when a first-add commit falls inside the requested -FromTag / -FromDate scope
+	function Test-InScope($release, $date, $tagOrder)
+	{
+		if ($FromTag)
+		{
+			$ix = [array]::IndexOf($tagOrder, $release)
+			if ($ix -lt 0) { return $true }   # (unreleased)
+			return $ix -ge [array]::IndexOf($tagOrder, $FromTag)
+		}
+		if ($scopeByDate)
+		{
+			return $date -ge $FromDate.ToString('yyyy-MM-dd')
+		}
+		return $true
+	}
+
 	# resolves history for each item; returns @{ Rows; Unresolved }
-	function Resolve-Items($items, $sourceIndex)
+	function Resolve-Items($items, $sourceIndex, $tagOrder, [bool] $windowed)
 	{
 		$rows = [System.Collections.Generic.List[object]]::new()
 		$unresolved = @()
@@ -286,9 +331,14 @@ begin
 			$add = if ($file) { Get-FirstAdd $i.Class $file } else { $null }
 			if (-not $add)
 			{
-				$unresolved += $i.Name
+				# in a windowed run a file with no origin simply predates the window
+				$sharesFile = $file -and ([IO.Path]::GetFileNameWithoutExtension($file) -eq $i.Class)
+				if (-not ($windowed -and $sharesFile)) { $unresolved += $i.Name }
 				continue
 			}
+
+			$release = Get-FirstTag $add.Sha
+			if (-not (Test-InScope $release $add.Date $tagOrder)) { continue }
 
 			$alt = ''
 			if ([IO.Path]::GetFileNameWithoutExtension($file) -eq $i.Class)
@@ -297,7 +347,7 @@ begin
 				if ($f -and $f.Date -ne $add.Date) { $alt = "$(Get-FirstTag $f.Sha) / $($f.Date)" }
 			}
 			$rows.Add([pscustomobject]@{
-				Release = Get-FirstTag $add.Sha; Date = $add.Date
+				Release = $release; Date = $add.Date
 				Command = $i.Name; Location = Get-RibbonLocation $i.Key; Alt = $alt })
 		}
 		Write-Progress -Activity 'Reading git history' -Completed
@@ -331,9 +381,15 @@ begin
 		$sorted = $rows | Sort-Object @{ Expression = { Get-ReleaseRank $_ $tagOrder } }, Date, Command
 
 		$sb = [System.Text.StringBuilder]::new()
-		[void]$sb.AppendLine('# OneMore command inventory by release')
-		[void]$sb.AppendLine()
-		[void]$sb.AppendLine("Generated $(Get-Date -Format 'yyyy-MM-dd') by command-releases.ps1. Release = earliest non-beta tag containing the commit that first added the command class. Commands without a location have no direct ribbon/context-menu entry. Origin follows renames that are 90% or more similar; a trailing note shows the release/date git's default --follow would give when it differs (those commands deserve a manual look).")
+		if (-not $RowsOnly)
+		{
+			$scope = if ($FromTag) { " Only commands released in $FromTag or later." }
+				elseif ($scopeByDate) { " Only commands first committed on or after $($FromDate.ToString('yyyy-MM-dd'))." }
+				else { '' }
+			[void]$sb.AppendLine('# OneMore command inventory by release')
+			[void]$sb.AppendLine()
+			[void]$sb.AppendLine("Generated $(Get-Date -Format 'yyyy-MM-dd') by command-releases.ps1. Release = earliest non-beta tag containing the commit that first added the command class. Commands without a location have no direct ribbon/context-menu entry. Origin follows renames that are 90% or more similar; a trailing note shows the release/date git's default --follow would give when it differs (those commands deserve a manual look).$scope")
+		}
 
 		# one section per release, in tag order; the date is the release tag's commit date
 		# Group-Object order is not guaranteed, so order the groups explicitly: tags oldest first,
@@ -380,15 +436,30 @@ process
 	$handlerClasses = Get-HandlerClasses
 	$sourceIndex = Get-SourceIndex
 
+	# limit how much history is replayed when only recent releases are wanted
+	$window = @()
+	if ($FromTag)
+	{
+		$ix = [array]::IndexOf($tagOrder, $FromTag)
+		if ($ix -lt 0) { throw "Unknown release tag '$FromTag'. Tags: $($tagOrder -join ', ')" }
+		# everything in $FromTag was committed after the previous release tag
+		if ($ix -gt 0) { $window = @("$($tagOrder[$ix - 1])..HEAD") }
+	}
+	elseif ($scopeByDate)
+	{
+		# commit dates can trail author dates; pad the window and filter exactly later
+		$window = @("--since=$($FromDate.AddDays(-30).ToString('yyyy-MM-dd'))")
+	}
+
 	Initialize-Ribbon
-	Initialize-OriginMap
+	Initialize-OriginMap $window
 
 	$candidates = Get-CommandItems $events $handlerClasses $sourceIndex
-	$resolved = Resolve-Items $candidates.Items $sourceIndex
+	$resolved = Resolve-Items $candidates.Items $sourceIndex $tagOrder ($window.Count -gt 0)
 
 	$rows = $resolved.Rows
 	$replayRow = Get-ReplayRow
-	if ($replayRow) { $rows.Add($replayRow) }
+	if ($replayRow -and (Test-InScope $replayRow.Release $replayRow.Date $tagOrder)) { $rows.Add($replayRow) }
 
 	$markdown = Format-Report $rows $tagOrder
 

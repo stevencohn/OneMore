@@ -5512,6 +5512,14 @@ Scheda Aiuto</value>
     <value>Copia gruppo di sezioni</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Copia e segui</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Copia le pagine selezionate in un'altra sezione e vai alla prima pagina copiata</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Copia il collegamento del percorso alla pagina</value>
     <comment>ribbon references</comment>
@@ -6238,6 +6246,14 @@ Scheda Aiuto</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Rendi l'immagine della sirena dal testo selezionato</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Muoviti e segui</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Sposta le pagine selezionate in un'altra sezione e vai alla prima pagina spostata</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Sposta in basso</value>

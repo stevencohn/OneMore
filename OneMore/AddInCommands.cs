@@ -312,6 +312,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CrawlWebPageCommand>();
 
 
+		[Command("ribCopyFollowButton_Label", Keys.None, "ribPageMenu")]
+		public async Task CopyFollowCmd(IRibbonControl control)
+			=> await factory.Run<MoveCopyFollowCommand>(true);
+
+
 		[Command("ribCopyPageContentButton_Label", Keys.None, "ribPageMenu")]
 		public async Task CopyPageContentCmd(IRibbonControl control)
 			=> await factory.Run<CopyPageContentCommand>();
@@ -747,6 +752,11 @@ namespace River.OneMoreAddIn
 		[Command("ribMermaidButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task MermaidCmd(IRibbonControl control)
 			=> await factory.Run<MermaidCommand>();
+
+
+		[Command("ribMoveFollowButton_Label", Keys.None, "ribPageMenu")]
+		public async Task MoveFollowCmd(IRibbonControl control)
+			=> await factory.Run<MoveCopyFollowCommand>(false);
 
 
 		[Command("ribMovePageBottomButton_Label", Keys.None, "ribPageMenu")]
