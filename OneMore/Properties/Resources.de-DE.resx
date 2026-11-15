@@ -5511,6 +5511,14 @@ Registerkarte „Hilfe“.</value>
     <value>Abschnittsgruppe kopieren</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Kopieren und folgen</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Kopieren Sie ausgewählte Seiten in einen anderen Abschnitt und gehen Sie zur ersten kopierten Seite</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Pfadlink zur Seite kopieren</value>
     <comment>ribbon references</comment>
@@ -6237,6 +6245,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Rendern Sie das Meerjungfrauenbild aus dem ausgewählten Text</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Bewegen und folgen</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Verschieben Sie ausgewählte Seiten in einen anderen Abschnitt und gehen Sie zur ersten verschobenen Seite</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Nach unten bewegen</value>

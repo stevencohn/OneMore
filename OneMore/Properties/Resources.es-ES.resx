@@ -5511,6 +5511,14 @@ Pestaña Ayuda</value>
     <value>Copiar grupo de secciones</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Copiar y seguir</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Copie las páginas seleccionadas a otra sección y vaya a la primera página copiada</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Copiar enlace de ruta a la página</value>
     <comment>ribbon references</comment>
@@ -6237,6 +6245,14 @@ Pestaña Ayuda</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Renderizar imagen de sirena a partir del texto seleccionado</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Mover y seguir</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Mueva las páginas seleccionadas a otra sección y vaya a la primera página movida</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Mover hacia abajo</value>

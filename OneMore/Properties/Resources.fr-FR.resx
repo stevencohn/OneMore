@@ -5523,6 +5523,14 @@ Onglet Aide</value>
     <value>Copier le groupe de sections</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Copier et suivre</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Copiez les pages sélectionnées dans une autre section et accédez à la première page copiée</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Copier le lien du chemin vers la page</value>
     <comment>ribbon references</comment>
@@ -6249,6 +6257,14 @@ Onglet Aide</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Rendre l'image de la sirène à partir du texte sélectionné</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Déplacer et suivre</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Déplacer les pages sélectionnées vers une autre section et accéder à la première page déplacée</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Déplacer vers le bas</value>

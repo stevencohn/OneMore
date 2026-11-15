@@ -5540,6 +5540,14 @@ Help Tab</value>
     <value>Copy Section Group</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>Copy and Follow</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>Copy selected pages to another section and go to the first copied page</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>Copy Path Link to Page</value>
     <comment>ribbon references</comment>
@@ -6266,6 +6274,14 @@ Help Tab</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>Render Mermaid image from selected text</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>Move and Follow</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>Move selected pages to another section and go to the first moved page</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Move to Bottom</value>

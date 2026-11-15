@@ -5526,6 +5526,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>复制节组</value>
     <comment>context menu item</comment>
   </data>
+  <data name="ribCopyFollowButton_Label" xml:space="preserve">
+    <value>复制并关注</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyFollowButton_Screentip" xml:space="preserve">
+    <value>将选定的页面复制到另一个部分并转到第一个复制的页面</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
     <value>将路径链接复制到页面</value>
     <comment>ribbon references</comment>
@@ -6252,6 +6260,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribMermaidButton_Screentip" xml:space="preserve">
     <value>根据选定的代码渲染 Mermaid 示意图</value>
     <comment>ribbon image</comment>
+  </data>
+  <data name="ribMoveFollowButton_Label" xml:space="preserve">
+    <value>移动并跟随</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMoveFollowButton_Screentip" xml:space="preserve">
+    <value>将选定的页面移动到另一个部分并转到第一个移动的页面</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>移至底部</value>

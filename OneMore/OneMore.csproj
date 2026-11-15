@@ -352,6 +352,7 @@
     </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\ExtractContentCommand.cs" />
+    <Compile Include="Commands\Page\MoveCopyFollowCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\Page\UpdatePageTimeCommand.cs" />
     <Compile Include="Commands\Page\ViewInBrowserCommand.cs" />

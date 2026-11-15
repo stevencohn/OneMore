@@ -13071,6 +13071,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy and Follow.
+        /// </summary>
+        internal static string ribCopyFollowButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyFollowButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy selected pages to another section and go to the first copied page.
+        /// </summary>
+        internal static string ribCopyFollowButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyFollowButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Copy Path Link to Page.
         /// </summary>
         internal static string ribCopyLinkToPageButton_Label {
@@ -14728,6 +14746,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Move and Follow.
+        /// </summary>
+        internal static string ribMoveFollowButton_Label {
+            get {
+                return ResourceManager.GetString("ribMoveFollowButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected pages to another section and go to the first moved page.
+        /// </summary>
+        internal static string ribMoveFollowButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribMoveFollowButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Move to Bottom.
         /// </summary>

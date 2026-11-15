@@ -787,6 +787,18 @@
           getScreentip="GetRibbonScreentip"
           onAction="SplitCmd"/>
         <button
+          id="ribCopyFollowButton"
+          imageMso="Copy"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="CopyFollowCmd"/>
+        <button
+          id="ribMoveFollowButton"
+          imageMso="MoveToFolder"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="MoveFollowCmd"/>
+        <button
           id="ribCreatePagesButton"
           imageMso="CreateHandoutsInWord"
           getLabel="GetRibbonLabel"
