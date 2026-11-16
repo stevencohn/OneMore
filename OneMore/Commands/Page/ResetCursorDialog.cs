@@ -34,6 +34,17 @@ namespace River.OneMoreAddIn.Commands
 			StartPosition = FormStartPosition.Manual;
 			Padding = new Padding(15);
 
+			// the add-in assembly carries Logo.ico as its application icon
+			try
+			{
+				Icon = Icon.ExtractAssociatedIcon(
+					System.Reflection.Assembly.GetExecutingAssembly().Location);
+			}
+			catch
+			{
+				// keep the default icon
+			}
+
 			var group = new UI.MoreGroupBox
 			{
 				Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
