@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn.Commands
 
 			iconBox.Image = SystemIcons.Information.ToBitmap();
 			messageBox.Clear();
+
+			ActiveControl = okButton;
 		}
 
 

@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Visible = allSelected;
 			selectedButton.Visible = !allSelected;
 			allButton.Visible = !allSelected;
+
+			ActiveControl = okButton;
 		}
 
 
