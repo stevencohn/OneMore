@@ -237,6 +237,10 @@
     </Compile>
     <Compile Include="Commands\Office\OutlookContactCommand.cs" />
     <Compile Include="Commands\Office\ReportControlHelper.cs" />
+    <Compile Include="Commands\Page\ResetCursorCommand.cs" />
+    <Compile Include="Commands\Page\ResetCursorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Commands\Page\ResizeContainerToPresetWidthCommand.cs" />
     <Compile Include="Commands\Page\SnapToGridCommand.cs" />
     <Compile Include="Commands\References\IndexModifiedCommand.cs" />
