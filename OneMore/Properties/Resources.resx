@@ -3689,7 +3689,7 @@ Do you want to refresh the existing page?</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Experimental) Convert markdown to OneNote content when pressing Enter</value>
+    <value>Convert markdown to OneNote content when pressing Enter</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4286,6 +4286,10 @@ Apply to this notebook</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Create a new page</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Experimental</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>New Style</value>

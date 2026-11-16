@@ -3685,7 +3685,7 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Experimenteel) Converteer prijsverlaging naar OneNote-inhoud wanneer u op Enter drukt</value>
+    <value>Converteer prijsverlaging naar OneNote-inhoud wanneer u op Enter drukt</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4262,6 +4262,10 @@ Toepassen op dit notitieboekje</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Maak een nieuwe pagina aan</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Experimenteel</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>Nieuwe stijl</value>

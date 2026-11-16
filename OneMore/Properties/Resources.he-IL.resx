@@ -3685,7 +3685,7 @@ Ctrl+Enter עובר אליו בחלון הנוכחי במקום זאת.</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(ניסיוני) המר סימון לתוכן OneNote בעת לחיצה על Enter</value>
+    <value>המר סימון לתוכן OneNote בעת לחיצה על Enter</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4262,6 +4262,10 @@ Ctrl+Enter עובר אליו בחלון הנוכחי במקום זאת.</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>צור דף חדש</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>נִסיוֹנִי</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>סטייל חדש</value>

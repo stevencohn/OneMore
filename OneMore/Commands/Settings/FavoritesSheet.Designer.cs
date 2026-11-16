@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.experimentalPill = new River.OneMoreAddIn.UI.MorePill();
 			this.dropLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.dropLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.shortcutsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -42,6 +43,7 @@
 			// 
 			this.optionsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.optionsBox.Controls.Add(this.experimentalPill);
 			this.optionsBox.Controls.Add(this.dropLink);
 			this.optionsBox.Controls.Add(this.dropLabel);
 			this.optionsBox.Location = new System.Drawing.Point(3, 237);
@@ -53,9 +55,17 @@
 			this.optionsBox.Text = "Advanced Options";
 			this.optionsBox.ThemedBorder = null;
 			this.optionsBox.ThemedFore = null;
-			// 
+			//
+			// experimentalPill
+			//
+			this.experimentalPill.Location = new System.Drawing.Point(10, 0);
+			this.experimentalPill.Name = "experimentalPill";
+			this.experimentalPill.Size = new System.Drawing.Size(100, 24);
+			this.experimentalPill.TabIndex = 4;
+			this.experimentalPill.Text = "Experimental";
+			//
 			// dropLink
-			// 
+			//
 			this.dropLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.dropLink.AutoSize = true;
 			this.dropLink.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -149,6 +159,7 @@
 		#endregion
 
 		private UI.MoreGroupBox optionsBox;
+		private UI.MorePill experimentalPill;
 		private UI.MoreCheckBox shortcutsBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel introBox;

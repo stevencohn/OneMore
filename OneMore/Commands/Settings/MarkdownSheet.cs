@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using Resx = Properties.Resources;
 
 
@@ -42,10 +43,31 @@ namespace River.OneMoreAddIn.Settings
 			if (provider.GetCollection(nameof(GeneralSheet)).Get("experimental", false))
 			{
 				convertOnEnterBox.Checked = settings.Get("convertOnEnter", false);
+
+				// the pill follows the checkbox label text
+				experimentalPill.Text = Resx.phrase_Experimental;
+
+				// size the checkbox to its (possibly localized) text rather than relying on the
+				// designer's fixed width; the trailing "." is the same fudge MoreCheckBox uses
+				int textWidth;
+				using (var g = convertOnEnterBox.CreateGraphics())
+				{
+					textWidth = (int)Math.Ceiling(g.MeasureString(
+						$"{convertOnEnterBox.Text}.", convertOnEnterBox.Font).Width);
+				}
+
+				convertOnEnterBox.Width = convertOnEnterBox.TextOffset + textWidth;
+
+				experimentalPill.Location = new System.Drawing.Point(
+					convertOnEnterBox.Right + 8,
+					convertOnEnterBox.Top + ((convertOnEnterBox.Height - experimentalPill.Height) / 2));
+
+				experimentalPill.BringToFront();
 			}
 			else
 			{
 				convertOnEnterBox.Visible = false;
+				experimentalPill.Visible = false;
 			}
 		}
 

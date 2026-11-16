@@ -83,6 +83,13 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
+		/// <summary>
+		/// Gets the x offset of the text relative to the left edge of the control, i.e. where
+		/// the text begins immediately after the check box glyph.
+		/// </summary>
+		public int TextOffset => BoxSize + Spacing;
+
+
 
 		void ILoadControl.OnLoad()
 		{

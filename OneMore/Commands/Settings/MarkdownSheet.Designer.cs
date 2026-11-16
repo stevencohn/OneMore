@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 			this.singleSpacingBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.blankBeforeHeadingsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.convertOnEnterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.experimentalPill = new River.OneMoreAddIn.UI.MorePill();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -57,6 +58,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.gfmLineBreaksBox);
 			this.layoutPanel.Controls.Add(this.singleSpacingBox);
 			this.layoutPanel.Controls.Add(this.blankBeforeHeadingsBox);
+			this.layoutPanel.Controls.Add(this.experimentalPill);
 			this.layoutPanel.Controls.Add(this.convertOnEnterBox);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
@@ -124,10 +126,18 @@ namespace River.OneMoreAddIn.Settings
 			this.convertOnEnterBox.Size = new System.Drawing.Size(700, 25);
 			this.convertOnEnterBox.StylizeImage = false;
 			this.convertOnEnterBox.TabIndex = 3;
-			this.convertOnEnterBox.Text = "(Experimental) Convert markdown to OneNote content when pressing Enter";
+			this.convertOnEnterBox.Text = "Convert markdown to OneNote content when pressing Enter";
 			this.convertOnEnterBox.ThemedBack = null;
 			this.convertOnEnterBox.ThemedFore = null;
 			this.convertOnEnterBox.UseVisualStyleBackColor = true;
+			//
+			// experimentalPill
+			//
+			this.experimentalPill.AutoSize = true;
+			this.experimentalPill.Name = "experimentalPill";
+			this.experimentalPill.Size = new System.Drawing.Size(100, 24);
+			this.experimentalPill.TabIndex = 4;
+			this.experimentalPill.Text = "Experimental";
 			//
 			// MarkdownSheet
 			//
@@ -153,5 +163,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox singleSpacingBox;
 		private UI.MoreCheckBox blankBeforeHeadingsBox;
 		private UI.MoreCheckBox convertOnEnterBox;
+		private UI.MorePill experimentalPill;
 	}
 }

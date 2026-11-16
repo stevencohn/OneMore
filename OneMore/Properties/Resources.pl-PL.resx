@@ -3685,7 +3685,7 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Eksperymentalnie) Konwertuj przecenę na zawartość programu OneNote po naciśnięciu klawisza Enter</value>
+    <value>Konwertuj przecenę na zawartość programu OneNote po naciśnięciu klawisza Enter</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4262,6 +4262,10 @@ Zastosuj do tego notatnika</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Utwórz nową stronę</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Eksperymentalny</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>Nowy styl</value>

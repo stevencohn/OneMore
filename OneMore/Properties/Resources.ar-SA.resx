@@ -3688,7 +3688,7 @@
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(تجريبي) قم بتحويل تخفيض السعر إلى محتوى OneNote عند الضغط على Enter</value>
+    <value>تحويل تخفيض السعر إلى محتوى OneNote عند الضغط على Enter</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4273,6 +4273,10 @@
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>قم بإنشاء صفحة جديدة</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>تجريبي</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>أسلوب جديد</value>

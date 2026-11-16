@@ -3685,7 +3685,7 @@ Vuoi aggiornare la pagina esistente?</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Sperimentale) Converti markdown in contenuto OneNote quando premi Invio</value>
+    <value>Converti markdown in contenuto OneNote premendo Invio</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4262,6 +4262,10 @@ Applica a questo taccuino</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Crea una nuova pagina</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Sperimentale</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>Nuovo stile</value>

@@ -86,12 +86,19 @@ namespace River.OneMoreAddIn.Settings
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
 				delayBox.Value = settings.Get("delay", HashtagScanner.DefaultThrottle);
+
+				// to the right of "ms", vertically centered on the delay box
+				experimentalPill.Text = Properties.Resources.phrase_Experimental;
+				experimentalPill.Location = new System.Drawing.Point(
+					msLabel.Right + 10,
+					delayBox.Top + ((delayBox.Height - experimentalPill.Height) / 2));
 			}
 			else
 			{
 				delayLabel.Visible = false;
 				delayBox.Visible = false;
 				msLabel.Visible = false;
+				experimentalPill.Visible = false;
 			}
 		}
 

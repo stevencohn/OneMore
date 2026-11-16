@@ -1051,7 +1051,7 @@
     <Compile Include="Commands\Tables\Formulas\ReferenceListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Tables\Formulas\PillLabel.cs">
+    <Compile Include="UI\MorePill.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Tables\Formulas\FormulaReference.cs" />

@@ -3680,7 +3680,7 @@ Cuadrado Marrón</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Experimental) Convertir Markdown a contenido de OneNote al presionar Enter</value>
+    <value>Convierta Markdown a contenido de OneNote al presionar Enter</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4265,6 +4265,10 @@ Aplicar a este cuaderno</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Crear una nueva página</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Experimental</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>Nuevo estilo</value>

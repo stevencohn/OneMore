@@ -45,6 +45,20 @@ namespace River.OneMoreAddIn.UI
 		public bool ShowOnlyTopEdge { get; set; }
 
 
+		/// <summary>
+		/// Gets or sets extra space, in pixels, cleared of the border line after the caption
+		/// text, leaving room for an adjacent child control such as a MorePill.
+		/// </summary>
+		[Category("More"), Description("Extra space cleared after the caption"), DefaultValue(0)]
+		public int TrailingInset { get; set; }
+
+
+		/// <summary>
+		/// Gets the x offset where the caption text begins, relative to the control's left edge.
+		/// </summary>
+		public int CaptionOffset => TextOffset;
+
+
 		public string ThemedBorder { get; set; }
 
 
@@ -88,7 +102,7 @@ namespace River.OneMoreAddIn.UI
 				var back = new SolidBrush(backColor);
 				e.Graphics.FillRectangle(back,
 					clip.X + TextOffset - 2, clip.Y,
-					clip.X + TextOffset + size.Width, clip.Y + size.Height
+					clip.X + TextOffset + TrailingInset + size.Width, clip.Y + size.Height
 					);
 
 				using var brush = new SolidBrush(manager.GetColor(ForeColor));

@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormulaDialog));
-			this.targetLabel = new River.OneMoreAddIn.Commands.Tables.Formulas.PillLabel();
+			this.targetLabel = new River.OneMoreAddIn.UI.MorePill();
 			this.formulaLabel = new UI.MoreLabel();
 			this.formulaBox = new River.OneMoreAddIn.Commands.Tables.Formulas.FormulaEditor();
 			this.resultPanel = new System.Windows.Forms.Panel();
@@ -358,7 +358,7 @@
 
 		#endregion
 
-		private Tables.Formulas.PillLabel targetLabel;
+		private UI.MorePill targetLabel;
 		private UI.MoreLabel formulaLabel;
 		private Tables.Formulas.FormulaEditor formulaBox;
 		private System.Windows.Forms.Panel resultPanel;

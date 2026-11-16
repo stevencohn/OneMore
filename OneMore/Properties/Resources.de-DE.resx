@@ -3680,7 +3680,7 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(Experimentell) Konvertieren Sie Markdown in OneNote-Inhalte, wenn Sie die Eingabetaste drücken</value>
+    <value>Konvertieren Sie Markdown in OneNote-Inhalte, wenn Sie die Eingabetaste drücken</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4261,6 +4261,10 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Erstellen Sie eine neue Seite</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>Experimental</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>Neuer Stil</value>

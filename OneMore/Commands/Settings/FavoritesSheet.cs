@@ -45,6 +45,28 @@ namespace River.OneMoreAddIn.Settings
 			optionsBox.Visible = provider.GetCollection(nameof(GeneralSheet))
 				.Get("experimental", false);
 
+			// "Advanced Options [pill]": the pill follows the caption text. A child can't draw
+			// above the group box's top edge, so the pill is sized to the caption's line height
+			// rather than its usual padding
+			experimentalPill.AutoSize = false;
+			experimentalPill.Text = Resx.phrase_Experimental;
+			experimentalPill.Size = new System.Drawing.Size(
+				experimentalPill.GetPreferredSize(System.Drawing.Size.Empty).Width,
+				optionsBox.Font.Height + 2);
+
+			int captionWidth;
+			using (var g = optionsBox.CreateGraphics())
+			{
+				captionWidth = (int)g.MeasureString(optionsBox.Text, optionsBox.Font).Width;
+			}
+
+			const int gap = 8;
+			experimentalPill.Location = new System.Drawing.Point(
+				optionsBox.CaptionOffset + captionWidth + gap, 0);
+
+			// clear the border line behind the pill, like it is behind the caption text
+			optionsBox.TrailingInset = gap + experimentalPill.Width + 2;
+
 			this.ribbon = ribbon;
 		}
 

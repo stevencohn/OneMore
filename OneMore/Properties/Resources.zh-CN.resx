@@ -3691,7 +3691,7 @@ Ctrl+Enter 会在当前窗口中转至该位置。</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>（实验）按 Enter 键时将 markdown 转换为 OneNote 内容</value>
+    <value>按 Enter 键时将 Markdown 转换为 OneNote 内容</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4276,6 +4276,10 @@ Ctrl+Enter 会在当前窗口中转至该位置。</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>创建一个新页面</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>实验性的</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>新样式</value>

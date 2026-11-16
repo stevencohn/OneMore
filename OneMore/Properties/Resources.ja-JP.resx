@@ -3688,7 +3688,7 @@ OneNoteファイル (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
-    <value>(実験的) Enter キーを押すとマークダウンを OneNote コンテンツに変換します</value>
+    <value>Enter キーを押すとマークダウンを OneNote コンテンツに変換します</value>
     <comment>checkbox</comment>
   </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
@@ -4265,6 +4265,10 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>新しいページを作成</value>
+  </data>
+  <data name="phrase_Experimental" xml:space="preserve">
+    <value>実験的</value>
+    <comment>pill label tagging an experimental feature</comment>
   </data>
   <data name="phrase_NewStyle" xml:space="preserve">
     <value>新しいスタイル</value>

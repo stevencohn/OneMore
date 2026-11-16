@@ -23,9 +23,36 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public SearchErrorControl(string message, string notes)
+			: this(message, notes, false)
+		{
+		}
+
+
+		/// <summary>
+		/// Initialize a new instance.
+		/// </summary>
+		/// <param name="message">The message, e.g. "No results found"</param>
+		/// <param name="notes">Optional details displayed below the message</param>
+		/// <param name="experimental">
+		/// True to tag the message with an Experimental pill, i.e. "[pill] No results found"
+		/// </param>
+		public SearchErrorControl(string message, string notes, bool experimental)
 			: this()
 		{
 			messageBox.Text = message;
+
+			if (experimental)
+			{
+				experimentalPill.Text = Properties.Resources.phrase_Experimental;
+				experimentalPill.Visible = true;
+
+				// center the pill on the first line of the message and shift the message after it
+				var shift = experimentalPill.Width + 6;
+				experimentalPill.Top = messageBox.Top
+					+ Math.Max(0, (messageBox.Font.Height - experimentalPill.Height) / 2);
+				messageBox.Left += shift;
+				messageBox.Width -= shift;
+			}
 
 			if (notes == null)
 			{

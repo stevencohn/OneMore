@@ -43,6 +43,7 @@ namespace River.OneMoreAddIn.Settings
 			this.delayLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
 			this.msLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.experimentalPill = new River.OneMoreAddIn.UI.MorePill();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.notifyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.doubledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -259,13 +260,23 @@ namespace River.OneMoreAddIn.Settings
 			this.msLabel.Text = "ms";
 			this.msLabel.ThemedBack = null;
 			this.msLabel.ThemedFore = null;
-			// 
+			//
+			// experimentalPill
+			//
+			this.experimentalPill.AutoSize = true;
+			this.experimentalPill.Location = new System.Drawing.Point(480, 38);
+			this.experimentalPill.Name = "experimentalPill";
+			this.experimentalPill.Size = new System.Drawing.Size(100, 24);
+			this.experimentalPill.TabIndex = 15;
+			this.experimentalPill.Text = "Experimental";
+			//
 			// layoutPanel
 			// 
 			this.layoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.layoutPanel.Controls.Add(this.notifyBox);
 			this.layoutPanel.Controls.Add(this.doubledBox);
+			this.layoutPanel.Controls.Add(this.experimentalPill);
 			this.layoutPanel.Controls.Add(this.msLabel);
 			this.layoutPanel.Controls.Add(this.delayBox);
 			this.layoutPanel.Controls.Add(this.delayLabel);
@@ -369,6 +380,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreLabel delayLabel;
 		private System.Windows.Forms.NumericUpDown delayBox;
 		private UI.MoreLabel msLabel;
+		private UI.MorePill experimentalPill;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;

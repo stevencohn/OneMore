@@ -349,7 +349,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var control = new SearchErrorControl(
-					Resx.HashtagDialog_noResults, experimental ? parsed : null)
+					Resx.HashtagDialog_noResults, experimental ? parsed : null, experimental)
 				{
 					Width = width
 				};

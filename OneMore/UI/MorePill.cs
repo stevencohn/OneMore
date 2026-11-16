@@ -2,23 +2,24 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Tables.Formulas
+namespace River.OneMoreAddIn.UI
 {
-	using River.OneMoreAddIn.UI;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// A label drawn as a rounded pill with a tinted theme highlight background and bold text.
+	/// A label drawn as a rounded pill with a tinted theme highlight background.
+	/// Used to tag UI elements, e.g. the target cell on the Formula dialog or experimental
+	/// features.
 	/// </summary>
-	internal class PillLabel : Label
+	internal class MorePill : Label
 	{
 		private readonly ThemeManager manager = ThemeManager.Instance;
 
 
-		public PillLabel()
+		public MorePill()
 		{
 			AutoSize = true;
 			BackColor = Color.Transparent;
@@ -29,8 +30,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		public override Size GetPreferredSize(Size proposedSize)
 		{
-			using var font = new Font(Font, FontStyle.Bold);
-			var size = TextRenderer.MeasureText(Text, font);
+			var size = TextRenderer.MeasureText(Text, Font);
 			var pad = Font.Height / 2;
 			return new Size(size.Width + (pad * 2), size.Height + pad);
 		}
@@ -62,8 +62,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				g.DrawPath(pen, path);
 			}
 
-			using var font = new Font(Font, FontStyle.Bold);
-			TextRenderer.DrawText(g, Text, font, rect, accent,
+			TextRenderer.DrawText(g, Text, Font, rect, accent,
 				TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
 				| TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine);
 		}

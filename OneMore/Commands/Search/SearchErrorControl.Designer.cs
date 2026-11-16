@@ -30,6 +30,7 @@
 		{
 			this.messageBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.notesBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.experimentalPill = new River.OneMoreAddIn.UI.MorePill();
 			this.SuspendLayout();
 			// 
 			// messageBox
@@ -60,12 +61,23 @@
 			this.notesBox.Size = new System.Drawing.Size(670, 52);
 			this.notesBox.TabIndex = 1;
 			this.notesBox.Text = "notesBox";
-			// 
+			//
+			// experimentalPill
+			//
+			this.experimentalPill.AutoSize = true;
+			this.experimentalPill.Location = new System.Drawing.Point(15, 15);
+			this.experimentalPill.Name = "experimentalPill";
+			this.experimentalPill.Size = new System.Drawing.Size(100, 24);
+			this.experimentalPill.TabIndex = 2;
+			this.experimentalPill.Text = "Experimental";
+			this.experimentalPill.Visible = false;
+			//
 			// HashtagErrorControl
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.Controls.Add(this.experimentalPill);
 			this.Controls.Add(this.notesBox);
 			this.Controls.Add(this.messageBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -80,5 +92,6 @@
 
 		private UI.MoreLabel messageBox;
 		private UI.MoreLabel notesBox;
+		private UI.MorePill experimentalPill;
 	}
 }

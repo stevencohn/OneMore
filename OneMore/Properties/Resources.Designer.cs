@@ -8835,7 +8835,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (Experimental) Convert markdown to OneNote content when pressing Enter.
+        ///   Looks up a localized string similar to Convert markdown to OneNote content when pressing Enter.
         /// </summary>
         internal static string MarkdownSheet_convertOnEnterBox_Text {
             get {
@@ -10196,7 +10196,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("phrase_AdvancedOptions", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Experimental.
+        /// </summary>
+        internal static string phrase_Experimental {
+            get {
+                return ResourceManager.GetString("phrase_Experimental", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to All notebooks.
         /// </summary>
