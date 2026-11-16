@@ -239,7 +239,7 @@
 			this.pinNotesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pinNotesBox.Location = new System.Drawing.Point(138, 343);
 			this.pinNotesBox.Name = "pinNotesBox";
-			this.pinNotesBox.Size = new System.Drawing.Size(198, 47);
+			this.pinNotesBox.AutoSize = true;
 			this.pinNotesBox.StylizeImage = false;
 			this.pinNotesBox.TabIndex = 3;
 			this.pinNotesBox.Text = "Pin Notes to top and\r\nQuick Notes to bottom";

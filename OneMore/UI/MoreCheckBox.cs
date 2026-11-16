@@ -367,9 +367,15 @@ namespace River.OneMoreAddIn.UI
 
 			using var g = CreateGraphics();
 			var textSize = g.MeasureString(text, Font).ToSize();
+
+			// height must cover all lines, not just the longest one
+			var height = Text.Contains(Environment.NewLine)
+				? (int)Math.Ceiling(g.MeasureString(Text, Font).Height)
+				: textSize.Height;
+
 			return new Size(
 				BoxSize + Spacing + textSize.Width,
-				Math.Max(textSize.Height, size.Height));
+				Math.Max(height, size.Height));
 		}
 
 

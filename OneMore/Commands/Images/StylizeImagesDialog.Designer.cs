@@ -104,7 +104,7 @@
 			this.foreBox.Location = new System.Drawing.Point(44, 24);
 			this.foreBox.MinimumSize = new System.Drawing.Size(285, 64);
 			this.foreBox.Name = "foreBox";
-			this.foreBox.Size = new System.Drawing.Size(285, 64);
+			this.foreBox.AutoSize = true;
 			this.foreBox.TabIndex = 2;
 			this.foreBox.Text = "Apply to foreground images\r\nForeground images: 0, selected: 0";
 			this.foreBox.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
 			this.backBox.Location = new System.Drawing.Point(44, 103);
 			this.backBox.MinimumSize = new System.Drawing.Size(283, 66);
 			this.backBox.Name = "backBox";
-			this.backBox.Size = new System.Drawing.Size(283, 66);
+			this.backBox.AutoSize = true;
 			this.backBox.TabIndex = 4;
 			this.backBox.Text = "Apply to background images\r\nBackground images: 0, selected 0";
 			this.backBox.UseVisualStyleBackColor = true;
