@@ -2110,7 +2110,9 @@ Arquivo OneNote (* .one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Vá para o favorito selecionado. Se já estiver aberto em outra janela, essa janela será mostrada. Ctrl + Enter vai para ele na janela atual.</value>
+    <value>Vá para o favorito selecionado.
+Se já estiver aberto em outra janela, essa janela será mostrada.
+Ctrl + Enter vai para ele na janela atual.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

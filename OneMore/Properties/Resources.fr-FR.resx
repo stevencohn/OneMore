@@ -2113,7 +2113,9 @@ Fichier OneNote (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Accédez au favori sélectionné. S'il est déjà ouvert dans une autre fenêtre, cette fenêtre est affichée. Ctrl+Entrée y accède dans la fenêtre actuelle.</value>
+    <value>Accédez au favori sélectionné.
+S'il est déjà ouvert dans une autre fenêtre, cette fenêtre est affichée.
+Ctrl+Entrée y accède dans la fenêtre actuelle.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

@@ -2110,7 +2110,9 @@ OneNote-bestand (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Ga naar de geselecteerde favoriet. Als het al in een ander venster geopend is, wordt dat venster weergegeven. Ctrl+Enter gaat er in plaats daarvan in het huidige venster naartoe.</value>
+    <value>Ga naar de geselecteerde favoriet.
+Als het al in een ander venster geopend is, wordt dat venster weergegeven.
+Ctrl+Enter gaat er in plaats daarvan in het huidige venster naartoe.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

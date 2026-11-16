@@ -2110,7 +2110,9 @@ Plik OneNote (* .o)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Przejdź do wybranego ulubionego. Jeśli jest już otwarty w innym oknie, to okno zostanie pokazane. Zamiast tego Ctrl+Enter powoduje przejście do tego w bieżącym oknie.</value>
+    <value>Przejdź do wybranego ulubionego.
+Jeśli jest już otwarty w innym oknie, to okno zostanie pokazane.
+Zamiast tego Ctrl+Enter powoduje przejście do tego w bieżącym oknie.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

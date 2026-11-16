@@ -2113,7 +2113,9 @@
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>انتقل إلى المفضلة المحددة. إذا كان مفتوحًا بالفعل في نافذة أخرى، فسيتم عرض تلك النافذة. ينتقل Ctrl+Enter إليه في النافذة الحالية بدلاً من ذلك.</value>
+    <value>انتقل إلى المفضلة المحددة.
+إذا كان مفتوحًا بالفعل في نافذة أخرى، فسيتم عرض تلك النافذة.
+ينتقل Ctrl+Enter إليه في النافذة الحالية بدلاً من ذلك.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

@@ -2111,7 +2111,9 @@ File OneNote (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Vai al preferito selezionato. Se è già aperto in un'altra finestra, viene visualizzata quella finestra. Ctrl+Invio va invece nella finestra corrente.</value>
+    <value>Vai al preferito selezionato.
+Se è già aperto in un'altra finestra, viene visualizzata quella finestra.
+Ctrl+Invio va invece nella finestra corrente.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">

@@ -2115,7 +2115,9 @@ OneNote File (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="FavoritesDialog_goTip" xml:space="preserve">
-    <value>Go to the selected favorite. If it is already open in another window, that window is shown. Ctrl+Enter goes to it in the current window instead.</value>
+    <value>Go to the selected favorite.
+If it is already open in another window, that window is shown.
+Ctrl+Enter goes to it in the current window instead.</value>
     <comment>tooltip</comment>
   </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
