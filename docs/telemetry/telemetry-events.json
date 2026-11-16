@@ -1,4 +1,4 @@
-{
+﻿{
   "events": [
     "About",
     "AddAnnotation",
@@ -238,6 +238,8 @@
     "RemoveTagsCLI",
     "RepairUrls",
     "ReportReminders",
+    "ResetCursor",
+    "ResetCursorCLI",
     "ResetListStyle",
     "ResetTasks",
     "ResizeContainerToPresetWidth",

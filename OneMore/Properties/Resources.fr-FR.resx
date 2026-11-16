@@ -5024,6 +5024,10 @@ Stylistique, Entité, Média</value>
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>Réinitialisez le curseur sur le titre sur {0} pages sur {1}</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>Déplacez le curseur de texte sur un élément d'une liste ou sélectionnez des éléments de liste</value>
     <comment>message box</comment>
@@ -6732,6 +6736,10 @@ Onglet Aide</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Générer un rapport récapitulatif des rappels</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>Réinitialiser le curseur sur le titre</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>Réinitialiser le style de la liste</value>

@@ -11893,6 +11893,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset the cursor to the title on {0} of {1} pages.
+        /// </summary>
+        internal static string ResetCursorCommand_Result {
+            get {
+                return ResourceManager.GetString("ResetCursorCommand_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move the text cursor to an item of a list or select list items.
         /// </summary>
         internal static string ResetListStyleCommand_NoList {
@@ -15827,6 +15836,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribReportRemindersButton_Screentip {
             get {
                 return ResourceManager.GetString("ribReportRemindersButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Cursor to Title.
+        /// </summary>
+        internal static string ribResetCursorButton_Label {
+            get {
+                return ResourceManager.GetString("ribResetCursorButton_Label", resourceCulture);
             }
         }
         

@@ -5013,6 +5013,10 @@ Stilistica, Entità, Media</value>
     <value>Vecchio o nuovo</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>Reimposta il cursore sul titolo su {0} di {1} pagine</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>Spostare il cursore del testo su un elemento di un elenco o selezionare gli elementi dell'elenco</value>
     <comment>message box</comment>
@@ -6723,6 +6727,10 @@ Scheda Aiuto</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Genera un rapporto riepilogativo dei promemoria</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>Reimposta il cursore sul titolo</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>Reimposta lo stile dell'elenco</value>

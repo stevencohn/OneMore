@@ -1020,6 +1020,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ReportRemindersCommand>();
 
 
+		[Command("ribResetCursorButton_Label", Keys.None)]
+		public async Task ResetCursorCmd(IRibbonControl control)
+			=> await factory.Run<ResetCursorCommand>();
+
+
 		[Command("ribResetListStyleButton_Label", Keys.None, "ribNumberingMenu")]
 		public async Task ResetListStyleCmd(IRibbonControl control)
 			=> await factory.Run<ResetListStyleCommand>();

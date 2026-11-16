@@ -5027,6 +5027,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>将光标重置到第 {0} 页（共 {1} 页）的标题</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>将文本光标移动到列表中的一项或选择列表项</value>
     <comment>message box</comment>
@@ -6735,6 +6739,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>生成提醒摘要报告</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>将光标重置到标题</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>重置列表样式</value>

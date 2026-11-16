@@ -110,6 +110,74 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Determines whether the page has a selection and every selected element is within
+		/// the page title, i.e., the cursor is already in the title.
+		/// </summary>
+		public bool IsSelectionOnlyInTitle()
+		{
+			var title = page.Root.Element(ns + "Title");
+			if (title is null)
+			{
+				return false;
+			}
+
+			var found = false;
+			foreach (var element in page.Root.Descendants())
+			{
+				if (element.Attribute("selected") is null)
+				{
+					continue;
+				}
+
+				found = true;
+				// the Title element itself is reported as selected="partial" when the
+				// cursor is inside it, so include the element itself in the check
+				if (!element.AncestorsAndSelf().Any(a => a == title))
+				{
+					return false;
+				}
+			}
+
+			return found;
+		}
+
+
+		/// <summary>
+		/// Moves the text cursor to the title of the page, as an empty selection positioned
+		/// at the start of the first text run of the title. Any other selection on the page
+		/// is cleared.
+		/// </summary>
+		/// <returns>True if the page was changed; false if there is no title to select</returns>
+		public bool SetCursorAtTitle()
+		{
+			var oe = page.Root.Element(ns + "Title")?.Element(ns + "OE");
+			if (oe is null)
+			{
+				return false;
+			}
+
+			Deselect();
+
+			// setting selected="all" on a T with text would select the entire title, so
+			// the cursor must always be an empty T as the very first run of the title
+			if (oe.FirstNode is XElement first &&
+				first.Name == ns + "T" &&
+				first.Value.Length == 0)
+			{
+				first.SetAttributeValue("selected", "all");
+			}
+			else
+			{
+				oe.AddFirst(new XElement(ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)));
+			}
+
+			return true;
+		}
+
+
 		public void FollowWithCurosr(XElement root)
 		{
 			var last = root.Descendants()

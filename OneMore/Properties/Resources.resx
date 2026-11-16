@@ -5041,6 +5041,10 @@ Stylistic, Entity, Media</value>
     <value>Old or New</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>Reset the cursor to the title on {0} of {1} pages</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>Move the text cursor to an item of a list or select list items</value>
     <comment>message box</comment>
@@ -6751,6 +6755,10 @@ Help Tab</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Generate a summary report of reminders</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>Reset Cursor to Title</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>Reset List Styling</value>

@@ -5013,6 +5013,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>ישן או חדש</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>אפס את הסמן לכותרת ב-{0} מתוך {1} דפים</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>הזז את סמן הטקסט לפריט ברשימה או בחר פריטי רשימה</value>
     <comment>message box</comment>
@@ -6721,6 +6725,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>צור דוח סיכום של תזכורות</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>אפס את הסמן לכותרת</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>אפס את עיצוב הרשימה</value>

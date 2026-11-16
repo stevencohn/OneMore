@@ -5016,6 +5016,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>旧もしくは新</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>カーソルを {1} ページ中 {0} のタイトルにリセットします</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>テキスト カーソルをリストの項目に移動するか、リスト項目を選択します</value>
     <comment>message box</comment>
@@ -6726,6 +6730,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>リマインダーの概要レポートを生成</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>カーソルをタイトルにリセット</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>リストのスタイルをリセット</value>

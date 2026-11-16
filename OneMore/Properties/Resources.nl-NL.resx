@@ -5013,6 +5013,10 @@ Stilistisch, entiteit, media</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>Zet de cursor terug naar de titel op {0} van {1} pagina's</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>Verplaats de tekstcursor naar een item in een lijst of selecteer lijstitems</value>
     <comment>message box</comment>
@@ -6721,6 +6725,10 @@ Tabblad Help</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Genereer een overzichtsrapport van herinneringen</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>Cursor opnieuw instellen op Titel</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>Lijststijl opnieuw instellen</value>

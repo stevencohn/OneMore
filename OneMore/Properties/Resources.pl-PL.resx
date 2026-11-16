@@ -5013,6 +5013,10 @@ Stylistyka, podmiot, media</value>
     <value>Stare lub nowe</value>
     <comment>title</comment>
   </data>
+  <data name="ResetCursorCommand_Result" xml:space="preserve">
+    <value>Zresetuj kursor do tytułu na {0} z {1} stron</value>
+    <comment>{0} pages touched; {1} pages seen</comment>
+  </data>
   <data name="ResetListStyleCommand_NoList" xml:space="preserve">
     <value>Przesuń kursor tekstowy do elementu listy lub wybierz elementy listy</value>
     <comment>message box</comment>
@@ -6721,6 +6725,10 @@ Zakładka Pomoc</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Wygeneruj raport podsumowujący przypomnienia</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetCursorButton_Label" xml:space="preserve">
+    <value>Zresetuj kursor do tytułu</value>
+    <comment>palette only command</comment>
   </data>
   <data name="ribResetListStyleButton_Label" xml:space="preserve">
     <value>Zresetuj styl listy</value>

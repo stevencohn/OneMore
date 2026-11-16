@@ -1,4 +1,4 @@
-{
+﻿{
   "commands": [
     "About",
     "AddCaption",
@@ -176,6 +176,7 @@
     "RemoveTags",
     "Replay",
     "ReportReminders",
+    "ResetCursor",
     "ResetTasks",
     "RestartTimer",
     "RestoreAutosize",
