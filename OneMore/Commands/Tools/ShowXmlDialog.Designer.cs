@@ -323,7 +323,7 @@
 			this.hideEditedByBox2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.hideEditedByBox2.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox2.Name = "hideEditedByBox2";
-			this.hideEditedByBox2.Size = new System.Drawing.Size(214, 25);
+			this.hideEditedByBox2.AutoSize = true;
 			this.hideEditedByBox2.StylizeImage = false;
 			this.hideEditedByBox2.TabIndex = 10;
 			this.hideEditedByBox2.Text = "Hide edited-by attributes";
@@ -342,7 +342,7 @@
 			this.pidBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pidBox.Location = new System.Drawing.Point(3, 78);
 			this.pidBox.Name = "pidBox";
-			this.pidBox.Size = new System.Drawing.Size(101, 25);
+			this.pidBox.AutoSize = true;
 			this.pidBox.StylizeImage = false;
 			this.pidBox.TabIndex = 10;
 			this.pidBox.Text = "Hide PID";
@@ -359,7 +359,7 @@
 			this.multilineBox2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.multilineBox2.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox2.Name = "multilineBox2";
-			this.multilineBox2.Size = new System.Drawing.Size(201, 25);
+			this.multilineBox2.AutoSize = true;
 			this.multilineBox2.StylizeImage = false;
 			this.multilineBox2.TabIndex = 8;
 			this.multilineBox2.Text = "Attributes on new lines";
@@ -593,7 +593,7 @@
 			this.editModeBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.editModeBox.Location = new System.Drawing.Point(330, 18);
 			this.editModeBox.Name = "editModeBox";
-			this.editModeBox.Size = new System.Drawing.Size(163, 25);
+			this.editModeBox.AutoSize = true;
 			this.editModeBox.StylizeImage = false;
 			this.editModeBox.TabIndex = 9;
 			this.editModeBox.Text = "Enable edit mode";
@@ -611,7 +611,7 @@
 			this.saveWindowBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.saveWindowBox.Location = new System.Drawing.Point(330, 48);
 			this.saveWindowBox.Name = "saveWindowBox";
-			this.saveWindowBox.Size = new System.Drawing.Size(194, 25);
+			this.saveWindowBox.AutoSize = true;
 			this.saveWindowBox.StylizeImage = false;
 			this.saveWindowBox.TabIndex = 7;
 			this.saveWindowBox.Text = "Save window location";
@@ -628,7 +628,7 @@
 			this.multilineBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.multilineBox.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox.Name = "multilineBox";
-			this.multilineBox.Size = new System.Drawing.Size(201, 25);
+			this.multilineBox.AutoSize = true;
 			this.multilineBox.StylizeImage = false;
 			this.multilineBox.TabIndex = 8;
 			this.multilineBox.Text = "Attributes on new lines";
@@ -661,7 +661,7 @@
 			this.hideEditedByBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.hideEditedByBox.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox.Name = "hideEditedByBox";
-			this.hideEditedByBox.Size = new System.Drawing.Size(214, 25);
+			this.hideEditedByBox.AutoSize = true;
 			this.hideEditedByBox.StylizeImage = false;
 			this.hideEditedByBox.TabIndex = 5;
 			this.hideEditedByBox.Text = "Hide edited-by attributes";
@@ -681,7 +681,7 @@
 			this.linefeedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.linefeedBox.Location = new System.Drawing.Point(3, 78);
 			this.linefeedBox.Name = "linefeedBox";
-			this.linefeedBox.Size = new System.Drawing.Size(218, 25);
+			this.linefeedBox.AutoSize = true;
 			this.linefeedBox.StylizeImage = false;
 			this.linefeedBox.TabIndex = 6;
 			this.linefeedBox.Text = "Remove LF from CDATA";
@@ -748,7 +748,7 @@
 			this.wrapBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wrapBox.Location = new System.Drawing.Point(177, 59);
 			this.wrapBox.Name = "wrapBox";
-			this.wrapBox.Size = new System.Drawing.Size(106, 25);
+			this.wrapBox.AutoSize = true;
 			this.wrapBox.StylizeImage = false;
 			this.wrapBox.TabIndex = 2;
 			this.wrapBox.Text = "Wrap text";

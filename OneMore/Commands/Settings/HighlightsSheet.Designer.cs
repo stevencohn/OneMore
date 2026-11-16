@@ -117,7 +117,7 @@
 			this.extendBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.extendBox.Location = new System.Drawing.Point(148, 37);
 			this.extendBox.Name = "extendBox";
-			this.extendBox.Size = new System.Drawing.Size(207, 25);
+			this.extendBox.AutoSize = true;
 			this.extendBox.StylizeImage = false;
 			this.extendBox.TabIndex = 9;
 			this.extendBox.Text = "Enable extended colors";

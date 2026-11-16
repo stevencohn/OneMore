@@ -167,7 +167,7 @@
 			this.hideBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.hideBox.Location = new System.Drawing.Point(23, 20);
 			this.hideBox.Name = "hideBox";
-			this.hideBox.Size = new System.Drawing.Size(262, 25);
+			this.hideBox.AutoSize = true;
 			this.hideBox.StylizeImage = false;
 			this.hideBox.TabIndex = 3;
 			this.hideBox.Text = "Hide this message in the future";

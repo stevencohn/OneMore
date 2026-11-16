@@ -122,6 +122,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			// keep clear of the auto-sized checkbox when translations are longer
+			fontOnlyBox.FollowRight(24, null, isCodeBox);
+
 			if (NeedsLocalizing())
 			{
 				Localize(new string[]

@@ -184,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 			this.setWidthCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.setWidthCheckBox.Location = new System.Drawing.Point(72, 60);
 			this.setWidthCheckBox.Name = "setWidthCheckBox";
-			this.setWidthCheckBox.Size = new System.Drawing.Size(78, 25);
+			this.setWidthCheckBox.AutoSize = true;
 			this.setWidthCheckBox.TabIndex = 1;
 			this.setWidthCheckBox.Text = "Width";
 			this.setWidthCheckBox.UseVisualStyleBackColor = true;

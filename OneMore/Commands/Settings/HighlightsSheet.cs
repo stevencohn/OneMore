@@ -29,6 +29,9 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
+			// keep clear of the auto-sized checkbox when translations are longer
+			modePanel.FollowRight(25, null, extendBox);
+
 			Name = "HighlightsSheet";
 			Title = Resx.HighlightsSheet_Title;
 

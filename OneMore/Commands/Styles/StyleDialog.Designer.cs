@@ -672,7 +672,7 @@
 			this.isCodeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.isCodeBox.Location = new System.Drawing.Point(169, 244);
 			this.isCodeBox.Name = "isCodeBox";
-			this.isCodeBox.Size = new System.Drawing.Size(207, 25);
+			this.isCodeBox.AutoSize = true;
 			this.isCodeBox.StylizeImage = false;
 			this.isCodeBox.TabIndex = 8;
 			this.isCodeBox.Text = "Source code paragraph";

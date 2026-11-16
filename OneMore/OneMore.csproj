@@ -966,6 +966,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\IThemedControl.cs" />
+    <Compile Include="UI\LayoutExtensions.cs" />
     <Compile Include="UI\MoreCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>

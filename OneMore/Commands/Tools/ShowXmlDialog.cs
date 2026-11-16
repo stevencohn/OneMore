@@ -80,6 +80,27 @@ namespace River.OneMoreAddIn.Commands
 			functionBox.SelectedIndex = 0;
 			manualPanel.Location = pageOptionsPanel.Location;
 
+			// let controls follow auto-sized checkboxes so longer translations don't overlap;
+			// gaps are the original design-time gaps in px
+			pageOptionsPanel.FollowRight(139, null, wrapBox);
+			manualPanel.FollowRight(139, null, wrapBox);
+
+			// pageOptionsPanel: column 1 > column 2 > PageInfo label > scope
+			var col1 = new Control[] { hideEditedByBox, multilineBox, linefeedBox };
+			var col2 = new Control[] { editModeBox, saveWindowBox };
+			editModeBox.FollowRight(109, null, col1);
+			saveWindowBox.FollowRight(109, null, col1);
+			pageInfoLabel.FollowRight(99, null, col2);
+			scopeBox.FollowRight(7, null, pageInfoLabel);
+
+			// manualPanel: column 1 > labels > inputs
+			var col1b = new Control[] { hideEditedByBox2, multilineBox2, pidBox };
+			manualLabel.FollowRight(67, null, col1b);
+			fnLabel.FollowRight(67, null, col1b);
+			objectIdBox.FollowRight(3, null, manualLabel, fnLabel);
+			functionBox.FollowRight(3, null, manualLabel, fnLabel);
+			queryButton.FollowRight(6, null, functionBox);
+
 			((Control)manualTab).Enabled = false;
 		}
 

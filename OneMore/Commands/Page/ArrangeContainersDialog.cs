@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
 
@@ -26,6 +27,9 @@ namespace River.OneMoreAddIn.Commands
 		public ArrangeContainersDialog(bool focusWidth = false)
 		{
 			InitializeComponent();
+
+			// stay aligned with the other number boxes unless the checkbox text pushes it right
+			setWidthBox.FollowRight(58, columnsBox, setWidthCheckBox);
 
 			this.focusWidth = focusWidth;
 
