@@ -26,6 +26,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			messageLabel.Text = string.Format(Resx.CreatePagesCommand_CreatePages, count);
+
+			ActiveControl = okButton;
 		}
 
 
