@@ -2113,8 +2113,16 @@ OneNote 文件 (*.one)</value>
     <value>关闭现有窗口</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>转到所选的收藏夹。如果它已在另一个窗口中打开，则会显示该窗口。 Ctrl+Enter 会在当前窗口中转至该位置。</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>管理收藏夹</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>在当前窗口中打开</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

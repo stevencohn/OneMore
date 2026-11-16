@@ -36,6 +36,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		// favorite ID -> handle of the OneNote window that is already showing it
 		private Dictionary<int, IntPtr> openWindows = new();
 
+		// handle of the current OneNote window, or IntPtr.Zero if unknown
+		private IntPtr currentWindow = IntPtr.Zero;
+
 		// the row where a Shift+arrow range starts and the row it currently reaches
 		private int anchorIndex = -1;
 		private int caretIndex = -1;
@@ -65,6 +68,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					"cancelButton=word_Cancel",
 					"goItem=word_Go",
 					"newWindowItem=NavigatorWindow_menuOpenInNew",
+					"currentWindowItem=FavoritesDialog_openInCurrent",
 					"closeBox=FavoritesDialog_closeExisting"
 				});
 
@@ -75,7 +79,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			listView.SetColumnProportions(0.4f, 0.6f);
 			listView.GetCellStyle = GetCellStyle;
 			listView.GetCellImage = (item, col) =>
-				col == 0 && item.Tag is Favorite f ? FavoriteKindGlyphs.GetGlyph(f) : null;
+				col == 0 && item.Tag is Favorite f
+					? FavoriteKindGlyphs.GetGlyph(f, openWindows.ContainsKey(f.ID))
+					: null;
+
+			tooltip.SetToolTip(goButton, Resx.FavoritesDialog_goTip);
 
 			DefaultControl = searchBox;
 		}
@@ -117,11 +125,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			}
 
 			var favorites = collection.Folders.SelectMany(f => f.Items).Concat(collection.Items);
-			await OpenFavoriteWindows.Find(favorites, found =>
+			await OpenFavoriteWindows.Find(favorites, (found, current) =>
 			{
 				if (!IsDisposed)
 				{
 					openWindows = found;
+					currentWindow = current;
 					listView.Invalidate();
 				}
 			});
@@ -556,6 +565,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			goButton.Text = many ? Resx.FavoritesDialog_openInNewWindows : Resx.word_Go;
 			closeBox.Visible = many;
+			tooltip.SetToolTip(goButton, many ? string.Empty : Resx.FavoritesDialog_goTip);
 
 			if (many != goIsWide)
 			{
@@ -769,8 +779,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		/// <param name="newWindow">True to open a single favorite in a new window; many favorites
 		/// and a folder always open in new windows</param>
+		/// <param name="forceCurrent">True to navigate the current window to a single favorite even
+		/// if another window already shows it</param>
 		/// <returns>True if there is something to open</returns>
-		private bool Choose(bool newWindow)
+		private bool Choose(bool newWindow, bool forceCurrent = false)
 		{
 			Selected = null;
 			Uri = null;
@@ -825,7 +837,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			Selected = favorites[0];
 			Uri = Selected.GetNavigationTarget();
 
-			if (openWindows.TryGetValue(Selected.ID, out var handle))
+			if (!forceCurrent && openWindows.TryGetValue(Selected.ID, out var handle))
 			{
 				RaiseHandle = handle;
 			}
@@ -847,6 +859,25 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				DialogResult = DialogResult.OK;
 				Close();
 			}
+		}
+
+
+		// Ctrl+Enter is not handled by the AcceptButton and the search box has focus, not the list,
+		// so catch it here: go to the favorite in the current window even if it is open elsewhere
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == (Keys.Control | Keys.Enter))
+			{
+				if (Choose(false, forceCurrent: true))
+				{
+					DialogResult = DialogResult.OK;
+					Close();
+				}
+
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
 
@@ -902,6 +933,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			goItem.Visible = single;
 			newWindowItem.Visible = true;
+
+			// only useful when Go would show some other window
+			currentWindowItem.Visible = single &&
+				listView.SelectedItems[0].Tag is Favorite chosen &&
+				openWindows.TryGetValue(chosen.ID, out var shownIn) &&
+				shownIn != currentWindow;
+
 			rowMenu.Show(listView, e.Location);
 		}
 
@@ -909,6 +947,16 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private void GoFromMenu(object sender, EventArgs e)
 		{
 			if (Choose(false))
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
+
+		private void OpenInCurrentFromMenu(object sender, EventArgs e)
+		{
+			if (Choose(false, forceCurrent: true))
 			{
 				DialogResult = DialogResult.OK;
 				Close();

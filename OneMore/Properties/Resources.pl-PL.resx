@@ -2109,8 +2109,16 @@ Plik OneNote (* .o)</value>
     <value>Zamknij istniejące okna</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>Przejdź do wybranego ulubionego. Jeśli jest już otwarty w innym oknie, to okno zostanie pokazane. Zamiast tego Ctrl+Enter powoduje przejście do tego w bieżącym oknie.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Zarządzaj ulubionymi</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>Otwórz w bieżącym oknie</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

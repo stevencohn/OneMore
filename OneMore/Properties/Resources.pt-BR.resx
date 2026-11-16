@@ -2109,8 +2109,16 @@ Arquivo OneNote (* .one)</value>
     <value>Fechar janelas existentes</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>Vá para o favorito selecionado. Se já estiver aberto em outra janela, essa janela será mostrada. Ctrl + Enter vai para ele na janela atual.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Gerenciar Favoritos</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>Abrir na janela atual</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

@@ -57,10 +57,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// since its notebook was reopened is not reported.
 		/// </summary>
 		/// <param name="favorites">The favorites to look for</param>
-		/// <param name="update">Called with the favorites found, first quickly by their remembered
-		/// IDs and then, if some were missed, again after looking up where they are now</param>
+		/// <param name="update">Called with the favorites found and the handle of the current
+		/// window (or IntPtr.Zero), first quickly by their remembered IDs and then, if some were
+		/// missed, again after looking up where they are now</param>
 		public static async Task Find(
-			IEnumerable<Favorite> favorites, Action<Dictionary<int, IntPtr>> update)
+			IEnumerable<Favorite> favorites, Action<Dictionary<int, IntPtr>, IntPtr> update)
 		{
 			try
 			{
@@ -69,8 +70,15 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				await using var one = new OneNote();
 				var windows = await one.GetWindows(detailed: false);
 
+				var currentWindow = windows.FirstOrDefault(
+					w => w.IsCurrent && !string.IsNullOrEmpty(w.WindowHandle));
+
+				var current = currentWindow is null
+					? IntPtr.Zero
+					: ParseHandle(currentWindow.WindowHandle);
+
 				var map = Match(list, windows);
-				update(map);
+				update(map, current);
 
 				// A favorite's remembered IDs go stale when its notebook is reopened, and a page
 				// found by name alone is opened but never saved with its new ID. So look for what
@@ -114,7 +122,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 				if (refined.Count > map.Count)
 				{
-					update(refined);
+					update(refined, current);
 				}
 			}
 			catch (Exception exc)

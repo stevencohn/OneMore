@@ -2112,8 +2112,16 @@
     <value>إغلاق النوافذ الموجودة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>انتقل إلى المفضلة المحددة. إذا كان مفتوحًا بالفعل في نافذة أخرى، فسيتم عرض تلك النافذة. ينتقل Ctrl+Enter إليه في النافذة الحالية بدلاً من ذلك.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>إدارة المفضلة</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>فتح في النافذة الحالية</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

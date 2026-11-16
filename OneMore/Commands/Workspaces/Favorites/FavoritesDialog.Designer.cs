@@ -49,6 +49,8 @@
 			this.rowMenu = new River.OneMoreAddIn.UI.MoreContextMenuStrip();
 			this.goItem = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.newWindowItem = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.currentWindowItem = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.components.Add(this.contextMenu);
 			this.components.Add(this.rowMenu);
 			this.buttonPanel.SuspendLayout();
@@ -251,9 +253,10 @@
 			this.rowMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.rowMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goItem,
+            this.currentWindowItem,
             this.newWindowItem});
 			this.rowMenu.Name = "rowMenu";
-			this.rowMenu.Size = new System.Drawing.Size(249, 68);
+			this.rowMenu.Size = new System.Drawing.Size(249, 100);
 			//
 			// goItem
 			//
@@ -261,6 +264,14 @@
 			this.goItem.Size = new System.Drawing.Size(248, 32);
 			this.goItem.Text = "Go";
 			this.goItem.Click += new System.EventHandler(this.GoFromMenu);
+			//
+			// currentWindowItem
+			//
+			this.currentWindowItem.Name = "currentWindowItem";
+			this.currentWindowItem.Size = new System.Drawing.Size(248, 32);
+			this.currentWindowItem.Text = "Open in Current Window";
+			this.currentWindowItem.Visible = false;
+			this.currentWindowItem.Click += new System.EventHandler(this.OpenInCurrentFromMenu);
 			//
 			// newWindowItem
 			//
@@ -319,5 +330,7 @@
 		private UI.MoreContextMenuStrip rowMenu;
 		private UI.MoreMenuItem goItem;
 		private UI.MoreMenuItem newWindowItem;
+		private UI.MoreMenuItem currentWindowItem;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

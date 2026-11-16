@@ -4789,6 +4789,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to the selected favorite. If it is already open in another window, that window is shown. Ctrl+Enter goes to it in the current window instead..
+        /// </summary>
+        internal static string FavoritesDialog_goTip {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_goTip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Manage Favorites.
         /// </summary>
         internal static string FavoritesDialog_manageButton_Text {
@@ -4796,7 +4805,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FavoritesDialog_manageButton.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Current Window.
+        /// </summary>
+        internal static string FavoritesDialog_openInCurrent {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_openInCurrent", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Open in new windows.
         /// </summary>

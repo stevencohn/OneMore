@@ -20,8 +20,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private const int GlyphSize = 14;
 
 		private static Image pageGlyph;
+		private static Image openPageGlyph;
 		private static Image sectionGlyph;
+		private static Image openSectionGlyph;
 		private static Image sectionGroupGlyph;
+		private static Image openSectionGroupGlyph;
 		private static Image notebookGlyph;
 
 
@@ -29,14 +32,23 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// Returns the cached glyph for the given favorite's kind (page, section, section
 		/// group, or notebook), building it on first use.
 		/// </summary>
-		public static Image GetGlyph(Favorite favorite) =>
+		/// <param name="favorite">The favorite to draw</param>
+		/// <param name="isOpen">True if the favorite is already showing in an OneNote window;
+		/// only a page is drawn differently, as a solid page rather than an outline</param>
+		public static Image GetGlyph(Favorite favorite, bool isOpen = false) =>
 			!string.IsNullOrWhiteSpace(favorite.PageID)
-				? pageGlyph ??= BuildPageGlyph()
+				? isOpen
+					? openPageGlyph ??= BuildOpenPageGlyph()
+					: pageGlyph ??= BuildPageGlyph()
 				: favorite.Kind switch
 				{
 					"notebook" => notebookGlyph ??= BuildNotebookGlyph(),
-					"sectiongroup" => sectionGroupGlyph ??= BuildSectionGroupGlyph(),
-					_ => sectionGlyph ??= BuildSectionGlyph()
+					"sectiongroup" => isOpen
+						? openSectionGroupGlyph ??= BuildSectionGroupGlyph(true)
+						: sectionGroupGlyph ??= BuildSectionGroupGlyph(false),
+					_ => isOpen
+						? openSectionGlyph ??= BuildSectionGlyph(true)
+						: sectionGlyph ??= BuildSectionGlyph(false)
 				};
 
 
@@ -73,16 +85,55 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private static Image BuildSectionGlyph()
+		// the page silhouette filled solid, with its text lines cut out so the row shows through
+		private static Image BuildOpenPageGlyph()
 		{
 			var bitmap = NewCanvas(out var g);
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
 				using var pen = new Pen(color);
-				g.DrawRectangle(pen, 2, 3, 9, 9);
-
 				using var brush = new SolidBrush(color);
+
+				using var path = new GraphicsPath();
+				path.AddLine(2, 1, 8, 1);
+				path.AddLine(8, 1, 11, 4);
+				path.AddLine(11, 4, 11, 13);
+				path.AddLine(11, 13, 2, 13);
+				path.CloseFigure();
+				g.FillPath(brush, path);
+				g.DrawPath(pen, path);
+
+				g.SmoothingMode = SmoothingMode.None;
+				g.CompositingMode = CompositingMode.SourceCopy;
+				using var cut = new Pen(Color.Transparent);
+				g.DrawLine(cut, 4, 7, 9, 7);
+				g.DrawLine(cut, 4, 10, 9, 10);
+			}
+
+			return bitmap;
+		}
+
+
+		// open is drawn solid, like the open page
+		private static Image BuildSectionGlyph(bool open)
+		{
+			var bitmap = NewCanvas(out var g);
+			using (g)
+			{
+				var color = ThemeManager.Instance.GetColor("ControlText");
+				using var pen = new Pen(color);
+				using var brush = new SolidBrush(color);
+
+				if (open)
+				{
+					g.FillRectangle(brush, 2, 3, 10, 10);
+				}
+				else
+				{
+					g.DrawRectangle(pen, 2, 3, 9, 9);
+				}
+
 				g.FillRectangle(brush, 4, 1, 6, 3);
 			}
 
@@ -90,7 +141,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private static Image BuildSectionGroupGlyph()
+		private static Image BuildSectionGroupGlyph(bool open)
 		{
 			var bitmap = NewCanvas(out var g);
 			using (g)
@@ -107,6 +158,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				path.AddLine(12, 4, 12, 12);
 				path.AddLine(12, 12, 2, 12);
 				path.CloseFigure();
+
+				if (open)
+				{
+					using var brush = new SolidBrush(color);
+					g.FillPath(brush, path);
+				}
+
 				g.DrawPath(pen, path);
 			}
 

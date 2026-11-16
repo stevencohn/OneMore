@@ -2112,8 +2112,16 @@ OneNoteファイル (*.one)</value>
     <value>既存のウィンドウを閉じます</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>選択したお気に入りに移動します。すでに別のウィンドウで開いている場合は、そのウィンドウが表示されます。代わりに、Ctrl+Enter を押すと、現在のウィンドウでそれに移動します。</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>お気に入りを管理</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>現在のウィンドウで開く</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
