@@ -104,7 +104,7 @@
 			this.rewireBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.rewireBox.Location = new System.Drawing.Point(432, 49);
 			this.rewireBox.Name = "rewireBox";
-			this.rewireBox.Size = new System.Drawing.Size(275, 25);
+			this.rewireBox.AutoSize = true;
 			this.rewireBox.TabIndex = 3;
 			this.rewireBox.Text = "Rewire parent links to sub-pages";
 			this.rewireBox.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
 			this.useTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.useTextBox.Location = new System.Drawing.Point(432, 19);
 			this.useTextBox.Name = "useTextBox";
-			this.useTextBox.Size = new System.Drawing.Size(309, 25);
+			this.useTextBox.AutoSize = true;
 			this.useTextBox.TabIndex = 2;
 			this.useTextBox.Text = "Apply Text columns to sub-page titles";
 			this.useTextBox.UseVisualStyleBackColor = true;

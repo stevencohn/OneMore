@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 			this.headingsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.headingsBox.Location = new System.Drawing.Point(23, 107);
 			this.headingsBox.Name = "headingsBox";
-			this.headingsBox.Size = new System.Drawing.Size(594, 38);
+			this.headingsBox.AutoSize = true;
 			this.headingsBox.StylizeImage = false;
 			this.headingsBox.TabIndex = 4;
 			this.headingsBox.Text = "Include headings on each page";

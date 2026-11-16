@@ -198,7 +198,7 @@
 			this.tagBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.tagBox.Location = new System.Drawing.Point(20, 550);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(300, 25);
+			this.tagBox.AutoSize = true;
 			this.tagBox.StylizeImage = false;
 			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";

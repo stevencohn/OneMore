@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.preserveBox.Location = new System.Drawing.Point(39, 563);
 			this.preserveBox.Name = "preserveBox";
-			this.preserveBox.Size = new System.Drawing.Size(194, 25);
+			this.preserveBox.AutoSize = true;
 			this.preserveBox.StylizeImage = false;
 			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
@@ -711,7 +711,7 @@ namespace River.OneMoreAddIn.Commands
 			this.repositionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
-			this.repositionBox.Size = new System.Drawing.Size(262, 25);
+			this.repositionBox.AutoSize = true;
 			this.repositionBox.StylizeImage = false;
 			this.repositionBox.TabIndex = 48;
 			this.repositionBox.Text = "Reposition background images";

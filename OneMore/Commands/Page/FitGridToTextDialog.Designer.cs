@@ -165,7 +165,7 @@
 			this.snapOutlinesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.snapOutlinesBox.Location = new System.Drawing.Point(23, 181);
 			this.snapOutlinesBox.Name = "snapOutlinesBox";
-			this.snapOutlinesBox.Size = new System.Drawing.Size(185, 25);
+			this.snapOutlinesBox.AutoSize = true;
 			this.snapOutlinesBox.StylizeImage = false;
 			this.snapOutlinesBox.TabIndex = 11;
 			this.snapOutlinesBox.Text = "Snap outlines to grid";

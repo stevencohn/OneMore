@@ -226,7 +226,7 @@ namespace River.OneMoreAddIn.Settings
 			this.plantRemoveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.plantRemoveBox.Location = new System.Drawing.Point(32, 97);
 			this.plantRemoveBox.Name = "plantRemoveBox";
-			this.plantRemoveBox.Size = new System.Drawing.Size(597, 38);
+			this.plantRemoveBox.AutoSize = true;
 			this.plantRemoveBox.StylizeImage = false;
 			this.plantRemoveBox.TabIndex = 2;
 			this.plantRemoveBox.Text = "Remove PlantUML text and embed it in the image";
@@ -242,7 +242,7 @@ namespace River.OneMoreAddIn.Settings
 			this.plantCollapseBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.plantCollapseBox.Location = new System.Drawing.Point(32, 68);
 			this.plantCollapseBox.Name = "plantCollapseBox";
-			this.plantCollapseBox.Size = new System.Drawing.Size(310, 38);
+			this.plantCollapseBox.AutoSize = true;
 			this.plantCollapseBox.StylizeImage = false;
 			this.plantCollapseBox.TabIndex = 1;
 			this.plantCollapseBox.Text = "Collapse PlantUML text";
@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn.Settings
 			this.plantAfterBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.plantAfterBox.Location = new System.Drawing.Point(32, 37);
 			this.plantAfterBox.Name = "plantAfterBox";
-			this.plantAfterBox.Size = new System.Drawing.Size(628, 38);
+			this.plantAfterBox.AutoSize = true;
 			this.plantAfterBox.StylizeImage = false;
 			this.plantAfterBox.TabIndex = 0;
 			this.plantAfterBox.Text = "Insert drawing after PlantUML text rather than before";
