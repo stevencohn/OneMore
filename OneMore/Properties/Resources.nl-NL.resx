@@ -2109,8 +2109,18 @@ OneNote-bestand (*.one)</value>
     <value>Sluit bestaande vensters</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>Ga naar de geselecteerde favoriet.
+Als het al in een ander venster geopend is, wordt dat venster weergegeven.
+Ctrl+Enter gaat er in plaats daarvan in het huidige venster naartoe.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Beheer favorieten</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>Openen in huidig ​​venster</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

@@ -4789,11 +4789,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to the selected favorite.
+        ///If it is already open in another window, that window is shown.
+        ///Ctrl+Enter goes to it in the current window instead..
+        /// </summary>
+        internal static string FavoritesDialog_goTip {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_goTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Favorites.
         /// </summary>
         internal static string FavoritesDialog_manageButton_Text {
             get {
                 return ResourceManager.GetString("FavoritesDialog_manageButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Current Window.
+        /// </summary>
+        internal static string FavoritesDialog_openInCurrent {
+            get {
+                return ResourceManager.GetString("FavoritesDialog_openInCurrent", resourceCulture);
             }
         }
         
@@ -8021,7 +8041,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertTocCommand_Top", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The table of contents appears to be up to date and refreshing this large page can be slow. Do you want to refresh it anyway?.
         /// </summary>
@@ -8146,11 +8166,12 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;TitleBar&quot;: &quot;#F4E8F3&quot;,
+        ///    &quot;TitleBarText&quot;: &quot;#000000&quot;,
         ///
         ///    &quot;ActiveBorder&quot;: &quot;#B4B4B4&quot;,
         ///    &quot;ActiveCaption&quot;: &quot;#C980EE&quot;,
-        ///    &quot;ActiveCaptionText&quot;: &quot;#000000&quot;,
-        ///    &quot;AppWorkspace&quot;: &quot;#ABABAB&quot;,        /// [rest of string was truncated]&quot;;.
+        ///    &quot;Act [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LightTheme {
             get {
@@ -10114,6 +10135,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string PageSheet_Title {
+            get {
+                return ResourceManager.GetString("PageSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string PageSheet_tocGroup_Text {
@@ -10121,7 +10151,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("PageSheet_tocGroup.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Minimum page size (KB):.
         /// </summary>
@@ -10130,22 +10160,13 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("PageSheet_tocSizeLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to On Refresh, show warning when table of contents is up to date.
         /// </summary>
         internal static string PageSheet_tocWarnBox_Text {
             get {
                 return ResourceManager.GetString("PageSheet_tocWarnBox.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Page.
-        /// </summary>
-        internal static string PageSheet_Title {
-            get {
-                return ResourceManager.GetString("PageSheet_Title", resourceCulture);
             }
         }
         
@@ -12745,7 +12766,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribClearFormattingButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Clear text formatting and styles but keep bullets and numbers.
         /// </summary>
@@ -12754,7 +12775,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribClearFormattingButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Clear Log File.
         /// </summary>
@@ -13078,7 +13099,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCopyFollowButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy selected pages to another section and go to the first copied page.
         /// </summary>
@@ -13087,7 +13108,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCopyFollowButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy Path Link to Page.
         /// </summary>
@@ -14754,7 +14775,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribMoveFollowButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Move selected pages to another section and go to the first moved page.
         /// </summary>
@@ -14763,7 +14784,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribMoveFollowButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Move to Bottom.
         /// </summary>
@@ -18885,6 +18906,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font only.
+        /// </summary>
+        internal static string StyleDialog_fontOnlyBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_fontOnlyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable spell check.
         /// </summary>
         internal static string StyleDialog_ignoredBox_Text {
@@ -18893,15 +18923,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Font only.
-        /// </summary>
-        internal static string StyleDialog_fontOnlyBox_Text {
-            get {
-                return ResourceManager.GetString("StyleDialog_fontOnlyBox.Text", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Source code paragraph.
         /// </summary>

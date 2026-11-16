@@ -2114,8 +2114,18 @@ OneNote File (*.one)</value>
     <value>Close existing windows</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>Go to the selected favorite.
+If it is already open in another window, that window is shown.
+Ctrl+Enter goes to it in the current window instead.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>Manage Favorites</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>Open in Current Window</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">

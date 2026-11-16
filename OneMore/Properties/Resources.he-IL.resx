@@ -2109,8 +2109,18 @@ Total Row Font
     <value>סגור חלונות קיימים</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FavoritesDialog_goTip" xml:space="preserve">
+    <value>עבור אל המועדף הנבחר.
+אם הוא כבר פתוח בחלון אחר, החלון הזה יוצג.
+Ctrl+Enter עובר אליו בחלון הנוכחי במקום זאת.</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
     <value>נהל מועדפים</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_openInCurrent" xml:space="preserve">
+    <value>פתח בחלון נוכחי</value>
     <comment>context menu item</comment>
   </data>
   <data name="FavoritesDialog_openInNewWindows" xml:space="preserve">
