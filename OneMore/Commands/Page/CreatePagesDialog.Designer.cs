@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			this.linksBox.Location = new System.Drawing.Point(20, 60);
 			this.linksBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.linksBox.Name = "linksBox";
-			this.linksBox.Size = new System.Drawing.Size(460, 25);
+			this.linksBox.AutoSize = true;
 			this.linksBox.StylizeImage = false;
 			this.linksBox.TabIndex = 0;
 			this.linksBox.Text = "Create two-way links between the list and new pages";

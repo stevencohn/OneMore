@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Settings
 			this.gfmLineBreaksBox.Location = new System.Drawing.Point(18, 20);
 			this.gfmLineBreaksBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.gfmLineBreaksBox.Name = "gfmLineBreaksBox";
-			this.gfmLineBreaksBox.Size = new System.Drawing.Size(700, 25);
+			this.gfmLineBreaksBox.AutoSize = true;
 			this.gfmLineBreaksBox.StylizeImage = false;
 			this.gfmLineBreaksBox.TabIndex = 0;
 			this.gfmLineBreaksBox.Text = "Treat single line breaks as GitHub-Flavored Markdown line breaks";
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Settings
 			this.singleSpacingBox.Location = new System.Drawing.Point(18, 76);
 			this.singleSpacingBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.singleSpacingBox.Name = "singleSpacingBox";
-			this.singleSpacingBox.Size = new System.Drawing.Size(700, 25);
+			this.singleSpacingBox.AutoSize = true;
 			this.singleSpacingBox.StylizeImage = false;
 			this.singleSpacingBox.TabIndex = 1;
 			this.singleSpacingBox.Text = "Use single paragraph spacing instead of adding extra space after each paragraph";
@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Settings
 			this.blankBeforeHeadingsBox.Location = new System.Drawing.Point(18, 111);
 			this.blankBeforeHeadingsBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.blankBeforeHeadingsBox.Name = "blankBeforeHeadingsBox";
-			this.blankBeforeHeadingsBox.Size = new System.Drawing.Size(700, 25);
+			this.blankBeforeHeadingsBox.AutoSize = true;
 			this.blankBeforeHeadingsBox.StylizeImage = false;
 			this.blankBeforeHeadingsBox.TabIndex = 2;
 			this.blankBeforeHeadingsBox.Text = "Insert a blank line before headings";
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Settings
 			this.convertOnEnterBox.Location = new System.Drawing.Point(18, 146);
 			this.convertOnEnterBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.convertOnEnterBox.Name = "convertOnEnterBox";
-			this.convertOnEnterBox.Size = new System.Drawing.Size(700, 25);
+			this.convertOnEnterBox.AutoSize = true;
 			this.convertOnEnterBox.StylizeImage = false;
 			this.convertOnEnterBox.TabIndex = 3;
 			this.convertOnEnterBox.Text = "Convert markdown to OneNote content when pressing Enter";

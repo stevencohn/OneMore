@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 			this.catalogBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.catalogBox.Location = new System.Drawing.Point(23, 176);
 			this.catalogBox.Name = "catalogBox";
-			this.catalogBox.Size = new System.Drawing.Size(288, 25);
+			this.catalogBox.AutoSize = true;
 			this.catalogBox.TabIndex = 5;
 			this.catalogBox.Text = "Include cross-notebook references";
 			this.catalogBox.UseVisualStyleBackColor = true;

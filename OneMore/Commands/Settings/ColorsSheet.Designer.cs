@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Settings
 			this.strikeBox.Location = new System.Drawing.Point(27, 55);
 			this.strikeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.strikeBox.Name = "strikeBox";
-			this.strikeBox.Size = new System.Drawing.Size(626, 25);
+			this.strikeBox.AutoSize = true;
 			this.strikeBox.StylizeImage = false;
 			this.strikeBox.TabIndex = 0;
 			this.strikeBox.Text = "Apply this color when using the Strike-Through Completed To Do Tags command";

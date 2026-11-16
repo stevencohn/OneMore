@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 			this.topBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.topBox.Location = new System.Drawing.Point(23, 29);
 			this.topBox.Name = "topBox";
-			this.topBox.Size = new System.Drawing.Size(378, 25);
+			this.topBox.AutoSize = true;
 			this.topBox.StylizeImage = false;
 			this.topBox.TabIndex = 2;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 			this.rightAlignBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.rightAlignBox.Location = new System.Drawing.Point(49, 59);
 			this.rightAlignBox.Name = "rightAlignBox";
-			this.rightAlignBox.Size = new System.Drawing.Size(230, 25);
+			this.rightAlignBox.AutoSize = true;
 			this.rightAlignBox.StylizeImage = false;
 			this.rightAlignBox.TabIndex = 3;
 			this.rightAlignBox.Text = "Right-align top of page link";
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			this.secondaryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.secondaryBox.Location = new System.Drawing.Point(23, 97);
 			this.secondaryBox.Name = "secondaryBox";
-			this.secondaryBox.Size = new System.Drawing.Size(311, 25);
+			this.secondaryBox.AutoSize = true;
 			this.secondaryBox.StylizeImage = false;
 			this.secondaryBox.TabIndex = 4;
 			this.secondaryBox.Text = "Include headings from tables and lists";

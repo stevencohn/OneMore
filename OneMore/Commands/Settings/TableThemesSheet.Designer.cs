@@ -99,7 +99,7 @@
 			this.showWCBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showWCBox.Location = new System.Drawing.Point(119, 88);
 			this.showWCBox.Name = "showWCBox";
-			this.showWCBox.Size = new System.Drawing.Size(259, 25);
+			this.showWCBox.AutoSize = true;
 			this.showWCBox.StylizeImage = false;
 			this.showWCBox.TabIndex = 0;
 			this.showWCBox.Text = "Show white-color rows themes";
@@ -114,7 +114,7 @@
 			this.showWCHBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showWCHBox.Location = new System.Drawing.Point(119, 152);
 			this.showWCHBox.Name = "showWCHBox";
-			this.showWCHBox.Size = new System.Drawing.Size(388, 25);
+			this.showWCHBox.AutoSize = true;
 			this.showWCHBox.StylizeImage = false;
 			this.showWCHBox.TabIndex = 1;
 			this.showWCHBox.Text = "Show white-color rows with header color themes";
@@ -129,7 +129,7 @@
 			this.showCCBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showCCBox.Location = new System.Drawing.Point(119, 220);
 			this.showCCBox.Name = "showCCBox";
-			this.showCCBox.Size = new System.Drawing.Size(259, 25);
+			this.showCCBox.AutoSize = true;
 			this.showCCBox.StylizeImage = false;
 			this.showCCBox.TabIndex = 2;
 			this.showCCBox.Text = "Show color-color rows themes";
@@ -144,7 +144,7 @@
 			this.showCCHBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showCCHBox.Location = new System.Drawing.Point(119, 291);
 			this.showCCHBox.Name = "showCCHBox";
-			this.showCCHBox.Size = new System.Drawing.Size(388, 25);
+			this.showCCHBox.AutoSize = true;
 			this.showCCHBox.StylizeImage = false;
 			this.showCCHBox.TabIndex = 3;
 			this.showCCHBox.Text = "Show color-color rows with header color themes";
@@ -159,7 +159,7 @@
 			this.showCCHHBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showCCHHBox.Location = new System.Drawing.Point(119, 352);
 			this.showCCHHBox.Name = "showCCHHBox";
-			this.showCCHHBox.Size = new System.Drawing.Size(430, 25);
+			this.showCCHHBox.AutoSize = true;
 			this.showCCHHBox.StylizeImage = false;
 			this.showCCHHBox.TabIndex = 4;
 			this.showCCHHBox.Text = "Show color-color rows with both headers color themes";
@@ -174,7 +174,7 @@
 			this.showMBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showMBox.Location = new System.Drawing.Point(119, 416);
 			this.showMBox.Name = "showMBox";
-			this.showMBox.Size = new System.Drawing.Size(259, 25);
+			this.showMBox.AutoSize = true;
 			this.showMBox.StylizeImage = false;
 			this.showMBox.TabIndex = 5;
 			this.showMBox.Text = "Show multi-color rows themes";

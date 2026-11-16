@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Settings
 			this.elevateBox.Location = new System.Drawing.Point(7, 204);
 			this.elevateBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.elevateBox.Name = "elevateBox";
-			this.elevateBox.Size = new System.Drawing.Size(400, 25);
+			this.elevateBox.AutoSize = true;
 			this.elevateBox.StylizeImage = false;
 			this.elevateBox.TabIndex = 5;
 			this.elevateBox.Text = "Elevate Navigator when OneNote is elevated";
@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Settings
 			this.scrollBox.Location = new System.Drawing.Point(7, 234);
 			this.scrollBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.scrollBox.Name = "scrollBox";
-			this.scrollBox.Size = new System.Drawing.Size(620, 25);
+			this.scrollBox.AutoSize = true;
 			this.scrollBox.StylizeImage = false;
 			this.scrollBox.TabIndex = 6;
 			this.scrollBox.Text = "Auto-scroll the Notebooks pane to the current notebook or section";
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Settings
 			this.hidePinnedBox.Location = new System.Drawing.Point(7, 114);
 			this.hidePinnedBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.hidePinnedBox.Name = "hidePinnedBox";
-			this.hidePinnedBox.Size = new System.Drawing.Size(264, 25);
+			this.hidePinnedBox.AutoSize = true;
 			this.hidePinnedBox.StylizeImage = false;
 			this.hidePinnedBox.TabIndex = 2;
 			this.hidePinnedBox.Text = "Hide the My Reading List panel";
@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn.Settings
 			this.quickBox.Location = new System.Drawing.Point(7, 144);
 			this.quickBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.quickBox.Name = "quickBox";
-			this.quickBox.Size = new System.Drawing.Size(171, 25);
+			this.quickBox.AutoSize = true;
 			this.quickBox.StylizeImage = false;
 			this.quickBox.TabIndex = 3;
 			this.quickBox.Text = "Track Quick Notes";
@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.disabledBox.Location = new System.Drawing.Point(18, 26);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(631, 25);
+			this.disabledBox.AutoSize = true;
 			this.disabledBox.StylizeImage = false;
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the navigation service. This will render the Navigator window inoperaable" +
@@ -267,7 +267,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Location = new System.Drawing.Point(7, 174);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.corrallBox.Name = "corrallBox";
-			this.corrallBox.Size = new System.Drawing.Size(400, 25);
+			this.corrallBox.AutoSize = true;
 			this.corrallBox.StylizeImage = false;
 			this.corrallBox.TabIndex = 4;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";

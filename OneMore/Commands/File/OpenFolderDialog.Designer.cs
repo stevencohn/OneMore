@@ -121,7 +121,7 @@
 			this.editBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.editBox.Location = new System.Drawing.Point(105, 92);
 			this.editBox.Name = "editBox";
-			this.editBox.Size = new System.Drawing.Size(522, 25);
+			this.editBox.AutoSize = true;
 			this.editBox.StylizeImage = false;
 			this.editBox.TabIndex = 8;
 			this.editBox.Text = "Remove timestamps from section names, e.g. (On 4-12-2025)";

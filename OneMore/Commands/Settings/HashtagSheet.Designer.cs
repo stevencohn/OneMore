@@ -176,7 +176,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.disabledBox.Location = new System.Drawing.Point(18, 191);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(540, 25);
+			this.disabledBox.AutoSize = true;
 			this.disabledBox.StylizeImage = false;
 			this.disabledBox.TabIndex = 2;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn.Settings
 			this.filterBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.filterBox.Location = new System.Drawing.Point(11, 130);
 			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(497, 25);
+			this.filterBox.AutoSize = true;
 			this.filterBox.StylizeImage = false;
 			this.filterBox.TabIndex = 2;
 			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
@@ -300,7 +300,7 @@ namespace River.OneMoreAddIn.Settings
 			this.notifyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.notifyBox.Location = new System.Drawing.Point(11, 192);
 			this.notifyBox.Name = "notifyBox";
-			this.notifyBox.Size = new System.Drawing.Size(497, 25);
+			this.notifyBox.AutoSize = true;
 			this.notifyBox.StylizeImage = false;
 			this.notifyBox.TabIndex = 16;
 			this.notifyBox.Text = "Show pop-up notification when scanner completes";
@@ -315,7 +315,7 @@ namespace River.OneMoreAddIn.Settings
 			this.doubledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.doubledBox.Location = new System.Drawing.Point(11, 161);
 			this.doubledBox.Name = "doubledBox";
-			this.doubledBox.Size = new System.Drawing.Size(497, 25);
+			this.doubledBox.AutoSize = true;
 			this.doubledBox.StylizeImage = false;
 			this.doubledBox.TabIndex = 15;
 			this.doubledBox.Text = "Recognize only double \"##\" prefix hashtags";

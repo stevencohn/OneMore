@@ -95,7 +95,7 @@
 			this.cleanBox.Location = new System.Drawing.Point(24, 173);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(302, 25);
+			this.cleanBox.AutoSize = true;
 			this.cleanBox.StylizeImage = false;
 			this.cleanBox.TabIndex = 3;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";
@@ -162,7 +162,7 @@
 			this.numberingBox.Location = new System.Drawing.Point(24, 29);
 			this.numberingBox.Name = "numberingBox";
 			this.numberingBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.numberingBox.Size = new System.Drawing.Size(150, 25);
+			this.numberingBox.AutoSize = true;
 			this.numberingBox.StylizeImage = false;
 			this.numberingBox.TabIndex = 0;
 			this.numberingBox.Text = "Add Numbering";
@@ -199,7 +199,7 @@
 			this.removeTagsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.removeTagsBox.Location = new System.Drawing.Point(167, 114);
 			this.removeTagsBox.Name = "removeTagsBox";
-			this.removeTagsBox.Size = new System.Drawing.Size(132, 25);
+			this.removeTagsBox.AutoSize = true;
 			this.removeTagsBox.StylizeImage = false;
 			this.removeTagsBox.TabIndex = 3;
 			this.removeTagsBox.Text = "Remove tags";
@@ -244,7 +244,7 @@
 			this.indentTagBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentTagBox.Location = new System.Drawing.Point(6, 75);
 			this.indentTagBox.Name = "indentTagBox";
-			this.indentTagBox.Size = new System.Drawing.Size(378, 25);
+			this.indentTagBox.AutoSize = true;
 			this.indentTagBox.StylizeImage = false;
 			this.indentTagBox.TabIndex = 1;
 			this.indentTagBox.Text = "Indent only below tagged headings/paragraphs";
@@ -262,7 +262,7 @@
 			this.indentBox.Location = new System.Drawing.Point(6, 34);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.indentBox.Size = new System.Drawing.Size(259, 25);
+			this.indentBox.AutoSize = true;
 			this.indentBox.StylizeImage = false;
 			this.indentBox.TabIndex = 0;
 			this.indentBox.Text = "Indent content below headings";
@@ -278,7 +278,7 @@
 			this.secondaryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.secondaryBox.Location = new System.Drawing.Point(24, 204);
 			this.secondaryBox.Name = "secondaryBox";
-			this.secondaryBox.Size = new System.Drawing.Size(311, 25);
+			this.secondaryBox.AutoSize = true;
 			this.secondaryBox.StylizeImage = false;
 			this.secondaryBox.TabIndex = 16;
 			this.secondaryBox.Text = "Include headings from tables and lists";

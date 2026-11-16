@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pagesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pagesBox.Location = new System.Drawing.Point(23, 20);
 			this.pagesBox.Name = "pagesBox";
-			this.pagesBox.Size = new System.Drawing.Size(252, 25);
+			this.pagesBox.AutoSize = true;
 			this.pagesBox.StylizeImage = false;
 			this.pagesBox.TabIndex = 2;
 			this.pagesBox.Text = "Include pages in each section";
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.previewBox.Location = new System.Drawing.Point(23, 51);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(280, 25);
+			this.previewBox.AutoSize = true;
 			this.previewBox.StylizeImage = false;
 			this.previewBox.TabIndex = 3;
 			this.previewBox.Text = "Include text preview of each page";
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			this.timeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.timeBox.Location = new System.Drawing.Point(23, 82);
 			this.timeBox.Name = "timeBox";
-			this.timeBox.Size = new System.Drawing.Size(233, 25);
+			this.timeBox.AutoSize = true;
 			this.timeBox.StylizeImage = false;
 			this.timeBox.TabIndex = 4;
 			this.timeBox.Text = "Update page date and time";

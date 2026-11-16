@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 			this.separatorBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.separatorBox.Location = new System.Drawing.Point(430, 178);
 			this.separatorBox.Name = "separatorBox";
-			this.separatorBox.Size = new System.Drawing.Size(400, 30);
+			this.separatorBox.AutoSize = true;
 			this.separatorBox.TabIndex = 5;
 			this.separatorBox.Text = "Use 1000 separator";
 			this.separatorBox.UseVisualStyleBackColor = true;

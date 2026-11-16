@@ -337,8 +337,62 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Computes the width needed for the glyph plus text so that AutoSize follows the
+		/// current text, font and DPI (e.g. when the UI language changes).
+		/// </summary>
+		public override Size GetPreferredSize(Size proposedSize)
+		{
+			if (Appearance != Appearance.Normal)
+			{
+				return base.GetPreferredSize(proposedSize);
+			}
+
+			var size = MenuCheckSize;
+			if (string.IsNullOrWhiteSpace(Text))
+			{
+				return size;
+			}
+
+			// add fudge factor
+			var text = $"{Text}.";
+			if (Text.Contains(Environment.NewLine))
+			{
+				var parts = Text.Split(
+					new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+				var max = parts.Max(p => p.Length);
+				text = $"{parts.First(p => p.Length == max)}.";
+			}
+
+			using var g = CreateGraphics();
+			var textSize = g.MeasureString(text, Font).ToSize();
+			return new Size(
+				BoxSize + Spacing + textSize.Width,
+				Math.Max(textSize.Height, size.Height));
+		}
+
+
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
+			if (AutoSize)
+			{
+				PerformLayout();
+			}
+		}
+
+
 		protected override void OnTextChanged(EventArgs e)
 		{
+			if (AutoSize && Appearance == Appearance.Normal)
+			{
+				// GetPreferredSize handles sizing, both growing and shrinking
+				base.OnTextChanged(e);
+				Invalidate();
+				return;
+			}
+
 			if (Appearance == Appearance.Normal)
 			{
 				var size = MenuCheckSize;

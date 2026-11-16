@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			this.typeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.typeBox.Location = new System.Drawing.Point(41, 177);
 			this.typeBox.Name = "typeBox";
-			this.typeBox.Size = new System.Drawing.Size(290, 25);
+			this.typeBox.AutoSize = true;
 			this.typeBox.StylizeImage = false;
 			this.typeBox.TabIndex = 3;
 			this.typeBox.Text = "Both bullet lists and numbered lists";
@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			this.deepBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.deepBox.Location = new System.Drawing.Point(41, 147);
 			this.deepBox.Name = "deepBox";
-			this.deepBox.Size = new System.Drawing.Size(154, 25);
+			this.deepBox.AutoSize = true;
 			this.deepBox.StylizeImage = false;
 			this.deepBox.TabIndex = 2;
 			this.deepBox.Text = "Include sub-lists";
@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 			this.duplicatesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.duplicatesBox.Location = new System.Drawing.Point(41, 207);
 			this.duplicatesBox.Name = "duplicatesBox";
-			this.duplicatesBox.Size = new System.Drawing.Size(176, 25);
+			this.duplicatesBox.AutoSize = true;
 			this.duplicatesBox.StylizeImage = false;
 			this.duplicatesBox.TabIndex = 4;
 			this.duplicatesBox.Text = "Remove duplicates";

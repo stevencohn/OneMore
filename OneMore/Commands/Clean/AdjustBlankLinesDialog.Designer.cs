@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			this.headingBox.Location = new System.Drawing.Point(28, 152);
 			this.headingBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.headingBox.Name = "headingBox";
-			this.headingBox.Size = new System.Drawing.Size(601, 25);
+			this.headingBox.AutoSize = true;
 			this.headingBox.StylizeImage = false;
 			this.headingBox.TabIndex = 3;
 			this.headingBox.Text = "Put one blank line after each heading";

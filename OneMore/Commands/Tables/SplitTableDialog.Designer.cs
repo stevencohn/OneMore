@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyHeaderBox.Location = new System.Drawing.Point(27, 37);
 			this.copyHeaderBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyHeaderBox.Name = "copyHeaderBox";
-			this.copyHeaderBox.Size = new System.Drawing.Size(231, 25);
+			this.copyHeaderBox.AutoSize = true;
 			this.copyHeaderBox.TabIndex = 5;
 			this.copyHeaderBox.Text = "Duplicate table header row";
 			this.copyHeaderBox.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 			this.fixedColsBox.Location = new System.Drawing.Point(27, 72);
 			this.fixedColsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.fixedColsBox.Name = "fixedColsBox";
-			this.fixedColsBox.Size = new System.Drawing.Size(252, 25);
+			this.fixedColsBox.AutoSize = true;
 			this.fixedColsBox.TabIndex = 6;
 			this.fixedColsBox.Text = "Set all columns as fixed-width";
 			this.fixedColsBox.UseVisualStyleBackColor = true;

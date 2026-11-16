@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indentCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentCheck.Location = new System.Drawing.Point(130, 206);
 			this.indentCheck.Name = "indentCheck";
-			this.indentCheck.Size = new System.Drawing.Size(200, 25);
+			this.indentCheck.AutoSize = true;
 			this.indentCheck.StylizeImage = false;
 			this.indentCheck.TabIndex = 14;
 			this.indentCheck.Text = "Indent content";

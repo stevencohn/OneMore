@@ -128,7 +128,7 @@
 			this.showCompletedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showCompletedBox.Location = new System.Drawing.Point(22, 194);
 			this.showCompletedBox.Name = "showCompletedBox";
-			this.showCompletedBox.Size = new System.Drawing.Size(247, 25);
+			this.showCompletedBox.AutoSize = true;
 			this.showCompletedBox.StylizeImage = false;
 			this.showCompletedBox.TabIndex = 13;
 			this.showCompletedBox.Text = "Include completed reminders";
@@ -143,7 +143,7 @@
 			this.groupByNotebookBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.groupByNotebookBox.Location = new System.Drawing.Point(22, 231);
 			this.groupByNotebookBox.Name = "groupByNotebookBox";
-			this.groupByNotebookBox.Size = new System.Drawing.Size(253, 25);
+			this.groupByNotebookBox.AutoSize = true;
 			this.groupByNotebookBox.StylizeImage = false;
 			this.groupByNotebookBox.TabIndex = 14;
 			this.groupByNotebookBox.Text = "Group reminders by notebook";

@@ -261,7 +261,7 @@
 			this.headerBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.headerBox.Location = new System.Drawing.Point(42, 311);
 			this.headerBox.Name = "headerBox";
-			this.headerBox.Size = new System.Drawing.Size(184, 25);
+			this.headerBox.AutoSize = true;
 			this.headerBox.TabIndex = 5;
 			this.headerBox.Text = "First row is a header";
 			this.headerBox.UseVisualStyleBackColor = true;
@@ -273,7 +273,7 @@
 			this.unquoteBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.unquoteBox.Location = new System.Drawing.Point(42, 341);
 			this.unquoteBox.Name = "unquoteBox";
-			this.unquoteBox.Size = new System.Drawing.Size(312, 25);
+			this.unquoteBox.AutoSize = true;
 			this.unquoteBox.TabIndex = 6;
 			this.unquoteBox.Text = "Remove quotes from complete strings";
 			this.unquoteBox.UseVisualStyleBackColor = true;

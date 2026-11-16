@@ -187,7 +187,7 @@
 			this.childBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.childBox.Location = new System.Drawing.Point(31, 117);
 			this.childBox.Name = "childBox";
-			this.childBox.Size = new System.Drawing.Size(206, 25);
+			this.childBox.AutoSize = true;
 			this.childBox.StylizeImage = false;
 			this.childBox.TabIndex = 3;
 			this.childBox.Text = "as child of current page";
@@ -423,7 +423,7 @@
 			this.trialBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.trialBox.Location = new System.Drawing.Point(155, 520);
 			this.trialBox.Name = "trialBox";
-			this.trialBox.Size = new System.Drawing.Size(427, 25);
+			this.trialBox.AutoSize = true;
 			this.trialBox.StylizeImage = false;
 			this.trialBox.TabIndex = 9;
 			this.trialBox.Text = "Trial run - keep cache file and do not update OneNote";

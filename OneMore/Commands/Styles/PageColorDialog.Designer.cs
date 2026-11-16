@@ -177,7 +177,7 @@
 			this.applyThemeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
-			this.applyThemeBox.Size = new System.Drawing.Size(213, 25);
+			this.applyThemeBox.AutoSize = true;
 			this.applyThemeBox.StylizeImage = false;
 			this.applyThemeBox.TabIndex = 0;
 			this.applyThemeBox.Text = "Apply styles to this page";

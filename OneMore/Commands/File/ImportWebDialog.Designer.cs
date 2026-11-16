@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 			this.imagesBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.imagesBox.Location = new System.Drawing.Point(92, 71);
 			this.imagesBox.Name = "imagesBox";
-			this.imagesBox.Size = new System.Drawing.Size(204, 25);
+			this.imagesBox.AutoSize = true;
 			this.imagesBox.TabIndex = 13;
 			this.imagesBox.Text = "Import as static images";
 			this.imagesBox.UseVisualStyleBackColor = true;

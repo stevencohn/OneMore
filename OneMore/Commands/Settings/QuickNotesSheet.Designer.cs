@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Settings
 			this.titleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.titleBox.Location = new System.Drawing.Point(13, 27);
 			this.titleBox.Name = "titleBox";
-			this.titleBox.Size = new System.Drawing.Size(399, 25);
+			this.titleBox.AutoSize = true;
 			this.titleBox.StylizeImage = false;
 			this.titleBox.TabIndex = 0;
 			this.titleBox.Text = "Set the page title to the first fiew words of the note";
@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Settings
 			this.stampBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.stampBox.Location = new System.Drawing.Point(13, 57);
 			this.stampBox.Name = "stampBox";
-			this.stampBox.Size = new System.Drawing.Size(441, 25);
+			this.stampBox.AutoSize = true;
 			this.stampBox.StylizeImage = false;
 			this.stampBox.TabIndex = 1;
 			this.stampBox.Text = "Prepend the title with the date that the note was created";

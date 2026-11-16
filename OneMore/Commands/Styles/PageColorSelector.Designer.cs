@@ -68,7 +68,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.autoButton.Location = new System.Drawing.Point(19, 13);
 			this.autoButton.Name = "autoButton";
-			this.autoButton.Size = new System.Drawing.Size(220, 24);
+			this.autoButton.AutoSize = true;
 			this.autoButton.TabIndex = 0;
 			this.autoButton.Text = "No color";
 			this.autoButton.UseVisualStyleBackColor = true;

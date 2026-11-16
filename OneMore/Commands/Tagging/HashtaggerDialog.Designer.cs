@@ -170,7 +170,7 @@
 			this.bankBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.bankBox.Location = new System.Drawing.Point(93, 76);
 			this.bankBox.Name = "bankBox";
-			this.bankBox.Size = new System.Drawing.Size(255, 25);
+			this.bankBox.AutoSize = true;
 			this.bankBox.StylizeImage = false;
 			this.bankBox.TabIndex = 2;
 			this.bankBox.Text = "Add to tag bank at top of page";

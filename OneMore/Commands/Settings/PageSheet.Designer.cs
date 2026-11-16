@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Settings
 			this.insertNoteBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.insertNoteBox.Location = new System.Drawing.Point(18, 39);
 			this.insertNoteBox.Name = "insertNoteBox";
-			this.insertNoteBox.Size = new System.Drawing.Size(540, 25);
+			this.insertNoteBox.AutoSize = true;
 			this.insertNoteBox.StylizeImage = false;
 			this.insertNoteBox.TabIndex = 0;
 			this.insertNoteBox.Text = "Insert duplication note";
@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Settings
 			this.insertBacklinksBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.insertBacklinksBox.Location = new System.Drawing.Point(18, 70);
 			this.insertBacklinksBox.Name = "insertBacklinksBox";
-			this.insertBacklinksBox.Size = new System.Drawing.Size(540, 25);
+			this.insertBacklinksBox.AutoSize = true;
 			this.insertBacklinksBox.StylizeImage = false;
 			this.insertBacklinksBox.TabIndex = 1;
 			this.insertBacklinksBox.Text = "Insert heading back-links";
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Settings
 			this.refreshTocBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.refreshTocBox.Location = new System.Drawing.Point(18, 101);
 			this.refreshTocBox.Name = "refreshTocBox";
-			this.refreshTocBox.Size = new System.Drawing.Size(540, 25);
+			this.refreshTocBox.AutoSize = true;
 			this.refreshTocBox.StylizeImage = false;
 			this.refreshTocBox.TabIndex = 2;
 			this.refreshTocBox.Text = "Refresh Table of Contents";
@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Settings
 			this.tocWarnBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tocWarnBox.Location = new System.Drawing.Point(18, 39);
 			this.tocWarnBox.Name = "tocWarnBox";
-			this.tocWarnBox.Size = new System.Drawing.Size(720, 25);
+			this.tocWarnBox.AutoSize = true;
 			this.tocWarnBox.StylizeImage = false;
 			this.tocWarnBox.TabIndex = 0;
 			this.tocWarnBox.Text = "On Refresh, show warning when table of contents is up to date";

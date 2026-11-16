@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			this.notebookBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.notebookBox.Location = new System.Drawing.Point(33, 39);
 			this.notebookBox.Name = "notebookBox";
-			this.notebookBox.Size = new System.Drawing.Size(290, 25);
+			this.notebookBox.AutoSize = true;
 			this.notebookBox.TabIndex = 2;
 			this.notebookBox.Text = "Include notebook backup summary";
 			this.notebookBox.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.sectionBox.Location = new System.Drawing.Point(33, 69);
 			this.sectionBox.Name = "sectionBox";
-			this.sectionBox.Size = new System.Drawing.Size(217, 25);
+			this.sectionBox.AutoSize = true;
 			this.sectionBox.TabIndex = 3;
 			this.sectionBox.Text = "Include section summary";
 			this.sectionBox.UseVisualStyleBackColor = true;

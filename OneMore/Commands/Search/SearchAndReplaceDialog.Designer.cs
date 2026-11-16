@@ -163,7 +163,7 @@
 			this.matchBox.Location = new System.Drawing.Point(160, 79);
 			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.matchBox.Name = "matchBox";
-			this.matchBox.Size = new System.Drawing.Size(119, 25);
+			this.matchBox.AutoSize = true;
 			this.matchBox.StylizeImage = false;
 			this.matchBox.TabIndex = 1;
 			this.matchBox.Text = "Match case";
@@ -179,7 +179,7 @@
 			this.regBox.Location = new System.Drawing.Point(160, 107);
 			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
 			this.regBox.Name = "regBox";
-			this.regBox.Size = new System.Drawing.Size(213, 25);
+			this.regBox.AutoSize = true;
 			this.regBox.StylizeImage = false;
 			this.regBox.TabIndex = 2;
 			this.regBox.Text = "Use regular expressions";

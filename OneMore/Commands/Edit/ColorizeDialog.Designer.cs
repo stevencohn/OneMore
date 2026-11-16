@@ -58,7 +58,7 @@
 			this.showAllBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.showAllBox.Location = new System.Drawing.Point(12, 6);
 			this.showAllBox.Name = "showAllBox";
-			this.showAllBox.Size = new System.Drawing.Size(220, 25);
+			this.showAllBox.AutoSize = true;
 			this.showAllBox.StylizeImage = false;
 			this.showAllBox.TabIndex = 0;
 			this.showAllBox.Text = "Show all languages";

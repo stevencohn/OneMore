@@ -123,7 +123,7 @@
 			this.allTagsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.allTagsBox.Location = new System.Drawing.Point(41, 59);
 			this.allTagsBox.Name = "allTagsBox";
-			this.allTagsBox.Size = new System.Drawing.Size(282, 20);
+			this.allTagsBox.AutoSize = true;
 			this.allTagsBox.StylizeImage = false;
 			this.allTagsBox.TabIndex = 9;
 			this.allTagsBox.Text = "Show all related tags on each page";

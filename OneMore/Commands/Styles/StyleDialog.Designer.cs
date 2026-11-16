@@ -497,7 +497,7 @@
 			this.ignoredBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.ignoredBox.Location = new System.Drawing.Point(169, 275);
 			this.ignoredBox.Name = "ignoredBox";
-			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
+			this.ignoredBox.AutoSize = true;
 			this.ignoredBox.StylizeImage = false;
 			this.ignoredBox.TabIndex = 10;
 			this.ignoredBox.Text = "Disable spell check";
@@ -564,7 +564,7 @@
 			this.darkBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
-			this.darkBox.Size = new System.Drawing.Size(350, 25);
+			this.darkBox.AutoSize = true;
 			this.darkBox.StylizeImage = false;
 			this.darkBox.TabIndex = 0;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
@@ -580,7 +580,7 @@
 			this.pageColorBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(403, 25);
+			this.pageColorBox.AutoSize = true;
 			this.pageColorBox.StylizeImage = false;
 			this.pageColorBox.TabIndex = 1;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
@@ -656,7 +656,7 @@
 			this.applyColorsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyColorsBox.Location = new System.Drawing.Point(169, 213);
 			this.applyColorsBox.Name = "applyColorsBox";
-			this.applyColorsBox.Size = new System.Drawing.Size(125, 25);
+			this.applyColorsBox.AutoSize = true;
 			this.applyColorsBox.StylizeImage = false;
 			this.applyColorsBox.TabIndex = 7;
 			this.applyColorsBox.Text = "Apply colors";
@@ -689,7 +689,7 @@
 			this.fontOnlyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.fontOnlyBox.Location = new System.Drawing.Point(400, 244);
 			this.fontOnlyBox.Name = "fontOnlyBox";
-			this.fontOnlyBox.Size = new System.Drawing.Size(240, 25);
+			this.fontOnlyBox.AutoSize = true;
 			this.fontOnlyBox.StylizeImage = false;
 			this.fontOnlyBox.TabIndex = 9;
 			this.fontOnlyBox.Text = "Font only";

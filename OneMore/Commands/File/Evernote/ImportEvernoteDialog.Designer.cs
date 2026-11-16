@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			this.includeSubfoldersCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.includeSubfoldersCheckBox.Location = new System.Drawing.Point(105, 112);
 			this.includeSubfoldersCheckBox.Name = "includeSubfoldersCheckBox";
-			this.includeSubfoldersCheckBox.Size = new System.Drawing.Size(583, 25);
+			this.includeSubfoldersCheckBox.AutoSize = true;
 			this.includeSubfoldersCheckBox.StylizeImage = false;
 			this.includeSubfoldersCheckBox.TabIndex = 6;
 			this.includeSubfoldersCheckBox.Text = "Include subfolders when a folder is selected";
@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 			this.abortCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.abortCheckBox.Location = new System.Drawing.Point(105, 142);
 			this.abortCheckBox.Name = "abortCheckBox";
-			this.abortCheckBox.Size = new System.Drawing.Size(583, 25);
+			this.abortCheckBox.AutoSize = true;
 			this.abortCheckBox.StylizeImage = false;
 			this.abortCheckBox.TabIndex = 7;
 			this.abortCheckBox.Text = "Skip the whole note instead of inserting a placeholder for encrypted content";

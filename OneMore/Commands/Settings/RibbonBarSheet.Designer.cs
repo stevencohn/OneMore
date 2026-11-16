@@ -75,7 +75,7 @@
 			this.editRibbonBox.Location = new System.Drawing.Point(216, 159);
 			this.editRibbonBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.editRibbonBox.Name = "editRibbonBox";
-			this.editRibbonBox.Size = new System.Drawing.Size(153, 25);
+			this.editRibbonBox.AutoSize = true;
 			this.editRibbonBox.StylizeImage = false;
 			this.editRibbonBox.TabIndex = 2;
 			this.editRibbonBox.Text = "Edit Commands";
@@ -92,7 +92,7 @@
 			this.editIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.editIconBox.Location = new System.Drawing.Point(216, 192);
 			this.editIconBox.Name = "editIconBox";
-			this.editIconBox.Size = new System.Drawing.Size(294, 25);
+			this.editIconBox.AutoSize = true;
 			this.editIconBox.StylizeImage = false;
 			this.editIconBox.TabIndex = 3;
 			this.editIconBox.Text = "Show only icons for edit commands";
@@ -107,7 +107,7 @@
 			this.formulaRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.formulaRibbonBox.Location = new System.Drawing.Point(216, 254);
 			this.formulaRibbonBox.Name = "formulaRibbonBox";
-			this.formulaRibbonBox.Size = new System.Drawing.Size(185, 25);
+			this.formulaRibbonBox.AutoSize = true;
 			this.formulaRibbonBox.StylizeImage = false;
 			this.formulaRibbonBox.TabIndex = 4;
 			this.formulaRibbonBox.Text = "Formula Commands";
@@ -124,7 +124,7 @@
 			this.formulaIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.formulaIconBox.Location = new System.Drawing.Point(216, 285);
 			this.formulaIconBox.Name = "formulaIconBox";
-			this.formulaIconBox.Size = new System.Drawing.Size(322, 25);
+			this.formulaIconBox.AutoSize = true;
 			this.formulaIconBox.StylizeImage = false;
 			this.formulaIconBox.TabIndex = 5;
 			this.formulaIconBox.Text = "Show only icons for formula commands";
@@ -166,7 +166,7 @@
 			this.hashtagsIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.hashtagsIconBox.Location = new System.Drawing.Point(216, 113);
 			this.hashtagsIconBox.Name = "hashtagsIconBox";
-			this.hashtagsIconBox.Size = new System.Drawing.Size(334, 25);
+			this.hashtagsIconBox.AutoSize = true;
 			this.hashtagsIconBox.StylizeImage = false;
 			this.hashtagsIconBox.TabIndex = 1;
 			this.hashtagsIconBox.Text = "Show only icons for hashtags commands";
@@ -181,7 +181,7 @@
 			this.hashtagsRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.hashtagsRibbonBox.Location = new System.Drawing.Point(216, 82);
 			this.hashtagsRibbonBox.Name = "hashtagsRibbonBox";
-			this.hashtagsRibbonBox.Size = new System.Drawing.Size(194, 25);
+			this.hashtagsRibbonBox.AutoSize = true;
 			this.hashtagsRibbonBox.StylizeImage = false;
 			this.hashtagsRibbonBox.TabIndex = 0;
 			this.hashtagsRibbonBox.Text = "Hashtags Commands";

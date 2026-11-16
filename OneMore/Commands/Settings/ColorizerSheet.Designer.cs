@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Settings
 			this.fixedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.fixedBox.Location = new System.Drawing.Point(135, 158);
 			this.fixedBox.Name = "fixedBox";
-			this.fixedBox.Size = new System.Drawing.Size(235, 25);
+			this.fixedBox.AutoSize = true;
 			this.fixedBox.StylizeImage = false;
 			this.fixedBox.TabIndex = 4;
 			this.fixedBox.Text = "Show only fixed-width fonts";
@@ -299,7 +299,7 @@ namespace River.OneMoreAddIn.Settings
 			this.applyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyBox.Location = new System.Drawing.Point(3, 6);
 			this.applyBox.Name = "applyBox";
-			this.applyBox.Size = new System.Drawing.Size(426, 25);
+			this.applyBox.AutoSize = true;
 			this.applyBox.StylizeImage = false;
 			this.applyBox.TabIndex = 0;
 			this.applyBox.Text = "Always apply the following fonts when colorizing code";

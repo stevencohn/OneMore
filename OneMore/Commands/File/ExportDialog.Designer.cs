@@ -149,7 +149,7 @@
 			this.embeddedBox.Location = new System.Drawing.Point(105, 199);
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
-			this.embeddedBox.Size = new System.Drawing.Size(182, 25);
+			this.embeddedBox.AutoSize = true;
 			this.embeddedBox.StylizeImage = false;
 			this.embeddedBox.TabIndex = 7;
 			this.embeddedBox.Text = "Embed attachments";
@@ -164,7 +164,7 @@
 			this.underBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.underBox.Location = new System.Drawing.Point(105, 231);
 			this.underBox.Name = "underBox";
-			this.underBox.Size = new System.Drawing.Size(393, 25);
+			this.underBox.AutoSize = true;
 			this.underBox.StylizeImage = false;
 			this.underBox.TabIndex = 6;
 			this.underBox.Text = "Replace spaces in the filename with underscores";
@@ -181,7 +181,7 @@
 			this.attachmentsBox.Location = new System.Drawing.Point(105, 143);
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
-			this.attachmentsBox.Size = new System.Drawing.Size(183, 25);
+			this.attachmentsBox.AutoSize = true;
 			this.attachmentsBox.StylizeImage = false;
 			this.attachmentsBox.TabIndex = 5;
 			this.attachmentsBox.Text = "Include attachments";

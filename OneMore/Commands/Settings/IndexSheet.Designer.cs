@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Settings
 			this.enabledBox.Location = new System.Drawing.Point(7, 10);
 			this.enabledBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.enabledBox.Name = "enabledBox";
-			this.enabledBox.Size = new System.Drawing.Size(700, 25);
+			this.enabledBox.AutoSize = true;
 			this.enabledBox.StylizeImage = false;
 			this.enabledBox.TabIndex = 0;
 			this.enabledBox.Text = "Keep a search index of my notebooks up to date";
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Settings
 			this.allBox.Location = new System.Drawing.Point(34, 45);
 			this.allBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.allBox.Name = "allBox";
-			this.allBox.Size = new System.Drawing.Size(673, 25);
+			this.allBox.AutoSize = true;
 			this.allBox.StylizeImage = false;
 			this.allBox.TabIndex = 1;
 			this.allBox.Text = "Index all notebooks";

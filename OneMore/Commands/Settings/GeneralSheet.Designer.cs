@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Settings
 			this.sequentialBox.Location = new System.Drawing.Point(25, 237);
 			this.sequentialBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.sequentialBox.Name = "sequentialBox";
-			this.sequentialBox.Size = new System.Drawing.Size(461, 25);
+			this.sequentialBox.AutoSize = true;
 			this.sequentialBox.StylizeImage = false;
 			this.sequentialBox.TabIndex = 2;
 			this.sequentialBox.Text = "Allow nonsequential name matching in Command Palettes";
@@ -154,7 +154,7 @@ namespace River.OneMoreAddIn.Settings
 			this.telemetryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.telemetryBox.Location = new System.Drawing.Point(18, 32);
 			this.telemetryBox.Name = "telemetryBox";
-			this.telemetryBox.Size = new System.Drawing.Size(250, 25);
+			this.telemetryBox.AutoSize = true;
 			this.telemetryBox.StylizeImage = false;
 			this.telemetryBox.TabIndex = 2;
 			this.telemetryBox.Text = "Enable anonymous telemetry";
@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Settings
 			this.experimentalBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.experimentalBox.Location = new System.Drawing.Point(18, 94);
 			this.experimentalBox.Name = "experimentalBox";
-			this.experimentalBox.Size = new System.Drawing.Size(250, 25);
+			this.experimentalBox.AutoSize = true;
 			this.experimentalBox.StylizeImage = false;
 			this.experimentalBox.TabIndex = 1;
 			this.experimentalBox.Text = "Enable experimental features";
@@ -184,7 +184,7 @@ namespace River.OneMoreAddIn.Settings
 			this.verboseBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.verboseBox.Location = new System.Drawing.Point(18, 63);
 			this.verboseBox.Name = "verboseBox";
-			this.verboseBox.Size = new System.Drawing.Size(208, 25);
+			this.verboseBox.AutoSize = true;
 			this.verboseBox.StylizeImage = false;
 			this.verboseBox.TabIndex = 0;
 			this.verboseBox.Text = "Enable verbose logging";
@@ -223,7 +223,7 @@ namespace River.OneMoreAddIn.Settings
 			this.keepLocaleBox.Location = new System.Drawing.Point(186, 123);
 			this.keepLocaleBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.keepLocaleBox.Name = "keepLocaleBox";
-			this.keepLocaleBox.Size = new System.Drawing.Size(461, 25);
+			this.keepLocaleBox.AutoSize = true;
 			this.keepLocaleBox.StylizeImage = false;
 			this.keepLocaleBox.TabIndex = 6;
 			this.keepLocaleBox.Text = "Keep workstation locale when Language differs from it";
@@ -241,7 +241,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 272);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
-			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
+			this.checkUpdatesBox.AutoSize = true;
 			this.checkUpdatesBox.StylizeImage = false;
 			this.checkUpdatesBox.TabIndex = 3;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";

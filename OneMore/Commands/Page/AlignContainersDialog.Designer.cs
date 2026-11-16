@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			this.overlapCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.overlapCheckBox.Location = new System.Drawing.Point(10, 17);
 			this.overlapCheckBox.Name = "overlapCheckBox";
-			this.overlapCheckBox.Size = new System.Drawing.Size(160, 25);
+			this.overlapCheckBox.AutoSize = true;
 			this.overlapCheckBox.TabIndex = 0;
 			this.overlapCheckBox.Text = "Prevent overlaps";
 			this.overlapCheckBox.UseVisualStyleBackColor = true;

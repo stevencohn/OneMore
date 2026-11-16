@@ -47,7 +47,7 @@
 			this.beforeBox.Location = new System.Drawing.Point(29, 30);
 			this.beforeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.beforeBox.Name = "beforeBox";
-			this.beforeBox.Size = new System.Drawing.Size(297, 25);
+			this.beforeBox.AutoSize = true;
 			this.beforeBox.TabIndex = 1;
 			this.beforeBox.Text = "Remove spacing before paragraphs";
 			this.beforeBox.UseVisualStyleBackColor = true;
@@ -62,7 +62,7 @@
 			this.afterBox.Location = new System.Drawing.Point(29, 65);
 			this.afterBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.afterBox.Name = "afterBox";
-			this.afterBox.Size = new System.Drawing.Size(283, 25);
+			this.afterBox.AutoSize = true;
 			this.afterBox.TabIndex = 2;
 			this.afterBox.Text = "Remove spacing after paragraphs";
 			this.afterBox.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@
 			this.betweenBox.Location = new System.Drawing.Point(29, 101);
 			this.betweenBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.betweenBox.Name = "betweenBox";
-			this.betweenBox.Size = new System.Drawing.Size(263, 25);
+			this.betweenBox.AutoSize = true;
 			this.betweenBox.TabIndex = 3;
 			this.betweenBox.Text = "Remove spacing between lines";
 			this.betweenBox.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
 			this.headingsBox.Location = new System.Drawing.Point(29, 162);
 			this.headingsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.headingsBox.Name = "headingsBox";
-			this.headingsBox.Size = new System.Drawing.Size(160, 25);
+			this.headingsBox.AutoSize = true;
 			this.headingsBox.TabIndex = 4;
 			this.headingsBox.Text = "Include headings";
 			this.headingsBox.UseVisualStyleBackColor = true;

@@ -104,7 +104,7 @@
 			this.shortcutsBox.Location = new System.Drawing.Point(14, 23);
 			this.shortcutsBox.Margin = new System.Windows.Forms.Padding(20, 10, 3, 3);
 			this.shortcutsBox.Name = "shortcutsBox";
-			this.shortcutsBox.Size = new System.Drawing.Size(365, 25);
+			this.shortcutsBox.AutoSize = true;
 			this.shortcutsBox.StylizeImage = false;
 			this.shortcutsBox.TabIndex = 0;
 			this.shortcutsBox.Text = "Include reference to keyboard shortcuts page";

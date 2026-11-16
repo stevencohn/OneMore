@@ -174,7 +174,7 @@
 			this.indentBox.Location = new System.Drawing.Point(182, 136);
 			this.indentBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
 			this.indentBox.Name = "indentBox";
-			this.indentBox.Size = new System.Drawing.Size(149, 25);
+			this.indentBox.AutoSize = true;
 			this.indentBox.TabIndex = 2;
 			this.indentBox.Text = "Indent calendar";
 			this.indentBox.UseVisualStyleBackColor = false;

@@ -238,7 +238,7 @@ namespace River.OneMoreAddIn.Settings
 			this.enableBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.enableBox.Location = new System.Drawing.Point(7, 10);
 			this.enableBox.Name = "enableBox";
-			this.enableBox.Size = new System.Drawing.Size(400, 25);
+			this.enableBox.AutoSize = true;
 			this.enableBox.StylizeImage = false;
 			this.enableBox.TabIndex = 0;
 			this.enableBox.Text = "Back up the OneMore database";

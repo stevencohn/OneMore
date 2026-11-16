@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 			this.taggedBox.Location = new System.Drawing.Point(20, 40);
 			this.taggedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.taggedBox.Name = "taggedBox";
-			this.taggedBox.Size = new System.Drawing.Size(321, 25);
+			this.taggedBox.AutoSize = true;
 			this.taggedBox.TabIndex = 4;
 			this.taggedBox.Text = "Apply only to tagged headings and lnks";
 			this.taggedBox.UseVisualStyleBackColor = true;

@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn.Settings
 			this.codeStyleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.codeStyleBox.Location = new System.Drawing.Point(18, 19);
 			this.codeStyleBox.Name = "codeStyleBox";
-			this.codeStyleBox.Size = new System.Drawing.Size(375, 25);
+			this.codeStyleBox.AutoSize = true;
 			this.codeStyleBox.StylizeImage = false;
 			this.codeStyleBox.TabIndex = 0;
 			this.codeStyleBox.Text = "Always apply \"code\" style to Code Box content";

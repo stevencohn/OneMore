@@ -204,7 +204,7 @@ namespace River.OneMoreAddIn.Commands
 			this.repairBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.repairBox.Location = new System.Drawing.Point(46, 354);
 			this.repairBox.Name = "repairBox";
-			this.repairBox.Size = new System.Drawing.Size(246, 25);
+			this.repairBox.AutoSize = true;
 			this.repairBox.StylizeImage = false;
 			this.repairBox.TabIndex = 8;
 			this.repairBox.Text = "Repair links that can be fixed";
@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			this.markBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.markBox.Location = new System.Drawing.Point(46, 428);
 			this.markBox.Name = "markBox";
-			this.markBox.Size = new System.Drawing.Size(285, 25);
+			this.markBox.AutoSize = true;
 			this.markBox.StylizeImage = false;
 			this.markBox.TabIndex = 10;
 			this.markBox.Text = "Highlight links that cannot be fixed";
@@ -237,7 +237,7 @@ namespace River.OneMoreAddIn.Commands
 			this.onenoteBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.onenoteBox.Location = new System.Drawing.Point(46, 317);
 			this.onenoteBox.Name = "onenoteBox";
-			this.onenoteBox.Size = new System.Drawing.Size(285, 25);
+			this.onenoteBox.AutoSize = true;
 			this.onenoteBox.StylizeImage = false;
 			this.onenoteBox.TabIndex = 7;
 			this.onenoteBox.Text = "Check only onenote: URLs";
@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 			this.captionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.captionBox.Location = new System.Drawing.Point(46, 391);
 			this.captionBox.Name = "captionBox";
-			this.captionBox.Size = new System.Drawing.Size(485, 25);
+			this.captionBox.AutoSize = true;
 			this.captionBox.StylizeImage = false;
 			this.captionBox.TabIndex = 9;
 			this.captionBox.Text = "Report link text that does not match the page or its path";

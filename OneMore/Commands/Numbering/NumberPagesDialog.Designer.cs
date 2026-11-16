@@ -94,7 +94,7 @@
 			this.cleanBox.Location = new System.Drawing.Point(30, 202);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(302, 25);
+			this.cleanBox.AutoSize = true;
 			this.cleanBox.StylizeImage = false;
 			this.cleanBox.TabIndex = 3;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";

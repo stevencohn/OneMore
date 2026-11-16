@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			this.synopsisBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.synopsisBox.Location = new System.Drawing.Point(46, 277);
 			this.synopsisBox.Name = "synopsisBox";
-			this.synopsisBox.Size = new System.Drawing.Size(270, 25);
+			this.synopsisBox.AutoSize = true;
 			this.synopsisBox.StylizeImage = false;
 			this.synopsisBox.TabIndex = 7;
 			this.synopsisBox.Text = "Include a synopsis of each page";

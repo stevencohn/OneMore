@@ -338,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			this.silentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.silentBox.Location = new System.Drawing.Point(23, 37);
 			this.silentBox.Name = "silentBox";
-			this.silentBox.Size = new System.Drawing.Size(189, 25);
+			this.silentBox.AutoSize = true;
 			this.silentBox.TabIndex = 0;
 			this.silentBox.Text = "Silence this reminder";
 			this.silentBox.UseVisualStyleBackColor = true;
