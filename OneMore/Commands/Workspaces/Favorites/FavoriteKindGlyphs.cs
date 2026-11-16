@@ -18,6 +18,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	internal static class FavoriteKindGlyphs
 	{
 		private const int GlyphSize = 14;
+		private const float PenWidth = 1.5f;
+
+		private static Color builtWith;
 
 		private static Image pageGlyph;
 		private static Image openPageGlyph;
@@ -35,7 +38,41 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <param name="favorite">The favorite to draw</param>
 		/// <param name="isOpen">True if the favorite is already showing in an OneNote window;
 		/// only a page is drawn differently, as a solid page rather than an outline</param>
-		public static Image GetGlyph(Favorite favorite, bool isOpen = false) =>
+		public static Image GetGlyph(Favorite favorite, bool isOpen = false)
+		{
+			DiscardIfThemeChanged();
+			return Pick(favorite, isOpen);
+		}
+
+
+		// glyphs are drawn in the theme's text color and cached for the life of the process, so
+		// start over if the theme changed, e.g. dark to light, since the old color may be unreadable
+		private static void DiscardIfThemeChanged()
+		{
+			var color = ThemeManager.Instance.GetColor("ControlText");
+			if (color == builtWith)
+			{
+				return;
+			}
+
+			foreach (var glyph in new[]
+			{
+				pageGlyph, openPageGlyph, sectionGlyph, openSectionGlyph,
+				sectionGroupGlyph, openSectionGroupGlyph, notebookGlyph
+			})
+			{
+				glyph?.Dispose();
+			}
+
+			pageGlyph = openPageGlyph = sectionGlyph = openSectionGlyph =
+				sectionGroupGlyph = openSectionGroupGlyph = notebookGlyph = null;
+
+			Logger.Current.Verbose($"favorite glyphs drawn in {color}");
+			builtWith = color;
+		}
+
+
+		private static Image Pick(Favorite favorite, bool isOpen) =>
 			!string.IsNullOrWhiteSpace(favorite.PageID)
 				? isOpen
 					? openPageGlyph ??= BuildOpenPageGlyph()
@@ -67,7 +104,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
-				using var pen = new Pen(color);
+				using var pen = new Pen(color, PenWidth);
 
 				using var path = new GraphicsPath();
 				path.AddLine(2, 1, 8, 1);
@@ -92,7 +129,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
-				using var pen = new Pen(color);
+				using var pen = new Pen(color, PenWidth);
 				using var brush = new SolidBrush(color);
 
 				using var path = new GraphicsPath();
@@ -122,7 +159,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
-				using var pen = new Pen(color);
+				using var pen = new Pen(color, PenWidth);
 				using var brush = new SolidBrush(color);
 
 				if (open)
@@ -147,7 +184,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
-				using var pen = new Pen(color);
+				using var pen = new Pen(color, PenWidth);
 
 				using var path = new GraphicsPath();
 				path.AddLine(2, 4, 5, 4);
@@ -178,7 +215,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using (g)
 			{
 				var color = ThemeManager.Instance.GetColor("ControlText");
-				using var pen = new Pen(color);
+				using var pen = new Pen(color, PenWidth);
 
 				g.DrawRectangle(pen, 2, 1, 9, 12);
 				g.DrawLine(pen, 5, 1, 5, 13);
