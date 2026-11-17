@@ -1250,6 +1250,7 @@
     <Compile Include="Commands\Images\AddBorderDialog.Designer.cs">
       <DependentUpon>AddBorderDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Images\RemoveBorderCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\AdjustBlankLinesCommand.cs" />

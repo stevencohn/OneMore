@@ -4757,6 +4757,14 @@ Différé</value>
     <value>Semaine {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Aucune bordure n'a été trouvée sur les images sélectionnées</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Sélectionnez une ou plusieurs images pour supprimer une bordure</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Coupure d'écran</value>
     <comment>Screen clipping citation</comment>
@@ -6653,6 +6661,14 @@ Onglet Aide</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Supprimer les informations de tous les auteurs sur cette page</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Supprimer la bordure</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Supprimez la bordure et l'ombre portée ajoutées par Ajouter une bordure des images sélectionnées</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Supprimer les citations collées</value>

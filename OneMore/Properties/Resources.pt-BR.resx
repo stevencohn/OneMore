@@ -4746,6 +4746,14 @@ Diferido</value>
     <value>Semana {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Nenhuma borda foi encontrada nas imagens selecionadas</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Selecione uma ou mais imagens para remover uma borda</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Recorte de tela</value>
     <comment>Screen clipping citation</comment>
@@ -6642,6 +6650,14 @@ Guia Ajuda</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Remova as informações de todos os autores desta página</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Remover borda</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Remova a borda e a sombra projetada adicionadas por Adicionar Borda das imagens selecionadas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Remover citações coladas</value>

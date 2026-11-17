@@ -220,6 +220,7 @@
     "Remind",
     "RemoveAuthors",
     "RemoveAuthorsCLI",
+    "RemoveBorder",
     "RemoveCitations",
     "RemoveCitationsCLI",
     "RemoveDuplicates",

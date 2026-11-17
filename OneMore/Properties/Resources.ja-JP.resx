@@ -4749,6 +4749,14 @@ ISO-code then comma then language name</comment>
     <value>週 {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>選択した画像に枠線が見つかりませんでした</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>境界線を削除するには、1 つまたは複数の画像を選択します</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>スクリーンクリッピング</value>
     <comment>Screen clipping citation</comment>
@@ -6646,6 +6654,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>このページのすべての著者情報を削除</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>境界線を削除</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>選択した画像から枠線の追加で追加した枠線とドロップシャドウを削除します</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>貼り付け元情報の削除</value>

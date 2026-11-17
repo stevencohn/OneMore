@@ -4746,6 +4746,14 @@ ISO-code then comma then language name</comment>
     <value>שבוע {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>לא נמצאו גבולות בתמונות שנבחרו</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>בחר תמונה אחת או יותר כדי להסיר גבול</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>גזירת מסך</value>
     <comment>Screen clipping citation</comment>
@@ -6642,6 +6650,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>הסר מידע עבור כל המחברים בדף זה</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>הסר גבול</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>הסר את הגבול והצל שנוספו על ידי הוסף גבול מהתמונות שנבחרו</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>הסר ציטוטים מודבקים</value>

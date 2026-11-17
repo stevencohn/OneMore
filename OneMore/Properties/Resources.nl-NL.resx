@@ -4746,6 +4746,14 @@ Verschoven</value>
     <value>week {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Er zijn geen randen gevonden op de geselecteerde afbeeldingen</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Selecteer een of meer afbeeldingen om een ​​rand te verwijderen</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Scherm knippen</value>
     <comment>Screen clipping citation</comment>
@@ -6642,6 +6650,14 @@ Tabblad Help</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Verwijder informatie voor alle auteurs op deze pagina</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Rand verwijderen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Verwijder de rand en slagschaduw toegevoegd door Rand toevoegen aan de geselecteerde afbeeldingen</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Verwijder geplakte citaten</value>

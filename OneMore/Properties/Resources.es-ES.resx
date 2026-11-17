@@ -4745,6 +4745,14 @@ Diferido</value>
     <value>Semana {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>No se encontraron bordes en las imágenes seleccionadas.</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Seleccione una o más imágenes para eliminar un borde</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Recorte de pantalla</value>
     <comment>Screen clipping citation</comment>
@@ -6641,6 +6649,14 @@ Pestaña Ayuda</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Eliminar información de todos los autores en esta página</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Quitar borde</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Elimine el borde y la sombra paralela agregada por Agregar borde de las imágenes seleccionadas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Eliminar citas pegadas</value>

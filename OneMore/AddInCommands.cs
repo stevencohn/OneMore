@@ -950,6 +950,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveAuthorsCommand>();
 
 
+		[Command("ribRemoveBorderButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task RemoveBorderCmd(IRibbonControl control)
+			=> await factory.Run<RemoveBorderCommand>();
+
+
 		[Command("ribRemoveCitationsButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task RemoveCitationsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveCitationsCommand>();

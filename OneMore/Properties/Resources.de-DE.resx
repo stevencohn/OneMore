@@ -4745,6 +4745,14 @@ Aufgeschoben</value>
     <value>Woche {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Auf den ausgewählten Bildern wurden keine Ränder gefunden</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Wählen Sie ein oder mehrere Bilder aus, um einen Rand zu entfernen</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Bildschirmausschnitt</value>
     <comment>Screen clipping citation</comment>
@@ -6641,6 +6649,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Entfernt Informationen für alle Autoren auf dieser Seite</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Rand entfernen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Entfernen Sie den durch „Rand hinzufügen“ hinzugefügten Rahmen und Schlagschatten von den ausgewählten Bildern</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Entferne eingefügte Zitate</value>
