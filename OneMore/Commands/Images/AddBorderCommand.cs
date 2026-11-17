@@ -77,8 +77,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool AddBorder(
-			XElement element, XNamespace ns, Color color, int width, bool shadow)
+		private bool AddBorder(
+			XElement element, XNamespace ns, Color color, float width, bool shadow)
 		{
 			var data = element.Element(ns + "Data");
 			if (data is null || string.IsNullOrEmpty(data.Value))
@@ -101,6 +101,13 @@ namespace River.OneMoreAddIn.Commands
 			var distance = Math.Max(1, (int)Math.Round(ShadowDistance / scale));
 
 			using var result = Render(source, color, borderPixels, shadow, blur, distance);
+
+			logger?.WriteLine(
+				$"AddBorder pixels={source.Width}x{source.Height} " +
+				$"display={size.Attribute("width")?.Value}x{size.Attribute("height")?.Value} " +
+				$"scale=({scaleX:0.####},{scaleY:0.####}) width={width:0.##} " +
+				$"borderPx={borderPixels} shadow={shadow} blurPx={blur} distancePx={distance} " +
+				$"result={result.Width}x{result.Height}");
 
 			oneImage.WriteImage(result);
 
