@@ -112,18 +112,24 @@ namespace River.OneMoreAddIn.Commands
 			this.widthBox.BackColor = System.Drawing.SystemColors.Window;
 			this.widthBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.widthBox.Location = new System.Drawing.Point(178, 69);
+			this.widthBox.DecimalPlaces = 2;
+			this.widthBox.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
 			this.widthBox.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
 			this.widthBox.Minimum = new decimal(new int[] {
-            1,
+            25,
             0,
             0,
-            0});
+            131072});
 			this.widthBox.Name = "widthBox";
-			this.widthBox.Size = new System.Drawing.Size(80, 26);
+			this.widthBox.Size = new System.Drawing.Size(120, 26);
 			this.widthBox.TabIndex = 2;
 			this.widthBox.ThemedBack = null;
 			this.widthBox.ThemedFore = null;

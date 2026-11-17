@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -54,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets the border width, in pixels as displayed on the page.
 		/// </summary>
-		public int BorderWidth => (int)widthBox.Value;
+		public float BorderWidth => (float)widthBox.Value;
 
 
 		/// <summary>
@@ -80,7 +81,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var width = collection.Get("borderWidth", 2);
+			// stored as an invariant string so decimals survive; older values were integers
+			var width = 2m;
+			var text = collection.Get("borderWidth", "2");
+			if (decimal.TryParse(text, NumberStyles.Number, CultureInfo.InvariantCulture, out var parsed))
+			{
+				width = parsed;
+			}
+
 			widthBox.Value = Math.Max(widthBox.Minimum, Math.Min(widthBox.Maximum, width));
 
 			shadowBox.Checked = collection.Get("borderShadow", false);
@@ -93,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			var collection = provider.GetCollection(CollectionName);
 
 			collection.Add("borderColor", ColorTranslator.ToHtml(borderColor));
-			collection.Add("borderWidth", BorderWidth);
+			collection.Add("borderWidth", widthBox.Value.ToString(CultureInfo.InvariantCulture));
 			collection.Add("borderShadow", DropShadow);
 
 			provider.SetCollection(collection);
