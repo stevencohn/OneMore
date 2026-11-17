@@ -4757,6 +4757,14 @@ ISO-code then comma then language name</comment>
     <value>الأسبوع {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>لم يتم العثور على حدود على الصور المحددة</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>حدد صورة واحدة أو أكثر لإزالة الحدود</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>لقطة الشاشة</value>
     <comment>Screen clipping citation</comment>
@@ -6653,6 +6661,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>إزالة المعلومات لجميع المؤلفين في هذه الصفحة</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>إزالة الحدود</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>قم بإزالة الحدود والظل المسقط الذي تمت إضافته بواسطة Add Border من الصور المحددة</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>إزالة الاقتباسات التي تم لصقها</value>

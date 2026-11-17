@@ -92,13 +92,7 @@ namespace River.OneMoreAddIn.Commands
 			// displayed size vs pixel size; the border width is specified in displayed
 			// pixels so it looks the same regardless of the image's native resolution
 			var size = element.Element(ns + "Size");
-			size.GetAttributeValue("width", out float displayWidth, source.Width);
-			size.GetAttributeValue("height", out float displayHeight, source.Height);
-
-			var scaleX = displayWidth > 0 ? displayWidth / source.Width : 1f;
-			var scaleY = displayHeight > 0 ? displayHeight / source.Height : scaleX;
-			if (scaleX <= 0) { scaleX = 1f; }
-			if (scaleY <= 0) { scaleY = scaleX; }
+			var (scaleX, scaleY) = GetScales(size, source.Width, source.Height);
 
 			var borderPixels = Math.Max(1, (int)Math.Round(width / Math.Min(scaleX, scaleY)));
 
@@ -128,10 +122,27 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets the ratio of displayed size to pixel size for the given one:Size element.
+		/// </summary>
+		internal static (float X, float Y) GetScales(XElement size, int pixelWidth, int pixelHeight)
+		{
+			size.GetAttributeValue("width", out float displayWidth, pixelWidth);
+			size.GetAttributeValue("height", out float displayHeight, pixelHeight);
+
+			var scaleX = displayWidth > 0 ? displayWidth / pixelWidth : 1f;
+			var scaleY = displayHeight > 0 ? displayHeight / pixelHeight : scaleX;
+			if (scaleX <= 0) { scaleX = 1f; }
+			if (scaleY <= 0) { scaleY = scaleX; }
+
+			return (scaleX, scaleY);
+		}
+
+
+		/// <summary>
 		/// Renders the source onto a larger transparent canvas with a border band outside
 		/// the original pixels and an optional soft drop shadow beyond that.
 		/// </summary>
-		private static Bitmap Render(
+		internal static Bitmap Render(
 			Image source, Color color, int border, bool shadow, int blur, int distance)
 		{
 			// margins leave room for the visible part of the shadow's soft edge; its faint

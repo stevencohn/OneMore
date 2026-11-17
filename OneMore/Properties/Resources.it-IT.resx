@@ -4746,6 +4746,14 @@ Differito</value>
     <value>Settimana {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Nessun bordo trovato nelle immagini selezionate</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Seleziona una o più immagini per rimuovere un bordo</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Ritaglio dello schermo</value>
     <comment>Screen clipping citation</comment>
@@ -6643,6 +6651,14 @@ Scheda Aiuto</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Rimuovere le informazioni per tutti gli autori in questa pagina</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Rimuovi bordo</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Rimuovi il bordo e l'ombra aggiunta da Aggiungi bordo dalle immagini selezionate</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Rimuovi le citazioni incollate</value>

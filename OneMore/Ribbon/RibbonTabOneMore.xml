@@ -436,6 +436,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="AddBorderCmd"/>
         <button
+          id="ribRemoveBorderButton"
+          imageMso="BorderNone"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RemoveBorderCmd"/>
+        <button
           id="ribAddCaptionButton"
           imageMso="CaptionInsert"
           getLabel="GetRibbonLabel"

@@ -4774,6 +4774,14 @@ Deferred</value>
     <value>Week {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>No borders were found on the selected images</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Select one or more images to remove a border</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Screen clipping</value>
     <comment>Screen clipping citation</comment>
@@ -6671,6 +6679,14 @@ Help Tab</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Remove information for all authors on this page</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Remove Border</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Remove the border and drop shadow added by Add Border from the selected images</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Remove Pasted Citations</value>

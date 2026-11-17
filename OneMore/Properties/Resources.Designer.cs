@@ -11288,6 +11288,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No borders were found on the selected images.
+        /// </summary>
+        internal static string RemoveBorderCommand_noBorders {
+            get {
+                return ResourceManager.GetString("RemoveBorderCommand_noBorders", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select one or more images to remove a border.
+        /// </summary>
+        internal static string RemoveBorderCommand_noImages {
+            get {
+                return ResourceManager.GetString("RemoveBorderCommand_noImages", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {
@@ -15650,6 +15668,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Border.
+        /// </summary>
+        internal static string ribRemoveBorderButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveBorderButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Remove the border and drop shadow added by Add Border from the selected images.
+        /// </summary>
+        internal static string ribRemoveBorderButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveBorderButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Remove Pasted Citations.
         /// </summary>

@@ -4760,6 +4760,14 @@ ISO-code then comma then language name</comment>
     <value>{0} 周</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>所选图像上未发现边框</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>选择一张或多张图像以删除边框</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>屏幕剪辑</value>
     <comment>Screen clipping citation</comment>
@@ -6656,6 +6664,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>在此页面上删除所有作者的信息</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>删除边框</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>从所选图像中删除通过“添加边框”添加的边框和阴影</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>删除粘贴的引文</value>

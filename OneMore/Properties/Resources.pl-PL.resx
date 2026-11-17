@@ -4746,6 +4746,14 @@ Odroczony</value>
     <value>Tydzień {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemoveBorderCommand_noBorders" xml:space="preserve">
+    <value>Na wybranych obrazach nie znaleziono obramowań</value>
+    <comment>info message</comment>
+  </data>
+  <data name="RemoveBorderCommand_noImages" xml:space="preserve">
+    <value>Wybierz jeden lub więcej obrazów, aby usunąć obramowanie</value>
+    <comment>info message</comment>
+  </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Clipping</value>
     <comment>Screen clipping citation</comment>
@@ -6642,6 +6650,14 @@ Zakładka Pomoc</value>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Usuń informacje dla wszystkich autorów na tej stronie</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Label" xml:space="preserve">
+    <value>Usuń granicę</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRemoveBorderButton_Screentip" xml:space="preserve">
+    <value>Usuń obramowanie i cień dodane przez opcję Dodaj obramowanie z wybranych obrazów</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Usuń wklejone cytaty</value>
