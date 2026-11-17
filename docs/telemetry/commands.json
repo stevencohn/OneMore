@@ -1,6 +1,7 @@
 ﻿{
   "commands": [
     "About",
+    "AddBorder",
     "AddCaption",
     "AddFavoritePage",
     "AddFavoriteSection",

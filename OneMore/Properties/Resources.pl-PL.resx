@@ -153,6 +153,30 @@
     <value>Wybierz tekst, który chcesz opatrzyć adnotacją</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Wybierz jeden lub więcej obrazów, aby dodać obramowanie</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Kolor</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Kolor obramowania</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Dodaj cień</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Dodaj obramowanie</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Szerokość</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Nie można dodać podpisu do obrazu tła na stronie. Aby obrazy mogły zostać opatrzone podpisami, muszą znajdować się w kontenerze konspektu.</value>
     <comment>error message</comment>
@@ -5080,6 +5104,14 @@ Stylistyka, podmiot, media</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Zaznacz zaznaczony tekst i dodaj obok niego pasującą adnotację</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Dodaj obramowanie</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Dodaj obramowanie i opcjonalny cień do wybranych obrazów</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Dodaj podpis</value>

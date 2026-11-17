@@ -154,6 +154,30 @@
     <value>Seleziona il testo da annotare</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Seleziona una o più immagini per aggiungere un bordo</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Colore</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Colore del bordo</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Aggiungi un'ombra esterna</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Aggiungi bordo</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Larghezza</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Impossibile aggiungere una didascalia a un'immagine di sfondo nella pagina. Le immagini devono essere in un contenitore di struttura per essere sottotitolate.</value>
     <comment>error message</comment>
@@ -5080,6 +5104,14 @@ Stilistica, Entità, Media</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Evidenzia il testo selezionato e aggiungi un'annotazione corrispondente accanto ad esso</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Aggiungi bordo</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Aggiungi un bordo e un'ombra esterna opzionale alle immagini selezionate</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Aggiungi didascalia</value>

@@ -21,6 +21,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AboutCommand>();
 
 
+		[Command("ribAddBorderButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task AddBorderCmd(IRibbonControl control)
+			=> await factory.Run<AddBorderCommand>();
+
+
 		[Command("ribAddCaptionButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task AddCaptionCmd(IRibbonControl control)
 			=> await factory.Run<AddCaptionCommand>();

@@ -153,6 +153,30 @@
     <value>Selecione o texto para anotar</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Selecione uma ou mais imagens para adicionar uma borda</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Cor</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Cor da borda</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Adicionar sombra projetada</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Adicionar borda</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Largura</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Não é possível adicionar uma legenda a uma imagem de fundo da página. As imagens devem estar em um contêiner de contorno para serem legendadas.</value>
     <comment>error message</comment>
@@ -5080,6 +5104,14 @@ Estilístico, Entidade, Mídia</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Destaque o texto selecionado e adicione uma anotação correspondente ao lado dele</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Adicionar borda</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Adicione uma borda e sombra opcional às imagens selecionadas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Adicionar legenda</value>

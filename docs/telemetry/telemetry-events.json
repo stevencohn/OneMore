@@ -2,6 +2,7 @@
   "events": [
     "About",
     "AddAnnotation",
+    "AddBorder",
     "AddCaption",
     "AddFavorite",
     "AddFavoriteNotebook",

@@ -154,6 +154,30 @@
     <value>注釈を付けるテキストを選択します</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>1 つまたは複数の画像を選択して枠線を追加します</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>色</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>枠線の色</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>ドロップシャドウを追加する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>枠線を追加する</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>幅</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>ページの背景画像にはキャプションを追加できません。キャプションを追加するには、画像をアウトラインコンテナに入れる必要があります。</value>
     <comment>error message</comment>
@@ -5083,6 +5107,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>選択したテキストを強調表示し、その横に一致する注釈を追加します</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>枠線を追加する</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>選択した画像に枠線とオプションのドロップシャドウを追加します</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>キャプションを追加</value>

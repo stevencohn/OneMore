@@ -164,6 +164,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select one or more images to add a border.
+        /// </summary>
+        internal static string AddBorderCommand_noImages {
+            get {
+                return ResourceManager.GetString("AddBorderCommand_noImages", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string AddBorderDialog_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("AddBorderDialog_colorLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Border color.
+        /// </summary>
+        internal static string AddBorderDialog_colorTitle {
+            get {
+                return ResourceManager.GetString("AddBorderDialog_colorTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add drop shadow.
+        /// </summary>
+        internal static string AddBorderDialog_shadowBox_Text {
+            get {
+                return ResourceManager.GetString("AddBorderDialog_shadowBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add Border.
+        /// </summary>
+        internal static string AddBorderDialog_Text {
+            get {
+                return ResourceManager.GetString("AddBorderDialog_Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string AddBorderDialog_widthLabel_Text {
+            get {
+                return ResourceManager.GetString("AddBorderDialog_widthLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Cannot add a caption to a background image on the page. Images must be in an outline container to be captioned..
         /// </summary>
         internal static string AddCaptionCommand_cannotCaptionBg {
@@ -12045,6 +12099,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Add Border.
+        /// </summary>
+        internal static string ribAddBorderButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddBorderButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add a border and optional drop shadow to the selected images.
+        /// </summary>
+        internal static string ribAddBorderButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddBorderButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Add Caption.
         /// </summary>

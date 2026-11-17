@@ -153,6 +153,30 @@
     <value>Seleccione el texto a anotar</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Seleccione una o más imágenes para agregar un borde</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Color</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Color del borde</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Agregar sombra paralela</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Agregar borde</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Ancho</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>No se puede agregar un título a una imagen de fondo en la página. Las imágenes deben estar en un contenedor de esquema para ser subtituladas.</value>
     <comment>error message</comment>
@@ -5079,6 +5103,14 @@ Estilístico, Entidad, Medios</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Resalte el texto seleccionado y agregue una anotación coincidente al lado</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Agregar borde</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Agregue un borde y una sombra paralela opcional a las imágenes seleccionadas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Añadir un subtitulo</value>
