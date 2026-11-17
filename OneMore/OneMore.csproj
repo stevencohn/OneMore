@@ -1243,6 +1243,13 @@
     <Compile Include="Commands\Tables\TableSorter.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
+    <Compile Include="Commands\Images\AddBorderCommand.cs" />
+    <Compile Include="Commands\Images\AddBorderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Images\AddBorderDialog.Designer.cs">
+      <DependentUpon>AddBorderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\AdjustBlankLinesCommand.cs" />
@@ -2142,6 +2149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Images\AddBorderDialog.resx">
+      <DependentUpon>AddBorderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Images\StylizeImagesDialog.resx">
       <DependentUpon>StylizeImagesDialog.cs</DependentUpon>

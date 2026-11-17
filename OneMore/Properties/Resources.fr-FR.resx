@@ -153,6 +153,30 @@
     <value>Sélectionnez le texte à annoter</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Sélectionnez une ou plusieurs images pour ajouter une bordure</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Couleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Couleur de la bordure</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Ajouter une ombre portée</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Ajouter une bordure</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Largeur</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Impossible d'ajouter une légende à une image d'arrière-plan sur la page. Les images doivent être dans un conteneur de contour pour être sous-titrées.</value>
     <comment>error message</comment>
@@ -5091,6 +5115,14 @@ Stylistique, Entité, Média</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Mettez en surbrillance le texte sélectionné et ajoutez une annotation correspondante à côté</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Ajouter une bordure</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Ajouter une bordure et une ombre portée facultative aux images sélectionnées</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Ajouter une légende</value>

@@ -583,6 +583,12 @@
       </menu>
       <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true">
         <button
+          id="ribAddBorderButton"
+          imageMso="BorderOutside"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="AddBorderCmd"/>
+        <button
           id="ribAddCaptionButton"
           imageMso="CaptionInsert"
           getLabel="GetRibbonLabel"

@@ -153,6 +153,30 @@
     <value>Selecteer de tekst die u wilt annoteren</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Selecteer een of meer afbeeldingen om een ​​rand toe te voegen</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Kleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Randkleur</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Voeg slagschaduw toe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Rand toevoegen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Breedte</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Kan geen bijschrift toevoegen aan een achtergrondafbeelding op de pagina. Afbeeldingen moeten zich in een overzichtscontainer bevinden om van ondertiteling te kunnen voorzien.</value>
     <comment>error message</comment>
@@ -5080,6 +5104,14 @@ Stilistisch, entiteit, media</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Markeer de geselecteerde tekst en voeg er een bijpassende annotatie aan toe</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Rand toevoegen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Voeg een rand en optionele slagschaduw toe aan de geselecteerde afbeeldingen</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bijschrift toevoegen</value>

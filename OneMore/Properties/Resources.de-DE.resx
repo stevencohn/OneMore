@@ -153,6 +153,30 @@
     <value>Wählen Sie den Text aus, den Sie mit Anmerkungen versehen möchten</value>
     <comment>info message</comment>
   </data>
+  <data name="AddBorderCommand_noImages" xml:space="preserve">
+    <value>Wählen Sie ein oder mehrere Bilder aus, um einen Rahmen hinzuzufügen</value>
+    <comment>info message</comment>
+  </data>
+  <data name="AddBorderDialog_colorLabel.Text" xml:space="preserve">
+    <value>Farbe</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddBorderDialog_colorTitle" xml:space="preserve">
+    <value>Randfarbe</value>
+    <comment>color picker title</comment>
+  </data>
+  <data name="AddBorderDialog_shadowBox.Text" xml:space="preserve">
+    <value>Schlagschatten hinzufügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AddBorderDialog_Text" xml:space="preserve">
+    <value>Rand hinzufügen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddBorderDialog_widthLabel.Text" xml:space="preserve">
+    <value>Breite</value>
+    <comment>label, line width in pixels</comment>
+  </data>
   <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
     <value>Einem Hintergrundbild auf der Seite kann keine Beschriftung hinzugefügt werden. Bilder müssen sich in einem Gliederungscontainer befinden, damit sie mit Untertiteln versehen werden können.</value>
     <comment>error message</comment>
@@ -5079,6 +5103,14 @@ Stilistisch, Entität, Medien</value>
   <data name="ribAddAnnotationButton_Screentip" xml:space="preserve">
     <value>Markieren Sie den ausgewählten Text und fügen Sie daneben eine passende Anmerkung hinzu</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribAddBorderButton_Label" xml:space="preserve">
+    <value>Rand hinzufügen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAddBorderButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie den ausgewählten Bildern einen Rahmen und optional einen Schlagschatten hinzu</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bildunterschrift hinzufügen</value>

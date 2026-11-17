@@ -207,6 +207,13 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuPicture">
       <button
+        id="ctxAddBorderButton"
+        imageMso="BorderOutside"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddBorderCmd"
+        insertBeforeMso="Cut"/>
+      <button
         id="ctxAddCaptionButton"
         imageMso="CaptionInsert"
         getLabel="GetRibbonLabel"
