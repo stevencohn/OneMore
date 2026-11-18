@@ -761,6 +761,54 @@
     <value>未定义的变量“{0}”</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>不止一个目标适合这一最爱。删除它并重新添加。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>找不到该目标。它可能已被删除或重命名。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>指向与“{0}”相同的目标。删除其中之一。</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>OneNote 无法读取，所以没有检查任何内容。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>仅通过名称找到，因此可能不是同一目标。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>它的笔记本已关闭或其部分已锁定。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>尚未找到，因为某些页面仍在阅读中。稍后再试。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>找不到 {0} 个收藏夹。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} 个收藏夹与另一个收藏夹指向同一目标。删除每对中的一个。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} 个收藏夹位于关闭的笔记本或锁定的分区中。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>有些页面仍在阅读中。稍后再试。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} 个收藏夹可能未指向正确的目标。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>清理了 {0} 个孤立的提醒</value>
     <comment>message box</comment>

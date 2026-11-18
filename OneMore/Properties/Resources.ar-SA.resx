@@ -760,6 +760,54 @@
     <value>متغير غير محدد "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>أكثر من هدف يناسب هذا المفضل. احذفه وأضفه مرة أخرى.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>لا يمكن العثور على هذا الهدف. ربما تم حذفه أو إعادة تسميته.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>يشير إلى نفس الهدف مثل "{0}". حذف واحد منهم.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>تعذرت قراءة OneNote، لذلك لم يتم التحقق من أي شيء.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>تم العثور عليه بالاسم فقط، لذلك قد لا يكون نفس الهدف.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>دفتر ملاحظاته مغلق أو قسمه مغلق.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>لم يتم العثور عليه بعد لأن بعض الصفحات لا تزال قيد القراءة. حاول مرة أخرى قريبا.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>لا يمكن العثور على {0} المفضلة (المفضلات).</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} تشير المفضلة (المفضلات) إلى نفس الهدف كهدف آخر. حذف واحد من كل زوج.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} المفضلة (المفضلات) موجودة في دفتر ملاحظات مغلق أو قسم مقفل.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>لا تزال بعض الصفحات قيد القراءة. حاول مرة أخرى قريبا.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} قد لا تشير المفضلة (المفضلات) إلى الهدف الصحيح.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>تم تنظيف {0} من التذكيرات المعزولة</value>
     <comment>message box</comment>

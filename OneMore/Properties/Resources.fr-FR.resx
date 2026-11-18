@@ -760,6 +760,54 @@ Inverser</value>
     <value>Variable non définie "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>Plus d’une cible correspond à ce favori. Supprimez-le et ajoutez-le à nouveau.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>Cette cible est introuvable. Il a peut-être été supprimé ou renommé.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>Pointe vers la même cible que "{0}". Supprimez-en un.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>OneNote n'a pas pu être lu, donc rien n'a été vérifié.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>Trouvé uniquement par son nom, il se peut donc qu'il ne s'agisse pas de la même cible.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>Son carnet est fermé ou sa section est verrouillée.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>Pas encore trouvé car certaines pages sont encore en cours de lecture. Réessayez sous peu.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>{0} favori(s) est introuvable.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} favori(s) pointent vers la même cible qu'un autre. Supprimez un de chaque paire.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} favoris se trouvent dans un bloc-notes fermé ou dans une section verrouillée.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>Certaines pages sont encore en lecture. Réessayez sous peu.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>Il est possible que {0} favoris ne pointent pas vers la bonne cible.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Nettoyage de {0} rappels orphelins</value>
     <comment>message box</comment>

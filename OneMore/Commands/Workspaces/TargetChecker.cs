@@ -6,12 +6,46 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 {
 	using River.OneMoreAddIn.Commands.Favorites;
 	using River.OneMoreAddIn.Commands.Layouts;
+	using River.OneMoreAddIn.Identity;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
+
+
+	/// <summary>
+	/// What <see cref="TargetChecker.CheckFavorites"/> found.
+	/// </summary>
+	internal sealed class FavoritesCheck
+	{
+		/// <summary>The notebooks could not be read, so nothing was checked.</summary>
+		public bool Failed { get; set; }
+
+		/// <summary>Favorites with a new target that must be saved.</summary>
+		public int Healed { get; set; }
+
+		/// <summary>Favorites that point at the same target as another.</summary>
+		public int Duplicates { get; set; }
+
+		/// <summary>Favorites that cannot be found.</summary>
+		public int Broken { get; set; }
+
+		/// <summary>Favorites found only by name or that fit more than one target.</summary>
+		public int Suspect { get; set; }
+
+		/// <summary>Favorites in a closed notebook or a locked section.</summary>
+		public int Offline { get; set; }
+
+		/// <summary>Favorites that cannot be found yet because pages are still being read.</summary>
+		public int Pending { get; set; }
+
+		/// <summary>Gets whether anything needs the user's attention.</summary>
+		public bool HasProblems => Failed || Duplicates + Broken + Suspect + Offline + Pending > 0;
+	}
 
 
 	/// <summary>
@@ -56,29 +90,107 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 
 		/// <summary>
-		/// Confirm that each favorite exists and is reachable with the by ID. For those that
-		/// are not reachable, confirm if the Location/Screentip/path is reachable and, if so,
-		/// patch the favorite with an updated ID.
+		/// Checks every favorite the same way the background healing stage does: finds where each
+		/// one points now by key, ID or GUID, using a fresh identity pass, and notices favorites
+		/// that point at the same target. Favorites are brought up to date in memory only; the
+		/// caller saves them, after any deletions, so that nothing here can overwrite an edit the
+		/// user has not saved yet.
 		/// </summary>
-		/// <param name="collection">The favorites to validate</param>
+		/// <param name="collection">The favorites to check</param>
+		/// <param name="token">Optional token to cancel the identity pass</param>
 		/// <returns>
-		/// Returns True if any invalid favorites are discovered.
+		/// What was found. Each favorite's Status, CheckMessage and TargetHealed are set.
 		/// </returns>
-		public async Task<bool> InvalidFavorites(FavoritesCollection collection)
+		public async Task<FavoritesCheck> CheckFavorites(
+			FavoritesCollection collection, CancellationToken token = default)
 		{
-			var updated = false;
+			var result = new FavoritesCheck();
 
-			foreach (var folder in collection.Folders)
+			var favorites = collection.Folders
+				.SelectMany(f => f.Items)
+				.Concat(collection.Items)
+				.OrderBy(f => f.ID)
+				.ToList();
+
+			if (favorites.Count == 0)
 			{
-				if (folder.Items.Any())
+				return result;
+			}
+
+			var snapshot = await HashtagScanner.ReadIdentities(token, fillGuids: false);
+			if (snapshot is null)
+			{
+				logger.WriteLine("error checking favorites, could not read the notebooks");
+				result.Failed = true;
+				return result;
+			}
+
+			one ??= new OneNote();
+
+			using var identity = new PageIdentityProvider();
+			var resolver = new TargetResolver(snapshot, identity.Read);
+
+			var plan = WorkspaceHealer.Plan(
+				favorites, resolver, id => one.GetHyperlink(id, string.Empty));
+
+			foreach (var item in plan.Items)
+			{
+				var favorite = item.Favorite;
+				favorite.CheckMessage = null;
+
+				switch (item.Kind)
 				{
-					updated |= await InvalidReferences(folder.Items);
+					case HealKind.Healed:
+						favorite.Status = TargetStatus.Known;
+						favorite.TargetHealed = true;
+						result.Healed++;
+						break;
+
+					case HealKind.Unchanged:
+						favorite.Status = TargetStatus.Known;
+						break;
+
+					case HealKind.Guess:
+						favorite.Status = TargetStatus.Suspect;
+						favorite.CheckMessage = Resx.CheckFavorites_guess;
+						result.Suspect++;
+						break;
+
+					case HealKind.Ambiguous:
+						favorite.Status = TargetStatus.Suspect;
+						favorite.CheckMessage = Resx.CheckFavorites_ambiguous;
+						result.Suspect++;
+						break;
+
+					case HealKind.Pending:
+						// not an error; the GUIDs are still being read, so say nothing is known yet
+						favorite.CheckMessage = Resx.CheckFavorites_pending;
+						result.Pending++;
+						break;
+
+					case HealKind.Offline:
+						favorite.Status = TargetStatus.Unknown;
+						favorite.CheckMessage = Resx.CheckFavorites_offline;
+						result.Offline++;
+						break;
+
+					case HealKind.Duplicate:
+						favorite.Status = TargetStatus.Unknown;
+						var holder = favorites.FirstOrDefault(f => f.ID == item.DuplicateOf);
+						favorite.CheckMessage = string.Format(
+							Resx.CheckFavorites_duplicate, holder?.Alias ?? holder?.Name);
+						result.Duplicates++;
+						break;
+
+					default:
+						favorite.Status = TargetStatus.Unknown;
+						favorite.CheckMessage = Resx.CheckFavorites_broken;
+						result.Broken++;
+						break;
 				}
 			}
 
-			updated |= await InvalidReferences(collection.Items);
-
-			return updated;
+			return result;
 		}
 
 

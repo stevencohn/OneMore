@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		private string lastFavoritesSummary;
 		private string lastLayoutsSummary;
 		private string lastPinnedSummary;
+		private readonly HashSet<string> loggedDuplicates = new();
 
 
 		/// <param name="changed">Optional. Called after favorites were saved, so the ribbon menu
@@ -307,13 +308,22 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		// one line per repaired reference is detail; the summary says how many, so this is verbose
 		private void LogSaved(HealItem item)
 		{
+			// no longer a duplicate, so say so again if it ever becomes one
+			loggedDuplicates.Remove($"{item.What}:{item.ID}");
+
 			logger.Verbose(
 				$"{item.What} {item.ID} found by {item.Resolution.Method}, now {item.Label}");
 		}
 
 
+		// a duplicate stays one every cycle until the user deletes one, so say so only once
 		private void LogDuplicate(HealItem item)
 		{
+			if (!loggedDuplicates.Add($"{item.What}:{item.ID}"))
+			{
+				return;
+			}
+
 			logger.WriteLine(
 				$"{item.What} {item.ID} {item.Label} points at the same target as another");
 		}

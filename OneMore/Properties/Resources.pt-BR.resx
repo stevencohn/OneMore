@@ -757,6 +757,54 @@ Invertido</value>
     <value>Variável indefinida "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>Mais de um alvo cabe neste favorito. Exclua-o e adicione-o novamente.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>Este alvo não pode ser encontrado. Pode ter sido excluído ou renomeado.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>Aponta para o mesmo alvo que "{0}". Exclua um deles.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>O OneNote não pôde ser lido, então nada foi verificado.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>Encontrado apenas pelo nome, portanto pode não ser o mesmo alvo.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>Seu notebook está fechado ou sua seção está bloqueada.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>Ainda não encontrado porque algumas páginas ainda estão sendo lidas. Tente novamente em breve.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>{0} favoritos não foram encontrados.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} favoritos apontam para o mesmo alvo que outro(s). Exclua um de cada par.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} favoritos estão em um bloco de notas fechado ou em uma seção bloqueada.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>Algumas páginas ainda estão sendo lidas. Tente novamente em breve.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} favoritos podem não apontar para o alvo certo.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Foram limpos {0} lembretes órfãos</value>
     <comment>message box</comment>

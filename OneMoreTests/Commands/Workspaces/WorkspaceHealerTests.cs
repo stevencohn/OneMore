@@ -204,6 +204,21 @@ namespace River.OneMoreAddIn.Tests.Commands.Workspaces
 
 
 		[TestMethod]
+		public void ADuplicate_SaysWhichFavoriteHoldsTheTarget()
+		{
+			var book = Snap.Book("{nb}", "Notes");
+			Snap.Page(book, 7, "{p}", "Page", guid: Snap.G1);
+
+			var plan = Plan(Snap.Of(0, book),
+				PageFavorite(1, "{old-a}", Snap.G1),
+				PageFavorite(2, "{old-b}", Snap.G1));
+
+			Assert.AreEqual(0, plan.Items[0].DuplicateOf);
+			Assert.AreEqual(1, plan.Items[1].DuplicateOf);
+		}
+
+
+		[TestMethod]
 		public void AFavoriteThatAlreadyHoldsAKey_KeepsIt_AgainstOneThatResolvesToTheSamePage()
 		{
 			var book = Snap.Book("{nb}", "Notes");

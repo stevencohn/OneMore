@@ -373,8 +373,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (exc is SQLiteException && exc.Message.Contains("UNIQUE constraint failed"))
 				{
+					// the caller reports it once; see HealingStage.LogDuplicate
 					duplicate = true;
-					logger.WriteLine($"pinned item {item.ID} points at the same target as another");
 				}
 				else
 				{

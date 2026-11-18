@@ -256,8 +256,9 @@ namespace River.OneMoreAddIn.Commands
 					handles.Add(handle);
 				}
 
-				// remember what was found, so the next click opens it directly
-				if (resolution is not null && resolution.IsConfident &&
+				// remember what was found, so the next click opens it directly; a match by name alone
+				// counts too, because it was just opened and the user can see where it landed
+				if (resolution is not null && resolution.IsResolved &&
 					WorkspaceResolver.Apply(favorite, resolution, Link))
 				{
 					using var provider = new FavoritesProvider();
@@ -376,25 +377,26 @@ namespace River.OneMoreAddIn.Commands
 			var target = WorkspaceResolver.NavigationTarget(resolution, favorite.Kind, Link);
 			var success = !string.IsNullOrEmpty(target) && await Navigate(target);
 
-			if (success && resolution.IsConfident &&
+			// a match by name alone is never saved in the background, but the user just opened it
+			// and it opened, so that confirms it and it is remembered like any other
+			if (success && resolution.IsResolved &&
 				WorkspaceResolver.Apply(favorite, resolution, Link))
 			{
 				// so the next click opens it directly
 				using var provider = new FavoritesProvider();
-				if (provider.UpdateTarget(favorite))
+				if (provider.UpdateTarget(favorite, out var duplicate))
 				{
 					logger.WriteLine(
-						$"favorite {favorite.ID} found by {resolution.Method}, now {favorite.Location}");
+						$"favorite {favorite.ID} found by {resolution.Method}, now {favorite.Location}" +
+						(resolution.IsConfident ? string.Empty : ", confirmed by opening it"));
 
 					ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 				}
-			}
-
-			if (success && !resolution.IsConfident)
-			{
-				// a match by name alone is good enough to open, not to remember
-				logger.WriteLine(
-					$"favorite {favorite.ID} {favorite.Location} opened by name only");
+				else if (duplicate)
+				{
+					logger.WriteLine(
+						$"favorite {favorite.ID} {favorite.Location} points at the same target as another");
+				}
 			}
 
 			return (success, null);
