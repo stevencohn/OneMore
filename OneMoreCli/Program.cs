@@ -114,6 +114,11 @@ namespace OneMoreCli
 						Console.WriteLine();
 						CliConsole.WriteInfo("Command cancelled.");
 					}
+					catch (CliException exc)
+					{
+						Console.WriteLine();
+						CliConsole.WriteError(exc.Message);
+					}
 					catch (Exception exc)
 					{
 						Console.WriteLine();
@@ -230,6 +235,11 @@ namespace OneMoreCli
 			catch (OperationCanceledException)
 			{
 				CliConsole.WriteInfo("Command cancelled.");
+				return false;
+			}
+			catch (CliException exc)
+			{
+				CliConsole.WriteError(exc.Message);
 				return false;
 			}
 			catch (Exception exc)
@@ -351,8 +361,8 @@ namespace OneMoreCli
 
 					if (pageIds.Length == 0)
 					{
-						CliConsole.WriteWarning($"No pages found at path: {notebook}/{section}/{effectivePage}");
-						return;
+						throw new CliException(CliPathHelp.PathNotFound(
+							$"{notebook}/{section}/{effectivePage}", command.CommandName));
 					}
 
 					foreach (var pageId in pageIds)
@@ -522,8 +532,8 @@ namespace OneMoreCli
 
 					if (node == null)
 					{
-						CliConsole.WriteWarning($"Section not found: '{sectionPath}'");
-						return;
+						throw new CliException(CliPathHelp.PathNotFound(
+							$"{notebookName}/{sectionPath}", "export", withPage: false));
 					}
 				}
 

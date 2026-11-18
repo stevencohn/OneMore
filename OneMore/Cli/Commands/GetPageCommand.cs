@@ -97,12 +97,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (pageIds.Length == 0)
 			{
-				CliOutput = string.Empty;
+				CliOutput = CliPathHelp.PathNotFound(
+					$"{notebookName}/{sectionPath}/{pageName}", CommandName);
 				await Task.Yield();
 				return;
 			}
 
-			var page = await one.GetPage(pageIds[0], OneNote.PageDetail.All);
+			var page =await one.GetPage(pageIds[0], OneNote.PageDetail.All);
 			CliOutput = page?.Root?.ToString() ?? string.Empty;
 
 			await Task.Yield();

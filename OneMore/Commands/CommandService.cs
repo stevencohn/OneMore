@@ -352,7 +352,8 @@ namespace River.OneMoreAddIn
 							{
 								StopWatcher();
 								await WriteCliResponse(pipe,
-									$"ERR:No pages found at path: {notebook}/{section}/{effectivePage}");
+									"ERR:" + CliPathHelp.PathNotFound(
+										$"{notebook}/{section}/{effectivePage}", commandName));
 								return;
 							}
 
@@ -609,7 +610,8 @@ namespace River.OneMoreAddIn
 
 					if (node == null)
 					{
-						await WriteCliResponse(pipe, $"ERR:Section not found: '{sectionPath}'");
+						await WriteCliResponse(pipe, "ERR:" + CliPathHelp.PathNotFound(
+							$"{notebookName}/{sectionPath}", "export", withPage: false));
 						return (null, false);
 					}
 				}

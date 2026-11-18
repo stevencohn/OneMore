@@ -183,6 +183,7 @@
     <Compile Include="Cli\CliLogger.cs" />
     <Compile Include="Cli\CliNotebookResolver.cs" />
     <Compile Include="Cli\CliParameter.cs" />
+    <Compile Include="Cli\CliPathHelp.cs" />
     <Compile Include="Cli\CliParameterDefinition.cs" />
     <Compile Include="Cli\CliParameterSet.cs" />
     <Compile Include="Cli\Commands\GetHierarchyCommand.cs" />
