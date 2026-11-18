@@ -400,17 +400,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>Gemaakt op</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>Donker</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>Inclusief verwijderde pagina's</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>Verberg lege dagen in de detailweergave</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>Licht</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>Logbestand openen</value>
@@ -435,15 +429,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>Selecteer Geen</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>Systeem</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>Thema</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>Gebruiker</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>fout bij lezen {0}

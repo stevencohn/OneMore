@@ -76,6 +76,17 @@
     "XmlReadMode": "#F0F0F0",
     "XmlString": "Maroon",
     "XmlText": "ControlText",
-    "XmlTrash": "Maroon"
+    "XmlTrash": "Maroon",
+
+    "MonthHeader": "#F0F0F0",
+    "MonthPrimary": "White",
+    "MonthSecondary": "WhiteSmoke",
+    "MonthGrid": "DarkGray",
+    "MonthDayFore": "Gray",
+    "MonthDayBack": "#F4E8F3",
+    "MonthTodayFore": "Black",
+    "MonthTodayBack": "#D6A6D3",
+    "DetailOddBack": "#FDFAFE",
+    "DetailEvenBack": "White"
   }
 }

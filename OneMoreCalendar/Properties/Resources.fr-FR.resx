@@ -400,17 +400,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>Créé le</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>Sombre</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>Pages supprimées incluses</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>Masquer les jours vides dans la vue détaillée</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>Lumière</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>Ouvrir le fichier journal</value>
@@ -435,15 +429,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>Sélectionnez Aucun</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>Système</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>Thème</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>Utilisateur</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>erreur de lecture de {0}

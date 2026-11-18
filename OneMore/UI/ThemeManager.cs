@@ -60,15 +60,6 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Gets or sets a theme id (see <see cref="ThemeCatalog"/>) that takes the place of the
-		/// Theme setting in OneMore's settings.xml. A host process such as OneMoreCalendar sets
-		/// this before any control is created so the shared More* controls follow the host's
-		/// own theme choice. Null means follow OneMore's setting.
-		/// </summary>
-		public static string ThemeIdOverride { get; set; }
-
-
-		/// <summary>
 		/// Gets a value indicating whether code is currently running inside the VS designer.
 		/// Use this to skip explicit BackColor/ForeColor assignments at design time instead of
 		/// relying on ShouldSerializeXxx/ResetXxx overrides - confirmed (via a standalone
@@ -255,8 +246,8 @@ namespace River.OneMoreAddIn.UI
 		/// Loads the colors of the given theme, or of the current theme if no id is given.
 		/// </summary>
 		/// <param name="themeId">
-		/// A theme id from <see cref="ThemeCatalog"/>; if null then the host's
-		/// <see cref="ThemeIdOverride"/> is used, otherwise OneMore's Theme setting.
+		/// A theme id from <see cref="ThemeCatalog"/>; if null then the theme chosen in
+		/// OneMore's settings is used, including when running in a host such as OneMoreCalendar.
 		/// </param>
 		public void LoadColors(string themeId = null)
 		{
@@ -272,14 +263,7 @@ namespace River.OneMoreAddIn.UI
 					return;
 				}
 
-				var info = ThemeCatalog.Find(themeId);
-
-				if (info is null && themeId is null)
-				{
-					// a host's override that is missing or unreadable defers to OneMore's own setting
-					info = ThemeCatalog.Find(ThemeIdOverride);
-					info ??= ThemeCatalog.Find(new SettingsProvider().Theme);
-				}
+				var info = ThemeCatalog.Find(themeId ?? new SettingsProvider().Theme);
 
 				// System, or a theme that is missing or unreadable, follows the system's
 				// base theme: either Light or Dark

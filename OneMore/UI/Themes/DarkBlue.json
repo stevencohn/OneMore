@@ -74,6 +74,17 @@
     "XmlReadMode": "#262938",
     "XmlString": "#DF603D",
     "XmlText": "#E6E6E6",
-    "XmlTrash": "#C09B76"
+    "XmlTrash": "#C09B76",
+
+    "MonthHeader": "#3A3D49",
+    "MonthPrimary": "#191C28",
+    "MonthSecondary": "#262938",
+    "MonthGrid": "#676767",
+    "MonthDayFore": "LightGray",
+    "MonthDayBack": "#3A3D49",
+    "MonthTodayFore": "LightGray",
+    "MonthTodayBack": "#665921",
+    "DetailOddBack": "#191C28",
+    "DetailEvenBack": "#262938"
   }
 }

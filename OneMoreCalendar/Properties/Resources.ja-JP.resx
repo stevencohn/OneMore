@@ -400,17 +400,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>作成日</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>暗い</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>削除されたページも含まれる</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>詳細ビューで空の日を非表示にする</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>ライト</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>ログファイルを開く</value>
@@ -435,15 +429,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>なしを選択します</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>システム</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>テーマ</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>ユーザー</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>{0} の読み取りエラー

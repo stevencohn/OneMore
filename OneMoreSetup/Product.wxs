@@ -149,7 +149,6 @@
       <ComponentGroupRef Id="ColorizerLanguages" />
       <ComponentGroupRef Id="ColorizerThemes" />
       <ComponentGroupRef Id="AppDataThemes" />
-      <ComponentGroupRef Id="AppDataUserThemes" />
       <ComponentGroupRef Id="SatelliteAssemblies" />
     </Feature>
 

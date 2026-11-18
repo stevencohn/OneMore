@@ -9285,17 +9285,17 @@ Thank you!</value>
   <data name="DarkBlueTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\Themes\DarkBlue.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="PurpleHazeTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\UI\Themes\PurpleHaze.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="DarkTealTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UI\Themes\DarkTeal.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\Themes\Light.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="DarkTealTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\UI\Themes\DarkTeal.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="LightWarmTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\Themes\LightWarm.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="PurpleHazeTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UI\Themes\PurpleHaze.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

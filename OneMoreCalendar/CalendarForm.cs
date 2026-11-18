@@ -815,12 +815,10 @@ namespace OneMoreCalendar
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
 				var settings = SettingsProvider.Current;
-				Logger.Current.Debug($"settings changed, theme:{settings.Theme}, " +
+				Logger.Current.Debug($"settings changed, " +
 					$"created:{settings.Created}, modified:{settings.Modified}, " +
 					$"deleted:{settings.Deleted}, empty:{settings.Empty}");
 
-				Theme.SyncSharedControlTheme();
-				Theme.InitializeTheme(this);
 				OneNoteProvider.Invalidate();
 				await SetMonth(date.Year, "settings applied");
 			}
