@@ -14,23 +14,9 @@ namespace River.OneMoreAddIn.UI
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
-	using Resx = Properties.Resources;
-
-
-	/// <summary>
-	/// Identifies the available themes for the application
-	/// </summary>
-	internal enum ThemeMode
-	{
-		System,
-		Light,
-		Dark,
-		User
-	}
 
 
 	/// <summary>
@@ -39,7 +25,6 @@ namespace River.OneMoreAddIn.UI
 	internal class ThemeManager : Loggable
 	{
 
-		private const string CustomThemeFile = "OneMoreTheme.json";
 		private static ThemeManager instance;
 		private static bool loading = false;
 
@@ -51,6 +36,13 @@ namespace River.OneMoreAddIn.UI
 				LoadColors();
 			}
 		}
+
+
+		/// <summary>
+		/// Gets the display name of the theme as declared in its JSON file
+		/// </summary>
+		[JsonProperty]
+		public string Name { get; private set; }
 
 
 		/// <summary>
@@ -68,12 +60,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Gets or sets a theme mode that takes the place of the Theme setting in OneMore's
-		/// settings.xml. A host process such as OneMoreCalendar sets this before any control
-		/// is created so the shared More* controls follow the host's own theme choice. Null
-		/// means follow OneMore's setting.
+		/// Gets or sets a theme id (see <see cref="ThemeCatalog"/>) that takes the place of the
+		/// Theme setting in OneMore's settings.xml. A host process such as OneMoreCalendar sets
+		/// this before any control is created so the shared More* controls follow the host's
+		/// own theme choice. Null means follow OneMore's setting.
 		/// </summary>
-		public static ThemeMode? ModeOverride { get; set; }
+		public static string ThemeIdOverride { get; set; }
 
 
 		/// <summary>
@@ -259,46 +251,46 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public void LoadColors(int modeIndex = -1)
+		/// <summary>
+		/// Loads the colors of the given theme, or of the current theme if no id is given.
+		/// </summary>
+		/// <param name="themeId">
+		/// A theme id from <see cref="ThemeCatalog"/>; if null then the host's
+		/// <see cref="ThemeIdOverride"/> is used, otherwise OneMore's Theme setting.
+		/// </param>
+		public void LoadColors(string themeId = null)
 		{
 			// deserializing constructs a ThemeManager so guard against recursion
 			loading = true;
 
 			try
 			{
-				var overridden = modeIndex < 0 && ModeOverride.HasValue;
-
-				var mode = modeIndex >= 0
-					? (ThemeMode)modeIndex
-					: ModeOverride ?? new SettingsProvider().Theme;
-
-				if (mode == ThemeMode.User)
+				if (IsDesignTime)
 				{
-					if (!IsDesignTime && TryLoadCustomTheme())
-					{
-						return;
-					}
-
-					// file is missing or unreadable so a host's override defers to OneMore's
-					// own setting; if that is also User then follow the system theme instead
-					mode = overridden ? new SettingsProvider().Theme : ThemeMode.System;
-					if (mode == ThemeMode.User)
-					{
-						mode = ThemeMode.System;
-					}
+					// the designer always gets the light base theme
+					Apply(ThemeCatalog.Find(ThemeCatalog.LightId));
+					return;
 				}
 
-				DarkMode = !IsDesignTime &&
-					(mode == ThemeMode.Dark ||
-					(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
+				var info = ThemeCatalog.Find(themeId);
 
-				// set colors...
+				if (info is null && themeId is null)
+				{
+					// a host's override that is missing or unreadable defers to OneMore's own setting
+					info = ThemeCatalog.Find(ThemeIdOverride);
+					info ??= ThemeCatalog.Find(new SettingsProvider().Theme);
+				}
 
-				var cache = JsonConvert.DeserializeObject<ThemeManager>(
-					DarkMode ? Resx.DarkTheme : Resx.LightTheme,
-					new ColorConverter());
+				// System, or a theme that is missing or unreadable, follows the system's
+				// base theme: either Light or Dark
+				if (info is null || info.IsSystem || !Apply(info))
+				{
+					var baseId = Office.IsBlackThemeEnabled(true)
+						? ThemeCatalog.DarkId
+						: ThemeCatalog.LightId;
 
-				Colors = cache.Colors;
+					Apply(ThemeCatalog.Find(baseId));
+				}
 			}
 			finally
 			{
@@ -308,34 +300,30 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Loads the user's OneMoreTheme.json file, if it exists, as the active theme.
+		/// Deserializes the theme's JSON and makes it the active theme.
 		/// </summary>
-		/// <returns>True if the file was loaded; otherwise false</returns>
-		private bool TryLoadCustomTheme()
+		/// <returns>True if the theme was applied; otherwise false and nothing is changed</returns>
+		private bool Apply(ThemeInfo info)
 		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			if (!File.Exists(path))
-			{
-				return false;
-			}
-
 			try
 			{
-				var json = File.ReadAllText(path);
-				var cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
+				var cache = JsonConvert.DeserializeObject<ThemeManager>(
+					info.ReadJson(), new ColorConverter());
+
 				if (cache?.Colors is null)
 				{
-					logger.WriteLine("custom theme file has no colors, using default theme");
+					logger.WriteLine($"theme {info.Id} has no colors");
 					return false;
 				}
 
 				Colors = cache.Colors;
 				DarkMode = cache.DarkMode;
+				Name = cache.Name ?? info.Name;
 				return true;
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error loading custom theme file, using default theme", exc);
+				logger.WriteLine($"error loading theme {info.Id}", exc);
 				return false;
 			}
 		}
@@ -407,13 +395,6 @@ namespace River.OneMoreAddIn.UI
 					SetWindowTheme(child);
 				}
 			}
-		}
-
-
-		public static bool HasCustomTheme()
-		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			return File.Exists(path);
 		}
 
 

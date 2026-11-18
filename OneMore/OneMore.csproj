@@ -1693,6 +1693,7 @@
     </Compile>
     <Compile Include="UI\MouseState.cs" />
     <Compile Include="UI\ThemedColorTable.cs" />
+    <Compile Include="UI\ThemeCatalog.cs" />
     <Compile Include="UI\ThemeManager.cs" />
     <Compile Include="UI\Translator.cs" />
     <Compile Include="UI\WebViewDialog.cs">
@@ -2100,9 +2101,9 @@
     <None Include="Properties\0336.OneNoteApplication_2013.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="UI\DarkTheme.json" />
-    <None Include="UI\LightTheme.json" />
-    <None Include="UI\OneMoreTheme.json" />
+    <None Include="UI\Themes\Dark.json" />
+    <None Include="UI\Themes\DarkBlue.json" />
+    <None Include="UI\Themes\Light.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
