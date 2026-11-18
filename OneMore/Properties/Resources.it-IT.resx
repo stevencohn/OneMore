@@ -758,6 +758,54 @@ Invertire</value>
     <value>Variabile non definita "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>Più di un obiettivo si adatta a questo preferito. Eliminalo e aggiungilo di nuovo.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>Impossibile trovare questo obiettivo. Potrebbe essere stato eliminato o rinominato.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>Punta allo stesso target di "{0}". Eliminane uno.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>Impossibile leggere OneNote, quindi non è stato controllato nulla.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>Trovato solo per nome, quindi potrebbe non essere lo stesso target.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>Il suo taccuino è chiuso o la sua sezione è bloccata.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>Non ancora trovato perché alcune pagine sono ancora in fase di lettura. Riprova a breve.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>Impossibile trovare {0} preferiti.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} preferiti puntano allo stesso bersaglio di un altro. Eliminarne uno per ciascuna coppia.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} preferiti si trovano in un taccuino chiuso o in una sezione bloccata.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>Alcune pagine sono ancora in lettura. Riprova a breve.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} preferiti potrebbero non puntare al target giusto.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Ripuliti {0} promemoria orfani</value>
     <comment>message box</comment>

@@ -75,6 +75,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			listView.CanDragItem = item => item.Tag is Favorite;
 			listView.IsInsertionAnchor = item => item.Tag is FolderRow;
 			listView.AllowMultiItemDrag = true;
+			listView.ShowItemToolTips = true;
 			listView.GetCellStyle = GetCellStyle;
 			listView.GetCellImage = (item, col) =>
 				col == 0 && item.Tag is Favorite f ? FavoriteKindGlyphs.GetGlyph(f) : null;
@@ -217,6 +218,23 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				}
 			}
 
+			// targets found by Check are saved last, so that deleting one of two duplicates has
+			// already freed the target the other now holds
+			foreach (ListViewItem item in listView.Items)
+			{
+				if (item.Tag is Favorite favorite && favorite.TargetHealed)
+				{
+					if (provider.UpdateTarget(favorite, out var duplicate))
+					{
+						favorite.TargetHealed = false;
+					}
+					else if (!duplicate)
+					{
+						return false;
+					}
+				}
+			}
+
 			return true;
 		}
 
@@ -279,14 +297,93 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			var collection = RebuildCollection();
 
-			await using var checker = new TargetChecker(Logger.Current);
-			if (await checker.InvalidFavorites(collection))
+			FavoritesCheck result;
+			var cursor = Cursor;
+			Cursor = Cursors.WaitCursor;
+			try
 			{
+				await using var checker = new TargetChecker(Logger.Current);
+				result = await checker.CheckFavorites(collection);
+			}
+			finally
+			{
+				Cursor = cursor;
+			}
+
+			if (result.Healed > 0)
+			{
+				// healed targets are saved with everything else when the user commits
 				LoadFavorites(collection);
 				isDirtyFromCheck = true;
 			}
+			else
+			{
+				// statuses and messages changed, but not what would be saved
+				RefreshCheckMessages();
+				listView.Invalidate();
+			}
 
-			FavoritesChecked?.Invoke(this, EventArgs.Empty);
+			if (result.HasProblems)
+			{
+				MoreMessageBox.Show(this, SummarizeCheck(result),
+					MessageBoxButtons.OK,
+					result.Failed ? MessageBoxIcon.Error : MessageBoxIcon.Warning);
+			}
+			else
+			{
+				FavoritesChecked?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
+
+		private static string SummarizeCheck(FavoritesCheck result)
+		{
+			if (result.Failed)
+			{
+				return Resx.CheckFavorites_failed;
+			}
+
+			var lines = new List<string>();
+
+			if (result.Duplicates > 0)
+			{
+				lines.Add(string.Format(Resx.CheckFavorites_summaryDuplicates, result.Duplicates));
+			}
+
+			if (result.Broken > 0)
+			{
+				lines.Add(string.Format(Resx.CheckFavorites_summaryBroken, result.Broken));
+			}
+
+			if (result.Suspect > 0)
+			{
+				lines.Add(string.Format(Resx.CheckFavorites_summarySuspect, result.Suspect));
+			}
+
+			if (result.Offline > 0)
+			{
+				lines.Add(string.Format(Resx.CheckFavorites_summaryOffline, result.Offline));
+			}
+
+			if (result.Pending > 0)
+			{
+				lines.Add(Resx.CheckFavorites_summaryPending);
+			}
+
+			return string.Join(Environment.NewLine, lines);
+		}
+
+
+		// favorites keep their instances, so only the row tooltips need to catch up
+		private void RefreshCheckMessages()
+		{
+			foreach (ListViewItem item in listView.Items)
+			{
+				if (item.Tag is Favorite favorite)
+				{
+					item.ToolTipText = favorite.CheckMessage;
+				}
+			}
 		}
 
 
@@ -371,7 +468,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private ListViewItem AddFavoriteRow(Favorite favorite)
 		{
-			var item = new ListViewItem(favorite.Alias ?? favorite.Name) { Tag = favorite };
+			var item = new ListViewItem(favorite.Alias ?? favorite.Name)
+			{
+				Tag = favorite,
+				ToolTipText = favorite.CheckMessage
+			};
+
 			item.SubItems.Add(favorite.Location);
 			listView.Items.Add(item);
 			return item;

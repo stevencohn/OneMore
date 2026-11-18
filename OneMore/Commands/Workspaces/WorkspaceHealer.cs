@@ -56,6 +56,12 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		public TargetResolution Resolution { get; set; }
 		public HealKind Kind { get; set; }
 
+		/// <summary>
+		/// For a <see cref="HealKind.Duplicate"/> favorite, the ID of the favorite that already
+		/// holds the target; otherwise 0.
+		/// </summary>
+		public int DuplicateOf { get; set; }
+
 		/// <summary>Gets the database ID of the favorite, window or pinned item.</summary>
 		public int ID => Favorite?.ID ?? Window?.ID ?? Pinned?.ID ?? 0;
 
@@ -180,6 +186,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 					claimed.TryGetValue(found, out var holder) && holder != favorite.ID)
 				{
 					item.Kind = HealKind.Duplicate;
+					item.DuplicateOf = holder;
 					continue;
 				}
 

@@ -124,6 +124,20 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public TargetStatus Status { get; set; }
 
 		/// <summary>
+		/// Why the last check found a problem with this favorite, or null if there was none.
+		/// Shown as the row tooltip; never stored.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public string CheckMessage { get; set; }
+
+		/// <summary>
+		/// True if the last check found a new target for this favorite that has not been saved yet.
+		/// The manager saves it, after any deletions, when the user commits.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public bool TargetHealed { get; set; }
+
+		/// <summary>
 		/// Gets the value to pass to FavoritesCommand/OneNote.NavigateTo to jump to this
 		/// favorite. GetHyperlinkToObject-based links (Uri) are unreliable for notebook and
 		/// section group targets (see OneNote.GetHyperlink), so navigate those directly by

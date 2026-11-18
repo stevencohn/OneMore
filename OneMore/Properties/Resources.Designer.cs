@@ -8700,6 +8700,114 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More than one target fits this favorite. Delete it and add it again..
+        /// </summary>
+        internal static string CheckFavorites_ambiguous {
+            get {
+                return ResourceManager.GetString("CheckFavorites_ambiguous", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This target cannot be found. It may have been deleted or renamed..
+        /// </summary>
+        internal static string CheckFavorites_broken {
+            get {
+                return ResourceManager.GetString("CheckFavorites_broken", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Points at the same target as &quot;{0}&quot;. Delete one of them..
+        /// </summary>
+        internal static string CheckFavorites_duplicate {
+            get {
+                return ResourceManager.GetString("CheckFavorites_duplicate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to OneNote could not be read, so nothing was checked..
+        /// </summary>
+        internal static string CheckFavorites_failed {
+            get {
+                return ResourceManager.GetString("CheckFavorites_failed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Found only by name, so it may not be the same target..
+        /// </summary>
+        internal static string CheckFavorites_guess {
+            get {
+                return ResourceManager.GetString("CheckFavorites_guess", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Its notebook is closed or its section is locked..
+        /// </summary>
+        internal static string CheckFavorites_offline {
+            get {
+                return ResourceManager.GetString("CheckFavorites_offline", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Not found yet because some pages are still being read. Try again shortly..
+        /// </summary>
+        internal static string CheckFavorites_pending {
+            get {
+                return ResourceManager.GetString("CheckFavorites_pending", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} favorite(s) cannot be found..
+        /// </summary>
+        internal static string CheckFavorites_summaryBroken {
+            get {
+                return ResourceManager.GetString("CheckFavorites_summaryBroken", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} favorite(s) point at the same target as another. Delete one of each pair..
+        /// </summary>
+        internal static string CheckFavorites_summaryDuplicates {
+            get {
+                return ResourceManager.GetString("CheckFavorites_summaryDuplicates", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} favorite(s) are in a closed notebook or a locked section..
+        /// </summary>
+        internal static string CheckFavorites_summaryOffline {
+            get {
+                return ResourceManager.GetString("CheckFavorites_summaryOffline", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Some pages are still being read. Try again shortly..
+        /// </summary>
+        internal static string CheckFavorites_summaryPending {
+            get {
+                return ResourceManager.GetString("CheckFavorites_summaryPending", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} favorite(s) may not point at the right target..
+        /// </summary>
+        internal static string CheckFavorites_summarySuspect {
+            get {
+                return ResourceManager.GetString("CheckFavorites_summarySuspect", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Import Favorites.
         /// </summary>
         internal static string ManageFavoritesControl_import {

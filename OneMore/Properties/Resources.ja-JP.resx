@@ -758,6 +758,54 @@
     <value>未定義の変数「{0}」</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>複数のターゲットがこのお気に入りに当てはまります。削除して再度追加してください。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>このターゲットは見つかりません。削除されたか名前が変更された可能性があります。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>「{0}」と同じターゲットを指します。そのうちの 1 つを削除します。</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>OneNote を読み取れなかったため、何もチェックされませんでした。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>名前のみで検出されるため、同じターゲットではない可能性があります。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>ノートブックが閉じているか、セクションがロックされています。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>一部のページがまだ読み取られているため、まだ見つかりません。しばらくしてからもう一度お試しください。</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>{0} 個のお気に入りが見つかりません。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} 個のお気に入りが別のターゲットと同じターゲットを指します。各ペアの 1 つを削除します。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} 個のお気に入りが閉じたノートブックまたはロックされたセクションにあります。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>一部のページはまだ読まれています。しばらくしてからもう一度お試しください。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} 個のお気に入りが正しいターゲットを指していない可能性があります。</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>{0} 件の孤立したリマインダーを整理しました。</value>
     <comment>message box</comment>

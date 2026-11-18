@@ -760,6 +760,54 @@ Umkehren</value>
     <value>Undefinierte Variable „{0}“</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>Zu diesem Favoriten passt mehr als ein Ziel. Löschen Sie es und fügen Sie es erneut hinzu.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>Dieses Ziel kann nicht gefunden werden. Möglicherweise wurde es gelöscht oder umbenannt.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>Zeigt auf dasselbe Ziel wie „{0}“. Löschen Sie einen davon.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>OneNote konnte nicht gelesen werden, daher wurde nichts überprüft.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>Nur anhand des Namens gefunden, daher handelt es sich möglicherweise nicht um dasselbe Ziel.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>Sein Notizbuch ist geschlossen oder sein Abschnitt ist gesperrt.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>Noch nicht gefunden, da einige Seiten noch gelesen werden. Versuchen Sie es in Kürze noch einmal.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>{0} Favorit(en) konnten nicht gefunden werden.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} Favorit(en) zeigen auf dasselbe Ziel wie ein anderer. Löschen Sie eines von jedem Paar.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} Favorit(en) befinden sich in einem geschlossenen Notizbuch oder einem gesperrten Abschnitt.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>Einige Seiten werden noch gelesen. Versuchen Sie es in Kürze noch einmal.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>{0} Favorit(en) zeigen möglicherweise nicht auf das richtige Ziel.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>{0} verwaiste Erinnerungen wurden bereinigt</value>
     <comment>message box</comment>

@@ -757,6 +757,54 @@
     <value>משתנה לא מוגדר "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>יותר ממטרה אחת מתאימה לחביב הזה. מחק אותו והוסף אותו שוב.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>לא ניתן למצוא יעד זה. ייתכן שהוא נמחק או שונה שם.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>מצביע על אותו יעד כמו "{0}". מחק אחד מהם.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>לא ניתן היה לקרוא את OneNote, כך ששום דבר לא נבדק.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>נמצא רק לפי השם, אז אולי זה לא אותו יעד.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>המחברת שלו סגורה או החלק שלה נעול.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>עדיין לא נמצא כי חלק מהדפים עדיין נקראים. נסה שוב בקרוב.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>לא ניתן למצוא {0} מועדפים.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} מועדפים מצביעים על אותו יעד כמו אחר. מחק אחד מכל זוג.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>{0} מועדפים נמצאים במחברת סגורה או בחלק נעול.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>חלק מהעמודים עדיין נקראים. נסה שוב בקרוב.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>ייתכן ש-{0} מועדפים לא יצביעו על היעד הנכון.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>ניקה {0} תזכורות יתומות</value>
     <comment>message box</comment>

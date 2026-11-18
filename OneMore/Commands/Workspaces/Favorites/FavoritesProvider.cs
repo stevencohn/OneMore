@@ -643,8 +643,9 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 			{
 				if (exc is SQLiteException && exc.Message.Contains("UNIQUE constraint failed"))
 				{
+					// the caller reports it; the background stage would otherwise repeat this line
+					// every cycle until the user deletes one of the two
 					duplicate = true;
-					logger.WriteLine($"favorite {favorite.ID} points at the same target as another");
 				}
 				else
 				{

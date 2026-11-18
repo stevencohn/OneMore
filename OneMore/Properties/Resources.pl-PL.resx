@@ -757,6 +757,54 @@ Odwracać</value>
     <value>Niezdefiniowana zmienna „{0}”</value>
     <comment>error</comment>
   </data>
+  <data name="CheckFavorites_ambiguous" xml:space="preserve">
+    <value>Więcej niż jeden cel pasuje do tego faworyta. Usuń go i dodaj ponownie.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_broken" xml:space="preserve">
+    <value>Nie można znaleźć tego celu. Być może został usunięty lub zmieniono jego nazwę.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_duplicate" xml:space="preserve">
+    <value>Wskazuje ten sam cel co „{0}”. Usuń jedno z nich.</value>
+    <comment>tooltip; {0} is the name of the other favorite</comment>
+  </data>
+  <data name="CheckFavorites_failed" xml:space="preserve">
+    <value>Nie można odczytać programu OneNote, więc nic nie zostało sprawdzone.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_guess" xml:space="preserve">
+    <value>Znaleziono tylko z nazwy, więc może to nie być ten sam cel.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_offline" xml:space="preserve">
+    <value>Notatnik jest zamknięty lub jego sekcja jest zablokowana.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_pending" xml:space="preserve">
+    <value>Jeszcze nie odnaleziono, ponieważ niektóre strony są nadal czytane. Spróbuj ponownie wkrótce.</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="CheckFavorites_summaryBroken" xml:space="preserve">
+    <value>Nie można znaleźć ulubionych ({0}).</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryDuplicates" xml:space="preserve">
+    <value>{0} ulubionych wskazuje na ten sam cel co inny. Usuń po jednym z każdej pary.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryOffline" xml:space="preserve">
+    <value>Ulubione ({0}) znajdują się w zamkniętym notatniku lub zablokowanej sekcji.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
+  <data name="CheckFavorites_summaryPending" xml:space="preserve">
+    <value>Niektóre strony są nadal czytane. Spróbuj ponownie wkrótce.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CheckFavorites_summarySuspect" xml:space="preserve">
+    <value>Ulubione ({0}) mogą nie wskazywać właściwego celu.</value>
+    <comment>message box; {0} is a count</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Poprawiono {0} osieroconych przypomnień</value>
     <comment>message box</comment>
