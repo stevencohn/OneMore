@@ -21,10 +21,10 @@ namespace River.OneMoreAddIn.Tests.UI
 		[TestMethod]
 		public void BuiltIns_AreRegisteredInOrder()
 		{
-			var ids = ThemeCatalog.GetThemes().Take(4).Select(t => t.Id).ToArray();
+			var ids = ThemeCatalog.GetThemes().Take(7).Select(t => t.Id).ToArray();
 
 			CollectionAssert.AreEqual(
-				new[] { "System", "Light", "Dark", "DarkBlue" }, ids);
+				new[] { "System", "Light", "Dark", "DarkBlue", "LightWarm", "PurpleHaze", "DarkTeal" }, ids);
 		}
 
 

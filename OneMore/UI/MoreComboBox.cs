@@ -48,6 +48,21 @@ namespace River.OneMoreAddIn.UI
 
 			public Image Image { get; }
 
+			/// <summary>
+			/// Gets a value indicating whether this item is a thin divider line rather than
+			/// an entry. Add one with <see cref="MoreComboBox.AddSeparator"/>.
+			/// </summary>
+			/// <remarks>
+			/// A separator can still be selected by the control; owners that care should step
+			/// over it in their SelectedIndexChanged handler.
+			/// </remarks>
+			public bool IsSeparator { get; private set; }
+
+			internal static ComboItem CreateSeparator()
+			{
+				return new ComboItem(null) { IsSeparator = true };
+			}
+
 			// Required: ComboBox calls ToString() to render the edit-area text
 			public override string ToString() => Text;
 		}
@@ -69,6 +84,34 @@ namespace River.OneMoreAddIn.UI
 				stringFormat = null;
 			}
 			base.Dispose(disposing);
+		}
+
+
+		/// <summary>
+		/// Appends a thin, non-highlighting divider line to the items. This switches the
+		/// control to variable-height owner drawing, which only combo boxes that use
+		/// separators pay for.
+		/// </summary>
+		public void AddSeparator()
+		{
+			Items.Add(ComboItem.CreateSeparator());
+			DrawMode = DrawMode.OwnerDrawVariable;
+		}
+
+
+		private static bool IsSeparatorItem(object item)
+		{
+			return item is ComboItem combo && combo.IsSeparator;
+		}
+
+
+		protected override void OnMeasureItem(MeasureItemEventArgs e)
+		{
+			base.OnMeasureItem(e);
+
+			e.ItemHeight = e.Index >= 0 && e.Index < Items.Count && IsSeparatorItem(Items[e.Index])
+				? Math.Max(4, ItemHeight / 3)
+				: ItemHeight;
 		}
 
 
@@ -136,6 +179,13 @@ namespace River.OneMoreAddIn.UI
 
 			var manager = ThemeManager.Instance;
 			bool isEdit = (e.State & DrawItemState.ComboBoxEdit) != 0;
+
+			if (!isEdit && IsSeparatorItem(Items[e.Index]))
+			{
+				DrawSeparator(e, manager);
+				return;
+			}
+
 			bool isSel  = !isEdit && (e.State & DrawItemState.Selected) != 0;
 
 			Color back, fore;
@@ -200,6 +250,23 @@ namespace River.OneMoreAddIn.UI
 
 			if (!isEdit && (e.State & DrawItemState.Focus) != 0)
 				e.DrawFocusRectangle();
+		}
+
+
+		// a separator never highlights so it doesn't look selectable
+		private void DrawSeparator(DrawItemEventArgs e, ThemeManager manager)
+		{
+			if (IsDisposed || Disposing)
+			{
+				return;
+			}
+
+			using var backBrush = new SolidBrush(manager.GetColor("Window", ThemedBack));
+			e.Graphics.FillRectangle(backBrush, e.Bounds);
+
+			using var pen = new Pen(manager.GetColor("MenuSeparator"));
+			var y = e.Bounds.Y + (e.Bounds.Height / 2);
+			e.Graphics.DrawLine(pen, e.Bounds.X + 2, y, e.Bounds.Right - 3, y);
 		}
 
 

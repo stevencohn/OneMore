@@ -61,6 +61,9 @@ namespace River.OneMoreAddIn.UI
 		public const string LightId = "Light";
 		public const string DarkId = "Dark";
 		public const string DarkBlueId = "DarkBlue";
+		public const string LightWarmId = "LightWarm";
+		public const string PurpleHazeId = "PurpleHaze";
+		public const string DarkTealId = "DarkTeal";
 
 		// the number of leading built-ins whose names are localized by the settings dialog
 		public const int LocalizedCount = 3;
@@ -73,7 +76,10 @@ namespace River.OneMoreAddIn.UI
 			new ThemeInfo { Id = SystemId, Name = SystemId, IsBuiltIn = true },
 			new ThemeInfo { Id = LightId, Name = LightId, IsBuiltIn = true, ReadJson = () => Resx.LightTheme },
 			new ThemeInfo { Id = DarkId, Name = DarkId, IsBuiltIn = true, ReadJson = () => Resx.DarkTheme },
-			new ThemeInfo { Id = DarkBlueId, Name = "Dark Blue", IsBuiltIn = true, ReadJson = () => Resx.DarkBlueTheme }
+			new ThemeInfo { Id = DarkBlueId, Name = "Denim Blue (dark)", IsBuiltIn = true, ReadJson = () => Resx.DarkBlueTheme },
+			new ThemeInfo { Id = LightWarmId, Name = "Neutral Warm (light)", IsBuiltIn = true, ReadJson = () => Resx.LightWarmTheme },
+			new ThemeInfo { Id = PurpleHazeId, Name = "Purple Haze (dark)", IsBuiltIn = true, ReadJson = () => Resx.PurpleHazeTheme },
+			new ThemeInfo { Id = DarkTealId, Name = "Ocean Teal (dark)", IsBuiltIn = true, ReadJson = () => Resx.DarkTealTheme }
 		};
 
 

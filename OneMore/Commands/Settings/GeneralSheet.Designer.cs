@@ -104,6 +104,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.themeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.themeBox.FormattingEnabled = true;
+			this.themeBox.MaxDropDownItems = 12;
 			this.themeBox.Items.AddRange(new object[] {
             "System",
             "Light",

@@ -2103,7 +2103,10 @@
     </None>
     <None Include="UI\Themes\Dark.json" />
     <None Include="UI\Themes\DarkBlue.json" />
+    <None Include="UI\Themes\PurpleHaze.json" />
+    <None Include="UI\Themes\DarkTeal.json" />
     <None Include="UI\Themes\Light.json" />
+    <None Include="UI\Themes\LightWarm.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
