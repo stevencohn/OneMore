@@ -8602,6 +8602,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>私はどこにいるの？</value>
     <comment>window title</comment>
   </data>
+  <data name="WhereAmIWindow_CopyCli" xml:space="preserve">
+    <value>CLIのコピー</value>
+    <comment>button; copies --notebook/--section/--page command line arguments</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>実績</value>
   </data>

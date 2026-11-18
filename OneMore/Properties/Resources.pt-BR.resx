@@ -8596,6 +8596,10 @@ Obrigado!</value>
     <value>Onde estou?</value>
     <comment>window title</comment>
   </data>
+  <data name="WhereAmIWindow_CopyCli" xml:space="preserve">
+    <value>Copiar CLI</value>
+    <comment>button; copies --notebook/--section/--page command line arguments</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
   </data>

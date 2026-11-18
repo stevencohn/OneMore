@@ -20181,6 +20181,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy CLI.
+        /// </summary>
+        internal static string WhereAmIWindow_CopyCli {
+            get {
+                return ResourceManager.GetString("WhereAmIWindow_CopyCli", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Where Am I?.
         /// </summary>
         internal static string WhereAmIWindow_Text {
