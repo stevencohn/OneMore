@@ -39,7 +39,12 @@ namespace River.OneMoreAddIn.Commands
 			if (NeedsLocalizing())
 			{
 				Text = Resx.WhereAmIWindow_Text;
-				Localize(new[] { "cancelButton=word_Cancel", "copyButton=word_Copy" });
+				Localize(new[]
+				{
+					"cancelButton=word_Cancel",
+					"copyButton=word_Copy",
+					"copyCliButton=WhereAmIWindow_CopyCli"
+				});
 			}
 
 			this.maxDesktopWidth = maxDesktopWidth;
@@ -50,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			cancelButton.Click += (s, e) => Close();
 
 			copyButton.Click += async (s, e) => await CopyBreadcrumb();
+			copyCliButton.Click += async (s, e) => await CopyCli();
 
 			// keep this popup above the ONENOTE window at all times
 			TopMost = true;
@@ -302,6 +308,70 @@ namespace River.OneMoreAddIn.Commands
 			{
 				MoreMessageBox.ShowError(this, Resx.Clipboard_locked);
 			}
+		}
+
+
+		private async Task CopyCli()
+		{
+			var text = BuildCliArguments();
+			if (text is null)
+			{
+				return;
+			}
+
+			var board = new ClipboardProvider();
+			board.Stash(System.Windows.TextDataFormat.Text, text);
+			board.Stash(System.Windows.TextDataFormat.UnicodeText, text);
+
+			var success = await board.RestoreState();
+			if (!success)
+			{
+				MoreMessageBox.ShowError(this, Resx.Clipboard_locked);
+			}
+		}
+
+
+		/// <summary>
+		/// Builds CLI arguments for the breadcrumb, such as
+		/// --notebook "name" --section "group/subgroup/name" --page "name"
+		/// </summary>
+		/// <returns>The arguments or null if the breadcrumb has no notebook</returns>
+		private string BuildCliArguments()
+		{
+			var notebook = segments.FirstOrDefault(s => s.NodeType == OneNote.NodeType.Notebook);
+			if (notebook is null)
+			{
+				return null;
+			}
+
+			var sectionPath = string.Join("/", segments
+				.Where(s => s.NodeType == OneNote.NodeType.SectionGroup ||
+					s.NodeType == OneNote.NodeType.Section)
+				.Select(s => s.Name));
+
+			var page = segments.FirstOrDefault(s => s.NodeType == OneNote.NodeType.Page);
+
+			var args = $"--notebook {QuoteCliValue(notebook.Name)}";
+
+			if (sectionPath.Length > 0)
+			{
+				args += $" --section {QuoteCliValue(sectionPath)}";
+			}
+
+			if (page is not null)
+			{
+				args += $" --page {QuoteCliValue(page.Name)}";
+			}
+
+			return args;
+		}
+
+
+		// a doubled quote inside a quoted value is read as a literal quote by both
+		// PowerShell and the Windows command line parser
+		private static string QuoteCliValue(string value)
+		{
+			return "\"" + value.Replace("\"", "\"\"") + "\"";
 		}
 	}
 }

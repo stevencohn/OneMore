@@ -8614,6 +8614,10 @@ Code——代码块段落
     <value>我在哪里？</value>
     <comment>window title</comment>
   </data>
+  <data name="WhereAmIWindow_CopyCli" xml:space="preserve">
+    <value>复制命令行界面</value>
+    <comment>button; copies --notebook/--section/--page command line arguments</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>
   </data>

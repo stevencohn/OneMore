@@ -8596,6 +8596,10 @@ Bedankt!</value>
     <value>Waar ben ik?</value>
     <comment>window title</comment>
   </data>
+  <data name="WhereAmIWindow_CopyCli" xml:space="preserve">
+    <value>Kopieer CLI</value>
+    <comment>button; copies --notebook/--section/--page command line arguments</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Werkelijk</value>
   </data>
