@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 					var sectionId = await one.FindSectionIdByPath(notebookName, sectionPath);
 					if (string.IsNullOrEmpty(sectionId))
 					{
-						CliOutput = $"Section not found: {notebookName}/{sectionPath}";
+						CliOutput = CliPathHelp.PathNotFound($"{notebookName}/{sectionPath}", CommandName);
 						await Task.Yield();
 						return;
 					}

@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 			var pageIds = await one.FindPagesByPath(notebook, section, page);
 			if (pageIds.Length == 0)
 			{
-				CliOutput = $"ERR: no pages found at path {notebook}/{section}/{page}";
+				CliOutput = CliPathHelp.PathNotFound($"{notebook}/{section}/{page}", CommandName);
 				return;
 			}
 

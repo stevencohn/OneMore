@@ -115,7 +115,15 @@ namespace River.OneMoreAddIn.Commands
 				result = await FindSectionByPath(one, notebookName, sectionPath);
 			}
 
-			CliOutput = result?.ToString() ?? string.Empty;
+			if (result is null && hasNotebook)
+			{
+				var path = hasSection ? $"{notebookName}/{sectionPath}" : notebookName;
+				CliOutput = CliPathHelp.PathNotFound(path, CommandName, withPage: false);
+			}
+			else
+			{
+				CliOutput = result?.ToString() ?? string.Empty;
+			}
 
 			await Task.Yield();
 		}

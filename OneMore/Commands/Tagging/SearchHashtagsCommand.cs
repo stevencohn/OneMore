@@ -130,7 +130,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (node == null)
 					{
-						CliOutput = $"Section not found: {sectionPath}";
+						CliOutput = CliPathHelp.PathNotFound(
+							$"{notebookName}/{sectionPath}", CommandName);
 						return;
 					}
 				}
@@ -138,7 +139,8 @@ namespace River.OneMoreAddIn.Commands
 				sectionID = node.Attribute("ID")?.Value;
 				if (string.IsNullOrEmpty(sectionID))
 				{
-					CliOutput = $"Section not found: {sectionPath}";
+					CliOutput = CliPathHelp.PathNotFound(
+							$"{notebookName}/{sectionPath}", CommandName);
 					return;
 				}
 

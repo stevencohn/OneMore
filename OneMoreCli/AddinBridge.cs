@@ -147,7 +147,9 @@ namespace OneMoreCli
 				var response = sb.ToString().Trim('\0').Trim();
 
 				if (response.StartsWith("ERR:", StringComparison.OrdinalIgnoreCase))
-					throw new Exception(response.Substring(4));
+				{
+					throw new CliException(response.Substring(4).Trim());
+				}
 
 				if (response.StartsWith("CANCELLED", StringComparison.OrdinalIgnoreCase))
 				{

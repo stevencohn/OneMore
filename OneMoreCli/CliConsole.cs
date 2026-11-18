@@ -184,6 +184,14 @@ namespace OneMoreCli
 		{
 			if (string.IsNullOrEmpty(text)) return;
 
+			// commands report a bad notebook/section/page path as ordinary output; show it
+			// as a red error on the console rather than as data, even when --output is set
+			if (text.StartsWith(CliPathHelp.NotFoundPrefix, StringComparison.Ordinal))
+			{
+				WriteError(text.TrimEnd());
+				return;
+			}
+
 			if (outputFile == null)
 				Console.Write(text);
 			else

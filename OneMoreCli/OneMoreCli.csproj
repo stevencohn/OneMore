@@ -87,6 +87,7 @@
     <Compile Include="AddinBridge.cs" />
     <Compile Include="ArgParser.cs" />
     <Compile Include="CliConsole.cs" />
+    <Compile Include="CliException.cs" />
     <Compile Include="CommandDiscovery.cs" />
     <Compile Include="InteractiveRunner.cs" />
     <Compile Include="OneNoteLauncher.cs" />
