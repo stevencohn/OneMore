@@ -121,7 +121,6 @@
     <Compile Include="Things\ReminderPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Things\ThemeMode.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
@@ -258,9 +257,6 @@
     <EmbeddedResource Include="YearsForm.resx">
       <DependentUpon>YearsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Assets\OneMoreCalendarTheme.json" />
-    <None Include="Assets\DarkTheme.json" />
-    <None Include="Assets\LightTheme.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

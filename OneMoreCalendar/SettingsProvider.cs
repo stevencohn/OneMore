@@ -148,11 +148,6 @@ namespace OneMoreCalendar
 			{
 				root.Add(new XElement("notebooks"));
 			}
-
-			if (root.Element("theme") is null)
-			{
-				root.Add(new XElement("theme", ThemeMode.System.ToString()));
-			}
 		}
 
 
@@ -186,21 +181,6 @@ namespace OneMoreCalendar
 				// default is true if markers filter is missing
 				var markers = root.Elements("filters").Elements("markers");
 				return !markers.Any() || markers.Any(e => e.Value.Equals("true"));
-			}
-		}
-
-
-		public ThemeMode Theme
-		{
-			get
-			{
-				var element = root.Elements("theme").FirstOrDefault();
-				if (element is not null && Enum.TryParse<ThemeMode>(element.Value, out var mode))
-				{
-					return mode;
-				}
-
-				return ThemeMode.System;
 			}
 		}
 
@@ -284,20 +264,6 @@ namespace OneMoreCalendar
 			foreach (var id in ids)
 			{
 				notebooks.Add(new XElement("notebook", id));
-			}
-		}
-
-
-		public void SetTheme(ThemeMode mode)
-		{
-			var theme = root.Element("theme");
-			if (theme == null)
-			{
-				root.Add(new XElement("theme", mode.ToString()));
-			}
-			else
-			{
-				theme.Value = mode.ToString();
 			}
 		}
 

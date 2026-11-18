@@ -214,33 +214,6 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;DarkMode&quot;: true,
-        ///  &quot;Colors&quot;: {
-        ///    &quot;BackColor&quot;: &quot;#383838&quot;,
-        ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
-        ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
-        ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
-        ///    &quot;ButtonBack&quot;: &quot;#363636&quot;,
-        ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
-        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonBorder&quot;: &quot;#555555&quot;,
-        ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
-        ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
-        ///    &quot;LinkColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;HoverColor&quot;: &quot;Orchid&quot;,
-        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string DarkTheme {
-            get {
-                return ResourceManager.GetString("DarkTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap day_32 {
@@ -650,33 +623,6 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;DarkMode&quot;: false,
-        ///  &quot;Colors&quot;: {
-        ///    &quot;BackColor&quot;: &quot;White&quot;,
-        ///    &quot;ForeColor&quot;: &quot;Black&quot;,
-        ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
-        ///    &quot;Control&quot;: &quot;#73356E&quot;,
-        ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
-        ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
-        ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
-        ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
-        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonBorder&quot;: &quot;#F0DAEE&quot;,
-        ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
-        ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
-        ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
-        ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
-        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;MonthHeade [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string LightTheme {
-            get {
-                return ResourceManager.GetString("LightTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap month_32 {
@@ -986,15 +932,6 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark.
-        /// </summary>
-        internal static string SettingsForm_darkModeButton_Text {
-            get {
-                return ResourceManager.GetString("SettingsForm_darkModeButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Included deleted pages.
         /// </summary>
         internal static string SettingsForm_deletedBox_Text {
@@ -1009,15 +946,6 @@ namespace OneMoreCalendar.Properties {
         internal static string SettingsForm_emptyBox_Text {
             get {
                 return ResourceManager.GetString("SettingsForm_emptyBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Light.
-        /// </summary>
-        internal static string SettingsForm_lightModeButton_Text {
-            get {
-                return ResourceManager.GetString("SettingsForm_lightModeButton.Text", resourceCulture);
             }
         }
         
@@ -1090,33 +1018,6 @@ namespace OneMoreCalendar.Properties {
         internal static string SettingsForm_selectNoneLink_Text {
             get {
                 return ResourceManager.GetString("SettingsForm_selectNoneLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to System.
-        /// </summary>
-        internal static string SettingsForm_systemModeButton_Text {
-            get {
-                return ResourceManager.GetString("SettingsForm_systemModeButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Theme.
-        /// </summary>
-        internal static string SettingsForm_themeLabel_Text {
-            get {
-                return ResourceManager.GetString("SettingsForm_themeLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User.
-        /// </summary>
-        internal static string SettingsForm_userModeButton_Text {
-            get {
-                return ResourceManager.GetString("SettingsForm_userModeButton.Text", resourceCulture);
             }
         }
         

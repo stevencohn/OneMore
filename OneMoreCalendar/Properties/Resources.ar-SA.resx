@@ -400,17 +400,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>تم الإنشاء بتاريخ</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>مظلم</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>وشملت الصفحات المحذوفة</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>إخفاء الأيام الفارغة في عرض التفاصيل</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>ضوء</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>فتح ملف السجل</value>
@@ -435,15 +429,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>حدد لا شيء</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>نظام</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>سمة</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>مستخدم</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>خطأ في القراءة {0}

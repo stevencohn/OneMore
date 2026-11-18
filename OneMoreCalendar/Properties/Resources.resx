@@ -405,17 +405,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>Created on</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>Dark</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>Included deleted pages</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>Hide empty days in detail view</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>Light</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>Open log file</value>
@@ -440,16 +434,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>Select None</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>System</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>User</value>
-    
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>error reading {0}
@@ -484,14 +468,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="today_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\today-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\darktheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\lighttheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
     <comment>!SKIP</comment>
   </data>
 </root>

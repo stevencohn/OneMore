@@ -6,18 +6,12 @@
 
 namespace OneMoreCalendar
 {
-	using Newtonsoft.Json;
 	using River.OneMoreAddIn;
-	using River.OneMoreAddIn.Helpers.Office;
 	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
 	using System.Drawing;
-	using System.IO;
-	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
-	using ThemeCatalog = River.OneMoreAddIn.UI.ThemeCatalog;
+	using ThemeManager = River.OneMoreAddIn.UI.ThemeManager;
 
 
 	/// <summary>
@@ -25,29 +19,6 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class ThemeProvider
 	{
-		private const string CustomThemeFile = "OneMoreCalendarTheme.json";
-
-
-		#region ColorConverter
-		private sealed class ColorConverter : JsonConverter<Color>
-		{
-			public override void WriteJson(JsonWriter writer, Color value, JsonSerializer serializer)
-			{
-				writer.WriteValue(value.IsKnownColor
-					? value.Name
-					: $"#{value.R:X2}{value.G:X2}{value.B:X2}");
-			}
-
-			public override Color ReadJson(
-				JsonReader reader, Type objectType, Color existingValue,
-				bool hasExistingValue, JsonSerializer serializer)
-			{
-				return ColorTranslator.FromHtml((string)reader.Value);
-			}
-		}
-		#endregion ColorConverter
-
-
 		private static ThemeProvider instance;
 
 
@@ -56,81 +27,60 @@ namespace OneMoreCalendar
 		/// </summary>
 		private ThemeProvider()
 		{
-			Colors = new Dictionary<string, Color>();
 		}
 
 
 		/// <summary>
-		/// Gets the ThemeManager instance
+		/// Gets the ThemeProvider instance
 		/// </summary>
 		public static ThemeProvider Instance => instance ??= new ThemeProvider();
+
+
+		// Calendar does not have its own theme; it uses the theme chosen in OneMore's
+		// Settings > General, which is resolved once by ThemeManager when Calendar starts
+		private static ThemeManager Manager => ThemeManager.Instance;
 
 
 		/// <summary>
 		/// Gets a value indicating whether the theme is set to dark mode
 		/// </summary>
-		[JsonProperty]
-		public bool DarkMode { get; private set; }
-
-
-		[JsonProperty]
-		private Dictionary<string, Color> Colors { get; set; }
+		public bool DarkMode => Manager.DarkMode;
 
 
 		#region Convenience Properties
-		[JsonIgnore]
-		public Color BackColor => Colors[nameof(BackColor)];
-		[JsonIgnore]
-		public Color ForeColor => Colors[nameof(ForeColor)];
-		[JsonIgnore]
-		public Color Border => Colors[nameof(Border)];
-		[JsonIgnore]
-		public Color Highlight => Colors[nameof(Highlight)];
-		[JsonIgnore]
-		public Color Control => Colors[nameof(Control)];
-		[JsonIgnore]
-		public Color IconColor => Colors[nameof(IconColor)];
-		[JsonIgnore]
-		public Color ButtonBack => Colors[nameof(ButtonBack)];
-		[JsonIgnore]
-		public Color ButtonFore => Colors[nameof(ButtonFore)];
-		[JsonIgnore]
-		public Color ButtonDisabled => Colors[nameof(ButtonDisabled)];
-		[JsonIgnore]
-		public Color ButtonBorder => Colors[nameof(ButtonBorder)];
-		[JsonIgnore]
-		public Color ButtonHotBack => Colors[nameof(ButtonHotBack)];
-		[JsonIgnore]
-		public Color ButtonHotBorder => Colors[nameof(ButtonHotBorder)];
-		[JsonIgnore]
-		public Color ButtonPressBorder => Colors[nameof(ButtonPressBorder)];
+		public Color BackColor => Manager.GetColor(nameof(BackColor));
+		public Color ForeColor => Manager.GetColor(nameof(ForeColor));
+		public Color Border => Manager.GetColor(nameof(Border));
+		public Color Highlight => Manager.GetColor(nameof(Highlight));
+		public Color IconColor => Manager.GetColor(nameof(IconColor));
+		public Color ButtonBack => Manager.GetColor(nameof(ButtonBack));
+		public Color ButtonFore => Manager.GetColor(nameof(ButtonFore));
+		public Color ButtonDisabled => Manager.GetColor(nameof(ButtonDisabled));
+		public Color ButtonBorder => Manager.GetColor(nameof(ButtonBorder));
+		public Color ButtonHotBack => Manager.GetColor(nameof(ButtonHotBack));
+		public Color ButtonHotBorder => Manager.GetColor(nameof(ButtonHotBorder));
+		public Color ButtonPressBorder => Manager.GetColor(nameof(ButtonPressBorder));
 
-		[JsonIgnore]
-		public Color LinkColor => Colors[nameof(LinkColor)];
-		[JsonIgnore]
-		public Color HoverColor => Colors[nameof(HoverColor)];
+		/// <summary>
+		/// Gets the accent used by check boxes, radio buttons and lists. OneMore's own
+		/// "Control" color is a neutral surface, so this uses IconColor instead.
+		/// </summary>
+		public Color Control => Manager.GetColor(nameof(IconColor));
 
-		[JsonIgnore]
-		public Color DetailOddBack => Colors[nameof(DetailOddBack)];
-		[JsonIgnore]
-		public Color DetailEvenBack => Colors[nameof(DetailEvenBack)];
+		public Color LinkColor => Manager.GetColor(nameof(LinkColor));
+		public Color HoverColor => Manager.GetColor(nameof(HoverColor));
 
-		[JsonIgnore]
-		public Color MonthHeader => Colors[nameof(MonthHeader)];
-		[JsonIgnore]
-		public Color MonthPrimary => Colors[nameof(MonthPrimary)];
-		[JsonIgnore]
-		public Color MonthSecondary => Colors[nameof(MonthSecondary)];
-		[JsonIgnore]
-		public Color MonthGrid => Colors[nameof(MonthGrid)];
-		[JsonIgnore]
-		public Color MonthDayFore => Colors[nameof(MonthDayFore)];
-		[JsonIgnore]
-		public Color MonthDayBack => Colors[nameof(MonthDayBack)];
-		[JsonIgnore]
-		public Color MonthTodayFore => Colors[nameof(MonthTodayFore)];
-		[JsonIgnore]
-		public Color MonthTodayBack => Colors[nameof(MonthTodayBack)];
+		public Color DetailOddBack => Manager.GetColor(nameof(DetailOddBack));
+		public Color DetailEvenBack => Manager.GetColor(nameof(DetailEvenBack));
+
+		public Color MonthHeader => Manager.GetColor(nameof(MonthHeader));
+		public Color MonthPrimary => Manager.GetColor(nameof(MonthPrimary));
+		public Color MonthSecondary => Manager.GetColor(nameof(MonthSecondary));
+		public Color MonthGrid => Manager.GetColor(nameof(MonthGrid));
+		public Color MonthDayFore => Manager.GetColor(nameof(MonthDayFore));
+		public Color MonthDayBack => Manager.GetColor(nameof(MonthDayBack));
+		public Color MonthTodayFore => Manager.GetColor(nameof(MonthTodayFore));
+		public Color MonthTodayBack => Manager.GetColor(nameof(MonthTodayBack));
 		#endregion Convenience Properties
 
 		#region Native
@@ -218,67 +168,13 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// Points the shared OneMore controls and dialogs, such as MoreMessageBox and the Export
-		/// dialog, at Calendar's own theme choice rather than the one chosen in OneMore's settings.
-		/// Must be called before any of those controls are created and again when the Calendar
-		/// theme changes.
-		/// </summary>
-		/// <remarks>
-		/// System is resolved here, using the same Windows check as InitializeTheme, so both theme
-		/// engines agree; OneMore's own System check looks at the Office theme instead.
-		/// </remarks>
-		public void SyncSharedControlTheme()
-		{
-			// Calendar's User theme is its own file; shared controls use the Dark Blue theme
-			var themeId = SettingsProvider.Current.Theme switch
-			{
-				ThemeMode.Light => ThemeCatalog.LightId,
-				ThemeMode.Dark => ThemeCatalog.DarkId,
-				ThemeMode.User => ThemeCatalog.DarkBlueId,
-				_ => Office.SystemDefaultDarkMode() ? ThemeCatalog.DarkId : ThemeCatalog.LightId
-			};
-
-			River.OneMoreAddIn.UI.ThemeManager.ThemeIdOverride = themeId;
-			River.OneMoreAddIn.UI.ThemeManager.Instance.LoadColors();
-		}
-
-
-		/// <summary>
-		///
+		/// Applies the current theme to the given form or user control; the colors come from
+		/// the theme chosen in OneMore's settings and the Visual Studio designer always gets
+		/// the light theme (handled by ThemeManager).
 		/// </summary>
 		/// <param name="container"></param>
 		public void InitializeTheme(ContainerControl container)
 		{
-			var mode = SettingsProvider.Current.Theme;
-
-			var designMode = false;
-			if (container is Component component)
-			{
-				// pull DesignMode protected property from container
-				// so we can support the Visual Studio Forms Designer
-				designMode = (bool)container.GetType()
-					.BaseType
-					.GetProperty("DesignMode", BindingFlags.Instance | BindingFlags.NonPublic)?
-					.GetValue(component);
-			}
-
-			if ((mode != ThemeMode.User) || !LoadColors())
-			{
-				DarkMode = !designMode &&
-					(mode == ThemeMode.Dark ||
-					(mode == ThemeMode.System && Office.SystemDefaultDarkMode()));
-
-				// set colors...
-
-				var cache = JsonConvert.DeserializeObject<ThemeProvider>(
-					DarkMode ? Properties.Resources.DarkTheme : Properties.Resources.LightTheme,
-					new ColorConverter());
-
-				Colors.Clear();
-				Colors = cache.Colors;
-			}
-
-			// apply colors...
 
 			if (container is ThemedForm form)
 			{
@@ -315,38 +211,6 @@ namespace OneMoreCalendar
 					themedForm.OnThemeColorized();
 				}
 			}
-		}
-
-
-		public static bool HasCustomTheme()
-		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			return File.Exists(path);
-		}
-
-
-		private bool LoadColors()
-		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			if (File.Exists(path))
-			{
-				try
-				{
-					var json = File.ReadAllText(path);
-					var cache = JsonConvert.DeserializeObject<ThemeProvider>(json, new ColorConverter());
-
-					Colors.Clear();
-					Colors = cache.Colors;
-					DarkMode = cache.DarkMode;
-					return true;
-				}
-				catch (Exception exc)
-				{
-					Logger.Current.WriteLine("error loading custom theme file", exc);
-				}
-			}
-
-			return false;
 		}
 
 

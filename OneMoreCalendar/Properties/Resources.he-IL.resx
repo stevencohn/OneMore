@@ -400,17 +400,11 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
     <value>נוצר ב</value>
   </data>
-  <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>כֵּהֶה</value>
-  </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
     <value>כללו דפים שנמחקו</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
     <value>הסתר ימים ריקים בתצוגת פירוט</value>
-  </data>
-  <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>אוֹר</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>פתח קובץ יומן</value>
@@ -435,15 +429,6 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
     <value>בחר ללא</value>
-  </data>
-  <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>מַעֲרֶכֶת</value>
-  </data>
-  <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>נוֹשֵׂא</value>
-  </data>
-  <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>מִשׁתַמֵשׁ</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>שגיאה בקריאת {0}

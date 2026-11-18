@@ -31,11 +31,6 @@ namespace OneMoreCalendar
 			{
 				"optionsLabel",
 				"notebooksLabel",
-				"themeLabel",
-				"userModeButton",
-				"darkModeButton",
-				"lightModeButton",
-				"systemModeButton",
 				"emptyBox",
 				"markersBox",
 				"deletedBox",
@@ -70,7 +65,7 @@ namespace OneMoreCalendar
 			this.ScaleLayout(DesignDpi);
 
 			logger.Debug($"settings scaled size={Size} font height={Font.Height}px " +
-				$"radio={darkModeButton.Size} check={createdBox.Size}");
+				$"check={createdBox.Size}");
 
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
@@ -95,23 +90,6 @@ namespace OneMoreCalendar
 				deletedBox.Checked = provider.Deleted;
 				emptyBox.Checked = !provider.Empty;
 				markersBox.Checked = !provider.Markers;
-
-				var hasCustom = ThemeProvider.HasCustomTheme();
-
-				if (provider.Theme == ThemeMode.User && hasCustom)
-				{
-					userModeButton.Checked = true;
-				}
-				else
-				{
-					userModeButton.Enabled = hasCustom;
-					switch (provider.Theme)
-					{
-						case ThemeMode.Light: lightModeButton.Checked = true; break;
-						case ThemeMode.Dark: darkModeButton.Checked = true; break;
-						default: systemModeButton.Checked = true; break;
-					}
-				}
 
 				var notebooks = await provider.GetNotebooks();
 				notebooksBox.Items.Clear();
@@ -238,14 +216,6 @@ namespace OneMoreCalendar
 			provider.SetFilter(
 				createdBox.Checked, modifiedBox.Checked,
 				deletedBox.Checked, !emptyBox.Checked, !markersBox.Checked);
-
-			ThemeMode mode;
-			if (lightModeButton.Checked) mode = ThemeMode.Light;
-			else if (darkModeButton.Checked) mode = ThemeMode.Dark;
-			else if (userModeButton.Checked) mode = ThemeMode.User;
-			else mode = ThemeMode.System;
-
-			provider.SetTheme(mode);
 
 			var ids = new List<string>();
 			foreach (Notebook notebook in notebooksBox.CheckedItems)
