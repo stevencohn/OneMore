@@ -222,7 +222,7 @@
 			this.MinimumSize = new System.Drawing.Size(650, 305);
 			this.Name = "HashtaggerDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "Hashtags";
+			this.Text = "Insert Hashtags";
 			this.Load += new System.EventHandler(this.LoadTagsOnLoad);
 			this.buttonPanel.ResumeLayout(false);
 			this.controlPanel.ResumeLayout(false);

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.word_Hashtags;
+				Text = Resx.ribHashtaggerButton_Label;
 
 				Localize(new string[]
 				{
@@ -111,9 +111,47 @@ namespace River.OneMoreAddIn.Commands
 
 		private void LoadTagsOnLoad(object sender, EventArgs e)
 		{
+			EnsureTagsBoxHeight();
+
 			commonWords = new PageReader(page).ReadCommonWords().ToList();
 			PopulateFindPalette();
 			RefreshCommonWordsAvailability();
+		}
+
+
+		/// <summary>
+		/// Guarantees tagsBox is tall enough to show at least two lines at the font and DPI
+		/// actually in effect, growing the controls below it and the form by the shortfall.
+		/// </summary>
+		private void EnsureTagsBoxHeight()
+		{
+			// two lines of text plus the border and a little breathing room
+			var needed = (tagsBox.Font.Height * 2) + 8;
+			var delta = needed - tagsBox.Height;
+			if (delta <= 0)
+			{
+				return;
+			}
+
+			tagsBox.Height += delta;
+
+			foreach (var control in new Control[] { bankBox, findLabel, findBox, commonWordsButton })
+			{
+				control.Top += delta;
+			}
+
+			// the panel was designed with spare room below the Find row; rather than adding the
+			// shortfall on top of that, size the panel to end at its own bottom padding so the
+			// form only grows by what the taller input box really costs
+			var panelHeight = Math.Max(findBox.Bottom, commonWordsButton.Bottom)
+				+ controlPanel.Padding.Bottom;
+
+			var growth = panelHeight - controlPanel.Height;
+			controlPanel.Height = panelHeight;
+
+			MinimumSize = new Size(MinimumSize.Width, MinimumSize.Height + growth);
+			MaximumSize = new Size(MaximumSize.Width, MaximumSize.Height + growth);
+			Height += growth;
 		}
 
 
