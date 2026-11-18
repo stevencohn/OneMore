@@ -168,6 +168,7 @@
     <Compile Include="TestBase.cs" />
     <Compile Include="UI\CalendarLayoutTests.cs" />
     <Compile Include="UI\ColorMathTests.cs" />
+    <Compile Include="UI\ThemeCatalogTests.cs" />
     <Compile Include="UI\DateFormatParserTests.cs" />
     <Compile Include="UI\DatePartMathTests.cs" />
   </ItemGroup>

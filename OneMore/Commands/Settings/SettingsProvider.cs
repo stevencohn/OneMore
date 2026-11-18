@@ -73,14 +73,22 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
-		/// Convenience property to get theme name
+		/// Convenience property to get the id of the chosen UI theme. Reads the "themeId" setting
+		/// and, if absent, migrates the legacy integer "theme" setting.
 		/// </summary>
-		public UI.ThemeMode Theme
+		public string Theme
 		{
 			get
 			{
-				var theme = GetCollection(nameof(GeneralSheet)).Get("theme", 0);
-				return (UI.ThemeMode)theme;
+				var settings = GetCollection(nameof(GeneralSheet));
+
+				var id = settings.Get<string>("themeId");
+				if (!string.IsNullOrWhiteSpace(id))
+				{
+					return id;
+				}
+
+				return UI.ThemeCatalog.FromLegacyIndex(settings.Get("theme", 0));
 			}
 		}
 

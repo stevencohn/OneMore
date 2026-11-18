@@ -17,7 +17,7 @@ namespace OneMoreCalendar
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
-	using SharedThemeMode = River.OneMoreAddIn.UI.ThemeMode;
+	using ThemeCatalog = River.OneMoreAddIn.UI.ThemeCatalog;
 
 
 	/// <summary>
@@ -229,15 +229,16 @@ namespace OneMoreCalendar
 		/// </remarks>
 		public void SyncSharedControlTheme()
 		{
-			var mode = SettingsProvider.Current.Theme switch
+			// Calendar's User theme is its own file; shared controls use the Dark Blue theme
+			var themeId = SettingsProvider.Current.Theme switch
 			{
-				ThemeMode.Light => SharedThemeMode.Light,
-				ThemeMode.Dark => SharedThemeMode.Dark,
-				ThemeMode.User => SharedThemeMode.User,
-				_ => Office.SystemDefaultDarkMode() ? SharedThemeMode.Dark : SharedThemeMode.Light
+				ThemeMode.Light => ThemeCatalog.LightId,
+				ThemeMode.Dark => ThemeCatalog.DarkId,
+				ThemeMode.User => ThemeCatalog.DarkBlueId,
+				_ => Office.SystemDefaultDarkMode() ? ThemeCatalog.DarkId : ThemeCatalog.LightId
 			};
 
-			River.OneMoreAddIn.UI.ThemeManager.ModeOverride = mode;
+			River.OneMoreAddIn.UI.ThemeManager.ThemeIdOverride = themeId;
 			River.OneMoreAddIn.UI.ThemeManager.Instance.LoadColors();
 		}
 

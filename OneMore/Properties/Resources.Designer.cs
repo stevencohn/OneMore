@@ -3262,6 +3262,15 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("DarkTheme", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.String containing the Dark Blue UI theme JSON.
+        /// </summary>
+        internal static string DarkBlueTheme {
+            get {
+                return ResourceManager.GetString("DarkBlueTheme", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to OneMore.db.

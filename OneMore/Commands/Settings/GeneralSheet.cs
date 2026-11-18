@@ -17,6 +17,10 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class GeneralSheet : SheetBase
 	{
+		// theme ids in the same order as the items in themeBox
+		private readonly List<string> themeIds;
+
+
 		public GeneralSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -47,15 +51,22 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			// the User option, chosen explicitly, is offered only when OneMoreTheme.json exists;
-			// it must follow Dark to line up with the ThemeMode enum index
-			if (ThemeManager.HasCustomTheme())
+			// the designer provides the localized System, Light, and Dark items; append the
+			// other built-in themes and any user themes found in %APPDATA%\OneMore\Themes
+			themeIds = new List<string>();
+			foreach (var info in ThemeCatalog.GetThemes())
 			{
-				themeBox.Items.Add(Resx.word_User);
+				themeIds.Add(info.Id);
+				if (themeIds.Count > ThemeCatalog.LocalizedCount)
+				{
+					themeBox.Items.Add(info.Name);
+				}
 			}
 
-			var theme = settings.Get("theme", 0);
-			themeBox.SelectedIndex = theme < themeBox.Items.Count ? theme : 0;
+			var themeIndex = themeIds.FindIndex(
+				id => string.Equals(id, provider.Theme, StringComparison.OrdinalIgnoreCase));
+
+			themeBox.SelectedIndex = themeIndex >= 0 ? themeIndex : 0;
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)
@@ -159,9 +170,11 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 			var save = false;
 
-			if (settings.Add("theme", themeBox.SelectedIndex))
+			// "themeId" replaces the legacy integer "theme" setting
+			var themeId = themeIds[themeBox.SelectedIndex];
+			if (settings.Add("themeId", themeId) | settings.Remove("theme"))
 			{
-				ThemeManager.Instance.LoadColors(themeBox.SelectedIndex);
+				ThemeManager.Instance.LoadColors(themeId);
 				save = true;
 			}
 
