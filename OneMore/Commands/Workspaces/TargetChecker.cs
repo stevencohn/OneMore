@@ -195,6 +195,38 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 
 		/// <summary>
+		/// Confirm that each favorite exists and is reachable by ID. For those that are not
+		/// reachable, confirm if the Location/Screentip/path is reachable and, if so, patch the
+		/// favorite with an updated ID.
+		/// </summary>
+		/// <remarks>
+		/// The Favorites manager no longer calls this; it uses <see cref="CheckFavorites"/>, which
+		/// matches by key and GUID and notices duplicates. This is the same ID-and-path check that
+		/// layouts still use, kept so it stays covered by PageCheckerTests.
+		/// </remarks>
+		/// <param name="collection">The favorites to validate</param>
+		/// <returns>
+		/// Returns True if any invalid favorites are discovered.
+		/// </returns>
+		public async Task<bool> InvalidFavorites(FavoritesCollection collection)
+		{
+			var updated = false;
+
+			foreach (var folder in collection.Folders)
+			{
+				if (folder.Items.Any())
+				{
+					updated |= await InvalidReferences(folder.Items);
+				}
+			}
+
+			updated |= await InvalidReferences(collection.Items);
+
+			return updated;
+		}
+
+
+		/// <summary>
 		/// Confirm that each window of each layout exists and is reachable by ID. For those
 		/// that are not reachable, confirm if the Location/Screentip/path is reachable and,
 		/// if so, patch the window with an updated ID.
