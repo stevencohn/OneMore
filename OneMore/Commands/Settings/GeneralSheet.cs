@@ -17,8 +17,10 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class GeneralSheet : SheetBase
 	{
-		// theme ids in the same order as the items in themeBox
+		// theme ids in the same order as the items in themeBox; null for the separator
 		private readonly List<string> themeIds;
+
+		private int lastThemeIndex;
 
 
 		public GeneralSheet(SettingsProvider provider) : base(provider)
@@ -51,15 +53,31 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			// the designer provides the localized System, Light, and Dark items; append the
-			// other built-in themes and any user themes found in %APPDATA%\OneMore\Themes
-			themeIds = new List<string>();
-			foreach (var info in ThemeCatalog.GetThemes())
+			// the designer provides the localized System, Light, and Dark items, then a separator,
+			// followed by any user themes found in %APPDATA%\OneMore\Themes and then the other
+			// built-in themes, each group sorted alphabetically
+			var themes = ThemeCatalog.GetThemes();
+
+			themeIds = themes
+				.Take(ThemeCatalog.LocalizedCount)
+				.Select(t => t.Id)
+				.ToList();
+
+			var others = themes
+				.Skip(ThemeCatalog.LocalizedCount)
+				.OrderBy(t => t.IsBuiltIn)
+				.ThenBy(t => t.Name, StringComparer.CurrentCultureIgnoreCase)
+				.ToList();
+
+			if (others.Count > 0)
 			{
-				themeIds.Add(info.Id);
-				if (themeIds.Count > ThemeCatalog.LocalizedCount)
+				themeBox.AddSeparator();
+				themeIds.Add(null);
+
+				foreach (var info in others)
 				{
 					themeBox.Items.Add(info.Name);
+					themeIds.Add(info.Id);
 				}
 			}
 
@@ -67,6 +85,8 @@ namespace River.OneMoreAddIn.Settings
 				id => string.Equals(id, provider.Theme, StringComparison.OrdinalIgnoreCase));
 
 			themeBox.SelectedIndex = themeIndex >= 0 ? themeIndex : 0;
+			lastThemeIndex = themeBox.SelectedIndex;
+			themeBox.SelectedIndexChanged += ThemeBox_SelectedIndexChanged;
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)
@@ -160,6 +180,24 @@ namespace River.OneMoreAddIn.Settings
 
 			langBox.DisplayMember = "DisplayName";
 			langBox.DataSource = languages.OrderBy(l => l.DisplayName).ToArray();
+		}
+
+
+		private void ThemeBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// the separator is not a theme so step over it in the direction of travel
+			if (themeIds[themeBox.SelectedIndex] is null)
+			{
+				var step = themeBox.SelectedIndex > lastThemeIndex ? 1 : -1;
+				var index = themeBox.SelectedIndex + step;
+				themeBox.SelectedIndex = index >= 0 && index < themeIds.Count
+					? index
+					: lastThemeIndex;
+			}
+			else
+			{
+				lastThemeIndex = themeBox.SelectedIndex;
+			}
 		}
 
 
