@@ -136,11 +136,21 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-registry":
+					new ShutdownOneNoteAction(logger, stepper).StopSurrogate();
 					status = new RegistryAction(logger, stepper, onArchitecture).Install();
 					break;
 
 				case "--install-registrywow":
+					new ShutdownOneNoteAction(logger, stepper).StopSurrogate();
 					status = new RegistryWowAction(logger, stepper, onArchitecture).Install();
+					break;
+
+				case "--repair":
+					status = Repair();
+					break;
+
+				case "--install-stophost":
+					status = new ShutdownOneNoteAction(logger, stepper).StopSurrogate();
 					break;
 
 				case "--install-shutdown":
@@ -271,6 +281,38 @@ namespace OneMoreSetupActions
 
 				return CustomAction.FAILURE;
 			}
+		}
+
+
+		/// <summary>
+		/// Runs the repair sequence for an existing installation: stop any stale COM surrogate
+		/// then rewrite the registry, protocol handler and trusted protocol entries. Unlike
+		/// Install, this does not close OneNote or install WebView2. Individual failures are
+		/// logged as warnings so a repair never aborts the MSI.
+		/// </summary>
+		static int Repair()
+		{
+			logger.WriteLine();
+			logger.WriteLine($"Repair... version {AssemblyInfo.Version}{AssemblyInfo.BuildTag}");
+
+			try
+			{
+				var ok0 = new ShutdownOneNoteAction(logger, stepper).StopSurrogate() == CustomAction.SUCCESS;
+				var ok1 = new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS;
+				var ok2 = new ProtocolHandlerAction(logger, stepper, protocolMode).Install() == CustomAction.SUCCESS;
+				var ok3 = new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS;
+
+				logger.WriteLine(ok0 && ok1 && ok2 && ok3
+					? "repair completed successfully"
+					: "repair completed with warnings");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("repair failed; error registering");
+				logger.WriteLine(exc);
+			}
+
+			return CustomAction.SUCCESS;
 		}
 
 
