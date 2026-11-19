@@ -62,6 +62,11 @@ OneNote bitness they're registering against.
 | `TrustedProtocolAction.cs` | Marks `onemore://` as safe (companion to ProtocolHandler). |
 | `EdgeWebViewAction.cs` | Installs Edge WebView2 (mainly for Windows 10 hosts). |
 
+Direct commands for repair/testing: `--repair` (stop stale surrogate, then rewrite registry,
+protocol handler and trusted protocol; invoked by `CA_Repair` on MSI repair, after InstallFiles) and
+`--install-stophost` (kill only the OneMore dllhost surrogate). `--install-registry` and
+`--install-registrywow` also stop the surrogate first.
+
 Helpers: `Logger.cs`, `Stepper.cs`, `RegistryHelper.cs`, `Program.cs` (entry).
 
 ## Bitness rules (what `CheckBitnessAction` actually enforces)

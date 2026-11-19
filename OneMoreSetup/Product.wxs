@@ -155,6 +155,8 @@
     <!--
       Custom actions invoke OneMoreSetupActions.exe (installed with the product).
       - CA_Install: deferred, runs after InstallFiles on fresh install
+      - CA_Repair: deferred, runs after InstallFiles on repair; stops a stale COM surrogate and
+        rewrites registry, protocol handler and trusted protocol (see Program.Repair)
       - CA_InstallRegistryWow: commit, runs on fresh install or repair (writes WOW6432Node)
       - CA_InstallActiveSetup: commit, runs on fresh install or repair (wires Active Setup)
       - CA_Uninstall: deferred, runs before RemoveFiles on uninstall
@@ -183,6 +185,13 @@
                   Return="check"
                   Impersonate="no" />
 
+    <CustomAction Id="CA_Repair"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--repair --$(var.ArchFlag) --protocol=[PROTOCOLMODE]"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no" />
+
     <CustomAction Id="CA_InstallRegistryWow"
                   FileRef="OneMoreSetupActionsExe"
                   ExeCommand="--install-registrywow --$(var.ArchFlag)"
@@ -207,6 +216,7 @@
     <InstallExecuteSequence>
       <Custom Action="CA_BackupDatabase" Before="CA_Install" Condition="NOT Installed AND PRE8VERSIONFOUND AND BACKUPDB=&quot;1&quot; AND ONEMOREDB" />
       <Custom Action="CA_Install" After="InstallFiles" Condition="NOT Installed" />
+      <Custom Action="CA_Repair" After="InstallFiles" Condition="Installed AND REINSTALL" />
       <Custom Action="CA_InstallRegistryWow" After="InstallFiles" Condition="NOT Installed OR (Installed AND REINSTALL)" />
       <Custom Action="CA_InstallActiveSetup" After="CA_InstallRegistryWow" Condition="NOT Installed OR (Installed AND REINSTALL)" />
       <Custom Action="CA_Uninstall" Before="RemoveFiles" Condition="REMOVE=&quot;ALL&quot;" />

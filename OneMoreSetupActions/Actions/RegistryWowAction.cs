@@ -45,12 +45,12 @@ namespace OneMoreSetupActions
 				{
 					return SUCCESS;
 				}
-			}
-			else
-			{
-				logger.WriteLine("WOW cloning not required");
+
+				logger.WriteLine("WOW cloning failed");
+				return FAILURE;
 			}
 
+			logger.WriteLine("WOW cloning not required");
 			return SUCCESS;
 		}
 

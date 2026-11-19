@@ -261,6 +261,41 @@ namespace River.OneMoreAddIn
 
 			var cude = DescribeCustom(custom);
 			logger.WriteLine($"Startup: OnConnection(ConnectionMode:{ConnectMode},custom[{cude}])");
+			LogInstallation();
+		}
+
+
+		/// <summary>
+		/// Logs the resolved add-in path and reports any missing sibling binaries so a partial
+		/// install is visible in the log instead of a generic OneNote "runtime error".
+		/// </summary>
+		private void LogInstallation()
+		{
+			try
+			{
+				var path = new Uri(
+					System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+
+				logger.WriteLine($"Startup: loaded from {path}");
+
+				var dir = Path.GetDirectoryName(path);
+				var names = new[]
+				{
+					"OneMoreSetupActions.exe", "OneMoreProtocolHandler.exe", "OneMoreTray.exe"
+				};
+
+				foreach (var name in names)
+				{
+					if (!File.Exists(Path.Combine(dir, name)))
+					{
+						logger.WriteLine($"Startup: WARNING missing {name} in {dir}");
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Startup: error checking installation", exc);
+			}
 		}
 
 

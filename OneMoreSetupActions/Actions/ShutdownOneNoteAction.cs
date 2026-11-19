@@ -204,6 +204,19 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
+		/// Kills only the OneMore COM surrogate (dllhost) without closing OneNote. Used before
+		/// direct re-registration so a stale surrogate left over from a broken activation
+		/// cannot keep failing.
+		/// </summary>
+		public int StopSurrogate()
+		{
+			logger.WriteLine();
+			logger.WriteLine("ShutdownOneNoteAction.StopSurrogate ---");
+			return StopHost();
+		}
+
+
+		/// <summary>
 		/// Returns the PIDs of dllhost processes whose command line contains the OneMore CLSID.
 		/// Uses WMI rather than Process.GetProcessesByName because there can be many dllhost
 		/// instances on a system; the command line is the only reliable discriminator.
