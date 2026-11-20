@@ -109,7 +109,10 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   variables when the type is obvious from the right-hand side. Use explicit types
   when the type is not obvious. Use `nameof()` instead of string literals for
   member names. Use `using` statements instead of `using` declarations (C# 8+).
-  Order method top-down so called methods appear after they are called.
+  Order methods as follows: public and protected methods alphabetically; private
+  methods top-down, placed immediately after their first call point. Never inject
+  new methods at the top of a class, unless that's the right location per the
+  previous rules.
   Avoid LINQ queries that allocate intermediate collections unless necessary. Use `is null` and `is not null` instead of `== null` and `!= null`. Use `string.IsNullOrEmpty()` and `string.IsNullOrWhiteSpace()` instead of comparing to `""`.
 
 ## Where to read more
