@@ -67,6 +67,7 @@
     <Compile Include="Commands\Clean\ClearFormattingCommandTests.cs" />
     <Compile Include="Commands\Images\DiagramCommandTests.cs" />
     <Compile Include="Commands\Images\RemoveBorderCommandTests.cs" />
+    <Compile Include="Commands\Images\WrapTextAroundImageCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveDuplicatesCommandTests.cs" />

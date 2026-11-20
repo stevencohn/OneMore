@@ -7332,6 +7332,14 @@ Pestaña Ayuda</value>
     <value>Informe el número de palabras en esta página</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Ajustar texto alrededor de la imagen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Envuelva el texto que sigue a la imagen alineada a la izquierda o a la derecha seleccionada alrededor de la imagen</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Error al guardar la página como {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9014,5 +9022,21 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Conteo de palabras</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>No se puede ajustar texto alrededor de una imagen que comparte su párrafo con otro contenido o está dentro de una tabla</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>No se puede ajustar texto alrededor de una imagen de fondo; coloque la imagen dentro de un contorno primero</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Alinee la imagen a la izquierda o a la derecha antes de ajustar el texto alrededor de ella.</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>No hay texto detrás de la imagen para rodearla.</value>
+    <comment>info message</comment>
   </data>
 </root>

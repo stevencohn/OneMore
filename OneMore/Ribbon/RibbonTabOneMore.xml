@@ -471,6 +471,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="StylizeImagesCmd"/>
+        <button
+          id="ribWrapTextAroundImageButton"
+          imageMso="TextWrappingGallery"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="WrapTextAroundImageCmd"/>
         <menuSeparator id="sepImages" />
         <button
           id="ribMermaidButton"

@@ -7336,6 +7336,14 @@ Scheda Aiuto</value>
     <value>Riporta il numero di parole in questa pagina</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Avvolgi il testo attorno all'immagine</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Avvolgi il testo che segue l'immagine selezionata allineata a sinistra o a destra attorno all'immagine</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Errore durante il salvataggio della pagina come {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9018,5 +9026,21 @@ Grazie!</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Le parole contano</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>Non è possibile avvolgere il testo attorno a un'immagine che condivide il paragrafo con altri contenuti o che si trova all'interno di una tabella</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>Non è possibile disporre il testo attorno a un'immagine di sfondo; posiziona prima l'immagine all'interno di un contorno</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Allinea l'immagine a sinistra o a destra prima di avvolgerla con il testo</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>Non c'è testo che segue l'immagine per avvolgerla</value>
+    <comment>info message</comment>
   </data>
 </root>

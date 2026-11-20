@@ -7333,6 +7333,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>דווח על מספר המילים בדף זה</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>עטוף טקסט סביב תמונה</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>עטוף את הטקסט שעוקב אחרי התמונה שנבחרה מיושרת לשמאל או לימין סביב התמונה</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>שגיאה בשמירת הדף בתור {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9015,5 +9023,21 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>לא ניתן לעטוף טקסט סביב תמונה שחולקת את הפסקה שלה עם תוכן אחר או שנמצאת בתוך טבלה</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>לא ניתן לעטוף טקסט סביב תמונת רקע; מקם תחילה את התמונה בתוך קו מתאר</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>יישר את התמונה שמאלה או ימינה לפני לעטוף טקסט סביבה</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>אין טקסט בעקבות התמונה כדי לעטוף אותה</value>
+    <comment>info message</comment>
   </data>
 </root>
