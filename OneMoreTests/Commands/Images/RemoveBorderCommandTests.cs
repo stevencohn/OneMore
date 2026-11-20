@@ -104,10 +104,59 @@ namespace River.OneMoreAddIn.Tests.Commands.Images
 				first, Color.Blue, 4, true, BlurPx, DistancePx);
 
 			using var peeled = RemoveBorderCommand.Strip(second);
-			AssertSame(first, peeled);
 
+			// the first border's marker row is left behind when the second is added, so
+			// the peeled image is the first border minus that row
+			Assert.IsNotNull(peeled);
+			Assert.AreEqual(first.Width, peeled.Width);
+			Assert.AreEqual(first.Height - 1, peeled.Height);
+			for (var y = 0; y < peeled.Height; y++)
+			{
+				for (var x = 0; x < peeled.Width; x++)
+				{
+					Assert.AreEqual(
+						first.GetPixel(x, y).ToArgb(), peeled.GetPixel(x, y).ToArgb(),
+						$"pixel mismatch at {x},{y}");
+				}
+			}
+
+			// no marker remains, so this peel falls back to pixel analysis
 			using var original = RemoveBorderCommand.Strip(peeled);
 			AssertSame(source, original);
+		}
+
+
+		[TestMethod]
+		public void ZeroBorderShadowOnlyRoundTrip()
+		{
+			using var source = MakeImage(50, 35);
+			using var shadowed = AddBorderCommand.Render(
+				source, Color.Black, 0, true, BlurPx, DistancePx);
+
+			using var restored = RemoveBorderCommand.Strip(shadowed);
+
+			AssertSame(source, restored);
+		}
+
+
+		[TestMethod]
+		public void MarkerRecordsGeometry()
+		{
+			using var source = MakeImage(40, 30);
+			using var bordered = AddBorderCommand.Render(
+				source, Color.Red, 3, true, BlurPx, DistancePx);
+
+			Assert.IsTrue(BorderMarker.TryRead(bordered, out var info));
+			Assert.IsTrue(info.Shadow);
+			Assert.AreEqual(3, info.Border);
+			Assert.AreEqual(source.Width, info.Content.Width);
+			Assert.AreEqual(source.Height, info.Content.Height);
+
+			using var plain = AddBorderCommand.Render(
+				source, Color.Red, 3, false, BlurPx, DistancePx);
+
+			Assert.IsTrue(BorderMarker.TryRead(plain, out info));
+			Assert.IsFalse(info.Shadow);
 		}
 
 

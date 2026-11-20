@@ -120,6 +120,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var bitmap = image as Bitmap ?? new Bitmap(image);
 
+			// definitive path: geometry recorded by AddBorderCommand
+			if (BorderMarker.TryRead(bitmap, out var marker))
+			{
+				return bitmap.Clone(marker.Content, PixelFormat.Format32bppArgb);
+			}
+
+			// fallback for images bordered before the marker existed or whose marker was lost
 			var width = bitmap.Width;
 			var height = bitmap.Height;
 
