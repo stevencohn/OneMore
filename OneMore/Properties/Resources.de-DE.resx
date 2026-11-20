@@ -7334,6 +7334,14 @@ Registerkarte „Hilfe“.</value>
     <value>Gibt die Anzahl der Wörter auf dieser Seite an</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Text um das Bild wickeln</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Wickeln Sie den Text, der auf das ausgewählte links- oder rechtsbündig ausgerichtete Bild folgt, um das Bild</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Fehler beim Speichern der Seite als {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9015,5 +9023,21 @@ Danke schön!</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Wort zählt</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>Es kann kein Text um ein Bild umbrochen werden, dessen Absatz sich mit anderen Inhalten teilt oder das sich in einer Tabelle befindet</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>Der Text kann nicht um ein Hintergrundbild herum umbrochen werden. Platzieren Sie das Bild zunächst innerhalb eines Umrisses</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Richten Sie das Bild links oder rechts aus, bevor Sie es mit Text umgeben</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>Dem Bild folgt kein Text, der es umschließen könnte</value>
+    <comment>info message</comment>
   </data>
 </root>

@@ -7347,6 +7347,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>报告本页的字数</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>将文本环绕图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>将所选左对齐或右对齐图像后面的文本环绕在图像周围</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>将页面另存为{0}时出错</value>
     <comment>Save as dialog error message</comment>
@@ -9033,5 +9041,21 @@ Code——代码块段落
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>字数统计</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>无法将文本环绕在与其他内容共享其段落或位于表格内的图像周围</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>无法将文本环绕在背景图像周围；首先将图像放在轮廓内</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>在将文本环绕在图像周围之前将图像左对齐或右对齐</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>图片后面没有文字环绕它</value>
+    <comment>info message</comment>
   </data>
 </root>

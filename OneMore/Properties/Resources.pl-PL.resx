@@ -7333,6 +7333,14 @@ Zakładka Pomoc</value>
     <value>Zgłoś liczbę słów na tej stronie</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Owiń tekst wokół obrazu</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Owiń tekst znajdujący się za wybranym obrazem wyrównanym do lewej lub prawej strony wokół obrazu</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Błąd zapisu strony jako {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9015,5 +9023,21 @@ Dziękuję!</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Liczy się słowo</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>Nie można oblewać tekstem obrazu, który ma wspólny akapit z inną treścią lub znajduje się wewnątrz tabeli</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>Nie można oblewać tekstem obrazu tła; najpierw umieść obraz wewnątrz konturu</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Wyrównaj obraz do lewej lub prawej strony, zanim owiniesz go tekstem</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>Za obrazem nie znajduje się żaden tekst, który mógłby go owinąć</value>
+    <comment>info message</comment>
   </data>
 </root>

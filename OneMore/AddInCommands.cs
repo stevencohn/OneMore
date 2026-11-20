@@ -1370,5 +1370,10 @@ namespace River.OneMoreAddIn
 		[Command("ribWordCountButton_Label", Keys.None, "ribPageMenu")]
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();
+
+
+		[Command("ribWrapTextAroundImageButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task WrapTextAroundImageCmd(IRibbonControl control)
+			=> await factory.Run<WrapTextAroundImageCommand>();
 	}
 }

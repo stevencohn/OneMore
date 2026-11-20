@@ -7333,6 +7333,14 @@ Guia Ajuda</value>
     <value>Informe o número de palavras nesta página</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Envolver o texto ao redor da imagem</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Envolva o texto que segue a imagem selecionada alinhada à esquerda ou à direita ao redor da imagem</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Erro ao salvar a página como {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9015,5 +9023,21 @@ Obrigado!</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Contagem de palavras</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>Não é possível quebrar o texto em torno de uma imagem que compartilha seu parágrafo com outro conteúdo ou que está dentro de uma tabela</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>Não é possível quebrar o texto em torno de uma imagem de fundo; coloque a imagem dentro de um contorno primeiro</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Alinhe a imagem à esquerda ou à direita antes de envolver o texto nela</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>Não há texto após a imagem para envolvê-la</value>
+    <comment>info message</comment>
   </data>
 </root>

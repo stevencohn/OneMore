@@ -17252,6 +17252,24 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribWordCountButton_Screentip", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap Text Around Image.
+        /// </summary>
+        internal static string ribWrapTextAroundImageButton_Label {
+            get {
+                return ResourceManager.GetString("ribWrapTextAroundImageButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap the text that follows the selected left or right aligned image around the image.
+        /// </summary>
+        internal static string ribWrapTextAroundImageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribWrapTextAroundImageButton_Screentip", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Error saving page as {0}.
@@ -21410,6 +21428,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string WordCountsCommand_Title {
             get {
                 return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot wrap text around an image that shares its paragraph with other content or is inside a table.
+        /// </summary>
+        internal static string WrapTextAroundImageCommand_alreadyWrapped {
+            get {
+                return ResourceManager.GetString("WrapTextAroundImageCommand_alreadyWrapped", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot wrap text around a background image; place the image inside an outline first.
+        /// </summary>
+        internal static string WrapTextAroundImageCommand_background {
+            get {
+                return ResourceManager.GetString("WrapTextAroundImageCommand_background", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Align the image to the left or right before wrapping text around it.
+        /// </summary>
+        internal static string WrapTextAroundImageCommand_centered {
+            get {
+                return ResourceManager.GetString("WrapTextAroundImageCommand_centered", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There is no text following the image to wrap around it.
+        /// </summary>
+        internal static string WrapTextAroundImageCommand_noText {
+            get {
+                return ResourceManager.GetString("WrapTextAroundImageCommand_noText", resourceCulture);
             }
         }
     }

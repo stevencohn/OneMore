@@ -684,6 +684,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="StackBackgroundImagesCmd"/>
+        <button
+          id="ribWrapTextAroundImageButton"
+          imageMso="TextWrappingGallery"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="WrapTextAroundImageCmd"/>
       </menu>
       <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
         <button

@@ -7339,6 +7339,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>このページの単語数（日本語の場合は文字数）をカウントする</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>画像の周囲にテキストを回り込む</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>選択した左揃えまたは右揃えの画像に続くテキストを画像の周囲で折り返す</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>ページの保存エラー: {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9021,5 +9029,21 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>単語数</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>段落を他のコンテンツと共有している画像、または表内にある画像の周囲でテキストを折り返すことはできません</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>背景画像の周囲にテキストを折り返すことはできません。最初に画像をアウトライン内に配置します</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>テキストを折り返す前に画像を左または右に揃えます</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>画像の後に回り込むテキストがありません</value>
+    <comment>info message</comment>
   </data>
 </root>

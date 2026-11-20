@@ -7344,6 +7344,14 @@ Onglet Aide</value>
     <value>Indiquez le nombre de mots sur cette page</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribWrapTextAroundImageButton_Label" xml:space="preserve">
+    <value>Envelopper le texte autour de l'image</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribWrapTextAroundImageButton_Screentip" xml:space="preserve">
+    <value>Enroulez le texte qui suit l'image sélectionnée alignée à gauche ou à droite autour de l'image</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Erreur lors de l'enregistrement de la page sous {0}</value>
     <comment>Save as dialog error message</comment>
@@ -9025,5 +9033,21 @@ Merci!</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Nombre de mots</value>
     <comment>page title</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_alreadyWrapped" xml:space="preserve">
+    <value>Impossible d'enrouler du texte autour d'une image qui partage son paragraphe avec un autre contenu ou qui se trouve à l'intérieur d'un tableau</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_background" xml:space="preserve">
+    <value>Impossible d'enrouler du texte autour d'une image d'arrière-plan ; placez d'abord l'image à l'intérieur d'un contour</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_centered" xml:space="preserve">
+    <value>Alignez l'image à gauche ou à droite avant d'enrouler le texte autour d'elle</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WrapTextAroundImageCommand_noText" xml:space="preserve">
+    <value>Il n'y a pas de texte après l'image pour l'entourer</value>
+    <comment>info message</comment>
   </data>
 </root>
