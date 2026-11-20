@@ -93,33 +93,6 @@ namespace River.OneMoreAddIn.Colorizer
 
 
 		/// <summary>
-		/// Use the secondary font from user settings
-		/// </summary>
-		public void EnableSecondaryFont()
-		{
-			var settings = new SettingsProvider().GetCollection(nameof(ColorizerSheet));
-			if (settings.Get("apply", false))
-			{
-				// both must exist to be applied
-				var size = settings.Get<string>("size2");
-				if (!string.IsNullOrWhiteSpace(size))
-				{
-					var family = settings.Get<string>("family2");
-					if (!string.IsNullOrWhiteSpace(family))
-					{
-						if (size.IndexOf('.') < 0)
-						{
-							size = $"{size}.0";
-						}
-
-						fontStyle = $"font-family:{family};font-size:{size}pt";
-					}
-				}
-			}
-		}
-
-
-		/// <summary>
 		/// Colorizes the given source code for the current language, producing OneNote
 		/// content.
 		/// </summary>
@@ -359,6 +332,33 @@ namespace River.OneMoreAddIn.Colorizer
 					}
 
 					run.SetAttributeValue("style", string.Join(";", parts));
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Use the secondary font from user settings
+		/// </summary>
+		public void EnableSecondaryFont()
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(ColorizerSheet));
+			if (settings.Get("apply", false))
+			{
+				// both must exist to be applied
+				var size = settings.Get<string>("size2");
+				if (!string.IsNullOrWhiteSpace(size))
+				{
+					var family = settings.Get<string>("family2");
+					if (!string.IsNullOrWhiteSpace(family))
+					{
+						if (size.IndexOf('.') < 0)
+						{
+							size = $"{size}.0";
+						}
+
+						fontStyle = $"font-family:{family};font-size:{size}pt";
+					}
 				}
 			}
 		}

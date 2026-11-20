@@ -135,6 +135,15 @@ namespace River.OneMoreAddIn
 
 		public const int TVM_GETITEM = 0x110C;
 
+		public const int MDT_EFFECTIVE_DPI = 0;
+
+		// GetSystemMetrics indexes
+		public const int SM_CXVSCROLL = 2;
+		public const int SM_CXSMICON = 49;
+		public const int SM_CYSMICON = 50;
+		public const int SM_CXMENUCHECK = 71;
+		public const int SM_CYMENUCHECK = 72;
+
 
 		// LVS_OWNERDRAWFIXED: The owner window can paint ListView items in report view. 
 		// The ListView control sends a WM_DRAWITEM message to paint each item. It does
@@ -296,6 +305,47 @@ namespace River.OneMoreAddIn
 			public byte tmStruckOut;
 			public byte tmPitchAndFamily;
 			public byte tmCharSet;
+		}
+
+
+		/// <summary>
+		/// Forces the calling thread into a specific DPI awareness context for the duration
+		/// of a using block, then restores whatever context was previously in effect. Use
+		/// this around GetWindowRect/SetWindowPos/Screen.* calls that must see real physical
+		/// pixels regardless of the process's ambient DPI awareness, which (e.g. inside the
+		/// shared dllhost.exe COM surrogate) is not always reliably per-monitor-aware.
+		/// </summary>
+		internal readonly struct ThreadDpiAwarenessScope : IDisposable
+		{
+			private readonly IntPtr previous;
+
+			public ThreadDpiAwarenessScope(IntPtr context)
+			{
+				try
+				{
+					previous = SetThreadDpiAwarenessContext(context);
+				}
+				catch (EntryPointNotFoundException)
+				{
+					// Windows older than 10 1607; nothing to restore
+					previous = IntPtr.Zero;
+				}
+			}
+
+			public void Dispose()
+			{
+				if (previous != IntPtr.Zero)
+				{
+					try
+					{
+						SetThreadDpiAwarenessContext(previous);
+					}
+					catch (EntryPointNotFoundException)
+					{
+						// can't happen if the constructor succeeded, but stay defensive
+					}
+				}
+			}
 		}
 
 
@@ -564,47 +614,6 @@ namespace River.OneMoreAddIn
 		public static extern IntPtr SetThreadDpiAwarenessContext(IntPtr dpiContext);
 
 
-		/// <summary>
-		/// Forces the calling thread into a specific DPI awareness context for the duration
-		/// of a using block, then restores whatever context was previously in effect. Use
-		/// this around GetWindowRect/SetWindowPos/Screen.* calls that must see real physical
-		/// pixels regardless of the process's ambient DPI awareness, which (e.g. inside the
-		/// shared dllhost.exe COM surrogate) is not always reliably per-monitor-aware.
-		/// </summary>
-		internal readonly struct ThreadDpiAwarenessScope : IDisposable
-		{
-			private readonly IntPtr previous;
-
-			public ThreadDpiAwarenessScope(IntPtr context)
-			{
-				try
-				{
-					previous = SetThreadDpiAwarenessContext(context);
-				}
-				catch (EntryPointNotFoundException)
-				{
-					// Windows older than 10 1607; nothing to restore
-					previous = IntPtr.Zero;
-				}
-			}
-
-			public void Dispose()
-			{
-				if (previous != IntPtr.Zero)
-				{
-					try
-					{
-						SetThreadDpiAwarenessContext(previous);
-					}
-					catch (EntryPointNotFoundException)
-					{
-						// can't happen if the constructor succeeded, but stay defensive
-					}
-				}
-			}
-		}
-
-
 		// https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/nf-shellscalingapi-setprocessdpiawareness
 		[DllImport("shcore.dll")]
 		public static extern int SetProcessDpiAwareness(int value);
@@ -643,15 +652,6 @@ namespace River.OneMoreAddIn
 		[DllImport("shcore.dll")]
 		public static extern int GetDpiForMonitor(
 			IntPtr hmonitor, int dpiType, out uint dpiX, out uint dpiY);
-
-		public const int MDT_EFFECTIVE_DPI = 0;
-
-		// GetSystemMetrics indexes
-		public const int SM_CXVSCROLL = 2;
-		public const int SM_CXSMICON = 49;
-		public const int SM_CYSMICON = 50;
-		public const int SM_CXMENUCHECK = 71;
-		public const int SM_CYMENUCHECK = 72;
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos

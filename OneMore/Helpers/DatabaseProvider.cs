@@ -41,6 +41,32 @@ namespace River.OneMoreAddIn
 			RegexOptions.Compiled);
 
 
+		protected DatabaseProvider()
+		{
+		}
+
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposed)
+			{
+				if (disposing)
+				{
+					con?.Dispose();
+				}
+
+				disposed = true;
+			}
+		}
+
+
+		public void Dispose()
+		{
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+
+
 		/// <summary>
 		/// Resolves the path of OneMore.db under the local (non-roaming) AppData folder,
 		/// migrating an existing db from the legacy roaming AppData location if needed.
@@ -88,32 +114,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return newPath;
-		}
-
-
-		protected DatabaseProvider()
-		{
-		}
-
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					con?.Dispose();
-				}
-
-				disposed = true;
-			}
-		}
-
-
-		public void Dispose()
-		{
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
 		}
 
 
