@@ -124,10 +124,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.widthBox.Minimum = new decimal(new int[] {
-            25,
             0,
             0,
-            131072});
+            0,
+            0});
 			this.widthBox.Name = "widthBox";
 			this.widthBox.Size = new System.Drawing.Size(120, 26);
 			this.widthBox.TabIndex = 2;

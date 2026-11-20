@@ -43,6 +43,17 @@ namespace River.OneMoreAddIn.Commands
 			borderColor = Color.Black;
 			LoadSettings();
 			colorBox.BackColor = borderColor;
+
+			widthBox.ValueChanged += (s, e) => UpdateOKState();
+			shadowBox.CheckedChanged += (s, e) => UpdateOKState();
+			UpdateOKState();
+		}
+
+
+		// a zero width border is allowed only when adding a drop shadow
+		private void UpdateOKState()
+		{
+			okButton.Enabled = widthBox.Value > 0 || shadowBox.Checked;
 		}
 
 

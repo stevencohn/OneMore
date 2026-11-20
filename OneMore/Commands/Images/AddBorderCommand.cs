@@ -94,7 +94,9 @@ namespace River.OneMoreAddIn.Commands
 			var size = element.Element(ns + "Size");
 			var (scaleX, scaleY) = GetScales(size, source.Width, source.Height);
 
-			var borderPixels = Math.Max(1, (int)Math.Round(width / Math.Min(scaleX, scaleY)));
+			var borderPixels = width <= 0
+				? 0
+				: Math.Max(1, (int)Math.Round(width / Math.Min(scaleX, scaleY)));
 
 			var scale = Math.Min(scaleX, scaleY);
 			var blur = Math.Max(1, (int)Math.Round(ShadowBlur / scale));
@@ -178,11 +180,14 @@ namespace River.OneMoreAddIn.Commands
 
 			using var g = Graphics.FromImage(bitmap);
 
-			using (var brush = new SolidBrush(color))
+			if (border > 0)
 			{
-				g.CompositingMode = CompositingMode.SourceOver;
-				g.PixelOffsetMode = PixelOffsetMode.Half;
-				g.FillRectangle(brush, outer);
+				using (var brush = new SolidBrush(color))
+				{
+					g.CompositingMode = CompositingMode.SourceOver;
+					g.PixelOffsetMode = PixelOffsetMode.Half;
+					g.FillRectangle(brush, outer);
+				}
 			}
 
 			// copy original pixels 1:1, no resampling
