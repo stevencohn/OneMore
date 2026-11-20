@@ -79,6 +79,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// must force update incase only QuickStyleDefs have changed
 				await one.Update(page, true);
+
+				// the update can leave OneNote without an active caret; refocus the window
+				Native.SetForegroundWindow(one.WindowHandle);
 			}
 		}
 
