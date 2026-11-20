@@ -122,7 +122,6 @@ namespace River.OneMoreAddIn.Commands
 					// remember the last failure to report if nothing at all was wrapped
 					outcome = result;
 					message = reason;
-					logger.Verbose($"wrap skipped an image: {reason}");
 				}
 			}
 
@@ -196,9 +195,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var count = CountThatFit(measures, imageHeight, out var skip, tolerance);
-			logger.Verbose(
-				$"wrap image={imageHeight} candidates={candidates.Count} skip={skip} count={count} " +
-				$"outlineWidth={outlineWidth} imageColumn={imageColumn} textColumn={textColumn}");
 
 			if (count == 0)
 			{
@@ -301,8 +297,6 @@ namespace River.OneMoreAddIn.Commands
 					width = bitmap.Width * PixelsToPoints;
 					height = bitmap.Height * PixelsToPoints;
 				}
-
-				logger.Verbose($"wrap image size derived from pixels: {width:0.0}x{height:0.0}");
 			}
 			catch (Exception exc)
 			{
@@ -409,10 +403,6 @@ namespace River.OneMoreAddIn.Commands
 
 				var height = EstimateHeight(lines, lineHeight)
 					+ ParsePoints(style.SpaceBefore) + ParsePoints(style.SpaceAfter);
-
-				logger.Verbose(
-					$"wrap paragraph blank={isBlank} size={fontSize} lines={lines} " +
-					$"lineHeight={lineHeight:0.0} height={height:0.0}");
 
 				measures.Add(new Measure(height, isBlank, lineHeight));
 			}
