@@ -1251,6 +1251,7 @@
     <Compile Include="Commands\Images\AddBorderDialog.Designer.cs">
       <DependentUpon>AddBorderDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Images\BorderMarker.cs" />
     <Compile Include="Commands\Images\RemoveBorderCommand.cs" />
     <Compile Include="Commands\Images\WrapTextAroundImageCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />

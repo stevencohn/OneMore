@@ -162,8 +162,18 @@ namespace River.OneMoreAddIn.Commands
 			var right = border + (shadow ? distance + reach : 0);
 			var bottom = right;
 
+			// a previous border's marker row is not content; leave it behind so it doesn't
+			// get painted over by the new border band
+			var contentHeight = source.Height;
+			if (source is Bitmap previous && BorderMarker.TryRead(previous, out _))
+			{
+				contentHeight--;
+			}
+
+			// one extra transparent row at the bottom holds the BorderMarker, which lets
+			// RemoveBorderCommand undo this exactly
 			var width = source.Width + left + right;
-			var height = source.Height + top + bottom;
+			var height = contentHeight + top + bottom + 1;
 
 			var bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 			bitmap.SetResolution(source.HorizontalResolution, source.VerticalResolution);
@@ -171,7 +181,7 @@ namespace River.OneMoreAddIn.Commands
 			// outer rectangle of the border band
 			var outer = new Rectangle(
 				left - border, top - border,
-				source.Width + (2 * border), source.Height + (2 * border));
+				source.Width + (2 * border), contentHeight + (2 * border));
 
 			if (shadow)
 			{
@@ -194,8 +204,12 @@ namespace River.OneMoreAddIn.Commands
 			g.InterpolationMode = InterpolationMode.NearestNeighbor;
 			g.PixelOffsetMode = PixelOffsetMode.Half;
 			g.DrawImage(source,
-				new Rectangle(left, top, source.Width, source.Height),
-				0, 0, source.Width, source.Height, GraphicsUnit.Pixel);
+				new Rectangle(left, top, source.Width, contentHeight),
+				0, 0, source.Width, contentHeight, GraphicsUnit.Pixel);
+
+			// after all drawing so nothing blends over the marker pixels
+			BorderMarker.Write(bitmap, new BorderMarkerInfo(
+				shadow, border, new Rectangle(left, top, source.Width, contentHeight)));
 
 			return bitmap;
 		}
