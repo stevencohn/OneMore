@@ -117,6 +117,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.Debug(page.Root);
 				await one.Update(page);
+
+				// the update can leave OneNote without an active caret; refocus the window
+				Native.SetForegroundWindow(one.WindowHandle);
 			}
 			else
 			{

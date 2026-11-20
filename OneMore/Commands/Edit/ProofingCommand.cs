@@ -147,6 +147,9 @@ namespace River.OneMoreAddIn.Commands
 
 			await one.Update(page, true);
 
+			// the update can leave OneNote without an active caret; refocus the window
+			Native.SetForegroundWindow(one.WindowHandle);
+
 			var area = partial ? "selection" : "full page";
 			var abled = cultureName == NoLang ? "disabled" : "enabled";
 			logger.WriteTime($"spell check {abled} for {cultureName} on {area}");
