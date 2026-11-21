@@ -5,94 +5,11 @@ VisualStudioVersion = 18.5.11723.231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMore", "OneMore\OneMore.csproj", "{D874E185-08FE-48C5-BADE-0FE84060C978}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2679BE09-8144-4B5B-957E-D463F00FA66E}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.gitignore = .gitignore
-		build.ps1 = build.ps1
-		CLAUDE.md = CLAUDE.md
-		get-releases.ps1 = get-releases.ps1
-		iq.ps1 = iq.ps1
-		LICENSE = LICENSE
-		README.md = README.md
-		register-onemore.reg = register-onemore.reg
-		setoffice.ps1 = setoffice.ps1
-		setregistry.ps1 = setregistry.ps1
-		setversion.ps1 = setversion.ps1
-		stop.ps1 = stop.ps1
-		update-sdk.ps1 = update-sdk.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891C1-D812-4C1D-B6DC-2175A68C4ADC}"
-	ProjectSection(SolutionItems) = preProject
-		Themes\Confluence6.xml = Themes\Confluence6.xml
-		Themes\Confluence7.xml = Themes\Confluence7.xml
-		Themes\DarkBlue.xml = Themes\DarkBlue.xml
-		Themes\DarkGreen.xml = Themes\DarkGreen.xml
-		Themes\DarkOrange.xml = Themes\DarkOrange.xml
-		Themes\Orange.xml = Themes\Orange.xml
-		Themes\Red.xml = Themes\Red.xml
-		Themes\Standard.xml = Themes\Standard.xml
-		Themes\Word.xml = Themes\Word.xml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"
-	ProjectSection(SolutionItems) = preProject
-		Plugins\Export-PageInfo-readme.txt = Plugins\Export-PageInfo-readme.txt
-		Plugins\Export-PageInfo.ps1 = Plugins\Export-PageInfo.ps1
-		Plugins\Get-MeetingDate-readme.txt = Plugins\Get-MeetingDate-readme.txt
-		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
-		Plugins\Set-BlueBackground-readme.txt = Plugins\Set-BlueBackground-readme.txt
-		Plugins\Set-BlueBackground.ps1 = Plugins\Set-BlueBackground.ps1
-		Plugins\Set-ParagraphSpacing-readme.txt = Plugins\Set-ParagraphSpacing-readme.txt
-		Plugins\Set-ParagraphSpacing.ps1 = Plugins\Set-ParagraphSpacing.ps1
-		Plugins\Set-RainbowSections-readme.txt = Plugins\Set-RainbowSections-readme.txt
-		Plugins\Set-RainbowSections.ps1 = Plugins\Set-RainbowSections.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{31896922-72FF-4823-80C0-8EC46936AC71}"
-	ProjectSection(SolutionItems) = preProject
-		Templates\OneNote_Keyboard_Shortcuts.zip = Templates\OneNote_Keyboard_Shortcuts.zip
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreProtocolHandler", "OneMoreProtocolHandler\OneMoreProtocolHandler.csproj", "{BD0FA4FC-8CA9-4056-93DD-14537A758D48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreSetupActions", "OneMoreSetupActions\OneMoreSetupActions.csproj", "{200381E7-37C7-4B30-9F5E-81FA44BF83CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreCalendar", "OneMoreCalendar\OneMoreCalendar.csproj", "{1F87159C-B663-4464-B272-E0C57BE22306}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}"
-	ProjectSection(SolutionItems) = preProject
-		.github\FUNDING.yml = .github\FUNDING.yml
-		.github\pull_request_template.md = .github\pull_request_template.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5771E974-F302-4CB6-86B8-B57C74C07709}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build.yml = .github\workflows\build.yml
-		.github\workflows\cleanup.yml = .github\workflows\cleanup.yml
-		.github\workflows\delete-jobs.yml = .github\workflows\delete-jobs.yml
-		.github\workflows\pages.yml = .github\workflows\pages.yml
-		.github\workflows\pr-issue-comment-on-merge.yml = .github\workflows\pr-issue-comment-on-merge.yml
-		.github\workflows\pr-issue-link.yml = .github\workflows\pr-issue-link.yml
-		.github\workflows\README.md = .github\workflows\README.md
-		.github\workflows\winget-releaser.yml = .github\workflows\winget-releaser.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{147D185C-D069-495B-955A-74C81BDD20CF}"
-	ProjectSection(SolutionItems) = preProject
-		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
-		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
-		.github\ISSUE_TEMPLATE\question.md = .github\ISSUE_TEMPLATE\question.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{64F48016-BB0D-4F25-89BE-00444FD64C53}"
-	ProjectSection(SolutionItems) = preProject
-		Reference\0336.OneNoteApplication_2013.xsd = Reference\0336.OneNoteApplication_2013.xsd
-		Reference\customui14.xsd = Reference\customui14.xsd
-		Reference\net10-migration.md = Reference\net10-migration.md
-		Reference\onenotecontrols-2016.xlsx = Reference\onenotecontrols-2016.xlsx
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreTray", "OneMoreTray\OneMoreTray.csproj", "{383ABB76-4F97-4C78-AC59-BC851AA15B5A}"
 EndProject
@@ -100,55 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreCli", "OneMoreCli\On
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreTests", "OneMoreTests\OneMoreTests.csproj", "{803B3EE0-95C1-49F0-8E2C-6294002E2E01}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packers", "packers", "{06C4CB95-3744-44A4-9F5A-201F9909EA13}"
-	ProjectSection(SolutionItems) = preProject
-		packers\prepare.ps1 = packers\prepare.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chocolatey", "chocolatey", "{51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9}"
-	ProjectSection(SolutionItems) = preProject
-		packers\chocolatey\onemore.nuspec = packers\chocolatey\onemore.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{6A346706-764C-40DA-AFFC-BFB22B310BF5}"
-	ProjectSection(SolutionItems) = preProject
-		packers\chocolatey\tools\chocolateybeforemodify.ps1 = packers\chocolatey\tools\chocolateybeforemodify.ps1
-		packers\chocolatey\tools\chocolateyinstall.ps1 = packers\chocolatey\tools\chocolateyinstall.ps1
-		packers\chocolatey\tools\chocolateyuninstall.ps1 = packers\chocolatey\tools\chocolateyuninstall.ps1
-		packers\chocolatey\tools\LICENSE.txt = packers\chocolatey\tools\LICENSE.txt
-		packers\chocolatey\tools\VERIFICATION.txt = packers\chocolatey\tools\VERIFICATION.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".claude", ".claude", "{9FE52F5B-7C02-4501-85B0-A68E692E161A}"
-	ProjectSection(SolutionItems) = preProject
-		.claude\settings.local.json = .claude\settings.local.json
-	EndProjectSection
-EndProject
 Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "OneMoreSetup", "OneMoreSetup\OneMoreSetup.wixproj", "{20028FE6-3BEF-1D46-55AD-87FF784CD028}"
 EndProject
 Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "OneMoreBundle", "OneMoreBundle\OneMoreBundle.wixproj", "{8132EE7E-A44E-920E-0216-FD436FD8B7CD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "skills", "skills", "{1DA9CFDA-D91F-4C40-9173-D312B5644FBE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "release-notes", "release-notes", "{3E9FBC2D-8F7E-4BC3-8DA4-2AA65C05AD2E}"
-	ProjectSection(SolutionItems) = preProject
-		.claude\skills\release-notes\SKILL.md = .claude\skills\release-notes\SKILL.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "make-test", "make-test", "{31BFB690-FA52-4E99-AAA0-523FEB3ECBBA}"
-	ProjectSection(SolutionItems) = preProject
-		.claude\skills\make-test\SKILL.md = .claude\skills\make-test\SKILL.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "estimate-usage", "estimate-usage", "{48D7FCEE-C0AF-4757-897F-959EE6FD2920}"
-	ProjectSection(SolutionItems) = preProject
-		.claude\skills\estimate-usage\SKILL.md = .claude\skills\estimate-usage\SKILL.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fix-telemetry", "fix-telemetry", "{66CA5AFD-C0A8-4987-9B90-E553E658F62E}"
-	ProjectSection(SolutionItems) = preProject
-		.claude\skills\fix-telemetry\SKILL.md = .claude\skills\fix-telemetry\SKILL.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -259,24 +130,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B33891C1-D812-4C1D-B6DC-2175A68C4ADC} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{9D56ACB1-3CDF-48EB-B786-4F924E899CE2} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{31896922-72FF-4823-80C0-8EC46936AC71} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{5771E974-F302-4CB6-86B8-B57C74C07709} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
-		{147D185C-D069-495B-955A-74C81BDD20CF} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
-		{64F48016-BB0D-4F25-89BE-00444FD64C53} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{06C4CB95-3744-44A4-9F5A-201F9909EA13} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9} = {06C4CB95-3744-44A4-9F5A-201F9909EA13}
-		{6A346706-764C-40DA-AFFC-BFB22B310BF5} = {51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9}
-		{9FE52F5B-7C02-4501-85B0-A68E692E161A} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
-		{1DA9CFDA-D91F-4C40-9173-D312B5644FBE} = {9FE52F5B-7C02-4501-85B0-A68E692E161A}
-		{3E9FBC2D-8F7E-4BC3-8DA4-2AA65C05AD2E} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
-		{31BFB690-FA52-4E99-AAA0-523FEB3ECBBA} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
-		{48D7FCEE-C0AF-4757-897F-959EE6FD2920} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
-		{66CA5AFD-C0A8-4987-9B90-E553E658F62E} = {1DA9CFDA-D91F-4C40-9173-D312B5644FBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}
