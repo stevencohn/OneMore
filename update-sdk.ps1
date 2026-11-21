@@ -3,6 +3,12 @@
 Update the OneMore.csproj reference hints to point to the latest installed version
 of the Windows SDK.
 
+.DESCRIPTION
+Values in the csproj may contain MSBuild properties such as $(windir). Before comparing
+current and desired values, those properties are expanded the same way MSBuild would
+(environment variables are properties), so equivalent values are not reported as changes.
+Every entry reports its before and after values, in raw and expanded form.
+
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
@@ -21,7 +27,8 @@ Begin
     $script:sdkver = $null
     $script:netpath = $null
     $script:basePath = $null
-    $script:forceBase = $false
+    $script:warned = @{}
+    $script:results = @()
 
 
     function WriteOK
@@ -45,7 +52,7 @@ Begin
         {
             # \??\C:\Development
             $script:basePath = $map.Substring(4)
-            $script:forceBase = $true
+            Write-Host "mapped drive $letter -> $basePath" -ForegroundColor DarkGray
         }
         else
         {
@@ -76,51 +83,57 @@ Begin
     {
         $updated = $false
 
-        $lines = @(Get-Content $csproj)
-        
-        for ($i =0; $i -lt $lines.Count; $i++)
+        # preserve the BOM and line endings of the csproj when writing it back
+        $bytes = [System.IO.File]::ReadAllBytes($csproj)
+        $hasBom = ($bytes.Length -ge 3) -and ($bytes[0] -eq 0xEF) -and ($bytes[1] -eq 0xBB) -and ($bytes[2] -eq 0xBF)
+        $raw = [System.IO.File]::ReadAllText($csproj)
+        $eol = $raw.Contains("`r`n") ? "`r`n" : "`n"
+        $lines = $raw -split '\r?\n'
+
+        for ($i = 0; $i -lt $lines.Count; $i++)
         {
             $line = $lines[$i]
-            $handled = $false
 
-            # $matches[1]=netpath
-            if ($line -match '<HintPath>(.+\\Framework64\\v\d+\.\d+\.\d+\\)System.Runtime.WindowsRuntime.dll</HintPath>')
+            # $matches[1]=hint path, $matches[2]=path up to and including \Framework64\vN.N.N\
+            if ($line -match '<HintPath>((.+\\Framework64\\v\d+\.\d+\.\d+\\)System\.Runtime\.WindowsRuntime\.dll)</HintPath>')
             {
-                $p = [System.IO.Path]::GetFullPath($basePath + $matches[1].ToString())
-                if (($p.ToString() -ne $netpath) -or $forceBase)
+                $old = $matches[1]
+                $oldDir = $matches[2]
+
+                # express the runtime directory using $(windir) as the csproj does
+                $new = $netpath -ireplace [regex]::Escape($env:SystemRoot), '$$(windir)'
+
+                $changed = PatchEntry $i $line '.NET Framework path' $oldDir $new
+                if ($changed)
                 {
-                    $winpath = $netpath -ireplace [regex]::Escape($env:SystemRoot), '$$(windir)'
-                    WriteOK "updating$dry .NET Framework path: $winpath"
-                    $lines[$i] = $line.Replace($matches[1], $winpath)
-                    $handled = $true
-                }
-                else {
-                    WriteOK 'NET Framework path is already correct'
+                    $lines[$i] = $line.Replace($oldDir, $new)
+                    $updated = $true
                 }
             }
-            # $matches[1]=sdkpath, $matches[2]=version
-            elseif ($line -match '<HintPath>(.+\\)UnionMetadata\\(\d+\.\d+\.\d+\.\d+)\\Windows.winmd</HintPath>')             
+            # $matches[1]=hint path, $matches[2]=version
+            elseif ($line -match '<HintPath>(.+\\UnionMetadata\\(\d+\.\d+\.\d+\.\d+)\\Windows\.winmd)</HintPath>')
             {
-                $p = "$($matches[1])UnionMetadata\\$($matches[2])\\Windows.winmd"
-                if (($matches[2] -ne $sdkver) -or ![System.IO.Directory]::Exists($p))
-                {
-                    # always forces base
-                    $fullpath = $kitsroot; 'UnionMetadata', $sdkver, 'Windows.winmd' | `
-                        foreach { $fullpath = Join-Path $fullpath $_ }
+                $old = $matches[1]
+                $oldver = $matches[2]
 
-                    WriteOK "patching$dry Windows SDK path: $fullpath"
-                    $lines[$i] = "<HintPath>$fullpath</HintPath>"
-                    $handled = $true
-                }
-                else
-                {
-                    WriteOK 'Windows SDK is already correct'
-                }
-            }
+                $new = Join-Path $kitsroot "UnionMetadata\$sdkver\Windows.winmd"
 
-            if ($handled)
-            {
-                $updated = $handled
+                $reason = $null
+                if ($oldver -ne $sdkver)
+                {
+                    $reason = "SDK version $oldver -> $sdkver"
+                }
+                elseif (!(Test-Path (ExpandPath $old) -PathType Leaf))
+                {
+                    $reason = 'referenced file does not exist'
+                }
+
+                $changed = PatchEntry $i $line 'Windows SDK path' $old $new $reason
+                if ($changed)
+                {
+                    $lines[$i] = $line.Replace($old, $new)
+                    $updated = $true
+                }
             }
         }
 
@@ -129,30 +142,140 @@ Begin
 
         if ($updated -and -not $WhatIf)
         {
-            $lines | Out-File $csproj
+            $encoding = New-Object System.Text.UTF8Encoding($hasBom)
+            [System.IO.File]::WriteAllText($csproj, ($lines -join $eol), $encoding)
         }
 
         return $updated
+    }
+
+
+    # Compare the current and desired values of one entry and report before/after details.
+    # Returns $true if the csproj value should be replaced.
+    function PatchEntry
+    {
+        param($index, $line, $label, $old, $new, $reason = $null)
+
+        $oldFull = ExpandPath $old
+        $newFull = ExpandPath $new
+
+        $same = $oldFull -ieq $newFull
+        $missing = $reason -eq 'referenced file does not exist'
+
+        # equivalent when the expanded values match and nothing else is wrong; a missing file
+        # with an identical value can't be fixed by rewriting it so just warn
+        if ($same -and -not $reason)
+        {
+            WriteOK "$label is already correct (line $($index + 1))"
+            Write-Host "     value   : $old" -ForegroundColor DarkGray
+            if ($old -ne $new)
+            {
+                Write-Host "     equals  : $new (same after expanding properties)" -ForegroundColor DarkGray
+            }
+            if ($old -ne $oldFull)
+            {
+                Write-Host "     expands : $oldFull" -ForegroundColor DarkGray
+            }
+            $script:results += [pscustomobject]@{ Entry = $label; Status = 'unchanged' }
+            return $false
+        }
+
+        if ($same -and $missing)
+        {
+            Write-Host "!! $label $oldFull does not exist and the SDK offers no other path" -ForegroundColor Red
+            $script:results += [pscustomobject]@{ Entry = $label; Status = 'missing' }
+            return $false
+        }
+
+        if (-not $reason)
+        {
+            $reason = 'path differs'
+        }
+
+        WriteOK "updating$dry $label (line $($index + 1))"
+        Write-Host "     reason  : $reason" -ForegroundColor Yellow
+        Write-Host "     before  : $old" -ForegroundColor Red
+        if ($old -ne $oldFull)
+        {
+            Write-Host "     expands : $oldFull" -ForegroundColor DarkGray
+        }
+        Write-Host "     after   : $new" -ForegroundColor Green
+        if ($new -ne $newFull)
+        {
+            Write-Host "     expands : $newFull" -ForegroundColor DarkGray
+        }
+
+        $script:results += [pscustomobject]@{ Entry = $label; Status = "updated$dry" }
+        return $true
+    }
+
+
+    # Expand MSBuild properties like $(windir) and normalize for comparison
+    function ExpandPath
+    {
+        param($text)
+
+        $p = ExpandMSBuild $text
+        if (-not [System.IO.Path]::IsPathRooted($p))
+        {
+            $p = Join-Path $basePath $p
+        }
+
+        return [System.IO.Path]::GetFullPath($p).TrimEnd('\')
+    }
+
+
+    # MSBuild exposes environment variables as (case-insensitive) properties, e.g. $(windir),
+    # $(ProgramFiles(x86)); unknown properties are left as-is and warned about once
+    function ExpandMSBuild
+    {
+        param($text)
+
+        return [regex]::Replace($text, '\$\(([^()]+(?:\([^()]*\))?)\)', {
+            param($m)
+            $value = [System.Environment]::GetEnvironmentVariable($m.Groups[1].Value)
+            if ($null -ne $value)
+            {
+                return $value
+            }
+
+            if (-not $script:warned.ContainsKey($m.Value))
+            {
+                $script:warned[$m.Value] = $true
+                Write-Host "!! unknown MSBuild property $($m.Value), comparing as-is" -ForegroundColor Yellow
+            }
+
+            return $m.Value
+        })
     }
 }
 Process
 {
     Push-Location OneMore
     GetDriveMapping
-    $script:csproj = Resolve-Path .\OneMore.csproj
+    $script:csproj = (Resolve-Path .\OneMore.csproj).Path
 
     $script:dry = $WhatIf ? ' (dry run)' : ''
 
     $script:sdkver = GetSDKVersion
-    if ($sdkver) 
+    if ($sdkver)
     {
         Write-Host "`nUpdating$dry Windows SDK $sdkver " -NoNewline
-        Write-Host "($kitsroot)`n" -ForegroundColor DarkGray
+        Write-Host "($kitsroot)" -ForegroundColor DarkGray
+        Write-Host
+        Write-Host "Framework dir: $netpath" -ForegroundColor DarkGray
+        Write-Host "Project: $csproj`n" -ForegroundColor DarkGray
 
-        if (PatchReferences) {
+        if (PatchReferences)
+        {
+            Write-Host
+            $results | Format-Table -AutoSize | Out-Host
             WriteOK 'done'
         }
-        else {
+        else
+        {
+            Write-Host
+            $results | Format-Table -AutoSize | Out-Host
             WriteOK 'no changes required'
         }
     }
