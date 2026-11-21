@@ -617,7 +617,7 @@ namespace River.OneMoreAddIn
 				var line = $"+{watch.ElapsedMilliseconds}ms {label}";
 				if (armed)
 				{
-					Logger.Current.WriteLine($"palette timing: {line}");
+					Logger.Current.Verbose($"palette timing: {line}");
 				}
 				else
 				{
@@ -643,7 +643,7 @@ namespace River.OneMoreAddIn
 
 				foreach (var line in pending)
 				{
-					Logger.Current.WriteLine($"palette timing: {line}");
+					Logger.Current.Verbose($"palette timing: {line}");
 				}
 
 				pending.Clear();
