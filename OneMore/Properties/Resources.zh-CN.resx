@@ -5351,6 +5351,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>排列容器</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>在页面上排列选定的容器</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>仅显示指令图标</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5430,6 +5434,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>书签</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>在光标处添加书签</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5844,6 +5852,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>从名称展开片段</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>将光标处的片段名称替换为保存的片段内容</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>导出</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6037,6 +6049,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>从 Outlook 导入联系人</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>将联系人从 Outlook 导入表中</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6335,12 +6351,20 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>管理窗口布局</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>保存、恢复或删除窗口布局</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>管理已保存的插件</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>管理自定义的片段</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>打开片段管理器以重命名、编辑或删除已保存的片段</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7032,6 +7056,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>选择语言</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>选择用于为所选代码着色的语言</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>选中相似格式文本</value>
     <comment>ribbon edit</comment>
@@ -7070,6 +7098,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>显示打开的窗口</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>显示打开的 OneNote 窗口列表</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

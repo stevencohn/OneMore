@@ -5337,6 +5337,10 @@ Stilistisch, entiteit, media</value>
     <value>Containers schikken</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>Schik de geselecteerde containers op de pagina</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Alleen pictogrammen weergeven voor bewerkingsopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5416,6 +5420,10 @@ Tabblad Help</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>Bladwijzer</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>Voeg een bladwijzer toe bij de cursor</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5830,6 +5838,10 @@ Tabblad Help</value>
     <value>Vouw fragment uit naam uit</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>Vervang de fragmentnaam bij de cursor door de opgeslagen fragmentinhoud</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>Exporteren</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6023,6 +6035,10 @@ Tabblad Help</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>Contactpersonen importeren uit Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>Importeer contacten uit Outlook in een tabel</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6321,12 +6337,20 @@ Tabblad Help</value>
     <value>Beheer vensterindelingen</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>Bewaar, herstel of verwijder vensterindelingen</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Beheer opgeslagen plug-ins</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>Beheer Mijn Fragmenten</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>Open de fragmentenbeheerder om uw opgeslagen fragmenten te hernoemen, bewerken of verwijderen</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7018,6 +7042,10 @@ Tabblad Help</value>
     <value>Selecteer Taal</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>Kies de taal die wordt gebruikt om de geselecteerde code in te kleuren</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Selecteer Vergelijkbare tekst</value>
     <comment>ribbon edit</comment>
@@ -7056,6 +7084,10 @@ Tabblad Help</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>Toon geopende vensters</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>Toon de lijst met geopende OneNote-vensters</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

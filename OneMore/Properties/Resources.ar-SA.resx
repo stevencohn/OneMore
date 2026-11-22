@@ -5348,6 +5348,10 @@ ISO-code then comma then language name</comment>
     <value>ترتيب الحاويات</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>ترتيب الحاويات المحددة على الصفحة</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>إظهار الرموز لأوامر التحرير فقط</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5427,6 +5431,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>إشارة مرجعية</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>أضف إشارة مرجعية عند المؤشر</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5841,6 +5849,10 @@ ISO-code then comma then language name</comment>
     <value>قم بتوسيع المقتطف من الاسم</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>استبدل اسم المقتطف الموجود عند المؤشر بمحتوى المقتطف المحفوظ</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>تصدير</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6034,6 +6046,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>استيراد جهات الاتصال من Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>استيراد جهات الاتصال من Outlook إلى جدول</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6332,12 +6348,20 @@ ISO-code then comma then language name</comment>
     <value>إدارة تخطيطات النافذة</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>حفظ أو استعادة أو حذف تخطيطات النافذة</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>إدارة الإضافات المحفوظة</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>إدارة مقتطفاتي</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>افتح مدير المقتطفات لإعادة تسمية المقتطفات المحفوظة أو تعديلها أو حذفها</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7029,6 +7053,10 @@ ISO-code then comma then language name</comment>
     <value>اختر اللغة</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>اختر اللغة المستخدمة لتلوين الكود المحدد</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>حدد نص مشابه</value>
     <comment>ribbon edit</comment>
@@ -7067,6 +7095,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>إظهار النوافذ المفتوحة</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>إظهار قائمة نوافذ OneNote المفتوحة</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

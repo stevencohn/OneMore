@@ -5336,6 +5336,10 @@ Stilistisch, Entität, Medien</value>
     <value>Container anordnen</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>Ordnen Sie die ausgewählten Container auf der Seite an</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Nur Symbole für Bearbeitungsbefehle anzeigen</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5415,6 +5419,10 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>Lesezeichen</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie am Cursor ein Lesezeichen hinzu</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5829,6 +5837,10 @@ Registerkarte „Hilfe“.</value>
     <value>Erweitere Snippet From Name</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>Ersetzen Sie den Snippet-Namen am Cursor durch den gespeicherten Snippet-Inhalt</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>Export</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6022,6 +6034,10 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>Kontakte aus Outlook importieren</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>Importieren Sie Kontakte aus Outlook in eine Tabelle</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6320,12 +6336,20 @@ Registerkarte „Hilfe“.</value>
     <value>Fensterlayouts verwalten</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>Fensterlayouts speichern, wiederherstellen oder löschen</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gespeicherte Plugins verwalten</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>Meine Snippets verwalten</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>Öffnen Sie den Snippets-Manager, um Ihre gespeicherten Snippets umzubenennen, zu bearbeiten oder zu löschen</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7018,6 +7042,10 @@ Registerkarte „Hilfe“.</value>
     <value>Wählen Sie Sprache aus</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>Wählen Sie die Sprache aus, die zum Färben des ausgewählten Codes verwendet wird</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Wählen Sie „Ähnlicher Text“.</value>
     <comment>ribbon edit</comment>
@@ -7056,6 +7084,10 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>Offene Fenster anzeigen</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>Zeigt die Liste der geöffneten OneNote-Fenster an</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

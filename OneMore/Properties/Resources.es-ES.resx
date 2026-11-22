@@ -5336,6 +5336,10 @@ Estilístico, Entidad, Medios</value>
     <value>Organizar contenedores</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>Organizar los contenedores seleccionados en la página.</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Mostrar solo iconos para los comandos de edición</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5415,6 +5419,10 @@ Pestaña Ayuda</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>Marcador</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>Agregar un marcador en el cursor</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5829,6 +5837,10 @@ Pestaña Ayuda</value>
     <value>Expandir fragmento de nombre</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>Reemplace el nombre del fragmento en el cursor con el contenido del fragmento guardado</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>Exportar</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6022,6 +6034,10 @@ Pestaña Ayuda</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>Importar contactos desde Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>Importar contactos de Outlook a una tabla</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6320,12 +6336,20 @@ Pestaña Ayuda</value>
     <value>Administrar diseños de ventanas</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>Guardar, restaurar o eliminar diseños de ventanas</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Administrar complementos guardados</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>Administrar mis fragmentos</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>Abra el administrador de fragmentos para cambiar el nombre, editar o eliminar sus fragmentos guardados</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7017,6 +7041,10 @@ Pestaña Ayuda</value>
     <value>Seleccionar idioma</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>Elija el idioma utilizado para colorear el código seleccionado</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Seleccionar texto similar</value>
     <comment>ribbon edit</comment>
@@ -7055,6 +7083,10 @@ Pestaña Ayuda</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>Mostrar ventanas abiertas</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>Mostrar la lista de ventanas abiertas de OneNote</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

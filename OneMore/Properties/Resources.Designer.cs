@@ -12658,6 +12658,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arrange the selected containers on the page.
+        /// </summary>
+        internal static string ribArrangeContainersButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribArrangeContainersButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;customUI
         ///  xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
@@ -12890,6 +12899,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribBookmarkButton_Label {
             get {
                 return ResourceManager.GetString("ribBookmarkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a bookmark at the cursor.
+        /// </summary>
+        internal static string ribBookmarkButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribBookmarkButton_Screentip", resourceCulture);
             }
         }
         
@@ -13821,6 +13839,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace the snippet name at the cursor with the saved snippet content.
+        /// </summary>
+        internal static string ribExpandSnippetButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribExpandSnippetButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         internal static string ribExportButton_Label {
@@ -14258,6 +14285,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribImportOutlookContactsButton_Label {
             get {
                 return ResourceManager.GetString("ribImportOutlookContactsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import contacts from Outlook into a table.
+        /// </summary>
+        internal static string ribImportOutlookContactsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribImportOutlookContactsButton_Screentip", resourceCulture);
             }
         }
         
@@ -14948,6 +14984,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save, restore, or delete window layouts.
+        /// </summary>
+        internal static string ribManageLayoutsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribManageLayoutsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Saved Plugins.
         /// </summary>
         internal static string ribManagePluginsButton_Label {
@@ -14962,6 +15007,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribManageSnippetsButton_Label {
             get {
                 return ResourceManager.GetString("ribManageSnippetsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the snippets manager to rename, edit, or delete your saved snippets.
+        /// </summary>
+        internal static string ribManageSnippetsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribManageSnippetsButton_Screentip", resourceCulture);
             }
         }
         
@@ -16543,6 +16597,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the language used to colorize the selected code.
+        /// </summary>
+        internal static string ribSelectLanguageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSelectLanguageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Similar Text.
         /// </summary>
         internal static string ribSelectStyleButton_Label {
@@ -16629,6 +16692,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribShowWindowsButton_Label {
             get {
                 return ResourceManager.GetString("ribShowWindowsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the list of open OneNote windows.
+        /// </summary>
+        internal static string ribShowWindowsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribShowWindowsButton_Screentip", resourceCulture);
             }
         }
         

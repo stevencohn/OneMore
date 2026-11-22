@@ -5337,6 +5337,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>מסדרים מיכלים</value>
     <comment>ribbon button NODUP</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>סדר את המיכלים שנבחרו בדף</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>הצג רק סמלים עבור פקודות עריכה</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5416,6 +5420,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>סימניה</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>הוסף סימניה בסמן</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5830,6 +5838,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הרחב את Snippet From Name</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>החלף את שם הקטע בסמן בתוכן הקטע השמור</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>יְצוּא</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6023,6 +6035,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>ייבא אנשי קשר מ-Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>ייבא אנשי קשר מ-Outlook לטבלה</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6321,12 +6337,20 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>נהל פריסות חלונות</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>שמור, שחזר או מחק פריסות חלונות</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>נהל תוספים שמורים</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>נהל את הקטעים שלי</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>פתח את מנהל הקטעים כדי לשנות את השם, לערוך או למחוק את הקטעים השמורים שלך</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7018,6 +7042,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>בחר שפה</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>בחר את השפה המשמשת לצביעה של הקוד הנבחר</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>בחר טקסט עם עיצוב דומה</value>
     <comment>ribbon item</comment>
@@ -7056,6 +7084,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>הצג Windows פתוח</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>הצג את רשימת חלונות OneNote הפתוחים</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

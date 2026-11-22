@@ -372,6 +372,7 @@
           id="ribSelectLanguageButton"
           imageMso="TextHighlightColorPicker"
           getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
           onAction="ChooseColorizerCmd"/>
         <menuSeparator id="ribSelectLanguageSep"/>
       </menu>

@@ -5348,6 +5348,10 @@ Stylistique, Entité, Média</value>
     <value>Organiser les conteneurs</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>Organiser les conteneurs sélectionnés sur la page</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Afficher uniquement les icônes pour les commandes d'édition</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5427,6 +5431,10 @@ Onglet Aide</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>Marque-page</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>Ajouter un signet au curseur</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5841,6 +5849,10 @@ Onglet Aide</value>
     <value>Développer l'extrait de nom</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>Remplacez le nom de l'extrait au niveau du curseur par le contenu de l'extrait enregistré</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>Exportation</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6034,6 +6046,10 @@ Onglet Aide</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>Importer des contacts depuis Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>Importer des contacts d'Outlook dans un tableau</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6332,12 +6348,20 @@ Onglet Aide</value>
     <value>Gérer la disposition des fenêtres</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>Enregistrer, restaurer ou supprimer des dispositions de fenêtres</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gérer les plugins enregistrés</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>Gérer mes extraits</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>Ouvrez le gestionnaire d'extraits pour renommer, modifier ou supprimer vos extraits enregistrés</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7029,6 +7053,10 @@ Onglet Aide</value>
     <value>Sélectionnez la langue</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>Choisissez la langue utilisée pour coloriser le code sélectionné</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Sélectionner un texte similaire</value>
     <comment>ribbon edit</comment>
@@ -7067,6 +7095,10 @@ Onglet Aide</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>Afficher les fenêtres ouvertes</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>Afficher la liste des fenêtres OneNote ouvertes</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

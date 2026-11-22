@@ -5340,6 +5340,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>コンテナの配置</value>
     <comment>ribbon button NODUP</comment>
   </data>
+  <data name="ribArrangeContainersButton_Screentip" xml:space="preserve">
+    <value>選択したコンテナをページ上に配置します</value>
+    <comment>ribbon button NODUP</comment>
+  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>編集コマンドのアイコンのみを表示</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -5419,6 +5423,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
     <value>ブックマーク</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribBookmarkButton_Screentip" xml:space="preserve">
+    <value>カーソル位置にブックマークを追加する</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -5833,6 +5841,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>名前からスニペットを展開</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribExpandSnippetButton_Screentip" xml:space="preserve">
+    <value>カーソル位置のスニペット名を保存されたスニペットの内容に置き換えます。</value>
+    <comment>menu item</comment>
+  </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>エクスポート</value>
     <comment>ribbon file</comment>
@@ -6026,6 +6038,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   </data>
   <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
     <value>Outlook から連絡先をインポートする</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Screentip" xml:space="preserve">
+    <value>Outlook からテーブルに連絡先をインポートする</value>
     <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -6324,12 +6340,20 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>ウィンドウレイアウトの管理</value>
     <comment>extras menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Screentip" xml:space="preserve">
+    <value>ウィンドウレイアウトの保存、復元、または削除</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>保存したプラグインの管理</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>スニペットの管理</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribManageSnippetsButton_Screentip" xml:space="preserve">
+    <value>スニペット マネージャーを開いて、保存したスニペットの名前を変更、編集、削除します。</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
@@ -7023,6 +7047,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>言語の選択</value>
     <comment>ribbon edit colorize NODUP</comment>
   </data>
+  <data name="ribSelectLanguageButton_Screentip" xml:space="preserve">
+    <value>選択したコードの色付けに使用する言語を選択します</value>
+    <comment>ribbon edit colorize NODUP</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>類似テキストの選択</value>
     <comment>ribbon edit</comment>
@@ -7061,6 +7089,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
     <value>開いているウィンドウを表示</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowWindowsButton_Screentip" xml:space="preserve">
+    <value>開いている OneNote ウィンドウのリストを表示する</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
