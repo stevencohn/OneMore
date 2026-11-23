@@ -187,3 +187,41 @@ Notes:
 - Reports only, no edits to source. Do fixes in a later step, one finding at a time.
 - `findings/` is generated output. Decide whether to commit it or add it to `.gitignore`.
 - Re-running a lens overwrites its report. Copy the old one aside first if you want to compare runs.
+
+---
+
+# Action
+
+The next step is to turn the verified findings into a decision list, then fix them in small, tested pieces. Don't hand the whole report to an agent and say "fix it".
+
+**1. Triage**
+- Read `findings\verification.md`. Drop the false positives, and treat the "partially" verdicts as needing a closer look.
+- For each remaining finding, decide: fix now, fix later, or won't fix (with a reason). Record the decision in a file such as `findings\triage.md`, with one row per finding and a status column, so the decisions survive between sessions.
+- Judge by impact and effort, not severity alone. A medium-severity finding that takes ten minutes to fix usually beats a high-severity one that needs a redesign.
+
+**2. Group into work items**
+- Findings from different lenses often point at the same code. Group them by area, so one change fixes several findings, instead of making one change per finding.
+- If the architecture pass found structural problems you intend to fix, do those first or at least plan around them. Otherwise you may fix line-level issues in code you're about to rewrite.
+- Large structural changes should get their own short spec in `specs\` before any code is written.
+
+**3. Track the work**
+- Create one GitHub issue (or tracker item) per work item. Link the finding report and the verification verdict, and state what "done" means.
+
+**4. Fix one item at a time, in a fresh session**
+- Use one branch and one PR per work item, with a clean session for each. A prompt along these lines works well:
+  - Read the finding and its verification verdict.
+  - Write a failing test that shows the problem, where practical.
+  - Make the smallest change that fixes it, then run the tests.
+  - Don't touch unrelated code.
+- Suggested order: security issues, then crashes and data-loss risks (robustness), then quick wins, then performance, then maintainability refactors. For performance, measure before and after. Otherwise you can't tell whether the change helped.
+- You can run fix agents in parallel only if they touch different files. If you do, give each its own git worktree so they don't collide.
+
+**5. Check each fix**
+- Before merging, have a separate session review the diff against the original finding: does it fix the problem, and did it introduce a new one? Don't let the session that wrote the fix grade it.
+
+**6. Close the loop**
+- Mark the item done in `triage.md`.
+- After a batch of fixes, re-run the relevant lens passes (and the testing lens) on the changed areas. They'll catch regressions and show you what's left.
+- Treat the findings as a snapshot. Once the code changes a lot, some of them go stale.
+
+If you'd like, I can read `synthesis.md` and the verification results now and draft the `triage.md` table, grouped into work items with a suggested order. I can also add this process to the README as a "5. Remediation" section, with a reusable fix prompt.
