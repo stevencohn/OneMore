@@ -55,16 +55,18 @@
       ]
     },
     {
-      "pattern": "(?i)\\b(if|else|for|in|do|goto|call|exit|setlocal|endlocal|shift|not|exist|defined|errorlevel|equ|neq|lss|leq|gtr|geq)\\b",
+      "pattern": "(?i)\\b(if|else|for|in|do|break|goto|call|choice|exit|setlocal|endlocal|shift|not|exist|defined|errorlevel|cmdextversion|enabledelayedexpansion|disabledelayedexpansion|enableextensions|disableextensions|equ|neq|lss|leq|gtr|geq)\\b",
       "captures": [
-        "Keyword"
+        "ControlKeyword"
       ]
     },
     {
-      "pattern": "(?i)\\b(echo|set|cd|chdir|copy|del|dir|md|mkdir|move|pause|rd|rmdir|ren|start|type|title|cls|pushd|popd|xcopy|robocopy|choice)\\b",
+      // commands only at the start of a statement: start of line, after & && | || (
+      // (but not ^& ^|), or after do/else; allows leading whitespace and @
+      "pattern": "(?i)(?<=(?:^|(?<!\\^)[&|\\(]|\\b(?:do|else)\\b)[ \\t]*@?[ \\t]*)\\b(echo|set|cd|chdir|copy|del|dir|md|mkdir|mklink|move|net|path|pause|rd|rmdir|ren|start|type|title|cls|pushd|popd|xcopy|robocopy|assoc|chcp|color|date|erase|ftype|prompt|rename|time|ver|verify|vol|attrib|cacls|icacls|takeown|comp|fc|find|findstr|more|sort|tree|where|timeout|forfiles|setx|reg|sc|schtasks|tasklist|taskkill|shutdown|runas|whoami|hostname|systeminfo|subst|ping|ipconfig|netsh|nslookup|tracert|curl|tar|certutil|wmic|msiexec|powershell|cmd|clip|doskey|mode|chkdsk|format|label|expand|replace)\\b",
       "captures": [
         "Keyword"
-      ]
+      ]  
     },
     {
       // @, redirection, pipes, and command separators
